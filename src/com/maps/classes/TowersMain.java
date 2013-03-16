@@ -22,7 +22,7 @@ import com.oresomecraft.OresomeBattles.InventoryEvent;
 import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
 
-public class TowersMain implements Listener {
+public class TheBan implements Listener {
     
     OresomeBattlesMaps plugin;
     OresomeBattles Battles;
@@ -36,9 +36,9 @@ public class TowersMain implements Listener {
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    String name = "towers";
-    String fullName = "Towers";
-    String creators = "bruuceey and Lyssieloo";
+    String name = "Ban";
+    String fullName = "TheBan";
+    String creators = "Masmaster007";
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
