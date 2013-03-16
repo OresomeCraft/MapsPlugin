@@ -1,4 +1,4 @@
-package com.maps;
+package com.maps.classes;
 
 
 import java.util.ArrayList;
@@ -32,6 +32,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import com.maps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.InventoryEvent;
 import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
