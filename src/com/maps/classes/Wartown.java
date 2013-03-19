@@ -50,7 +50,7 @@ public class Wartown implements Listener {
 
     String name = "wartown";
     String fullName = "Wartown";
-    String creators = "reub_youtube";
+    String creators = "reub_youtube ";
     //Map download link: N/A
     
     @EventHandler(priority = EventPriority.NORMAL)
