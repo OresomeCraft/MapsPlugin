@@ -30,11 +30,11 @@ import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
 
 
-public class ArcticMain implements Listener {
+public class Arctic implements Listener {
     
     OresomeBattlesMaps plugin;
     OresomeBattles Battles;
-    public ArcticMain(OresomeBattlesMaps pl) {
+    public Arctic(OresomeBattlesMaps pl) {
 	plugin = pl;
 	plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");

@@ -37,7 +37,7 @@ import com.oresomecraft.OresomeBattles.InventoryEvent;
 import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
 
-public class SpireMain implements Listener {
+public class Spire implements Listener {
 
     ChatColor GOLD = ChatColor.GOLD;
 
@@ -59,7 +59,7 @@ public class SpireMain implements Listener {
     
     OresomeBattlesMaps plugin;
     OresomeBattles Battles;
-    public SpireMain(OresomeBattlesMaps pl) {
+    public Spire(OresomeBattlesMaps pl) {
 	plugin = pl;
 	plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");

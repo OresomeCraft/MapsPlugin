@@ -25,11 +25,11 @@ import com.oresomecraft.OresomeBattles.InventoryEvent;
 import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
 
-public class NuketownMain implements Listener {
+public class Nuketown implements Listener {
 
     OresomeBattlesMaps plugin;
     OresomeBattles Battles;
-    public NuketownMain(OresomeBattlesMaps pl) {
+    public Nuketown(OresomeBattlesMaps pl) {
 	plugin = pl;
 	plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");

@@ -34,11 +34,11 @@ import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
 
 
-public class PerroMain implements Listener {
+public class Perro implements Listener {
 
     OresomeBattlesMaps plugin;
     OresomeBattles Battles;
-    public PerroMain(OresomeBattlesMaps pl) {
+    public Perro(OresomeBattlesMaps pl) {
 	plugin = pl;
 	plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");

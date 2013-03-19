@@ -13,7 +13,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
     public void onDisable() {
 
 	PluginDescriptionFile pdfFile = getDescription();
-	this.logger.info(pdfFile.getName() + "is now disabled");
+	this.logger.info(pdfFile.getName() + " is now disabled");
     }
 
     public void onEnable() {
@@ -25,16 +25,16 @@ public class OresomeBattlesMaps extends JavaPlugin {
     
     public void loadMaps() {
 	
-	new PerroMain(this);
-	new WartownMain(this);
-	new SpireMain(this);
-	new MansionMain(this);
-	new HypnoMain(this);
-	new ArcticMain(this);
-        new NuketownMain(this);
-	new TerminalMain(this);
-	new ChaoscityMain(this);
-	new TowersMain(this);
+	new Perro(this);
+	new Wartown(this);
+	new Spire(this);
+	new Mansion(this);
+	new Hypno(this);
+	new Arctic(this);
+        new Nuketown(this);
+	new Terminal(this);
+	new Chaoscity(this);
+	new Towers(this);
 	
     }
 
