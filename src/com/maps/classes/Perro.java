@@ -342,9 +342,12 @@ public class Perro implements Listener {
 
     }
     
+    public int particles;
+    
     public void arrowParticles() {
 
-	Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+	Bukkit.getServer().getScheduler().cancelTask(particles);
+	particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 
 	    public void run() {
 		World world = Bukkit.getWorld(name);

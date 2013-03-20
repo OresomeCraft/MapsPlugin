@@ -61,6 +61,7 @@ public class Wartown implements Listener {
 	readyFFASpawns();
 	Battles.addCreators(name, creators); 
 	Battles.setFullName(name, fullName);
+	arrowParticles();
     }
 
     public void readyTDMSpawns() {
@@ -412,9 +413,12 @@ public class Wartown implements Listener {
 	    }
 	}
 
+    public int particles;
+    
     public void arrowParticles() {
 
-	Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+	Bukkit.getServer().getScheduler().cancelTask(particles);
+	particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 
 	    public void run() {
 		World world = Bukkit.getWorld(name);
