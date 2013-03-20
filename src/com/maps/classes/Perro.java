@@ -62,6 +62,7 @@ public class Perro implements Listener {
 	readyFFASpawns();
 	Battles.addCreators(name, creators); 
 	Battles.setFullName(name, fullName);
+	arrowParticles();
     }
 
     public void readyTDMSpawns() {
