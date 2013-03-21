@@ -269,3 +269,9 @@ You can make this play any sort of particles, but you'll need to do your own res
 
 You may also notice the if statement that makes sure this is an arrow, you could change this to say snowballs, it's up to you!
 Make sure you  ```import org.bukkit.Effect;```, ```import org.bukkit.event.entity.ProjectileHitEvent;```, ```import org.bukkit.entity.Entity; ``` and ```import org.bukkit.entity.Arrow; ``` if you want to use this.
+
+
+
+Written by Zach De Koning (Zachoz | https://github.com/Zachoz)
+
+Last updated: 21/03/2013
