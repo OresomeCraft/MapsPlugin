@@ -215,12 +215,9 @@ public class Hypno implements Listener {
 			|| mat == 49 || mat == 123 || mat == 69 || mat == 124) {
 
 		    event.setCancelled(true);
-
 		}
 	    }
-
 	}
-
     }
 
     @EventHandler(priority = EventPriority.NORMAL)

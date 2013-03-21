@@ -1,6 +1,5 @@
 package com.maps.classes;
 
-
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
@@ -28,7 +27,6 @@ import com.maps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.InventoryEvent;
 import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
-
 
 public class Arctic implements Listener {
     
