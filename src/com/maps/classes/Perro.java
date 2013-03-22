@@ -57,6 +57,7 @@ public class Perro implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	Battles.addVotes(name);
+	Battles.votes.put(name, 1); // Very dirty cheat to set this as the default map.
 	clearSpawns();
 	readyTDMSpawns();
 	readyFFASpawns();

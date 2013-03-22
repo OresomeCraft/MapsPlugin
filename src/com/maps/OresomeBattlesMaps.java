@@ -35,6 +35,8 @@ public class OresomeBattlesMaps extends JavaPlugin {
 	new Terminal(this);
 	new Chaoscity(this);
 	new Towers(this);
+	new Hartshire(this);
+	new Deepcaverns(this);
 	
     }
 
