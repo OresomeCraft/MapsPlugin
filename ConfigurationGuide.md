@@ -18,7 +18,8 @@ Below will be a step by step guide of how to configure it, and then even submit 
 
 Follow the step by step guide below to sucessfully configure your own OresomeBattles map!
 
-First off, copy an example class that already exists. We recommend using the Terminal class file to work from.
+[HERE]:https://github.com/OresomeCraft/OresomeBattles-Maps/blob/master/Template.java
+First off, copy the Template.java file, you can get that from [HERE][]
 ### Basic map details
 
 The code below only needs to be slightly channged. Simple change where it says "Arctic" to the name of your map.
