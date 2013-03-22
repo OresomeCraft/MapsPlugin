@@ -38,7 +38,7 @@ public class Deepcaverns implements Listener {
     // Map details
     String name = "deepcaverns";
     String fullName = "Deep Caverns";
-    String creators = "Kalysar, Alphaminecraft91 and MR_SKINNA7";
+    String creators = "kalysar, AlphaMinecraft91 and MR_SKINNA7";
     //Map download link: N/A
     
     @EventHandler(priority = EventPriority.NORMAL)
