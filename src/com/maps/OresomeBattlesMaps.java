@@ -37,6 +37,8 @@ public class OresomeBattlesMaps extends JavaPlugin {
 	new Towers(this);
 	new Hartshire(this);
 	new Deepcaverns(this);
+	new Skyislands(this);
+	new Fosscrest(this);
 	
     }
 
