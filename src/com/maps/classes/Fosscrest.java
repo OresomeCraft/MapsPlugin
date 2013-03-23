@@ -59,7 +59,7 @@ public class Fosscrest implements Listener {
 
 	redSpawns.add(redSpawn);
 	redSpawns.add(new Location(w, -186, 112, -1293));
-	redSpawns.add(new Location(w, 185, 112, -1288));
+	redSpawns.add(new Location(w, 241, 120, -1310));
 
 	blueSpawns.add(blueSpawn);
 	blueSpawns.add(new Location(w, 236, 94, -1325));
@@ -73,8 +73,8 @@ public class Fosscrest implements Listener {
 
 	World w = Bukkit.getServer().getWorld(name);
 
-	Location redSpawn = new Location(w, -72, 71, -1208, -1, 0);
-	Location blueSpawn = new Location(w, -116, 66, -1140, -178, 0);
+	Location redSpawn = new Location(w, 186, 112, -1293);
+	Location blueSpawn = new Location(w, 185, 112, -1288);
 
 	FFASpawns.add(redSpawn);
 	FFASpawns.add(blueSpawn);
@@ -88,6 +88,7 @@ public class Fosscrest implements Listener {
 	FFASpawns.add(new Location(w, 244, 99, -1289));
 	FFASpawns.add(new Location(w, 198, 113, -1288));
 	FFASpawns.add(new Location(w, 187, 119, -1267));
+	
 	Battles.setFFASpawns(name, FFASpawns);
     }
     
