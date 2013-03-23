@@ -59,6 +59,14 @@ public class Hartshire implements Listener {
 
 	redSpawns.add(redSpawn);
 	blueSpawns.add(blueSpawn);
+	blueSpawns.add(new Location(w, 154, 58, -158, -50, 0));
+	redSpawns.add(new Location(w, 77, 40, -124, -50, 0));
+	blueSpawns.add(new Location(w, 119, 67, -163, -50, 0));
+	redSpawns.add(new Location(w, 175, 45, -245, -50, 0));
+	blueSpawns.add(new Location(w, 184, 48, -210, -50, 0));
+	redSpawns.add(new Location(w, 229, 56, -148, -50, 0));
+	blueSpawns.add(new Location(w, 116, 41, -46, -50, 0));
+	redSpawns.add(new Location(w, 94, 53, -106, -50, 0));
 
 	Battles.setRedSpawns(name, redSpawns);
 	Battles.setBlueSpawns(name, blueSpawns);
