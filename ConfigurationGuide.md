@@ -148,7 +148,7 @@ Out of all things here inventories are probably the most complex, but they're ac
 	    p.getInventory().setHelmet(IRON_HELMET); // Set helmet
 	    
 	    // Add items into inventory bar.
-	    // The numer being the slot number. (Remember: Slot 1 is actually 0, Slot 2 is 0, etc)
+	    // The numer being the slot number. (Remember: Slot 1 is actually 0, Slot 2 is 1, etc)
 	    // Second arg is the item being added.
 	    i.setItem(0, IRON_SWORD);
 	    i.setItem(1, BOW);
