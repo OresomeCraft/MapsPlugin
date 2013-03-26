@@ -16,6 +16,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -193,6 +194,20 @@ public class Nuketown implements Listener {
 	if (loc.getWorld().getName().equals(name)) {
 
 	    event.setCancelled(true);
+	}
+
+    }
+    
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void protection1(BlockPlaceEvent event) {
+
+	Block b = event.getBlock();
+	Location loc = b.getLocation();
+
+	if (loc.getWorld().getName().equals(name)) {
+
+	    event.setCancelled(true);
+
 	}
 
     }

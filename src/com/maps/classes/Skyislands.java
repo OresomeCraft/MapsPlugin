@@ -12,6 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -177,19 +178,6 @@ public class Skyislands implements Listener {
 
     }
 
-
-    /*
-     * Custom effects/items code goes here! This is also the place where you can
-     * have code that says what blocks can and can't be broken.
-     * 
-     * Usually you should just leave this to Zachoz and pegabeavercorn to do and
-     * leave them you suggestions via a comment. ("// Text here")
-     * 
-     * If you have experience in Java and the Bukkit API feel free to write your own!
-     */
-
-    // Code for disabling block breaking:
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection(BlockBreakEvent event) {
 
@@ -199,6 +187,20 @@ public class Skyislands implements Listener {
 	if (loc.getWorld().getName().equals(name)) {
 
 	    event.setCancelled(true);
+	}
+
+    }
+    
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void protection1(BlockPlaceEvent event) {
+
+	Block b = event.getBlock();
+	Location loc = b.getLocation();
+
+	if (loc.getWorld().getName().equals(name)) {
+
+	    event.setCancelled(true);
+
 	}
 
     }

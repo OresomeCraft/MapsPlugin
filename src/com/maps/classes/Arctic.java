@@ -17,6 +17,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -246,6 +247,20 @@ public class Arctic implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection(BlockBreakEvent event) {
+
+	Block b = event.getBlock();
+	Location loc = b.getLocation();
+
+	if (loc.getWorld().getName().equals(name)) {
+
+	    event.setCancelled(true);
+
+	}
+
+    }
+    
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void protection1(BlockPlaceEvent event) {
 
 	Block b = event.getBlock();
 	Location loc = b.getLocation();

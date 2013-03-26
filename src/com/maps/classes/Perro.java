@@ -20,6 +20,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerFishEvent.State;
@@ -340,6 +341,20 @@ public class Perro implements Listener {
 		    event.setCancelled(true);
 		}
 	    }
+	}
+
+    }
+    
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void protection1(BlockPlaceEvent event) {
+
+	Block b = event.getBlock();
+	Location loc = b.getLocation();
+
+	if (loc.getWorld().getName().equals(name)) {
+
+	    event.setCancelled(true);
+
 	}
 
     }
