@@ -56,7 +56,7 @@ public class Spire implements Listener {
     public int x2 = -1499;
     public int y2 = 169;
     public int z2 = -2230;
-    
+
     OresomeBattlesMaps plugin;
     OresomeBattles Battles;
     public Spire(OresomeBattlesMaps pl) {
@@ -64,7 +64,7 @@ public class Spire implements Listener {
 	plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	Battles.addVotes(name);
@@ -74,7 +74,7 @@ public class Spire implements Listener {
 	Battles.addCreators(name, creators); 
 	Battles.setFullName(name, fullName);
     }
-    
+
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
 
@@ -140,7 +140,7 @@ public class Spire implements Listener {
 
 	Battles.setFFASpawns(name, FFASpawns);
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
 	String par = event.getMessage();
@@ -160,7 +160,7 @@ public class Spire implements Listener {
 	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 	    ItemStack STONE_SHOVEL = new ItemStack(Material.STONE_SPADE, 1);
 	    ItemStack IRON_PICK = new ItemStack(Material.IRON_PICKAXE, 1);
-		
+
 	    p.getInventory().setBoots(IRON_BOOTS);
 	    p.getInventory().setLeggings(IRON_PANTS);
 	    p.getInventory().setChestplate(IRON_CHESTPLATE);
@@ -175,13 +175,13 @@ public class Spire implements Listener {
 
 	}
     }
-    
+
     public void clearSpawns() {
 	redSpawns.clear();
 	blueSpawns.clear();
 	FFASpawns.clear();
     }
-    
+
     // getting the region
     public static boolean contains(Location loc, int x1, int x2, int y1,
 	    int y2, int z1, int z2) {

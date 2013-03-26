@@ -29,7 +29,7 @@ import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
 
 public class Terminal implements Listener {
-    
+
     OresomeBattlesMaps plugin;
     OresomeBattles Battles;
     public Terminal(OresomeBattlesMaps pl) {
@@ -37,7 +37,7 @@ public class Terminal implements Listener {
 	plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
-    
+
     // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
@@ -48,7 +48,7 @@ public class Terminal implements Listener {
     String fullName = "Terminal";
     String creators = "Zachoz, XxXShadowSoul and Slider302";
     //Map download link: N/A
-    
+
     // Ready map (Don't change!)
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
@@ -59,14 +59,14 @@ public class Terminal implements Listener {
 	Battles.addCreators(name, creators); 
 	Battles.setFullName(name, fullName);
     }
-    
+
     // Prepare TDM spawns
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
 
 	// Define main red spawn point
 	Location redSpawn = new Location(w, -72, 71, -1208, -1, 0);
-	
+
 	// Define main blue spawn point
 	Location blueSpawn = new Location(w, -116, 66, -1140, -178, 0);
 
@@ -82,14 +82,14 @@ public class Terminal implements Listener {
 	redSpawns.add(new Location(w, -121, 71, -1190, 121, 0));
 	redSpawns.add(new Location(w, -114, 66, -1191, 43, 0));
 	redSpawns.add(new Location(w, -58, 71, -1147, 156, 0));
-	
+
 	// Set blue's spawn points (See example at the end of the method)
 	blueSpawns.add(blueSpawn);
 	blueSpawns.add(new Location(w, -142, 66, -1171, -108, 0));
 	blueSpawns.add(new Location(w, -127, 70, -1158, -162, 0));
 	blueSpawns.add(new Location(w, -125, 71, -1132, -95, 0));
 	blueSpawns.add(new Location(w, -109, 71, -1162, -132, 0));
-        blueSpawns.add(new Location(w, -83, 71, -1182, 41, 0));
+	blueSpawns.add(new Location(w, -83, 71, -1182, 41, 0));
 	blueSpawns.add(new Location(w, -43, 71, -1168, 124, 0));
 	blueSpawns.add(new Location(w, -91, 71, -1207, -89, 0));
 	blueSpawns.add(new Location(w, -139, 71, -1192, 89, 0));
@@ -99,7 +99,7 @@ public class Terminal implements Listener {
 	// Add spawns to lists. (Don't change!)
 	Battles.setRedSpawns(name, redSpawns);
 	Battles.setBlueSpawns(name, blueSpawns);
-	
+
 	/*
 	 * Key:
 	 * w = world name. (Don't change!)
@@ -147,7 +147,7 @@ public class Terminal implements Listener {
 	// Add spawns to list. (Don't change!)
 	Battles.setFFASpawns(name, FFASpawns);
     }
-    
+
     // Give player the maps inventory
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
@@ -168,13 +168,13 @@ public class Terminal implements Listener {
 	    ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
 	    ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-	    
+
 	    // Set armour. (This is straight forward, right?)
 	    p.getInventory().setBoots(IRON_BOOTS);
 	    p.getInventory().setLeggings(IRON_PANTS);
 	    p.getInventory().setChestplate(IRON_CHESTPLATE);
 	    p.getInventory().setHelmet(IRON_HELMET);
-	    
+
 	    // Add items into inventory bar.
 	    // The numer being the slot number. (Remember: Slot 1 is actually 0)
 	    // Second arg is the item being added.
@@ -186,20 +186,20 @@ public class Terminal implements Listener {
 
 	}
     }
-    
+
     // Clear spawn lists (Don't change!)
     public void clearSpawns() {
 	redSpawns.clear();
 	blueSpawns.clear();
 	FFASpawns.clear();
     }
-    
+
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
     public int x1 = -207;
     public int y1 = 52;
     public int z1 = -1220;
-    
+
     //Bottom right corner.
     public int x2 = -38;
     public int y2 = 112;
@@ -223,8 +223,8 @@ public class Terminal implements Listener {
 	}
 	return false;
     }
-    
-    
+
+
     /*
      * Custom effects/items code goes here! This is also the place where you can
      * have code that says what blocks can and can't be broken.
@@ -244,8 +244,8 @@ public class Terminal implements Listener {
 	Location loc = b.getLocation();
 
 	if (loc.getWorld().getName().equals(name)) {
-	   
-		event.setCancelled(true);
+
+	    event.setCancelled(true);
 	}
 
     }

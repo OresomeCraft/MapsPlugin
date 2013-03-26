@@ -21,7 +21,7 @@ import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
 
 public class Template implements Listener {
-    
+
     OresomeBattlesMaps plugin;
     OresomeBattles Battles;
     public Template(OresomeBattlesMaps pl) {
@@ -29,7 +29,7 @@ public class Template implements Listener {
 	plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
-    
+
     // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
@@ -40,7 +40,7 @@ public class Template implements Listener {
     String fullName = "Template";
     String creators = "Zachoz, pegabeavercorn and derp";
     //Map download link: N/A
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	Battles.addVotes(name);
@@ -50,7 +50,7 @@ public class Template implements Listener {
 	Battles.addCreators(name, creators); 
 	Battles.setFullName(name, fullName);
     }
-    
+
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
 
@@ -60,7 +60,7 @@ public class Template implements Listener {
 	redSpawns.add(redSpawn);
 	redSpawns.add(new Location(w, -143, 66, -1211, -50, 0));
 	redSpawns.add(new Location(w, -141, 66, -1142, -152, 0));
-	
+
 	blueSpawns.add(blueSpawn);
 	blueSpawns.add(new Location(w, -142, 66, -1171, -108, 0));
 	blueSpawns.add(new Location(w, -127, 70, -1158, -162, 0));
@@ -101,7 +101,7 @@ public class Template implements Listener {
 
 	Battles.setFFASpawns(name, FFASpawns);
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
 
@@ -120,33 +120,33 @@ public class Template implements Listener {
 	    ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
 	    ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-	    
+
 	    p.getInventory().setBoots(IRON_BOOTS);
 	    p.getInventory().setLeggings(IRON_PANTS);
 	    p.getInventory().setChestplate(IRON_CHESTPLATE);
 	    p.getInventory().setHelmet(IRON_HELMET);
-	    
+
 	    i.setItem(0, IRON_SWORD);
 	    i.setItem(1, BOW);
 	    i.setItem(2, STEAK);
 	    i.setItem(3, HEALTH_POTION);
 	    i.setItem(4, ARROWS);
 
-	   }
+	}
     }
-    
+
     public void clearSpawns() {
 	redSpawns.clear();
 	blueSpawns.clear();
 	FFASpawns.clear();
     }
-    
+
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
     public int x1 = -207;
     public int y1 = 52;
     public int z1 = -1220;
-    
+
     //Bottom right corner.
     public int x2 = -38;
     public int y2 = 112;
@@ -154,7 +154,7 @@ public class Template implements Listener {
 
     // Getting the region
     public static boolean contains(Location loc, int x1, int x2, int y1,
-	 int y2, int z1, int z2) {
+	    int y2, int z1, int z2) {
 	int bottomCornerX = x1 < x2 ? x1 : x2; 
 	int bottomCornerZ = z1 < z2 ? z1 : z2; 
 	int topCornerX = x1 > x2 ? x1 : x2;
@@ -165,14 +165,14 @@ public class Template implements Listener {
 	    if (loc.getZ() >= bottomCornerZ && loc.getZ() <= topCornerZ) {
 		if (loc.getY() >= bottomCornerY && loc.getY() <= topCornerY) {
 		    return true;
-		    }
+		}
 	    }
 	}
 	return false;
 
     }
-    
-    
+
+
     /*
      * Custom effects/items code goes here! This is also the place where you can
      * have code that says what blocks can and can't be broken.

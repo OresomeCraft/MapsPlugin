@@ -23,7 +23,7 @@ import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
 
 public class Towers implements Listener {
-    
+
     OresomeBattlesMaps plugin;
     OresomeBattles Battles;
     public Towers(OresomeBattlesMaps pl) {
@@ -115,7 +115,7 @@ public class Towers implements Listener {
 
 	Battles.setFFASpawns(name, FFASpawns);
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
 	String par = event.getMessage();
@@ -134,7 +134,7 @@ public class Towers implements Listener {
 	    ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 	    ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
-		
+
 	    p.getInventory().setBoots(IRON_BOOTS);
 	    p.getInventory().setLeggings(IRON_PANTS);
 	    p.getInventory().setChestplate(IRON_CHESTPLATE);
@@ -145,10 +145,10 @@ public class Towers implements Listener {
 	    i.setItem(3, STEAK);
 	    i.setItem(4, HEALTH_POTION);
 	    i.setItem(5, EXP);
-	    
+
 	}
     }
-    
+
     public void clearSpawns() {
 	redSpawns.clear();
 	blueSpawns.clear();
@@ -181,7 +181,7 @@ public class Towers implements Listener {
 	}
 	return false;
     }
-    
+
     @EventHandler
     public void arrowBoom(ProjectileHitEvent event) {
 	Entity arrow = event.getEntity();

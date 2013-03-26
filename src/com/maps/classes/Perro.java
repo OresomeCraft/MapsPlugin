@@ -43,7 +43,7 @@ public class Perro implements Listener {
 	plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
-    
+
     // Spawn locations.
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
@@ -53,7 +53,7 @@ public class Perro implements Listener {
     String fullName = "Casa de Perro";
     String creators = "zachoz, pegabeavercorn and dogmode555";
     //Map download link: N/A
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	Battles.addVotes(name);
@@ -98,7 +98,7 @@ public class Perro implements Listener {
 	Battles.setRedSpawns(name, redSpawns);
 	Battles.setBlueSpawns(name, blueSpawns);
     }
-    
+
     public void readyFFASpawns() {
 	World w = Bukkit.getServer().getWorld(name);
 
@@ -127,30 +127,30 @@ public class Perro implements Listener {
 	FFASpawns.add(new Location(w, -1439, 129, -2093, -87, 0));
 	FFASpawns.add(new Location(w, -1410, 114, -2081, -178, 0));
 	FFASpawns.add(new Location(w, -1416, 98, -2081, -159, 0));
-	
+
 	Battles.setFFASpawns(name, FFASpawns);
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
- 	String par = event.getMessage();
- 	Player p = event.getPlayer();
- 	Inventory i = p.getInventory();
- 	if (par.equalsIgnoreCase(name)) {
- 	    Battles.utility.clearInv(p);
+	String par = event.getMessage();
+	Player p = event.getPlayer();
+	Inventory i = p.getInventory();
+	if (par.equalsIgnoreCase(name)) {
+	    Battles.utility.clearInv(p);
 
- 	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
- 	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
- 	    ItemStack BOW = new ItemStack(Material.BOW, 1);
- 	    ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
- 	    ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
- 	    ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
- 	    ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
- 	    ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
- 	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+	    ItemStack BOW = new ItemStack(Material.BOW, 1);
+	    ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+	    ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+	    ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+	    ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+	    ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 	    ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 	    ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
-	    
+
 	    ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
 	    fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
 	    FISHING_ROD.setItemMeta(fishing_rod);
@@ -168,24 +168,24 @@ public class Perro implements Listener {
 	    i.setItem(6, ARROWS);
 	    p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
 
- 	}
-     }
-    
+	}
+    }
+
     public void clearSpawns() {
 	redSpawns.clear();
 	blueSpawns.clear();
 	FFASpawns.clear();
     }
-    
+
 
     //Region border.
-    
-   public int x1 = -1451;
-   public int y1 = 63;
-   public int z1 = -2145;
-   public int x2 = -1383;
-   public int y2 = 159;
-   public int z2 = -2066;
+
+    public int x1 = -1451;
+    public int y1 = 63;
+    public int z1 = -2145;
+    public int x2 = -1383;
+    public int y2 = 159;
+    public int z2 = -2066;
 
     public static boolean contains(Location loc, int x1, int x2, int y1,
 	    int y2, int z1, int z2) {
@@ -311,7 +311,7 @@ public class Perro implements Listener {
 	}
 
     }
-    
+
     @EventHandler
     public void arrowBoom(ProjectileHitEvent event) {
 	Entity arrow = event.getEntity();
@@ -343,9 +343,9 @@ public class Perro implements Listener {
 	}
 
     }
-    
+
     public int particles;
-    
+
     public void arrowParticles() {
 
 	Bukkit.getServer().getScheduler().cancelTask(particles);

@@ -34,7 +34,7 @@ public class Nuketown implements Listener {
 	plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
-    
+
     // Spawn locations.
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
@@ -44,7 +44,7 @@ public class Nuketown implements Listener {
     String fullName = "NukeTown";
     String creators = "Htgan, proportion and reub_youtube";
     //Map download link: N/A
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	Battles.addVotes(name);
@@ -57,7 +57,7 @@ public class Nuketown implements Listener {
 
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
-	
+
 	Location redSpawn = new Location(w, 1, 7, 41, 0, 0);
 	Location blueSpawn = new Location(w, 2, 7, 154, -179, 0);
 
@@ -93,9 +93,9 @@ public class Nuketown implements Listener {
 
 	Location redSpawn = new Location(w, 1, 7, 41, 0, 0);
 	Location blueSpawn = new Location(w, 2, 7, 154, -179, 0);
-        
-        FFASpawns.add(redSpawn);
-        FFASpawns.add(blueSpawn);
+
+	FFASpawns.add(redSpawn);
+	FFASpawns.add(blueSpawn);
 	FFASpawns.add(new Location(w, -19, 7, 89, -90, 0));
 	FFASpawns.add(new Location(w, 25, 11, 137, 89, 0));
 	FFASpawns.add(new Location(w, -19, 16, 61, -54, 0));
@@ -119,7 +119,7 @@ public class Nuketown implements Listener {
 
 	Battles.setFFASpawns(name, FFASpawns);
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
 	String par = event.getMessage();
@@ -137,7 +137,7 @@ public class Nuketown implements Listener {
 	    ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
 	    ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-		
+
 	    p.getInventory().setBoots(IRON_BOOTS);
 	    p.getInventory().setLeggings(IRON_PANTS);
 	    p.getInventory().setChestplate(IRON_CHESTPLATE);
@@ -150,7 +150,7 @@ public class Nuketown implements Listener {
 
 	}
     }
-    
+
     public void clearSpawns() {
 	redSpawns.clear();
 	blueSpawns.clear();
@@ -158,13 +158,13 @@ public class Nuketown implements Listener {
     }
 
     //Region border.
-    
-   public int x1 = -60;
-   public int y1 = 3;
-   public int z1 = 1;
-   public int x2 = 64;
-   public int y2 = 56;
-   public int z2 = 194;
+
+    public int x1 = -60;
+    public int y1 = 3;
+    public int z1 = 1;
+    public int x2 = 64;
+    public int y2 = 56;
+    public int z2 = 194;
 
     public static boolean contains(Location loc, int x1, int x2, int y1,
 	    int y2, int z1, int z2) {
@@ -192,11 +192,11 @@ public class Nuketown implements Listener {
 
 	if (loc.getWorld().getName().equals(name)) {
 
-		event.setCancelled(true);
+	    event.setCancelled(true);
 	}
 
     }
-    
+
     @EventHandler
     public void arrowBoom(ProjectileHitEvent event) {
 	Entity arrow = event.getEntity();

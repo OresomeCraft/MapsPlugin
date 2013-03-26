@@ -21,15 +21,15 @@ import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
 
 public class Deepcaverns implements Listener {
-    
+
     OresomeBattlesMaps plugin;
     OresomeBattles Battles;
     public Deepcaverns(OresomeBattlesMaps pl) {
-        plugin = pl;
+	plugin = pl;
 	plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
-    
+
     // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
@@ -40,7 +40,7 @@ public class Deepcaverns implements Listener {
     String fullName = "Deep Caverns";
     String creators = "kalysar, AlphaMinecraft91 and MR_SKINNA7";
     //Map download link: N/A
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	Battles.addVotes(name);
@@ -50,7 +50,7 @@ public class Deepcaverns implements Listener {
 	Battles.addCreators(name, creators); 
 	Battles.setFullName(name, fullName);
     }
-    
+
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
 
@@ -69,7 +69,7 @@ public class Deepcaverns implements Listener {
 	redSpawns.add(new Location(w, 27, 96, 0, 0, 0));
 	redSpawns.add(new Location(w, 30, 105, -14, 0, 0));
 	redSpawns.add(new Location(w, -9, 106, 18, 0, 0));
-	
+
 	blueSpawns.add(blueSpawn);
 	blueSpawns.add(new Location(w, -9, 110, -20, 0, 0));
 	blueSpawns.add(new Location(w, 0, 99, 27, 0, 0));
@@ -119,7 +119,7 @@ public class Deepcaverns implements Listener {
 
 	Battles.setFFASpawns(name, FFASpawns);
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
 
@@ -139,12 +139,12 @@ public class Deepcaverns implements Listener {
 	    ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 	    ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
-	    
+
 	    p.getInventory().setBoots(IRON_BOOTS);
 	    p.getInventory().setLeggings(IRON_PANTS);
 	    p.getInventory().setChestplate(IRON_CHESTPLATE);
 	    p.getInventory().setHelmet(IRON_HELMET);
-	    
+
 	    i.setItem(0, IRON_SWORD);
 	    i.setItem(1, BOW);
 	    i.setItem(2, STEAK);
@@ -152,21 +152,21 @@ public class Deepcaverns implements Listener {
 	    i.setItem(4, ARROWS);
 	    i.setItem(5, EXP);
 
-	   }
+	}
     }
-    
+
     public void clearSpawns() {
 	redSpawns.clear();
 	blueSpawns.clear();
 	FFASpawns.clear();
     }
-    
+
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
     public int x1 = -100;
     public int y1 = 160;
     public int z1 = -70;
-    
+
     //Bottom right corner.
     public int x2 = -70;
     public int y2 = 30;
@@ -174,7 +174,7 @@ public class Deepcaverns implements Listener {
 
     // Getting the region
     public static boolean contains(Location loc, int x1, int x2, int y1,
-	 int y2, int z1, int z2) {
+	    int y2, int z1, int z2) {
 	int bottomCornerX = x1 < x2 ? x1 : x2; 
 	int bottomCornerZ = z1 < z2 ? z1 : z2; 
 	int topCornerX = x1 > x2 ? x1 : x2;
@@ -185,7 +185,7 @@ public class Deepcaverns implements Listener {
 	    if (loc.getZ() >= bottomCornerZ && loc.getZ() <= topCornerZ) {
 		if (loc.getY() >= bottomCornerY && loc.getY() <= topCornerY) {
 		    return true;
-		    }
+		}
 	    }
 	}
 	return false;

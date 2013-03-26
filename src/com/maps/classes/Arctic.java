@@ -29,7 +29,7 @@ import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
 
 public class Arctic implements Listener {
-    
+
     OresomeBattlesMaps plugin;
     OresomeBattles Battles;
     public Arctic(OresomeBattlesMaps pl) {
@@ -46,7 +46,7 @@ public class Arctic implements Listener {
     String fullName = "Arctic";
     String creators = "Dant35tra5t";
     //Map download link: N/A
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	Battles.addVotes(name);
@@ -56,7 +56,7 @@ public class Arctic implements Listener {
 	Battles.addCreators(name, creators); 
 	Battles.setFullName(name, fullName);
     }
-    
+
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
 
@@ -89,7 +89,7 @@ public class Arctic implements Listener {
 	Battles.setRedSpawns(name, redSpawns);
 	Battles.setBlueSpawns(name, blueSpawns);
     }
-    
+
     public void readyFFASpawns() {
 	World w = Bukkit.getServer().getWorld(name);
 
@@ -121,7 +121,7 @@ public class Arctic implements Listener {
 
 	Battles.setFFASpawns(name, FFASpawns);
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
 	String par = event.getMessage();
@@ -142,7 +142,7 @@ public class Arctic implements Listener {
 	    ItemStack STONE_HOE = new ItemStack(Material.STONE_HOE, 1);
 	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
-	    
+
 	    ItemMeta stone_hoe = STONE_HOE.getItemMeta();
 	    stone_hoe.setDisplayName(ChatColor.BLUE + "Ice hook");
 	    STONE_HOE.setItemMeta(stone_hoe);
@@ -163,13 +163,13 @@ public class Arctic implements Listener {
 
 	}
     }
-    
+
     public void clearSpawns() {
 	redSpawns.clear();
 	blueSpawns.clear();
 	FFASpawns.clear();
     }
-    
+
 
     public int x1 = 715;
     public int y1 = 107;
@@ -177,7 +177,7 @@ public class Arctic implements Listener {
     public int x2 = 903;
     public int y2 = 203;
     public int z2 = 10;
-    
+
     // getting the region
     public static boolean contains(Location loc, int x1, int x2, int y1, int y2, int z1, int z2) {
 	int bottomCornerX = x1 < x2 ? x1 : x2;
@@ -196,7 +196,7 @@ public class Arctic implements Listener {
 	return false;
     }
 
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void icePick(PlayerInteractEvent event) {
 	Player p = event.getPlayer();
@@ -242,8 +242,8 @@ public class Arctic implements Listener {
 	}
 
     }
- 
-      
+
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection(BlockBreakEvent event) {
 
@@ -252,8 +252,8 @@ public class Arctic implements Listener {
 
 	if (loc.getWorld().getName().equals(name)) {
 
-		event.setCancelled(true);
-	    
+	    event.setCancelled(true);
+
 	}
 
     }

@@ -43,7 +43,7 @@ public class Mansion implements Listener {
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
-    
+
     String name = "mansion";
     String fullName = "The haunted mansion";
     String creators = "pegabeavercorn, Hourani95 and kevlar_miner";
@@ -61,7 +61,7 @@ public class Mansion implements Listener {
 
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
-	
+
 	Location redSpawn = new Location(w, 442, 64, -324);
 	Location blueSpawn = new Location(w, 442, 64, -324);
 
@@ -121,8 +121,8 @@ public class Mansion implements Listener {
 	FFASpawns.add(new Location(w, 466, 74, -251));
 
 	Battles.setFFASpawns(name, FFASpawns);
-     }
-    
+    }
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
 	String par = event.getMessage();
@@ -141,7 +141,7 @@ public class Mansion implements Listener {
 	    ItemStack MASK = new ItemStack(Material.SKULL_ITEM, 1);
 	    ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 	    ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
-		
+
 	    p.getInventory().setBoots(LEATHER_BOOTS);
 	    p.getInventory().setLeggings(LEATHER_PANTS);
 	    p.getInventory().setChestplate(LEATHER_CHESTPLATE);
@@ -231,7 +231,7 @@ public class Mansion implements Listener {
 
 	if (loc.getWorld().getName().equals(name)) {
 
-		event.setCancelled(true);
+	    event.setCancelled(true);
 	}
 
     }

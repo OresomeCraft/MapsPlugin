@@ -52,7 +52,7 @@ public class Wartown implements Listener {
     String fullName = "Wartown";
     String creators = "reub_youtube ";
     //Map download link: N/A
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	Battles.addVotes(name);
@@ -66,7 +66,7 @@ public class Wartown implements Listener {
 
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
-	
+
 	Location redSpawn = new Location(w, 175, 64, -272);
 	Location blueSpawn = new Location(w, 175, 67, -146, 179, 0);
 
@@ -125,26 +125,26 @@ public class Wartown implements Listener {
 	FFASpawns.add(new Location(w, 183, 60, -230, -46, 0));
 	FFASpawns.add(new Location(w, 200, 60, -251, 47, 0));
 	FFASpawns.add(new Location(w, 174, 69, -234, 41, 0));
-	
+
 	Battles.setFFASpawns(name, FFASpawns);
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
- 	String par = event.getMessage();
- 	Player p = event.getPlayer();
- 	Inventory i = p.getInventory();
- 	if (par.equalsIgnoreCase(name)) {
- 	    Battles.utility.clearInv(p);
+	String par = event.getMessage();
+	Player p = event.getPlayer();
+	Inventory i = p.getInventory();
+	if (par.equalsIgnoreCase(name)) {
+	    Battles.utility.clearInv(p);
 
- 	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
- 	    ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
- 	    ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE,  1);
- 	    ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
- 	    ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
- 	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
- 	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
- 	    ItemStack AMMO = new ItemStack(Material.FLINT, 64);
+	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+	    ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+	    ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE,  1);
+	    ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+	    ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+	    ItemStack AMMO = new ItemStack(Material.FLINT, 64);
 	    ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
 	    ItemStack EGG_WARTOWN = new ItemStack(Material.EGG, 1);
 	    ItemStack LEATHER = new ItemStack(Material.LEATHER, 1);
@@ -160,7 +160,7 @@ public class Wartown implements Listener {
 	    ItemMeta egg_wartown = EGG_WARTOWN.getItemMeta();
 	    egg_wartown.setDisplayName(ChatColor.BLUE + "Frag grenade");
 	    EGG_WARTOWN.setItemMeta(egg_wartown);
- 		
+
 	    ItemMeta leather = LEATHER.getItemMeta();
 	    leather.setDisplayName(ChatColor.BLUE + "C4");
 	    LEATHER.setItemMeta(leather);
@@ -177,9 +177,9 @@ public class Wartown implements Listener {
 	    i.setItem(5, HEALTH_POTION);
 	    i.setItem(6, AMMO);
 
- 	}
-     }
-    
+	}
+    }
+
     public void clearSpawns() {
 	redSpawns.clear();
 	blueSpawns.clear();
@@ -228,7 +228,7 @@ public class Wartown implements Listener {
 	String name = p.getName();
 
 	if (!Battles.spectator.containsKey(name)) {
-	    
+
 	    if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
 		if (tool == Material.LEATHER) {
 
@@ -260,11 +260,11 @@ public class Wartown implements Listener {
 			p.playSound(loc, Sound.CLICK, 1, 1);
 			w.createExplosion(chargeloc, 4);
 
-		    	ItemStack LEATHER = new ItemStack(Material.LEATHER, 1);
-		    	ItemMeta leather = LEATHER.getItemMeta();
-		    	leather.setDisplayName(ChatColor.BLUE + "C4");
-		    	LEATHER.setItemMeta(leather);
-		    	
+			ItemStack LEATHER = new ItemStack(Material.LEATHER, 1);
+			ItemMeta leather = LEATHER.getItemMeta();
+			leather.setDisplayName(ChatColor.BLUE + "C4");
+			LEATHER.setItemMeta(leather);
+
 			inv.removeItem(LEATHER);
 			p.updateInventory();
 			placer.remove(p);
@@ -298,11 +298,11 @@ public class Wartown implements Listener {
 	Block bW = b.getRelative(BlockFace.WEST);
 	Block bN = b.getRelative(BlockFace.NORTH);
 	Block bS = b.getRelative(BlockFace.SOUTH);
-	
+
 	ItemStack LEATHER = new ItemStack(Material.LEATHER, 1);
-    	ItemMeta leather = LEATHER.getItemMeta();
-    	leather.setDisplayName(ChatColor.BLUE + "C4");
-    	LEATHER.setItemMeta(leather);
+	ItemMeta leather = LEATHER.getItemMeta();
+	leather.setDisplayName(ChatColor.BLUE + "C4");
+	LEATHER.setItemMeta(leather);
 
 	if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
 
@@ -382,39 +382,39 @@ public class Wartown implements Listener {
 	if (Battles.spectator.containsKey(name)) {
 	    event.setCancelled(true); 
 	} else {
-	if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+	    if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
 
-	    if (tool == Material.BLAZE_ROD) {
+		if (tool == Material.BLAZE_ROD) {
 
-		if (a == Action.RIGHT_CLICK_AIR
-			|| a == Action.RIGHT_CLICK_BLOCK) {
+		    if (a == Action.RIGHT_CLICK_AIR
+			    || a == Action.RIGHT_CLICK_BLOCK) {
 
-		    if (inv.contains(Material.FLINT) == true) {
+			if (inv.contains(Material.FLINT) == true) {
 
-			p.launchProjectile(Arrow.class);
-			world.playSound(loc, Sound.COW_WALK, 10, 10);
-			ItemStack AMMO = new ItemStack(Material.FLINT, 1);
-			ItemMeta ammo = AMMO.getItemMeta();
-		    	ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
-		    	AMMO.setItemMeta(ammo);
-			inv.removeItem(AMMO);
-			p.updateInventory();
-			
+			    p.launchProjectile(Arrow.class);
+			    world.playSound(loc, Sound.COW_WALK, 10, 10);
+			    ItemStack AMMO = new ItemStack(Material.FLINT, 1);
+			    ItemMeta ammo = AMMO.getItemMeta();
+			    ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
+			    AMMO.setItemMeta(ammo);
+			    inv.removeItem(AMMO);
+			    p.updateInventory();
+
 			}
 
 		    } else {
 			world.playSound(loc, Sound.CLICK, 10, 10);
-			}
-
 		    }
 
 		}
 
 	    }
+
 	}
+    }
 
     public int particles;
-    
+
     public void arrowParticles() {
 
 	Bukkit.getServer().getScheduler().cancelTask(particles);
@@ -508,5 +508,5 @@ public class Wartown implements Listener {
 	}
 
     }
-  
+
 }

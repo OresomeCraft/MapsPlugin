@@ -42,11 +42,11 @@ public class Hypno implements Listener {
 	plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
-    
+
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
-    
+
     String name = "hypno";
     String fullName = "Hypnosis";
     String creators = "zachoz, pegabeavercorn, DragonDrew and kevlar_miner";
@@ -61,7 +61,7 @@ public class Hypno implements Listener {
 	Battles.addCreators(name, creators);
 	Battles.setFullName(name, fullName);
     }
-  	    
+
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
 
@@ -125,7 +125,7 @@ public class Hypno implements Listener {
 
 	Battles.setFFASpawns(name, FFASpawns);
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
 	String par = event.getMessage();
@@ -155,7 +155,7 @@ public class Hypno implements Listener {
 	    ItemMeta emerald = EMERALD.getItemMeta();
 	    emerald.setDisplayName(ChatColor.BLUE + "Nausea Stone");
 	    EMERALD.setItemMeta(emerald);
-		
+
 	    p.getInventory().setBoots(IRON_BOOTS);
 	    p.getInventory().setLeggings(IRON_PANTS);
 	    p.getInventory().setChestplate(IRON_CHESTPLATE);
@@ -178,7 +178,7 @@ public class Hypno implements Listener {
 	blueSpawns.clear();
 	FFASpawns.clear();
     }
-    
+
     public int x1 = -831;
     public int y1 = 62;
     public int z1 = -1452;
@@ -298,7 +298,7 @@ public class Hypno implements Listener {
 	    }
 	}
     }
-    
+
     @EventHandler
     public void arrowBoom(ProjectileHitEvent event) {
 	Entity arrow = event.getEntity();

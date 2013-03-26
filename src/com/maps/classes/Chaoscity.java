@@ -1,7 +1,7 @@
 package com.maps.classes;
- 
+
 import java.util.ArrayList;
- 
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -22,14 +22,14 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
- 
+
 import com.maps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.InventoryEvent;
 import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
- 
+
 public class Chaoscity implements Listener {
-    
+
     OresomeBattlesMaps plugin;
     OresomeBattles Battles;
     public Chaoscity(OresomeBattlesMaps pl) {
@@ -37,7 +37,7 @@ public class Chaoscity implements Listener {
 	plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
-    
+
     // TDM and FFA spawns List. (Don't change)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
@@ -57,7 +57,7 @@ public class Chaoscity implements Listener {
 	Battles.addCreators(name, creators);
 	Battles.setFullName(name, fullName);
     }
-	    
+
     // Define and ready TDM spawn locations.
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
@@ -127,7 +127,7 @@ public class Chaoscity implements Listener {
 
 	Battles.setFFASpawns(name, FFASpawns);
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
 	String par = event.getMessage();
@@ -168,24 +168,24 @@ public class Chaoscity implements Listener {
 
 	}
     }
-    
+
     public void clearSpawns() {
 	redSpawns.clear();
 	blueSpawns.clear();
 	FFASpawns.clear();
     }
-    
+
     // Region. (Top corner block and bottom corner block.
     // Top corner.
     public int x1 = -100;
     public int y1 = 5;
     public int z1 = -101;
-    
+
     //Bottom corner.
     public int x2 = 4;
     public int y2 = 87;
     public int z2 = 2;
- 
+
     // getting the region
     public static boolean contains(Location loc, int x1, int x2, int y1,
 	    int y2, int z1, int z2) {
@@ -204,7 +204,7 @@ public class Chaoscity implements Listener {
 	}
 	return false;
     }
-    
+
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.NORMAL)
     public void gun(PlayerInteractEvent event) {
@@ -220,26 +220,26 @@ public class Chaoscity implements Listener {
 	if (Battles.spectator.containsKey(name)) {
 	    event.setCancelled(true); 
 	} else {
-	if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+	    if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
 
-	    if (tool == Material.BLAZE_ROD) {
+		if (tool == Material.BLAZE_ROD) {
 
-		if (a == Action.RIGHT_CLICK_AIR
-			|| a == Action.RIGHT_CLICK_BLOCK) {
+		    if (a == Action.RIGHT_CLICK_AIR
+			    || a == Action.RIGHT_CLICK_BLOCK) {
 
-		    if (inv.contains(Material.FLINT) == true) {
+			if (inv.contains(Material.FLINT) == true) {
 
-			p.launchProjectile(Arrow.class);
-			world.playSound(loc, Sound.COW_WALK, 10, 10);
-			ItemStack AMMO = new ItemStack(Material.FLINT, 1);
-			ItemMeta ammo = AMMO.getItemMeta();
-		    	ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
-		    	AMMO.setItemMeta(ammo);
-			inv.removeItem(AMMO);
-			p.updateInventory();
+			    p.launchProjectile(Arrow.class);
+			    world.playSound(loc, Sound.COW_WALK, 10, 10);
+			    ItemStack AMMO = new ItemStack(Material.FLINT, 1);
+			    ItemMeta ammo = AMMO.getItemMeta();
+			    ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
+			    AMMO.setItemMeta(ammo);
+			    inv.removeItem(AMMO);
+			    p.updateInventory();
 
-		    } else {
-			world.playSound(loc, Sound.CLICK, 10, 10);
+			} else {
+			    world.playSound(loc, Sound.CLICK, 10, 10);
 			}
 
 		    }
@@ -249,7 +249,7 @@ public class Chaoscity implements Listener {
 	    }
 	}
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void bulletAway(ProjectileHitEvent event) {
 	Entity p = event.getEntity();
@@ -270,7 +270,7 @@ public class Chaoscity implements Listener {
 	    }
 	}
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection(BlockBreakEvent event) {
 
@@ -279,10 +279,10 @@ public class Chaoscity implements Listener {
 
 	if (loc.getWorld().getName().equals(name)) {
 
-		event.setCancelled(true);
+	    event.setCancelled(true);
 	}
 
     }
- 
- 
+
+
 }

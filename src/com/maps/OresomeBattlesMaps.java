@@ -22,16 +22,16 @@ public class OresomeBattlesMaps extends JavaPlugin {
 	this.logger.info(pdfFile.getName() + " version " + pdfFile.getVersion() + "is now enabled");
 	loadMaps();
     }
-    
+
     public void loadMaps() {
-	
+
 	new Perro(this);
 	new Wartown(this);
 	new Spire(this);
 	new Mansion(this);
 	new Hypno(this);
 	new Arctic(this);
-        new Nuketown(this);
+	new Nuketown(this);
 	new Terminal(this);
 	new Chaoscity(this);
 	new Towers(this);
@@ -39,7 +39,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
 	new Deepcaverns(this);
 	new Skyislands(this);
 	new Fosscrest(this);
-	
+
     }
 
 }
