@@ -24,19 +24,18 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
+import com.maps.BattleMap;
+import com.maps.MapInterface;
 import com.maps.OresomeBattlesMaps;
-import com.oresomecraft.OresomeBattles.InventoryEvent;
-import com.oresomecraft.OresomeBattles.OresomeBattles;
-import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
+import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class Arctic implements Listener {
+public class Arctic extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    OresomeBattles Battles;
     public Arctic(OresomeBattlesMaps pl) {
+	super(pl);
 	plugin = pl;
-	plugin.getServer().getPluginManager().registerEvents(this, plugin);
-	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
 
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
@@ -50,12 +49,12 @@ public class Arctic implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
-	Battles.addVotes(name);
+	addVotes(name);
 	clearSpawns();
 	readyTDMSpawns();
 	readyFFASpawns();
-	Battles.addCreators(name, creators); 
-	Battles.setFullName(name, fullName);
+	addCreators(name, creators); 
+	setFullName(name, fullName);
     }
 
     public void readyTDMSpawns() {
@@ -87,8 +86,8 @@ public class Arctic implements Listener {
 	redSpawns.add(new Location(w, 798, 148, -74, -134, 0));
 	blueSpawns.add(new Location(w, 789, 123, -94, 133, 0));
 
-	Battles.setRedSpawns(name, redSpawns);
-	Battles.setBlueSpawns(name, blueSpawns);
+	setRedSpawns(name, redSpawns);
+	setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
@@ -120,7 +119,7 @@ public class Arctic implements Listener {
 	FFASpawns.add(new Location(w, 798, 148, -74, -134, 0));
 	FFASpawns.add(new Location(w, 789, 123, -94, 133, 0));
 
-	Battles.setFFASpawns(name, FFASpawns);
+	setFFASpawns(name, FFASpawns);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -129,7 +128,7 @@ public class Arctic implements Listener {
 	Player p = event.getPlayer();
 	Inventory i = p.getInventory();
 	if (par.equalsIgnoreCase(name)) {
-	    Battles.utility.clearInv(p);
+	    clearInv(p);
 
 	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 	    ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -180,7 +179,7 @@ public class Arctic implements Listener {
     public int z2 = 10;
 
     // getting the region
-    public static boolean contains(Location loc, int x1, int x2, int y1, int y2, int z1, int z2) {
+    public boolean contains(Location loc, int x1, int x2, int y1, int y2, int z1, int z2) {
 	int bottomCornerX = x1 < x2 ? x1 : x2;
 	int bottomCornerZ = z1 < z2 ? z1 : z2;
 	int topCornerX = x1 > x2 ? x1 : x2;

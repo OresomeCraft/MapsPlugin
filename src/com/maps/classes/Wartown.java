@@ -29,19 +29,16 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.maps.OresomeBattlesMaps;
-import com.oresomecraft.OresomeBattles.InventoryEvent;
-import com.oresomecraft.OresomeBattles.OresomeBattles;
-import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
+import com.maps.*;
+import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class Wartown implements Listener {
+public class Wartown extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    OresomeBattles Battles;
     public Wartown(OresomeBattlesMaps pl) {
+	super(pl);
 	plugin = pl;
-	plugin.getServer().getPluginManager().registerEvents(this, plugin);
-	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
 
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
@@ -55,12 +52,12 @@ public class Wartown implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
-	Battles.addVotes(name);
+	addVotes(name);
 	clearSpawns();
 	readyTDMSpawns();
 	readyFFASpawns();
-	Battles.addCreators(name, creators); 
-	Battles.setFullName(name, fullName);
+	addCreators(name, creators); 
+	setFullName(name, fullName);
 	arrowParticles();
     }
 
@@ -93,8 +90,8 @@ public class Wartown implements Listener {
 	redSpawns.add(new Location(w, 200, 60, -251, 47, 0));
 	blueSpawns.add(new Location(w, 174, 69, -234, 41, 0));
 
-	Battles.setRedSpawns(name, redSpawns);
-	Battles.setBlueSpawns(name, blueSpawns);
+	setRedSpawns(name, redSpawns);
+	setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
@@ -126,7 +123,7 @@ public class Wartown implements Listener {
 	FFASpawns.add(new Location(w, 200, 60, -251, 47, 0));
 	FFASpawns.add(new Location(w, 174, 69, -234, 41, 0));
 
-	Battles.setFFASpawns(name, FFASpawns);
+	setFFASpawns(name, FFASpawns);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -135,7 +132,7 @@ public class Wartown implements Listener {
 	Player p = event.getPlayer();
 	Inventory i = p.getInventory();
 	if (par.equalsIgnoreCase(name)) {
-	    Battles.utility.clearInv(p);
+	    clearInv(p);
 
 	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 	    ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
@@ -193,7 +190,7 @@ public class Wartown implements Listener {
     public int y2 = 91;
     public int z2 = -145;
 
-    public static boolean contains(Location loc, int x1, int x2, int y1,
+    public boolean contains(Location loc, int x1, int x2, int y1,
 	    int y2, int z1, int z2) {
 	int bottomCornerX = x1 < x2 ? x1 : x2;
 	int bottomCornerZ = z1 < z2 ? z1 : z2;
@@ -227,7 +224,7 @@ public class Wartown implements Listener {
 	Inventory inv = p.getInventory();
 	String name = p.getName();
 
-	if (!Battles.spectator.containsKey(name)) {
+	if (!battles.spectator.containsKey(name)) {
 
 	    if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
 		if (tool == Material.LEATHER) {
@@ -379,7 +376,7 @@ public class Wartown implements Listener {
 	final World world = loc.getWorld();
 	String name = p.getName();
 
-	if (Battles.spectator.containsKey(name)) {
+	if (battles.spectator.containsKey(name)) {
 	    event.setCancelled(true); 
 	} else {
 	    if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
@@ -422,7 +419,7 @@ public class Wartown implements Listener {
 
 	    public void run() {
 		World world = Bukkit.getWorld(name);
-		if (Battles.activeArena.get(0).equals(name)) {
+		if (battles.bh.getArena() == name) {
 		    if (!(world.getEntities() == null)) {
 			for (Entity arrow : world.getEntities()) {
 			    if (arrow instanceof Arrow) {

@@ -24,19 +24,18 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import com.maps.BattleMap;
+import com.maps.MapInterface;
 import com.maps.OresomeBattlesMaps;
-import com.oresomecraft.OresomeBattles.InventoryEvent;
-import com.oresomecraft.OresomeBattles.OresomeBattles;
-import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
+import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class Terminal implements Listener {
+public class Terminal extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    OresomeBattles Battles;
     public Terminal(OresomeBattlesMaps pl) {
+	super(pl);
 	plugin = pl;
-	plugin.getServer().getPluginManager().registerEvents(this, plugin);
-	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
 
     // Spawn lists. (Don't change!)
@@ -53,12 +52,12 @@ public class Terminal implements Listener {
     // Ready map (Don't change!)
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
-	Battles.addVotes(name);
+	addVotes(name);
 	clearSpawns();
 	readyTDMSpawns();
 	readyFFASpawns();
-	Battles.addCreators(name, creators); 
-	Battles.setFullName(name, fullName);
+	addCreators(name, creators); 
+	setFullName(name, fullName);
     }
 
     // Prepare TDM spawns
@@ -98,8 +97,8 @@ public class Terminal implements Listener {
 	blueSpawns.add(new Location(w, -91, 71, -1140, 141, 0));
 
 	// Add spawns to lists. (Don't change!)
-	Battles.setRedSpawns(name, redSpawns);
-	Battles.setBlueSpawns(name, blueSpawns);
+	setRedSpawns(name, redSpawns);
+	setBlueSpawns(name, blueSpawns);
 
 	/*
 	 * Key:
@@ -146,7 +145,7 @@ public class Terminal implements Listener {
 	FFASpawns.add(new Location(w, -91, 71, -1140, 141, 0));
 
 	// Add spawns to list. (Don't change!)
-	Battles.setFFASpawns(name, FFASpawns);
+	setFFASpawns(name, FFASpawns);
     }
 
     // Give player the maps inventory
@@ -157,7 +156,7 @@ public class Terminal implements Listener {
 	Player p = event.getPlayer();
 	Inventory i = p.getInventory();
 	if (par.equalsIgnoreCase(name)) {
-	    Battles.utility.clearInv(p);
+	    clearInv(p);
 
 	    // Define items. (This is fairly straight forward right?)
 	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
@@ -207,7 +206,7 @@ public class Terminal implements Listener {
     public int z2 = -1125;
 
     // Getting the region
-    public static boolean contains(Location loc, int x1, int x2, int y1,
+    public boolean contains(Location loc, int x1, int x2, int y1,
 	    int y2, int z1, int z2) {
 	int bottomCornerX = x1 < x2 ? x1 : x2; 
 	int bottomCornerZ = z1 < z2 ? z1 : z2; 

@@ -17,19 +17,18 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import com.maps.BattleMap;
+import com.maps.MapInterface;
 import com.maps.OresomeBattlesMaps;
-import com.oresomecraft.OresomeBattles.InventoryEvent;
-import com.oresomecraft.OresomeBattles.OresomeBattles;
-import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
+import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class Towers implements Listener {
+public class Towers extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    OresomeBattles Battles;
     public Towers(OresomeBattlesMaps pl) {
+	super(pl);
 	plugin = pl;
-	plugin.getServer().getPluginManager().registerEvents(this, plugin);
-	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
 
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
@@ -43,12 +42,12 @@ public class Towers implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
-	Battles.addVotes(name);
+	addVotes(name);
 	clearSpawns();
 	readyTDMSpawns();
 	readyFFASpawns();
-	Battles.addCreators(name, creators); 
-	Battles.setFullName(name, fullName);
+	addCreators(name, creators); 
+	setFullName(name, fullName);
     }
 
     public void readyTDMSpawns() {
@@ -80,8 +79,8 @@ public class Towers implements Listener {
 	redSpawns.add(new Location(w, 539, 11, -1231, 12, 0));
 	blueSpawns.add(new Location(w, 486, 13, -1188, -54, 0));
 
-	Battles.setRedSpawns(name, redSpawns);
-	Battles.setBlueSpawns(name, blueSpawns);
+	setRedSpawns(name, redSpawns);
+	setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
@@ -113,7 +112,7 @@ public class Towers implements Listener {
 	FFASpawns.add(new Location(w, 539, 11, -1231, 12, 0));
 	FFASpawns.add(new Location(w, 486, 13, -1188, -54, 0));
 
-	Battles.setFFASpawns(name, FFASpawns);
+	setFFASpawns(name, FFASpawns);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -122,7 +121,7 @@ public class Towers implements Listener {
 	Player p = event.getPlayer();
 	Inventory i = p.getInventory();
 	if (par.equalsIgnoreCase(name)) {
-	    Battles.utility.clearInv(p);
+	    clearInv(p);
 
 	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
@@ -164,7 +163,7 @@ public class Towers implements Listener {
     public int z2 = -1125;
 
     // getting the region
-    public static boolean contains(Location loc, int x1, int x2, int y1,
+    public boolean contains(Location loc, int x1, int x2, int y1,
 	    int y2, int z1, int z2) {
 	int bottomCornerX = x1 < x2 ? x1 : x2;
 	int bottomCornerZ = z1 < z2 ? z1 : z2;
@@ -186,7 +185,7 @@ public class Towers implements Listener {
     public void arrowBoom(ProjectileHitEvent event) {
 	Entity arrow = event.getEntity();
 	World world = Bukkit.getWorld(name);
-	if (Battles.activeArena.get(0).equals(name)) {
+	if (battles.bh.getArena() == name) {
 	    if (arrow instanceof Arrow) {
 		world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
 	    }

@@ -23,19 +23,18 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import com.maps.BattleMap;
+import com.maps.MapInterface;
 import com.maps.OresomeBattlesMaps;
-import com.oresomecraft.OresomeBattles.InventoryEvent;
-import com.oresomecraft.OresomeBattles.OresomeBattles;
-import com.oresomecraft.OresomeBattles.ReadyMapsEvent;
+import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class Mansion implements Listener {
+public class Mansion extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    OresomeBattles Battles;
     public Mansion(OresomeBattlesMaps pl) {
+	super(pl);
 	plugin = pl;
-	plugin.getServer().getPluginManager().registerEvents(this, plugin);
-	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
     }
 
     public List<Player> haunter = new ArrayList<Player>();
@@ -52,12 +51,12 @@ public class Mansion implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
-	Battles.addVotes(name);
+	addVotes(name);
 	clearSpawns();
 	readyTDMSpawns();
 	readyFFASpawns();
-	Battles.addCreators(name, creators); 
-	Battles.setFullName(name, fullName);
+	addCreators(name, creators); 
+	setFullName(name, fullName);
     }
 
     public void readyTDMSpawns() {
@@ -89,8 +88,8 @@ public class Mansion implements Listener {
 	redSpawns.add(new Location(w, 465, 74, -274));
 	blueSpawns.add(new Location(w, 466, 74, -251));
 
-	Battles.setRedSpawns(name, redSpawns);
-	Battles.setBlueSpawns(name, blueSpawns);
+	setRedSpawns(name, redSpawns);
+	setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
@@ -121,7 +120,7 @@ public class Mansion implements Listener {
 	FFASpawns.add(new Location(w, 465, 74, -274));
 	FFASpawns.add(new Location(w, 466, 74, -251));
 
-	Battles.setFFASpawns(name, FFASpawns);
+	setFFASpawns(name, FFASpawns);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -130,7 +129,7 @@ public class Mansion implements Listener {
 	Player p = event.getPlayer();
 	Inventory i = p.getInventory();
 	if (par.equalsIgnoreCase(name)) {
-	    Battles.utility.clearInv(p);
+	    clearInv(p);
 
 	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
@@ -171,7 +170,7 @@ public class Mansion implements Listener {
     public  int y2 = 101;
     public  int z2 = -228;
 
-    public static boolean contains(Location loc, int x1, int x2, int y1,
+    public boolean contains(Location loc, int x1, int x2, int y1,
 	    int y2, int z1, int z2) {
 	int bottomCornerX = x1 < x2 ? x1 : x2;
 	int bottomCornerZ = z1 < z2 ? z1 : z2; 
@@ -189,6 +188,7 @@ public class Mansion implements Listener {
 	return false;
     }
 
+    @Deprecated
     @EventHandler(priority = EventPriority.NORMAL)
     public void haunt(PlayerToggleSneakEvent event) {
 	Player p = event.getPlayer();
@@ -210,6 +210,7 @@ public class Mansion implements Listener {
 	}
     }
 
+    @Deprecated
     @EventHandler(priority = EventPriority.NORMAL)
     public void quitHaunter(PlayerQuitEvent event) {
 
