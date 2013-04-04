@@ -24,14 +24,12 @@ First off, copy the Template.java file, you can get that from [HERE][]
 
 The code below only needs to be slightly channged. Simple change where it says "Arctic" to the name of your map.
 ```java
-public class Arctic implements Listener {
-    
+public class Arctic extends BattleMap implements MapInterface, Listener {
+
     OresomeBattlesMaps plugin;
-    OresomeBattles Battles;
     public Arctic(OresomeBattlesMaps pl) {
-    plugin = pl;
-	plugin.getServer().getPluginManager().registerEvents(this, plugin);
-	Battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
+	super(pl);
+	plugin = pl;
     }
 ```
 Below defines the basic details of this map
@@ -69,8 +67,8 @@ Each team has their own defined spawn points. If more than one is defined, the p
 	blueSpawns.add(new Location(w, -127, 70, -1158, -162, 0));
 
     // Adds spawns. (Don't modify)
-	Battles.setRedSpawns(name, redSpawns);
-	Battles.setBlueSpawns(name, blueSpawns);
+	setRedSpawns(name, redSpawns);
+	setBlueSpawns(name, blueSpawns);
     }
 ```
 X - X coordinate
@@ -113,7 +111,7 @@ Simply replace these variables with the actual values of the coordinates. You ma
 	FFASpawns.add(new Location(w, -91, 71, -1140, 141, 0));
 
 	// Add spawns to list. (Don't change!)
-	Battles.setFFASpawns(name, FFASpawns);
+	setFFASpawns(name, FFASpawns);
     }
 ```
 The same goes for adding FFA spawns, however these spawns are used for all players. This is practically the same as configuring the TDM spawn points, just replace the variables as follows.
@@ -129,7 +127,7 @@ Out of all things here inventories are probably the most complex, but they're ac
 	Player p = event.getPlayer();
 	Inventory i = p.getInventory();
 	if (par.equalsIgnoreCase(name)) {
-	    Battles.utility.clearInv(p);
+	    clearInv(p);
 
 	    // Define items. (This is fairly straight forward right?)
 	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
