@@ -7,9 +7,8 @@
   <name>OresomeBattlesMaps</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <main.class>com.oresomecraft.OresomeBattles.OresomeBattles</main.class>
+    <main.class>com.oresomecraft.OresomeBattlesMaps.OresomeBattlesMaps</main.class>
   </properties>
-
 
   <build>
     <finalName>${project.name}</finalName>
