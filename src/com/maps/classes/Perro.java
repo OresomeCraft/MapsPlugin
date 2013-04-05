@@ -366,13 +366,12 @@ public class Perro extends BattleMap implements MapInterface, Listener {
 	    public void run() {
 		World world = Bukkit.getWorld(name);
 		if (battles.bh.getArena() == name) {
-		    if (!(world.getEntities() == null)) {
-			for (Entity arrow : world.getEntities()) {
-			    if (arrow instanceof Arrow) {
+		    for (Entity arrow : world.getEntities()) {
+			if (arrow instanceof Arrow) {
 
-				world.playEffect(arrow.getLocation(), Effect.SMOKE, 10);
-			    }
+			    world.playEffect(arrow.getLocation(), Effect.SMOKE, 10);
 			}
+
 		    }
 		}
 	    }

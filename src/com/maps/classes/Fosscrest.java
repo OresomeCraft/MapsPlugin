@@ -58,8 +58,8 @@ public class Fosscrest extends BattleMap implements MapInterface, Listener {
 	Location blueSpawn = new Location(w, 185, 112, -1288);
 
 	redSpawns.add(redSpawn);
-	redSpawns.add(new Location(w, -186, 112, -1293));
 	redSpawns.add(new Location(w, 241, 120, -1310));
+	redSpawns.add(new Location(w, 236, 94, -1325));
 
 	blueSpawns.add(blueSpawn);
 	blueSpawns.add(new Location(w, 236, 94, -1325));
