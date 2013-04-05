@@ -3,18 +3,27 @@ package com.maps.classes;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.event.player.PlayerFishEvent.State;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.util.Vector;
 
 import com.maps.BattleMap;
 import com.maps.MapInterface;
@@ -22,11 +31,11 @@ import com.maps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class Template extends BattleMap implements MapInterface, Listener {
+public class Solitude extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    public Template(OresomeBattlesMaps pl) {
-  super(pl);
+    public Solitude(OresomeBattlesMaps pl) {
+	super(pl);
 	plugin = pl;
     }
 
@@ -53,59 +62,42 @@ public class Template extends BattleMap implements MapInterface, Listener {
 
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
-Location 1 = new Location(w, 380, 52, 960);
-	Location 2 = new Location(w, 342, 72, 965);
-	Location 3 = new Location(w, 260, 95, 939);
-	Location 4 = new Location(w, 231, 69, 965);
-	Location 5 = new Location(w, 218, 88, 940);
-	Location 6 = new Location(w, 230, 61, 918);
-	Location 7 = new Location(w, 269, 57, 893);
-	Location 8 = new Location(w, 221, 57, 842);
-	Location 9 = new Location(w, 216, 61, 870);
-	Location 10 = new Location(w, 231, 53, 798);
-	Location 11 = new Location(w, 231, 59, 748);
-	Location 12 = new Location(w, 269, 57, 893);
-	Location 13 = new Location(w, 351, 13, 889);
-	Location 14 = new Location(w, 451, 35, 947);
-	Location 15 = new Location(w, 406, 46, 966);
-	Location 16 = new Location(w, 267, 92, 987);
-	Location 17 = new Location(w, 296, 60, 951);
 
-	redSpawns.add(1);
-	redSpawns.add(2);
-	redSpawns.add(3);
-	redSpawns.add(4);
-	redSpawns.add(5);
-	redSpawns.add(6);
-	redSpawns.add(7);
-	redSpawns.add(8);
-	redSpawns.add(9);
-	redSpawns.add(10);
-	redSpawns.add(11);
-	redSpawns.add(12);
-	redSpawns.add(13);
-	redSpawns.add(14);
-	redSpawns.add(15);
-	redSpawns.add(16);
-	redSpawns.add(17);
+	redSpawns.add(new Location(w, 380, 52, 960));
+	redSpawns.add(new Location(w, 342, 72, 965));
+	redSpawns.add(new Location(w, 260, 95, 939));
+	redSpawns.add(new Location(w, 231, 69, 965));
+	redSpawns.add(new Location(w, 231, 69, 965));
+	redSpawns.add(new Location(w, 218, 88, 940));
+	redSpawns.add(new Location(w, 269, 57, 893));
+	redSpawns.add(new Location(w, 221, 57, 842));
+	redSpawns.add(new Location(w, 216, 61, 870));
+	redSpawns.add(new Location(w, 231, 53, 798));
+	redSpawns.add(new Location(w, 231, 59, 748));
+	redSpawns.add(new Location(w, 269, 57, 893));
+	redSpawns.add(new Location(w, 351, 13, 889));
+	redSpawns.add(new Location(w, 451, 35, 947));
+	redSpawns.add(new Location(w, 406, 46, 966));
+	redSpawns.add(new Location(w, 267, 92, 987));
+	redSpawns.add(new Location(w, 296, 60, 951));
 
-	blueSpawns.add(1);
-	blueSpawns.add(2);
-	blueSpawns.add(3);
-	blueSpawns.add(4);
-	blueSpawns.add(5);
-	blueSpawns.add(6);
-	blueSpawns.add(7);
-	blueSpawns.add(8);
-	blueSpawns.add(9);
-	blueSpawns.add(10);
-	blueSpawns.add(11);
-	blueSpawns.add(12);
-	blueSpawns.add(13);
-	blueSpawns.add(14);
-	blueSpawns.add(15);
-	blueSpawns.add(16);
-	blueSpawns.add(17);
+	blueSpawns.add(new Location(w, 380, 52, 960));
+	blueSpawns.add(new Location(w, 342, 72, 965));
+	blueSpawns.add(new Location(w, 260, 95, 939));
+	blueSpawns.add(new Location(w, 231, 69, 965));
+	blueSpawns.add(new Location(w, 231, 69, 965));
+	blueSpawns.add(new Location(w, 218, 88, 940));
+	blueSpawns.add(new Location(w, 269, 57, 893));
+	blueSpawns.add(new Location(w, 221, 57, 842));
+	blueSpawns.add(new Location(w, 216, 61, 870));
+	blueSpawns.add(new Location(w, 231, 53, 798));
+	blueSpawns.add(new Location(w, 231, 59, 748));
+	blueSpawns.add(new Location(w, 269, 57, 893));
+	blueSpawns.add(new Location(w, 351, 13, 889));
+	blueSpawns.add(new Location(w, 451, 35, 947));
+	blueSpawns.add(new Location(w, 406, 46, 966));
+	blueSpawns.add(new Location(w, 267, 92, 987));
+	blueSpawns.add(new Location(w, 296, 60, 951));
 
 
 	setRedSpawns(name, redSpawns);
@@ -116,41 +108,23 @@ Location 1 = new Location(w, 380, 52, 960);
 
 	World w = Bukkit.getServer().getWorld(name);
 
-	Location 1 = new Location(w, 380, 52, 960);
-	Location 2 = new Location(w, 342, 72, 965);
-	Location 3 = new Location(w, 260, 95, 939);
-	Location 4 = new Location(w, 231, 69, 965);
-	Location 5 = new Location(w, 218, 88, 940);
-	Location 6 = new Location(w, 230, 61, 918);
-	Location 7 = new Location(w, 269, 57, 893);
-	Location 8 = new Location(w, 221, 57, 842);
-	Location 9 = new Location(w, 216, 61, 870);
-	Location 10 = new Location(w, 231, 53, 798);
-	Location 11 = new Location(w, 231, 59, 748);
-	Location 12 = new Location(w, 269, 57, 893);
-	Location 13 = new Location(w, 351, 13, 889);
-	Location 14 = new Location(w, 451, 35, 947);
-	Location 15 = new Location(w, 406, 46, 966);
-	Location 16 = new Location(w, 267, 92, 987);
-	Location 17 = new Location(w, 296, 60, 951);
-
-	FFASpawns.add(1);
-	FFASpawns.add(2);
-	FFASpawns.add(3);
-	FFASpawns.add(4);
-	FFASpawns.add(5);
-	FFASpawns.add(6);
-	FFASpawns.add(7);
-	FFASpawns.add(8);
-	FFASpawns.add(9);
-	FFASpawns.add(10);
-	FFASpawns.add(11);
-	FFASpawns.add(12);
-	FFASpawns.add(13);
-	FFASpawns.add(14);
-	FFASpawns.add(15);
-	FFASpawns.add(16);
-	FFASpawns.add(17);
+	FFASpawns.add(new Location(w, 380, 52, 960));
+	FFASpawns.add(new Location(w, 342, 72, 965));
+	FFASpawns.add(new Location(w, 260, 95, 939));
+	FFASpawns.add(new Location(w, 231, 69, 965));
+	FFASpawns.add(new Location(w, 231, 69, 965));
+	FFASpawns.add(new Location(w, 218, 88, 940));
+	FFASpawns.add(new Location(w, 269, 57, 893));
+	FFASpawns.add(new Location(w, 221, 57, 842));
+	FFASpawns.add(new Location(w, 216, 61, 870));
+	FFASpawns.add(new Location(w, 231, 53, 798));
+	FFASpawns.add(new Location(w, 231, 59, 748));
+	FFASpawns.add(new Location(w, 269, 57, 893));
+	FFASpawns.add(new Location(w, 351, 13, 889));
+	FFASpawns.add(new Location(w, 451, 35, 947));
+	FFASpawns.add(new Location(w, 406, 46, 966));
+	FFASpawns.add(new Location(w, 267, 92, 987));
+	FFASpawns.add(new Location(w, 296, 60, 951));
 
 
 	setFFASpawns(name, FFASpawns);
@@ -166,6 +140,7 @@ Location 1 = new Location(w, 380, 52, 960);
 	    clearInv(p);
 
 	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
 	    ItemStack BOW = new ItemStack(Material.BOW, 1);
 	    ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
@@ -173,13 +148,13 @@ Location 1 = new Location(w, 380, 52, 960);
 	    ItemStack IRON_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
 	    ItemStack IRON_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
 	    ItemStack IRON_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-	    ItemStack STONE_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 	    ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 1);
-ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
+	    ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
 
 	    ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
 	    fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
 	    FISHING_ROD.setItemMeta(fishing_rod);
+	    
 	    p.getInventory().setBoots(IRON_BOOTS);
 	    p.getInventory().setLeggings(IRON_PANTS);
 	    p.getInventory().setChestplate(IRON_CHESTPLATE);
@@ -207,7 +182,7 @@ ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
     public int x1 = 525;
     public int y1 = 0;
     public int z1 = 578;
-    
+
     //Bottom right corner.
     public int x2 = -44;
     public int y2 = 232;
@@ -246,7 +221,7 @@ ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
 	}
 
     }
-    
+
     // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection1(BlockPlaceEvent event) {
