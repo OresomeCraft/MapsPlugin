@@ -40,6 +40,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
 	new Deepcaverns(this);
 	new Skyislands(this);
 	new Fosscrest(this);
+	new Solitude(this);
 
     }
 
