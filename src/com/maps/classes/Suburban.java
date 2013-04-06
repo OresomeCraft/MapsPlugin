@@ -37,7 +37,7 @@ public class Suburban extends BattleMap implements MapInterface, Listener {
 
     // Map details
     String name = "suburban";
-    String fullName = "Suburban Complex: An evolution";
+    String fullName = "Suburban Complex";
     String creators = "R3creat3, zezo268, xannallax33 and kalikakitty";
     //Map download link: N/A
 
