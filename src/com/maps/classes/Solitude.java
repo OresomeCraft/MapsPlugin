@@ -1,6 +1,7 @@
 package com.maps.classes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -9,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
@@ -17,6 +19,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerFishEvent.State;
@@ -154,7 +157,7 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
 	    ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
 	    fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
 	    FISHING_ROD.setItemMeta(fishing_rod);
-	    
+
 	    p.getInventory().setBoots(IRON_BOOTS);
 	    p.getInventory().setLeggings(IRON_PANTS);
 	    p.getInventory().setChestplate(IRON_CHESTPLATE);
@@ -167,6 +170,8 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
 	    i.setItem(4, ARROWS);
 	    i.setItem(5, EXP);
 	    i.setItem(5, FISHING_ROD);
+
+	    p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
 
 	}
     }
@@ -315,6 +320,28 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
 
 		    }
 		}
+	    }
+
+	}
+    }
+    
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void death(PlayerDeathEvent event) {
+
+	List<ItemStack> drops = event.getDrops();
+	int amount = drops.size();
+	int count = 0;
+
+	for (int none = 0; none < amount; none++) {
+
+	    ItemStack i = drops.get(count);
+	    count++;
+	    Material mat = i.getType();
+
+	    if (mat == Material.LEATHER_HELMET) {
+
+		i.setType(Material.AIR);
+
 	    }
 
 	}
