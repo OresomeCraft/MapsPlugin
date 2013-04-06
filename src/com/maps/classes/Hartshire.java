@@ -105,6 +105,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
 	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
 	    ItemStack BOW = new ItemStack(Material.BOW, 1);
+	    ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
 	    ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
 	    ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
 	    ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
@@ -118,10 +119,11 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
 	    p.getInventory().setHelmet(IRON_HELMET);
 
 	    i.setItem(0, IRON_SWORD);
-	    i.setItem(1, BOW);
-	    i.setItem(2, STEAK);
-	    i.setItem(3, HEALTH_POTION);
-	    i.setItem(4, ARROWS);
+	    i.setItem(1, FISHING_ROD);
+	    i.setItem(2, BOW);
+	    i.setItem(3, STEAK);
+	    i.setItem(4, HEALTH_POTION);
+	    i.setItem(5, ARROWS);
 
 	}
     }
@@ -188,6 +190,89 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
 
 	}
 
+    }
+     @EventHandler(priority = EventPriority.NORMAL)
+    public void fishing(PlayerFishEvent event) {
+	PlayerFishEvent.State state = event.getState();
+	Player p = event.getPlayer();
+	ItemStack is = p.getItemInHand();
+	Material mat = is.getType();
+	Location loc = p.getLocation();
+
+	if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+
+	    if (mat == Material.FISHING_ROD) {
+
+		if (state == State.IN_GROUND) {
+		    p.launchProjectile(Snowball.class);
+
+		}
+	    }
+	}
+
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void grapple(ProjectileHitEvent event) {
+	Entity proj = event.getEntity();
+	Location hit = proj.getLocation();
+
+	if (contains(hit, x1, x2, y1, y2, z1, z2) == true) {
+
+	    if (proj instanceof Snowball) {
+		Snowball fish = (Snowball) proj;
+		Entity shooter = fish.getShooter();
+
+		if (shooter instanceof Player) {
+		    Player p = (Player) shooter;
+		    Location loc = p.getLocation();
+		    ItemStack is = p.getItemInHand();
+		    Material mat = is.getType();
+
+		    if (mat == Material.FISHING_ROD) {
+
+			p.setFallDistance(0);
+			p.playSound(loc, Sound.ARROW_HIT, 1, 1);
+
+			int hitx = hit.getBlockX();
+			int hity = hit.getBlockY();
+			int hitz = hit.getBlockZ();
+			int locx = loc.getBlockX();
+			int locy = loc.getBlockY();
+			int locz = loc.getBlockZ();
+			double co[] = new double[3];
+
+			if (hitx > locx) {
+			    co[0] = 1.2;
+			} else if (hitx < locx) {
+			    co[0] = -1.2;
+			} else if (hitx == locx) {
+			    co[0] = 0;
+			}
+
+			if (hity > locy) {
+			    co[1] = 1.4;
+			} else if (hity < locy) {
+			    co[1] = -0.8;
+			} else if (hity == locy) {
+			    co[1] = 0;
+			}
+
+			if (hitz > locz) {
+			    co[2] = 1.2;
+			} else if (hitz < locz) {
+			    co[2] = -1.2;
+			} else if (hitz == locz) {
+			    co[2] = 0;
+			}
+
+			p.setVelocity(new Vector(co[0], co[1], co[2]));
+
+		    }
+		}
+	    }
+
+	}
     }
 
 }
