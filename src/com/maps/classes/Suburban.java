@@ -112,6 +112,7 @@ ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	    ItemStack BOW = new ItemStack(Material.BOW, 1);
 	    ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
 	    ItemStack STONE = new ItemStack(Material.STONE, 64);
+	    ItemStack PICKAXE = new ItemStack(Material.STONE_PICKAXE, 64);
 	    ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
 	    ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
 	    ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
@@ -125,11 +126,12 @@ ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 
 	    i.setItem(0, IRON_SWORD);
 	    i.setItem(1, BOW);
-	    i.setItem(2, STEAK);
-	    i.setItem(3, HEALTH_POTION);
-	    i.setItem(4, ARROWS);
-	    i.setItem(5, STONE);
+	     i.setItem(2, PICKAXE);
+	    i.setItem(3, STEAK);
+	    i.setItem(4, HEALTH_POTION);
+	    i.setItem(5, ARROWS);
 	    i.setItem(6, STONE);
+	    i.setItem(7, STONE);
 
 	}
     }
@@ -176,8 +178,7 @@ ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	Location loc = b.getLocation();
 
 	if (loc.getWorld().getName().equals(name)) {
-
-	    event.setCancelled(false);
+            b.breakNaturally();
 	}
 
 
