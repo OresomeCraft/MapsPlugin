@@ -45,7 +45,7 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
     // Map details
-    String name = "sol";
+    String name = "solitude";
     String fullName = "Solitude";
     String creators = "R3creat3, dutchy336, tarko2411 and PMC";
     //Map download link: N/A
