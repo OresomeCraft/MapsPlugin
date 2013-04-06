@@ -169,5 +169,18 @@ ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	}
 	return false;
     }
+@EventHandler(priority = EventPriority.HIGH)
+    public void protection(BlockBreakEvent event) {
 
+	Block b = event.getBlock();
+	Location loc = b.getLocation();
+
+	if (loc.getWorld().getName().equals(name)) {
+
+	    event.setCancelled(false);
+	}
+
+
+
+    }
 }
