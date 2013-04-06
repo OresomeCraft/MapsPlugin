@@ -53,11 +53,29 @@ public class Suburban extends BattleMap implements MapInterface, Listener {
 
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
-	Location redSpawn = new Location(w, 135, 40, -482);
-	Location blueSpawn = new Location(w, 360, 40, -482);
 
-	redSpawns.add(redSpawn);
-	blueSpawns.add(blueSpawn);
+	blueSpawns.add(new Location(w, 360, 40, -482));
+	blueSpawns.add(new Location(w, 361, 52, -482));
+	blueSpawns.add(new Location(w, 364, 41, -579));
+	blueSpawns.add(new Location(w, 310, 47, -539));
+	blueSpawns.add(new Location(w, 266, 41, -487));
+	blueSpawns.add(new Location(w, 366, 41, -387));
+	blueSpawns.add(new Location(w, 337, 47, -410));
+	blueSpawns.add(new Location(w, 326, 53, -448));
+	blueSpawns.add(new Location(w, 364, 54, -529));
+	blueSpawns.add(new Location(w, 437, 58, -482));
+	
+	redSpawns.add(new Location(w, 360, 40, -482));
+	redSpawns.add(new Location(w, 361, 52, -482));
+	redSpawns.add(new Location(w, 364, 41, -579));
+	redSpawns.add(new Location(w, 310, 47, -539));
+	redSpawns.add(new Location(w, 266, 41, -487));
+	redSpawns.add(new Location(w, 366, 41, -387));
+	redSpawns.add(new Location(w, 337, 47, -410));
+	redSpawns.add(new Location(w, 326, 53, -448));
+	redSpawns.add(new Location(w, 364, 54, -529));
+	redSpawns.add(new Location(w, 437, 58, -482));
+	
 	
 	setRedSpawns(name, redSpawns);
 	setBlueSpawns(name, blueSpawns);
@@ -67,22 +85,16 @@ public class Suburban extends BattleMap implements MapInterface, Listener {
 
 	World w = Bukkit.getServer().getWorld(name);
 
-	Location redSpawn = new Location(w, 135, 40, -482);
-	Location blueSpawn = new Location(w, 360, 40, -482);
-
-	FFASpawns.add(redSpawn);
-	FFASpawns.add(blueSpawn);
-	FFASpawns.add(new Location(w, 229, 41, -481));
-	FFASpawns.add(new Location(w, 267, 41, -482));
-	FFASpawns.add(new Location(w, 286, 47, -482));
-	FFASpawns.add(new Location(w, 308, 47, -444));
-	FFASpawns.add(new Location(w, 329, 47, -551));
-	FFASpawns.add(new Location(w, 436, 58, -482));
-	FFASpawns.add(new Location(w, 424, 41, -407));
-	FFASpawns.add(new Location(w, 187, 47, -520));
-	FFASpawns.add(new Location(w, 165, 47, -413));
-	FFASpawns.add(new Location(w, 80, 55, -482));	FFASpawns.add(new Location(w, 84, 41, -399));
-	FFASpawns.add(new Location(w, 103, 41, -572));
+	FFASpawns.add(new Location(w, 360, 40, -482));
+	FFASpawns.add(new Location(w, 361, 52, -482));
+	FFASpawns.add(new Location(w, 364, 41, -579));
+	FFASpawns.add(new Location(w, 310, 47, -539));
+	FFASpawns.add(new Location(w, 266, 41, -487));
+	FFASpawns.add(new Location(w, 366, 41, -387));
+	FFASpawns.add(new Location(w, 337, 47, -410));
+	FFASpawns.add(new Location(w, 326, 53, -448));
+	FFASpawns.add(new Location(w, 364, 54, -529));
+	FFASpawns.add(new Location(w, 437, 58, -482));
 	setFFASpawns(name, FFASpawns);
     }
 
@@ -157,5 +169,18 @@ ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	}
 	return false;
     }
+@EventHandler(priority = EventPriority.HIGH)
+    public void protection(BlockBreakEvent event) {
 
+	Block b = event.getBlock();
+	Location loc = b.getLocation();
+
+	if (loc.getWorld().getName().equals(name)) {
+
+	    event.setCancelled(false);
+	}
+
+
+
+    }
 }
