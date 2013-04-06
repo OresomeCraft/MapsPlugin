@@ -38,7 +38,7 @@ public class Fosscrest extends BattleMap implements MapInterface, Listener {
     // Map details
     String name = "fosscrest";
     String fullName = "Fosscrest Village";
-    String creators = "R3creat3, danielschroeder, xXJazzerXx and zachoz";
+    String creators = "R3creat3 and xXJazzerXx";
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -53,15 +53,8 @@ public class Fosscrest extends BattleMap implements MapInterface, Listener {
 
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
-
-	Location redSpawn = new Location(w, 186, 112, -1293);
-	Location blueSpawn = new Location(w, 185, 112, -1288);
-
-	redSpawns.add(redSpawn);
 	redSpawns.add(new Location(w, 241, 120, -1310));
 	redSpawns.add(new Location(w, 236, 94, -1325));
-
-	blueSpawns.add(blueSpawn);
 	blueSpawns.add(new Location(w, 236, 94, -1325));
 	blueSpawns.add(new Location(w, 235, 101, -1312));
 
