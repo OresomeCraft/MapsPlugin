@@ -57,15 +57,13 @@ public class Suburban extends BattleMap implements MapInterface, Listener {
 	Location blueSpawn = new Location(w, 360, 40, -482);
 
 	redSpawns.add(redSpawn);
-
 	blueSpawns.add(blueSpawn);
+	
 	setRedSpawns(name, redSpawns);
 	setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-	World w = Bukkit.getServer().getWorld(name);
 
 	World w = Bukkit.getServer().getWorld(name);
 
