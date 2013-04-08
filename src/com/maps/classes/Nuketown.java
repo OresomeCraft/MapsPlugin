@@ -219,7 +219,35 @@ public class Nuketown extends BattleMap implements MapInterface, Listener {
 		world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
 	    }
 	}
+}
+    
+	@EventHandler
+	public void arrowCollide(ProjectileHitEvent e) {
+		if (e.getEntity() instanceof Arrow) {
+			Arrow a = (Arrow) e.getEntity();
+			Location loc1 = a.getLocation();
+			List<Entity> nearby = a.getNearbyEntities(1, 1, 1);
+			for (Entity ent : nearby) {
+				if (ent instanceof Player) {
+					Player p = (Player) ent;
+					ent.playEffect(EntityEffect.WOLF_SMOKE);
+				}
+			}
+		}
+	}
 
-    }
+	@EventHandler
+	public void onInteract(PlayerInteractEvent e) {
+		Player p = e.getPlayer();
+		ItemStack iih = p.getItemInHand();
+		Material m = iih.getType();
+		if (m == Material.BOW) {
+			if (e.getAction() == Action.RIGHT_CLICK_AIR
+					|| e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+				p.getWorld().playEffect(p.getLocation(),
+						Effect.MOBSPAWNER_FLAMES, 0, 50);
+			}
+		}
+	}
 
 }
