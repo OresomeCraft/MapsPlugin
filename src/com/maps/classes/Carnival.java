@@ -53,44 +53,32 @@ public class Carnival extends BattleMap implements MapInterface, Listener {
 
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
-	Location 1 = new Location(w, -83, 39, 1836);
-	Location 2 = new Location(w, -25, 41, 18);
-	Location 3 = new Location(w, -116, 33, 1832);
-	Location 4 = new Location(w, -19, 29, 1832);
-	Location 5 = new Location(w, -120, 29, 1831);
-	Location 6 = new Location(w, -72, 25, 1831);
-	Location 7 = new Location(w, -16, 21, 1831);
-	Location 8 = new Location(w, -81, 16, 1831);
-	Location 9 = new Location(w, -131, 12, 1831);
-	Location 10 = new Location(w, -18, 5, 1831);
-	Location 11 = new Location(w, -79, 21, 1831);
-	Location 12 = new Location(w, -17, 49, 1831);
+	
+	redSpawns.add(new Location(w, -83, 39, 1836));
+	redSpawns.add(new Location(w, -25, 41, 18));
+	redSpawns.add(new Location(w, -116, 33, 1832));
+	redSpawns.add(new Location(w, -19, 29, 1832));
+	redSpawns.add(new Location(w, -120, 29, 1831));
+	redSpawns.add(new Location(w, -72, 25, 1831));
+	redSpawns.add(new Location(w, -16, 21, 1831));
+	redSpawns.add(new Location(w, -81, 16, 1831));
+	redSpawns.add(new Location(w, -131, 12, 1831));
+	redSpawns.add(new Location(w, -18, 5, 1831));
+	redSpawns.add(new Location(w, -79, 21, 1831));
+	redSpawns.add(new Location(w, -17, 49, 1831));
 
-	redSpawns.add(1);
-	redSpawns.add(2);
-	redSpawns.add(3);
-	redSpawns.add(4);
-	redSpawns.add(5);
-	redSpawns.add(6);
-	redSpawns.add(7);
-	redSpawns.add(8);
-	redSpawns.add(9);
-	redSpawns.add(10);
-	redSpawns.add(11);
-	redSpawns.add(12);
-
-	blueSpawns.add(1);
-	blueSpawns.add(2);
-	blueSpawns.add(3);
-	blueSpawns.add(4);
-	blueSpawns.add(5);
-	blueSpawns.add(6);
-	blueSpawns.add(7);
-	blueSpawns.add(8);
-	blueSpawns.add(9);
-	blueSpawns.add(10);
-	blueSpawns.add(11);
-	blueSpawns.add(12);
+	blueSpawns.add(new Location(w, -83, 39, 1836));
+	blueSpawns.add(new Location(w, -25, 41, 18));
+	blueSpawns.add(new Location(w, -116, 33, 1832));
+	blueSpawns.add(new Location(w, -19, 29, 1832));
+	blueSpawns.add(new Location(w, -120, 29, 1831));
+	blueSpawns.add(new Location(w, -72, 25, 1831));
+	blueSpawns.add(new Location(w, -16, 21, 1831));
+	blueSpawns.add(new Location(w, -81, 16, 1831));
+	blueSpawns.add(new Location(w, -131, 12, 1831));
+	blueSpawns.add(new Location(w, -18, 5, 1831));
+	blueSpawns.add(new Location(w, -79, 21, 1831));
+	blueSpawns.add(new Location(w, -17, 49, 1831));
 
 	setRedSpawns(name, redSpawns);
 	setBlueSpawns(name, blueSpawns);
@@ -102,31 +90,18 @@ public class Carnival extends BattleMap implements MapInterface, Listener {
 
 	World w = Bukkit.getServer().getWorld(name);
 
-     Location 1 = new Location(w, -83, 39, 1836);
-	Location 2 = new Location(w, -25, 41, 18);
-	Location 3 = new Location(w, -116, 33, 1832);
-	Location 4 = new Location(w, -19, 29, 1832);
-	Location 5 = new Location(w, -120, 29, 1831);
-	Location 6 = new Location(w, -72, 25, 1831);
-	Location 7 = new Location(w, -16, 21, 1831);
-	Location 8 = new Location(w, -81, 16, 1831);
-	Location 9 = new Location(w, -131, 12, 1831);
-	Location 10 = new Location(w, -18, 5, 1831);
-	Location 11 = new Location(w, -79, 21, 1831);
-	Location 12 = new Location(w, -17, 49, 1831);
-
-	FFASpawns.add(1);
-	FFASpawns.add(2);
-	FFASpawns.add(3);
-	FFASpawns.add(4);
-	FFASpawns.add(5);
-	FFASpawns.add(6);
-	FFASpawns.add(7);
-	FFASpawns.add(8);
-	FFASpawns.add(9);
-	FFASpawns.add(10);
-	FFASpawns.add(11);
-	FFASpawns.add(12);
+        FFASpawns.add(new Location(w, -83, 39, 1836));
+	FFASpawns.add(new Location(w, -25, 41, 18));
+	FFASpawns.add(new Location(w, -116, 33, 1832));
+	FFASpawns.add(new Location(w, -19, 29, 1832));
+	FFASpawns.add(new Location(w, -120, 29, 1831));
+	FFASpawns.add(new Location(w, -72, 25, 1831));
+	FFASpawns.add(new Location(w, -16, 21, 1831));
+	FFASpawns.add(new Location(w, -81, 16, 1831));
+	FFASpawns.add(new Location(w, -131, 12, 1831));
+	FFASpawns.add(new Location(w, -18, 5, 1831));
+	FFASpawns.add(new Location(w, -79, 21, 1831));
+	FFASpawns.add(new Location(w, -17, 49, 1831));
 	setFFASpawns(name, FFASpawns);
     }
 
