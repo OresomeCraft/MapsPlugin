@@ -6,13 +6,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -26,7 +23,7 @@ public class Suburban extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
     public Suburban(OresomeBattlesMaps pl) {
-  super(pl);
+	super(pl);
 	plugin = pl;
     }
 
@@ -64,7 +61,7 @@ public class Suburban extends BattleMap implements MapInterface, Listener {
 	blueSpawns.add(new Location(w, 326, 53, -448));
 	blueSpawns.add(new Location(w, 364, 54, -529));
 	blueSpawns.add(new Location(w, 437, 58, -482));
-	
+
 	redSpawns.add(new Location(w, 360, 40, -482));
 	redSpawns.add(new Location(w, 361, 52, -482));
 	redSpawns.add(new Location(w, 364, 41, -579));
@@ -75,8 +72,8 @@ public class Suburban extends BattleMap implements MapInterface, Listener {
 	redSpawns.add(new Location(w, 326, 53, -448));
 	redSpawns.add(new Location(w, 364, 54, -529));
 	redSpawns.add(new Location(w, 437, 58, -482));
-	
-	
+
+
 	setRedSpawns(name, redSpawns);
 	setBlueSpawns(name, blueSpawns);
     }
@@ -107,7 +104,7 @@ public class Suburban extends BattleMap implements MapInterface, Listener {
 	if (par.equalsIgnoreCase(name)) {
 	    clearInv(p);
 
-ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
 	    ItemStack BOW = new ItemStack(Material.BOW, 1);
 	    ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
@@ -145,7 +142,7 @@ ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
     public int x1 = 525;
     public int y1 = 0;
     public int z1 = 578;
-    
+
     //Bottom right corner.
     public int x2 = -44;
     public int y2 = 232;
@@ -169,18 +166,5 @@ ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	}
 	return false;
     }
-@EventHandler(priority = EventPriority.HIGH)
-    public void protection(BlockBreakEvent event) {
 
-	Block b = event.getBlock();
-	Location loc = b.getLocation();
-
-	if (loc.getWorld().getName().equals(name)) {
-
-	    event.setCancelled(false);
-	}
-
-
-
-    }
 }
