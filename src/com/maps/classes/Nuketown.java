@@ -1,9 +1,11 @@
 package com.maps.classes;
 
+import java.util.List;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
+import org.bukkit.EntityEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -14,9 +16,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -195,7 +199,7 @@ public class Nuketown extends BattleMap implements MapInterface, Listener {
 	}
 
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection1(BlockPlaceEvent event) {
 
@@ -219,35 +223,35 @@ public class Nuketown extends BattleMap implements MapInterface, Listener {
 		world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
 	    }
 	}
-}
-    
-	@EventHandler
-	public void arrowCollide(ProjectileHitEvent e) {
-		if (e.getEntity() instanceof Arrow) {
-			Arrow a = (Arrow) e.getEntity();
-			Location loc1 = a.getLocation();
-			List<Entity> nearby = a.getNearbyEntities(1, 1, 1);
-			for (Entity ent : nearby) {
-				if (ent instanceof Player) {
-					Player p = (Player) ent;
-					ent.playEffect(EntityEffect.WOLF_SMOKE);
-				}
-			}
-		}
-	}
+    }
 
-	@EventHandler
-	public void onInteract(PlayerInteractEvent e) {
-		Player p = e.getPlayer();
-		ItemStack iih = p.getItemInHand();
-		Material m = iih.getType();
-		if (m == Material.BOW) {
-			if (e.getAction() == Action.RIGHT_CLICK_AIR
-					|| e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-				p.getWorld().playEffect(p.getLocation(),
-						Effect.MOBSPAWNER_FLAMES, 0, 50);
-			}
+    @EventHandler
+    public void arrowCollide(ProjectileHitEvent e) {
+	if (e.getEntity() instanceof Arrow) {
+	    Arrow a = (Arrow) e.getEntity();
+	    Location loc1 = a.getLocation();
+	    List<Entity> nearby = a.getNearbyEntities(1, 1, 1);
+	    for (Entity ent : nearby) {
+		if (ent instanceof Player) {
+		    Player p = (Player) ent;
+		    ent.playEffect(EntityEffect.WOLF_SMOKE);
 		}
+	    }
 	}
+    }
+
+    @EventHandler
+    public void onInteract(PlayerInteractEvent e) {
+	Player p = e.getPlayer();
+	ItemStack iih = p.getItemInHand();
+	Material m = iih.getType();
+	if (m == Material.BOW) {
+	    if (e.getAction() == Action.RIGHT_CLICK_AIR
+		    || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+		p.getWorld().playEffect(p.getLocation(),
+			Effect.MOBSPAWNER_FLAMES, 0, 50);
+	    }
+	}
+    }
 
 }
