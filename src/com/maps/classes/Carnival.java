@@ -25,8 +25,8 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 public class Carnival extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    public Suburban(OresomeBattlesMaps pl) {
-  super(pl);
+    public Carnival(OresomeBattlesMaps pl) {
+	super(pl);
 	plugin = pl;
     }
 
@@ -53,7 +53,7 @@ public class Carnival extends BattleMap implements MapInterface, Listener {
 
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
-	
+
 	redSpawns.add(new Location(w, -83, 39, 1836));
 	redSpawns.add(new Location(w, -25, 41, 18));
 	redSpawns.add(new Location(w, -116, 33, 1832));
@@ -88,9 +88,7 @@ public class Carnival extends BattleMap implements MapInterface, Listener {
 
 	World w = Bukkit.getServer().getWorld(name);
 
-	World w = Bukkit.getServer().getWorld(name);
-
-        FFASpawns.add(new Location(w, -83, 39, 1836));
+	FFASpawns.add(new Location(w, -83, 39, 1836));
 	FFASpawns.add(new Location(w, -25, 41, 18));
 	FFASpawns.add(new Location(w, -116, 33, 1832));
 	FFASpawns.add(new Location(w, -19, 29, 1832));
@@ -114,7 +112,7 @@ public class Carnival extends BattleMap implements MapInterface, Listener {
 	if (par.equalsIgnoreCase(name)) {
 	    clearInv(p);
 
-ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 5);
 	    ItemStack BOW = new ItemStack(Material.BOW, 1);
 	    ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
@@ -188,7 +186,7 @@ ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	}
 
     }
-    
+
     // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection1(BlockPlaceEvent event) {
