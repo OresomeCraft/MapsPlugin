@@ -1,4 +1,4 @@
-package com.maps;
+package com.oresomecraft.BattleMaps;
 
 import org.bukkit.Location;
 

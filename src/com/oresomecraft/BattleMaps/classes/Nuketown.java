@@ -1,4 +1,4 @@
-package com.maps.classes;
+package com.oresomecraft.BattleMaps.classes;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -24,9 +24,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.maps.BattleMap;
-import com.maps.MapInterface;
-import com.maps.OresomeBattlesMaps;
+import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.MapInterface;
+import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
@@ -230,11 +230,11 @@ public class Nuketown extends BattleMap implements MapInterface, Listener {
 	if (e.getEntity().getWorld().equals(name)) {
 	    if (e.getEntity() instanceof Arrow) {
 		Arrow a = (Arrow) e.getEntity();
-		Location loc1 = a.getLocation();
+		//Location loc1 = a.getLocation();
 		List<Entity> nearby = a.getNearbyEntities(1, 1, 1);
 		for (Entity ent : nearby) {
 		    if (ent instanceof Player) {
-			Player p = (Player) ent;
+			//Player p = (Player) ent;
 			ent.playEffect(EntityEffect.WOLF_SMOKE);
 		    }
 		}

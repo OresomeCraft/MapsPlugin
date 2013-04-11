@@ -1,4 +1,4 @@
-package com.maps.classes;
+package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
 
@@ -16,16 +16,16 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.maps.BattleMap;
-import com.maps.MapInterface;
-import com.maps.OresomeBattlesMaps;
+import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.MapInterface;
+import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class Deepcaverns extends BattleMap implements MapInterface, Listener {
+public class Skyislands extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    public Deepcaverns(OresomeBattlesMaps pl) {
+    public Skyislands(OresomeBattlesMaps pl) {
 	super(pl);
 	plugin = pl;
     }
@@ -36,10 +36,10 @@ public class Deepcaverns extends BattleMap implements MapInterface, Listener {
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
     // Map details
-    String name = "deepcaverns";
-    String fullName = "Deep Caverns";
-    String creators = "kalysar, AlphaMinecraft91 and MR_SKINNA7";
-    //Map download link: N/A
+    String name = "skyislands";
+    String fullName = "Sky Islands";
+    String creators = "tarko2411 and dutchy336";
+    //Map download link: http://www.mediafire.com/?vgmk9bhmdi85sqf
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
@@ -54,33 +54,20 @@ public class Deepcaverns extends BattleMap implements MapInterface, Listener {
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
 
-	Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
-	Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
+	Location redSpawn = new Location(w, 738, 170, -1203, 179, 0);
+	Location blueSpawn = new Location(w, 743, 170, -1268, 179, 0);
 
 	redSpawns.add(redSpawn);
-	redSpawns.add(new Location(w, 0, 99, 27, 2, 0));
-	redSpawns.add(new Location(w, -9, 110, -20, 0, 0));
-	redSpawns.add(new Location(w, 21, 105, -13, 0, 0));
-	redSpawns.add(new Location(w, 4, 106, -41, 0, 0));
-	redSpawns.add(new Location(w, -18, 101, 13, 0, 0));
-	redSpawns.add(new Location(w, 2, 104, 15, 0, 0));
-	redSpawns.add(new Location(w, -2, 109, -4, 0, 0));
-	redSpawns.add(new Location(w, 28, 105, 10, 0, 0));
-	redSpawns.add(new Location(w, 27, 96, 0, 0, 0));
-	redSpawns.add(new Location(w, 30, 105, -14, 0, 0));
-	redSpawns.add(new Location(w, -9, 106, 18, 0, 0));
+	redSpawns.add(new Location(w, 734, 170, -1219, 178, 0));
+	redSpawns.add(new Location(w, 760, 170, -1218, -177, 0));
+	redSpawns.add(new Location(w, 727, 182, -1222, 179, 0));
+	redSpawns.add(new Location(w, 742, 209, -1235, -179, 0));
 
 	blueSpawns.add(blueSpawn);
-	blueSpawns.add(new Location(w, -9, 110, -20, 0, 0));
-	blueSpawns.add(new Location(w, 0, 99, 27, 0, 0));
-	blueSpawns.add(new Location(w, -16, 108, -3, 0, 0));
-	blueSpawns.add(new Location(w, -30, 108, -3, 0, 0));
-	blueSpawns.add(new Location(w, -18, 101, 13, 0, 0));
-	blueSpawns.add(new Location(w, -27, 88, 17, 0, 0));
-	blueSpawns.add(new Location(w, -32, 76, 16, 0, 0));
-	blueSpawns.add(new Location(w, -46, 97, 7, 0, 0));
-	blueSpawns.add(new Location(w, 26, 105, -13, 0, 0));
-	blueSpawns.add(new Location(w, 21, 94, 2, 0, 0));
+	blueSpawns.add(new Location(w, 738.99908, 170, -1203.43783, 179, 0));
+	blueSpawns.add(new Location(w, 734, 170, -1255, 0, 0));
+	blueSpawns.add(new Location(w, 771, 182, -1255, 5, 0));
+	blueSpawns.add(new Location(w, 742, 209, -1241, 0, 0));        
 
 	setRedSpawns(name, redSpawns);
 	setBlueSpawns(name, blueSpawns);
@@ -90,32 +77,30 @@ public class Deepcaverns extends BattleMap implements MapInterface, Listener {
 
 	World w = Bukkit.getServer().getWorld(name);
 
-	Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
-	Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
+	Location redSpawn = new Location(w, 738.99908, 170, -1203.43783, 179, 0);
+	Location blueSpawn = new Location(w, 743, 170, -1268, 0, 0);
 
 	FFASpawns.add(redSpawn);
 	FFASpawns.add(blueSpawn);
-	FFASpawns.add(new Location(w, 0, 99, 27, 2, 0));
-	FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
-	FFASpawns.add(new Location(w, 21, 105, -13, 0, 0));
-	FFASpawns.add(new Location(w, 4, 106, -41, 0, 0));
-	FFASpawns.add(new Location(w, -18, 101, 13, 0, 0));
-	FFASpawns.add(new Location(w, 2, 104, 15, 0, 0));
-	FFASpawns.add(new Location(w, -2, 109, -4, 0, 0));
-	FFASpawns.add(new Location(w, 28, 105, 10, 0, 0));
-	FFASpawns.add(new Location(w, 27, 96, 0, 0, 0));
-	FFASpawns.add(new Location(w, 30, 105, -14, 0, 0));
-	FFASpawns.add(new Location(w, -9, 106, 18, 0, 0));
-	FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
-	FFASpawns.add(new Location(w, 0, 99, 27, 0, 0));
-	FFASpawns.add(new Location(w, -16, 108, -3, 0, 0));
-	FFASpawns.add(new Location(w, -30, 108, -3, 0, 0));
-	FFASpawns.add(new Location(w, -18, 101, 13, 0, 0));
-	FFASpawns.add(new Location(w, -27, 88, 17, 0, 0));
-	FFASpawns.add(new Location(w, -32, 76, 16, 0, 0));
-	FFASpawns.add(new Location(w, -46, 97, 7, 0, 0));
-	FFASpawns.add(new Location(w, 26, 105, -13, 0, 0));
-	FFASpawns.add(new Location(w, 21, 94, 2, 0, 0));
+	FFASpawns.add(new Location(w, 771, 182, -1255, 5, 0));
+	FFASpawns.add(new Location(w, 180, 180, -1262, 92, 0));
+	FFASpawns.add(new Location(w, 755, 176, -1194, -176, 0));
+	FFASpawns.add(new Location(w, 728, 182, -1223, -86, 0));
+	FFASpawns.add(new Location(w, 771, 190, -1233, 2, 0));
+	FFASpawns.add(new Location(w, 736, 200, -1235, 2, 0));
+	FFASpawns.add(new Location(w, 743, 177, -1236, 0, 0));
+	FFASpawns.add(new Location(w, 746, 188, -1239, 39, 0));
+	FFASpawns.add(new Location(w, 741, 199, -1227, -4, 0));
+	FFASpawns.add(new Location(w, 748, 171, -1227, -179, 0));
+	FFASpawns.add(new Location(w, 748, 193, -1230, -179, 0));
+	FFASpawns.add(new Location(w, 721, 170, -1234, 1, 0));
+	FFASpawns.add(new Location(w, 719, 179, -1225, -89, 0));
+	FFASpawns.add(new Location(w, 710, 170, -1256, -88, 0));
+	FFASpawns.add(new Location(w, 778, 170, -1239, 92, 0));
+	FFASpawns.add(new Location(w, 750, 198, -1233, -88, 0));
+	FFASpawns.add(new Location(w, 742, 182, -1237, -179, 0));
+	FFASpawns.add(new Location(w, 764, 177, -1233, -179, 0));
+	FFASpawns.add(new Location(w, 731, 178, -1240, -1, 0));
 
 	setFFASpawns(name, FFASpawns);
     }
@@ -163,14 +148,14 @@ public class Deepcaverns extends BattleMap implements MapInterface, Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
+    public int x1 = 694;
+    public int y1 = 170;
+    public int z1 = -1185;
 
     //Bottom right corner.
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
+    public int x2 = 786;
+    public int y2 = 170;
+    public int z2 = -1283;
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,

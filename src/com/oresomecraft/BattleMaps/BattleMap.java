@@ -1,5 +1,5 @@
 // Provides access to OresomeBattles API. MANY more API additions to be added soon.
-package com.maps;
+package com.oresomecraft.BattleMaps;
 
 import java.util.ArrayList;
 

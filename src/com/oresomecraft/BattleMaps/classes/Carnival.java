@@ -1,4 +1,4 @@
-package com.maps.classes;
+package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
 
@@ -16,16 +16,16 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.maps.BattleMap;
-import com.maps.MapInterface;
-import com.maps.OresomeBattlesMaps;
+import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.MapInterface;
+import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class Skyislands extends BattleMap implements MapInterface, Listener {
+public class Carnival extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    public Skyislands(OresomeBattlesMaps pl) {
+    public Carnival(OresomeBattlesMaps pl) {
 	super(pl);
 	plugin = pl;
     }
@@ -36,10 +36,10 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
     // Map details
-    String name = "skyislands";
-    String fullName = "Sky Islands";
-    String creators = "tarko2411 and dutchy336";
-    //Map download link: http://www.mediafire.com/?vgmk9bhmdi85sqf
+    String name = "carnival";
+    String fullName = "Carnival";
+    String creators = "R3creat3 and FaazM";
+    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
@@ -54,20 +54,31 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
     public void readyTDMSpawns() {
 	World w = Bukkit.getServer().getWorld(name);
 
-	Location redSpawn = new Location(w, 738, 170, -1203, 179, 0);
-	Location blueSpawn = new Location(w, 743, 170, -1268, 179, 0);
+	redSpawns.add(new Location(w, -83, 39, 1836));
+	redSpawns.add(new Location(w, -25, 41, 18));
+	redSpawns.add(new Location(w, -116, 33, 1832));
+	redSpawns.add(new Location(w, -19, 29, 1832));
+	redSpawns.add(new Location(w, -120, 29, 1831));
+	redSpawns.add(new Location(w, -72, 25, 1831));
+	redSpawns.add(new Location(w, -16, 21, 1831));
+	redSpawns.add(new Location(w, -81, 16, 1831));
+	redSpawns.add(new Location(w, -131, 12, 1831));
+	redSpawns.add(new Location(w, -18, 5, 1831));
+	redSpawns.add(new Location(w, -79, 21, 1831));
+	redSpawns.add(new Location(w, -17, 49, 1831));
 
-	redSpawns.add(redSpawn);
-	redSpawns.add(new Location(w, 734, 170, -1219, 178, 0));
-	redSpawns.add(new Location(w, 760, 170, -1218, -177, 0));
-	redSpawns.add(new Location(w, 727, 182, -1222, 179, 0));
-	redSpawns.add(new Location(w, 742, 209, -1235, -179, 0));
-
-	blueSpawns.add(blueSpawn);
-	blueSpawns.add(new Location(w, 738.99908, 170, -1203.43783, 179, 0));
-	blueSpawns.add(new Location(w, 734, 170, -1255, 0, 0));
-	blueSpawns.add(new Location(w, 771, 182, -1255, 5, 0));
-	blueSpawns.add(new Location(w, 742, 209, -1241, 0, 0));        
+	blueSpawns.add(new Location(w, -83, 39, 1836));
+	blueSpawns.add(new Location(w, -25, 41, 18));
+	blueSpawns.add(new Location(w, -116, 33, 1832));
+	blueSpawns.add(new Location(w, -19, 29, 1832));
+	blueSpawns.add(new Location(w, -120, 29, 1831));
+	blueSpawns.add(new Location(w, -72, 25, 1831));
+	blueSpawns.add(new Location(w, -16, 21, 1831));
+	blueSpawns.add(new Location(w, -81, 16, 1831));
+	blueSpawns.add(new Location(w, -131, 12, 1831));
+	blueSpawns.add(new Location(w, -18, 5, 1831));
+	blueSpawns.add(new Location(w, -79, 21, 1831));
+	blueSpawns.add(new Location(w, -17, 49, 1831));
 
 	setRedSpawns(name, redSpawns);
 	setBlueSpawns(name, blueSpawns);
@@ -77,31 +88,18 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
 
 	World w = Bukkit.getServer().getWorld(name);
 
-	Location redSpawn = new Location(w, 738.99908, 170, -1203.43783, 179, 0);
-	Location blueSpawn = new Location(w, 743, 170, -1268, 0, 0);
-
-	FFASpawns.add(redSpawn);
-	FFASpawns.add(blueSpawn);
-	FFASpawns.add(new Location(w, 771, 182, -1255, 5, 0));
-	FFASpawns.add(new Location(w, 180, 180, -1262, 92, 0));
-	FFASpawns.add(new Location(w, 755, 176, -1194, -176, 0));
-	FFASpawns.add(new Location(w, 728, 182, -1223, -86, 0));
-	FFASpawns.add(new Location(w, 771, 190, -1233, 2, 0));
-	FFASpawns.add(new Location(w, 736, 200, -1235, 2, 0));
-	FFASpawns.add(new Location(w, 743, 177, -1236, 0, 0));
-	FFASpawns.add(new Location(w, 746, 188, -1239, 39, 0));
-	FFASpawns.add(new Location(w, 741, 199, -1227, -4, 0));
-	FFASpawns.add(new Location(w, 748, 171, -1227, -179, 0));
-	FFASpawns.add(new Location(w, 748, 193, -1230, -179, 0));
-	FFASpawns.add(new Location(w, 721, 170, -1234, 1, 0));
-	FFASpawns.add(new Location(w, 719, 179, -1225, -89, 0));
-	FFASpawns.add(new Location(w, 710, 170, -1256, -88, 0));
-	FFASpawns.add(new Location(w, 778, 170, -1239, 92, 0));
-	FFASpawns.add(new Location(w, 750, 198, -1233, -88, 0));
-	FFASpawns.add(new Location(w, 742, 182, -1237, -179, 0));
-	FFASpawns.add(new Location(w, 764, 177, -1233, -179, 0));
-	FFASpawns.add(new Location(w, 731, 178, -1240, -1, 0));
-
+	FFASpawns.add(new Location(w, -83, 39, 1836));
+	FFASpawns.add(new Location(w, -25, 41, 18));
+	FFASpawns.add(new Location(w, -116, 33, 1832));
+	FFASpawns.add(new Location(w, -19, 29, 1832));
+	FFASpawns.add(new Location(w, -120, 29, 1831));
+	FFASpawns.add(new Location(w, -72, 25, 1831));
+	FFASpawns.add(new Location(w, -16, 21, 1831));
+	FFASpawns.add(new Location(w, -81, 16, 1831));
+	FFASpawns.add(new Location(w, -131, 12, 1831));
+	FFASpawns.add(new Location(w, -18, 5, 1831));
+	FFASpawns.add(new Location(w, -79, 21, 1831));
+	FFASpawns.add(new Location(w, -17, 49, 1831));
 	setFFASpawns(name, FFASpawns);
     }
 
@@ -115,7 +113,7 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
 	    clearInv(p);
 
 	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 5);
 	    ItemStack BOW = new ItemStack(Material.BOW, 1);
 	    ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
 	    ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
@@ -123,7 +121,6 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
 	    ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
 	    ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-	    ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
 	    p.getInventory().setBoots(IRON_BOOTS);
 	    p.getInventory().setLeggings(IRON_PANTS);
@@ -135,7 +132,6 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
 	    i.setItem(2, STEAK);
 	    i.setItem(3, HEALTH_POTION);
 	    i.setItem(4, ARROWS);
-	    i.setItem(5, EXP);
 
 	}
     }
@@ -148,14 +144,14 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 694;
-    public int y1 = 170;
-    public int z1 = -1185;
+    public int x1 = -152;
+    public int y1 = 0;
+    public int z1 = 1816;
 
     //Bottom right corner.
-    public int x2 = 786;
-    public int y2 = 170;
-    public int z2 = -1283;
+    public int x2 = 5;
+    public int y2 = 64;
+    public int z2 = 1852;
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
@@ -177,6 +173,7 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
 
     }
 
+    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection(BlockBreakEvent event) {
 
@@ -189,7 +186,8 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
 	}
 
     }
-    
+
+    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection1(BlockPlaceEvent event) {
 
