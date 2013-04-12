@@ -55,7 +55,6 @@ public class Carnival extends BattleMap implements MapInterface, Listener {
 	World w = Bukkit.getServer().getWorld(name);
 
 	redSpawns.add(new Location(w, -83, 39, 1836));
-	redSpawns.add(new Location(w, -25, 41, 18));
 	redSpawns.add(new Location(w, -116, 33, 1832));
 	redSpawns.add(new Location(w, -19, 29, 1832));
 	redSpawns.add(new Location(w, -120, 29, 1831));
@@ -68,7 +67,6 @@ public class Carnival extends BattleMap implements MapInterface, Listener {
 	redSpawns.add(new Location(w, -17, 49, 1831));
 
 	blueSpawns.add(new Location(w, -83, 39, 1836));
-	blueSpawns.add(new Location(w, -25, 41, 18));
 	blueSpawns.add(new Location(w, -116, 33, 1832));
 	blueSpawns.add(new Location(w, -19, 29, 1832));
 	blueSpawns.add(new Location(w, -120, 29, 1831));
@@ -89,7 +87,6 @@ public class Carnival extends BattleMap implements MapInterface, Listener {
 	World w = Bukkit.getServer().getWorld(name);
 
 	FFASpawns.add(new Location(w, -83, 39, 1836));
-	FFASpawns.add(new Location(w, -25, 41, 18));
 	FFASpawns.add(new Location(w, -116, 33, 1832));
 	FFASpawns.add(new Location(w, -19, 29, 1832));
 	FFASpawns.add(new Location(w, -120, 29, 1831));
