@@ -55,7 +55,6 @@ public class Perro extends BattleMap implements MapInterface, Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	addVotes(name);
-	battles.votes.put(name, 1); // Very dirty cheat to set this as the default map.
 	clearSpawns();
 	readyTDMSpawns();
 	readyFFASpawns();
