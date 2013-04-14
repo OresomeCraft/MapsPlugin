@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EnderPearl;
@@ -97,7 +96,7 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
 	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
 	    ItemStack BOW = new ItemStack(Material.BOW, 1);
-	    ItemStack ARROWS = new ItemStack(Material.ARROW, 128);
+	    ItemStack ARROWS = new ItemStack(Material.ARROW, 16);
 	    ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
 	    ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
 	    ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
@@ -183,19 +182,21 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
 	}
 
     }
+    
     @EventHandler
     public void onFireBow(EntityShootBowEvent event) {
+	if (event.getEntity().getWorld().equals(name)) {
 
-	if (event.getEntityType() == EntityType.PLAYER) {
+	    if (event.getEntityType() == EntityType.PLAYER) {
 
-	    Player player = (Player) event.getEntity();
-	    if (player.getInventory().contains(Material.ARROW)) {
-		player.getWorld().playSound(player.getLocation(), Sound.CLICK, 5, 5);
-		event.setCancelled(true);
-		player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
-		player.launchProjectile(EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
-	    } else {
-		event.setCancelled(true);
+		Player player = (Player) event.getEntity();
+		if (player.getInventory().contains(Material.ARROW)) {
+		    event.setCancelled(true);
+		    player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
+		    player.launchProjectile(EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
+		} else {
+		    event.setCancelled(true);
+		}
 	    }
 	}
 
