@@ -22,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
+import com.oresomecraft.OresomeBattles.BattleHandler;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
@@ -185,7 +186,7 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
     
     @EventHandler
     public void onFireBow(EntityShootBowEvent event) {
-	if (event.getEntity().getWorld().equals(name)) {
+	if (BattleHandler.activeArena.equals(name)) {
 
 	    if (event.getEntityType() == EntityType.PLAYER) {
 
