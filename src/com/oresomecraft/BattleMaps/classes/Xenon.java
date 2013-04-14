@@ -1,32 +1,36 @@
-package com.maps.classes;
+package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.entity.EnderPearl;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.maps.BattleMap;
-import com.maps.MapInterface;
-import com.maps.OresomeBattlesMaps;
+import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.MapInterface;
+import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
 public class Xenon extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    public Suburban(OresomeBattlesMaps pl) {
-  super(pl);
+    public Xenon(OresomeBattlesMaps pl) {
+	super(pl);
 	plugin = pl;
     }
 
@@ -67,8 +71,6 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
 
 	World w = Bukkit.getServer().getWorld(name);
 
-	World w = Bukkit.getServer().getWorld(name);
-
 	Location redSpawn = new Location(w, 33, 2, 25);
 	Location blueSpawn = new Location(w, 73, 2, -14);
 
@@ -92,7 +94,7 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
 	if (par.equalsIgnoreCase(name)) {
 	    clearInv(p);
 
-ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
 	    ItemStack BOW = new ItemStack(Material.BOW, 1);
 	    ItemStack ARROWS = new ItemStack(Material.ARROW, 128);
@@ -127,7 +129,7 @@ ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
     public int x1 = 7;
     public int y1 = 66;
     public int z1 = 52;
-    
+
     //Bottom right corner.
     public int x2 = 93;
     public int y2 = 0;
@@ -166,7 +168,7 @@ ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	}
 
     }
-    
+
     // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection1(BlockPlaceEvent event) {
@@ -181,23 +183,21 @@ ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
 	}
 
     }
-	@EventHandler
-		public void onFireBow(EntityShootBowEvent event) {
-		
-		if (event.getEntityType() == EntityType.PLAYER) {
-			
-			Player player = (Player) event.getEntity();
-				if (player.getInventory().contains(Material.ARROW)) {
-					player.getWorld().playSound(player.getLocation(), Sound.CLICK, 5, 5);
-					event.setCancelled(true);
-					player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
-					player.launchProjectile(EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
-				} else {
-					event.setCancelled(true);
-				}
-			}
-			
-		}
-  }
+    @EventHandler
+    public void onFireBow(EntityShootBowEvent event) {
 
+	if (event.getEntityType() == EntityType.PLAYER) {
+
+	    Player player = (Player) event.getEntity();
+	    if (player.getInventory().contains(Material.ARROW)) {
+		player.getWorld().playSound(player.getLocation(), Sound.CLICK, 5, 5);
+		event.setCancelled(true);
+		player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
+		player.launchProjectile(EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
+	    } else {
+		event.setCancelled(true);
+	    }
+	}
+
+    }
 }
