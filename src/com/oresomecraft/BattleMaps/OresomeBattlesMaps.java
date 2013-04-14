@@ -30,6 +30,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
 	new Perro(this);
 	new Wartown(this);
 	new Spire(this);
+	new Xenon(this);
 	new Mansion(this);
 	new Hypno(this);
 	new Arctic(this);
