@@ -27,6 +27,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
 
 	new BattleMap(this);
 	new Carnival(this);
+	new Kapha(this);
 	new Perro(this);
 	new Wartown(this);
 	new Spire(this);
