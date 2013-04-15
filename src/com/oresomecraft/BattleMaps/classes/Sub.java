@@ -1,10 +1,9 @@
-package com.maps.classes;
+package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Block;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -13,23 +12,21 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-import com.maps.BattleMap;
-import com.maps.MapInterface;
-import com.maps.OresomeBattlesMaps;
+import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.MapInterface;
+import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class Sumberged extends BattleMap implements MapInterface, Listener {
+public class Sub extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    public Submerged(OresomeBattlesMaps pl) {
-  super(pl);
+    public Sub(OresomeBattlesMaps pl) {
+	super(pl);
 	plugin = pl;
     }
 
@@ -190,23 +187,25 @@ public class Sumberged extends BattleMap implements MapInterface, Listener {
 	}
 
     }
-    //Not sure if I did it, but this should prevent 42(iron block), 35(wool), 57(diamond block), 43(gold block), 155(quartz block)
-    // Code to prevent block placing.
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection1(BlockPlaceEvent event) {
 
 	Block b = event.getBlock();
 	Location loc = b.getLocation();
+	int mat = b.getTypeId();
 
 	if (loc.getWorld().getName().equals(name)) {
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+	    if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
 
-        if (mat == 42 || mat == 35 || mat == 57 || mat == 43
-            || mat == 49 || mat == 155 || mat == 69 || mat == 101 || mat == 124 || mat == 47 || mat == 116 || mat == 65 || mat == 50 || mat == 89 || mat == 330) {
-	    event.setCancelled(true);
+		if (mat == 42 || mat == 35 || mat == 57 || mat == 43
+			|| mat == 49 || mat == 155 || mat == 69 || mat == 101 || mat == 124 || mat == 47 || mat == 116 || mat == 65 || mat == 50 || mat == 89 || mat == 330) {
+		    event.setCancelled(true);
+
+		}
+
+	    }
 
 	}
-
     }
-
 }
