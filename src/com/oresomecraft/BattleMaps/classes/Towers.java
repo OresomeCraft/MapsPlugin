@@ -20,6 +20,7 @@ import org.bukkit.inventory.ItemStack;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
+import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
@@ -44,7 +45,6 @@ public class Towers extends BattleMap implements MapInterface, Listener {
     public void readyMap(ReadyMapsEvent event) {
 	addVotes(name);
 	battles.votes.put(name, 1); // Very dirty cheat to set this as the default map.
-	clearSpawns();
 	readyTDMSpawns();
 	readyFFASpawns();
 	addCreators(name, creators); 
@@ -149,7 +149,8 @@ public class Towers extends BattleMap implements MapInterface, Listener {
 	}
     }
 
-    public void clearSpawns() {
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void clearSpawns(ClearSpawnsEvent event) {
 	redSpawns.clear();
 	blueSpawns.clear();
 	FFASpawns.clear();
