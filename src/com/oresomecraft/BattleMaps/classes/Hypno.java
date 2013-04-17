@@ -54,11 +54,11 @@ public class Hypno extends BattleMap implements MapInterface, Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	addVotes(name);
-	clearSpawns();
 	readyTDMSpawns();
 	readyFFASpawns();
 	addCreators(name, creators);
 	setFullName(name, fullName);
+	clearSpawns();
     }
 
     public void readyTDMSpawns() {

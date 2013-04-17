@@ -50,9 +50,9 @@ public class Arctic extends BattleMap implements MapInterface, Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	addVotes(name);
-	clearSpawns();
 	readyTDMSpawns();
 	readyFFASpawns();
+	clearSpawns();
 	addCreators(name, creators); 
 	setFullName(name, fullName);
     }
