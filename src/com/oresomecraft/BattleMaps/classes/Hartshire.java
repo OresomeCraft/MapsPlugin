@@ -26,7 +26,6 @@ import org.bukkit.util.Vector;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
-import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
@@ -52,6 +51,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	addVotes(name);
+	clearSpawns();
 	readyTDMSpawns();
 	readyFFASpawns();
 	addCreators(name, creators); 
@@ -135,8 +135,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
 	}
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void clearSpawns(ClearSpawnsEvent event) {
+    public void clearSpawns() {
 	redSpawns.clear();
 	blueSpawns.clear();
 	FFASpawns.clear();
