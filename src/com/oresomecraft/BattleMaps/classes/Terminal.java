@@ -56,6 +56,7 @@ public class Terminal extends BattleMap implements MapInterface, Listener {
 	addVotes(name);
 	readyTDMSpawns();
 	readyFFASpawns();
+	battles.votes.put(name, 1); // Very dirty cheat to set this as the default map.
 	addCreators(name, creators); 
 	setFullName(name, fullName);
     }

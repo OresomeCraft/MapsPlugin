@@ -62,8 +62,8 @@
   <repositories>
 
     <repository>
-      <id>oc-repo</id>
-      <url>https://dl.dropbox.com/u/96077954/OresomeCraft/repo</url>
+      <id>OresomeCraft</id>
+      <url>http://repo.oresomecraft.com</url>
     </repository>
     <repository>
       <id>bukkit-repo</id>
