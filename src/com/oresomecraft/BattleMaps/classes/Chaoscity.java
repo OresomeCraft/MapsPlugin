@@ -218,7 +218,7 @@ public class Chaoscity extends BattleMap implements MapInterface, Listener {
 	World world = loc.getWorld();
 	String name = p.getName();
 
-	if (battles.spectator.containsKey(name)) {
+	if (battles.spectator.contains(name)) {
 	    event.setCancelled(true); 
 	} else {
 	    if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {

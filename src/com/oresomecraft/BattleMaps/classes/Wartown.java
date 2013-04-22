@@ -225,7 +225,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
 	Inventory inv = p.getInventory();
 	String name = p.getName();
 
-	if (!battles.spectator.containsKey(name)) {
+	if (!battles.spectator.contains(name)) {
 
 	    if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
 		if (tool == Material.LEATHER) {
@@ -377,7 +377,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
 	final World world = loc.getWorld();
 	String name = p.getName();
 
-	if (battles.spectator.containsKey(name)) {
+	if (battles.spectator.contains(name)) {
 	    event.setCancelled(true); 
 	} else {
 	    if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
