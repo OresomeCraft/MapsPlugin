@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
 import com.oresomecraft.OresomeBattles.OresomeBattles;
+import com.oresomecraft.OresomeBattles.Utility;
 
 public class BattleMap implements Listener {
     
@@ -45,7 +46,7 @@ public class BattleMap implements Listener {
     }
     
     public void clearInv(Player p) {
-	battles.utility.clearInv(p);
+	Utility.clearInv(p);
     }
 
 }
