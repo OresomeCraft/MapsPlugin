@@ -64,7 +64,7 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
 	redSpawns.add(new Location(w, 742, 209, -1235, -179, 0));
 
 	blueSpawns.add(blueSpawn);
-	blueSpawns.add(new Location(w, 738.99908, 170, -1203.43783, 179, 0));
+	blueSpawns.add(new Location(w, 738, 170, -1203, 179, 0));
 	blueSpawns.add(new Location(w, 734, 170, -1255, 0, 0));
 	blueSpawns.add(new Location(w, 771, 182, -1255, 5, 0));
 	blueSpawns.add(new Location(w, 742, 209, -1241, 0, 0));        
@@ -77,13 +77,12 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
 
 	World w = Bukkit.getServer().getWorld(name);
 
-	Location redSpawn = new Location(w, 738.99908, 170, -1203.43783, 179, 0);
+	Location redSpawn = new Location(w, 738, 170, -1203, 179, 0);
 	Location blueSpawn = new Location(w, 743, 170, -1268, 0, 0);
 
 	FFASpawns.add(redSpawn);
 	FFASpawns.add(blueSpawn);
 	FFASpawns.add(new Location(w, 771, 182, -1255, 5, 0));
-	FFASpawns.add(new Location(w, 180, 180, -1262, 92, 0));
 	FFASpawns.add(new Location(w, 755, 176, -1194, -176, 0));
 	FFASpawns.add(new Location(w, 728, 182, -1223, -86, 0));
 	FFASpawns.add(new Location(w, 771, 190, -1233, 2, 0));
