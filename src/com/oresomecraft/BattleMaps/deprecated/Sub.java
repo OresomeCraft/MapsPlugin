@@ -1,4 +1,4 @@
-package com.oresomecraft.BattleMaps.classes;
+package com.oresomecraft.BattleMaps.deprecated;
 
 import java.util.ArrayList;
 
