@@ -80,7 +80,6 @@ public class Nuketown extends BattleMap implements MapInterface, Listener {
 	blueSpawns.add(new Location(w, 21, 17, 91, 89, 0));
 	redSpawns.add(new Location(w, -40, 7, 45, 40, 0));
 	blueSpawns.add(new Location(w, 5, 12, 131, 178, 0));
-	redSpawns.add(new Location(w, 54, 7, -138, 90, 0));
 	blueSpawns.add(new Location(w, -22, 12, 91, -110, 0));
 	redSpawns.add(new Location(w, 54, 7, 128, 111, 0));
 	blueSpawns.add(new Location(w, -2, 11, 156, 179, 0));
@@ -113,7 +112,6 @@ public class Nuketown extends BattleMap implements MapInterface, Listener {
 	FFASpawns.add(new Location(w, 21, 17, 91, 89, 0));
 	FFASpawns.add(new Location(w, -40, 7, 45, 40, 0));
 	FFASpawns.add(new Location(w, 5, 12, 131, 178, 0));
-	FFASpawns.add(new Location(w, 54, 7, -138, 90, 0));
 	FFASpawns.add(new Location(w, -22, 12, 91, -110, 0));
 	FFASpawns.add(new Location(w, 54, 7, 128, 111, 0));
 	FFASpawns.add(new Location(w, -2, 11, 156, 179, 0));

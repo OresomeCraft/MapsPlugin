@@ -46,14 +46,15 @@ public class Arctic extends BattleMap implements MapInterface, Listener {
     String name = "arctic";
     String fullName = "Arctic";
     String creators = "Dant35tra5t";
-    //Map download link: N/A
+
+    // Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
 	addVotes(name);
 	readyTDMSpawns();
 	readyFFASpawns();
-	addCreators(name, creators); 
+	addCreators(name, creators);
 	setFullName(name, fullName);
     }
 
@@ -171,7 +172,6 @@ public class Arctic extends BattleMap implements MapInterface, Listener {
 	FFASpawns.clear();
     }
 
-
     public int x1 = 715;
     public int y1 = 107;
     public int z1 = -179;
@@ -196,7 +196,6 @@ public class Arctic extends BattleMap implements MapInterface, Listener {
 	}
 	return false;
     }
-
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void icePick(PlayerInteractEvent event) {
@@ -229,9 +228,6 @@ public class Arctic extends BattleMap implements MapInterface, Listener {
 			    p.setVelocity(new Vector(0, 1, 0));
 			    p.setFallDistance(0);
 			    world.playEffect(b.getLocation(), Effect.STEP_SOUND, 79);
-			    world.playEffect(b.getLocation(), Effect.STEP_SOUND, 79);
-			    world.playEffect(b.getLocation(), Effect.STEP_SOUND, 79);
-			    world.playEffect(b.getLocation(), Effect.STEP_SOUND, 79);
 
 			}
 
@@ -243,7 +239,6 @@ public class Arctic extends BattleMap implements MapInterface, Listener {
 	}
 
     }
-
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection(BlockBreakEvent event) {
@@ -258,7 +253,7 @@ public class Arctic extends BattleMap implements MapInterface, Listener {
 	}
 
     }
-    
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection1(BlockPlaceEvent event) {
 
