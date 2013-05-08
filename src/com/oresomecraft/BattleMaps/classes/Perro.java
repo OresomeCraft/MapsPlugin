@@ -31,6 +31,7 @@ import org.bukkit.util.Vector;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
+import com.oresomecraft.OresomeBattles.Utility;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
@@ -313,7 +314,7 @@ public class Perro extends BattleMap implements MapInterface, Listener {
     public void arrowBoom(ProjectileHitEvent event) {
 	Entity arrow = event.getEntity();
 	World world = Bukkit.getWorld(name);
-	if (battles.bh.getArena() == name) {
+	if (Utility.getArena() == name) {
 	    if (arrow instanceof Arrow) {
 		world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
 	    }
@@ -364,7 +365,7 @@ public class Perro extends BattleMap implements MapInterface, Listener {
 
 	    public void run() {
 		World world = Bukkit.getWorld(name);
-		if (battles.bh.getArena() == name) {
+		if (Utility.getArena() == name) {
 		    for (Entity arrow : world.getEntities()) {
 			if (arrow instanceof Arrow) {
 

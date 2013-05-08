@@ -30,6 +30,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.Utility;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
@@ -420,7 +421,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
 
 	    public void run() {
 		World world = Bukkit.getWorld(name);
-		if (battles.bh.getArena() == name) {
+		if (Utility.getArena() == name) {
 		    if (!(world.getEntities() == null)) {
 			for (Entity arrow : world.getEntities()) {
 			    if (arrow instanceof Arrow) {

@@ -45,7 +45,7 @@ public class Arctic extends BattleMap implements MapInterface, Listener {
 
     String name = "arctic";
     String fullName = "Arctic";
-    String creators = "Dant35tra5t";
+    String creators = "Dant35tra5t ";
 
     // Map download link: N/A
 
