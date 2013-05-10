@@ -26,6 +26,7 @@ import org.bukkit.potion.PotionEffectType;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
+import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
@@ -48,15 +49,17 @@ public class Mansion extends BattleMap implements MapInterface, Listener {
     String name = "mansion";
     String fullName = "The haunted mansion";
     String creators = "pegabeavercorn, Hourani95 and kevlar_miner";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
-	addVotes(name);
+	addMap(name);
 	readyTDMSpawns();
 	readyFFASpawns();
 	addCreators(name, creators); 
 	setFullName(name, fullName);
+	setGamemodes(name, modes);
     }
 
     public void readyTDMSpawns() {

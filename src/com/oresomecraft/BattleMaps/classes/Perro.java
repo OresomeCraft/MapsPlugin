@@ -31,6 +31,7 @@ import org.bukkit.util.Vector;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
+import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.Utility;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
@@ -52,15 +53,17 @@ public class Perro extends BattleMap implements MapInterface, Listener {
     String name = "perro";
     String fullName = "Casa de Perro";
     String creators = "zachoz, pegabeavercorn and dogmode555";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
-	addVotes(name);
+	addMap(name);
 	readyTDMSpawns();
 	readyFFASpawns();
 	addCreators(name, creators); 
 	setFullName(name, fullName);
+	setGamemodes(name, modes);
 	arrowParticles();
     }
 

@@ -44,7 +44,7 @@ public class Deepcaverns extends BattleMap implements MapInterface, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
-	addVotes(name);
+	addMap(name);
 	readyTDMSpawns();
 	readyFFASpawns();
 	addCreators(name, creators); 
