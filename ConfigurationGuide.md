@@ -38,8 +38,12 @@ Below defines the basic details of this map
     String name = "arctic";  // Shorten & lowercase name of the map.
     String fullName = "Arctic"; // Full captilised map name.
     String creators = "Dant35tra5t, Derpherp"; // Map creators.
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
     //Map download link: http://some-link-here.com/map.zip  // Download link to map.
 ```
+
+As you can see you're able to set which game modes the map can play. Current available options are: Gamemode.TDM, Gamemode.FFA and Gamemode.INFECTION
+
 ### What about this ReadyMap() and these ArrayLists and um, the imports?
 These are internal things required to make the map function. DO NOT change these.
 
