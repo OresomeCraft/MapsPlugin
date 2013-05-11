@@ -91,7 +91,7 @@ public class Towers extends BattleMap implements MapInterface, Listener {
 	World w = Bukkit.getWorld(name);
 
 	Location redSpawn = new Location(w, 845, 130, -113, -137, 0);
-	Location blueSpawn = new Location(w, 761, 128, -72, 51, 0);
+	Location blueSpawn = new Location(w, 523, 11, -1225, 51, 0);
 
 	FFASpawns.add(redSpawn);
 	FFASpawns.add(blueSpawn);
