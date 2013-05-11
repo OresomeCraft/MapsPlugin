@@ -13,45 +13,45 @@ import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.Utility;
 
 public class BattleMap implements Listener {
-    
+
     OresomeBattlesMaps plugin;
     public OresomeBattles battles;
     public BattleMap(OresomeBattlesMaps pl) {
-	plugin = pl;
-	battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
-	plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        plugin = pl;
+        battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
-    
+
     public void setRedSpawns(String name, ArrayList<Location> redSpawns) {
-	battles.bp.setRedSpawns(name, redSpawns);
+        battles.bp.setRedSpawns(name, redSpawns);
     }
 
     public void setBlueSpawns(String name, ArrayList<Location> blueSpawns) {
-	battles.bp.setBlueSpawns(name, blueSpawns);
+        battles.bp.setBlueSpawns(name, blueSpawns);
     }
 
     public void setFFASpawns(String name, ArrayList<Location> FFASpawns) {
-	battles.bp.setFFASpawns(name, FFASpawns);
+        battles.bp.setFFASpawns(name, FFASpawns);
     }
-    
+
     public void addMap(String name) {
-	battles.addMap(name);
+        battles.addMap(name);
     }
 
     public void addCreators(String name, String creators) {
-	battles.addCreators(name, creators);
+        battles.addCreators(name, creators);
     }
 
     public void setFullName(String name, String fullName) {
-	battles.setFullName(name, fullName);
+        battles.setFullName(name, fullName);
     }
-    
+
     public void clearInv(Player p) {
-	Utility.clearInv(p);
+        Utility.clearInv(p);
     }
-    
+
     public void setGamemodes(String name, Gamemode[] modes) {
-	battles.setGamemodes(name, modes);
+        battles.setGamemodes(name, modes);
     }
 
 }
