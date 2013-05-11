@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
+import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.Utility;
 
@@ -33,8 +34,8 @@ public class BattleMap implements Listener {
 	battles.bp.setFFASpawns(name, FFASpawns);
     }
     
-    public void addVotes(String name) {
-	battles.addVotes(name);
+    public void addMap(String name) {
+	battles.addMap(name);
     }
 
     public void addCreators(String name, String creators) {
@@ -47,6 +48,10 @@ public class BattleMap implements Listener {
     
     public void clearInv(Player p) {
 	Utility.clearInv(p);
+    }
+    
+    public void setGamemodes(String name, Gamemode[] modes) {
+	battles.setGamemodes(name, modes);
     }
 
 }

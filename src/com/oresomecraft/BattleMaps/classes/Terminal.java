@@ -27,6 +27,7 @@ import org.bukkit.inventory.ItemStack;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
+import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
@@ -48,16 +49,18 @@ public class Terminal extends BattleMap implements MapInterface, Listener {
     String name = "terminal";
     String fullName = "Terminal";
     String creators = "Zachoz, XxXShadowSoul and Slider302";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
     //Map download link: N/A
 
     // Ready map (Don't change!)
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
-	addVotes(name);
+	addMap(name);
 	readyTDMSpawns();
 	readyFFASpawns();
 	addCreators(name, creators); 
 	setFullName(name, fullName);
+	setGamemodes(name, modes);
     }
 
     // Prepare TDM spawns

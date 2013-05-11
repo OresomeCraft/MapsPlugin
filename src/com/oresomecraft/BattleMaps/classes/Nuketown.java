@@ -27,6 +27,7 @@ import org.bukkit.inventory.ItemStack;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
+import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.Utility;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
@@ -48,15 +49,17 @@ public class Nuketown extends BattleMap implements MapInterface, Listener {
     String name = "nuketown";
     String fullName = "NukeTown";
     String creators = "Htgan, proportion and reub_youtube";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
-	addVotes(name);
+	addMap(name);
 	readyTDMSpawns();
 	readyFFASpawns();
 	addCreators(name, creators); 
 	setFullName(name, fullName);
+	setGamemodes(name, modes);
     }
 
     public void readyTDMSpawns() {

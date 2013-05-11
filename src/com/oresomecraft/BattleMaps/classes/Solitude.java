@@ -31,6 +31,7 @@ import org.bukkit.util.Vector;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
+import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
@@ -52,15 +53,17 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
     String name = "solitude";
     String fullName = "Solitude";
     String creators = "R3creat3, dutchy336, tarko2411 and PMC";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
-	addVotes(name);
+	addMap(name);
 	readyTDMSpawns();
 	readyFFASpawns();
 	addCreators(name, creators); 
 	setFullName(name, fullName);
+	setGamemodes(name, modes);
     }
 
     public void readyTDMSpawns() {
