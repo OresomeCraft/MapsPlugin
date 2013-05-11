@@ -19,6 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
+import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
@@ -40,6 +41,7 @@ public class Template extends BattleMap implements MapInterface, Listener {
     String name = "template";
     String fullName = "Template";
     String creators = "derp, herp and harpaderp";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -49,6 +51,7 @@ public class Template extends BattleMap implements MapInterface, Listener {
 	readyFFASpawns();
 	addCreators(name, creators); 
 	setFullName(name, fullName);
+	addMap(name);
     }
 
     public void readyTDMSpawns() {
