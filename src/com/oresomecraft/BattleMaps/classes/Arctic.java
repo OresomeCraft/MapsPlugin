@@ -47,7 +47,7 @@ public class Arctic extends BattleMap implements MapInterface, Listener {
     String name = "arctic";
     String fullName = "Arctic";
     String creators = "Dant35tra5t ";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     // Map download link: N/A
 

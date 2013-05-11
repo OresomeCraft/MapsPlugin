@@ -52,7 +52,7 @@ public class Hypno extends BattleMap implements MapInterface, Listener {
     String name = "hypno";
     String fullName = "Hypnosis";
     String creators = "zachoz, pegabeavercorn, DragonDrew and kevlar_miner";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)

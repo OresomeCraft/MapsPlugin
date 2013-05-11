@@ -41,7 +41,7 @@ public class Towers extends BattleMap implements MapInterface, Listener {
     String name = "towers";
     String fullName = "Towers";
     String creators = "bruuceey and Lyssieloo";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)

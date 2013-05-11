@@ -51,7 +51,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
     String name = "wartown";
     String fullName = "Wartown";
     String creators = "reub_youtube ";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)

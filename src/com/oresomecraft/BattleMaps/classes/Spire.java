@@ -54,7 +54,7 @@ public class Spire extends BattleMap implements MapInterface, Listener {
     String name = "spire";
     String fullName = "Spire";
     String creators = "zachoz and pegabeavercorn";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
     //Map download link: N/A
 
     public int x1 = -1661;

@@ -53,7 +53,7 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
     String name = "solitude";
     String fullName = "Solitude";
     String creators = "R3creat3, dutchy336, tarko2411 and PMC";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)

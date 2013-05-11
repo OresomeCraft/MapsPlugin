@@ -49,7 +49,7 @@ public class Mansion extends BattleMap implements MapInterface, Listener {
     String name = "mansion";
     String fullName = "The haunted mansion";
     String creators = "pegabeavercorn, Hourani95 and kevlar_miner";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
