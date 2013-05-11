@@ -12,36 +12,36 @@ public class OresomeBattlesMaps extends JavaPlugin {
 
     public void onDisable() {
 
-	PluginDescriptionFile pdfFile = getDescription();
-	this.logger.info(pdfFile.getName() + " is now disabled");
+        PluginDescriptionFile pdfFile = getDescription();
+        this.logger.info(pdfFile.getName() + " is now disabled");
     }
 
     public void onEnable() {
 
-	PluginDescriptionFile pdfFile = getDescription();
-	this.logger.info(pdfFile.getName() + " version " + pdfFile.getVersion() + "is now enabled");
-	loadMaps();
+        PluginDescriptionFile pdfFile = getDescription();
+        this.logger.info(pdfFile.getName() + " version " + pdfFile.getVersion() + "is now enabled");
+        loadMaps();
     }
 
     public void loadMaps() {
 
-	new BattleMap(this);
-	new Perro(this);
-	new Wartown(this);
-	new Spire(this);
-	new Xenon(this);
-	new Mansion(this);
-	new Hypno(this);
-	new Arctic(this);
-	new Nuketown(this);
-	new Terminal(this);
-	new Towers(this);
-	new Hartshire(this);
-	new Skyislands(this);
-	new Fosscrest(this);
-	new Solitude(this);
-	new Suburban(this);
-	new Battlement(this);
+        new BattleMap(this);
+        new Perro(this);
+        new Wartown(this);
+        new Spire(this);
+        new Xenon(this);
+        new Mansion(this);
+        new Hypno(this);
+        new Arctic(this);
+        new Nuketown(this);
+        new Terminal(this);
+        new Towers(this);
+        new Hartshire(this);
+        new Skyislands(this);
+        new Fosscrest(this);
+        new Solitude(this);
+        new Suburban(this);
+        new Battlement(this);
 
     }
 

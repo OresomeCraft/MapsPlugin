@@ -28,8 +28,8 @@ public class Arctic extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
     public Arctic(OresomeBattlesMaps pl) {
-	super(pl);
-	plugin = pl;
+        super(pl);
+        plugin = pl;
     }
 ```
 Below defines the basic details of this map
@@ -50,25 +50,25 @@ Each team has their own defined spawn points. If more than one is defined, the p
 
 ```java
     public void readyTDMSpawns() { // Method to prepare TDM spawns.
-	World w = Bukkit.getServer().getWorld(name); // Get world name. (Don't need to change)
+        World w = Bukkit.getServer().getWorld(name); // Get world name. (Don't need to change)
 
-	Location redSpawn = new Location(w, X, Y, Z, YAW, 0); // Define primary red spawn point
+        Location redSpawn = new Location(w, X, Y, Z, YAW, 0); // Define primary red spawn point
 
-	Location blueSpawn = new Location(w, X, Y, Z, YAW, 0); // Define primary blue spawn point
-	
-	// Add red spawn points.
-	redSpawns.add(redSpawn); // Make sure we add the primary spawn to the spawns list!
-	redSpawns.add(new Location(w, X, Y, Z, YAW, 0);
-	redSpawns.add(new Location(w, -141, 66, -1142, -152, 0));
-	
-	// Add blue spawn points.
-	blueSpawns.add(blueSpawn); // Make sure we add the primary spawn to the spawns list!
-	blueSpawns.add(new Location(w, X, Y, Z, YAW, 0);
-	blueSpawns.add(new Location(w, -127, 70, -1158, -162, 0));
+        Location blueSpawn = new Location(w, X, Y, Z, YAW, 0); // Define primary blue spawn point
 
-    // Adds spawns. (Don't modify)
-	setRedSpawns(name, redSpawns);
-	setBlueSpawns(name, blueSpawns);
+        // Add red spawn points.
+        redSpawns.add(redSpawn); // Make sure we add the primary spawn to the spawns list!
+        redSpawns.add(new Location(w, X, Y, Z, YAW, 0);
+        redSpawns.add(new Location(w, -141, 66, -1142, -152, 0));
+
+        // Add blue spawn points.
+        blueSpawns.add(blueSpawn); // Make sure we add the primary spawn to the spawns list!
+        blueSpawns.add(new Location(w, X, Y, Z, YAW, 0);
+        blueSpawns.add(new Location(w, -127, 70, -1158, -162, 0));
+
+        // Adds spawns. (Don't modify)
+        setRedSpawns(name, redSpawns);
+        setBlueSpawns(name, blueSpawns);
     }
 ```
 X - X coordinate
@@ -86,32 +86,32 @@ Simply replace these variables with the actual values of the coordinates. You ma
 ```java
     public void readyFFASpawns() { // Method to prepare TDM spawns.
 
-	World w = Bukkit.getServer().getWorld(name); // Get world name. (Don't need to change)
+        World w = Bukkit.getServer().getWorld(name); // Get world name. (Don't need to change)
 
-	// Set Free for all spawn points.
-	FFASpawns.add(new Location(w, X, Y, Z, YAW, 0);
-	FFASpawns.add(new Location(w, X, Y, Z, YAW, 0);
-	FFASpawns.add(new Location(w, X, Y, Z, YAW, 0);
-	FFASpawns.add(new Location(w, X, Y, Z, YAW, 0);
-	FFASpawns.add(new Location(w, X, Y, Z, YAW, 0);
-	FFASpawns.add(new Location(w, -125, 71, -1132, -95, 0));
-	FFASpawns.add(new Location(w, -101, 71, -1159, -51, 0));
-	FFASpawns.add(new Location(w, -109, 71, -1162, -132, 0));
-	FFASpawns.add(new Location(w, -97, 66, -1171, 156, 0));
-	FFASpawns.add(new Location(w, -83, 71, -1182, 41, 0));
-	FFASpawns.add(new Location(w, -78, 71, -1188, -88, 0));
-	FFASpawns.add(new Location(w, -43, 71, -1168, 124, 0));
-	FFASpawns.add(new Location(w, -48, 71, -1197, 90, 0));
-	FFASpawns.add(new Location(w, -91, 71, -1207, -89, 0));
-	FFASpawns.add(new Location(w, -121, 71, -1190, 121, 0));
-	FFASpawns.add(new Location(w, -139, 71, -1192, 89, 0));
-	FFASpawns.add(new Location(w, -114, 66, -1191, 43, 0));
-	FFASpawns.add(new Location(w, -77, 71, -1169, -90, 0));
-	FFASpawns.add(new Location(w, -58, 71, -1147, 156, 0));
-	FFASpawns.add(new Location(w, -91, 71, -1140, 141, 0));
+        // Set Free for all spawn points.
+        FFASpawns.add(new Location(w, X, Y, Z, YAW, 0);
+        FFASpawns.add(new Location(w, X, Y, Z, YAW, 0);
+        FFASpawns.add(new Location(w, X, Y, Z, YAW, 0);
+        FFASpawns.add(new Location(w, X, Y, Z, YAW, 0);
+        FFASpawns.add(new Location(w, X, Y, Z, YAW, 0);
+        FFASpawns.add(new Location(w, -125, 71, -1132, -95, 0));
+        FFASpawns.add(new Location(w, -101, 71, -1159, -51, 0));
+        FFASpawns.add(new Location(w, -109, 71, -1162, -132, 0));
+        FFASpawns.add(new Location(w, -97, 66, -1171, 156, 0));
+        FFASpawns.add(new Location(w, -83, 71, -1182, 41, 0));
+        FFASpawns.add(new Location(w, -78, 71, -1188, -88, 0));
+        FFASpawns.add(new Location(w, -43, 71, -1168, 124, 0));
+        FFASpawns.add(new Location(w, -48, 71, -1197, 90, 0));
+        FFASpawns.add(new Location(w, -91, 71, -1207, -89, 0));
+        FFASpawns.add(new Location(w, -121, 71, -1190, 121, 0));
+        FFASpawns.add(new Location(w, -139, 71, -1192, 89, 0));
+        FFASpawns.add(new Location(w, -114, 66, -1191, 43, 0));
+        FFASpawns.add(new Location(w, -77, 71, -1169, -90, 0));
+        FFASpawns.add(new Location(w, -58, 71, -1147, 156, 0));
+        FFASpawns.add(new Location(w, -91, 71, -1140, 141, 0));
 
-	// Add spawns to list. (Don't change!)
-	setFFASpawns(name, FFASpawns);
+        // Add spawns to list. (Don't change!)
+        setFFASpawns(name, FFASpawns);
     }
 ```
 The same goes for adding FFA spawns, however these spawns are used for all players. This is practically the same as configuring the TDM spawn points, just replace the variables as follows.
@@ -120,42 +120,43 @@ The same goes for adding FFA spawns, however these spawns are used for all playe
 Out of all things here inventories are probably the most complex, but they're actually super simple!
 
 ```java
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
-	// Don't change this stuff!
-	String par = event.getMessage();
-	Player p = event.getPlayer();
-	Inventory i = p.getInventory();
-	if (par.equalsIgnoreCase(name)) {
-	    clearInv(p);
+        // Don't change this stuff!
+        String par = event.getMessage();
+        Player p = event.getPlayer();
+        Inventory i = p.getInventory();
+        if (par.equalsIgnoreCase(name)) {
+            clearInv(p);
 
-	    // Define items. (This is fairly straight forward right?)
-	    ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-	    ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
-	    ItemStack BOW = new ItemStack(Material.BOW, 1);
-	    ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-	    ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-	    ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-	    ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-	    ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-	    ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-	    
-	    p.getInventory().setBoots(IRON_BOOTS); // Set boots
-	    p.getInventory().setLeggings(IRON_PANTS); // Set pants
-	    p.getInventory().setChestplate(IRON_CHESTPLATE); // Set chest plate
-	    p.getInventory().setHelmet(IRON_HELMET); // Set helmet
-	    
-	    // Add items into inventory bar.
-	    // The numer being the slot number. (Remember: Slot 1 is actually 0, Slot 2 is 1, etc)
-	    // Second arg is the item being added.
-	    i.setItem(0, IRON_SWORD);
-	    i.setItem(1, BOW);
-	    i.setItem(2, STEAK);
-	    i.setItem(3, HEALTH_POTION);
-	    i.setItem(4, ARROWS);
+            // Define items. (This is fairly straight forward right?)
+            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+            ItemStack BOW = new ItemStack(Material.BOW, 1);
+            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
-	}
-  }
+            p.getInventory().setBoots(IRON_BOOTS); // Set boots
+            p.getInventory().setLeggings(IRON_PANTS); // Set pants
+            p.getInventory().setChestplate(IRON_CHESTPLATE); // Set chest plate
+            p.getInventory().setHelmet(IRON_HELMET); // Set helmet
+
+            // Add items into inventory bar.
+            // The numer being the slot number. (Remember: Slot 1 is actually 0, Slot 2 is 1, etc)
+            // Second arg is the item being added.
+            i.setItem(0, IRON_SWORD);
+            i.setItem(1, BOW);
+            i.setItem(2, STEAK);
+            i.setItem(3, HEALTH_POTION);
+            i.setItem(4, ARROWS);
+
+        }
+    }
 ```
 Now the thing that's confusing with Inventories is actually defining the item, especially since not all items are named as you think they would be. Here's a breakdown of the code to actually define the item:
 ```java
@@ -199,11 +200,11 @@ There are many more things you can do with these map configurations, this is one
 ```java
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection(BlockBreakEvent event) {
-	Block b = event.getBlock();
-	Location loc = b.getLocation();
-	if (loc.getWorld().getName().equals(name)) {
-		event.setCancelled(true);
-	    }
+        Block b = event.getBlock();
+        Location loc = b.getLocation();
+        if (loc.getWorld().getName().equals(name)) {
+            event.setCancelled(true);
+        }
     }
 ```
 This disables all block breaking in a map.
@@ -213,19 +214,19 @@ Make sure you ```import org.bukkit.event.block.BlockBreakEvent;``` and ```import
 ```java
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection(BlockBreakEvent event) {
-	Block b = event.getBlock();
-	int mat = b.getTypeId();
-	Location loc = b.getLocation();
-	if (loc.getWorld().getName().equals(name)) {
-	    if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        Block b = event.getBlock();
+        int mat = b.getTypeId();
+        Location loc = b.getLocation();
+        if (loc.getWorld().getName().equals(name)) {
+            if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
 
-		if (mat == 43 || mat == 44 || mat == 35 || mat == 42
-			|| mat == 49 || mat == 123 || mat == 69 || mat == 124) {
+                if (mat == 43 || mat == 44 || mat == 35 || mat == 42
+                        || mat == 49 || mat == 123 || mat == 69 || mat == 124) {
 
-		    event.setCancelled(true);
-		}
-	    }
-	}
+                    event.setCancelled(true);
+                }
+            }
+        }
     }
 ```
 This will disable the breaking block of these specific blocks.
@@ -255,12 +256,12 @@ This can help create some oresome visual effects. I highly recommend people expe
 ```java
     @EventHandler
     public void arrowBoom(ProjectileHitEvent event) {
-       	Entity arrow = event.getEntity();
-       	World world = Bukkit.getWorld(name);
-       	if (Battles.activeArena.get(0).equals(name)) {
-          if (arrow instanceof Arrow) {
-        	world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
-	       }
+        Entity arrow = event.getEntity();
+        World world = Bukkit.getWorld(name);
+        if (Battles.activeArena.get(0).equals(name)) {
+            if (arrow instanceof Arrow) {
+                world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
+            }
         }
     }
 ```
@@ -273,4 +274,4 @@ Make sure you  ```import org.bukkit.Effect;```, ```import org.bukkit.event.entit
 
 Written by Zach De Koning (Zachoz | https://github.com/Zachoz)
 
-Last updated: 21/03/2013
+Last updated: 11/05/2013
