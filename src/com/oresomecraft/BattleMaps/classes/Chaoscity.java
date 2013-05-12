@@ -1,4 +1,4 @@
-package com.oresomecraft.BattleMaps.deprecated;
+package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
 
@@ -27,6 +27,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
+import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
@@ -47,6 +48,7 @@ public class Chaoscity extends BattleMap implements MapInterface, Listener {
     String name = "chaoscity";
     String fullName = "Chaos City";
     String creators = "xTeChNoSoUl, NobleFable, Shavahn2003 and HARTLEYJR11";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -56,6 +58,7 @@ public class Chaoscity extends BattleMap implements MapInterface, Listener {
         readyFFASpawns();
         addCreators(name, creators);
         setFullName(name, fullName);
+        setGamemodes(name, modes);
     }
 
     // Define and ready TDM spawn locations.

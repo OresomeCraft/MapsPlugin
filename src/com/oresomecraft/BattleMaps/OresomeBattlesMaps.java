@@ -43,6 +43,10 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Suburban(this);
         new Battlement(this);
         new Insanity(this);
+        new Carnival(this);
+        new Sub(this);
+        new Deepcaverns(this);
+        new Chaoscity(this);
 
     }
 

@@ -1,4 +1,4 @@
-package com.oresomecraft.BattleMaps.deprecated;
+package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
 
@@ -19,6 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
+import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
@@ -40,6 +41,7 @@ public class Sub extends BattleMap implements MapInterface, Listener {
     String name = "sub";
     String fullName = "Submerged";
     String creators = "eddie017 and Brandon267";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
     //Map download link: http://bit.ly/Zu3LRs
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -49,6 +51,7 @@ public class Sub extends BattleMap implements MapInterface, Listener {
         readyFFASpawns();
         addCreators(name, creators); 
         setFullName(name, fullName);
+        setGamemodes(name, modes);
     }
 
     public void readyTDMSpawns() {
