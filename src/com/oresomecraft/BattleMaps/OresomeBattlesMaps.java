@@ -42,6 +42,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Solitude(this);
         new Suburban(this);
         new Battlement(this);
+        new Insanity(this);
 
     }
 

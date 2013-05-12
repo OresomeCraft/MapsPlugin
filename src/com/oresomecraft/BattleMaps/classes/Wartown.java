@@ -39,6 +39,7 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 public class Wartown extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Wartown(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -51,15 +52,16 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
     String name = "wartown";
     String fullName = "Wartown";
     String creators = "reub_youtube ";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
-    //Map download link: N/A
+    Gamemode[] modes = { Gamemode.TDM, Gamemode.FFA };
+
+    // Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
         addMap(name);
         readyTDMSpawns();
         readyFFASpawns();
-        addCreators(name, creators); 
+        addCreators(name, creators);
         setFullName(name, fullName);
         setGamemodes(name, modes);
         arrowParticles();
@@ -140,7 +142,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
 
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
             ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE,  1);
+            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
@@ -195,8 +197,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
     public int y2 = 91;
     public int z2 = -145;
 
-    public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
+    public boolean contains(Location loc, int x1, int x2, int y1, int y2, int z1, int z2) {
         int bottomCornerX = x1 < x2 ? x1 : x2;
         int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
@@ -231,7 +232,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
 
         if (!battles.spectator.contains(name)) {
 
-            if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
                 if (tool == Material.LEATHER) {
 
                     if (a == Action.RIGHT_CLICK_BLOCK) {
@@ -254,7 +255,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
 
                 if (a == Action.RIGHT_CLICK_AIR) {
 
-                    if (placer.containsKey(p) == true && placerB.containsValue(p) == true) {
+                    if (placer.containsKey(p) && placerB.containsValue(p)) {
 
                         Block charge = placer.get(p);
                         Location chargeloc = charge.getLocation();
@@ -306,7 +307,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
         leather.setDisplayName(ChatColor.BLUE + "C4");
         LEATHER.setItemMeta(leather);
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
             if (placer.containsValue(b)) {
                 Player own = placerB.get(b);
@@ -342,8 +343,8 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
 
             } else if (placer.containsValue(bW)) {
                 Player own = placerB.get(bW);
-                //Inventory i = own.getInventory();
-                //i.removeItem(LEATHER);
+                // Inventory i = own.getInventory();
+                // i.removeItem(LEATHER);
                 own.updateInventory();
                 w.createExplosion(loc, 4);
                 placerB.remove(bW);
@@ -358,8 +359,8 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
 
             } else if (placer.containsValue(bS)) {
                 Player own = placerB.get(bS);
-                //Inventory i = own.getInventory();
-                //i.removeItem(LEATHER);
+                // Inventory i = own.getInventory();
+                // i.removeItem(LEATHER);
                 own.updateInventory();
                 w.createExplosion(loc, 4);
                 placerB.remove(bS);
@@ -382,16 +383,15 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
         String name = p.getName();
 
         if (battles.spectator.contains(name)) {
-            event.setCancelled(true); 
+            event.setCancelled(true);
         } else {
-            if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
                 if (tool == Material.BLAZE_ROD) {
 
-                    if (a == Action.RIGHT_CLICK_AIR
-                            || a == Action.RIGHT_CLICK_BLOCK) {
+                    if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
 
-                        if (inv.contains(Material.FLINT) == true) {
+                        if (inv.contains(Material.FLINT)) {
 
                             p.launchProjectile(Arrow.class);
                             world.playSound(loc, Sound.COW_WALK, 10, 10);
@@ -399,7 +399,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
                             ItemMeta ammo = AMMO.getItemMeta();
                             ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
                             AMMO.setItemMeta(ammo);
-                            inv.removeItem(AMMO);
+                            inv.remove(Material.FLINT);
                             p.updateInventory();
 
                         }
@@ -453,19 +453,28 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
         Block bSE = b.getRelative(BlockFace.SOUTH_EAST);
         Block bSW = b.getRelative(BlockFace.SOUTH_WEST);
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
             if (p instanceof Egg) {
 
-                if(b.getType() == Material.AIR) b.setType(Material.FIRE);
-                if(bN.getType() == Material.AIR) bN.setType(Material.FIRE);
-                if(bS.getType() == Material.AIR) bS.setType(Material.FIRE);
-                if(bW.getType() == Material.AIR) bE.setType(Material.FIRE);
-                if(bNW.getType() == Material.AIR) bW.setType(Material.FIRE);
-                if(bNW.getType() == Material.AIR) bNW.setType(Material.FIRE);
-                if(bNE.getType() == Material.AIR) bNE.setType(Material.FIRE);
-                if(bSW.getType() == Material.AIR) bSW.setType(Material.FIRE);
-                if(bSE.getType() == Material.AIR) bSE.setType(Material.FIRE);
+                if (b.getType() == Material.AIR)
+                    b.setType(Material.FIRE);
+                if (bN.getType() == Material.AIR)
+                    bN.setType(Material.FIRE);
+                if (bS.getType() == Material.AIR)
+                    bS.setType(Material.FIRE);
+                if (bW.getType() == Material.AIR)
+                    bE.setType(Material.FIRE);
+                if (bNW.getType() == Material.AIR)
+                    bW.setType(Material.FIRE);
+                if (bNW.getType() == Material.AIR)
+                    bNW.setType(Material.FIRE);
+                if (bNE.getType() == Material.AIR)
+                    bNE.setType(Material.FIRE);
+                if (bSW.getType() == Material.AIR)
+                    bSW.setType(Material.FIRE);
+                if (bSE.getType() == Material.AIR)
+                    bSE.setType(Material.FIRE);
             }
         }
 
@@ -478,7 +487,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
         Block b = loc.getBlock();
         Material mat = b.getType();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
             if (p instanceof Arrow) {
                 Arrow a = (Arrow) p;
@@ -499,7 +508,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
         Entity proj = event.getDamager();
         Location loc = e.getLocation();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
             if (proj instanceof Egg) {
 
