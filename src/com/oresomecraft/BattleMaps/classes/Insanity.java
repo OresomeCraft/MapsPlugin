@@ -57,6 +57,7 @@ public class Insanity extends BattleMap implements MapInterface, Listener {
         readyFFASpawns();
         addCreators(name, creators);
         setFullName(name, fullName);
+        setGamemodes(name, modes);
     }
 
     public void readyTDMSpawns() {
