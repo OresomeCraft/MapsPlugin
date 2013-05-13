@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -20,6 +21,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -30,6 +32,7 @@ import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
+import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 
 public class Mansion extends BattleMap implements MapInterface, Listener {
 
@@ -145,10 +148,44 @@ public class Mansion extends BattleMap implements MapInterface, Listener {
             ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
             ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
+            if (TDM.isBlue(p.getName())) {
+
+                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+                bootsMeta.setColor(Color.BLUE);
+                LEATHER_BOOTS.setItemMeta(bootsMeta);
+
+                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+                pantsMeta.setColor(Color.BLUE);
+                LEATHER_PANTS.setItemMeta(pantsMeta);
+
+                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+                chestplateMeta.setColor(Color.BLUE);
+                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
+
+
+            }
+
+            if (TDM.isRed(p.getName())) {
+
+                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+                bootsMeta.setColor(Color.RED);
+                LEATHER_BOOTS.setItemMeta(bootsMeta);
+
+                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+                pantsMeta.setColor(Color.RED);
+                LEATHER_PANTS.setItemMeta(pantsMeta);
+
+                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+                chestplateMeta.setColor(Color.RED);
+                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
+
+            }
+            
             p.getInventory().setBoots(LEATHER_BOOTS);
             p.getInventory().setLeggings(LEATHER_PANTS);
             p.getInventory().setChestplate(LEATHER_CHESTPLATE);
             p.getInventory().setHelmet(MASK);
+            
             i.setItem(0, STONE_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, EXP);

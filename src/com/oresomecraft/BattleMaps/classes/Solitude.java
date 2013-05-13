@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -26,6 +27,7 @@ import org.bukkit.event.player.PlayerFishEvent.State;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.util.Vector;
 
 import com.oresomecraft.BattleMaps.BattleMap;
@@ -35,6 +37,7 @@ import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
+import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 
 public class Solitude extends BattleMap implements MapInterface, Listener {
 
@@ -150,21 +153,62 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+            ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
             ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 1);
             ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
 
             ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
             fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
             FISHING_ROD.setItemMeta(fishing_rod);
+            
+            if (TDM.isBlue(p.getName())) {
+                
+                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
+                helmetMeta.setColor(Color.BLUE);
+                LEATHER_HELMET.setItemMeta(helmetMeta);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
+                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+                bootsMeta.setColor(Color.BLUE);
+                LEATHER_BOOTS.setItemMeta(bootsMeta);
+
+                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+                pantsMeta.setColor(Color.BLUE);
+                LEATHER_PANTS.setItemMeta(pantsMeta);
+
+                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+                chestplateMeta.setColor(Color.BLUE);
+                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
+
+
+            }
+
+            if (TDM.isRed(p.getName())) {
+                
+                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
+                helmetMeta.setColor(Color.RED);
+                LEATHER_HELMET.setItemMeta(helmetMeta);
+
+                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+                bootsMeta.setColor(Color.RED);
+                LEATHER_BOOTS.setItemMeta(bootsMeta);
+
+                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+                pantsMeta.setColor(Color.RED);
+                LEATHER_PANTS.setItemMeta(pantsMeta);
+
+                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+                chestplateMeta.setColor(Color.RED);
+                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
+
+            }
+
+            p.getInventory().setBoots(LEATHER_BOOTS);
+            p.getInventory().setLeggings(LEATHER_PANTS);
+            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+            p.getInventory().setHelmet(LEATHER_HELMET);
 
             i.setItem(0, IRON_SWORD);
             i.setItem(1, BOW);
