@@ -41,7 +41,7 @@ public class Fosscrest extends BattleMap implements MapInterface, Listener {
     String name = "fosscrest";
     String fullName = "Fosscrest Village";
     String creators = "R3creat3 and xXJazzerXx";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
