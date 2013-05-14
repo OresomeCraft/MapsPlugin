@@ -399,7 +399,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
                             ItemMeta ammo = AMMO.getItemMeta();
                             ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
                             AMMO.setItemMeta(ammo);
-                            inv.remove(Material.FLINT);
+                            inv.removeItem(AMMO);
                             p.updateInventory();
 
                         }
