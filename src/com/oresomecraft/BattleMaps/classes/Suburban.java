@@ -38,7 +38,7 @@ public class Suburban extends BattleMap implements MapInterface, Listener {
     String name = "suburban";
     String fullName = "Suburban Complex";
     String creators = "R3creat3, zezo268, xannallax33 and kalikakitty";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
+    Gamemode[] modes = {Gamemode.TDM};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
