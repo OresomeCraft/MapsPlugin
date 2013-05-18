@@ -100,7 +100,7 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
             ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack XP = new ItemStack(Material.EXP_BOTTLE, 5);
+            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 16);
             ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
             ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
