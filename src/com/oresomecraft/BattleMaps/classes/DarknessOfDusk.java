@@ -7,31 +7,27 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.entity.EnderPearl;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
-import com.oresomecraft.OresomeBattles.BattleHandler;
 import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class Xenon extends BattleMap implements MapInterface, Listener {
+public class DarknessOfDusk extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    public Xenon(OresomeBattlesMaps pl) {
+    public DarknessOfDusk(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
     }
@@ -42,10 +38,10 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
     // Map details
-    String name = "xenon";
-    String fullName = "Xenon";
-    String creators = "kalikakitty and R3creat3";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    String name = "dusk";
+    String fullName = "Darkness of Dusk";
+    String creators = "R3creat3, xannallax33, dinner1111 and pepsidawg00";
+    Gamemode[] modes = {Gamemode.INFECTION};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -55,16 +51,15 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
         readyFFASpawns();
         addCreators(name, creators); 
         setFullName(name, fullName);
-        setGamemodes(name, modes);
     }
-
+    //Tdm isn't enabled on this, don't need to do spawns.
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
-        Location redSpawn = new Location(w, 33, 2, 25);
-        Location blueSpawn = new Location(w, 73, 2, -14);
+
+        Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
+        Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
 
         redSpawns.add(redSpawn);
-
         blueSpawns.add(blueSpawn);
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
@@ -73,18 +68,11 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
     public void readyFFASpawns() {
 
         World w = Bukkit.getServer().getWorld(name);
+        FFASpawns.add(new Location(w, 62, 6, 23));
+        FFASpawns.add(new Location(w, 62, 6, 149));
+        FFASpawns.add(new Location(w, -46, 6, 147));
+        FFASpawns.add(new Location(w, -48, 6, 44));
 
-        Location redSpawn = new Location(w, 33, 2, 25);
-        Location blueSpawn = new Location(w, 73, 2, -14);
-
-        FFASpawns.add(redSpawn);
-        FFASpawns.add(blueSpawn);
-        FFASpawns.add(new Location(w, 33, 2, -13));
-        FFASpawns.add(new Location(w, 73, 2, 25));
-        FFASpawns.add(new Location(w, 53, 3, 47));
-        FFASpawns.add(new Location(w, 17, 2, 5));
-        FFASpawns.add(new Location(w, 53, 3, -36));
-        FFASpawns.add(new Location(w, 53, 11, 5));
         setFFASpawns(name, FFASpawns);
     }
 
@@ -98,15 +86,14 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
             clearInv(p);
 
             ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
+            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 16);
-            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+            ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
             ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+            ItemStack IRON_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
+            ItemStack IRON_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
+            ItemStack IRON_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
@@ -117,8 +104,7 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
             i.setItem(1, BOW);
             i.setItem(2, STEAK);
             i.setItem(3, HEALTH_POTION);
-            i.setItem(4, EXP);
-            i.setItem(8, ARROWS);
+            i.setItem(4, ARROWS);
 
         }
     }
@@ -132,14 +118,14 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 7;
-    public int y1 = 66;
-    public int z1 = 52;
+    public int x1 = 115;
+    public int y1 = 57;
+    public int z1 = -14;
 
     //Bottom right corner.
-    public int x2 = 93;
+    public int x2 = -88;
     public int y2 = 0;
-    public int z2 = -37;
+    public int z2 = 191;
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
@@ -187,25 +173,5 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
             event.setCancelled(true);
 
         }
-
-    }
-
-    @EventHandler
-    public void onFireBow(EntityShootBowEvent event) {
-        if (BattleHandler.activeArena.equals(name)) {
-
-            if (event.getEntityType() == EntityType.PLAYER) {
-
-                Player player = (Player) event.getEntity();
-                if (player.getInventory().contains(Material.ARROW)) {
-                    event.setCancelled(true);
-                    player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
-                    player.launchProjectile(EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
-                } else {
-                    event.setCancelled(true);
-                }
-            }
-        }
-
-    }
+}
 }

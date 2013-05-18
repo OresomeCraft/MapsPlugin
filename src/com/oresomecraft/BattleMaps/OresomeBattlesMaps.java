@@ -47,7 +47,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Sub(this);
         new Deepcaverns(this);
         new Chaoscity(this);
-
+        new DarknessOfDusk(this);
     }
 
 }
