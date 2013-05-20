@@ -190,7 +190,7 @@ public class Towers extends BattleMap implements MapInterface, Listener {
     public void arrowBoom(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
-        if (Utility.getArena() == name) {
+        if (Utility.getArena().equals(name)) {
             if (arrow instanceof Arrow) {
                 world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
             }

@@ -210,7 +210,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
         Material mat = is.getType();
         Location loc = p.getLocation();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
             if (mat == Material.FISHING_ROD) {
 
@@ -228,7 +228,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
 
-        if (contains(hit, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(hit, x1, x2, y1, y2, z1, z2)) {
 
             if (proj instanceof Snowball) {
                 Snowball fish = (Snowball) proj;

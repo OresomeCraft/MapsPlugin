@@ -214,7 +214,7 @@ public class Perro extends BattleMap implements MapInterface, Listener {
         Material mat = is.getType();
         Location loc = p.getLocation();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (loc.getWorld().getName().equals(name)) {
 
             if (mat == Material.FISHING_ROD) {
 
@@ -297,7 +297,7 @@ public class Perro extends BattleMap implements MapInterface, Listener {
         Block b = hit.getBlock();
         Material mat = b.getType();
 
-        if (contains(hit, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(hit, x1, x2, y1, y2, z1, z2)) {
 
             if (proj instanceof Arrow) {
 
@@ -317,7 +317,7 @@ public class Perro extends BattleMap implements MapInterface, Listener {
     public void arrowBoom(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
-        if (Utility.getArena() == name) {
+        if (Utility.getArena().equals(name)) {
             if (arrow instanceof Arrow) {
                 world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
             }
@@ -335,9 +335,8 @@ public class Perro extends BattleMap implements MapInterface, Listener {
         if (loc.getWorld().getName().equals(name)) {
             if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
-                if (mat == Material.THIN_GLASS) {
+                if (!(mat == Material.THIN_GLASS)) {
 
-                } else {
                     event.setCancelled(true);
                 }
             }
@@ -368,7 +367,7 @@ public class Perro extends BattleMap implements MapInterface, Listener {
 
             public void run() {
                 World world = Bukkit.getWorld(name);
-                if (Utility.getArena() == name) {
+                if (Utility.getArena().equals(name)) {
                     for (Entity arrow : world.getEntities()) {
                         if (arrow instanceof Arrow) {
 

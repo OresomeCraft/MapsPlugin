@@ -200,7 +200,7 @@ public class Sub extends BattleMap implements MapInterface, Listener {
         int mat = b.getTypeId();
 
         if (loc.getWorld().getName().equals(name)) {
-            if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
                 if (mat == 42 || mat == 35 || mat == 57 || mat == 43
                         || mat == 49 || mat == 155 || mat == 69 || mat == 101 || mat == 124 || mat == 47 || mat == 116 || mat == 65 || mat == 50 || mat == 89 || mat == 330) {

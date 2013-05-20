@@ -229,43 +229,6 @@ public class Mansion extends BattleMap implements MapInterface, Listener {
         return false;
     }
 
-    @Deprecated
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void haunt(PlayerToggleSneakEvent event) {
-        Player p = event.getPlayer();
-        PotionEffect invisible = new PotionEffect(
-                PotionEffectType.INVISIBILITY, 12000, 0);
-        if (haunter.isEmpty()) {
-
-        } else {
-            if (haunter.get(0) == p) {
-
-                if (event.isSneaking()) {
-                    p.addPotionEffect(invisible);
-
-                } else {
-                    p.removePotionEffect(PotionEffectType.INVISIBILITY);
-
-                }
-            }
-        }
-    }
-
-    @Deprecated
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void quitHaunter(PlayerQuitEvent event) {
-
-        Player p = event.getPlayer();
-
-        if (haunter.isEmpty() == false) {
-
-            if (haunter.contains(p) == true) {
-                haunter.clear();
-            }
-        }
-
-    }
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection(BlockBreakEvent event) {
 

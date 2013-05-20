@@ -213,7 +213,7 @@ public class Spire extends BattleMap implements MapInterface, Listener {
         Block b = bl.getRelative(BlockFace.DOWN, 2);
         Material mat = b.getType();
 
-        if (contains(l, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(l, x1, x2, y1, y2, z1, z2)) {
 
             if (mat == Material.SPONGE && action == Action.RIGHT_CLICK_AIR) {
 
@@ -283,7 +283,7 @@ public class Spire extends BattleMap implements MapInterface, Listener {
         World w = projectile.getWorld();
         Location hit = projectile.getLocation();
 
-        if (contains(hit, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(hit, x1, x2, y1, y2, z1, z2)) {
 
             if (projectile instanceof Arrow) {
                 Arrow arrow = (Arrow) projectile;
@@ -315,7 +315,7 @@ public class Spire extends BattleMap implements MapInterface, Listener {
         Location location = egg.getLocation();
         // basic start and variables
 
-        if (contains(location, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(location, x1, x2, y1, y2, z1, z2)) {
             event.setHatching(true);
             w.createExplosion(location, 25);
 
@@ -336,7 +336,7 @@ public class Spire extends BattleMap implements MapInterface, Listener {
         Material mat = block.getType();
         Location loc = block.getLocation();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
             if (mat == Material.LAPIS_ORE) {
 
@@ -373,7 +373,7 @@ public class Spire extends BattleMap implements MapInterface, Listener {
         Material mat = b.getType();
         Location loc = b.getLocation();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
             if (mat == Material.SPONGE) {
                 b.setType(Material.GOLD_BLOCK);

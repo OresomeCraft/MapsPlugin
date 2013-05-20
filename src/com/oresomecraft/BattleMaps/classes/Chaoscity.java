@@ -224,14 +224,14 @@ public class Chaoscity extends BattleMap implements MapInterface, Listener {
         if (battles.spectator.contains(name)) {
             event.setCancelled(true); 
         } else {
-            if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
                 if (tool == Material.BLAZE_ROD) {
 
                     if (a == Action.RIGHT_CLICK_AIR
                             || a == Action.RIGHT_CLICK_BLOCK) {
 
-                        if (inv.contains(Material.FLINT) == true) {
+                        if (inv.contains(Material.FLINT)) {
 
                             p.launchProjectile(Arrow.class);
                             world.playSound(loc, Sound.COW_WALK, 10, 10);
@@ -261,7 +261,7 @@ public class Chaoscity extends BattleMap implements MapInterface, Listener {
         Block b = loc.getBlock();
         Material mat = b.getType();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
             if (p instanceof Arrow) {
                 Arrow a = (Arrow) p;

@@ -240,7 +240,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
                         Block b = event.getClickedBlock();
                         Block place = b.getRelative(face);
 
-                        if (placerB.containsValue(p) == false) {
+                        if (!placerB.containsValue(p)) {
 
                             place.setType(Material.BRICK);
                             p.playSound(loc, Sound.STEP_GRAVEL, 1, 1);
@@ -287,7 +287,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
         Projectile p = event.getEntity();
         World w = p.getWorld();
         World world = Bukkit.getWorld(name);
-        if (event.getEntity().getWorld().equals(name)) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
             if (p instanceof Arrow) {
 
                 world.playEffect(p.getLocation(), Effect.STEP_SOUND, 10);
@@ -424,7 +424,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
 
             public void run() {
                 World world = Bukkit.getWorld(name);
-                if (Utility.getArena() == name) {
+                if (Utility.getArena().equals(name)) {
                     if (!(world.getEntities() == null)) {
                         for (Entity arrow : world.getEntities()) {
                             if (arrow instanceof Arrow) {

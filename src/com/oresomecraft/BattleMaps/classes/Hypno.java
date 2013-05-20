@@ -213,7 +213,7 @@ public class Hypno extends BattleMap implements MapInterface, Listener {
         int mat = b.getTypeId();
         Location loc = b.getLocation();
         if (loc.getWorld().getName().equals(name)) {
-            if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
                 if (mat == 43 || mat == 44 || mat == 35 || mat == 42
                         || mat == 49 || mat == 123 || mat == 69 || mat == 124) {
@@ -230,7 +230,7 @@ public class Hypno extends BattleMap implements MapInterface, Listener {
         Entity e = event.getEntity();
         Location loc = e.getLocation();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
             if (damager instanceof Player) {
 
@@ -262,7 +262,7 @@ public class Hypno extends BattleMap implements MapInterface, Listener {
         Location loc = e.getLocation();
         World world = loc.getWorld();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
             if (e instanceof Egg) {
 
@@ -273,7 +273,7 @@ public class Hypno extends BattleMap implements MapInterface, Listener {
 
                 int amount = nearby.size();
                 int count = 0;
-                int counter = 1;
+                int counter;
                 for (counter = 0; counter < amount; counter++) {
 
                     Entity near = nearby.get(count);
@@ -307,7 +307,7 @@ public class Hypno extends BattleMap implements MapInterface, Listener {
     public void arrowBoom(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
-        if (Utility.getArena() == name) {
+        if (Utility.getArena().equals(name)) {
             if (arrow instanceof Arrow) {
                 world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
             }

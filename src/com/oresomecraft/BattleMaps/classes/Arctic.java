@@ -214,7 +214,7 @@ public class Arctic extends BattleMap implements MapInterface, Listener {
         STONE_HOE.setItemMeta(stone_hoe);
         World world = Bukkit.getWorld(name);
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
             if (mat == Material.STONE_HOE) {
 
