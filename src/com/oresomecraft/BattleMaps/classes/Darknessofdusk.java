@@ -48,6 +48,7 @@ public class Darknessofdusk extends BattleMap implements MapInterface, Listener 
         addMap(name);
         readyTDMSpawns();
         readyFFASpawns();
+        setGamemodes(name, modes);
         addCreators(name, creators);
         setFullName(name, fullName);
     }
