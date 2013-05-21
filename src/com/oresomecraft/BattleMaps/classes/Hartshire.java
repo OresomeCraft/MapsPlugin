@@ -2,11 +2,7 @@ package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -21,6 +17,7 @@ import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerFishEvent.State;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 import com.oresomecraft.BattleMaps.BattleMap;
@@ -122,6 +119,10 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+
+            ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
+            fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
+            FISHING_ROD.setItemMeta(fishing_rod);
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
