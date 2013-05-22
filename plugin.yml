@@ -1,4 +1,4 @@
 name: OresomeBattlesMaps
 main: com.oresomecraft.BattleMaps.OresomeBattlesMaps
-version: beta 1.0
+version: 1.0
 depend: [OresomeBattles]
