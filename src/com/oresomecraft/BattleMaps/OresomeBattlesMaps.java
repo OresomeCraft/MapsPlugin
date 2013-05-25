@@ -33,6 +33,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Mansion(this);
         new Hypno(this);
         new Arctic(this);
+        new Mutiny(this);
         new Nuketown(this);
         new Terminal(this);
         new Towers(this);
