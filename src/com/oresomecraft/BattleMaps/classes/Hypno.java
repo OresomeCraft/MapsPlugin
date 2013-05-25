@@ -153,6 +153,10 @@ public class Hypno extends BattleMap implements MapInterface, Listener {
 
             ItemMeta egg_hypno = EGG_HYPNO.getItemMeta();
             egg_hypno.setDisplayName(ChatColor.BLUE + "Flash bang grenade");
+
+            List<String> eggLore = new ArrayList<String>();
+            eggLore.add(org.bukkit.ChatColor.BLUE + "Everyone's favourite item!");
+            egg_hypno.setLore(eggLore);
             EGG_HYPNO.setItemMeta(egg_hypno);
 
             ItemMeta emerald = EMERALD.getItemMeta();

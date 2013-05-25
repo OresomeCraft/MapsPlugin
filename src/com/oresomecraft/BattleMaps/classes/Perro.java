@@ -23,6 +23,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerFishEvent.State;
+import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -64,7 +65,6 @@ public class Perro extends BattleMap implements MapInterface, Listener {
         addCreators(name, creators); 
         setFullName(name, fullName);
         setGamemodes(name, modes);
-        arrowParticles();
     }
 
     public void readyTDMSpawns() {
@@ -360,24 +360,29 @@ public class Perro extends BattleMap implements MapInterface, Listener {
 
     public int particles;
 
-    public void arrowParticles() {
-
-        Bukkit.getServer().getScheduler().cancelTask(particles);
-        particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-
-            public void run() {
-                World world = Bukkit.getWorld(name);
-                if (Utility.getArena().equals(name)) {
-                    for (Entity arrow : world.getEntities()) {
-                        if (arrow instanceof Arrow) {
-
-                            world.playEffect(arrow.getLocation(), Effect.SMOKE, 10);
+    @EventHandler
+    public void arrowParticles(org.bukkit.event.world.WorldLoadEvent event) {
+        if (event.getWorld().getName().equals(name)) {
+            particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+                public void run() {
+                    World world = Bukkit.getWorld(name);
+                    if (Utility.getArena().equals(name)) {
+                        for (org.bukkit.entity.Entity arrow : world.getEntities()) {
+                            if (arrow != null) {
+                                if (arrow instanceof org.bukkit.entity.Arrow) {
+                                    world.playEffect(arrow.getLocation(), org.bukkit.Effect.SMOKE, 10);
+                                }
+                            }
                         }
-
                     }
                 }
-            }
-
-        }, 5L, 5L);
+            }, 5L, 5L);
+        }
     }
+
+    @EventHandler
+    public void cancelParticles(com.oresomecraft.OresomeBattles.events.BattleEndEvent event) {
+        Bukkit.getScheduler().cancelTask(particles);
+    }
+
 }

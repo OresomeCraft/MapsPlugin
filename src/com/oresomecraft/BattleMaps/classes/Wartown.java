@@ -508,7 +508,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
         Entity proj = event.getDamager();
         Location loc = e.getLocation();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+        if (loc.getWorld().getName().equals(name)) {
 
             if (proj instanceof Egg) {
 
