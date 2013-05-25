@@ -10,14 +10,18 @@ import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerFishEvent.State;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import com.oresomecraft.BattleMaps.BattleMap;
@@ -119,6 +123,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 3);
 
             ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
             fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
@@ -135,6 +140,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
             i.setItem(3, STEAK);
             i.setItem(4, HEALTH_POTION);
             i.setItem(5, ARROWS);
+            i.setItem(6, EXP);
 
         }
     }
@@ -285,6 +291,29 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
             }
 
         }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void ointment(PlayerInteractEvent event) {
+        Player p = event.getPlayer();
+        Action a = event.getAction();
+        ItemStack i = p.getItemInHand();
+        Inventory inv = p.getInventory();
+        Material tool = i.getType();
+
+        if (tool == Material.INK_SACK) {
+
+            if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
+                p.removePotionEffect(PotionEffectType.WITHER);
+
+                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 2));
+
+                inv.removeItem(new ItemStack(Material.INK_SACK, 1));
+
+                p.updateInventory();
+            }
+        }
+
     }
 
 }
