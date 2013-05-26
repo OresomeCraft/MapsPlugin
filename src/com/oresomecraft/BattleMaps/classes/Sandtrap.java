@@ -2,10 +2,9 @@ package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import com.oresomecraft.OresomeBattles.gamemodes.Infection;
+import com.oresomecraft.OresomeBattles.gamemodes.TDM;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,6 +23,7 @@ import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class Sandtrap extends BattleMap implements MapInterface, Listener {
 
@@ -123,22 +123,104 @@ public class Sandtrap extends BattleMap implements MapInterface, Listener {
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-            ItemStack IRON_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+            ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
             ItemStack GLASS = new ItemStack(Material.GLASS, 6);
             ItemStack SAND = new ItemStack(Material.SAND, 32);
             ItemStack TNT = new ItemStack(Material.TNT, 1);
             ItemStack TINDER = new ItemStack(Material.FLINT_AND_STEEL, 1);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
+            if (TDM.isBlue(p.getName())) {
 
-            i.setItem(0, IRON_SWORD);
+                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
+                helmetMeta.setColor(Color.BLUE);
+                LEATHER_HELMET.setItemMeta(helmetMeta);
+
+                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+                bootsMeta.setColor(Color.BLUE);
+                LEATHER_BOOTS.setItemMeta(bootsMeta);
+
+                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+                pantsMeta.setColor(Color.BLUE);
+                LEATHER_PANTS.setItemMeta(pantsMeta);
+
+                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+                chestplateMeta.setColor(Color.BLUE);
+                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
+
+
+            }
+
+            if (TDM.isRed(p.getName())) {
+
+                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
+                helmetMeta.setColor(Color.RED);
+                LEATHER_HELMET.setItemMeta(helmetMeta);
+
+                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+                bootsMeta.setColor(Color.RED);
+                LEATHER_BOOTS.setItemMeta(bootsMeta);
+
+                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+                pantsMeta.setColor(Color.RED);
+                LEATHER_PANTS.setItemMeta(pantsMeta);
+
+                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+                chestplateMeta.setColor(Color.RED);
+                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
+
+            }
+
+            if (Infection.isHuman(p.getName())) {
+
+                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
+                helmetMeta.setColor(Color.GREEN);
+                LEATHER_HELMET.setItemMeta(helmetMeta);
+
+                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+                bootsMeta.setColor(Color.GREEN);
+                LEATHER_BOOTS.setItemMeta(bootsMeta);
+
+                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+                pantsMeta.setColor(Color.GREEN);
+                LEATHER_PANTS.setItemMeta(pantsMeta);
+
+                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+                chestplateMeta.setColor(Color.GREEN);
+                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
+
+
+            }
+
+            if (Infection.isZombie(p.getName())) {
+
+                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
+                helmetMeta.setColor(Color.RED);
+                LEATHER_HELMET.setItemMeta(helmetMeta);
+
+                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+                bootsMeta.setColor(Color.RED);
+                LEATHER_BOOTS.setItemMeta(bootsMeta);
+
+                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+                pantsMeta.setColor(Color.RED);
+                LEATHER_PANTS.setItemMeta(pantsMeta);
+
+                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+                chestplateMeta.setColor(Color.RED);
+                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
+
+            }
+
+            p.getInventory().setBoots(LEATHER_BOOTS);
+            p.getInventory().setLeggings(LEATHER_PANTS);
+            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+            p.getInventory().setHelmet(LEATHER_HELMET);
+
+            i.setItem(0, STONE_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, STEAK);
             i.setItem(3, HEALTH);

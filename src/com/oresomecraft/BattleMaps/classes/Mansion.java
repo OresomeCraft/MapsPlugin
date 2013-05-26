@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import com.oresomecraft.OresomeBattles.gamemodes.Infection;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -157,8 +158,6 @@ public class Mansion extends BattleMap implements MapInterface, Listener {
                 LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
                 chestplateMeta.setColor(Color.BLUE);
                 LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
-
-
             }
 
             if (TDM.isRed(p.getName())) {
@@ -174,7 +173,36 @@ public class Mansion extends BattleMap implements MapInterface, Listener {
                 LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
                 chestplateMeta.setColor(Color.RED);
                 LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
+            }
 
+            if (Infection.isHuman(p.getName())) {
+
+                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+                bootsMeta.setColor(Color.GREEN);
+                LEATHER_BOOTS.setItemMeta(bootsMeta);
+
+                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+                pantsMeta.setColor(Color.GREEN);
+                LEATHER_PANTS.setItemMeta(pantsMeta);
+
+                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+                chestplateMeta.setColor(Color.GREEN);
+                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
+            }
+
+            if (Infection.isZombie(p.getName())) {
+
+                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+                bootsMeta.setColor(Color.RED);
+                LEATHER_BOOTS.setItemMeta(bootsMeta);
+
+                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+                pantsMeta.setColor(Color.RED);
+                LEATHER_PANTS.setItemMeta(pantsMeta);
+
+                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+                chestplateMeta.setColor(Color.RED);
+                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
             }
             
             p.getInventory().setBoots(LEATHER_BOOTS);
