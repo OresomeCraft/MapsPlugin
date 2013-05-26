@@ -52,15 +52,17 @@ public class Mutiny extends BattleMap implements MapInterface, Listener {
         addCreators(name, creators);
         setFullName(name, fullName);
     }
-    //Tdm isn't enabled on this, don't need to do spawns.
+
     public void readyTDMSpawns() {
+
         World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, 3, 72, -38));
         redSpawns.add(new Location(w, 1, 77, -19));
         redSpawns.add(new Location(w, 1, 70, -60));
         blueSpawns.add(new Location(w, -38, 72, -38));
-        blueSpawns.add(new Location(w, -36, 70, -18);
-        blueSpawns.add(new Location(w, -36, 77, -56);
+        blueSpawns.add(new Location(w, -36, 70, -18));
+        blueSpawns.add(new Location(w, -36, 77, -56));
+
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
     }
@@ -72,8 +74,8 @@ public class Mutiny extends BattleMap implements MapInterface, Listener {
         FFASpawns.add(new Location(w, 1, 77, -19));
         FFASpawns.add(new Location(w, 1, 70, -60));
         FFASpawns.add(new Location(w, -38, 72, -38));
-        FFASpawns.add(new Location(w, -36, 70, -18);
-        FFASpawns.add(new Location(w, -36, 77, -56);
+        FFASpawns.add(new Location(w, -36, 70, -18));
+        FFASpawns.add(new Location(w, -36, 77, -56));
 
         setFFASpawns(name, FFASpawns);
     }
@@ -92,12 +94,12 @@ public class Mutiny extends BattleMap implements MapInterface, Listener {
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
             ItemStack LOGS = new ItemStack(Material.LOG, 6);
-            ItemStack AXE = new ItemStack(STONE_AXE, 1);
+            ItemStack AXE = new ItemStack(Material.STONE_AXE, 1);
             ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
             ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
             ItemStack IRON_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
-            ItemStack IRON_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
