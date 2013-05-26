@@ -25,10 +25,11 @@ import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class SandTrap extends BattleMap implements MapInterface, Listener {
+public class Sandtrap extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
-    public SandTrap(OresomeBattlesMaps pl) {
+
+    public Sandtrap(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
     }
@@ -39,7 +40,7 @@ public class SandTrap extends BattleMap implements MapInterface, Listener {
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
     // Map details
-    String name = "sand";
+    String name = "sandtrap";
     String fullName = "Sand Trap";
     String creators = "R3creat3, _Moist and JacquiRose";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
@@ -48,9 +49,10 @@ public class SandTrap extends BattleMap implements MapInterface, Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
         addMap(name);
+        setGamemodes(name, modes);
         readyTDMSpawns();
         readyFFASpawns();
-        addCreators(name, creators); 
+        addCreators(name, creators);
         setFullName(name, fullName);
     }
 
@@ -169,9 +171,9 @@ public class SandTrap extends BattleMap implements MapInterface, Listener {
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
-        int bottomCornerX = x1 < x2 ? x1 : x2; 
-        int bottomCornerZ = z1 < z2 ? z1 : z2; 
+                            int y2, int z1, int z2) {
+        int bottomCornerX = x1 < x2 ? x1 : x2;
+        int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
         int topCornerZ = z1 > z2 ? z1 : z2;
         int bottomCornerY = y1 < y2 ? y1 : y2;
@@ -195,8 +197,8 @@ public class SandTrap extends BattleMap implements MapInterface, Listener {
         Location loc = b.getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
-             if(!(contains(loc, x1, x2, y1, y2, z1, z2)){
-            event.setCancelled(true);
+            if (!(contains(loc, x1, x2, y1, y2, z1, z2))) {
+                event.setCancelled(true);
             }
         }
 
@@ -208,21 +210,21 @@ public class SandTrap extends BattleMap implements MapInterface, Listener {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
-      if (loc.getWorld().getName().equals(name)) {
-             if(!(contains(loc, x1, x2, y1, y2, z1, z2)){
-            event.setCancelled(true);
+        if (loc.getWorld().getName().equals(name)) {
+            if (!(contains(loc, x1, x2, y1, y2, z1, z2))) {
+                event.setCancelled(true);
             }
         }
 
     }
 
-     // Code to prevent escaping map
+    // Code to prevent escaping map
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection(PlayerMoveEvent event) {
 
         if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
-             if(!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1, z2)){
-            event.setCancelled(true);
+            if (!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1, z2))) {
+                event.setCancelled(true);
             }
         }
 

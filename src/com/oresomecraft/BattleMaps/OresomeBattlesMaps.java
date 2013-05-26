@@ -36,7 +36,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Mutiny(this);
         new Nuketown(this);
         new Terminal(this);
-        new SandTrap(this);
+        new Sandtrap(this);
         new Towers(this);
         new Hartshire(this);
         new Skyislands(this);
