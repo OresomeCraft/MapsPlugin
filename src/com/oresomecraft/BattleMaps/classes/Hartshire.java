@@ -49,7 +49,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
     String name = "hartshire";
     String fullName = "Hartshire";
     String creators = "R3creat3, kalikakitty and xannallax33";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -209,6 +209,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
         }
 
     }
+    
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
         PlayerFishEvent.State state = event.getState();
@@ -217,7 +218,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
         Material mat = is.getType();
         Location loc = p.getLocation();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+        if (loc.getWorld().getName().equals(name)){
 
             if (mat == Material.FISHING_ROD) {
 
@@ -304,11 +305,10 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
         if (tool == Material.INK_SACK) {
 
             if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
-                p.removePotionEffect(PotionEffectType.WITHER);
 
-                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 2));
+                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20*30, 2));
 
-                inv.removeItem(new ItemStack(Material.INK_SACK, 1));
+                inv.removeItem(new ItemStack(Material.INK_SACK, 1, (short) 12));
 
                 p.updateInventory();
             }
