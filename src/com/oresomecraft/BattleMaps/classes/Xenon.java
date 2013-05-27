@@ -106,6 +106,7 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 3);
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
@@ -116,7 +117,8 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
             i.setItem(1, BOW);
             i.setItem(2, STEAK);
             i.setItem(3, HEALTH_POTION);
-            i.setItem(8, ARROWS);
+            i.setItem(4, EXP);
+            i.setItem(9, ARROWS);
 
         }
     }
