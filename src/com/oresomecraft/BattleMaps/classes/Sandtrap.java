@@ -2,6 +2,7 @@ package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
 
+import com.oresomecraft.OresomeBattles.GameUtils;
 import com.oresomecraft.OresomeBattles.gamemodes.Infection;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.*;
@@ -305,11 +306,12 @@ public class Sandtrap extends BattleMap implements MapInterface, Listener {
     public void protection(PlayerMoveEvent event) {
 
         if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
-            if (!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1, z2))) {
-                event.setCancelled(true);
+            if (!GameUtils.isSpectator(event.getPlayer().getName())) {
+                if (!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1, z2))) {
+                    event.setCancelled(true);
+                }
             }
         }
-
     }
 
 }
