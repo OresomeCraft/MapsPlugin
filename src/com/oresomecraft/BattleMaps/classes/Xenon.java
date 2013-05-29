@@ -15,6 +15,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -45,7 +46,7 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
     String name = "xenon";
     String fullName = "Xenon";
     String creators = "kalikakitty and R3creat3";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -97,7 +98,7 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 16);
@@ -115,8 +116,9 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
             i.setItem(0, IRON_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, STEAK);
-            i.setItem(3, HEALTH_POTION);
-            i.setItem(8, ARROWS);
+            i.setItem(3, HEALTH);
+            i.setItem(4, new ItemStack(Material.EXP_BOTTLE, 3);
+            i.setItem(9, ARROWS);
 
         }
     }
@@ -206,4 +208,15 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
         }
 
     }
+@EventHandler
+public void onPlayerTeleport(PlayerTeleportEvent event){
+  Player player = event.getPlayer():
+  TeleportCause cause = event.getCause();
+  Location to = event.getTo();
+ 
+  if(cause == TeleportCause.ENDER_PEARL){
+    event.setCancelled(true);
+    player.teleport(to);
+  }
+}
 }

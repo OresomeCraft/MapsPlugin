@@ -49,7 +49,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
     String name = "hartshire";
     String fullName = "Hartshire";
     String creators = "R3creat3, kalikakitty and xannallax33";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -116,7 +116,6 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
             ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
             ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
             ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
@@ -125,17 +124,12 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
             ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 3);
 
-            ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
-            fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
-            FISHING_ROD.setItemMeta(fishing_rod);
-
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
             p.getInventory().setChestplate(IRON_CHESTPLATE);
             p.getInventory().setHelmet(IRON_HELMET);
 
             i.setItem(0, IRON_SWORD);
-            i.setItem(1, FISHING_ROD);
             i.setItem(2, BOW);
             i.setItem(3, STEAK);
             i.setItem(4, HEALTH_POTION);
@@ -195,104 +189,6 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
         }
 
     }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void fishing(PlayerFishEvent event) {
-        PlayerFishEvent.State state = event.getState();
-        Player p = event.getPlayer();
-        ItemStack is = p.getItemInHand();
-        Material mat = is.getType();
-        Location loc = p.getLocation();
-
-        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
-
-            if (mat == Material.FISHING_ROD) {
-
-                if (state == State.IN_GROUND) {
-                    p.launchProjectile(Snowball.class);
-
-                }
-            }
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void grapple(ProjectileHitEvent event) {
-        Entity proj = event.getEntity();
-        Location hit = proj.getLocation();
-
-        if (contains(hit, x1, x2, y1, y2, z1, z2)) {
-
-            if (proj instanceof Snowball) {
-                Snowball fish = (Snowball) proj;
-                Entity shooter = fish.getShooter();
-
-                if (shooter instanceof Player) {
-                    Player p = (Player) shooter;
-                    Location loc = p.getLocation();
-                    ItemStack is = p.getItemInHand();
-                    Material mat = is.getType();
-
-                    if (mat == Material.FISHING_ROD) {
-
-                        p.setFallDistance(0);
-                        p.playSound(loc, Sound.ARROW_HIT, 1, 1);
-
-                        int hitx = hit.getBlockX();
-                        int hity = hit.getBlockY();
-                        int hitz = hit.getBlockZ();
-                        int locx = loc.getBlockX();
-                        int locy = loc.getBlockY();
-                        int locz = loc.getBlockZ();
-                        double co[] = new double[3];
-
-                        if (hitx > locx) {
-                            co[0] = 1.2;
-                        } else if (hitx < locx) {
-                            co[0] = -1.2;
-                        } else if (hitx == locx) {
-                            co[0] = 0;
-                        }
-
-                        if (hity > locy) {
-                            co[1] = 1.4;
-                        } else if (hity < locy) {
-                            co[1] = -0.8;
-                        } else if (hity == locy) {
-                            co[1] = 0;
-                        }
-
-                        if (hitz > locz) {
-                            co[2] = 1.2;
-                        } else if (hitz < locz) {
-                            co[2] = -1.2;
-                        } else if (hitz == locz) {
-                            co[2] = 0;
-                        }
-
-                        p.setVelocity(new Vector(co[0], co[1], co[2]));
-
-                    }
-                }
-            }
-
-        }
-    }
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void ointment(PlayerInteractEvent event) {
         Player p = event.getPlayer();
@@ -308,7 +204,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
 
                 p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 2));
 
-                inv.removeItem(new ItemStack(Material.INK_SACK, 1));
+                inv.removeItem(new ItemStack(Material.INK_SACK, 12));
 
                 p.updateInventory();
             }

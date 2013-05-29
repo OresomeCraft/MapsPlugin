@@ -148,7 +148,7 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -212,11 +212,11 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
 
             i.setItem(0, IRON_SWORD);
             i.setItem(1, BOW);
-            i.setItem(2, STEAK);
-            i.setItem(3, HEALTH_POTION);
-            i.setItem(4, ARROWS);
+            i.setItem(3, STEAK);
+            i.setItem(4, HEALTH);
+            i.setItem(9, ARROWS);
             i.setItem(5, EXP);
-            i.setItem(5, FISHING_ROD);
+            i.setItem(2, FISHING_ROD);
 
             p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
 

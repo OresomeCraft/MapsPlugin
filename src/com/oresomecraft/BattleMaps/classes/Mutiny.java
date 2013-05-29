@@ -89,11 +89,11 @@ public class Mutiny extends BattleMap implements MapInterface, Listener {
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack LOGS = new ItemStack(Material.LOG, 6);
+            ItemStack LOGS = new ItemStack(Material.LOG, 12);
             ItemStack AXE = new ItemStack(Material.STONE_AXE, 1);
             ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
             ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
@@ -110,7 +110,7 @@ public class Mutiny extends BattleMap implements MapInterface, Listener {
             i.setItem(1, BOW);
             i.setItem(0, AXE);
             i.setItem(2, STEAK);
-            i.setItem(3, HEALTH_POTION);
+            i.setItem(3, HEALTH);
             i.setItem(3, LOGS);
             i.setItem(4, ARROWS);
 
