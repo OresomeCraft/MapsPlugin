@@ -235,7 +235,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
 
-        if (contains(hit, x1, x2, y1, y2, z1, z2)) {
+        if (hit.getWorld().equals(name)) {
 
             if (proj instanceof Snowball) {
                 Snowball fish = (Snowball) proj;
@@ -308,7 +308,7 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
 
                 p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 2));
 
-                inv.removeItem(new ItemStack(Material.INK_SACK, 1));
+                inv.removeItem(new ItemStack(Material.INK_SACK, 1, (short) 12));
 
                 p.updateInventory();
             }
