@@ -37,7 +37,8 @@ public class Suburban extends BattleMap implements MapInterface, Listener {
     // Map details
     String name = "suburban";
     String fullName = "Suburban Complex";
-    String creators = "R3creat3, zezo268, xannallax33 and kalikakitty";
+    String creators = "R3creat3 and kalikakitty";
+    //Update ACTUAL creators.
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
     //Map download link: N/A
 
@@ -107,29 +108,29 @@ public class Suburban extends BattleMap implements MapInterface, Listener {
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
             ItemStack STONE = new ItemStack(Material.STONE, 64);
             ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+            ItemStack DIAMOND_CHESTPLATE = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
+            p.getInventory().setChestplate(DIAMOND_CHESTPLATE);
             p.getInventory().setHelmet(IRON_HELMET);
 
             i.setItem(0, IRON_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, STEAK);
-            i.setItem(3, HEALTH_POTION);
-            i.setItem(4, ARROWS);
+            i.setItem(3, HEALTH);
+            i.setItem(9, ARROWS);
+            i.setItem(4, STONE);
             i.setItem(5, STONE);
-            i.setItem(6, STONE);
 
         }
     }

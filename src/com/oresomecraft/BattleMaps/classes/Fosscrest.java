@@ -41,7 +41,7 @@ public class Fosscrest extends BattleMap implements MapInterface, Listener {
     String name = "fosscrest";
     String fullName = "Fosscrest Village";
     String creators = "R3creat3 and xXJazzerXx";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -97,7 +97,7 @@ public class Fosscrest extends BattleMap implements MapInterface, Listener {
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
@@ -106,6 +106,7 @@ public class Fosscrest extends BattleMap implements MapInterface, Listener {
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 1));
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
@@ -115,8 +116,9 @@ public class Fosscrest extends BattleMap implements MapInterface, Listener {
             i.setItem(0, IRON_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, STEAK);
-            i.setItem(3, HEALTH_POTION);
-            i.setItem(4, ARROWS);
+            i.setItem(3, HEALTH);
+            i.setItem(4, EXP);
+            i.setItem(9, ARROWS);
 
         }
     }
