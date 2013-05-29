@@ -2,6 +2,7 @@ package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
 
+import com.oresomecraft.OresomeBattles.Utility;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -24,10 +25,10 @@ import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class TheDocs extends BattleMap implements MapInterface, Listener {
+public class Docks extends BattleMap implements MapInterface, Listener {
 
-    TheDocs plugin;
-    public Docs(OresomeBattlesMaps pl) {
+    OresomeBattlesMaps plugin;
+    public Docks(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
     }
@@ -38,15 +39,16 @@ public class TheDocs extends BattleMap implements MapInterface, Listener {
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
     // Map details
-    String name = "docs";
-    String fullName = "The Docs";
-    String creators = "therhinovirus99, tomfoowe1, yozy3";
+    String name = "docks";
+    String fullName = "The Docks";
+    String creators = "therhinovirus99, tomfoowe1 and yozy3";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
         addMap(name);
+        setGamemodes(name, modes);
         readyTDMSpawns();
         readyFFASpawns();
         addCreators(name, creators); 
@@ -80,11 +82,11 @@ public class TheDocs extends BattleMap implements MapInterface, Listener {
 
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-        FFASpawns.add(new Location(w, 1796, 18, 490, -90, 0);
-        FFASpawns.add(new Location(w, 1792, 23, 490, 90, 0);
-        FFASpawns.add(new Location(w, 1791, 26, 490, 90, 0);
-        FFASpawns.add(new Location(w, 1792, 30, 490, 90, 0);
-        FFASpawns.add(new Location(w, 1771, 22, 490, 90, 0);
+        FFASpawns.add(new Location(w, 1796, 18, 490, -90, 0));
+        FFASpawns.add(new Location(w, 1792, 23, 490, 90, 0));
+        FFASpawns.add(new Location(w, 1791, 26, 490, 90, 0));
+        FFASpawns.add(new Location(w, 1792, 30, 490, 90, 0));
+        FFASpawns.add(new Location(w, 1771, 22, 490, 90, 0));
         FFASpawns.add(new Location(w, 1750, 22, 509, 179, 0));
         FFASpawns.add(new Location(w, 1750, 22, 470, 0, 0));
         FFASpawns.add(new Location(w, 1721, 22, 489, 0, -90));
@@ -208,22 +210,5 @@ public class TheDocs extends BattleMap implements MapInterface, Listener {
           }
       }
   }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
-        Block b = event.getBlock();
-        int mat = b.getTypeId();
-        Location loc = b.getLocation();
-        if (loc.getWorld().getName().equals(name)) {
-            if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
-
-                if (mat == 43 || mat == 44 || mat == 35 || mat == 42
-                        || mat == 49 || mat == 123 || mat == 69 || mat == 124) {
-
-                    event.setCancelled(true);
-                }
-            }
-        }
-    }
 
 }
