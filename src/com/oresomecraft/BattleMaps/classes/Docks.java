@@ -77,11 +77,6 @@ public class Docks extends BattleMap implements MapInterface, Listener {
 
         World w = Bukkit.getServer().getWorld(name);
 
-        Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
-        Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
-
-        FFASpawns.add(redSpawn);
-        FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, 1796, 18, 490, -90, 0));
         FFASpawns.add(new Location(w, 1792, 23, 490, 90, 0));
         FFASpawns.add(new Location(w, 1791, 26, 490, 90, 0));
@@ -117,6 +112,7 @@ public class Docks extends BattleMap implements MapInterface, Listener {
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
@@ -128,6 +124,7 @@ public class Docks extends BattleMap implements MapInterface, Listener {
             i.setItem(2, SNOW_BALL);
             i.setItem(3, HEALTH_POTION);
             i.setItem(4, STEAK);
+            i.setItem(5, EXP);
             i.setItem(8, ARROWS);
 
         }

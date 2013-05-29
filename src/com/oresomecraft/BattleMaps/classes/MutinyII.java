@@ -4,17 +4,12 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -28,136 +23,106 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
 public class MutinyII extends BattleMap implements MapInterface, Listener {
 
-  OresomeBattlesMaps plugin;
-	public MutinyII(OresomeBattlesMaps pl) {
-		super(pl);
-		plugin = pl;
-	}
+    OresomeBattlesMaps plugin;
 
-	// Spawn lists. (Don't change!)
-	public ArrayList<Location> redSpawns = new ArrayList<Location>();
-	public ArrayList<Location> blueSpawns = new ArrayList<Location>();
-	public ArrayList<Location> FFASpawns = new ArrayList<Location>();
+    public MutinyII(OresomeBattlesMaps pl) {
+        super(pl);
+        plugin = pl;
+    }
 
-	// Map details
-	String name = "mutinyII";
-	String fullName = "Mutiny II";
-	String creators = "R3creat3, zachoz and Buster1824";
-	Gamemode[] modes = {Gamemode.TDM};
-	//Map download link: N/A
+    // Spawn lists. (Don't change!)
+    public ArrayList<Location> redSpawns = new ArrayList<Location>();
+    public ArrayList<Location> blueSpawns = new ArrayList<Location>();
+    public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void readyMap(ReadyMapsEvent event) {
-		addMap(name);
-		readyTDMSpawns();
-		readyFFASpawns();
-		addCreators(name, creators); 
-		setFullName(name, fullName);
-	}
+    // Map details
+    String name = "mutinyii";
+    String fullName = "Mutiny II";
+    String creators = "R3creat3, zachoz and Buster1824";
+    Gamemode[] modes = {Gamemode.TDM};
+    //Map download link: N/A
 
-	public void readyTDMSpawns() {
-		World w = Bukkit.getServer().getWorld(name);
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void readyMap(ReadyMapsEvent event) {
+        addMap(name);
+        readyTDMSpawns();
+        readyFFASpawns();
+        setGamemodes(name, modes);
+        addCreators(name, creators);
+        setFullName(name, fullName);
+    }
 
-		Location redSpawn = new Location(w, -18, 85, -52);
-		Location blueSpawn = new Location(w, -18, 85, 13);
+    public void readyTDMSpawns() {
+        World w = Bukkit.getServer().getWorld(name);
 
-		redSpawns.add(redSpawn);
-		blueSpawns.add(blueSpawn);
-		
-		setRedSpawns(name, redSpawns);
-		setBlueSpawns(name, blueSpawns);
-	}
+        Location redSpawn = new Location(w, -18, 85, -52);
+        Location blueSpawn = new Location(w, -18, 85, 13);
 
-	public void readyFFASpawns() {
+        redSpawns.add(redSpawn);
+        blueSpawns.add(blueSpawn);
 
-		World w = Bukkit.getServer().getWorld(name);
+        setRedSpawns(name, redSpawns);
+        setBlueSpawns(name, blueSpawns);
+    }
 
-		Location obsSpawn = new Location(w, 7, 1122, -19);
-		FFASpawns.add(obsSpawn);
+    public void readyFFASpawns() {
 
-		setFFASpawns(name, FFASpawns);
-	}
+        World w = Bukkit.getServer().getWorld(name);
 
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void applyInventory(InventoryEvent event) {
+        Location obsSpawn = new Location(w, 7, 1122, -19);
+        FFASpawns.add(obsSpawn);
 
-		String par = event.getMessage();
-		Player p = event.getPlayer();
-		Inventory i = p.getInventory();
-		if (par.equalsIgnoreCase(name)) {
-			clearInv(p);
-			//Give players invincibility for 15 seconds when they spawn.
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 15*20, 1));
-		}
-	}
+        setFFASpawns(name, FFASpawns);
+    }
 
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void clearSpawns(ClearSpawnsEvent event) {
-		redSpawns.clear();
-		blueSpawns.clear();
-		FFASpawns.clear();
-	}
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void applyInventory(InventoryEvent event) {
 
-	// Region. (Top corner block and bottom corner block.
-			// Top left corner.
-	public int x1 = 52;
-	public int y1 = 54;
-	public int z1 = 35;
+        String par = event.getMessage();
+        Player p = event.getPlayer();
+        Inventory i = p.getInventory();
+        if (par.equalsIgnoreCase(name)) {
+            clearInv(p);
+            //Give players invincibility for 15 seconds when they spawn.
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 15 * 20, 1));
+        }
+    }
 
-	//Bottom right corner.
-	public int x2 = -48;
-	public int y2 = 156;
-	public int z2 = -75;
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void clearSpawns(ClearSpawnsEvent event) {
+        redSpawns.clear();
+        blueSpawns.clear();
+        FFASpawns.clear();
+    }
 
-	// Getting the region
-	public boolean contains(Location loc, int x1, int x2, int y1,
-			int y2, int z1, int z2) {
-		int bottomCornerX = x1 < x2 ? x1 : x2; 
-		int bottomCornerZ = z1 < z2 ? z1 : z2; 
-		int topCornerX = x1 > x2 ? x1 : x2;
-		int topCornerZ = z1 > z2 ? z1 : z2;
-		int bottomCornerY = y1 < y2 ? y1 : y2;
-		int topCornerY = y1 > y2 ? y1 : y2;
-		if (loc.getX() >= bottomCornerX && loc.getX() <= topCornerX) {
-			if (loc.getZ() >= bottomCornerZ && loc.getZ() <= topCornerZ) {
-				if (loc.getY() >= bottomCornerY && loc.getY() <= topCornerY) {
-					return true;
-				}
-			}
-		}
-		return false;
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = 52;
+    public int y1 = 54;
+    public int z1 = 35;
 
-	}
+    //Bottom right corner.
+    public int x2 = -48;
+    public int y2 = 156;
+    public int z2 = -75;
 
-	// Code to prevent block breaking.
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void protection1(BlockBreakEvent event) {
+    // Getting the region
+    public boolean contains(Location loc, int x1, int x2, int y1,
+                            int y2, int z1, int z2) {
+        int bottomCornerX = x1 < x2 ? x1 : x2;
+        int bottomCornerZ = z1 < z2 ? z1 : z2;
+        int topCornerX = x1 > x2 ? x1 : x2;
+        int topCornerZ = z1 > z2 ? z1 : z2;
+        int bottomCornerY = y1 < y2 ? y1 : y2;
+        int topCornerY = y1 > y2 ? y1 : y2;
+        if (loc.getX() >= bottomCornerX && loc.getX() <= topCornerX) {
+            if (loc.getZ() >= bottomCornerZ && loc.getZ() <= topCornerZ) {
+                if (loc.getY() >= bottomCornerY && loc.getY() <= topCornerY) {
+                    return true;
+                }
+            }
+        }
+        return false;
 
-		Block b = event.getBlock();
-		Location loc = b.getLocation();
-
-		if (loc.getWorld().getName().equals(name)) {
-			if(!(contains(loc, x1, x2, y1, y2, z1, z2))){
-
-				event.setCancelled(true);
-			}
-		}
-
-	}
-
-	// Code to prevent block placing.
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void protection1(BlockPlaceEvent event) {
-
-		Block b = event.getBlock();
-		Location loc = b.getLocation();
-
-		if (loc.getWorld().getName().equals(name)) {
-			if(!(contains(loc, x1, x2, y1, y2, z1, z2))){
-
-				event.setCancelled(true);
-			}
-		}
-
-	}
+    }
 }
