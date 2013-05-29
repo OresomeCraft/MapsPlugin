@@ -18,6 +18,8 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.entity.EntityType;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
@@ -97,7 +99,7 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 16);
@@ -106,6 +108,7 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
@@ -115,8 +118,9 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
             i.setItem(0, IRON_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, STEAK);
-            i.setItem(3, HEALTH_POTION);
-            i.setItem(8, ARROWS);
+            i.setItem(3, HEALTH);
+            i.setItem(4, EXP)
+            i.setItem(16, ARROWS);
 
         }
     }
@@ -205,5 +209,12 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
             }
         }
 
+    }
+    //Woot, disable enderpearl damage to stop those glitchers!
+     @EventHandler
+    public void onEntityDamage(EntityDamageByEntityEvent event) {
+        if(event.getDamager().getType().equals(EntityType.ENDER_PEARL)) {
+            event.setCancelled(true);
+        }
     }
 }
