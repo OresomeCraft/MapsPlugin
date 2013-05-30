@@ -59,26 +59,18 @@ public class Sandtrap extends BattleMap implements MapInterface, Listener {
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
-        redSpawns.add(new Location(w, -18, 88, -10));
-        redSpawns.add(new Location(w, -18, 88, -32));
-        redSpawns.add(new Location(w, -9, 82, -30));
-        redSpawns.add(new Location(w, -27, 82, -12));
-        redSpawns.add(new Location(w, -8, 77, -11));
-        redSpawns.add(new Location(w, -28, 77, -31));
-        redSpawns.add(new Location(w, -8, 72, -31));
-        redSpawns.add(new Location(w, -28, 72, -11));
-        redSpawns.add(new Location(w, -8, 67, -11));
-        redSpawns.add(new Location(w, -28, 67, -31));
-        blueSpawns.add(new Location(w, -9, 82, 4));
-        blueSpawns.add(new Location(w, -27, 82, 22));
-        blueSpawns.add(new Location(w, -28, 77, 3));
-        blueSpawns.add(new Location(w, -8, 77, 23));
-        blueSpawns.add(new Location(w, -8, 72, 3));
-        blueSpawns.add(new Location(w, -28, 72, 23));
-        blueSpawns.add(new Location(w, -28, 67, 3));
-        blueSpawns.add(new Location(w, -8, 67, 23));
-        blueSpawns.add(new Location(w, -18, 88, 2));
-        blueSpawns.add(new Location(w, -18, 88, 24));
+        blueSpawns.add(new Location(w, -10, 100, -27));
+        blueSpawns.add(new Location(w, -27, 95, -12));
+        blueSpawns.add(new Location(w, -10, 86, -27));
+        blueSpawns.add(new Location(w, -27, 81, -12));
+        blueSpawns.add(new Location(w, -10, 72, -27));
+        blueSpawns.add(new Location(w, -27, 67, -12));
+        redSpawns.add(new Location(w, -27, 95, 22));
+        redSpawns.add(new Location(w, -9, 86, 7));
+        redSpawns.add(new Location(w, -27, 81, 22));
+        redSpawns.add(new Location(w, -9, 67, 4));
+        redSpawns.add(new Location(w, -27, 100, 19));
+        redSpawns.add(new Location(w, -9, 95, 4));
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
@@ -88,25 +80,19 @@ public class Sandtrap extends BattleMap implements MapInterface, Listener {
 
         World w = Bukkit.getServer().getWorld(name);
 
-        FFASpawns.add(new Location(w, -18, 88, -10));
-        FFASpawns.add(new Location(w, -18, 88, -32));
-        FFASpawns.add(new Location(w, -9, 82, -30));
-        FFASpawns.add(new Location(w, -27, 82, -12));
-        FFASpawns.add(new Location(w, -8, 77, -11));
-        FFASpawns.add(new Location(w, -28, 77, -31));
-        FFASpawns.add(new Location(w, -8, 72, -31));
-        FFASpawns.add(new Location(w, -28, 72, -11));
-        FFASpawns.add(new Location(w, -8, 67, -11));
-        FFASpawns.add(new Location(w, -28, 67, -31));
-        FFASpawns.add(new Location(w, -9, 82, 4));
-        FFASpawns.add(new Location(w, -27, 82, 22));
-        FFASpawns.add(new Location(w, -28, 77, 3));
-        FFASpawns.add(new Location(w, -8, 77, 23));
-        FFASpawns.add(new Location(w, -8, 72, 3));
-        FFASpawns.add(new Location(w, -28, 72, 23));
-        FFASpawns.add(new Location(w, -28, 67, 3));
-        FFASpawns.add(new Location(w, -8, 67, 23));
-        FFASpawns.add(new Location(w, -18, 88, 2));
+        
+        FFASpawns.add(new Location(w, -10, 100, -27));
+        FFASpawns.add(new Location(w, -27, 95, -12));
+        FFASpawns.add(new Location(w, -10, 86, -27));
+        FFASpawns.add(new Location(w, -27, 81, -12));
+        FFASpawns.add(new Location(w, -10, 72, -27));
+        FFASpawns.add(new Location(w, -27, 67, -12));
+        FFASpawns.add(new Location(w, -27, 95, 22));
+        FFASpawns.add(new Location(w, -9, 86, 7));
+        FFASpawns.add(new Location(w, -27, 81, 22));
+        FFASpawns.add(new Location(w, -9, 67, 4));
+        FFASpawns.add(new Location(w, -27, 100, 19));
+        FFASpawns.add(new Location(w, -9, 95, 4));
 
         setFFASpawns(name, FFASpawns);
     }
@@ -249,7 +235,7 @@ public class Sandtrap extends BattleMap implements MapInterface, Listener {
 
     //Bottom right corner.
     public int x2 = -38;
-    public int y2 = 96;
+    public int y2 = 121;
     public int z2 = 32;
 
     // Getting the region
