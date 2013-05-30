@@ -2,6 +2,7 @@ package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
 
+import com.oresomecraft.OresomeBattles.Utility;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -9,6 +10,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -69,7 +73,7 @@ public class MutinyII extends BattleMap implements MapInterface, Listener {
 
         World w = Bukkit.getServer().getWorld(name);
 
-        Location obsSpawn = new Location(w, 7, 1122, -19);
+        Location obsSpawn = new Location(w, 7, 90, -19);
         FFASpawns.add(obsSpawn);
 
         setFFASpawns(name, FFASpawns);
@@ -83,8 +87,8 @@ public class MutinyII extends BattleMap implements MapInterface, Listener {
         Inventory i = p.getInventory();
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
-            //Give players invincibility for 15 seconds when they spawn.
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 15 * 20, 1));
+            //Give players invincibility for 8 seconds when they spawn.
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
         }
     }
 
@@ -125,4 +129,54 @@ public class MutinyII extends BattleMap implements MapInterface, Listener {
         return false;
 
     }
+
+    @EventHandler
+    public void onBoom(EntityExplodeEvent event) {
+        if (Utility.getArena().equals(name)) {
+            Location loc = event.getLocation();
+            // Red tean
+            if (contains(loc, -12, -25, 88, 83, -46, -60)) {
+                event.setCancelled(true);
+            }
+
+            // Blue tean
+            if (contains(loc, -12, -25, 88, 83, 20, 6)) {
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBreak(BlockBreakEvent event) {
+        if (Utility.getArena().equals(name)) {
+            Location loc = event.getBlock().getLocation();
+            // Red tean
+            if (contains(loc, -12, -25, 88, 83, -46, -60)) {
+                event.setCancelled(true);
+            }
+
+            // Blue tean
+            if (contains(loc, -12, -25, 88, 83, 20, 6)) {
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlace(BlockPlaceEvent event) {
+        if (Utility.getArena().equals(name)) {
+            Location loc = event.getBlock().getLocation();
+            // Red tean
+            if (contains(loc, -12, -25, 88, 83, -46, -60)) {
+                event.setCancelled(true);
+            }
+
+            // Blue tean
+            if (contains(loc, -12, -25, 88, 83, 20, 6)) {
+                event.setCancelled(true);
+            }
+        }
+    }
+
+
 }
