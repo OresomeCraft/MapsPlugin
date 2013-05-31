@@ -52,6 +52,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Chaoscity(this);
         new Darknessofdusk(this);
         new Docks(this);
+        new Spaceships(this);
 
     }
 
