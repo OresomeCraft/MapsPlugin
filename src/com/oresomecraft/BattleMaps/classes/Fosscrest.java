@@ -200,4 +200,3 @@ public class Fosscrest extends BattleMap implements MapInterface, Listener {
     }
 
 }
-//Ruv you zarch - R3

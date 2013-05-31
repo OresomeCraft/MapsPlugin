@@ -49,6 +49,7 @@ public class Template extends BattleMap implements MapInterface, Listener {
         addMap(name);
         readyTDMSpawns();
         readyFFASpawns();
+        addGamemodes(name, modes);
         addCreators(name, creators); 
         setFullName(name, fullName);
     }
