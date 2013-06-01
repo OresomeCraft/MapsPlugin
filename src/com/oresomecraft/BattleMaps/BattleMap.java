@@ -3,6 +3,7 @@ package com.oresomecraft.BattleMaps;
 
 import java.util.ArrayList;
 
+import com.oresomecraft.OresomeBattles.gamemodes.CTF;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -52,6 +53,11 @@ public class BattleMap implements Listener {
 
     public void setGamemodes(String name, Gamemode[] modes) {
         battles.setGamemodes(name, modes);
+    }
+
+    public void setCTFFlags(String name, Location redFlag, Location blueFlag) {
+        CTF.setRedFlag(name, redFlag);
+        CTF.setBlueFlag(name, blueFlag);
     }
 
 }
