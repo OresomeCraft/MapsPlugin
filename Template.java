@@ -42,7 +42,7 @@ public class Template extends BattleMap implements MapInterface, Listener {
     String fullName = "Template";
     String creators = "derp, herp and harpaderp";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
-    //Map download link: N/A
+    //Map download link: N/A 
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
