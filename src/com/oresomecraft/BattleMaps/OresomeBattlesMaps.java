@@ -54,7 +54,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Darknessofdusk(this);
         new Docks(this);
         new Spaceships(this);
-        new Lol(this);
+        new ctfsquared(this);
 
     }
 
