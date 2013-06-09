@@ -68,27 +68,18 @@ public class Arctic extends BattleMap implements MapInterface, Listener {
         Location blueSpawn = new Location(w, 761, 128, -72, 51, 0);
 
         redSpawns.add(redSpawn);
+        redSpawns.add(new Location(w, 825, 135, -98, -43, 0));
+        redSpawns.add(new Location(w, 834, 132, -84, 60, 0));
+        redSpawns.add(new Location(w, 802, 137, -113, -3, 0));
+        redSpawns.add(new Location(w, 779, 141, -110, -6, 0));
+        redSpawns.add(new Location(w, 807, 159, -114, 7, 0));
+
         blueSpawns.add(blueSpawn);
-        redSpawns.add(new Location(w, 795, 155, -28, -172, 0));
-        blueSpawns.add(new Location(w, 822, 133, -67, 87, 0));
-        redSpawns.add(new Location(w, 813, 128, -41, -93, 0));
-        blueSpawns.add(new Location(w, 773, 121, -110, -58, 0));
-        redSpawns.add(new Location(w, 779, 141, -110, -44, 0));
-        blueSpawns.add(new Location(w, 808, 159, -144, -2, 0));
-        redSpawns.add(new Location(w, 820, 129, -68, 129, 0));
-        blueSpawns.add(new Location(w, 788, 128, -81, -124, 0));
-        redSpawns.add(new Location(w, 784, 182, -85, -113, 0));
-        blueSpawns.add(new Location(w, 761, 132, -133, -27, 0));
-        redSpawns.add(new Location(w, 820, 149, -88, 2, 0));
-        blueSpawns.add(new Location(w, 820, 149, -88, 2, 0));
-        redSpawns.add(new Location(w, 779, 130, -87, -87, 0));
-        blueSpawns.add(new Location(w, 832, 133, -67, 133, 0));
-        redSpawns.add(new Location(w, 798, 135, -72, -107, 0));
-        blueSpawns.add(new Location(w, 790, 128, -78, 177, 0));
-        redSpawns.add(new Location(w, 830, 152, -142, 19, 0));
-        blueSpawns.add(new Location(w, 855, 130, -50, 136, 0));
-        redSpawns.add(new Location(w, 798, 148, -74, -134, 0));
-        blueSpawns.add(new Location(w, 789, 123, -94, 133, 0));
+        blueSpawns.add(new Location(w, 784, 136, -56, -150, 0));
+        blueSpawns.add(new Location(w, 810, 135, -49, -179, 0));
+        blueSpawns.add(new Location(w, 831, 144, -64, -175, 0));
+        blueSpawns.add(new Location(w, 795, 155, -26, -154, 0));
+        blueSpawns.add(new Location(w, 812, 128, -52, 173, 0));
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);

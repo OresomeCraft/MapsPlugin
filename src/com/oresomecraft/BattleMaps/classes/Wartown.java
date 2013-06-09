@@ -35,6 +35,8 @@ import com.oresomecraft.OresomeBattles.Utility;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class Wartown extends BattleMap implements MapInterface, Listener {
 
@@ -52,7 +54,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
     String name = "wartown";
     String fullName = "Wartown";
     String creators = "reub_youtube ";
-    Gamemode[] modes = { Gamemode.TDM, Gamemode.FFA };
+    Gamemode[] modes = {Gamemode.TDM};
 
     // Map download link: N/A
 
@@ -74,27 +76,9 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
         Location blueSpawn = new Location(w, 175, 67, -146, 179, 0);
 
         redSpawns.add(redSpawn);
-        blueSpawns.add(blueSpawn);
         redSpawns.add(new Location(w, 176, 74, -253, -50, 0));
-        blueSpawns.add(new Location(w, 162, 65, -251, -39, 0));
-        redSpawns.add(new Location(w, 168, 65, -236, 104, 0));
-        blueSpawns.add(new Location(w, 162, 65, -223, 170, 0));
-        redSpawns.add(new Location(w, 152, 65, -237, 89, 0));
-        blueSpawns.add(new Location(w, 134, 65, -237, -114, 0));
-        redSpawns.add(new Location(w, 148, 65, -253, -253, 0));
-        blueSpawns.add(new Location(w, 143, 65, -214, 0, 0));
-        redSpawns.add(new Location(w, 158, 69, -207, 147, 0));
-        blueSpawns.add(new Location(w, 142, 65, -198, 92, 0));
-        redSpawns.add(new Location(w, 131, 64, -148, -150, 0));
-        blueSpawns.add(new Location(w, 220, 64, -150, 150, 0));
-        redSpawns.add(new Location(w, 217, 69, -269, 46, 0));
-        blueSpawns.add(new Location(w, 132, 65, -272, -43, 0));
-        redSpawns.add(new Location(w, 177, 65, -223, 171, 0));
-        blueSpawns.add(new Location(w, 183, 64, -216, -89, 0));
-        redSpawns.add(new Location(w, 159, 60, -203, 180, 0));
-        blueSpawns.add(new Location(w, 183, 60, -230, -46, 0));
-        redSpawns.add(new Location(w, 200, 60, -251, 47, 0));
-        blueSpawns.add(new Location(w, 174, 69, -234, 41, 0));
+
+        blueSpawns.add(blueSpawn);
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
@@ -179,6 +163,10 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
             i.setItem(4, STEAK);
             i.setItem(5, HEALTH_POTION);
             i.setItem(6, AMMO);
+
+
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 8 * 20, 1));
 
         }
     }

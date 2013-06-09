@@ -75,29 +75,9 @@ public class Terminal extends BattleMap implements MapInterface, Listener {
 
         // Set red's spawn points (See example at the end of the method)
         redSpawns.add(redSpawn);
-        redSpawns.add(new Location(w, -143, 66, -1211, -50, 0));
-        redSpawns.add(new Location(w, -141, 66, -1142, -152, 0));
-        redSpawns.add(new Location(w, -112, 66, -1162, 116, 0));
-        redSpawns.add(new Location(w, -101, 71, -1159, -51, 0));
-        redSpawns.add(new Location(w, -97, 66, -1171, 156, 0));
-        redSpawns.add(new Location(w, -78, 71, -1188, -88, 0));
-        redSpawns.add(new Location(w, -48, 71, -1197, 90, 0));
-        redSpawns.add(new Location(w, -121, 71, -1190, 121, 0));
-        redSpawns.add(new Location(w, -114, 66, -1191, 43, 0));
-        redSpawns.add(new Location(w, -58, 71, -1147, 156, 0));
 
         // Set blue's spawn points (See example at the end of the method)
         blueSpawns.add(blueSpawn);
-        blueSpawns.add(new Location(w, -142, 66, -1171, -108, 0));
-        blueSpawns.add(new Location(w, -127, 70, -1158, -162, 0));
-        blueSpawns.add(new Location(w, -125, 71, -1132, -95, 0));
-        blueSpawns.add(new Location(w, -109, 71, -1162, -132, 0));
-        blueSpawns.add(new Location(w, -83, 71, -1182, 41, 0));
-        blueSpawns.add(new Location(w, -43, 71, -1168, 124, 0));
-        blueSpawns.add(new Location(w, -91, 71, -1207, -89, 0));
-        blueSpawns.add(new Location(w, -139, 71, -1192, 89, 0));
-        blueSpawns.add(new Location(w, -77, 71, -1169, -90, 0));
-        blueSpawns.add(new Location(w, -91, 71, -1140, 141, 0));
 
         // Add spawns to lists. (Don't change!)
         setRedSpawns(name, redSpawns);

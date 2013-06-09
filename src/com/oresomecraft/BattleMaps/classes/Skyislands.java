@@ -41,7 +41,7 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
     String name = "skyislands";
     String fullName = "Sky Islands";
     String creators = "tarko2411 and dutchy336";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.FFA, Gamemode.INFECTION};
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {

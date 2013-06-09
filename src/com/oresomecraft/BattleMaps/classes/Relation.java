@@ -28,6 +28,7 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 public class Relation extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Relation(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -51,7 +52,7 @@ public class Relation extends BattleMap implements MapInterface, Listener {
         readyTDMSpawns();
         readyFFASpawns();
         setGamemodes(name, modes);
-        addCreators(name, creators); 
+        addCreators(name, creators);
         setFullName(name, fullName);
     }
 
@@ -84,16 +85,16 @@ public class Relation extends BattleMap implements MapInterface, Listener {
         FFASpawns.add(new Location(w, 65, 84, 56, 2, 0));
         FFASpawns.add(new Location(w, 73, 84, 65, 2, 0));
         FFASpawns.add(new Location(w, 64, 84, 73, 2, 0));
-  	FFASpawns.add(new Location(w, 57, 76, 65, 2, 0));
+        FFASpawns.add(new Location(w, 57, 76, 65, 2, 0));
         FFASpawns.add(new Location(w, 65, 76, 56, 2, 0));
         FFASpawns.add(new Location(w, 73, 76, 65, 2, 0));
         FFASpawns.add(new Location(w, 64, 76, 73, 2, 0));
-		FFASpawns.add(new Location(w, 64, 92, 72, 2, 0));
+        FFASpawns.add(new Location(w, 64, 92, 72, 2, 0));
         FFASpawns.add(new Location(w, 64, 92, 56, 2, 0));
-		FFASpawns.add(new Location(w, 47, 88, 47, 2, 0));
-		FFASpawns.add(new Location(w, 82, 88, 82, 2, 0));
-		FFASpawns.add(new Location(w, 82, 80, 47, 2, 0));
-		FFASpawns.add(new Location(w, 47, 80, 82, 2, 0));
+        FFASpawns.add(new Location(w, 47, 88, 47, 2, 0));
+        FFASpawns.add(new Location(w, 82, 88, 82, 2, 0));
+        FFASpawns.add(new Location(w, 82, 80, 47, 2, 0));
+        FFASpawns.add(new Location(w, 47, 80, 82, 2, 0));
 
         setFFASpawns(name, FFASpawns);
     }
@@ -149,9 +150,9 @@ public class Relation extends BattleMap implements MapInterface, Listener {
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
-        int bottomCornerX = x1 < x2 ? x1 : x2; 
-        int bottomCornerZ = z1 < z2 ? z1 : z2; 
+                            int y2, int z1, int z2) {
+        int bottomCornerX = x1 < x2 ? x1 : x2;
+        int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
         int topCornerZ = z1 > z2 ? z1 : z2;
         int bottomCornerY = y1 < y2 ? y1 : y2;
@@ -195,25 +196,25 @@ public class Relation extends BattleMap implements MapInterface, Listener {
         }
 
     }
-	
-	  @EventHandler
-  public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
-      Player p = event.getEntity();
-      List<ItemStack> drops = event.getDrops();
 
-      for (ItemStack item : drops) {
-          Material mat = item.getType();
+    @EventHandler
+    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
+        Player p = event.getEntity();
+        List<ItemStack> drops = event.getDrops();
 
-          if (mat == Material.IRON_SWORD
-                  || mat == Material.BOW
-                  || mat == Material.IRON_BOOTS
-                  || mat == Material.IRON_LEGGINGS
-                  || mat == Material.IRON_CHESTPLATE
-                  || mat == Material.ARROW) {
+        for (ItemStack item : drops) {
+            Material mat = item.getType();
 
-              item.setType(Material.AIR);
-          }
-      }
-  }
+            if (mat == Material.IRON_SWORD
+                    || mat == Material.BOW
+                    || mat == Material.IRON_BOOTS
+                    || mat == Material.IRON_LEGGINGS
+                    || mat == Material.IRON_CHESTPLATE
+                    || mat == Material.ARROW) {
+
+                item.setType(Material.AIR);
+            }
+        }
+    }
 
 }

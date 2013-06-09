@@ -62,26 +62,6 @@ public class Towers extends BattleMap implements MapInterface, Listener {
 
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
-        redSpawns.add(new Location(w, 504, 10, -1142, -135, 0));
-        blueSpawns.add(new Location(w, 542, 10, -1142, 134, 0));
-        redSpawns.add(new Location(w, 542, 10, -1180, 44, 0));
-        blueSpawns.add(new Location(w, 504, 10, -1180, -45, 0));
-        redSpawns.add(new Location(w, 472, 16, -1149, 90, 0));
-        blueSpawns.add(new Location(w, 464, 16, -1156, -89, 0));
-        redSpawns.add(new Location(w, 463, 16, -1176, -91, 0));
-        blueSpawns.add(new Location(w, 561, 12, -1189, 89, 0));
-        redSpawns.add(new Location(w, 555, 19, -1117, 90, 0));
-        blueSpawns.add(new Location(w, 570, 14, -1137, 90, 0));
-        redSpawns.add(new Location(w, 565, 11, -1218, 36, 0));
-        blueSpawns.add(new Location(w, 493, 16, -1129, -136, 0));
-        redSpawns.add(new Location(w, 476, 16, -1119, -89, 0));
-        blueSpawns.add(new Location(w, 469, 15, -1212, -89, 0));
-        redSpawns.add(new Location(w, 580, 21, -1199, 90, 0));
-        blueSpawns.add(new Location(w, 580, 19, -1147, 103, 0));
-        redSpawns.add(new Location(w, 491, 13, -1136, -127, 0));
-        blueSpawns.add(new Location(w, 555, 12, -1175, 66, 0));
-        redSpawns.add(new Location(w, 539, 11, -1231, 12, 0));
-        blueSpawns.add(new Location(w, 486, 13, -1188, -54, 0));
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);

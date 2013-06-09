@@ -68,31 +68,19 @@ public class Hypno extends BattleMap implements MapInterface, Listener {
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
 
-        Location redSpawn = new Location(w, -783, 91, -1331, 159, 0);
-        Location blueSpawn = new Location(w, -814, 83, -1389, -18, 0);
+        redSpawns.add(new Location(w, -773, 102, -1338, 134, 0));
+        redSpawns.add(new Location(w, -779, 92, -1349, 134, 0));
+        redSpawns.add(new Location(w, -759, 81, -1355, 173, 0));
+        redSpawns.add(new Location(w, -747, 63, -1376, 133, 0));
+        redSpawns.add(new Location(w, -772, 63, -1372, -141, 0));
+        redSpawns.add(new Location(w, -757, 72, -1353, 175, 0));
 
-        redSpawns.add(redSpawn);
-        blueSpawns.add(blueSpawn);
-        redSpawns.add(new Location(w, -826, 72, -1439, -44, 0));
-        blueSpawns.add(new Location(w, -781, 72, -1427, -2, 0));
-        redSpawns.add(new Location(w, -817, 62, -1436, -43, 0));
-        blueSpawns.add(new Location(w, -819, 96, -1413, -56, 0));
-        redSpawns.add(new Location(w, -794, 98, -1380, -76, 0));
-        blueSpawns.add(new Location(w, -801, 68, -1389, -44, 0));
-        redSpawns.add(new Location(w, -761, 63, -1401, 10, 0));
-        blueSpawns.add(new Location(w, -829, 110, -1328, -115, 0));
-        redSpawns.add(new Location(w, -802, 69, -1298, -163, 0));
-        blueSpawns.add(new Location(w, -810, 96, -1350, -83, 0));
-        redSpawns.add(new Location(w, -760, 105, -1345, 149, 0));
-        blueSpawns.add(new Location(w, -748, 81, -1344, 136, 0));
-        redSpawns.add(new Location(w, -739, 64, -1371, 97, 0));
-        blueSpawns.add(new Location(w, -791, 83, -1347, -145, 0));
-        redSpawns.add(new Location(w, -767, 108, -1337, 117, 0));
-        blueSpawns.add(new Location(w, -740, 93, -1362, 47, 0));
-        redSpawns.add(new Location(w, -760, 68, -1398, 16, 0));
-        blueSpawns.add(new Location(w, -800, 87, -1384, -103, 0));
-        redSpawns.add(new Location(w, -781, 69, -1424, -18, 0));
-        blueSpawns.add(new Location(w, -746, 73, -1358, 123, 0));
+        blueSpawns.add(new Location(w, -791, 93, -1379, -89, 0));
+        blueSpawns.add(new Location(w, -827, 106, -1379, -54, 0));
+        blueSpawns.add(new Location(w, -810, 91, -1349, -89, 0));
+        blueSpawns.add(new Location(w, -808, 79, -1379, -90, 0));
+        blueSpawns.add(new Location(w, -784, 63, -1418, -34, 0));
+        blueSpawns.add(new Location(w, -800, 62, -1434, -30, 0));
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
