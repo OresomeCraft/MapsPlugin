@@ -72,7 +72,7 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
 
-        Location redSpawn = new Location(w, 175, 64, -272);
+        Location redSpawn = new Location(w, 175, 64, -268, 0, 0);
         Location blueSpawn = new Location(w, 175, 67, -146, 179, 0);
 
         redSpawns.add(redSpawn);
@@ -163,7 +163,6 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
             i.setItem(4, STEAK);
             i.setItem(5, HEALTH_POTION);
             i.setItem(6, AMMO);
-
 
             p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
             p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 8 * 20, 1));
