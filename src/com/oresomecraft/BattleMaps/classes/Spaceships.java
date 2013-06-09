@@ -43,7 +43,7 @@ public class Spaceships extends BattleMap implements MapInterface, Listener {
 
     // Map details
     String name = "spaceships";
-    String fullName = "SpaceShip Battles";
+    String fullName = "SpaceShips";
     String creators = "sampighere, zachoz and R3creat3";
     Gamemode[] modes = {Gamemode.TDM};
     //Map download link: N/A
