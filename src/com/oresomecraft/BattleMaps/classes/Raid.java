@@ -1,11 +1,10 @@
 package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import com.oresomecraft.OresomeBattles.gamemodes.TDM;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,10 +22,12 @@ import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class Raid extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Raid(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -50,7 +51,7 @@ public class Raid extends BattleMap implements MapInterface, Listener {
         readyTDMSpawns();
         readyFFASpawns();
         setGamemodes(name, modes);
-        addCreators(name, creators); 
+        addCreators(name, creators);
         setFullName(name, fullName);
     }
 
@@ -76,17 +77,17 @@ public class Raid extends BattleMap implements MapInterface, Listener {
 
         blueSpawns.add(blueSpawn);
         blueSpawns.add(new Location(w, -79, 66, -6, 3, 0));
-  	blueSpawns.add(new Location(w, -83, 66, -6, 3, 0));
-		blueSpawns.add(new Location(w, -79, 65, -17, 3, 0));
-	    blueSpawns.add(new Location(w, -83, 65, -6, 3, 0));
-		blueSpawns.add(new Location(w, -81, 65, -22, 3, 0));
-		blueSpawns.add(new Location(w, -81, 66, -32, 3, 0));
-		blueSpawns.add(new Location(w, -81, 62, -6, 3, 0));
-		blueSpawns.add(new Location(w, -81, 62, -18, 3, 0));
-		blueSpawns.add(new Location(w, -81, 62, -21, 3, 0));
-		blueSpawns.add(new Location(w, -81, 62, -24, 3, 0));
-		blueSpawns.add(new Location(w, -81, 62, -27, 3, 0));
-		blueSpawns.add(new Location(w, -81, 62, -30, 3, 0));
+        blueSpawns.add(new Location(w, -83, 66, -6, 3, 0));
+        blueSpawns.add(new Location(w, -79, 65, -17, 3, 0));
+        blueSpawns.add(new Location(w, -83, 65, -6, 3, 0));
+        blueSpawns.add(new Location(w, -81, 65, -22, 3, 0));
+        blueSpawns.add(new Location(w, -81, 66, -32, 3, 0));
+        blueSpawns.add(new Location(w, -81, 62, -6, 3, 0));
+        blueSpawns.add(new Location(w, -81, 62, -18, 3, 0));
+        blueSpawns.add(new Location(w, -81, 62, -21, 3, 0));
+        blueSpawns.add(new Location(w, -81, 62, -24, 3, 0));
+        blueSpawns.add(new Location(w, -81, 62, -27, 3, 0));
+        blueSpawns.add(new Location(w, -81, 62, -30, 3, 0));
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
@@ -116,7 +117,7 @@ public class Raid extends BattleMap implements MapInterface, Listener {
             clearInv(p);
 
             ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack STEAK = new ItemStack(Material.COOKED_FISH, 2);
+            ItemStack COOKED_FISH = new ItemStack(Material.COOKED_FISH, 2);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 48);
             ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
@@ -124,22 +125,22 @@ public class Raid extends BattleMap implements MapInterface, Listener {
             ItemStack CHAINMAIL_PANTS = new ItemStack(Material.CHAINMAIL_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-			
-			if (TDM.isBlue(p.getName())) {
-              LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
-              helmetMeta.setColor(Color.BLUE);
-              LEATHER_HELMET.setItemMeta(helmetMeta);
-			  ItemStack ENDER_PEARL = new ItemStack(Material.ENDER_PEARL, 1);
-			  i.setItem(5, ENDER_PEARL);
-          }
 
-          if (TDM.isRed(p.getName())) {
-              LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
-              helmetMeta.setColor(Color.RED);
-              LEATHER_HELMET.setItemMeta(helmetMeta);
-			  ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
-			  i.setItem(2, FISHING_ROD);
-          }
+            if (TDM.isBlue(p.getName())) {
+                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
+                helmetMeta.setColor(Color.BLUE);
+                LEATHER_HELMET.setItemMeta(helmetMeta);
+                ItemStack ENDER_PEARL = new ItemStack(Material.ENDER_PEARL, 1);
+                i.setItem(5, ENDER_PEARL);
+            }
+
+            if (TDM.isRed(p.getName())) {
+                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
+                helmetMeta.setColor(Color.RED);
+                LEATHER_HELMET.setItemMeta(helmetMeta);
+                ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
+                i.setItem(2, FISHING_ROD);
+            }
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(CHAINMAIL_PANTS);
@@ -175,9 +176,9 @@ public class Raid extends BattleMap implements MapInterface, Listener {
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
-        int bottomCornerX = x1 < x2 ? x1 : x2; 
-        int bottomCornerZ = z1 < z2 ? z1 : z2; 
+                            int y2, int z1, int z2) {
+        int bottomCornerX = x1 < x2 ? x1 : x2;
+        int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
         int topCornerZ = z1 > z2 ? z1 : z2;
         int bottomCornerY = y1 < y2 ? y1 : y2;
@@ -193,28 +194,27 @@ public class Raid extends BattleMap implements MapInterface, Listener {
 
     }
 
-	@EventHandler
-  public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
-      Player p = event.getEntity();
-      TagAPI.refreshPlayer(p);
-      List<ItemStack> drops = event.getDrops();
+    @EventHandler
+    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
+        Player p = event.getEntity();
+        List<ItemStack> drops = event.getDrops();
 
-      for (ItemStack item : drops) {
-          Material mat = item.getType();
+        for (ItemStack item : drops) {
+            Material mat = item.getType();
 
-          if (mat == Material.IRON_SWORD
-                  || mat == Material.BOW
-                  || mat == Material.IRON_BOOTS
-                  || mat == Material.CHAINMAIL_LEGGINGS
-                  || mat == Material.IRON_CHESTPLATE
-                  || mat == Material.LEATHER_HELMET
-                  || mat == Material.ARROW
-				  || mat == Material.FISHING_ROD
-				  || mat == Material.ENDER_PEARL
+            if (mat == Material.IRON_SWORD
+                    || mat == Material.BOW
+                    || mat == Material.IRON_BOOTS
+                    || mat == Material.CHAINMAIL_LEGGINGS
+                    || mat == Material.IRON_CHESTPLATE
+                    || mat == Material.LEATHER_HELMET
+                    || mat == Material.ARROW
+                    || mat == Material.FISHING_ROD
+                    || mat == Material.ENDER_PEARL) {
 
-              item.setType(Material.AIR);
-          }
-      }
-  }
+                item.setType(Material.AIR);
+            }
+        }
+    }
 
 }
