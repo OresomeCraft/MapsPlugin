@@ -42,6 +42,7 @@ import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 public class Solitude extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Solitude(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -64,7 +65,7 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
         addMap(name);
         readyTDMSpawns();
         readyFFASpawns();
-        addCreators(name, creators); 
+        addCreators(name, creators);
         setFullName(name, fullName);
         setGamemodes(name, modes);
     }
@@ -163,9 +164,9 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
             ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
             fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
             FISHING_ROD.setItemMeta(fishing_rod);
-            
+
             if (TDM.isBlue(p.getName())) {
-                
+
                 LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
                 helmetMeta.setColor(Color.BLUE);
                 LEATHER_HELMET.setItemMeta(helmetMeta);
@@ -186,7 +187,7 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
             }
 
             if (TDM.isRed(p.getName())) {
-                
+
                 LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
                 helmetMeta.setColor(Color.RED);
                 LEATHER_HELMET.setItemMeta(helmetMeta);
@@ -229,6 +230,7 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
         blueSpawns.clear();
         FFASpawns.clear();
     }
+
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
     public int x1 = 525;
@@ -242,9 +244,9 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
-        int bottomCornerX = x1 < x2 ? x1 : x2; 
-        int bottomCornerZ = z1 < z2 ? z1 : z2; 
+                            int y2, int z1, int z2) {
+        int bottomCornerX = x1 < x2 ? x1 : x2;
+        int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
         int topCornerZ = z1 > z2 ? z1 : z2;
         int bottomCornerY = y1 < y2 ? y1 : y2;
@@ -288,6 +290,7 @@ public class Solitude extends BattleMap implements MapInterface, Listener {
         }
 
     }
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
         PlayerFishEvent.State state = event.getState();

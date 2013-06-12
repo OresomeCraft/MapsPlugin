@@ -47,7 +47,7 @@ public class Insanity extends BattleMap implements MapInterface, Listener {
     String name = "insanity";
     String fullName = "Insanity";
     String creators = "ShaunDepro97, darkrai202";
-    Gamemode[] modes = { Gamemode.FFA, Gamemode.INFECTION };
+    Gamemode[] modes = {Gamemode.FFA, Gamemode.INFECTION};
 
     // Map download link: N/A
 
@@ -192,7 +192,7 @@ public class Insanity extends BattleMap implements MapInterface, Listener {
         if (loc.getWorld().getName().equals(name)) {
             if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
-                if (mat == 43 || mat == 44 || mat == 35 || mat == 42 
+                if (mat == 43 || mat == 44 || mat == 35 || mat == 42
                         || mat == 49 || mat == 123 || mat == 69 || mat == 124) {
 
                     event.setCancelled(true);

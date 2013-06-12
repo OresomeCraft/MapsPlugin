@@ -149,13 +149,13 @@ public class Apollo extends BattleMap implements MapInterface, Listener {
 
             Bukkit.getScheduler().runTask(plugin, new Runnable() {
                 public void run() {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 1000*20,3));
-            }
-        });
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 1000 * 20, 3));
+                }
+            });
+
+        }
 
     }
-
-}
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void clearSpawns(ClearSpawnsEvent event) {
@@ -164,16 +164,16 @@ public class Apollo extends BattleMap implements MapInterface, Listener {
         FFASpawns.clear();
     }
 
-// Region. (Top corner block and bottom corner block.
+    // Region. (Top corner block and bottom corner block.
 // Top left corner.
-public int x1 = -8;
-public int y1 = 164;
-public int z1 = 16;
+    public int x1 = -8;
+    public int y1 = 164;
+    public int z1 = 16;
 
-//Bottom right corner.
-public int x2 = -85;
-public int y2 = 62;
-public int z2 = 99;
+    //Bottom right corner.
+    public int x2 = -85;
+    public int y2 = 62;
+    public int z2 = 99;
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,

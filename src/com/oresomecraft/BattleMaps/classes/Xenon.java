@@ -31,6 +31,7 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 public class Xenon extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Xenon(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -53,7 +54,7 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
         addMap(name);
         readyTDMSpawns();
         readyFFASpawns();
-        addCreators(name, creators); 
+        addCreators(name, creators);
         setFullName(name, fullName);
         setGamemodes(name, modes);
     }
@@ -141,9 +142,9 @@ public class Xenon extends BattleMap implements MapInterface, Listener {
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
-        int bottomCornerX = x1 < x2 ? x1 : x2; 
-        int bottomCornerZ = z1 < z2 ? z1 : z2; 
+                            int y2, int z1, int z2) {
+        int bottomCornerX = x1 < x2 ? x1 : x2;
+        int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
         int topCornerZ = z1 > z2 ? z1 : z2;
         int bottomCornerY = y1 < y2 ? y1 : y2;

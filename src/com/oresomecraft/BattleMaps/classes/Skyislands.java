@@ -27,6 +27,7 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 public class Skyislands extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Skyislands(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -48,7 +49,7 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
         addMap(name);
         readyTDMSpawns();
         readyFFASpawns();
-        addCreators(name, creators); 
+        addCreators(name, creators);
         setFullName(name, fullName);
         setGamemodes(name, modes);
     }
@@ -69,7 +70,7 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
         blueSpawns.add(new Location(w, 738, 170, -1203, 179, 0));
         blueSpawns.add(new Location(w, 734, 170, -1255, 0, 0));
         blueSpawns.add(new Location(w, 771, 182, -1255, 5, 0));
-        blueSpawns.add(new Location(w, 742, 209, -1241, 0, 0));        
+        blueSpawns.add(new Location(w, 742, 209, -1241, 0, 0));
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
@@ -161,9 +162,9 @@ public class Skyislands extends BattleMap implements MapInterface, Listener {
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
-        int bottomCornerX = x1 < x2 ? x1 : x2; 
-        int bottomCornerZ = z1 < z2 ? z1 : z2; 
+                            int y2, int z1, int z2) {
+        int bottomCornerX = x1 < x2 ? x1 : x2;
+        int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
         int topCornerZ = z1 > z2 ? z1 : z2;
         int bottomCornerY = y1 < y2 ? y1 : y2;

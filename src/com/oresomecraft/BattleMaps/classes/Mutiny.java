@@ -26,6 +26,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 public class Mutiny extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Mutiny(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -163,9 +164,9 @@ public class Mutiny extends BattleMap implements MapInterface, Listener {
         Location loc = b.getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
-         if(!contains(loc, x1, x2, y1, y2, z1, z2)){
-            event.setCancelled(true);
-           }
+            if (!contains(loc, x1, x2, y1, y2, z1, z2)) {
+                event.setCancelled(true);
+            }
         }
     }
 }

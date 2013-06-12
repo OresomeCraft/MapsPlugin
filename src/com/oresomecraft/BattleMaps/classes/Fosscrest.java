@@ -27,6 +27,7 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 public class Fosscrest extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Fosscrest(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -49,7 +50,7 @@ public class Fosscrest extends BattleMap implements MapInterface, Listener {
         addMap(name);
         readyTDMSpawns();
         readyFFASpawns();
-        addCreators(name, creators); 
+        addCreators(name, creators);
         setFullName(name, fullName);
         setGamemodes(name, modes);
     }
@@ -75,7 +76,7 @@ public class Fosscrest extends BattleMap implements MapInterface, Listener {
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, 212, 131, -1274));
-        FFASpawns.add(new Location(w, 237, 120, -1263 ));
+        FFASpawns.add(new Location(w, 237, 120, -1263));
         FFASpawns.add(new Location(w, 261, 116, -1294));
         FFASpawns.add(new Location(w, 241, 120, -1310));
         FFASpawns.add(new Location(w, 187, 112, -1269));
@@ -141,9 +142,9 @@ public class Fosscrest extends BattleMap implements MapInterface, Listener {
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
-        int bottomCornerX = x1 < x2 ? x1 : x2; 
-        int bottomCornerZ = z1 < z2 ? z1 : z2; 
+                            int y2, int z1, int z2) {
+        int bottomCornerX = x1 < x2 ? x1 : x2;
+        int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
         int topCornerZ = z1 > z2 ? z1 : z2;
         int bottomCornerY = y1 < y2 ? y1 : y2;

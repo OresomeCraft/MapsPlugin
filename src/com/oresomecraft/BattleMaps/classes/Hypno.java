@@ -40,6 +40,7 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 public class Hypno extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Hypno(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -127,7 +128,7 @@ public class Hypno extends BattleMap implements MapInterface, Listener {
 
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
             ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE,  1);
+            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);

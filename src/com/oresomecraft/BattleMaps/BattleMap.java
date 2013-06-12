@@ -17,6 +17,7 @@ public class BattleMap implements Listener {
 
     OresomeBattlesMaps plugin;
     public OresomeBattles battles;
+
     public BattleMap(OresomeBattlesMaps pl) {
         plugin = pl;
         battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");

@@ -34,6 +34,7 @@ import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 public class Mansion extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Mansion(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -57,7 +58,7 @@ public class Mansion extends BattleMap implements MapInterface, Listener {
         addMap(name);
         readyTDMSpawns();
         readyFFASpawns();
-        addCreators(name, creators); 
+        addCreators(name, creators);
         setFullName(name, fullName);
         setGamemodes(name, modes);
     }
@@ -204,12 +205,12 @@ public class Mansion extends BattleMap implements MapInterface, Listener {
                 chestplateMeta.setColor(Color.RED);
                 LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
             }
-            
+
             p.getInventory().setBoots(LEATHER_BOOTS);
             p.getInventory().setLeggings(LEATHER_PANTS);
             p.getInventory().setChestplate(LEATHER_CHESTPLATE);
             p.getInventory().setHelmet(MASK);
-            
+
             i.setItem(0, STONE_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, EXP);
@@ -228,17 +229,17 @@ public class Mansion extends BattleMap implements MapInterface, Listener {
         FFASpawns.clear();
     }
 
-    public  int x1 = 410;
-    public  int y1 = 59;
-    public  int z1 = -329;
-    public  int x2 = 473;
-    public  int y2 = 101;
-    public  int z2 = -228;
+    public int x1 = 410;
+    public int y1 = 59;
+    public int z1 = -329;
+    public int x2 = 473;
+    public int y2 = 101;
+    public int z2 = -228;
 
     public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
+                            int y2, int z1, int z2) {
         int bottomCornerX = x1 < x2 ? x1 : x2;
-        int bottomCornerZ = z1 < z2 ? z1 : z2; 
+        int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
         int topCornerZ = z1 > z2 ? z1 : z2;
         int bottomCornerY = y1 < y2 ? y1 : y2;

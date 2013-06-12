@@ -35,6 +35,7 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 public class Arctic extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Arctic(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;

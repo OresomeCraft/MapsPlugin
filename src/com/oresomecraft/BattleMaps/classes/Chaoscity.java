@@ -35,6 +35,7 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 public class Chaoscity extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Chaoscity(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -141,7 +142,7 @@ public class Chaoscity extends BattleMap implements MapInterface, Listener {
 
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
             ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE,  1);
+            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
@@ -192,7 +193,7 @@ public class Chaoscity extends BattleMap implements MapInterface, Listener {
 
     // getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
+                            int y2, int z1, int z2) {
         int bottomCornerX = x1 < x2 ? x1 : x2;
         int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
@@ -222,7 +223,7 @@ public class Chaoscity extends BattleMap implements MapInterface, Listener {
         String name = p.getName();
 
         if (battles.spectator.contains(name)) {
-            event.setCancelled(true); 
+            event.setCancelled(true);
         } else {
             if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
@@ -285,7 +286,6 @@ public class Chaoscity extends BattleMap implements MapInterface, Listener {
 
             event.setCancelled(true);
         }
-
 
 
     }

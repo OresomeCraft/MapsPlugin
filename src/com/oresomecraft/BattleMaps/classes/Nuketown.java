@@ -36,6 +36,7 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 public class Nuketown extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Nuketown(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -57,7 +58,7 @@ public class Nuketown extends BattleMap implements MapInterface, Listener {
         addMap(name);
         readyTDMSpawns();
         readyFFASpawns();
-        addCreators(name, creators); 
+        addCreators(name, creators);
         setFullName(name, fullName);
         setGamemodes(name, modes);
     }
@@ -173,7 +174,7 @@ public class Nuketown extends BattleMap implements MapInterface, Listener {
     public int z2 = 194;
 
     public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
+                            int y2, int z1, int z2) {
         int bottomCornerX = x1 < x2 ? x1 : x2;
         int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;

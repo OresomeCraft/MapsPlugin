@@ -168,7 +168,7 @@ public class Battlement extends BattleMap implements MapInterface, Listener {
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1, int y2,
-            int z1, int z2) {
+                            int z1, int z2) {
         int bottomCornerX = x1 < x2 ? x1 : x2;
         int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;

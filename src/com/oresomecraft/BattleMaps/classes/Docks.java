@@ -28,6 +28,7 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 public class Docks extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Docks(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -51,7 +52,7 @@ public class Docks extends BattleMap implements MapInterface, Listener {
         setGamemodes(name, modes);
         readyTDMSpawns();
         readyFFASpawns();
-        addCreators(name, creators); 
+        addCreators(name, creators);
         setFullName(name, fullName);
     }
 
@@ -85,8 +86,8 @@ public class Docks extends BattleMap implements MapInterface, Listener {
         FFASpawns.add(new Location(w, 1750, 22, 509, 179, 0));
         FFASpawns.add(new Location(w, 1750, 22, 470, 0, 0));
         FFASpawns.add(new Location(w, 1721, 22, 489, 0, -90));
-        FFASpawns.add(new Location(w, 1704, 18, 490, -90, 0));    
-        FFASpawns.add(new Location(w, 1704, 23, 490, -90, 0));	
+        FFASpawns.add(new Location(w, 1704, 18, 490, -90, 0));
+        FFASpawns.add(new Location(w, 1704, 23, 490, -90, 0));
         FFASpawns.add(new Location(w, 1704, 26, 490, -90, 0));
         FFASpawns.add(new Location(w, 1704, 30, 490, -90, 0));
 
@@ -150,9 +151,9 @@ public class Docks extends BattleMap implements MapInterface, Listener {
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
-        int bottomCornerX = x1 < x2 ? x1 : x2; 
-        int bottomCornerZ = z1 < z2 ? z1 : z2; 
+                            int y2, int z1, int z2) {
+        int bottomCornerX = x1 < x2 ? x1 : x2;
+        int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
         int topCornerZ = z1 > z2 ? z1 : z2;
         int bottomCornerY = y1 < y2 ? y1 : y2;
@@ -196,16 +197,16 @@ public class Docks extends BattleMap implements MapInterface, Listener {
         }
 
     }
-	
-	@EventHandler
+
+    @EventHandler
     public void arrowBoom(org.bukkit.event.entity.ProjectileHitEvent event) {
-      org.bukkit.entity.Entity arrow = event.getEntity();
-      World world = Bukkit.getWorld(name);
-      if (Utility.getArena().equals(name)) {
-          if (arrow instanceof org.bukkit.entity.Arrow) {
-              world.playEffect(arrow.getLocation(), org.bukkit.Effect.STEP_SOUND, 119);
-          }
-      }
-  }
+        org.bukkit.entity.Entity arrow = event.getEntity();
+        World world = Bukkit.getWorld(name);
+        if (Utility.getArena().equals(name)) {
+            if (arrow instanceof org.bukkit.entity.Arrow) {
+                world.playEffect(arrow.getLocation(), org.bukkit.Effect.STEP_SOUND, 119);
+            }
+        }
+    }
 
 }

@@ -26,6 +26,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 public class Darknessofdusk extends BattleMap implements MapInterface, Listener {
 
     OresomeBattlesMaps plugin;
+
     public Darknessofdusk(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
@@ -52,6 +53,7 @@ public class Darknessofdusk extends BattleMap implements MapInterface, Listener 
         addCreators(name, creators);
         setFullName(name, fullName);
     }
+
     //Tdm isn't enabled on this, don't need to do spawns.
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
