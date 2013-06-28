@@ -310,12 +310,9 @@ public class Hartshire extends BattleMap implements MapInterface, Listener {
 
                 p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 2));
 
-                inv.removeItem(new ItemStack(Material.INK_SACK));
-
-                p.updateInventory();
+                inv.removeItem(p.getItemInHand());
             }
         }
 
     }
-
 }
