@@ -24,7 +24,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
     }
 
     public void loadMaps() {
-        
+
         new Zoned(this);
         new BattleMap(this);
         new Perro(this);
