@@ -53,6 +53,7 @@ public class Zoned extends BattleMap implements MapInterface, Listener {
         addMap(name);
         readyTDMSpawns();
         readyFFASpawns();
+        setGamemodes(name, modes);
         addCreators(name, creators);
         setFullName(name, fullName);
     }
@@ -61,11 +62,12 @@ public class Zoned extends BattleMap implements MapInterface, Listener {
         World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, -2, 87, 68));
         blueSpawns.add(new Location(w, -2, 87, -45));
+        setRedSpawns(name, redSpawns);
+        setBlueSpawns(name, blueSpawns);
+
         Location blueFlag = new Location(w, -3, 89, -56);
         Location redFlag = new Location(w, -3, 89, -56);
         setCTFFlags(name, redFlag, blueFlag);
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
@@ -73,7 +75,7 @@ public class Zoned extends BattleMap implements MapInterface, Listener {
         World w = Bukkit.getServer().getWorld(name);
 
         FFASpawns.add(new Location(w, -2, 87, 68));
-        FFASpawns.add(new Location(w, -2, 87, -45));
+        FFASpawns.add(new Location(w, -2, 89, -78));
         setFFASpawns(name, FFASpawns);
     }
 
