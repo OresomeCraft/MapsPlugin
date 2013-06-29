@@ -40,7 +40,7 @@ public class Voidsflag extends BattleMap implements MapInterface, Listener {
 
 	// Map details
 	String name = "voidsflag";
-	String fullName = "Void's Flag";
+	String fullName = "Voids Flag";
 	String creators = "_Moist, MiCkEyMiCE and R3creat3";
 	Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
 	//Map download link: N/A
@@ -117,7 +117,6 @@ public class Voidsflag extends BattleMap implements MapInterface, Listener {
 			i.setItem(3, STONE_AXE);
 			i.setItem(4, COOKED_PORKCHOP);
 			i.setItem(5, BIRCH_LOG);
-			i.setItem(6, LEATHER);
 			i.setItem(7, ARROW);
 
 			if (TDM.isBlue(p.getName())) {
