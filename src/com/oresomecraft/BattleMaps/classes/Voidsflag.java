@@ -19,6 +19,7 @@ import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.Gamemode;
+import com.oresomecraft.OresomeBattles.Utility;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
@@ -219,18 +220,16 @@ public class Voidsflag extends BattleMap implements MapInterface, Listener {
         Location loc = b.getLocation();
         Player player = event.getPlayer();
 
-        if (!contains(loc, x1, x2, y1, y2, z1, z2)) {
+        if (Utility.getArena().equals(name)) {
 
-            event.setCancelled(true);
-        }
-
-        if (contains(loc, -357, -177, 3, 69, -8, 109) && TDM.isBlue(player.getName())) {
-            event.setCancelled(true);
-            player.sendMessage(ChatColor.RED + "TNT can only be placed on the enemy side");
-        }
-        if (contains(loc, -186, 10, 71, 4, 108, -7) && TDM.isRed(player.getName())) {
-            event.setCancelled(true);
-            player.sendMessage(ChatColor.RED + "TNT can only be placed on the enemy side");
+            if (contains(loc, -357, -177, 3, 69, -8, 109) && TDM.isBlue(player.getName())) {
+                event.setCancelled(true);
+                player.sendMessage(ChatColor.RED + "TNT can only be placed on the enemy side");
+            }
+            if (contains(loc, -186, 10, 71, 4, 108, -7) && TDM.isRed(player.getName())) {
+                event.setCancelled(true);
+                player.sendMessage(ChatColor.RED + "TNT can only be placed on the enemy side");
+            }
         }
     }
 
