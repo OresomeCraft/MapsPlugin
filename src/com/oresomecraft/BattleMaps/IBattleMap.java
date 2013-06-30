@@ -6,7 +6,7 @@ import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public interface MapInterface {
+public interface IBattleMap {
 
     public void readyMap(ReadyMapsEvent event);
 

@@ -25,6 +25,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -38,7 +39,7 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Wartown extends BattleMap implements MapInterface, Listener {
+public class Wartown extends BattleMap implements IBattleMap, Listener {
 
     OresomeBattlesMaps plugin;
 
@@ -59,14 +60,19 @@ public class Wartown extends BattleMap implements MapInterface, Listener {
     // Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void readyMap(ReadyMapsEvent event) {
+    public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
         addMap(name);
-        readyTDMSpawns();
-        readyFFASpawns();
         addCreators(name, creators);
         setFullName(name, fullName);
         setGamemodes(name, modes);
-        arrowParticles();
+    }
+
+    @EventHandler
+    public void setSpawns(WorldLoadEvent event) { // Internal - Do not change
+        if (event.getWorld().getName().equals(name)) {
+            readyTDMSpawns();
+            readyFFASpawns();
+        }
     }
 
     public void readyTDMSpawns() {

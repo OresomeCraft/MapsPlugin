@@ -2,6 +2,7 @@ package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
 
+import com.oresomecraft.BattleMaps.IBattleMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,11 +15,11 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
@@ -27,7 +28,7 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Apollo extends BattleMap implements MapInterface, Listener {
+public class Apollo extends BattleMap implements IBattleMap, Listener {
 
     OresomeBattlesMaps plugin;
 
@@ -52,10 +53,16 @@ public class Apollo extends BattleMap implements MapInterface, Listener {
     public void readyMap(ReadyMapsEvent event) {
         addMap(name);
         setGamemodes(name, modes);
-        readyTDMSpawns();
-        readyFFASpawns();
         addCreators(name, creators);
         setFullName(name, fullName);
+    }
+
+    @EventHandler
+    public void setSpawns(WorldLoadEvent event) { // Internal - Do not change
+        if (event.getWorld().getName().equals(name)) {
+            readyTDMSpawns();
+            readyFFASpawns();
+        }
     }
 
     public void readyTDMSpawns() {

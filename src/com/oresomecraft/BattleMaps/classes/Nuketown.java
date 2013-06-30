@@ -3,6 +3,7 @@ package com.oresomecraft.BattleMaps.classes;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.oresomecraft.BattleMaps.IBattleMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.EntityEffect;
@@ -21,11 +22,11 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.BattleMaps.MapInterface;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.Utility;
@@ -33,7 +34,7 @@ import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class Nuketown extends BattleMap implements MapInterface, Listener {
+public class Nuketown extends BattleMap implements IBattleMap, Listener {
 
     OresomeBattlesMaps plugin;
 
@@ -54,13 +55,19 @@ public class Nuketown extends BattleMap implements MapInterface, Listener {
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void readyMap(ReadyMapsEvent event) {
+    public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
         addMap(name);
-        readyTDMSpawns();
-        readyFFASpawns();
         addCreators(name, creators);
         setFullName(name, fullName);
         setGamemodes(name, modes);
+    }
+
+    @EventHandler
+    public void setSpawns(WorldLoadEvent event) { // Internal - Do not change
+        if (event.getWorld().getName().equals(name)) {
+            readyTDMSpawns();
+            readyFFASpawns();
+        }
     }
 
     public void readyTDMSpawns() {
