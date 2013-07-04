@@ -45,7 +45,7 @@ public class DimensionalWar extends BattleMap implements IBattleMap, Listener {
     // Map details
     String name = "dimensional";
     String fullName = "Dimensional War";
-    String creators = "ninsai";
+    String creators = "ninsai ";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
     //Map download link: N/A
 
@@ -69,26 +69,28 @@ public class DimensionalWar extends BattleMap implements IBattleMap, Listener {
         World w = Bukkit.getServer().getWorld(name);
 
         Location redSpawn = new Location(w, -11, 150, 72, 179, 0);
-        Location blueSpawn = new Location(w, -1610, 55, 50, -0.04144287, 0); // what are the last 2 paramaters? :_:
+        Location blueSpawn = new Location(w, -1610, 55, 50, 0, 0); // what are the last 2 paramaters? :_:
         // location is new Location(world,x,y,z); no?
 
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
-        
+
         Location blueFlag = new Location(w, -1610, 56, -263);
         Location redFlag = new Location(w, -1617, 56, -363);
         setCTFFlags(name, redFlag, blueFlag);
     }
 
     public void readyFFASpawns() {
+        World w = Bukkit.getServer().getWorld(name);
+
         Location redSpawn = new Location(w, -11, 150, 72, 179, 0);
-        Location blueSpawn = new Location(w, -1610, 55, 50, -0.0, 0);
-        
+        Location blueSpawn = new Location(w, -1610, 55, 50, 0, 0);
+
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-        
+
         setFFASpawns(name, FFASpawns);
     }
 
@@ -136,7 +138,7 @@ public class DimensionalWar extends BattleMap implements IBattleMap, Listener {
     }
 
     // Region. (Top corner block and bottom corner block.
-// Top left corner.
+    // Top left corner.
     public int x1 = -1631;
     public int y1 = 55;
     public int z1 = -369;
