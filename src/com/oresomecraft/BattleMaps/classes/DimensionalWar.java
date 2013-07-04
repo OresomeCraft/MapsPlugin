@@ -32,7 +32,7 @@ public class DimensionalWar extends BattleMap implements IBattleMap, Listener {
 
     OresomeBattlesMaps plugin;
 
-    public Apollo(OresomeBattlesMaps pl) {
+    public DimensionalWar(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
     }
@@ -76,11 +76,15 @@ public class DimensionalWar extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(blueSpawn);
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
+        
+        Location blueFlag = new Location(w, -1610, 56, -263);
+        Location redFlag = new Location(w, -1617, 56, -363);
+        setCTFFlags(name, redFlag, blueFlag);
     }
 
     public void readyFFASpawns() {
         Location redSpawn = new Location(w, -11, 150, 72, 179, 0);
-        Location blueSpawn = new Location(w, -1610, 55, 50, -0.04144287, 0);
+        Location blueSpawn = new Location(w, -1610, 55, 50, -0.0, 0);
         
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
