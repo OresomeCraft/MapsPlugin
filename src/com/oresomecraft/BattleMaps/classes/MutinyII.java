@@ -74,6 +74,8 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
+        
+        fixChests(); // calls my method
     }
 
     public void readyFFASpawns() {
@@ -173,17 +175,45 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     public void onPlace(BlockPlaceEvent event) {
         if (Utility.getArena().equals(name)) {
             Location loc = event.getBlock().getLocation();
-            // Red tean
+            // Red team
             if (contains(loc, -12, -25, 88, 83, -46, -60)) {
                 event.setCancelled(true);
             }
 
-            // Blue tean
+            // Blue team
             if (contains(loc, -12, -25, 88, 83, 20, 6)) {
                 event.setCancelled(true);
             }
         }
     }
+    
+    /**
+     * Propesed fix for the chest not letting you get the loot, MAP = Mutiny II
+     * 
+     * Theory:
+     * All the packets being sent for TP/Loading map stuff with Containers (eg; chest)
+     * -- reloading chunk 'may' work.
+     * 
+     * All code has been checked, no syntax errors
+     * 
+     * Sorry for the format, :)
+     * 
+     * 5 second delay for those with bad internet, they have recieved the packet unless they have 5000 ping.
+     **/
 
+    private void fixChests() {
+    		if (Utility.getArena().equals(name)) {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+				    @Override
+					public void run() {
+						for(Player s : Bukkit.getOnlinePlayers()) {
+							s.getLocation().getChunk().unload(true);
+							s.getLocation().getChunk().load(true);
+						}
+                        System.out.println("debug: chunks reloaded for all players on server currently!");
+					}
+				} (20 * 5), 20);
+			}
+		}
 
 }
