@@ -14,6 +14,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -46,13 +47,19 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void readyMap(ReadyMapsEvent event) {
+    public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
         addMap(name);
-        readyTDMSpawns();
-        readyFFASpawns();
-        setGamemodes(name, modes);
         addCreators(name, creators);
         setFullName(name, fullName);
+        setGamemodes(name, modes);
+    }
+
+    @EventHandler
+    public void setSpawns(WorldLoadEvent event) { // Internal - Do not change
+        if (event.getWorld().getName().equals(name)) {
+            readyTDMSpawns();
+            readyFFASpawns();
+        }
     }
 
     public void readyTDMSpawns() {
