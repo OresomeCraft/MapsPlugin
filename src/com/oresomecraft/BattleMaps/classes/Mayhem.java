@@ -1,39 +1,35 @@
 package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.entity.EnderPearl;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityShootBowEvent;
-import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
-import com.oresomecraft.OresomeBattles.BattleHandler;
 import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
-public class Xenon extends BattleMap implements IBattleMap, Listener {
+public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
     OresomeBattlesMaps plugin;
 
-    public Xenon(OresomeBattlesMaps pl) {
+    public Mayhem(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
     }
@@ -44,36 +40,31 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
     // Map details
-    String name = "xenon";
-    String fullName = "Xenon";
-    String creators = "kalikakitty ";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
-    //Map download link: N/A
+    String name = "mayhem";
+    String fullName = "Mayhem";
+    String creators = "ShaunDepro97, meganlovesmusic, and Kytria";
+    Gamemode[] modes = {Gamemode.TDM};
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
+    public void readyMap(ReadyMapsEvent event) {
         addMap(name);
+        readyTDMSpawns();
+        readyFFASpawns();
+        setGamemodes(name, modes);
         addCreators(name, creators);
         setFullName(name, fullName);
-        setGamemodes(name, modes);
-    }
-
-    @EventHandler
-    public void setSpawns(WorldLoadEvent event) { // Internal - Do not change
-        if (event.getWorld().getName().equals(name)) {
-            readyTDMSpawns();
-            readyFFASpawns();
-        }
     }
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
-        Location redSpawn = new Location(w, 33, 2, 25);
-        Location blueSpawn = new Location(w, 73, 2, -14);
+
+        Location redSpawn = new Location(w, 64, 112, 111, 2, 0);
+        Location blueSpawn = new Location(w, 23, 112, 63, 3, 0);
 
         redSpawns.add(redSpawn);
 
         blueSpawns.add(blueSpawn);
+
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
     }
@@ -82,17 +73,12 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
 
         World w = Bukkit.getServer().getWorld(name);
 
-        Location redSpawn = new Location(w, 33, 2, 25);
-        Location blueSpawn = new Location(w, 73, 2, -14);
+        Location redSpawn = new Location(w, 64, 112, 111, 2, 0);
+        Location blueSpawn = new Location(w, 23, 112, 63, 3, 0);
 
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-        FFASpawns.add(new Location(w, 33, 2, -13));
-        FFASpawns.add(new Location(w, 73, 2, 25));
-        FFASpawns.add(new Location(w, 53, 3, 47));
-        FFASpawns.add(new Location(w, 17, 2, 5));
-        FFASpawns.add(new Location(w, 53, 3, -36));
-        FFASpawns.add(new Location(w, 53, 11, 5));
+
         setFFASpawns(name, FFASpawns);
     }
 
@@ -106,25 +92,25 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
             clearInv(p);
 
             ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
+            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 16);
-            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+            ItemStack ARROWS = new ItemStack(Material.ARROW, 48);
             ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+            ItemStack DIAMOND_PICKAXE = new ItemStack(Material.DIAMOND_PICKAXE, 1);
+            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 6);
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
             p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
 
-            i.setItem(0, IRON_SWORD);
+            i.setItem(0, DIAMOND_PICKAXE);
             i.setItem(1, BOW);
             i.setItem(2, STEAK);
             i.setItem(3, HEALTH_POTION);
-            i.setItem(8, ARROWS);
+            i.setItem(28, ARROWS);
+            i.setItem(8, EXP);
 
         }
     }
@@ -138,14 +124,14 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 7;
-    public int y1 = 66;
-    public int z1 = 52;
+    public int x1 = 0;
+    public int y1 = 1;
+    public int z1 = 0;
 
     //Bottom right corner.
-    public int x2 = 93;
-    public int y2 = 0;
-    public int z2 = -37;
+    public int x2 = 128;
+    public int y2 = 255;
+    public int z2 = 128;
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
@@ -197,21 +183,24 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void onFireBow(EntityShootBowEvent event) {
-        if (BattleHandler.activeArena.equals(name)) {
+    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
+        Player p = event.getEntity();
+        List<ItemStack> drops = event.getDrops();
 
-            if (event.getEntityType() == EntityType.PLAYER) {
+        for (ItemStack item : drops) {
+            Material mat = item.getType();
 
-                Player player = (Player) event.getEntity();
-                if (player.getInventory().contains(Material.ARROW)) {
-                    event.setCancelled(true);
-                    player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
-                    player.launchProjectile(EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
-                } else {
-                    event.setCancelled(true);
-                }
+            if (mat == Material.BOW
+                    || mat == Material.IRON_BOOTS
+                    || mat == Material.IRON_LEGGINGS
+                    || mat == Material.IRON_CHESTPLATE
+                    || mat == Material.FISHING_ROD
+                    || mat == Material.DIAMOND_PICKAXE
+                    || mat == Material.ARROW) {
+
+                item.setType(Material.AIR);
             }
         }
-
     }
+
 }

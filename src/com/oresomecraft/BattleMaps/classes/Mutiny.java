@@ -38,7 +38,7 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
     // Map details
     String name = "mutiny";
     String fullName = "Mutiny";
-    String creators = "R3creat3, DynaDavidson and JacquiRose";
+    String creators = "DynaDavidson and JacquiRose";
     Gamemode[] modes = {Gamemode.INFECTION, Gamemode.TDM};
     //Map download link: N/A
 
