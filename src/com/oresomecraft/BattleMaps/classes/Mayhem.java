@@ -3,6 +3,7 @@ package com.oresomecraft.BattleMaps.classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.oresomecraft.OresomeBattles.Utility;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -15,6 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.world.WorldLoadEvent;
+import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -25,6 +27,8 @@ import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
@@ -59,6 +63,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
         if (event.getWorld().getName().equals(name)) {
             readyTDMSpawns();
             readyFFASpawns();
+            cyclePowerBlock();
         }
     }
 
@@ -206,6 +211,56 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
                     || mat == Material.ARROW) {
 
                 item.setType(Material.AIR);
+            }
+        }
+    }
+
+    int timer;
+    int count = 0;
+    Location powerBlock = new Location(Bukkit.getWorld(name), 64, 110, 64);
+
+    private void cyclePowerBlock() {
+
+        timer = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+            public void run() {
+                Material[] blocks = {Material.REDSTONE_ORE, Material.GOLD_ORE, Material.COAL_ORE,
+                        Material.EMERALD_ORE, Material.LAPIS_ORE, Material.DIAMOND_ORE};
+                int max = blocks.length;
+
+                World world = Bukkit.getWorld(name);
+                world.getBlockAt(powerBlock).setType(blocks[count]);
+
+                count = count > max ? count = 0 : count++;
+            }
+
+        }, (20 * 60), (20 * 60));
+
+    }
+
+    @EventHandler
+    public void worldUnload(WorldUnloadEvent event) {
+        if (event.getWorld().getName().equals(name)) {
+            Bukkit.getScheduler().cancelTask(timer);
+        }
+    }
+
+    @EventHandler
+    public void powerBlock(BlockBreakEvent event) {
+        Player p = event.getPlayer();
+        Material type = event.getBlock().getType();
+        int potionTime = 45;
+
+        if (Utility.compareLocations(powerBlock, event.getBlock().getLocation())) {
+            if (type == Material.REDSTONE_ORE) {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, potionTime, 2));
+            } else if (type == Material.GOLD_ORE) {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, potionTime, 2));
+            } else if (type == Material.COAL_ORE) {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, potionTime, 2));
+            } else if (type == Material.LAPIS_ORE) {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, potionTime, 2));
+            } else if (type == Material.DIAMOND_ORE) {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, potionTime, 2));
             }
         }
     }
