@@ -3,12 +3,10 @@ package com.oresomecraft.BattleMaps.classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.oresomecraft.OresomeBattles.EssUtil;
 import com.oresomecraft.OresomeBattles.Utility;
 import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -234,7 +232,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
                 count = count >= max ? count = 1 : (count + 1);
             }
 
-        }, (20 * 60), (20 * 60));
+        }, (20 * 40), (20 * 40));
 
     }
 
@@ -253,21 +251,27 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
         if (Utility.compareLocations(powerBlock, event.getBlock().getLocation())) {
 
-            if (type == Material.REDSTONE_ORE || type == Material.GLOWING_REDSTONE_ORE) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, potionTime, 2));
-            } else if (type == Material.GOLD_ORE) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, potionTime, 2));
-            } else if (type == Material.COAL_ORE) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, potionTime, 2));
-            } else if (type == Material.LAPIS_ORE) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, potionTime, 2));
-            } else if (type == Material.DIAMOND_ORE) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, potionTime, 2));
-            } else if (type == Material.EMERALD_ORE) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, potionTime, 2));
-            }
+            if (!(type == Material.COBBLESTONE)) {
 
-            event.getBlock().breakNaturally();
+                if (type == Material.REDSTONE_ORE || type == Material.GLOWING_REDSTONE_ORE) {
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, potionTime, 2));
+                } else if (type == Material.GOLD_ORE) {
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, potionTime, 2));
+                } else if (type == Material.COAL_ORE) {
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, potionTime, 2));
+                } else if (type == Material.LAPIS_ORE) {
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, potionTime, 2));
+                } else if (type == Material.DIAMOND_ORE) {
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, potionTime, 2));
+                } else if (type == Material.EMERALD_ORE) {
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, potionTime, 2));
+                }
+
+                event.getBlock().setType(Material.COBBLESTONE);
+            } else {
+                p.sendMessage(ChatColor.DARK_AQUA + "The power block has already been broken!");
+                p.sendMessage(ChatColor.DARK_AQUA + "Please wait for it to cycle again!");
+            }
         }
     }
 
