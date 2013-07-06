@@ -61,6 +61,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Raid(this);
         new Voidsflag(this);
         new DimensionalWar(this);
+        new Mayhem(this);
         
     }
 

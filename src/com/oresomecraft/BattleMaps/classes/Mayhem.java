@@ -216,7 +216,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     }
 
     int timer;
-    int count = 0;
+    int count = 1;
     Location powerBlock = new Location(Bukkit.getWorld(name), 64, 110, 64);
 
     private void cyclePowerBlock() {
@@ -228,9 +228,9 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
                 int max = blocks.length;
 
                 World world = Bukkit.getWorld(name);
-                world.getBlockAt(powerBlock).setType(blocks[count]);
+                world.getBlockAt(powerBlock).setType(blocks[(count - 1)]);
 
-                count = count > max ? count = 0 : count++;
+                count = count >= max ? count = 1 : (count + 1);
             }
 
         }, (20 * 60), (20 * 60));
@@ -248,10 +248,11 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     public void powerBlock(BlockBreakEvent event) {
         Player p = event.getPlayer();
         Material type = event.getBlock().getType();
-        int potionTime = 45;
+        int potionTime = 45 * 20;
 
         if (Utility.compareLocations(powerBlock, event.getBlock().getLocation())) {
-            if (type == Material.REDSTONE_ORE) {
+
+            if (type == Material.REDSTONE_ORE || type == Material.GLOWING_REDSTONE_ORE) {
                 p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, potionTime, 2));
             } else if (type == Material.GOLD_ORE) {
                 p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, potionTime, 2));
@@ -261,7 +262,11 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
                 p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, potionTime, 2));
             } else if (type == Material.DIAMOND_ORE) {
                 p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, potionTime, 2));
+            } else if (type == Material.EMERALD_ORE) {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, potionTime, 2));
             }
+
+            event.getBlock().breakNaturally();
         }
     }
 
