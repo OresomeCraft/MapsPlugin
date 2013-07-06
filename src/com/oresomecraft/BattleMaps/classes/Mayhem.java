@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.oresomecraft.OresomeBattles.Utility;
+import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -238,8 +239,8 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void worldUnload(WorldUnloadEvent event) {
-        if (event.getWorld().getName().equals(name)) {
+    public void battleEnd(BattleEndEvent event) {
+        if (Utility.getArena().equals(name)) {
             Bukkit.getScheduler().cancelTask(timer);
         }
     }
