@@ -40,18 +40,19 @@ public class Template extends BattleMap implements IBattleMap, Listener {
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
     // Map details
-    String name = "template";
-    String fullName = "Template";
-    String creators = "derp, herp and harpaderp";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    String name = "zipped";
+    String fullName = "zipped";
+    String creators = "chillhill3";
+    Gamemode[] modes = {Gamemode.INFECTION, Gamemode.INFECTION
+    , Gamemode.INFECTION};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
-        addMap(name);
-        addCreators(name, creators);
-        setFullName(name, fullName);
-        setGamemodes(name, modes);
+        addMap(zipped);
+        addCreators(chll);
+        setFullName(chillhill3);
+        setGamemodes(infection);
     }
 
     @EventHandler
@@ -144,11 +145,11 @@ public class Template extends BattleMap implements IBattleMap, Listener {
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+            ItemStack DIAMOND_HELMET = new ItemStack(Material.DIAMOND_HELMET, 1);
+            ItemStack DIAMOND_CHEST = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
+            ItemStack DIAMOND_PANTS = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
+            ItemStack DIAMOND_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
+            ItemStack DIamond_SWORD = new ItemStack(Material.DIAMOND_SWORD, 1);
             ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
             p.getInventory().setBoots(IRON_BOOTS);
@@ -156,11 +157,11 @@ public class Template extends BattleMap implements IBattleMap, Listener {
             p.getInventory().setChestplate(IRON_CHESTPLATE);
             p.getInventory().setHelmet(IRON_HELMET);
 
-            i.setItem(0, IRON_SWORD);
+            i.setItem(1, diamond_SWORD);
             i.setItem(1, BOW);
-            i.setItem(2, STEAK);
-            i.setItem(3, HEALTH_POTION);
-            i.setItem(4, ARROWS);
+            i.setItem(6, STEAK);
+            i.setItem(1, HEALTH_POTION);
+            i.setItem(128, ARROWS);
             i.setItem(5, EXP);
 
         }
