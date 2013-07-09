@@ -9,6 +9,11 @@ import com.oresomecraft.BattleMaps.classes.*;
 
 public class OresomeBattlesMaps extends JavaPlugin {
     public final Logger logger = Logger.getLogger("Minecraft");
+    protected static OresomeBattlesMaps plugin;
+
+    public OresomeBattlesMaps() {
+        plugin = this;
+    }
 
     public void onDisable() {
 
@@ -62,7 +67,11 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Voidsflag(this);
         new DimensionalWar(this);
         new Mayhem(this);
-        
+        new BurnFirePort(this);
+    }
+
+    public static OresomeBattlesMaps getInstance() {
+        return plugin;
     }
 
 }
