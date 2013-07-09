@@ -247,6 +247,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
 
                 if (shooter instanceof Player) {
                     Player p = (Player) shooter;
+                    p.setVelocity(new Vector(0,0,0));
                     Location loc = p.getLocation();
                     ItemStack is = p.getItemInHand();
                     Material mat = is.getType();
