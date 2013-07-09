@@ -69,6 +69,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new DimensionalWar(this);
         new Mayhem(this);
         new BurnFirePort(this);
+        new CrashOfClay(this);
     }
 
     public static OresomeBattlesMaps getInstance() {
