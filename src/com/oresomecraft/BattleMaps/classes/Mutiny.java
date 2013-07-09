@@ -39,7 +39,7 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
     String name = "mutiny";
     String fullName = "Mutiny";
     String creators = "DynaDavidson and JacquiRose";
-    Gamemode[] modes = {Gamemode.INFECTION, Gamemode.TDM};
+    Gamemode[] modes = {Gamemode.TDM};
     //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -94,7 +94,7 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
@@ -115,7 +115,7 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
             i.setItem(1, BOW);
             i.setItem(0, AXE);
             i.setItem(2, STEAK);
-            i.setItem(3, HEALTH_POTION);
+            i.setItem(3, HEALTH);
             i.setItem(3, LOGS);
             i.setItem(4, ARROWS);
 
