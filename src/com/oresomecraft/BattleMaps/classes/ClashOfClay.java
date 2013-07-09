@@ -66,10 +66,8 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
 
 	public void readyTDMSpawns() {
 		World w = Bukkit.getServer().getWorld(name);
-
-		Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
-		//Location blueSpawn = new Location(w, -9, 110, -20, 0, 0); // this is falling to the void
-		Location blueSpawn = new Location(w, 3, 99, 7, 0, 0);
+		Location redSpawn = new Location(w, ,22 ,81 ,8);
+		Location blueSpawn = new Location(w, ,23 ,81 ,164);
 
 		redSpawns.add(redSpawn);
 		redSpawns.add(new Location(w, -22, 81, 8));
@@ -86,8 +84,9 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
 
 		World w = Bukkit.getServer().getWorld(name);
 
-		Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
-		Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
+
+		Location redSpawn = new Location(w, ,22 ,81 ,8);
+		Location blueSpawn = new Location(w, ,23 ,81 ,164);
 		FFASpawns.add(blueSpawn);
 		FFASpawns.add(redSpawn);
 		setFFASpawns(name, FFASpawns);

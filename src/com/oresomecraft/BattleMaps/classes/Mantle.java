@@ -109,7 +109,6 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
 			ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
 			ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 			ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-			ItemStack DISORIENT_GEM = new ItemStack(Material.EMERALD, 1);
 
 			p.getInventory().setBoots(IRON_BOOTS);
 			p.getInventory().setLeggings(IRON_PANTS);
@@ -120,7 +119,6 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
 			i.setItem(1, BOW);
 			i.setItem(2, STEAK);
 			i.setItem(3, HEALTH_POTION);
-			i.setItem(4, DISORIENT_GEM);
 			i.setItem(10, ARROWS);
 
 		}
@@ -189,49 +187,4 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
 		}
 
 	} 
-
-	// Code to prevent block placing.
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void disorientgem(PlayerInteractEvent event) {
-
-		Action a = event.getAction();
-		if (event.getPlayer().getWorld().getName().equals(name)) {
-			if(a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK)){
-				if(event.getPlayer().getItemInHand().getType().equals(Material.EMERALD)){
-					Player p = nearestEnemy(event.getPlayer());
-					Random rand = new Random();
-					int yaw = rand.nextInt(360) + 1;
-					int pitch = rand.nextInt(90) + 1;
-					Location l = p.getLocation();
-					l.setYaw(yaw);
-					l.setPitch(pitch);
-					event.getPlayer().getInventory().remove(event.getPlayer().getItemInHand());
-					if(p == null){
-						event.getPlayer().sendMessage(ChatColor.RED+"No player was in range!");
-						return;
-					}
-					if(p instanceof Player){
-						p.sendMessage(ChatColor.RED+"You were disoriented!");
-						p.teleport(l);
-						return;
-					}
-				}
-			}
-		}
-	}
-	public Player nearestEnemy(Player p){
-		for(Entity e : p.getNearbyEntities(10, 10, 10)){
-			if(e instanceof Player){
-				Player target = (Player)e;
-				if(TDM.isRed(p.getName()) && TDM.isBlue(target.getName())){
-					return target;
-				}
-				if(TDM.isBlue(p.getName()) && TDM.isRed(target.getName())){
-					return target;
-				}
-			}
-			return null;
-		}
-		return null;
-	}
 }
