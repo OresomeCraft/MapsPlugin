@@ -3,6 +3,7 @@ package com.oresomecraft.BattleMaps.classes;
 import java.util.ArrayList;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.OresomeBattles.GameUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
