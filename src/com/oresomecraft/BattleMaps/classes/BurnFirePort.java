@@ -77,22 +77,20 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 	public void readyTDMSpawns() {
 		World w = Bukkit.getServer().getWorld(name);
 
-		Location redSpawn = new Location(w, 845, 130, -113, -137, 0);
-		Location blueSpawn = new Location(w, 761, 128, -72, 51, 0);
+		Location redSpawn = new Location(w, -130, 29, 152, 176, 0);
+		Location blueSpawn = new Location(w, -52, 37, 41, 90, 0);
 
 		redSpawns.add(redSpawn);
-		redSpawns.add(new Location(w, -130, 29, 152, 2, 0));
-		redSpawns.add(new Location(w, -179, 27, 81, 3, 0));
-		redSpawns.add(new Location(w, -149, 28, 93, 3, 0));
+		redSpawns.add(new Location(w, -179, 27, 81, -89, 0));
+		redSpawns.add(new Location(w, -149, 28, 93, -88, 0));
 		redSpawns.add(new Location(w, -148, 26, 97, 0, 0));
-		redSpawns.add(new Location(w, -88, 26, 106, 1, 0));
+		redSpawns.add(new Location(w, -88, 26, 106, 90, 0));
 
 		blueSpawns.add(blueSpawn);
-		blueSpawns.add(new Location(w, -52, 37, 41, 1, 0));
-		blueSpawns.add(new Location(w, -99, 40, 41, 1, 0));
-		blueSpawns.add(new Location(w, -11, 33, 59, 2, 0));
-		blueSpawns.add(new Location(w, -115, 30, 79, 3, 0));
-		blueSpawns.add(new Location(w, -88, 28, 89, 0, 0));
+		blueSpawns.add(new Location(w, -99, 40, 41, 90, 0));
+		blueSpawns.add(new Location(w, -11, 33, 62, 45, 0));
+		blueSpawns.add(new Location(w, -115, 30, 79, 90, 0));
+		blueSpawns.add(new Location(w, -86, 28, 87, 90, 0));
 
 		setRedSpawns(name, redSpawns);
 		setBlueSpawns(name, blueSpawns);
@@ -101,21 +99,21 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 	public void readyFFASpawns() {
 		World w = Bukkit.getServer().getWorld(name);
 
-		Location redSpawn = new Location(w, 845, 130, -113, -137, 0);
-		Location blueSpawn = new Location(w, 761, 128, -72, 51, 0);
+		Location redSpawn = new Location(w, -106, 26, 112, 179, 0);
+		Location blueSpawn = new Location(w, -50, 32, 71, 0, 0);
 
 		FFASpawns.add(redSpawn);
 		FFASpawns.add(blueSpawn);
-		FFASpawns.add(new Location(w, -130, 29, 152, 2, 0));
-		FFASpawns.add(new Location(w, -179, 27, 81, 3, 0));
-		FFASpawns.add(new Location(w, -149, 28, 93, 3, 0));
+		FFASpawns.add(new Location(w, -130, 29, 152, 176, 0));
+		FFASpawns.add(new Location(w, -52, 37, 41, 90, 0));
+		FFASpawns.add(new Location(w, -179, 27, 81, -89, 0));
+		FFASpawns.add(new Location(w, -149, 28, 93, -88, 0));
 		FFASpawns.add(new Location(w, -148, 26, 97, 0, 0));
-		FFASpawns.add(new Location(w, -88, 26, 106, 1, 0));
-		FFASpawns.add(new Location(w, -52, 37, 41, 1, 0));
-		FFASpawns.add(new Location(w, -99, 40, 41, 1, 0));
-		FFASpawns.add(new Location(w, -11, 33, 59, 2, 0));
-		FFASpawns.add(new Location(w, -115, 30, 79, 3, 0));
-		FFASpawns.add(new Location(w, -88, 28, 89, 0, 0));
+		FFASpawns.add(new Location(w, -88, 26, 106, 90, 0));
+		FFASpawns.add(new Location(w, -99, 40, 41, 90, 0));
+		FFASpawns.add(new Location(w, -11, 33, 62, 45, 0));
+		FFASpawns.add(new Location(w, -115, 30, 79, 90, 0));
+		FFASpawns.add(new Location(w, -86, 28, 87, 90, 0));
 
 		setFFASpawns(name, FFASpawns);
 	}
@@ -196,17 +194,20 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 		}
 
 	}
-	/*
-	 * // Code to prevent escaping map
-	 * 
-	 * @EventHandler(priority = EventPriority.NORMAL) public void
-	 * protection(PlayerMoveEvent event) {
-	 * 
-	 * if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
-	 * // Spectator is not exempt from check if
-	 * (!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1, z2))) {
-	 * event.setCancelled(true); } }
-	 */
+
+	// Code to prevent escaping map
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void protection(PlayerMoveEvent event) {
+
+		if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
+			// Spectator is not exempt from check
+			if (!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1,
+					z2))) {
+				event.setCancelled(true);
+			}
+		}
+	}
+
 }
 
 // Map configured by psgs. Need your map configured? Send an email to
