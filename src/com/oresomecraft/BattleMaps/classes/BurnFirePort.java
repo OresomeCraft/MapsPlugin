@@ -54,7 +54,7 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
 	// Map download link:
 	// http://www.mediafire.com/download/zmq80m8wg11r3h8/Burnfire_Port.rar
-	
+
 	// Direct Map Link:
 	// http://205.196.123.120/p6cbc4rorjrg/zmq80m8wg11r3h8/Burnfire+Port.rar
 
@@ -163,7 +163,7 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 	public int y2 = 1;
 	public int z2 = 318;
 
-	//Getting the region
+	// Getting the region
 	public boolean contains(Location loc, int x1, int x2, int y1, int y2,
 			int z1, int z2) {
 		int bottomCornerX = x1 < x2 ? x1 : x2;
@@ -196,34 +196,18 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 		}
 
 	}
-
-	// Code to prevent block breaking
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void protection1(BlockPlaceEvent event) {
-
-		Block b = event.getBlock();
-		Location loc = b.getLocation();
-
-		if (loc.getWorld().getName().equals(name)) {
-
-			event.setCancelled(true);
-
-		}
-
-	}
-
-	// Code to prevent escaping map
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void protection(PlayerMoveEvent event) {
-
-		if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
-			// Spectator is not exempt from check
-			if (!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1,
-					z2))) {
-				event.setCancelled(true);
-			}
-		}
-	}
+	/*
+	 * // Code to prevent escaping map
+	 * 
+	 * @EventHandler(priority = EventPriority.NORMAL) public void
+	 * protection(PlayerMoveEvent event) {
+	 * 
+	 * if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
+	 * // Spectator is not exempt from check if
+	 * (!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1, z2))) {
+	 * event.setCancelled(true); } }
+	 */
 }
 
-//Map configured by psgs. Need your map configured? Send an email to psgs@psgs.tk
+// Map configured by psgs. Need your map configured? Send an email to
+// psgs@psgs.tk
