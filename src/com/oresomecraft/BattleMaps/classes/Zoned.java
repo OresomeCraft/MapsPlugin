@@ -45,7 +45,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
     // Map details
     String name = "zoned";
     String fullName = "Zoned";
-    String creators = "R3creat3, MiCkEyMiCe and _Moist";
+    String creators = "R3creat3, MiCkEyMiCE and _Moist";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
     //Map download link: N/A
 
@@ -181,7 +181,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                 if (p.getItemInHand().getType() == Material.FIREWORK) {
                     p.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
-                    p.setVelocity(new Vector(0, 0.5, 0));
+                    p.setVelocity(new Vector(0, 0.25, 0));
                 }
             }
         }
