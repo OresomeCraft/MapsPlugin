@@ -54,6 +54,9 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
 	// Map download link:
 	// http://www.mediafire.com/download/zmq80m8wg11r3h8/Burnfire_Port.rar
+	
+	// Direct Map Link:
+	// http://205.196.123.120/p6cbc4rorjrg/zmq80m8wg11r3h8/Burnfire+Port.rar
 
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
