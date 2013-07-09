@@ -21,4 +21,4 @@ Users with push and pull access to this repo are:
 * [R3creat3](https://github.com/R3creat3)
 * [Husky--](https://github.com/Husky--)
 * [psgs](https://github.com/psgs)
-* [Shaundepro](https://github.com/shaundepro)
+* [ShaunDepro](https://github.com/shaundepro)
