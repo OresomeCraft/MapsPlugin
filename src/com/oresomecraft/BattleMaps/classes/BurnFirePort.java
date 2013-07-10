@@ -134,7 +134,7 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 			ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 			ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1,
 					(short) 16373);
-			ItemStack STEAK = new ItemStack(Material.BOW, 1);
+			ItemStack BOW = new ItemStack(Material.BOW, 1);
 			ItemStack ARROW = new ItemStack(Material.ARROW, 64);
 			ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
 
