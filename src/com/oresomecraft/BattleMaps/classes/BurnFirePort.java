@@ -134,6 +134,8 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 			ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 			ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1,
 					(short) 16373);
+			ItemStack STEAK = new ItemStack(Material.BOW, 1);
+			ItemStack ARROW = new ItemStack(Material.ARROW, 64);
 			ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
 
 			p.getInventory().setBoots(IRON_BOOTS);
@@ -141,8 +143,10 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 			p.getInventory().setChestplate(IRON_CHESTPLATE);
 			p.getInventory().setHelmet(IRON_HELMET);
 			i.setItem(0, IRON_SWORD);
+			i.setItem(1, BOW);
 			i.setItem(2, HEALTH_POTION);
-			i.setItem(1, STEAK);
+			i.setItem(3, STEAK);
+			i.setItem(10, ARROW);
 
 		}
 	}
