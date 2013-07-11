@@ -50,7 +50,7 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 	String name = "burnfireport";
 	String fullName = "Burnfire Port";
 	String creators = "bumsonfire";
-	Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+	Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
 	// Map download link:
 	// http://www.mediafire.com/download/zmq80m8wg11r3h8/Burnfire_Port.rar
