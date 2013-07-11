@@ -290,7 +290,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockBurnEvent event) {
+    public void onBlockBurn(BlockBurnEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
