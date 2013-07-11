@@ -199,6 +199,21 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
 	}
 
+    // Code to prevent block placing.
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void protection1(BlockPlaceEvent event) {
+
+        Block b = event.getBlock();
+        Location loc = b.getLocation();
+
+        if (loc.getWorld().getName().equals(name)) {
+
+            event.setCancelled(true);
+
+        }
+
+    }
+
 	// Code to prevent escaping map
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void protection(PlayerMoveEvent event) {
