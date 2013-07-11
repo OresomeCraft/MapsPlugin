@@ -6,6 +6,7 @@ import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.OresomeBattles.Utility;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,6 +17,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -92,6 +94,10 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         String par = event.getMessage();
         Player p = event.getPlayer();
         Inventory i = p.getInventory();
+        p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
+        p.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
+        p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+        p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
             //Give players invincibility for 8 seconds when they spawn.
