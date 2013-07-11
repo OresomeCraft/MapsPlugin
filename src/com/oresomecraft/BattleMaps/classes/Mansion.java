@@ -18,6 +18,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
@@ -276,6 +277,20 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void protection1(BlockPlaceEvent event) {
+
+        Block b = event.getBlock();
+        Location loc = b.getLocation();
+
+        if (loc.getWorld().getName().equals(name)) {
+
+            event.setCancelled(true);
+
+        }
+
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void protection1(BlockBurnEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
