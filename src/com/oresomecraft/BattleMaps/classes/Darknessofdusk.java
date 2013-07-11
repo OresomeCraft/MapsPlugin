@@ -12,6 +12,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -192,6 +193,16 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
+
+        if (loc.getWorld().getName().equals(name)) {
+
+            event.setCancelled(true);
+
+        }
+    }
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void protection1(PlayerToggleSneakEvent event) {
+        Location loc = event.getPlayer().getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
 
