@@ -30,166 +30,166 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
 public class MutinyII extends BattleMap implements IBattleMap, Listener {
 
-    OresomeBattlesMaps plugin;
+	OresomeBattlesMaps plugin;
 
-    public MutinyII(OresomeBattlesMaps pl) {
-        super(pl);
-        plugin = pl;
-    }
+	public MutinyII(OresomeBattlesMaps pl) {
+		super(pl);
+		plugin = pl;
+	}
 
-    // Spawn lists. (Don't change!)
-    public ArrayList<Location> redSpawns = new ArrayList<Location>();
-    public ArrayList<Location> blueSpawns = new ArrayList<Location>();
-    public ArrayList<Location> FFASpawns = new ArrayList<Location>();
+	// Spawn lists. (Don't change!)
+	public ArrayList<Location> redSpawns = new ArrayList<Location>();
+	public ArrayList<Location> blueSpawns = new ArrayList<Location>();
+	public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
-    String name = "mutinyii";
-    String fullName = "Mutiny II";
-    String creators = "R3creat3, zachoz and Buster1824";
-    Gamemode[] modes = {Gamemode.TDM};
-    //Map download link: N/A
+	// Map details
+	String name = "mutinyii";
+	String fullName = "Mutiny II";
+	String creators = "R3creat3, zachoz and Buster1824";
+	Gamemode[] modes = { Gamemode.TDM };
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
-        addMap(name);
-        addCreators(name, creators);
-        setFullName(name, fullName);
-        setGamemodes(name, modes);
-    }
+	// Map download link: N/A
 
-    @EventHandler
-    public void setSpawns(WorldLoadEvent event) { // Internal - Do not change
-        if (event.getWorld().getName().equals(name)) {
-            readyTDMSpawns();
-            readyFFASpawns();
-        }
-    }
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
+		addMap(name);
+		addCreators(name, creators);
+		setFullName(name, fullName);
+		setGamemodes(name, modes);
+	}
 
-    public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
+	@EventHandler
+	public void setSpawns(WorldLoadEvent event) { // Internal - Do not change
+		if (event.getWorld().getName().equals(name)) {
+			readyTDMSpawns();
+			readyFFASpawns();
+		}
+	}
 
-        Location redSpawn = new Location(w, -18, 85, -52);
-        Location blueSpawn = new Location(w, -18, 85, 13);
+	public void readyTDMSpawns() {
+		World w = Bukkit.getServer().getWorld(name);
 
-        redSpawns.add(redSpawn);
-        blueSpawns.add(blueSpawn);
+		Location redSpawn = new Location(w, -18, 85, -52);
+		Location blueSpawn = new Location(w, -18, 85, 13);
 
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
-    }
+		redSpawns.add(redSpawn);
+		blueSpawns.add(blueSpawn);
 
-    public void readyFFASpawns() {
+		setRedSpawns(name, redSpawns);
+		setBlueSpawns(name, blueSpawns);
+	}
 
-        World w = Bukkit.getServer().getWorld(name);
+	public void readyFFASpawns() {
 
-        Location obsSpawn = new Location(w, 7, 90, -19);
-        FFASpawns.add(obsSpawn);
+		World w = Bukkit.getServer().getWorld(name);
 
-        setFFASpawns(name, FFASpawns);
-    }
+		Location obsSpawn = new Location(w, 7, 90, -19);
+		FFASpawns.add(obsSpawn);
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
+		setFFASpawns(name, FFASpawns);
+	}
 
-        String par = event.getMessage();
-        Player p = event.getPlayer();
-        Inventory i = p.getInventory();
-        p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
-        p.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
-        p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
-        p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
-        if (par.equalsIgnoreCase(name)) {
-            clearInv(p);
-            //Give players invincibility for 8 seconds when they spawn.
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
-        }
-    }
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void applyInventory(InventoryEvent event) {
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void clearSpawns(ClearSpawnsEvent event) {
-        redSpawns.clear();
-        blueSpawns.clear();
-        FFASpawns.clear();
-    }
+		String par = event.getMessage();
+		Player p = event.getPlayer();
+		Inventory i = p.getInventory();
+		p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
+		p.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
+		p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+		p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
+		if (par.equalsIgnoreCase(name)) {
+			clearInv(p);
+			// Give players invincibility for 8 seconds when they spawn.
+			p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
+		}
+	}
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 52;
-    public int y1 = 54;
-    public int z1 = 35;
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void clearSpawns(ClearSpawnsEvent event) {
+		redSpawns.clear();
+		blueSpawns.clear();
+		FFASpawns.clear();
+	}
 
-    //Bottom right corner.
-    public int x2 = -48;
-    public int y2 = 156;
-    public int z2 = -75;
+	// Region. (Top corner block and bottom corner block.
+	// Top left corner.
+	public int x1 = 52;
+	public int y1 = 54;
+	public int z1 = 35;
 
-    // Getting the region
-    public boolean contains(Location loc, int x1, int x2, int y1,
-                            int y2, int z1, int z2) {
-        int bottomCornerX = x1 < x2 ? x1 : x2;
-        int bottomCornerZ = z1 < z2 ? z1 : z2;
-        int topCornerX = x1 > x2 ? x1 : x2;
-        int topCornerZ = z1 > z2 ? z1 : z2;
-        int bottomCornerY = y1 < y2 ? y1 : y2;
-        int topCornerY = y1 > y2 ? y1 : y2;
-        if (loc.getX() >= bottomCornerX && loc.getX() <= topCornerX) {
-            if (loc.getZ() >= bottomCornerZ && loc.getZ() <= topCornerZ) {
-                if (loc.getY() >= bottomCornerY && loc.getY() <= topCornerY) {
-                    return true;
-                }
-            }
-        }
-        return false;
+	// Bottom right corner.
+	public int x2 = -48;
+	public int y2 = 156;
+	public int z2 = -75;
 
-    }
+	// Getting the region
+	public boolean contains(Location loc, int x1, int x2, int y1, int y2,
+			int z1, int z2) {
+		int bottomCornerX = x1 < x2 ? x1 : x2;
+		int bottomCornerZ = z1 < z2 ? z1 : z2;
+		int topCornerX = x1 > x2 ? x1 : x2;
+		int topCornerZ = z1 > z2 ? z1 : z2;
+		int bottomCornerY = y1 < y2 ? y1 : y2;
+		int topCornerY = y1 > y2 ? y1 : y2;
+		if (loc.getX() >= bottomCornerX && loc.getX() <= topCornerX) {
+			if (loc.getZ() >= bottomCornerZ && loc.getZ() <= topCornerZ) {
+				if (loc.getY() >= bottomCornerY && loc.getY() <= topCornerY) {
+					return true;
+				}
+			}
+		}
+		return false;
 
-    @EventHandler
-    public void onBoom(EntityExplodeEvent event) {
-        if (Utility.getArena().equals(name)) {
-            Location loc = event.getLocation();
-            // Red tean
-            if (contains(loc, -12, -25, 88, 83, -46, -60)) {
-                event.setCancelled(true);
-            }
+	}
 
-            // Blue tean
-            if (contains(loc, -12, -25, 88, 83, 20, 6)) {
-                event.setCancelled(true);
-            }
-        }
-    }
+	@EventHandler
+	public void onBoom(EntityExplodeEvent event) {
+		if (Utility.getArena().equals(name)) {
+			Location loc = event.getLocation();
+			// Red team
+			if (contains(loc, -12, -25, 88, 83, -46, -60)) {
+				event.setCancelled(true);
+			}
 
-    @EventHandler
-    public void onBreak(BlockBreakEvent event) {
-        if (Utility.getArena().equals(name)) {
-            Location loc = event.getBlock().getLocation();
-            // Red tean
-            if (contains(loc, -12, -25, 88, 83, -46, -60)) {
-                event.setCancelled(true);
-            }
+			// Blue team
+			if (contains(loc, -12, -25, 88, 83, 20, 6)) {
+				event.setCancelled(true);
+			}
+		}
+	}
 
-            // Blue tean
-            if (contains(loc, -12, -25, 88, 83, 20, 6)) {
-                event.setCancelled(true);
-            }
-        }
-    }
+	@EventHandler
+	public void onBreak(BlockBreakEvent event) {
+		if (Utility.getArena().equals(name)) {
+			Location loc = event.getBlock().getLocation();
+			// Red team
+			if (contains(loc, -12, -25, 88, 83, -46, -60)) {
+				event.setCancelled(true);
+			}
 
-    @EventHandler
-    public void onPlace(BlockPlaceEvent event) {
-        if (Utility.getArena().equals(name)) {
-            Location loc = event.getBlock().getLocation();
-            // Red tean
-            if (contains(loc, -12, -25, 88, 83, -46, -60)) {
-                event.setCancelled(true);
-            }
+			// Blue team
+			if (contains(loc, -12, -25, 88, 83, 20, 6)) {
+				event.setCancelled(true);
+			}
+		}
+	}
 
-            // Blue tean
-            if (contains(loc, -12, -25, 88, 83, 20, 6)) {
-                event.setCancelled(true);
-            }
-        }
-    }
+	@EventHandler
+	public void onPlace(BlockPlaceEvent event) {
+		if (Utility.getArena().equals(name)) {
+			Location loc = event.getBlock().getLocation();
+			// Red team
+			if (contains(loc, -12, -25, 88, 83, -46, -60)) {
+				event.setCancelled(true);
+			}
 
+			// Blue team
+			if (contains(loc, -12, -25, 88, 83, 20, 6)) {
+				event.setCancelled(true);
+			}
+		}
+	}
 
 }
