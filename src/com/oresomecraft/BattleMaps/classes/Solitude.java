@@ -479,7 +479,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    //@EventHandler(priority = EventPriority.NORMAL)
     public void teamDeath(PlayerDeathEvent event) {
 
         Player p = event.getEntity();
@@ -488,7 +488,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
 
         if (TDM.isRed(p.getName())) {
             // Show red particles (small)
-            world.playEffect(l, Effect.STEP_SOUND, 152);
+            world.playEffect(l, Effect.STEP_SOUND, 152); // THIS THROWS NULL POINTERS
         } else {
             if (TDM.isBlue(p.getName())) {
                 // Show blue particles (small)
