@@ -158,12 +158,12 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 		FFASpawns.clear();
 	}
 
-	public int x1 = -375;
-	public int y1 = 115;
-	public int z1 = -62;
-	public int x2 = 162;
+	public int x1 = -212;
+	public int y1 = 77;
+	public int z1 = 15;
+	public int x2 = -2;
 	public int y2 = 1;
-	public int z2 = 318;
+	public int z2 = 215;
 
 	// Getting the region
 	public boolean contains(Location loc, int x1, int x2, int y1, int y2,
