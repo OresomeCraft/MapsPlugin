@@ -33,6 +33,7 @@ import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
+import com.oresomecraft.OresomeBattles.Utility;
 
 public class Solitude extends BattleMap implements IBattleMap, Listener {
 
@@ -479,20 +480,23 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    //@EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.NORMAL)
     public void teamDeath(PlayerDeathEvent event) {
 
-        Player p = event.getEntity();
-        Location l = p.getLocation();
-        World world = Bukkit.getWorld(name);
+        if (Utility.getArena().equals(name)) {
 
-        if (TDM.isRed(p.getName())) {
-            // Show red particles (small)
-            world.playEffect(l, Effect.STEP_SOUND, 152); // THIS THROWS NULL POINTERS
-        } else {
-            if (TDM.isBlue(p.getName())) {
-                // Show blue particles (small)
-                world.playEffect(l, Effect.STEP_SOUND, 22);
+            Player p = event.getEntity();
+            Location l = p.getLocation();
+            World world = Bukkit.getWorld(name);
+
+            if (TDM.isRed(p.getName())) {
+                // Show red particles (small)
+                world.playEffect(l, Effect.STEP_SOUND, 152);
+            } else {
+                if (TDM.isBlue(p.getName())) {
+                    // Show blue particles (small)
+                    world.playEffect(l, Effect.STEP_SOUND, 22);
+                }
             }
         }
     }
