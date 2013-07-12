@@ -15,6 +15,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
@@ -173,6 +174,20 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         }
 
     }
+        @EventHandler(priority = EventPriority.NORMAL)
+    public void protection1(BlockBreakEvent event) {
+        Player player = event.getPlayer();
+        if (BattleHandler.activeArena.equals(name)) {
+            Block b = event.getBlock();
+            Location loc = b.getLocation();
+
+            if (loc.getWorld().getName().equals(name)) {
+
+                event.setCancelled(true);
+            }
+        }
+
+    }
 
     @EventHandler
     public void onBlockPlace(PlayerInteractEvent event) {
@@ -181,9 +196,10 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                 if (p.getItemInHand().getType() == Material.FIREWORK) {
                     p.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
-                    p.setVelocity(new Vector(0, 0.25, 0));
+                    p.setVelocity(new Vector(0, 0.5, 0));
                 }
             }
         }
     }
+    
 }
