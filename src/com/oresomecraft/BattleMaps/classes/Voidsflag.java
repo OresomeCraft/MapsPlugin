@@ -43,7 +43,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
 	String name = "voidsflag";
 	String fullName = "Voids Flag";
 	String creators = "_Moist, MiCkEyMiCE and R3creat3";
-	Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
+	Gamemode[] modes = {Gamemode.TDM};
 	//Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -111,7 +111,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
 			ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
 			ItemStack COOKED_PORKCHOP = new ItemStack(Material.COOKED_BEEF, 4);
 			ItemStack BIRCH_LOG = new ItemStack(Material.LOG, 32);
-			ItemStack ARROW = new ItemStack(Material.ARROW, 1);
+			ItemStack ARROW = new ItemStack(Material.ARROW, 64);
 
 			p.getInventory().setBoots(LEATHER_BOOTS);
 			p.getInventory().setLeggings(LEATHER_PANTS);
