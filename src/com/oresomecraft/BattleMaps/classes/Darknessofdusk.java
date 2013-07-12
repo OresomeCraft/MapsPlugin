@@ -200,14 +200,4 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
         }
     }
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(PlayerToggleSneakEvent event) {
-        Location loc = event.getPlayer().getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-    }
 }
