@@ -20,6 +20,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -302,18 +303,18 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
         }
 
     }
-    
+
     @EventHandler
     public void onBlockSpread(BlockSpreadEvent event) {
-      
-      if (loc.getWorld().getName().equals(name)) {
-         if ((event.getBlock().getTypeId() != 2) || (event.getBlock().getTypeId() != 3)) {
-        
-              event.setCancelled(true);
-      
-         }
-      }
-    
-  }
+
+        if (event.getBlock().getWorld().getName().equals(name)) {
+            if ((event.getBlock().getTypeId() != 2) || (event.getBlock().getTypeId() != 3)) {
+
+                event.setCancelled(true);
+
+            }
+        }
+
+    }
 
 }
