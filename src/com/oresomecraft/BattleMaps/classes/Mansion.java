@@ -306,11 +306,13 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onBlockSpread(BlockSpreadEvent event) {
       
+      if (loc.getWorld().getName().equals(name)) {
          if ((event.getBlock().getTypeId() != 2) || (event.getBlock().getTypeId() != 3)) {
         
               event.setCancelled(true);
       
          }
+      }
     
   }
 
