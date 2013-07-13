@@ -33,6 +33,7 @@ import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
+import com.oresomecraft.OresomeBattles.Utility;
 
 public class Solitude extends BattleMap implements IBattleMap, Listener {
 
