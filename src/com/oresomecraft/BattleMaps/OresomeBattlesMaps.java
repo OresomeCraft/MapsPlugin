@@ -32,6 +32,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
 
         new Zoned(this);
         new Mantle(this);
+        new Bakery(this);
         new BattleMap(this);
         new Perro(this);
         new Fairwick(this);
