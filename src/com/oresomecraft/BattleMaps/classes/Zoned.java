@@ -196,7 +196,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                 if (p.getItemInHand().getType() == Material.FIREWORK) {
                     p.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
-                    p.setVelocity(new Vector(0, 0.5, 0));
+                    p.setVelocity(new Vector(0, 1.5, 0));
                 }
             }
         }
