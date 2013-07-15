@@ -44,18 +44,14 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "solitude";
     String fullName = "Solitude";
     String creators = "R3creat3, dutchy336, tarko2411 and PMC";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
-
-    // Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -164,33 +160,26 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
             ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
             ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 1);
             ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
-
-            // Sets fishing rod name "Grappling Hook"
             ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
             fishing_rod.setDisplayName(ChatColor.GOLD + "Grappling Hook");
             FISHING_ROD.setItemMeta(fishing_rod);
 
-            // Sets steak name "Roast Beef"
             ItemMeta cooked_beef = STEAK.getItemMeta();
             cooked_beef.setDisplayName(ChatColor.GOLD + "Roast Beef");
             STEAK.setItemMeta(cooked_beef);
 
-            // Sets arrows name "Steel Arrow"
             ItemMeta arrows = ARROWS.getItemMeta();
             arrows.setDisplayName(ChatColor.GOLD + "Steel Arrow");
             ARROWS.setItemMeta(arrows);
 
-            // Sets health potion name "Potion of grand healing"
             ItemMeta health_potion = HEALTH_POTION.getItemMeta();
-            health_potion.setDisplayName(ChatColor.RED + "Potion of grand healing"); // Look this up
+            health_potion.setDisplayName(ChatColor.RED + "Potion of grand healing");
             HEALTH_POTION.setItemMeta(health_potion);
 
-            // Sets sword name "Steel Sword"
             ItemMeta iron_sword = IRON_SWORD.getItemMeta();
             iron_sword.setDisplayName(ChatColor.GOLD + "Steel Sword");
             IRON_SWORD.setItemMeta(iron_sword);
 
-            // Sets exp bottle name "Potion of Levelling"
             ItemMeta exp = EXP.getItemMeta();
             exp.setDisplayName(ChatColor.GOLD + "Potion of Levelling");
             EXP.setItemMeta(exp);
@@ -213,12 +202,10 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
                 chestplateMeta.setColor(Color.BLUE);
                 LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
 
-                // Sets bow name "Steel Bow"
                 ItemMeta bow = BOW.getItemMeta();
                 bow.setDisplayName(ChatColor.GOLD + "Steel Bow");
                 BOW.setItemMeta(bow);
 
-                // Sets helmet name "StormCloak Helmet"
                 ItemMeta leather_helmet = LEATHER_HELMET.getItemMeta();
                 leather_helmet.setDisplayName(ChatColor.BLUE + "StormCloak Helmet");
                 LEATHER_HELMET.setItemMeta(leather_helmet);
@@ -298,7 +285,8 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
             i.setItem(5, EXP);
             i.setItem(5, FISHING_ROD);
 
-            p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
+            p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 9);
+            //Do you know how many freaking fall deaths there are?
 
         }
     }
@@ -341,9 +329,8 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -355,9 +342,8 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

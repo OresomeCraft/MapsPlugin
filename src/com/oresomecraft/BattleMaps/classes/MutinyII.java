@@ -42,13 +42,11 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "mutinyii";
     String fullName = "Mutiny II";
-    String creators = "R3creat3, zachoz and Buster1824";
+    String creators = "R3creat3, zachoz, Buster1824 and MiCkEyMiCE";
     Gamemode[] modes = {Gamemode.TDM};
-
-    // Map download link: N/A
+    //Add people who have helped in the updated mutiny II
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -145,7 +143,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void onBoom(EntityExplodeEvent event) {
+    public void preventspawnexplosion(EntityExplodeEvent event) {
         if (Utility.getArena().equals(name)) {
             Location loc = event.getLocation();
             // Red team
@@ -161,7 +159,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void onBreak(BlockBreakEvent event) {
+    public void spawnprotection(BlockBreakEvent event) {
         if (Utility.getArena().equals(name)) {
             Location loc = event.getBlock().getLocation();
             // Red team
@@ -177,7 +175,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void onPlace(BlockPlaceEvent event) {
+    public void spawnprotection2(BlockPlaceEvent event) {
         if (Utility.getArena().equals(name)) {
             Location loc = event.getBlock().getLocation();
             // Red team

@@ -44,10 +44,9 @@ public class Insanity extends BattleMap implements IBattleMap, Listener {
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "insanity";
     String fullName = "Insanity";
-    String creators = "ShaunDepro97, darkrai202";
+    String creators = "ShaunDepro97 and darkrai202";
     Gamemode[] modes = {Gamemode.FFA, Gamemode.INFECTION};
 
     // Map download link: N/A
@@ -166,9 +165,8 @@ public class Insanity extends BattleMap implements IBattleMap, Listener {
         return false;
     }
 
-    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -180,7 +178,7 @@ public class Insanity extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -192,25 +190,10 @@ public class Insanity extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void protection2(BlockBreakEvent event) {
-        Block b = event.getBlock();
-        int mat = b.getTypeId();
-        Location loc = b.getLocation();
-        if (loc.getWorld().getName().equals(name)) {
-            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
-
-                if (mat == 43 || mat == 44 || mat == 35 || mat == 42
-                        || mat == 49 || mat == 123 || mat == 69 || mat == 124) {
-
-                    event.setCancelled(true);
-                }
-            }
-        }
-    }
+    //Remove useless hypno code
 
     @EventHandler
-    public void arrowBoom(ProjectileHitEvent event) {
+    public void blood(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
         if (BattleHandler.activeArena.equals(name)) {

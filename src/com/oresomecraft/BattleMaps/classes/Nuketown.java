@@ -52,7 +52,6 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
     String fullName = "NukeTown";
     String creators = "Htgan, proportion and reub_youtube";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -199,20 +198,23 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
-
+            if(b.getType().equals(Material.FENCE)){
+                return;
+                //This may be incorrect, as I am not using an SDK at the moment
+            }
             event.setCancelled(true);
         }
 
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -226,7 +228,7 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void arrowBoom(ProjectileHitEvent event) {
+    public void arrowTrail(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
         if (Utility.getArena() == name) {
@@ -263,7 +265,7 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
                 if (e.getAction() == Action.RIGHT_CLICK_AIR
                         || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
                     p.getWorld().playEffect(p.getLocation(),
-                            Effect.MOBSPAWNER_FLAMES, 0, 50);
+                            Effect.MOBSPAWNER_FLAMES, 1, 50);
                 }
             }
         }

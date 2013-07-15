@@ -38,13 +38,11 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
 	public ArrayList<Location> redSpawns = new ArrayList<Location>();
 	public ArrayList<Location> blueSpawns = new ArrayList<Location>();
 	public ArrayList<Location> FFASpawns = new ArrayList<Location>();
-
-	// Map details
 	String name = "voidsflag";
-	String fullName = "Voids Flag";
+	String fullName = "Void's Flag";
+     // ^^ that may break, I don't know.
 	String creators = "_Moist, MiCkEyMiCE and R3creat3";
 	Gamemode[] modes = {Gamemode.TDM};
-	//Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -110,7 +108,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
 			ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
 			ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
 			ItemStack COOKED_PORKCHOP = new ItemStack(Material.COOKED_BEEF, 4);
-			ItemStack BIRCH_LOG = new ItemStack(Material.LOG, 32);
+			ItemStack BIRCH_LOG = new ItemStack(Material.LOG, 64);
 			ItemStack ARROW = new ItemStack(Material.ARROW, 64);
 
 			p.getInventory().setBoots(LEATHER_BOOTS);
@@ -124,7 +122,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
 			i.setItem(3, STONE_AXE);
 			i.setItem(4, COOKED_PORKCHOP);
 			i.setItem(5, BIRCH_LOG);
-			i.setItem(7, ARROW);
+			i.setItem(11, ARROW);
 
 			if (TDM.isBlue(p.getName())) {
 				LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
@@ -205,7 +203,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
 
 	// Code to prevent block breaking.
 	@EventHandler(priority = EventPriority.NORMAL)
-	public void protection(BlockBreakEvent event) {
+	public void preventoffmapbreak(BlockBreakEvent event) {
 
 		Block b = event.getBlock();
 		Location loc = b.getLocation();
@@ -218,9 +216,8 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
 		}
 	}
 
-	// Code to prevent block placing.
 	@EventHandler(priority = EventPriority.NORMAL)
-	public void protection1(BlockPlaceEvent event) {
+	public void preventmultipleplace(BlockPlaceEvent event) {
 
 		Block b = event.getBlock();
 		Location loc = b.getLocation();

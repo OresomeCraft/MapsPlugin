@@ -1,11 +1,4 @@
-/*
- * When submitting the final config, please remove ALL
- * of the current comments! (Including this one!)
- */
-
-/* This is a comment! */
-// This is one too!
-
+//Removing comments like a boss - R3
 package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
@@ -42,12 +35,10 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "terminal";
     String fullName = "Terminal";
     String creators = "Zachoz, XxXShadowSoul and Slider302";
@@ -70,47 +61,24 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    // Prepare TDM spawns
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
 
-        // Define main red spawn point
         Location redSpawn = new Location(w, -72, 71, -1208, -1, 0);
 
-        // Define main blue spawn point
         Location blueSpawn = new Location(w, -116, 66, -1140, -178, 0);
-
-        // Set red's spawn points (See example at the end of the method)
         redSpawns.add(redSpawn);
-
-        // Set blue's spawn points (See example at the end of the method)
         blueSpawns.add(blueSpawn);
-
-        // Add spawns to lists. (Don't change!)
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
-
-        /*
-         * Key:
-         * w = world name. (Don't change!)
-         * (w, -143, 100, -121, -100, 0)
-         *       X    Y     Z    YAW 
-         *       
-         * Simply change those values for each spawn point.
-         * The same thing goes for the FFA spawns.
-         * 
-         */
     }
 
-    // Prepare FFA spawns
     public void readyFFASpawns() {
 
         World w = Bukkit.getServer().getWorld(name);
 
         Location redSpawn = new Location(w, -72, 71, -1208, -1, 0);
         Location blueSpawn = new Location(w, -116, 66, -1140, -178, 0);
-
-        // Set Free for all spawn points.
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, -143, 66, -1211, -50, 0));
@@ -141,14 +109,11 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
     // Give player the maps inventory
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
-        // Don't change this stuff!
         String par = event.getMessage();
         Player p = event.getPlayer();
         Inventory i = p.getInventory();
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
-
-            // Define items. (This is fairly straight forward right?)
             ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -158,16 +123,10 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-
-            // Set armour. (This is straight forward, right?)
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
             p.getInventory().setChestplate(IRON_CHESTPLATE);
             p.getInventory().setHelmet(IRON_HELMET);
-
-            // Add items into inventory bar.
-            // The numer being the slot number. (Remember: Slot 1 is actually 0)
-            // Second arg is the item being added.
             i.setItem(0, IRON_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, STEAK);
@@ -215,7 +174,7 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -228,7 +187,7 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

@@ -56,7 +56,6 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
     String fullName = "Casa de Perro";
     String creators = "zachoz, pegabeavercorn and dogmode555";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -333,7 +332,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Material mat = b.getType();
@@ -352,7 +351,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

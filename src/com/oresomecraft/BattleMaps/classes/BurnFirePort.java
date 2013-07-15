@@ -52,12 +52,6 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 	String creators = "bumsonfire";
 	Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
-	// Map download link:
-	// http://www.mediafire.com/download/zmq80m8wg11r3h8/Burnfire_Port.rar
-
-	// Direct Map Link:
-	// http://205.196.123.120/p6cbc4rorjrg/zmq80m8wg11r3h8/Burnfire+Port.rar
-
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
 		addMap(name);
@@ -184,9 +178,8 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 		return false;
 	}
 
-	// Code to prevent block breaking
 	@EventHandler(priority = EventPriority.NORMAL)
-	public void protection(BlockBreakEvent event) {
+	public void preventblockbreak(BlockBreakEvent event) {
 
 		Block b = event.getBlock();
 		Location loc = b.getLocation();
@@ -199,9 +192,8 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
 	}
 
-    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -214,12 +206,10 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
     }
 
-	// Code to prevent escaping map
 	@EventHandler(priority = EventPriority.NORMAL)
-	public void protection(PlayerMoveEvent event) {
+	public void preventoutofmap(PlayerMoveEvent event) {
 
 		if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
-			// Spectator is not exempt from check
 			if (!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1,
 					z2))) {
 				event.setCancelled(true);

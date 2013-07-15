@@ -43,10 +43,9 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "mayhem";
     String fullName = "Mayhem";
-    String creators = "ShaunDepro97, meganlovesmusic, and Kytria";
+    String creators = "ShaunDepro97, meganlovesmusic and Kytria";
     Gamemode[] modes = {Gamemode.TDM};
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -164,9 +163,8 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -178,9 +176,8 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

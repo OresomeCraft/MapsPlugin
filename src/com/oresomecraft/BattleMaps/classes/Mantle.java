@@ -34,18 +34,15 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "mantle";
     String fullName = "The Mantle";
     String creators = "R3creat3, eli12310987, chillhill3, MiCkEyMiCE and FaazM";
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
-    //Map download link: N/A
-
+    Gamemode[] modes = {Gamemode.CTF};
+    //People just run in groups and infection just generally doesn't play very well on mantle.
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
         addMap(name);
@@ -156,9 +153,8 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -169,9 +165,8 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

@@ -37,12 +37,10 @@ public class Bakery extends BattleMap implements IBattleMap, Listener {
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "bakery";
     String fullName = "The Bakery";
     String creators = "R3creat3, DynaDavidson, _Moist, FaazM, callumary and ShaunDepro97";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -149,9 +147,8 @@ public class Bakery extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing outside of map.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -161,7 +158,7 @@ public class Bakery extends BattleMap implements IBattleMap, Listener {
         }
     }
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

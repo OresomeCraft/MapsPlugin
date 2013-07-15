@@ -34,17 +34,15 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "fairwick";
     String fullName = "Fairwick Village";
     String creators = "R3creat3, ninsai and zachoz";
-    Gamemode[] modes = {Gamemode.CTF};
-    //Map download link: N/A
+    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
+    //This plays well as a TDM, I guess. Let's try it out!
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -94,7 +92,8 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.GOLDEN_APPLE, 3);
+            ItemStack HEALTH_POTION = new ItemStack(Material.GOLDEN_APPLE, 1);
+            //Limit golden apples to one, since absorption was added.
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
@@ -156,9 +155,8 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -169,9 +167,8 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

@@ -39,12 +39,10 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "dusk";
     String fullName = "Darkness of Dusk";
     String creators = "R3creat3, xannallax33, dinner1111 and pepsidawg00";
     Gamemode[] modes = {Gamemode.INFECTION};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -173,9 +171,8 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -187,9 +184,8 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

@@ -42,16 +42,14 @@ public class Chaoscity extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // TDM and FFA spawns List. (Don't change)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
     String name = "chaoscity";
     String fullName = "Chaos City";
-    String creators = "xTeChNoSoUl, NobleFable, Shavahn2003 and HARTLEYJR11";
+    String creators = "xTeChNoSoUl, NobleFable, Shavahn2003 and SuperDuckFace";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -69,7 +67,6 @@ public class Chaoscity extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    // Define and ready TDM spawn locations.
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
 
@@ -284,7 +281,7 @@ public class Chaoscity extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -298,7 +295,7 @@ public class Chaoscity extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

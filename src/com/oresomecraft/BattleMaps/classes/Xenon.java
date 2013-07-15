@@ -40,17 +40,14 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "xenon";
     String fullName = "Xenon";
-    String creators = "kalikakitty ";
+    String creators = "kalikakitty";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -126,7 +123,7 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
             i.setItem(1, BOW);
             i.setItem(2, STEAK);
             i.setItem(3, HEALTH_POTION);
-            i.setItem(8, ARROWS);
+            i.setItem(9, ARROWS);
 
         }
     }
@@ -169,9 +166,8 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -183,9 +179,8 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -199,11 +194,11 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
     }
     
     @EventHandler
-    public void onPlayerTeleport(PlayerTeleportEvent event){
+    public void preventenderpearldamage(PlayerTeleportEvent event){
       Player player = event.getPlayer();
       TeleportCause cause = event.getCause();
       Location to = event.getTo();
-     
+      //Just a reminder, this applies to all maps. (Rogue method)
       if(cause == TeleportCause.ENDER_PEARL){
         event.setCancelled(true);
         player.teleport(to);

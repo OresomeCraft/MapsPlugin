@@ -48,7 +48,7 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
 
     String name = "arctic";
     String fullName = "Arctic";
-    String creators = "Dant35tra5t ";
+    String creators = "Dant35tra5t";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     // Map download link: N/A
@@ -243,7 +243,7 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -257,7 +257,7 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

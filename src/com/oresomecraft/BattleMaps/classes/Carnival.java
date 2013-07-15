@@ -39,12 +39,11 @@ public class Carnival extends BattleMap implements IBattleMap, Listener {
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "carnival";
     String fullName = "Carnival";
     String creators = "R3creat3 and FaazM";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
-    //Map download link: N/A
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    //I re-added infection to this, as you are visible sneaking now. - R3
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -139,7 +138,7 @@ public class Carnival extends BattleMap implements IBattleMap, Listener {
             i.setItem(1, BOW);
             i.setItem(2, STEAK);
             i.setItem(3, HEALTH_POTION);
-            i.setItem(4, ARROWS);
+            i.setItem(11, ARROWS);
 
         }
     }
@@ -182,9 +181,8 @@ public class Carnival extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -196,9 +194,8 @@ public class Carnival extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

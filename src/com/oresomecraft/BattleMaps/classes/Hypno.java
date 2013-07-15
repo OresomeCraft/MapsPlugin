@@ -55,7 +55,6 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
     String fullName = "Hypnosis";
     String creators = "zachoz, pegabeavercorn, DragonDrew and kevlar_miner";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -208,7 +207,7 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
         Block b = event.getBlock();
         int mat = b.getTypeId();
         Location loc = b.getLocation();
@@ -304,7 +303,7 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void arrowBoom(ProjectileHitEvent event) {
+    public void arrowTrail(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
         if (Utility.getArena().equals(name)) {

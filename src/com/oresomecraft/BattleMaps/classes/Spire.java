@@ -15,7 +15,6 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.Entity;
-//import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
@@ -23,7 +22,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
-//import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerEggThrowEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -57,7 +55,6 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
     String fullName = "Spire";
     String creators = "zachoz and pegabeavercorn";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
-    //Map download link: N/A
 
     public int x1 = -1661;
     public int y1 = 67;
@@ -234,8 +231,7 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    // TODO: This is temp disabled until a proper API for OresomeBattles is implemented. (isOnSameTeam(), etc)
-    /*
+    //You have this (not so) shitty API, now disable teamkilling - R3
     @EventHandler(priority = EventPriority.NORMAL)
     public void snowDamage(EntityDamageByEntityEvent event) {
 	Entity snow = event.getDamager();

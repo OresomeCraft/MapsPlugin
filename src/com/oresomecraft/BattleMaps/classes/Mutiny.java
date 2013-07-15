@@ -35,12 +35,11 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "mutiny";
     String fullName = "Mutiny";
     String creators = "DynaDavidson and JacquiRose";
     Gamemode[] modes = {Gamemode.TDM};
-    //Map download link: N/A
+    //Hey! I helped make Mutiny >:( - R3
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -98,8 +97,10 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack LOGS = new ItemStack(Material.LOG, 6);
-            ItemStack AXE = new ItemStack(Material.STONE_AXE, 1);
+            ItemStack LOGS = new ItemStack(Material.LOG, 12);
+            //You need more resources
+            ItemStack AXE = new ItemStack(Material.IRON_AXE, 1);
+            //So people will stop making wood swords
             ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
             ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
             ItemStack IRON_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
@@ -116,8 +117,8 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
             i.setItem(0, AXE);
             i.setItem(2, STEAK);
             i.setItem(3, HEALTH);
-            i.setItem(3, LOGS);
-            i.setItem(4, ARROWS);
+            i.setItem(4, LOGS);
+            i.setItem(10, ARROWS);
 
         }
     }
@@ -160,9 +161,8 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing outside of map.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

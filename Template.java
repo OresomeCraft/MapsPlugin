@@ -27,24 +27,31 @@ import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
 public class Template extends BattleMap implements IBattleMap, Listener {
 
+//When submitting a map, remember to remove all comments like this one! Copy this template with CTRL+C and paste it into a new file with CTRL+V! You can create a new file by going to src/com/oresomecraft/BattleMaps/classes/[+]!
+
     OresomeBattlesMaps plugin;
 
+    //Change this with the 'public class Template'
+    //In example if the class name was Derp, do public Derp!
     public Template(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
+    // Spawn array lists. (Don't change these!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
     // Map details
     String name = "template";
+    //Shortened name for various uses
     String fullName = "Template";
+    //Full name used for the broadcast and more various uses
     String creators = "derp, herp and harpaderp";
+    //The creators of the map, remember, it is CaSeSeNsItIvE!
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
-    //Map download link: N/A
+    //Map download link: <put a DIRECT map download here!>
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change

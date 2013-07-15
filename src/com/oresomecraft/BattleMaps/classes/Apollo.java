@@ -45,9 +45,8 @@ public class Apollo extends BattleMap implements IBattleMap, Listener {
     // Map details
     String name = "apollo";
     String fullName = "Apollo";
-    String creators = "RokMelon, Invinsible_Jelly";
+    String creators = "RokMelon and Invinsible_Jelly";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
@@ -156,7 +155,8 @@ public class Apollo extends BattleMap implements IBattleMap, Listener {
 
             Bukkit.getScheduler().runTask(plugin, new Runnable() {
                 public void run() {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 1000 * 20, 3));
+                    //Change jump effect to 3 - R3
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 1000 * 20, 2));
                 }
             });
 
@@ -202,9 +202,8 @@ public class Apollo extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -216,9 +215,8 @@ public class Apollo extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

@@ -31,17 +31,14 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "suburban";
     String fullName = "Suburban Complex";
     String creators = "R3creat3, zezo268, xannallax33 and kalikakitty";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -117,6 +114,7 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
 
             ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+            ItemStack PICK = new ItemStack(Material.IRON_PICKAXE, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
             ItemStack STONE = new ItemStack(Material.STONE, 64);
@@ -133,10 +131,10 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
 
             i.setItem(0, IRON_SWORD);
             i.setItem(1, BOW);
-            i.setItem(2, STEAK);
-            i.setItem(3, HEALTH_POTION);
-            i.setItem(4, ARROWS);
-            i.setItem(5, STONE);
+            i.setItem(2, PICK);
+            i.setItem(3, STEAK);
+            i.setItem(4, HEALTH_POTION);
+            i.setItem(11, ARROWS);
             i.setItem(6, STONE);
 
         }

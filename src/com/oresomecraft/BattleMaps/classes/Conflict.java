@@ -42,9 +42,9 @@ public class Conflict extends BattleMap implements IBattleMap, Listener {
     // Map details
     String name = "conflict";
     String fullName = "Conflict";
-    String creators = "ShaunDepro97, Darkrai202, Evil_Emo";
+    String creators = "ShaunDepro97, darkrai202 and Evil_Emo";
+    //Fix some case sensitive errors
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.CTF};
-    //Map download link: http://dl11.fileswap.com/download/?id=iL0cKhRYGFFPwHa4ioG%2FMOjyyQAXCB0Rd%2FmKoL2jjP0dC0V%2FervfvnLCo9jmU1hX2RT1CfDFNDstOMzfY44dT3A8xi4AXHi%2FTGbTxeb3b5%2F1IgDSQE%2FIosGvuWrAn%2BH1&h=46a0cfe023927e603231e70e9bb178ff&t=51aae321
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -93,9 +93,9 @@ public class Conflict extends BattleMap implements IBattleMap, Listener {
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
 
-        Location redFlag = new Location(w, 104, 106, 64, 0, 0); // Location of the red team's flag
-        Location blueFlag = new Location(w, 23, 106, 64, 0, 0); // Location of the blue team's flag
-        setCTFFlags(name, redFlag, blueFlag); // Add the flags!
+        Location redFlag = new Location(w, 104, 106, 64, 0, 0);
+        Location blueFlag = new Location(w, 23, 106, 64, 0, 0);
+        setCTFFlags(name, redFlag, blueFlag);
     }
 
     public void readyFFASpawns() {
@@ -210,9 +210,8 @@ public class Conflict extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -224,9 +223,8 @@ public class Conflict extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

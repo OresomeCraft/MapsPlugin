@@ -34,17 +34,14 @@ public class Sub extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "sub";
     String fullName = "Submerged";
     String creators = "eddie017 and Brandon267";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
-    //Map download link: http://bit.ly/Zu3LRs
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -186,9 +183,8 @@ public class Sub extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -201,21 +197,15 @@ public class Sub extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
         int mat = b.getTypeId();
 
         if (loc.getWorld().getName().equals(name)) {
-            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
-
-                if (mat == 42 || mat == 35 || mat == 57 || mat == 43
-                        || mat == 49 || mat == 155 || mat == 69 || mat == 101 || mat == 124 || mat == 47 || mat == 116 || mat == 65 || mat == 50 || mat == 89 || mat == 330) {
                     event.setCancelled(true);
-
-                }
-
+                    //Whats with the shitty hypno code?
             }
 
         }

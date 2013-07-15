@@ -38,17 +38,14 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "zoned";
     String fullName = "Zoned";
     String creators = "R3creat3, MiCkEyMiCE and _Moist";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -159,9 +156,8 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
         if (BattleHandler.activeArena.equals(name)) {
             Block b = event.getBlock();
@@ -175,7 +171,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
 
     }
         @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
         if (BattleHandler.activeArena.equals(name)) {
             Block b = event.getBlock();
@@ -196,7 +192,8 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                 if (p.getItemInHand().getType() == Material.FIREWORK) {
                     p.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
-                    p.setVelocity(new Vector(0, 1.5, 0));
+                    p.setVelocity(new Vector(0, 4, 0));
+                    //Vectors might have been changed, try 4 again.
                 }
             }
         }

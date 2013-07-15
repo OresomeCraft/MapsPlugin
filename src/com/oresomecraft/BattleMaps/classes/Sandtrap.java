@@ -41,12 +41,10 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "sandtrap";
     String fullName = "Sand Trap";
     String creators = "R3creat3, _Moist and JacquiRose";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -279,9 +277,8 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block breaking.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -294,9 +291,8 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -308,9 +304,8 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent escaping map
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(PlayerMoveEvent event) {
+    public void preventescapemap(PlayerMoveEvent event) {
 
         if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
             if (!GameUtils.isSpectator(event.getPlayer().getName())) {

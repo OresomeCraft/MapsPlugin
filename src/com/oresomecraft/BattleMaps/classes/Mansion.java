@@ -54,7 +54,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
     String fullName = "The haunted mansion";
     String creators = "pegabeavercorn, Hourani95 and kevlar_miner";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
-    //Map download link: N/A
+    //Re-add infection to this, as there is nowhere to hide >:D
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -264,7 +264,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -277,7 +277,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -291,7 +291,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onBlockBurn(BlockBurnEvent event) {
+    public void preventburn(BlockBurnEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -305,7 +305,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void onBlockSpread(BlockSpreadEvent event) {
+    public void preventspread(BlockSpreadEvent event) {
 
         if (event.getBlock().getWorld().getName().equals(name)) {
             if ((event.getBlock().getTypeId() != 2) || (event.getBlock().getTypeId() != 3)) {

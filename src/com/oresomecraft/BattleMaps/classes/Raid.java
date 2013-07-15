@@ -36,12 +36,10 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "raid";
     String fullName = "Raid";
     String creators = "ShaunDepro97";
     Gamemode[] modes = {Gamemode.TDM};
-    //Map download link: http://www.filedropper.com/raid
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change

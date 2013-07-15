@@ -36,17 +36,14 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "clashofclay";
     String fullName = "Clash Of Clay";
     String creators = "_Moist and niceman506";
     Gamemode[] modes = {Gamemode.TDM};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -99,9 +96,11 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
 
             ItemStack WOODEN_SWORD = new ItemStack(Material.WOOD_SWORD, 1, (short) -16373);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1);
+            ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1, (short) -1400);
+            //Make the pick semi-unlimited - R3
             ItemStack PUMPKIN_PIE = new ItemStack(Material.PUMPKIN_PIE, 5);
-            ItemStack BLUE_STAINED_CLAY = new ItemStack(Material.CLAY, 32);
+            ItemStack BLUE_STAINED_CLAY = new ItemStack(Material.CLAY, 48);
+            //Give a LITTLE more clay - R3
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
             ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
             ItemStack TORCH = new ItemStack(Material.TORCH, 16);

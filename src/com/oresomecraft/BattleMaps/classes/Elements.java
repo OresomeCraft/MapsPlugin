@@ -32,17 +32,14 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "elements";
     String fullName = "Elements";
     String creators = "broddikill, koolguydude4 and MiCkEyMiCE";
     Gamemode[] modes = {Gamemode.TDM};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -92,17 +89,8 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
             ItemStack LOG = new ItemStack(Material.LOG, 64);
-            ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
             ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
             ItemStack STONE_PICK = new ItemStack(Material.STONE_PICKAXE, 1);
-
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
 
             i.setItem(0, STONE_SWORD);
             i.setItem(1, STONE_PICK);
@@ -152,9 +140,8 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Code to prevent block placing outside of map.
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -166,7 +153,7 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
         }
     }
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

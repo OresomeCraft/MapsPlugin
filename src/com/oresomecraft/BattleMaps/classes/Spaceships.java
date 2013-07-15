@@ -37,17 +37,14 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "spaceships";
     String fullName = "SpaceShips";
     String creators = "sampighere, zachoz and R3creat3";
     Gamemode[] modes = {Gamemode.TDM};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -114,6 +111,8 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
 
             //Give players invincibility for 8 seconds when they spawn.
             p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40 * 20, 1));
+            //For people who chuck lava on the damned spawn
         }
     }
 
@@ -156,7 +155,7 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void onBoom(EntityExplodeEvent event) {
+    public void preventspawnexplosion(EntityExplodeEvent event) {
         if (Utility.getArena().equals(name)) {
             Location loc = event.getLocation();
             // Red team
@@ -172,7 +171,7 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void onBreak(BlockBreakEvent event) {
+    public void preventspawnbreak(BlockBreakEvent event) {
         if (Utility.getArena().equals(name)) {
             Location loc = event.getBlock().getLocation();
             // Red team
@@ -188,7 +187,7 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void onPlace(BlockPlaceEvent event) {
+    public void preventspawnplace(BlockPlaceEvent event) {
         if (Utility.getArena().equals(name)) {
             Location loc = event.getBlock().getLocation();
             // Red team

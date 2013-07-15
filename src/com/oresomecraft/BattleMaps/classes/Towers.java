@@ -44,7 +44,6 @@ public class Towers extends BattleMap implements IBattleMap, Listener {
     String fullName = "Towers";
     String creators = "bruuceey and Lyssieloo";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
-    //Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -175,7 +174,7 @@ public class Towers extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void arrowBoom(ProjectileHitEvent event) {
+    public void arrowParticle(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
         if (Utility.getArena().equals(name)) {

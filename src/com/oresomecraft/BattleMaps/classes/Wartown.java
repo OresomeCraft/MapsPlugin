@@ -54,10 +54,8 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
     String name = "wartown";
     String fullName = "Wartown";
-    String creators = "reub_youtube ";
+    String creators = "reub_youtube";
     Gamemode[] modes = {Gamemode.TDM};
-
-    // Map download link: N/A
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change

@@ -34,17 +34,15 @@ public class Fosscrest extends BattleMap implements IBattleMap, Listener {
         plugin = pl;
     }
 
-    // Spawn lists. (Don't change!)
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
-    // Map details
     String name = "fosscrest";
     String fullName = "Fosscrest Village";
-    String creators = "R3creat3 and xXJazzerXx";
+    String creators = "R3creat3, danielschroeder and xXJazzerXx";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
-    //Map download link: N/A
+    //Dan actually did help, I removed him (I dont know why)
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
@@ -166,22 +164,8 @@ public class Fosscrest extends BattleMap implements IBattleMap, Listener {
         return false;
 
     }
-
-
-    /*
-     * Custom effects/items code goes here! This is also the place where you can
-     * have code that says what blocks can and can't be broken.
-     * 
-     * Usually you should just leave this to Zachoz and pegabeavercorn to do and
-     * leave them you suggestions via a comment. ("// Text here")
-     * 
-     * If you have experience in Java and the Bukkit API feel free to write your own!
-     */
-
-    // Code for disabling block breaking:
-
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
+    public void preventblockbreak(BlockBreakEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
@@ -194,7 +178,7 @@ public class Fosscrest extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
+    public void preventblockplace(BlockPlaceEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();
