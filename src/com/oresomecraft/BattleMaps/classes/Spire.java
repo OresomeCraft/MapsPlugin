@@ -231,7 +231,7 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    //You have this (not so) shitty API, now disable teamkilling - R3
+    /*
     @EventHandler(priority = EventPriority.NORMAL)
     public void snowDamage(EntityDamageByEntityEvent event) {
 	Entity snow = event.getDamager();

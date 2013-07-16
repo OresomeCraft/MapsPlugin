@@ -42,6 +42,7 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
     String fullName = "The Mantle";
     String creators = "R3creat3, eli12310987, chillhill3, MiCkEyMiCE and FaazM";
     Gamemode[] modes = {Gamemode.CTF};
+
     //People just run in groups and infection just generally doesn't play very well on mantle.
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change

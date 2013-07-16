@@ -204,7 +204,7 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
         Location loc = b.getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
-            if(b.getType().equals(Material.FENCE)){
+            if (b.getType().equals(Material.FENCE)) {
                 return;
                 //This may be incorrect, as I am not using an SDK at the moment
             }

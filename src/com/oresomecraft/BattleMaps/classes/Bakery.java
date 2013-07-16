@@ -129,7 +129,7 @@ public class Bakery extends BattleMap implements IBattleMap, Listener {
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
-            int y2, int z1, int z2) {
+                            int y2, int z1, int z2) {
         int bottomCornerX = x1 < x2 ? x1 : x2;
         int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
@@ -157,6 +157,7 @@ public class Bakery extends BattleMap implements IBattleMap, Listener {
             event.setCancelled(true);
         }
     }
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void preventblockbreak(BlockBreakEvent event) {
 

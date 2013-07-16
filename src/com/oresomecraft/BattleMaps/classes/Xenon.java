@@ -192,19 +192,19 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
         }
 
     }
-    
+
     @EventHandler
-    public void preventenderpearldamage(PlayerTeleportEvent event){
-      Player player = event.getPlayer();
-      TeleportCause cause = event.getCause();
-      Location to = event.getTo();
-      if(event.getPlayer().getWorld().getName().equals(name){
-      //Just a reminder, this applies to all maps. (Rogue method)
-      if(cause == TeleportCause.ENDER_PEARL){
-        event.setCancelled(true);
-        player.teleport(to);
+    public void preventenderpearldamage(PlayerTeleportEvent event) {
+        Player player = event.getPlayer();
+        TeleportCause cause = event.getCause();
+        Location to = event.getTo();
+        if (event.getPlayer().getWorld().getName().equals(name)) {
+            //Just a reminder, this applies to all maps. (Rogue method)
+            if (cause == TeleportCause.ENDER_PEARL) {
+                event.setCancelled(true);
+                player.teleport(to);
+            }
         }
-      }
     }
 
     @EventHandler

@@ -170,7 +170,8 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         }
 
     }
-        @EventHandler(priority = EventPriority.NORMAL)
+
+    @EventHandler(priority = EventPriority.NORMAL)
     public void preventblockbreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
         if (BattleHandler.activeArena.equals(name)) {
@@ -198,5 +199,5 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
             }
         }
     }
-    
+
 }

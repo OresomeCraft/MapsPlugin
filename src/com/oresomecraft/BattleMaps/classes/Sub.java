@@ -204,10 +204,10 @@ public class Sub extends BattleMap implements IBattleMap, Listener {
         int mat = b.getTypeId();
 
         if (loc.getWorld().getName().equals(name)) {
-                    event.setCancelled(true);
-                    //Whats with the shitty hypno code?
-            }
-
+            event.setCancelled(true);
+            //Whats with the shitty hypno code?
         }
+
     }
 }
+

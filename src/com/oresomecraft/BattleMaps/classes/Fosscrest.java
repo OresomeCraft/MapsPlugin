@@ -164,6 +164,7 @@ public class Fosscrest extends BattleMap implements IBattleMap, Listener {
         return false;
 
     }
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void preventblockbreak(BlockBreakEvent event) {
 
