@@ -43,7 +43,7 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
 
     String name = "sandtrap";
     String fullName = "Sand Trap";
-    String creators = "R3creat3, _Moist and JacquiRose";
+    String creators = "R3creat3 and danielschroeder";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -64,26 +64,14 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
-        redSpawns.add(new Location(w, -18, 88, -10));
-        redSpawns.add(new Location(w, -18, 88, -32));
-        redSpawns.add(new Location(w, -9, 82, -30));
-        redSpawns.add(new Location(w, -27, 82, -12));
-        redSpawns.add(new Location(w, -8, 77, -11));
-        redSpawns.add(new Location(w, -28, 77, -31));
-        redSpawns.add(new Location(w, -8, 72, -31));
-        redSpawns.add(new Location(w, -28, 72, -11));
-        redSpawns.add(new Location(w, -8, 67, -11));
-        redSpawns.add(new Location(w, -28, 67, -31));
-        blueSpawns.add(new Location(w, -9, 82, 4));
-        blueSpawns.add(new Location(w, -27, 82, 22));
-        blueSpawns.add(new Location(w, -28, 77, 3));
-        blueSpawns.add(new Location(w, -8, 77, 23));
-        blueSpawns.add(new Location(w, -8, 72, 3));
-        blueSpawns.add(new Location(w, -28, 72, 23));
-        blueSpawns.add(new Location(w, -28, 67, 3));
-        blueSpawns.add(new Location(w, -8, 67, 23));
-        blueSpawns.add(new Location(w, -18, 88, 2));
-        blueSpawns.add(new Location(w, -18, 88, 24));
+        redSpawns.add(new Location(w, -18, 100, -30));
+        redSpawns.add(new Location(w, -18, 95, -11));
+        redSpawns.add(new Location(w, -18, 81, -31));
+        redSpawns.add(new Location(w, -18, 67, -11));
+        blueSpawns.add(new Location(w, -18, 100, -68));
+        blueSpawns.add(new Location(w, -18, 86, -86));
+        blueSpawns.add(new Location(w, -18, 72, -68));
+        blueSpawns.add(new Location(w, -18, 67, -87));
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
@@ -92,27 +80,14 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
     public void readyFFASpawns() {
 
         World w = Bukkit.getServer().getWorld(name);
-
-        FFASpawns.add(new Location(w, -18, 88, -10));
-        FFASpawns.add(new Location(w, -18, 88, -32));
-        FFASpawns.add(new Location(w, -9, 82, -30));
-        FFASpawns.add(new Location(w, -27, 82, -12));
-        FFASpawns.add(new Location(w, -8, 77, -11));
-        FFASpawns.add(new Location(w, -28, 77, -31));
-        FFASpawns.add(new Location(w, -8, 72, -31));
-        FFASpawns.add(new Location(w, -28, 72, -11));
-        FFASpawns.add(new Location(w, -8, 67, -11));
-        FFASpawns.add(new Location(w, -28, 67, -31));
-        FFASpawns.add(new Location(w, -9, 82, 4));
-        FFASpawns.add(new Location(w, -27, 82, 22));
-        FFASpawns.add(new Location(w, -28, 77, 3));
-        FFASpawns.add(new Location(w, -8, 77, 23));
-        FFASpawns.add(new Location(w, -8, 72, 3));
-        FFASpawns.add(new Location(w, -28, 72, 23));
-        FFASpawns.add(new Location(w, -28, 67, 3));
-        FFASpawns.add(new Location(w, -8, 67, 23));
-        FFASpawns.add(new Location(w, -18, 88, 2));
-
+        FFASpawns.add(new Location(w, -18, 100, -30));
+        FFASpawns.add(new Location(w, -18, 95, -11));
+        FFASpawns.add(new Location(w, -18, 81, -31));
+        FFASpawns.add(new Location(w, -18, 67, -11));
+        FFASpawns.add(new Location(w, -18, 100, -68));
+        FFASpawns.add(new Location(w, -18, 86, -86));
+        FFASpawns.add(new Location(w, -18, 72, -68));
+        FFASpawns.add(new Location(w, -18, 67, -87));
         setFFASpawns(name, FFASpawns);
     }
 
@@ -133,9 +108,10 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
             ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
             ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
-            ItemStack GLASS = new ItemStack(Material.GLASS, 6);
-            ItemStack SAND = new ItemStack(Material.SAND, 32);
+            ItemStack STONE_SWORD = new ItemStack(Material.DIAMOND_SPADE, 1);
+            //:D
+            ItemStack GLASS = new ItemStack(Material.GLASS, 22);
+            ItemStack SAND = new ItemStack(Material.SAND, 64);
             ItemStack TNT = new ItemStack(Material.TNT, 1);
             ItemStack TINDER = new ItemStack(Material.FLINT_AND_STEEL, 1);
 
@@ -248,14 +224,14 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 0;
-    public int y1 = 64;
-    public int z1 = -41;
+    public int x1 = 3;
+    public int y1 = 63;
+    public int z1 = -90;
 
     //Bottom right corner.
-    public int x2 = -38;
-    public int y2 = 96;
-    public int z2 = 32;
+    public int x2 = -41;
+    public int y2 = 130;
+    public int z2 = -10;
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
@@ -302,18 +278,6 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
             }
         }
 
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventescapemap(PlayerMoveEvent event) {
-
-        if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
-            if (!GameUtils.isSpectator(event.getPlayer().getName())) {
-                if (!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1, z2))) {
-                    event.setCancelled(true);
-                }
-            }
-        }
     }
 
 }
