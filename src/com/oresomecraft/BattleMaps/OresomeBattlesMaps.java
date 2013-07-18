@@ -63,7 +63,6 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Docks(this);
         new Spaceships(this);
         new Relation(this);
-        new Conflict(this);
         new Apollo(this);
         new Raid(this);
         new Voidsflag(this);
