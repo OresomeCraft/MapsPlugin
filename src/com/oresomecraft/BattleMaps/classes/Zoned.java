@@ -79,7 +79,6 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
 
         World w = Bukkit.getServer().getWorld(name);
 
-
         FFASpawns.add(new Location(w, -2, 87, 88));
         FFASpawns.add(new Location(w, -2, 87, -65));
         setFFASpawns(name, FFASpawns);
