@@ -93,13 +93,12 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         String par = event.getMessage();
         Player p = event.getPlayer();
         Inventory i = p.getInventory();
-        p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
-        p.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
-        p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
-        p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
-            // Give players invincibility for 8 seconds when they spawn.
+             p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
+            p.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
+            p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+            p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
             p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
         }
     }
