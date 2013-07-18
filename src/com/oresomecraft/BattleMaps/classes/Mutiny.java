@@ -1,6 +1,7 @@
 package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
 import org.bukkit.*;
@@ -170,6 +171,20 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         if (loc.getWorld().getName().equals(name)) {
             if (!contains(loc, x1, x2, y1, y2, z1, z2)) {
                 event.setCancelled(true);
+            }
+        }
+    }
+    @EventHandler
+    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
+        Player p = event.getEntity();
+        List<ItemStack> drops = event.getDrops();
+
+        for (ItemStack item : drops) {
+            Material mat = item.getType();
+
+            if (mat == Material.IRON_AXE) {
+
+                item.setType(Material.AIR);
             }
         }
     }

@@ -99,23 +99,26 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
             ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1, (short) -1400);
             //Make the pick semi-unlimited - R3
             ItemStack PUMPKIN_PIE = new ItemStack(Material.PUMPKIN_PIE, 5);
+            ItemStack APPLE = new ItemStack(Material.GOLDEN_APPLE, 2);
             ItemStack BLUE_STAINED_CLAY = new ItemStack(Material.CLAY, 48);
             //Give a LITTLE more clay - R3
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+            ItemStack DIAMOND_HELMET = new ItemStack(Material.DIAMOND_HELMET, 1);
+            //Make the rushers a little less weak, about 10% less damage/
             ItemStack TORCH = new ItemStack(Material.TORCH, 16);
             ItemStack ARROW = new ItemStack(Material.ARROW, 1);
 
             p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-            p.getInventory().setHelmet(LEATHER_HELMET);
+            p.getInventory().setHelmet(DIAMOND_HELMET);
             BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 
             i.setItem(0, WOODEN_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, IRON_PICKAXE);
             i.setItem(3, PUMPKIN_PIE);
-            i.setItem(4, BLUE_STAINED_CLAY);
-            i.setItem(5, TORCH);
+            i.setItem(4, APPLE);
+            i.setItem(5, BLUE_STAINED_CLAY);
+            i.setItem(6, TORCH);
             i.setItem(27, ARROW);
 
         }

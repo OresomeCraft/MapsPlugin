@@ -41,8 +41,8 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
     String name = "fairwick";
     String fullName = "Fairwick Village";
     String creators = "R3creat3, ninsai and zachoz";
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
-    //This plays well as a TDM, I guess. Let's try it out!
+    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM, Gamemode.INFECTION};
+    //This plays well as a TDM/Infection, I guess. Let's try it out!
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
