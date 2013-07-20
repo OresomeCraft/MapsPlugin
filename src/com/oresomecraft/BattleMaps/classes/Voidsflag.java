@@ -86,7 +86,6 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
 
-
         setFFASpawns(name, FFASpawns);
     }
 
