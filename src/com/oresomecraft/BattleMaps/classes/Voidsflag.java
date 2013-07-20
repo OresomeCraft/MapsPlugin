@@ -105,7 +105,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
             ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
             ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
             ItemStack COOKED_PORKCHOP = new ItemStack(Material.COOKED_BEEF, 4);
             ItemStack BIRCH_LOG = new ItemStack(Material.LOG, 64);
             ItemStack ARROW = new ItemStack(Material.ARROW, 64);
