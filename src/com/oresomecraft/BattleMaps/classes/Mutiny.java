@@ -174,6 +174,7 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
             }
         }
     }
+
     @EventHandler
     public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
         Player p = event.getEntity();

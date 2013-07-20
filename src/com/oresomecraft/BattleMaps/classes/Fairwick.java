@@ -162,8 +162,8 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
         Location loc = b.getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
-            if(b.getType() == Material.GLASS_PANE) return;
-            event.setCancelled(true);
+            if (!(b.getType() == Material.THIN_GLASS))
+                event.setCancelled(true);
         }
 
     }
