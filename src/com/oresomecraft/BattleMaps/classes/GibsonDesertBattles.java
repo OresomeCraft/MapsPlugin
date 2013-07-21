@@ -23,16 +23,15 @@ import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class GibsonDesert extends BattleMap implements IBattleMap, Listener {
+public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listener {
 
     OresomeBattlesMaps plugin;
 
-    public GibsonDesert(OresomeBattlesMaps pl) {
+    public GibsonDesertBattles(OresomeBattlesMaps pl) {
         super(pl);
         plugin = pl;
     }
@@ -116,6 +115,8 @@ public class GibsonDesert extends BattleMap implements IBattleMap, Listener {
             // Armor
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
             ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
 
             if (TDM.isBlue(p.getName())) {
 
