@@ -1,6 +1,7 @@
 package com.oresomecraft.BattleMaps.classes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.OresomeBattles.GameUtils;
@@ -69,7 +70,6 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
         redSpawns.add(redSpawn);
 
         blueSpawns.add(blueSpawn);
-
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);

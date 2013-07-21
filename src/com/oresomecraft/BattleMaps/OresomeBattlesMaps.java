@@ -71,6 +71,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new BurnFirePort(this);
         new ClashOfClay(this);
         new Elements(this);
+        new GibsonDesertBattles(this);
     }
 
     public static OresomeBattlesMaps getInstance() {
