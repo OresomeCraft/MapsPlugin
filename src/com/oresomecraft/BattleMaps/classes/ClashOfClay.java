@@ -161,4 +161,18 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
         return false;
 
     }
+    @EventHandler
+    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
+        Player p = event.getEntity();
+        List<ItemStack> drops = event.getDrops();
+
+        for (ItemStack item : drops) {
+            Material mat = item.getType();
+
+            if (mat == Material.DIAMOND_HELMET || mat == Material.WOOD_SWORD) {
+
+                item.setType(Material.AIR);
+            }
+        }
+    }
 }
