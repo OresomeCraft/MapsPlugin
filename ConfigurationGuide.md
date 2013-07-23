@@ -1,4 +1,5 @@
-#### This configuration guide is limited! You should look at the [wiki]:https://github.com/OresomeCraft/OresomeBattles-Maps/wiki
+[wiki]:https://github.com/OresomeCraft/OresomeBattles-Maps/wiki
+#### This configuration guide is limited! You should check out the [wiki]!
 
 ## Where to start?
 
