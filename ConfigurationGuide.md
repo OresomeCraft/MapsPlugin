@@ -1,8 +1,6 @@
-OresomeBattles map configuration guide
-=
+#### This configuration guide is limited! You should look at the [wiki]:https://github.com/OresomeCraft/OresomeBattles-Maps/wiki
 
 ## Where to start?
-// This is still a work in progress! More things will be added very soon!
 
 Well, you've found your way to our maps repository, so there's a good start.
 
@@ -24,12 +22,11 @@ First off, copy the Template.java file, you can get that from [HERE][]
 
 The code below only needs to be slightly channged. Simple change where it says "Arctic" to the name of your map.
 ```java
-public class Arctic extends BattleMap implements MapInterface, Listener {
+public class Arctic extends BattleMap implements, IBattleMap Listener {
 
-    OresomeBattlesMaps plugin;
-    public Arctic(OresomeBattlesMaps pl) {
-        super(pl);
-        plugin = pl;
+    public Arctic() {
+        super.initiate(this);
+        setDetails(name, fullName, creators, modes);
     }
 ```
 Below defines the basic details of this map
@@ -38,14 +35,11 @@ Below defines the basic details of this map
     String name = "arctic";  // Shorten & lowercase name of the map.
     String fullName = "Arctic"; // Full captilised map name.
     String creators = "Dant35tra5t, Derpherp"; // Map creators.
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
-    //Map download link: http://some-link-here.com/map.zip  // Download link to map.
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.CTF};
+    // Map download link: http://some-link-here.com/map.zip  // Download link to map.
 ```
 
-As you can see you're able to set which game modes the map can play. Current available options are: Gamemode.TDM, Gamemode.FFA and Gamemode.INFECTION
-
-### What about this ReadyMap() and these ArrayLists and um, the imports?
-These are internal things required to make the map function. DO NOT change these.
+As you can see you're able to set which game modes the map can play. Current available options are: Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION and Gamemode.CTF
 
 ### Setting spawn points
 Each team has their own defined spawn points. If more than one is defined, the plugin will automatically spawn players between each of them. 
@@ -73,6 +67,11 @@ Each team has their own defined spawn points. If more than one is defined, the p
         // Adds spawns. (Don't modify)
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
+
+        // CTF stuff - Optional, put this here if you want CTF on your map!
+        Location redFlag = new Location(w, 0, 1, -10, 0, 0); // Location of the red team's flag
+        Location blueFlag = new Location(w, 0, 1, 10, 0, 0); // Location of the blue team's flag
+        setCTFFlags(name, redFlag, blueFlag); // Add the flags!
     }
 ```
 X - X coordinate
@@ -100,25 +99,16 @@ Simply replace these variables with the actual values of the coordinates. You ma
         FFASpawns.add(new Location(w, X, Y, Z, YAW, 0);
         FFASpawns.add(new Location(w, -125, 71, -1132, -95, 0));
         FFASpawns.add(new Location(w, -101, 71, -1159, -51, 0));
-        FFASpawns.add(new Location(w, -109, 71, -1162, -132, 0));
-        FFASpawns.add(new Location(w, -97, 66, -1171, 156, 0));
-        FFASpawns.add(new Location(w, -83, 71, -1182, 41, 0));
-        FFASpawns.add(new Location(w, -78, 71, -1188, -88, 0));
-        FFASpawns.add(new Location(w, -43, 71, -1168, 124, 0));
-        FFASpawns.add(new Location(w, -48, 71, -1197, 90, 0));
-        FFASpawns.add(new Location(w, -91, 71, -1207, -89, 0));
-        FFASpawns.add(new Location(w, -121, 71, -1190, 121, 0));
-        FFASpawns.add(new Location(w, -139, 71, -1192, 89, 0));
-        FFASpawns.add(new Location(w, -114, 66, -1191, 43, 0));
-        FFASpawns.add(new Location(w, -77, 71, -1169, -90, 0));
-        FFASpawns.add(new Location(w, -58, 71, -1147, 156, 0));
-        FFASpawns.add(new Location(w, -91, 71, -1140, 141, 0));
 
         // Add spawns to list. (Don't change!)
         setFFASpawns(name, FFASpawns);
     }
 ```
 The same goes for adding FFA spawns, however these spawns are used for all players. This is practically the same as configuring the TDM spawn points, just replace the variables as follows.
+
+FFASpawns is also where the Infection spawns are defined. FFA and Infection share the same spawn points.
+
+**Note:** ALL maps must have the FFA method with at least one spawn defined. This is what OresomeBattles uses to teleport spectators!
 
 ###Inventories
 Out of all things here inventories are probably the most complex, but they're actually super simple!
@@ -194,88 +184,10 @@ This is very important, it allows for the plugin to make specific checks and mak
 ### What about these other "methods" like clearSpawns() and contains() ?
 These don't need to be changed, just leave them as is. However, they are both important and must remain there!
 
-### // End of basic map configuration.
+### End of basic map configuration.
 No really, that's it. The map is configured! (To a basic level anyway, usually this is sufficient, though.)
 
-## Advanced configurion
-There are many more things you can do with these map configurations, this is one of the great benefits of having it coded in Java. Please note that these examples will have less documentation than the configuration explained above.
+### Advanced configuration
 
-### Disable block breaking
-```java
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-        if (loc.getWorld().getName().equals(name)) {
-            event.setCancelled(true);
-        }
-    }
-```
-This disables all block breaking in a map.
-Make sure you ```import org.bukkit.event.block.BlockBreakEvent;``` and ```import org.bukkit.Block;``` if you want to use this!
-
-### Disable breaking of certain blocks
-```java
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
-        Block b = event.getBlock();
-        int mat = b.getTypeId();
-        Location loc = b.getLocation();
-        if (loc.getWorld().getName().equals(name)) {
-            if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
-
-                if (mat == 43 || mat == 44 || mat == 35 || mat == 42
-                        || mat == 49 || mat == 123 || mat == 69 || mat == 124) {
-
-                    event.setCancelled(true);
-                }
-            }
-        }
-    }
-```
-This will disable the breaking block of these specific blocks.
-Make sure you ```import org.bukkit.event.block.BlockBreakEvent;``` and ```import org.bukkit.Block;``` if you want to use this!
-
-Key:
-
-mat - Get the block being hit
-
-|| - Or operator
-
-Again, these topics are more suited for people who have more of a clue what they're doing. If you would like to have this but don't know how to do it yourself, just leave a comment (using // <Text here> ) in the class file explaining what blocks you don't want them to be able to break.
-
-### Naming items
-This is a pretty cool feature but again is not for the basic people. This is mostly useful if you implement your own custom effects.
-```java
-ItemMeta egg_hypno = EGG_HYPNO.getItemMeta();
-egg_hypno.setDisplayName(ChatColor.BLUE + "Flash bang grenade");
-EGG_HYPNO.setItemMeta(egg_hypno);
-```
-I won't go into too much here, but basically we're defining the item meta for the item, setting the name of it, then applying this meta to the item itself. Pretty straight forward. (Make sure this code is before where the inventory is applied!)
-
-Make sure you ```import org.bukkit.inventory.meta.ItemMeta;``` if you want to use this.
-
-### Creating particles where a projectile hits
-This can help create some oresome visual effects. I highly recommend people experiment with this if they're in the advanced category of people.
-```java
-    @EventHandler
-    public void arrowBoom(ProjectileHitEvent event) {
-        Entity arrow = event.getEntity();
-        World world = Bukkit.getWorld(name);
-        if (Battles.activeArena.get(0).equals(name)) {
-            if (arrow instanceof Arrow) {
-                world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
-            }
-        }
-    }
-```
-You can make this play any sort of particles, but you'll need to do your own research to find them. The example above makes a block breaking particle effect. The number defined at the end is the ID of the block, so in this case water. If you wanted a golden explosion, you would change that number to the ID of a gold block.
-
-You may also notice the if statement that makes sure this is an arrow, you could change this to say snowballs, it's up to you!
-Make sure you  ```import org.bukkit.Effect;```, ```import org.bukkit.event.entity.ProjectileHitEvent;```, ```import org.bukkit.entity.Entity; ``` and ```import org.bukkit.entity.Arrow; ``` if you want to use this.
-
-
-
-Written by Zach De Koning (Zachoz | https://github.com/Zachoz)
-
-Last updated: 11/05/2013
+[click here]:https://github.com/OresomeCraft/OresomeBattles-Maps/wiki/Advanced-Map-Options
+To do more advanced configuration for your battle map, check out our 'Advanced Configuration' guide. To get there [click here][]
