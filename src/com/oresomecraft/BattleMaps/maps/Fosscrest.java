@@ -19,36 +19,24 @@ import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 
-public class Template extends BattleMap implements IBattleMap, Listener {
+public class Fosscrest extends BattleMap implements IBattleMap, Listener {
 
-    public Template() {
+    public Fosscrest() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
     }
 
-    // Map details
-    String name = "template";
-    String fullName = "Template";
-    String creators = "derp, herp and harpaderp";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.CTF};
+    String name = "fosscrest";
+    String fullName = "Fosscrest Village";
+    String creators = "R3creat3, danielschroeder and xXJazzerXx";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
-
-        Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
-        Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
-
-        redSpawns.add(redSpawn);
-        redSpawns.add(new Location(w, 0, 99, 27, 2, 0));
-        redSpawns.add(new Location(w, -9, 110, -20, 0, 0));
-        redSpawns.add(new Location(w, 21, 105, -13, 0, 0));
-        redSpawns.add(new Location(w, 4, 106, -41, 0, 0));
-
-        blueSpawns.add(blueSpawn);
-        blueSpawns.add(new Location(w, -9, 110, -20, 0, 0));
-        blueSpawns.add(new Location(w, 0, 99, 27, 0, 0));
-        blueSpawns.add(new Location(w, -16, 108, -3, 0, 0));
-        blueSpawns.add(new Location(w, -30, 108, -3, 0, 0));
+        redSpawns.add(new Location(w, 241, 120, -1310));
+        redSpawns.add(new Location(w, 236, 94, -1325));
+        blueSpawns.add(new Location(w, 236, 94, -1325));
+        blueSpawns.add(new Location(w, 235, 101, -1312));
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
@@ -58,13 +46,21 @@ public class Template extends BattleMap implements IBattleMap, Listener {
 
         World w = Bukkit.getServer().getWorld(name);
 
-        Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
-        Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
+        Location redSpawn = new Location(w, 186, 112, -1293);
+        Location blueSpawn = new Location(w, 185, 112, -1288);
 
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-        FFASpawns.add(new Location(w, 0, 99, 27, 2, 0));
-        FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
+        FFASpawns.add(new Location(w, 212, 131, -1274));
+        FFASpawns.add(new Location(w, 237, 120, -1263));
+        FFASpawns.add(new Location(w, 261, 116, -1294));
+        FFASpawns.add(new Location(w, 241, 120, -1310));
+        FFASpawns.add(new Location(w, 187, 112, -1269));
+        FFASpawns.add(new Location(w, 219, 101, -1306));
+        FFASpawns.add(new Location(w, 219, 101, -1306));
+        FFASpawns.add(new Location(w, 244, 99, -1289));
+        FFASpawns.add(new Location(w, 198, 113, -1288));
+        FFASpawns.add(new Location(w, 187, 119, -1267));
 
         setFFASpawns(name, FFASpawns);
     }
@@ -87,7 +83,6 @@ public class Template extends BattleMap implements IBattleMap, Listener {
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
@@ -99,20 +94,46 @@ public class Template extends BattleMap implements IBattleMap, Listener {
             i.setItem(2, STEAK);
             i.setItem(3, HEALTH_POTION);
             i.setItem(4, ARROWS);
-            i.setItem(5, EXP);
 
         }
     }
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
+    public int x1 = 86;
+    public int y1 = 229;
+    public int z1 = -1396;
 
     //Bottom right corner.
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
+    public int x2 = 353;
+    public int y2 = 73;
+    public int z2 = -1187;
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void preventblockbreak(BlockBreakEvent event) {
+
+        Block b = event.getBlock();
+        Location loc = b.getLocation();
+
+        if (loc.getWorld().getName().equals(name)) {
+
+            event.setCancelled(true);
+        }
+
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void preventblockplace(BlockPlaceEvent event) {
+
+        Block b = event.getBlock();
+        Location loc = b.getLocation();
+
+        if (loc.getWorld().getName().equals(name)) {
+
+            event.setCancelled(true);
+
+        }
+
+    }
 
 }

@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.oresomecraft.BattleMaps.classes.*;
+import com.oresomecraft.BattleMaps.maps.*;
 
 public class OresomeBattlesMaps extends JavaPlugin {
     public final Logger logger = Logger.getLogger("Minecraft");
@@ -30,48 +30,47 @@ public class OresomeBattlesMaps extends JavaPlugin {
 
     public void loadMaps() {
 
-        new Zoned(this);
-        new Mantle(this);
-        new Bakery(this);
-        new BattleMap(this);
-        new Perro(this);
-        new Fairwick(this);
-        new Wartown(this);
-        new Spire(this);
-        new Xenon(this);
-        new Mansion(this);
-        new Hypno(this);
-        new Arctic(this);
-        new Mutiny(this);
-        new Nuketown(this);
-        new Terminal(this);
-        new Sandtrap(this);
-        new Towers(this);
-        new Hartshire(this);
-        new Skyislands(this);
-        new Fosscrest(this);
-        new Solitude(this);
-        new Suburban(this);
-        new MutinyII(this);
-        new Battlement(this);
-        new Insanity(this);
-        new Carnival(this);
-        new Sub(this);
-        new Deepcaverns(this);
-        new Chaoscity(this);
-        new Darknessofdusk(this);
-        new Docks(this);
-        new Spaceships(this);
-        new Relation(this);
-        new Apollo(this);
-        new Raid(this);
-        new Voidsflag(this);
-        new DimensionalWar(this);
-        new Mayhem(this);
-        new BurnFirePort(this);
-        new ClashOfClay(this);
-        new Elements(this);
-        new GibsonDesertBattles(this);
+        new Apollo();
+        new Zoned();
+        new Mantle();
+        new Bakery();
+        new Perro();
+        new Fairwick();
+        new Wartown();
+        new Spire();
+        new Xenon();
+        new Mansion();
+        new Hypno();
+        new Arctic();
+        new Mutiny();
+        new Nuketown();
+        new Terminal();
+        new Sandtrap();
+        new Towers();
+        new Hartshire();
+        new Skyislands();
+        new Fosscrest();
+        new Solitude();
+        new Suburban();
+        new MutinyII();
+        new Battlement();
+        new Insanity();
+        new Carnival();
+        new Sub();
+        new Deepcaverns();
+        new Chaoscity();
+        new Darknessofdusk();
+        new Docks();
+        new Spaceships();
+        new Relation();
+        new Raid();
+        new Voidsflag();
+        new DimensionalWar();
+        new Mayhem();
+        new BurnFirePort();
+        new ClashOfClay();
+        new Elements();
+        new GibsonDesertBattles();
     }
 
     public static OresomeBattlesMaps getInstance() {
