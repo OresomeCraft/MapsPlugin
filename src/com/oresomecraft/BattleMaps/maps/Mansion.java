@@ -20,6 +20,7 @@ import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import java.util.List;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.OresomeBattles.Gamemode;
@@ -258,4 +259,18 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
 
     }
 
+    @EventHandler
+    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
+        Player p = event.getEntity();
+        List<ItemStack> drops = event.getDrops();
+
+        for (ItemStack item : drops) {
+            Material mat = item.getType();
+
+            if (mat == Material.STONE_SWORD) {
+
+                item.setType(Material.AIR);
+            }
+        }
+    }
 }

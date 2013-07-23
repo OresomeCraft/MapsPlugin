@@ -29,7 +29,7 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
     String name = "fairwick";
     String fullName = "Fairwick Village";
     String creators = "R3creat3, ninsai and zachoz";
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
