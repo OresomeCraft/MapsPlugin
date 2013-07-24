@@ -86,7 +86,7 @@ public abstract class BattleMap implements Listener {
     public abstract void readyTDMSpawns();
     public abstract void readyFFASpawns();
 
-    public boolean active = Utility.getArena().equals(name); // Wether or not map is currently being played
+    public boolean active = Utility.getArena().equals(name); // Whether or not map is currently being played
 
     /**
      * ***************************************************************
