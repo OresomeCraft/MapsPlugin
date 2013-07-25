@@ -88,7 +88,7 @@ public class Apollo extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(InventoryEvent event) {
 
         String par = event.getMessage();
-        final Player p = event.getPlayer();
+        final BattlePlayer p = event.getPlayer();
         Inventory i = p.getInventory();
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);

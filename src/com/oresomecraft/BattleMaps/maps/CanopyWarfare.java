@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
@@ -47,10 +49,8 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
 
-        redSpawns.add(redSpawn);
         redSpawns.add(new Location(w, 13, 78, -24, 3, -45));
 
-        blueSpawns.add(blueSpawn);
         blueSpawns.add(new Location(w, 26, 78, 86, 2, 139));
 
         setRedSpawns(name, redSpawns);
@@ -61,8 +61,6 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
 
         World w = Bukkit.getServer().getWorld(name);
 
-        FFASpawns.add(redSpawn);
-        FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, 0, 99, 27, 2, 0));
         FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
         FFASpawns.add(new Location(w, 21, 105, -13, 0, 0));
@@ -92,7 +90,7 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(InventoryEvent event) {
 
         String par = event.getMessage();
-        Player p = event.getPlayer();
+        BattlePlayer p = event.getPlayer();
         Inventory i = p.getInventory();
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);

@@ -3,6 +3,7 @@ package com.oresomecraft.BattleMaps.maps;
 import java.util.List;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -85,7 +86,7 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(InventoryEvent event) {
 
         String par = event.getMessage();
-        Player p = event.getPlayer();
+        BattlePlayer p = event.getPlayer();
         Inventory i = p.getInventory();
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
