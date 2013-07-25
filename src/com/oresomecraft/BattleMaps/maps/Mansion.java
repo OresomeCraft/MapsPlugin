@@ -1,6 +1,7 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.BattleMaps.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemodes.Infection;
 import org.bukkit.Bukkit;
@@ -123,65 +124,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
             ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
             ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
-            if (TDM.isBlue(p.getName())) {
-
-                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
-                bootsMeta.setColor(Color.BLUE);
-                LEATHER_BOOTS.setItemMeta(bootsMeta);
-
-                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
-                pantsMeta.setColor(Color.BLUE);
-                LEATHER_PANTS.setItemMeta(pantsMeta);
-
-                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
-                chestplateMeta.setColor(Color.BLUE);
-                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
-            }
-
-            if (TDM.isRed(p.getName())) {
-
-                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
-                bootsMeta.setColor(Color.RED);
-                LEATHER_BOOTS.setItemMeta(bootsMeta);
-
-                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
-                pantsMeta.setColor(Color.RED);
-                LEATHER_PANTS.setItemMeta(pantsMeta);
-
-                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
-                chestplateMeta.setColor(Color.RED);
-                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
-            }
-
-            if (Infection.isHuman(p.getName())) {
-
-                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
-                bootsMeta.setColor(Color.GREEN);
-                LEATHER_BOOTS.setItemMeta(bootsMeta);
-
-                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
-                pantsMeta.setColor(Color.GREEN);
-                LEATHER_PANTS.setItemMeta(pantsMeta);
-
-                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
-                chestplateMeta.setColor(Color.GREEN);
-                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
-            }
-
-            if (Infection.isZombie(p.getName())) {
-
-                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
-                bootsMeta.setColor(Color.RED);
-                LEATHER_BOOTS.setItemMeta(bootsMeta);
-
-                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
-                pantsMeta.setColor(Color.RED);
-                LEATHER_PANTS.setItemMeta(pantsMeta);
-
-                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
-                chestplateMeta.setColor(Color.RED);
-                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
-            }
+            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
 
             p.getInventory().setBoots(LEATHER_BOOTS);
             p.getInventory().setLeggings(LEATHER_PANTS);

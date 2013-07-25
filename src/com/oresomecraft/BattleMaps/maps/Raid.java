@@ -3,6 +3,7 @@ package com.oresomecraft.BattleMaps.maps;
 import java.util.List;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.BattleMaps.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.*;
@@ -99,21 +100,7 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
-            if (TDM.isBlue(p.getName())) {
-                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
-                helmetMeta.setColor(Color.BLUE);
-                LEATHER_HELMET.setItemMeta(helmetMeta);
-                ItemStack ENDER_PEARL = new ItemStack(Material.ENDER_PEARL, 1);
-                i.setItem(5, ENDER_PEARL);
-            }
-
-            if (TDM.isRed(p.getName())) {
-                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
-                helmetMeta.setColor(Color.RED);
-                LEATHER_HELMET.setItemMeta(helmetMeta);
-                ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
-                i.setItem(2, FISHING_ROD);
-            }
+            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(CHAINMAIL_PANTS);

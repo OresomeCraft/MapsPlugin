@@ -3,6 +3,7 @@ package com.oresomecraft.BattleMaps.maps;
 import java.util.List;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.BattleMaps.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -79,6 +80,8 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
             p.getInventory().setChestplate(LEATHER_CHESTPLATE);
             p.getInventory().setHelmet(DIAMOND_HELMET);
             BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+
+            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
             i.setItem(0, WOODEN_SWORD);
             i.setItem(1, BOW);

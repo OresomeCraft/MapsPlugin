@@ -3,6 +3,7 @@ package com.oresomecraft.BattleMaps.maps;
 import java.util.List;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.BattleMaps.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.*;
@@ -76,50 +77,8 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
             // Armor
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
             ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
 
-            if (TDM.isBlue(p.getName())) {
-
-                //Sets armor blue
-                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
-                helmetMeta.setColor(Color.BLUE);
-                LEATHER_HELMET.setItemMeta(helmetMeta);
-
-                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
-                bootsMeta.setColor(Color.BLUE);
-                LEATHER_BOOTS.setItemMeta(bootsMeta);
-
-                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
-                pantsMeta.setColor(Color.BLUE);
-                LEATHER_PANTS.setItemMeta(pantsMeta);
-
-                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
-                chestplateMeta.setColor(Color.BLUE);
-                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
-
-            }
-
-            if (TDM.isRed(p.getName())) {
-
-                //Sets armor red
-                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
-                helmetMeta.setColor(Color.RED);
-                LEATHER_HELMET.setItemMeta(helmetMeta);
-
-                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
-                bootsMeta.setColor(Color.RED);
-                LEATHER_BOOTS.setItemMeta(bootsMeta);
-
-                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
-                pantsMeta.setColor(Color.RED);
-                LEATHER_PANTS.setItemMeta(pantsMeta);
-
-                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
-                chestplateMeta.setColor(Color.RED);
-                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
-
-            }
+            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_BOOTS});
 
             p.getInventory().setChestplate(LEATHER_CHESTPLATE);
             p.getInventory().setBoots(LEATHER_BOOTS);

@@ -3,6 +3,7 @@ package com.oresomecraft.BattleMaps.maps;
 import java.util.List;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.BattleMaps.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -136,6 +137,8 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
             fishing_rod.setDisplayName(ChatColor.GOLD + "Grappling Hook");
             FISHING_ROD.setItemMeta(fishing_rod);
 
+            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
+
             ItemMeta cooked_beef = STEAK.getItemMeta();
             cooked_beef.setDisplayName(ChatColor.GOLD + "Roast Beef");
             STEAK.setItemMeta(cooked_beef);
@@ -157,22 +160,6 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
             EXP.setItemMeta(exp);
 
             if (TDM.isBlue(p.getName())) {
-
-                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
-                helmetMeta.setColor(Color.BLUE);
-                LEATHER_HELMET.setItemMeta(helmetMeta);
-
-                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
-                bootsMeta.setColor(Color.BLUE);
-                LEATHER_BOOTS.setItemMeta(bootsMeta);
-
-                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
-                pantsMeta.setColor(Color.BLUE);
-                LEATHER_PANTS.setItemMeta(pantsMeta);
-
-                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
-                chestplateMeta.setColor(Color.BLUE);
-                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
 
                 ItemMeta bow = BOW.getItemMeta();
                 bow.setDisplayName(ChatColor.GOLD + "Steel Bow");
@@ -200,22 +187,6 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
             }
 
             if (TDM.isRed(p.getName())) {
-
-                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
-                helmetMeta.setColor(Color.RED);
-                LEATHER_HELMET.setItemMeta(helmetMeta);
-
-                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
-                bootsMeta.setColor(Color.RED);
-                LEATHER_BOOTS.setItemMeta(bootsMeta);
-
-                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
-                pantsMeta.setColor(Color.RED);
-                LEATHER_PANTS.setItemMeta(pantsMeta);
-
-                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
-                chestplateMeta.setColor(Color.RED);
-                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
 
                 // Sets bow name "Imperial Bow"
                 ItemMeta bow = BOW.getItemMeta();
