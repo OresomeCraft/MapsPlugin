@@ -65,7 +65,7 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
             ItemStack IRON_AXE = new ItemStack(Material.IRON_AXE, 1);
             ItemStack BREAD = new ItemStack(Material.BREAD, 8);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROW = new ItemStack(Material.ARROW, 1);
+            ItemStack ARROW = new ItemStack(Material.ARROW, 64);
             ItemStack LADDER = new ItemStack(Material.LADDER, 8);
             ItemStack FLOWER_POT = new ItemStack(Material.FLOWER_POT, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
@@ -151,35 +151,6 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
     public int x2 = -70;
     public int y2 = 30;
     public int z2 = 50;
-
-    // Code to prevent block breaking.
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-        }
-
-    }
-
-    // Code to prevent block placing.
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
 
     //Clears armor drops
     @EventHandler(priority = EventPriority.NORMAL)
