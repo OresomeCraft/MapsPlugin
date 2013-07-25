@@ -40,7 +40,7 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
         setDetails(name, fullName, creators, modes);
     }
 
-    String name = "Canopy";
+    String name = "canopy";
     String fullName = "Canopy Warfare";
     String creators = "kyoxking, famas_1, _Moist and psgs";
     Gamemode[] modes = {Gamemode.TDM};
@@ -88,11 +88,9 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
-
-        String par = event.getMessage();
-        BattlePlayer p = event.getPlayer();
-        Inventory i = p.getInventory();
-        if (par.equalsIgnoreCase(name)) {
+        if (event.getMessage().equalsIgnoreCase(name)) {
+            final BattlePlayer p = event.getPlayer();
+            Inventory i = p.getInventory();
             clearInv(p);
 
             ItemStack GOLDEN_APPLE = new ItemStack(Material.GOLDEN_APPLE, 1);

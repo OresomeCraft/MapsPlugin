@@ -34,7 +34,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
         setDetails(name, fullName, creators, modes);
     }
 
-    String name = "Trauma";
+    String name = "trauma";
     String fullName = "War Trauma";
     String creators = "_Moist, niceman506 and psgs";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
@@ -82,11 +82,9 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
-
-        String par = event.getMessage();
-        BattlePlayer p = event.getPlayer();
-        Inventory i = p.getInventory();
-        if (par.equalsIgnoreCase(name)) {
+        if (event.getMessage().equalsIgnoreCase(name)) {
+            final BattlePlayer p = event.getPlayer();
+            Inventory i = p.getInventory();
             clearInv(p);
 
             ItemStack FLOWER_POT = new ItemStack(Material.FLOWER_POT, 1);

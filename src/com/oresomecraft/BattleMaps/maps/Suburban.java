@@ -83,11 +83,9 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
-
-        String par = event.getMessage();
-        BattlePlayer p = event.getPlayer();
-        Inventory i = p.getInventory();
-        if (par.equalsIgnoreCase(name)) {
+        if (event.getMessage().equalsIgnoreCase(name)) {
+            final BattlePlayer p = event.getPlayer();
+            Inventory i = p.getInventory();
             clearInv(p);
 
             ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);

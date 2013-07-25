@@ -57,11 +57,9 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
-
-        String par = event.getMessage();
-        BattlePlayer p = event.getPlayer();
-        Inventory i = p.getInventory();
-        if (par.equalsIgnoreCase(name)) {
+        if (event.getMessage().equalsIgnoreCase(name)) {
+            final BattlePlayer p = event.getPlayer();
+            Inventory i = p.getInventory();
             clearInv(p);
 
             ItemStack WOODEN_SWORD = new ItemStack(Material.WOOD_SWORD, 1, (short) -16373);
