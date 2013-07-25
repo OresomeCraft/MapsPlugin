@@ -103,7 +103,7 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
             ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
             ItemStack MILK = new ItemStack(Material.MILK_BUCKET, 1);
-            ItemStack JUNGLE_WOOD = new ItemStack(Material.WOOD, 32, (short)3);
+            ItemStack JUNGLE_WOOD = new ItemStack(Material.WOOD, 32, (short) 3);
             //You're welcome - R3
 
             ItemMeta arrows = ARROWS.getItemMeta();
@@ -206,17 +206,19 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
     }
 
     @SuppressWarnings("deprecation")
-    @EventHandler(priority = EventPriority.NORMAL)
+    // @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayer(EntityDamageByEntityEvent e) {
-        Player damaged = (Player) e.getEntity();
-        if (e.getDamager() instanceof Projectile) {
-            Projectile proj = (Projectile) e.getEntity();
-            Arrow arrow = (Arrow) proj;
-            if (arrow.getShooter() instanceof Player) {
-                Player shooter = (Player) arrow.getShooter();
-                if (proj instanceof Arrow) {
-                    if (arrow.getShooter() instanceof Player) {
-                        damaged.addPotionEffect(new PotionEffect(PotionEffectType.POISON, (5 * 20), 2));
+        if (e.getEntity().getWorld().equals(name)) {
+            Player damaged = (Player) e.getEntity();
+            if (e.getDamager() instanceof Projectile) {
+                Projectile proj = (Projectile) e.getEntity();
+                Arrow arrow = (Arrow) proj;
+                if (arrow.getShooter() instanceof Player) {
+                    Player shooter = (Player) arrow.getShooter();
+                    if (proj instanceof Arrow) {
+                        if (arrow.getShooter() instanceof Player) {
+                            damaged.addPotionEffect(new PotionEffect(PotionEffectType.POISON, (5 * 20), 2));
+                        }
                     }
                 }
             }

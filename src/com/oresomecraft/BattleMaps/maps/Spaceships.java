@@ -63,12 +63,9 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
-
-        String par = event.getMessage();
-        BattlePlayer p = event.getPlayer();
-        Inventory i = p.getInventory();
-        if (par.equalsIgnoreCase(name)) {
-            clearInv(p);
+        if (event.getMessage().equalsIgnoreCase(name)) {
+            final BattlePlayer p = event.getPlayer();
+            Inventory i = p.getInventory();
 
             ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
             ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);

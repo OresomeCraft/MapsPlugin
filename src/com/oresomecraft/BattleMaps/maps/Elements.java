@@ -68,6 +68,7 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
             i.setItem(3, LOG);
             i.setItem(4, HEALTH);
             i.setItem(11, ARROWS);
+            i.setItem(8, new ItemStack(Material.BREAD, 3));
 
         }
     }
