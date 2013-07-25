@@ -37,15 +37,15 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
     String name = "trauma";
     String fullName = "War Trauma";
     String creators = "_Moist, niceman506 and psgs";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
-    //Map download link: http://www.mediafire.com/download/h500mra6sljbexl/War_Trauma_-_Download_Copy.rar
+    Gamemode[] modes = {Gamemode.TDM};
+    //Hell no to ffa and infection.
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
 
-        redSpawns.add(new Location(w, -35, 70, 8, 0, -0));
+        redSpawns.add(new Location(w, -35, 70, 8));
 
-        blueSpawns.add(new Location(w, -35, 70, 190, 2, -179));
+        blueSpawns.add(new Location(w, -35, 70, 190));
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
@@ -55,27 +55,9 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
         World w = Bukkit.getServer().getWorld(name);
 
-        FFASpawns.add(new Location(w, 0, 99, 27, 2, 0));
-        FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
-        FFASpawns.add(new Location(w, 21, 105, -13, 0, 0));
-        FFASpawns.add(new Location(w, 4, 106, -41, 0, 0));
-        FFASpawns.add(new Location(w, -18, 101, 13, 0, 0));
-        FFASpawns.add(new Location(w, 2, 104, 15, 0, 0));
-        FFASpawns.add(new Location(w, -2, 109, -4, 0, 0));
-        FFASpawns.add(new Location(w, 28, 105, 10, 0, 0));
-        FFASpawns.add(new Location(w, 27, 96, 0, 0, 0));
-        FFASpawns.add(new Location(w, 30, 105, -14, 0, 0));
-        FFASpawns.add(new Location(w, -9, 106, 18, 0, 0));
-        FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
-        FFASpawns.add(new Location(w, 0, 99, 27, 0, 0));
-        FFASpawns.add(new Location(w, -16, 108, -3, 0, 0));
-        FFASpawns.add(new Location(w, -30, 108, -3, 0, 0));
-        FFASpawns.add(new Location(w, -18, 101, 13, 0, 0));
-        FFASpawns.add(new Location(w, -27, 88, 17, 0, 0));
-        FFASpawns.add(new Location(w, -32, 76, 16, 0, 0));
-        FFASpawns.add(new Location(w, -46, 97, 7, 0, 0));
-        FFASpawns.add(new Location(w, 26, 105, -13, 0, 0));
-        FFASpawns.add(new Location(w, 21, 94, 2, 0, 0));
+        FFASpawns.add(new Location(w, -35, 70, 8));
+
+        FFASpawns.add(new Location(w, -35, 70, 190));
 
         setFFASpawns(name, FFASpawns);
     }
