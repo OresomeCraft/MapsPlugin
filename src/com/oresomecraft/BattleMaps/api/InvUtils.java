@@ -1,4 +1,4 @@
-package com.oresomecraft.BattleMaps;
+package com.oresomecraft.BattleMaps.api;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.Team;
@@ -11,7 +11,7 @@ public class InvUtils {
     /**
      * Automatically sets the colour of Leather Armour to match a player's team colour
      *
-     * @param p      A BattlePlayer
+     * @param p A BattlePlayer
      * @param armour ItemStack array to get the armour from
      */
     public static void colourArmourAccordingToTeam(BattlePlayer p, ItemStack[] armour) {
