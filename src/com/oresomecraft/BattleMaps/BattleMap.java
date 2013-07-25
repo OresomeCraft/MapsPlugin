@@ -46,6 +46,10 @@ public abstract class BattleMap implements Listener {
     String creators;
     Gamemode[] modes;
 
+    /**
+     * Readies maps to be played
+     * @param event An event called by OresomeBattles
+     */
     @EventHandler // Add map
     public void readyMap(ReadyMapsEvent event) {
         addMap(name);
@@ -54,6 +58,11 @@ public abstract class BattleMap implements Listener {
         setFullName(name, fullName);
     }
 
+    /**
+     * Sets the spawn points for a map once its world has loaded
+     *
+     * @param event A WorldLoadEvent called by the server
+     */
     @EventHandler // Set the spawns
     public void setSpawns(WorldLoadEvent event) { // Internal - Do not change
         if (event.getWorld().getName().equals(name)) {
@@ -62,12 +71,23 @@ public abstract class BattleMap implements Listener {
         }
     }
 
-    // Initiates config
+    /**
+     * Initiates a map
+     *
+     * @param config A BattleMap config
+     */
     protected final void initiate(BattleMap config) {
         this.config = config;
     }
 
-    // Set map details
+    /**
+     * Sets details for the map after initiation
+     *
+     * @param name     (Shortened) Name of map
+     * @param fullName Full name of the map
+     * @param creators Creators of the map
+     * @param modes    Gamemodes supported by thr map
+     */
     protected final void setDetails(String name, String fullName, String creators, Gamemode[] modes) {
         this.name = name;
         this.fullName = fullName;
@@ -75,7 +95,11 @@ public abstract class BattleMap implements Listener {
         this.modes = modes;
     }
 
-    // Clear spawns ro remove world references and prevent memory leaks
+    /**
+     * Clears spawns for a map
+     *
+     * @param event Event called by the server
+     */
     @EventHandler(priority = EventPriority.NORMAL)
     public void clearSpawns(ClearSpawnsEvent event) {
         redSpawns.clear();
@@ -83,10 +107,19 @@ public abstract class BattleMap implements Listener {
         FFASpawns.clear();
     }
 
+    /**
+     * Sets TDM and CTF spawn points
+     */
     public abstract void readyTDMSpawns();
 
+    /**
+     * Sets FFA and Infection spawn points (also used for spectators)
+     */
     public abstract void readyFFASpawns();
 
+    /**
+     * Returns if map is currently being played
+     */
     public boolean active = Utility.getArena().equals(name); // Whether or not map is currently being played
 
     /**
