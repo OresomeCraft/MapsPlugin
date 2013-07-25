@@ -38,15 +38,8 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
-
-        Location redSpawn = new Location(w, 0, 81, 27, 2, 0);
-        Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
-
-        blueSpawns.add(blueSpawn);
-        blueSpawns.add(new Location(w, -9, 61, 13, 2, -163));
-
-        redSpawns.add(redSpawn);
-        redSpawns.add(new Location(w, 227, 61, -110, 0, 24));
+        blueSpawns.add(new Location(w, -10, 60, 3));
+        redSpawns.add(new Location(w, 226, 60, -100));
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
@@ -55,12 +48,8 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
     public void readyFFASpawns() {
 
         World w = Bukkit.getServer().getWorld(name);
-
-        Location redSpawn = new Location(w, 227, 61, -110, 0, 24);
-        Location blueSpawn = new Location(w, -9, 61, 13, 2, -163);
-
-        FFASpawns.add(redSpawn);
-        FFASpawns.add(blueSpawn);
+        FFASpawns.add(new Location(w, -10, 60, 3));
+        FFASpawns.add(new Location(w, 226, 60, -100));
 
         setFFASpawns(name, FFASpawns);
     }
