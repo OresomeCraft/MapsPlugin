@@ -3,27 +3,23 @@ package com.oresomecraft.BattleMaps.maps;
 import java.util.ArrayList;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.GameUtils;
+import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityDamageByBlockEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
-import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
@@ -47,10 +43,8 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
 
-        redSpawns.add(redSpawn);
         redSpawns.add(new Location(w, -35, 70, 8, 0, -0));
 
-        blueSpawns.add(blueSpawn);
         blueSpawns.add(new Location(w, -35, 70, 190, 2, -179));
 
         setRedSpawns(name, redSpawns);
@@ -61,8 +55,6 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
         World w = Bukkit.getServer().getWorld(name);
 
-        FFASpawns.add(redSpawn);
-        FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, 0, 99, 27, 2, 0));
         FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
         FFASpawns.add(new Location(w, 21, 105, -13, 0, 0));
@@ -92,7 +84,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(InventoryEvent event) {
 
         String par = event.getMessage();
-        Player p = event.getPlayer();
+        BattlePlayer p = event.getPlayer();
         Inventory i = p.getInventory();
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);

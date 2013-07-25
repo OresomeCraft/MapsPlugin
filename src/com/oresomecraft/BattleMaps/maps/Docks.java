@@ -1,27 +1,24 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.Utility;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
 public class Docks extends BattleMap implements IBattleMap, Listener {
 
@@ -33,24 +30,7 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
     String name = "docks";
     String fullName = "The Docks";
     String creators = "RhinoViru5, tomfoowe1 and yozy3";
-    //therhinovirus' new IGN - R3
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void readyMap(ReadyMapsEvent event) { // Internal - Do not change
-        addMap(name);
-        addCreators(name, creators);
-        setFullName(name, fullName);
-        setGamemodes(name, modes);
-    }
-
-    @EventHandler
-    public void setSpawns(WorldLoadEvent event) { // Internal - Do not change
-        if (event.getWorld().getName().equals(name)) {
-            readyTDMSpawns();
-            readyFFASpawns();
-        }
-    }
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
@@ -94,7 +74,7 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(InventoryEvent event) {
 
         String par = event.getMessage();
-        Player p = event.getPlayer();
+        BattlePlayer p = event.getPlayer();
         Inventory i = p.getInventory();
         if (par.equalsIgnoreCase(name)) {
             clearInv(p);
@@ -127,13 +107,6 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void clearSpawns(ClearSpawnsEvent event) {
-        redSpawns.clear();
-        blueSpawns.clear();
-        FFASpawns.clear();
-    }
-
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
     public int x1 = 1682;
@@ -144,26 +117,6 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
     public int x2 = 1813;
     public int y2 = 3;
     public int z2 = 531;
-
-    // Getting the region
-    public boolean contains(Location loc, int x1, int x2, int y1,
-                            int y2, int z1, int z2) {
-        int bottomCornerX = x1 < x2 ? x1 : x2;
-        int bottomCornerZ = z1 < z2 ? z1 : z2;
-        int topCornerX = x1 > x2 ? x1 : x2;
-        int topCornerZ = z1 > z2 ? z1 : z2;
-        int bottomCornerY = y1 < y2 ? y1 : y2;
-        int topCornerY = y1 > y2 ? y1 : y2;
-        if (loc.getX() >= bottomCornerX && loc.getX() <= topCornerX) {
-            if (loc.getZ() >= bottomCornerZ && loc.getZ() <= topCornerZ) {
-                if (loc.getY() >= bottomCornerY && loc.getY() <= topCornerY) {
-                    return true;
-                }
-            }
-        }
-        return false;
-
-    }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void preventblockbreak(BlockBreakEvent event) {

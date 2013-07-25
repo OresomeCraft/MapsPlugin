@@ -127,7 +127,7 @@ public abstract class BattleMap implements Listener {
     }
 
     public void setCTFFlags(String name, Location redFlag, Location blueFlag) {
-        if (Utility.getMode().equals("ctf")) {
+        if (Utility.getMode() == Gamemode.CTF) {
             CTF.setRedFlag(name, redFlag);
             CTF.setBlueFlag(name, blueFlag);
         }
