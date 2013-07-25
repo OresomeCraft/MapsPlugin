@@ -56,7 +56,7 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyFFASpawns() {
-        
+
         World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, 0, 76, 59));
         FFASpawns.add(new Location(w, -58, 76, 0));
@@ -77,13 +77,13 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
             ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
-            BOW.getItemMeta().setDisplayName(ChatColor.YELLOW+"Lightning Bow");
+            BOW.getItemMeta().setDisplayName(ChatColor.YELLOW + "Lightning Bow");
             ItemStack ARROWS = new ItemStack(Material.ARROW, 8);
             ItemStack LEATHER_HELMET = new ItemStack(Material.GOLD_HELMET, 1);
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.GOLD_CHESTPLATE, 1);
             ItemStack LEATHER_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
             ItemStack LEATHER_BOOTS = new ItemStack(Material.GOLD_BOOTS, 1);
-            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1, (short)-1600);
+            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1, (short) -1600);
             p.getInventory().setBoots(LEATHER_BOOTS);
             p.getInventory().setLeggings(LEATHER_PANTS);
             p.getInventory().setChestplate(LEATHER_CHESTPLATE);
@@ -136,10 +136,11 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
         }
 
     }
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void arrowboom(ProjectileHitEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
-            if(event.getEntity() instanceof Arrow){
+            if (event.getEntity() instanceof Arrow) {
                 event.getEntity().getWorld().strikeLightning(event.getEntity().getLocation());
                 event.getEntity().remove();
             }

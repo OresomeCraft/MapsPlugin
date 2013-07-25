@@ -68,6 +68,7 @@ public class Template extends BattleMap implements IBattleMap, Listener {
 
         setFFASpawns(name, FFASpawns);
     }
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void applyInventory(InventoryEvent event) {
         if (event.getMessage().equalsIgnoreCase(name)) {
