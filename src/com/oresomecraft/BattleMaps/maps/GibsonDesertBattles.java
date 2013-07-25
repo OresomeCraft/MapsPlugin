@@ -71,6 +71,7 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
             ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1);
             ItemStack OAK_LOG = new ItemStack(Material.LOG, 32);
+            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
 
             // Armor
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
@@ -132,6 +133,7 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
             i.setItem(5, OAK_LOG);
             i.setItem(6, LADDER);
             i.setItem(7, FLOWER_POT);
+            i.setItem(8, HEALTH);
             i.setItem(27, ARROW);
 
             //Give players invincibility and strength for 15 seconds when they spawn
@@ -152,6 +154,15 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
     public int y2 = 30;
     public int z2 = 50;
 
+    //No diamond
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void nodiamond(BlockBreakEvent event) {
+        if(event.getBlock().getType() == Material.DIAMOND_BLOCK){
+            event.setCancelled(true);
+            event.getBlock().setType(Material.AIR);
+        }
+        
+    }
     //Clears armor drops
     @EventHandler(priority = EventPriority.NORMAL)
     public void death(PlayerDeathEvent event) {
