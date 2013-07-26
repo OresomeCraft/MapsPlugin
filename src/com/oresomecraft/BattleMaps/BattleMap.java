@@ -121,6 +121,7 @@ public abstract class BattleMap implements Listener {
 
     /**
      * Sets location for King of the Hill monument
+     *
      * @param monument Location of the monument
      */
     public void setKoTHMonument(Location monument) {

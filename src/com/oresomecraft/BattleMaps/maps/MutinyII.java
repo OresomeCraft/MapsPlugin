@@ -125,11 +125,11 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
                 event.setCancelled(true);
             }
             // Blue team spawn
-            if (contains(loc,-11, 88, 16, -5, 85, 10)) {
+            if (contains(loc, -11, 88, 16, -5, 85, 10)) {
                 event.setCancelled(true);
             }
             // Red team spawn
-            if (contains(loc,-10, 88, -55, -4, 85, -49)) {
+            if (contains(loc, -10, 88, -55, -4, 85, -49)) {
                 event.setCancelled(true);
             }
         }
