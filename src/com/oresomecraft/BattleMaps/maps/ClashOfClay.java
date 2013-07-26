@@ -5,6 +5,7 @@ import java.util.List;
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -69,8 +70,8 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
             //Make the pick semi-unlimited - R3
             ItemStack PUMPKIN_PIE = new ItemStack(Material.PUMPKIN_PIE, 5);
             ItemStack APPLE = new ItemStack(Material.GOLDEN_APPLE, 2);
-            ItemStack BLUE_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short)11);
-            ItemStack RED_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short)14);
+            ItemStack BLUE_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 11);
+            ItemStack RED_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 14);
             //Give a LITTLE more clay - R3
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
             ItemStack DIAMOND_HELMET = new ItemStack(Material.DIAMOND_HELMET, 1);
@@ -89,13 +90,13 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
             i.setItem(2, IRON_PICKAXE);
             i.setItem(3, PUMPKIN_PIE);
             i.setItem(4, APPLE);
-            if(TDM.isRed(p.getName)){
-            i.setItem(5, RED_STAINED_CLAY);
+            if (TDM.isRed(p.getName())) {
+                i.setItem(5, RED_STAINED_CLAY);
             }
-            if(TDM.isBlue(p.getName)){
-            i.setItem(5, BLUE_STAINED_CLAY);
+            if (TDM.isBlue(p.getName())) {
+                i.setItem(5, BLUE_STAINED_CLAY);
             }
-            //import TDM zach.
+
             i.setItem(6, TORCH);
             i.setItem(27, ARROW);
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 import com.oresomecraft.OresomeBattles.gamemodes.CTF;
+import com.oresomecraft.OresomeBattles.gamemodes.KoTH;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -116,6 +117,14 @@ public abstract class BattleMap implements Listener {
      */
     public void setTDMTime(int time) {
         TDM.setTime(name, time);
+    }
+
+    /**
+     * Sets location for King of the Hill monument
+     * @param monument Location of the monument
+     */
+    public void setKoTHMonument(Location monument) {
+        KoTH.setMonument(monument);
     }
 
     /**
