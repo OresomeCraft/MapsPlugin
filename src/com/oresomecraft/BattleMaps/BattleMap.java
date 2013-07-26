@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 import com.oresomecraft.OresomeBattles.gamemodes.CTF;
+import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -48,6 +49,7 @@ public abstract class BattleMap implements Listener {
 
     /**
      * Readies maps to be played
+     *
      * @param event An event called by OresomeBattles
      */
     @EventHandler // Add map
@@ -105,6 +107,15 @@ public abstract class BattleMap implements Listener {
         redSpawns.clear();
         blueSpawns.clear();
         FFASpawns.clear();
+    }
+
+    /**
+     * Set the amount of time a TDM battle will go for
+     *
+     * @param time Time battle will go for in minutes
+     */
+    public void setTDMTime(int time) {
+        TDM.setTime(name, time);
     }
 
     /**
