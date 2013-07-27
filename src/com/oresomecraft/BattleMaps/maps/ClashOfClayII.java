@@ -77,11 +77,11 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
             ItemStack TORCH = new ItemStack(Material.TORCH, 16);
             ItemStack ARROW = new ItemStack(Material.ARROW, 1);
 
-            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
             p.getInventory().setHelmet(DIAMOND_HELMET);
             BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 
             InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
 
             i.setItem(0, WOODEN_SWORD);
             i.setItem(1, BOW);
