@@ -73,6 +73,9 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new GibsonDesertBattles();
         new WarTrauma();
         new CanopyWarfare();
+        new ClashOfClayII();
+        new Sunshine();
+        new Electricity();
     }
 
     public static OresomeBattlesMaps getInstance() {
