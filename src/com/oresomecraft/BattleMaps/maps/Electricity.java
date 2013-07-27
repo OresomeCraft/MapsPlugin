@@ -78,7 +78,7 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             BOW.getItemMeta().setDisplayName(ChatColor.YELLOW + "Lightning Bow");
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 8);
+            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
             ItemStack LEATHER_HELMET = new ItemStack(Material.GOLD_HELMET, 1);
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.GOLD_CHESTPLATE, 1);
             ItemStack LEATHER_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
@@ -141,7 +141,7 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
     public void arrowboom(ProjectileHitEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
             if (event.getEntity() instanceof Arrow) {
-                event.getEntity().getWorld().strikeLightning(event.getEntity().getLocation());
+                event.getEntity().getWorld().strikeLightningEffect(event.getEntity().getLocation());
                 event.getEntity().remove();
             }
         }
