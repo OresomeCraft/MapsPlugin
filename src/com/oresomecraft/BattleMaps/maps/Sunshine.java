@@ -62,10 +62,11 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
             clearInv(p);
 
             //Items
-            ItemStack IRON_AXE = new ItemStack(Material.IRON_AXE, 1);
+            ItemStack IRON_AXE = new ItemStack(Material.WOOD_SWORD, 1);
             ItemStack BREAD = new ItemStack(Material.BREAD, 8);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROW = new ItemStack(Material.ARROW, 64);
+            ItemStack ARROW = new ItemStack(Material.ARROW, 8);
+            //prevent arrow camping
             ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
 
             // Armor
