@@ -30,8 +30,8 @@ public class InvUtils {
                 break;
         }
 
-        if (p.getTeam() == Team.TDM_RED || p.getTeam() == Team.CTF_RED) teamColour = Color.RED;
-        if (p.getTeam() == Team.TDM_BLUE || p.getTeam() == Team.CTF_BLUE) teamColour = Color.BLUE;
+        if (p.getTeam() == Team.TDM_RED || p.getTeam() == Team.CTF_RED || p.getTeam() == Team.KOTH_RED) teamColour = Color.RED;
+        if (p.getTeam() == Team.TDM_BLUE || p.getTeam() == Team.CTF_BLUE || p.getTeam() == Team.KOTH_BLUE) teamColour = Color.BLUE;
 
         for (ItemStack i : armour) {
             LeatherArmorMeta iMeta = (LeatherArmorMeta) i.getItemMeta();
