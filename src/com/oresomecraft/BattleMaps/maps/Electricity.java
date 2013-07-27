@@ -18,6 +18,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
@@ -28,6 +29,8 @@ import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.OresomeBattles.BattleHandler;
 import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+
+import java.util.List;
 
 public class Electricity extends BattleMap implements IBattleMap, Listener {
 
@@ -147,6 +150,7 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
         }
 
     }
+
     //Clears armor drops
     @EventHandler(priority = EventPriority.NORMAL)
     public void death(PlayerDeathEvent event) {
@@ -169,6 +173,7 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
                 i.setType(Material.AIR);
 
             }
+        }
     }
-        
+
 }

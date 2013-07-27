@@ -28,6 +28,7 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
     public Spaceships() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setTDMTime(15);
     }
 
     String name = "spaceships";
