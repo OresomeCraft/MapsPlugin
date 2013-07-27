@@ -1,16 +1,20 @@
 package com.oresomecraft.BattleMaps.maps;
 
+import java.util.List;
+
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.GameUtils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -21,6 +25,8 @@ import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.List;
 
 public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
@@ -69,13 +75,13 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
             ItemStack FLOWER_POT = new ItemStack(Material.FLOWER_POT, 1);
             ItemStack BREAD = new ItemStack(Material.BREAD, 4);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 16);
+            ItemStack ARROWS = new ItemStack(Material.ARROW, 32);
             ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
             ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
             ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
             ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-            ItemStack FLINT = new ItemStack(Material.FLINT, 16);
+            ItemStack FLINT = new ItemStack(Material.FLINT, 64);
             ItemStack DIRT = new ItemStack(Material.DIRT, 16);
             ItemStack IRON_SHOVEL = new ItemStack(Material.IRON_SPADE, 1);
             ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
@@ -84,6 +90,10 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
             bow.setDisplayName(ChatColor.RED + "Missile Launcher");
             BOW.setItemMeta(bow);
 
+            /*ItemMeta bowLore = BOW.getItemMeta();
+            bowLore.setLore("Stand on the sponge in the tanks for extra power!");
+            BOW.setItemMeta(bowLore);*/
+
             ItemMeta arrows = ARROWS.getItemMeta();
             arrows.setDisplayName(ChatColor.RED + "Missiles");
             ARROWS.setItemMeta(arrows);
@@ -91,6 +101,10 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
             ItemMeta blaze = BLAZE_ROD.getItemMeta();
             blaze.setDisplayName(ChatColor.GOLD + "High-Power Gun");
             BLAZE_ROD.setItemMeta(blaze);
+
+            ItemMeta pot = FLOWER_POT.getItemMeta();
+            pot.setDisplayName(ChatColor.GOLD + "C4");
+            FLOWER_POT.setItemMeta(pot);
 
             InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_PANTS, LEATHER_BOOTS});
 
@@ -313,7 +327,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    // <--------- Blaze Bow -------->
+    // <--------- Blaze Gun -------->
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.NORMAL)
     public void gun(org.bukkit.event.player.PlayerInteractEvent event) {
@@ -334,10 +348,10 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
                     if (a == org.bukkit.event.block.Action.RIGHT_CLICK_AIR
                             || a == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK) {
 
-                        if (inv.contains(Material.ARROW)) {
+                        if (inv.contains(Material.FLINT)) {
                             p.launchProjectile(org.bukkit.entity.Arrow.class);
                             world.playSound(loc, org.bukkit.Sound.COW_WALK, 10, 10);
-                            ItemStack AMMO = new ItemStack(Material.ARROW, 1);
+                            ItemStack AMMO = new ItemStack(Material.FLINT, 1);
                             org.bukkit.inventory.meta.ItemMeta ammo = AMMO.getItemMeta();
                             ammo.setDisplayName(org.bukkit.ChatColor.GOLD + "Ammunition");
                             AMMO.setItemMeta(ammo);
@@ -352,12 +366,24 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    //Sets bow damage +7
+    // Sets arrow damage -7 hearts
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onBowShoot(EntityShootBowEvent event) {
-        if (event.getProjectile().getEntityId() == 262) {
-            event.getEntity().setLastDamage(7);
+    public void onPlayer(EntityDamageByEntityEvent e) {
+        if (e.getEntity().getWorld().equals(name)) {
+            Player damaged = (Player) e.getEntity();
+            if (e.getDamager() instanceof Projectile) {
+                Projectile proj = (Projectile) e.getEntity();
+                Arrow arrow = (Arrow) proj;
+                if (arrow.getShooter() instanceof Player) {
+                    Player shooter = (Player) arrow.getShooter();
+                    if (proj instanceof Arrow) {
+                        if (arrow.getShooter() instanceof Player) {
+                            damaged.damage(14);
+                        }
+                    }
+                }
+            }
         }
     }
 }
