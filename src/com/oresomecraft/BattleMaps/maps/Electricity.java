@@ -147,4 +147,28 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
         }
 
     }
+    //Clears armor drops
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void death(PlayerDeathEvent event) {
+
+        List<ItemStack> drops = event.getDrops();
+        int amount = drops.size();
+        int count = 0;
+
+        for (int none = 0; none < amount; none++) {
+
+            ItemStack i = drops.get(count);
+            count++;
+            Material mat = i.getType();
+
+            if (mat == Material.BOW || mat == Material.GOLD_BOOTS
+                    || mat == Material.GOLD_LEGGINGS
+                    || mat == Material.GOLD_CHESTPLATE
+                    || mat == Material.GOLD_HELMET) {
+
+                i.setType(Material.AIR);
+
+            }
+    }
+        
 }
