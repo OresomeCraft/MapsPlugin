@@ -126,10 +126,4 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
             }
         }
     }
-
-    @EventHandler
-    public void place(org.bukkit.event.block.BlockPlaceEvent event) {
-        if (!contains(event.getBlock().getLocation(), 250, 77, -27, 3, 132, 18)) event.setCancelled(true);
-        //Prevent placing off the map
-    }
 }
