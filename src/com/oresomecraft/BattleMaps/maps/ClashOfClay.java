@@ -27,6 +27,7 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
     public ClashOfClay() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setTDMTime(20);
     }
 
     String name = "clashofclay";
