@@ -58,7 +58,7 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
             ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack LOG = new ItemStack(Material.LOG, 64);
+            ItemStack LOG = new ItemStack(Material.LOG, 25);
             ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
             ItemStack STONE_PICK = new ItemStack(Material.STONE_PICKAXE, 1);
 
