@@ -1,7 +1,5 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.List;
-
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
