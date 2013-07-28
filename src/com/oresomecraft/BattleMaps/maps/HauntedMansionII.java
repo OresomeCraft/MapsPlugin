@@ -26,8 +26,8 @@ public class HauntedMansionII extends BattleMap implements IBattleMap, Listener 
     }
 
     // Map details
-    String name = "halloween";
-    String fullName = "Halloween Mansion";
+    String name = "hauntedII";
+    String fullName = "Haunted Mansion II";
     String creators = "bumsonfire";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
