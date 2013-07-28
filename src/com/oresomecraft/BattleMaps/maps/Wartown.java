@@ -323,8 +323,8 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
         final World world = loc.getWorld();
         String name = p.getName();
 
-        if (battles.spectator.contains(name)) {
-            event.setCancelled(true);
+        if (battles.spectator.contains(name) || p.getWorld().equals(name)) {
+            return;
         } else {
             if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
