@@ -16,6 +16,8 @@ import org.bukkit.inventory.ItemStack;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class Elements extends BattleMap implements IBattleMap, Listener {
 
@@ -69,6 +71,10 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
             i.setItem(4, HEALTH);
             i.setItem(11, ARROWS);
             i.setItem(8, new ItemStack(Material.BREAD, 3));
+
+            //Give players invincibility II and Fire Resistance II for 15 , 20 seconds when they spawn
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 15 * 20, 2));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20 * 20, 2));
 
         }
     }
