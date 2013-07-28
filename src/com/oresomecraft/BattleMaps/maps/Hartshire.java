@@ -126,7 +126,7 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
         Location loc = b.getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
-            if(b.getType() == Material.GLASS_PANE) return;
+            if(b.getType() == Material.THIN_GLASS) return;
 
             event.setCancelled(true);
         }

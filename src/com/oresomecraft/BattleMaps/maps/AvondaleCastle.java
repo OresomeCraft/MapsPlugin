@@ -30,7 +30,7 @@ public class AvondaleCastle extends BattleMap implements IBattleMap, Listener {
     String name = "avondae";
     String fullName = "Avondale Castle";
     String creators = "bumsonfire";
-    Gamemode[] modes = {Gamemode.TDM, Gamdemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);

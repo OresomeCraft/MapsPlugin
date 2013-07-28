@@ -2,6 +2,7 @@ package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.BattleMaps.api.InvUtils;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -112,10 +113,10 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
             i.setItem(4, GOLDEN_APPLE);
             i.setItem(27, ARROW);
 
-            p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
-            p.getInventory().getItem(SHEARS).addEnchantment(Enchantment.DIG_SPEED, 10);
-            p.getInventory().getItem(BOW).addEnchantment(Enchantment.ARROW_KNOCKBACK, 5);
-            p.getInventory().getItem(BOW).addEnchantment(Enchantment.ARROW_INFINITE, 1);
+           //p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
+            //p.getInventory().getItem(SHEARS).addEnchantment(Enchantment.DIG_SPEED, 10);
+            //p.getInventory().getItem(BOW).addEnchantment(Enchantment.ARROW_KNOCKBACK, 5);
+            //p.getInventory().getItem(BOW).addEnchantment(Enchantment.ARROW_INFINITE, 1);
 
         }
     }
@@ -133,7 +134,7 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void nobreak(BlockBreakEvent event) {
-        if (event.getBlock().getWorld().equals(name)) {
+        if (event.getBlock().getWorld().getName().equals(name)) {
             event.setCancelled(true);
         }
 
@@ -141,7 +142,7 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void noplace(BlockPlaceEvent event) {
-        if (event.getBlock().getWorld().equals(name)) {
+        if (event.getBlock().getWorld().getName().equals(name)) {
             event.setCancelled(true);
         }
     }
