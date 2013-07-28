@@ -77,7 +77,6 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Sunshine();
         new Electricity();
         new HauntedMansionII();
-        new AvondaleCastle();
         new Sloped();
     }
 
