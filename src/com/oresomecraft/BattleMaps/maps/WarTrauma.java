@@ -132,14 +132,14 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
+    public int x1 = -66;
+    public int y1 = 117;
+    public int z1 = 199;
 
     //Bottom right corner.
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
+    public int x2 = -8;
+    public int y2 = 56;
+    public int z2 = 3;
 
     // <---------- C4 --------->
     java.util.Map<Player, Block> placer = new java.util.HashMap<Player, Block>();

@@ -99,14 +99,14 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
+    public int x1 = 41;
+    public int y1 = 87;
+    public int z1 = 29;
 
     //Bottom right corner.
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
+    public int x2 = 220;
+    public int y2 = 31;
+    public int z2 = -117;
 
     //No diamond/iron blocks to drop from this, resulting in no diamond/iron armour ;3
     @EventHandler(priority = EventPriority.NORMAL)
