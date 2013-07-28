@@ -31,7 +31,7 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
     String name = "hartshire";
     String fullName = "Hartshire";
     String creators = "R3creat3, kalikakitty and xannallax33";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
@@ -126,6 +126,7 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
         Location loc = b.getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
+            if(b.getType() == Material.GLASS_PANE) return;
 
             event.setCancelled(true);
         }
@@ -139,7 +140,6 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
         Location loc = b.getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
-
             event.setCancelled(true);
 
         }
