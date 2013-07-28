@@ -134,6 +134,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
             p.getInventory().setLeggings(IRON_PANTS);
             p.getInventory().setChestplate(IRON_CHESTPLATE);
             p.getInventory().setHelmet(IRON_HELMET);
+
             i.setItem(0, IRON_SWORD);
             i.setItem(1, BLAZE_ROD);
             i.setItem(2, EGG_WARTOWN);

@@ -12,7 +12,9 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -24,7 +26,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
@@ -79,7 +82,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
             ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
             ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-            ItemStack FLINT = new ItemStack(Material.FLINT, 64);
+            ItemStack AMMO = new ItemStack(Material.FLINT, 64);
             ItemStack DIRT = new ItemStack(Material.DIRT, 16);
             ItemStack IRON_SHOVEL = new ItemStack(Material.IRON_SPADE, 1);
             ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
@@ -96,13 +99,17 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
             arrows.setDisplayName(ChatColor.RED + "Missiles");
             ARROWS.setItemMeta(arrows);
 
-            ItemMeta blaze = BLAZE_ROD.getItemMeta();
-            blaze.setDisplayName(ChatColor.GOLD + "High-Power Gun");
-            BLAZE_ROD.setItemMeta(blaze);
+            ItemMeta blaze_rod = BLAZE_ROD.getItemMeta();
+            blaze_rod.setDisplayName(ChatColor.BLUE + "High Power Gun");
+            BLAZE_ROD.setItemMeta(blaze_rod);
 
             ItemMeta pot = FLOWER_POT.getItemMeta();
             pot.setDisplayName(ChatColor.GOLD + "C4");
             FLOWER_POT.setItemMeta(pot);
+
+            ItemMeta ammo = AMMO.getItemMeta();
+            ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
+            AMMO.setItemMeta(ammo);
 
             InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_PANTS, LEATHER_BOOTS});
 
@@ -117,13 +124,13 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
             i.setItem(3, IRON_SHOVEL);
             i.setItem(4, BREAD);
             i.setItem(5, DIRT);
-            i.setItem(6, FLINT);
+            i.setItem(6, AMMO);
             i.setItem(8, BOW);
             i.setItem(29, ARROWS);
 
             //Give players invincibility II and strength II for 15 seconds when they spawn
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 15 * 20, 2));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 15 * 20, 2));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 7 * 20, 2));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 7 * 20, 2));
 
         }
     }
@@ -140,8 +147,8 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
     public int z2 = 3;
 
     // <---------- C4 --------->
-    java.util.Map<Player, Block> placer = new java.util.HashMap<Player, Block>();
-    java.util.Map<Block, Player> placerB = new java.util.HashMap<Block, Player>();
+    public Map<Player, Block> placer = new HashMap<Player, Block>();
+    public Map<Block, Player> placerB = new HashMap<Block, Player>();
 
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.NORMAL)
@@ -328,39 +335,46 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
     // <--------- Blaze Gun -------->
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.NORMAL)
-    public void gun(org.bukkit.event.player.PlayerInteractEvent event) {
+    public void gun(PlayerInteractEvent event) {
         Player p = event.getPlayer();
         Location loc = p.getLocation();
-        org.bukkit.event.block.Action a = event.getAction();
+        Action a = event.getAction();
         ItemStack i = p.getItemInHand();
         Inventory inv = p.getInventory();
         Material tool = i.getType();
         final World world = loc.getWorld();
         String name = p.getName();
 
-        if (battles.spectator.contains(name)) {
-            event.setCancelled(true);
+        if (battles.spectator.contains(name) || p.getWorld().equals(name)) {
+            return;
         } else {
-            if (loc.getWorld().getName().equals(name)) {
+            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+
                 if (tool == Material.BLAZE_ROD) {
-                    if (a == org.bukkit.event.block.Action.RIGHT_CLICK_AIR
-                            || a == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK) {
+
+                    if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
 
                         if (inv.contains(Material.FLINT)) {
-                            p.launchProjectile(org.bukkit.entity.Arrow.class);
-                            world.playSound(loc, org.bukkit.Sound.COW_WALK, 10, 10);
+
+                            p.launchProjectile(Arrow.class);
+                            world.playSound(loc, Sound.COW_WALK, 10, 10);
                             ItemStack AMMO = new ItemStack(Material.FLINT, 1);
-                            org.bukkit.inventory.meta.ItemMeta ammo = AMMO.getItemMeta();
-                            ammo.setDisplayName(org.bukkit.ChatColor.GOLD + "Ammunition");
+                            ItemMeta ammo = AMMO.getItemMeta();
+                            ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
                             AMMO.setItemMeta(ammo);
                             inv.removeItem(AMMO);
                             p.updateInventory();
+
                         }
+
                     } else {
-                        world.playSound(loc, org.bukkit.Sound.CLICK, 10, 10);
+                        world.playSound(loc, Sound.CLICK, 10, 10);
                     }
+
                 }
+
             }
+
         }
     }
 
