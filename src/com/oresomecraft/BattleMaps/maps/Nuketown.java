@@ -35,6 +35,7 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
     public Nuketown() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "nuketown";
@@ -141,36 +142,6 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
     public int x2 = 64;
     public int y2 = 56;
     public int z2 = 194;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-            if (b.getType().equals(Material.FENCE)) {
-                return;
-                //This may be incorrect, as I am not using an SDK at the moment
-            }
-            event.setCancelled(true);
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
 
     @EventHandler
     public void arrowTrail(ProjectileHitEvent event) {

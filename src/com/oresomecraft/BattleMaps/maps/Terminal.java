@@ -25,6 +25,7 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
     public Terminal() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "terminal";
@@ -116,32 +117,5 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
     public int x2 = -38;
     public int y2 = 112;
     public int z2 = -1125;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
 
 }

@@ -30,6 +30,7 @@ public class Insanity extends BattleMap implements IBattleMap, Listener {
     public Insanity() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "insanity";
@@ -107,33 +108,6 @@ public class Insanity extends BattleMap implements IBattleMap, Listener {
     public int x2 = -1429;
     public int y2 = 85;
     public int z2 = -635;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-        }
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-    }
-
-    //Remove useless hypno code
 
     @EventHandler
     public void blood(ProjectileHitEvent event) {

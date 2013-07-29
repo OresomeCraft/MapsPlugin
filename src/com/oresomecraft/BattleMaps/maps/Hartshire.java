@@ -120,33 +120,6 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
     public int z2 = -1125;
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-            if(b.getType() == Material.THIN_GLASS) return;
-
-            event.setCancelled(true);
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-            event.setCancelled(true);
-
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
     public void ointment(PlayerInteractEvent event) {
         Player p = event.getPlayer();
         Action a = event.getAction();

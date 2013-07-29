@@ -33,6 +33,8 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
     public Arctic() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
+
     }
 
     String name = "arctic";
@@ -182,34 +184,6 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
 
                 }
             }
-
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
 
         }
 

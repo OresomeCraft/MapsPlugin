@@ -25,6 +25,7 @@ public class Sub extends BattleMap implements IBattleMap, Listener {
     public Sub() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "sub";
@@ -125,31 +126,5 @@ public class Sub extends BattleMap implements IBattleMap, Listener {
     public int y2 = 26;
     public int z2 = -112;
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-        int mat = b.getTypeId();
-
-        if (loc.getWorld().getName().equals(name)) {
-            event.setCancelled(true);
-            //Whats with the shitty hypno code?
-        }
-
-    }
 }
 

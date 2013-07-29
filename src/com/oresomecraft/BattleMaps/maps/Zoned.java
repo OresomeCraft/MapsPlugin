@@ -29,6 +29,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
     public Zoned() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "zoned";
@@ -98,36 +99,6 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
     public int x2 = -171;
     public int y2 = 54;
     public int z2 = 156;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-        Player player = event.getPlayer();
-        if (BattleHandler.activeArena.equals(name)) {
-            Block b = event.getBlock();
-            Location loc = b.getLocation();
-
-            if (loc.getWorld().getName().equals(name)) {
-
-                event.setCancelled(true);
-            }
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-        Player player = event.getPlayer();
-        if (BattleHandler.activeArena.equals(name)) {
-            Block b = event.getBlock();
-            Location loc = b.getLocation();
-
-            if (loc.getWorld().getName().equals(name)) {
-
-                event.setCancelled(true);
-            }
-        }
-
-    }
 
     @EventHandler
     public void onBlockPlace(PlayerInteractEvent event) {

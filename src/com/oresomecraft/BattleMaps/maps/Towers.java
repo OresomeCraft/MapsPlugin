@@ -27,6 +27,7 @@ public class Towers extends BattleMap implements IBattleMap, Listener {
     public Towers() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "towers";

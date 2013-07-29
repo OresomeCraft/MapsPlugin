@@ -29,6 +29,7 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
     public Sloped() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     // Map details
@@ -131,21 +132,6 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
     public int x2 = 18;
     public int y2 = 28;
     public int z2 = 96;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void nobreak(BlockBreakEvent event) {
-        if (event.getBlock().getWorld().getName().equals(name)) {
-            event.setCancelled(true);
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void noplace(BlockPlaceEvent event) {
-        if (event.getBlock().getWorld().getName().equals(name)) {
-            event.setCancelled(true);
-        }
-    }
 
     //Clears armor drops
     @EventHandler(priority = EventPriority.NORMAL)

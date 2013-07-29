@@ -30,6 +30,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setTDMTime(10);
+        setAllowBuild(false);
     }
 
     String name = "mayhem";
@@ -115,33 +116,6 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     public int x2 = 128;
     public int y2 = 255;
     public int z2 = 128;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
 
     @EventHandler
     public void death(org.bukkit.event.entity.PlayerDeathEvent event) {

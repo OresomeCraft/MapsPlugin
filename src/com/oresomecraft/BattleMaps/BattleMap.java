@@ -18,6 +18,8 @@ import org.bukkit.event.Listener;
 import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.Utility;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 
 public abstract class BattleMap implements Listener {
@@ -41,6 +43,8 @@ public abstract class BattleMap implements Listener {
     public ArrayList<Location> redSpawns = new ArrayList<Location>();
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
+
+    private boolean allowBuild = true;
 
     // Map details
     String name;
@@ -129,6 +133,15 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
+     * Sets whether or not player's can build on the map
+     *
+     * @param allow Whether or not player's can build on the map
+     */
+    public void setAllowBuild(boolean allow) {
+        allowBuild = allow;
+    }
+
+    /**
      * Sets TDM and CTF spawn points
      */
     public abstract void readyTDMSpawns();
@@ -142,6 +155,26 @@ public abstract class BattleMap implements Listener {
      * Returns if map is currently being played
      */
     public boolean active = Utility.getArena().equals(name); // Whether or not map is currently being played
+
+    /**
+     * Prevents block breaking if disabled by the map
+     *
+     * @param event Event called by the server
+     */
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        if (event.getBlock().getWorld().getName().equals(name) && !allowBuild) event.setCancelled(true);
+    }
+
+    /**
+     * Prevents block placing if disabled by the map
+     *
+     * @param event Event called by the server
+     */
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        if (event.getBlock().getWorld().getName().equals(name) && !allowBuild) event.setCancelled(true);
+    }
 
     /**
      * ***************************************************************

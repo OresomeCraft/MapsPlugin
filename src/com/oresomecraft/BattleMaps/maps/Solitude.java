@@ -36,6 +36,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
     public Solitude() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "solitude";
@@ -243,33 +244,6 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
     public int x2 = -44;
     public int y2 = 232;
     public int z2 = 1136;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {

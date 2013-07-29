@@ -29,6 +29,7 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
     public BurnFirePort() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "burnfireport";
@@ -133,31 +134,6 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
         }
 
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventoutofmap(PlayerMoveEvent event) {
-
-        if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
-            if (!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1,
-                    z2))) {
-                event.setCancelled(true);
-            }
-        }
     }
 
 }

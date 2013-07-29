@@ -25,6 +25,7 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
     public Docks() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "docks";
@@ -115,33 +116,6 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
     public int x2 = 1813;
     public int y2 = 3;
     public int z2 = 531;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
 
     @EventHandler
     public void arrowBoom(org.bukkit.event.entity.ProjectileHitEvent event) {

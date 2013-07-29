@@ -25,6 +25,7 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
     public Fairwick() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "fairwick";
@@ -98,28 +99,4 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
     public int y2 = 184;
     public int z2 = -10;
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-            if (!(b.getType() == Material.THIN_GLASS))
-                event.setCancelled(true);
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-            event.setCancelled(true);
-        }
-
-    }
 }

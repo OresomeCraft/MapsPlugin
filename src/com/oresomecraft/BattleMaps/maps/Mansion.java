@@ -31,6 +31,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
     public Mansion() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "mansion";
@@ -144,33 +145,6 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
     public int x2 = 473;
     public int y2 = 101;
     public int z2 = -228;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void preventburn(BlockBurnEvent event) {

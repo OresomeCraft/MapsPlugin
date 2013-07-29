@@ -23,6 +23,7 @@ public class HauntedHouse extends BattleMap implements IBattleMap, Listener {
     public HauntedHouse() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     // Map details
@@ -124,33 +125,6 @@ public class HauntedHouse extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
-
-    @EventHandler
-    public void preventspread(BlockSpreadEvent event) {
-
-        if (event.getBlock().getWorld().getName().equals(name)) {
-            if ((event.getBlock().getTypeId() != 2) || (event.getBlock().getTypeId() != 3)) {
-
-                event.setCancelled(true);
-
-            }
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventburn(BlockBurnEvent event) {
 
         Block b = event.getBlock();
         Location loc = b.getLocation();

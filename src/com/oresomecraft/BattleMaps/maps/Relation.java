@@ -30,6 +30,7 @@ public class Relation extends BattleMap implements IBattleMap, Listener {
     public Relation() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "relation";
@@ -119,33 +120,6 @@ public class Relation extends BattleMap implements IBattleMap, Listener {
     public int x2 = 38;
     public int y2 = 1;
     public int z2 = 38;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
 
     @EventHandler
     public void death(org.bukkit.event.entity.PlayerDeathEvent event) {

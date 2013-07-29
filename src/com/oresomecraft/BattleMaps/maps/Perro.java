@@ -39,6 +39,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setTDMTime(5);
+        setAllowBuild(false);
     }
 
     String name = "perro";
@@ -272,39 +273,6 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
             if (arrow instanceof Arrow) {
                 world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
             }
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Material mat = b.getType();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
-
-                if (!(mat == Material.THIN_GLASS)) {
-
-                    event.setCancelled(true);
-                }
-            }
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
         }
 
     }
