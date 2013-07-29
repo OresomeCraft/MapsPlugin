@@ -123,20 +123,14 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
     public int z2 = 215;
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
+    public void preventoutofmap(PlayerMoveEvent event) {
 
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
+        if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
+            if (!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1,
+                    z2))) {
+                event.setCancelled(true);
+            }
         }
-
     }
 
 }
-
-// Map configured by psgs. Need your map configured? Send an email to
-// psgs@psgs.tk
