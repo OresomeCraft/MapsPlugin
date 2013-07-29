@@ -29,6 +29,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     public Mayhem() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setTDMTime(10);
     }
 
     String name = "mayhem";

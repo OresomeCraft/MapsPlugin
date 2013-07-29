@@ -76,7 +76,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new ClashOfClayII();
         new Sunshine();
         new Electricity();
-        new HauntedMansionII();
+        new HauntedHouse();
         new Sloped();
     }
 
