@@ -336,7 +336,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
     // <--------- Blaze Gun -------->
     @SuppressWarnings("deprecation")
-    @EventHandler(priority = EventPriority.NORMAL)
+    //@EventHandler(priority = EventPriority.NORMAL)
     public void gun(PlayerInteractEvent event) {
         Player p = event.getPlayer();
         Location loc = p.getLocation();

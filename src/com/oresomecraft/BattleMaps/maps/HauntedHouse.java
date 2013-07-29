@@ -18,9 +18,9 @@ import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.*;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 
-public class HauntedMansionII extends BattleMap implements IBattleMap, Listener {
+public class HauntedHouse extends BattleMap implements IBattleMap, Listener {
 
-    public HauntedMansionII() {
+    public HauntedHouse() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
     }
