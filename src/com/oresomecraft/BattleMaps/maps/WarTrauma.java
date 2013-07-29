@@ -153,7 +153,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
     public Map<Block, Player> placerB = new HashMap<Block, Player>();
 
     @SuppressWarnings("deprecation")
-    @EventHandler(priority = EventPriority.NORMAL)
+    //@EventHandler(priority = EventPriority.NORMAL)
     public void c4(org.bukkit.event.player.PlayerInteractEvent event) {
 
         Player p = event.getPlayer();
