@@ -76,6 +76,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
             ItemStack FLOWER_POT = new ItemStack(Material.FLOWER_POT, 1);
             ItemStack BREAD = new ItemStack(Material.BREAD, 4);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
+            ItemStack GAPPLE = new ItemStack(Material.GOLDEN_APPLE, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 32);
             ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
             ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
@@ -125,6 +126,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
             i.setItem(4, BREAD);
             i.setItem(5, DIRT);
             i.setItem(6, AMMO);
+            i.setItem(7, GAPPLE);
             i.setItem(8, BOW);
             i.setItem(29, ARROWS);
 
