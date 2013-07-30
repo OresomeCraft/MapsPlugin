@@ -120,14 +120,14 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
             p.getInventory().setHelmet(LEATHER_HELMET);
 
             i.setItem(0, IRON_SWORD);
-            i.setItem(1, BLAZE_ROD);
-            i.setItem(2, FLOWER_POT);
-            i.setItem(3, IRON_SHOVEL);
-            i.setItem(4, BREAD);
-            i.setItem(5, DIRT);
-            i.setItem(6, AMMO);
-            i.setItem(7, GAPPLE);
-            i.setItem(8, BOW);
+            i.setItem(3, BLAZE_ROD);
+            i.setItem(4, FLOWER_POT);
+            i.setItem(2, IRON_SHOVEL);
+            i.setItem(5, BREAD);
+            i.setItem(6, DIRT);
+            i.setItem(7, AMMO);
+            i.setItem(8, GAPPLE);
+            i.setItem(1, BOW);
             i.setItem(29, ARROWS);
 
             //Give players invincibility II and strength II for 15 seconds when they spawn
