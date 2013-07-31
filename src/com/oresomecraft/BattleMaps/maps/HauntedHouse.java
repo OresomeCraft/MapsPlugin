@@ -24,6 +24,8 @@ public class HauntedHouse extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setAllowBuild(false);
+        setTDMTime(5);
+        //Make people actually get their head in the game, with a speed battle
     }
 
     // Map details
