@@ -24,6 +24,7 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
     public Elements() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "elements";
@@ -65,10 +66,10 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
             ItemStack STONE_PICK = new ItemStack(Material.STONE_PICKAXE, 1);
 
             i.setItem(0, STONE_SWORD);
-            i.setItem(1, STONE_PICK);
-            i.setItem(2, BOW);
-            i.setItem(3, LOG);
-            i.setItem(4, HEALTH);
+            i.setItem(1, BOW);
+            i.setItem(2, STONE_PICK);
+            i.setItem(3, HEALTH);
+            i.setItem(4, LOG);
             i.setItem(11, ARROWS);
             i.setItem(8, new ItemStack(Material.BREAD, 3));
 
@@ -89,30 +90,3 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
     public int x2 = 7;
     public int y2 = 171;
     public int z2 = 166;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-            if (!contains(loc, x1, x2, y1, y2, z1, z2)) {
-                event.setCancelled(true);
-            }
-        }
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-            if (!contains(loc, x1, x2, y1, y2, z1, z2)) {
-                event.setCancelled(true);
-            }
-        }
-    }
-}
