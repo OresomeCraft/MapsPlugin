@@ -37,12 +37,12 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
-
-        Location redSpawn = new Location(w, -18, 85, -52);
-        Location blueSpawn = new Location(w, -18, 85, 13);
-
-        redSpawns.add(redSpawn);
-        blueSpawns.add(blueSpawn);
+        redSpawns.add(new Location(w, 32, 94, 12));
+        redSpawns.add(new Location(w, 3, 85, 6));
+        redSpawns.add(new Location(w, -24, 91, 13));
+        blueSpawns.add(new Location(w, 31, 91, -58));
+        blueSpawns.add(new Location(w, 3, 85, -51));
+        blueSpawns.add(new Location(w, -25, 94, -57));
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
@@ -51,9 +51,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     public void readyFFASpawns() {
 
         World w = Bukkit.getServer().getWorld(name);
-
-        Location obsSpawn = new Location(w, 7, 90, -19);
-        FFASpawns.add(obsSpawn);
+        FFASpawns.add(new Location(w, 31, 91, -58));
 
         setFFASpawns(name, FFASpawns);
     }
@@ -69,70 +67,24 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
             p.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
             p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
             p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
-
-            // Give players invincibility for 8 seconds when they spawn.
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
+            i.setItem(0, new ItemStack(Material.IRON_SWORD, 1));
+            i.setItem(1, new ItemStack(Material.BOW, 1));
+            i.setItem(2, new ItemStack(Material.IRON_PICKAXE, 1));
+            i.setItem(3, new ItemStack(Material.IRON_AXE, 1));
+            i.setItem(4, new ItemStack(Material.BAKED_POTATO, 3));
+            i.setItem(5, new ItemStack(Material.LOG, 64, (short)1));
+            i.setItem(6, new ItemStack(Material.GOLDEN_APPLE, 3));
+            i.setItem(9, new ItemStack(Material.ARROW, 64));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 0));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 8 * 20, 1));
         }
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
     public int x1 = 52;
     public int y1 = 54;
     public int z1 = 35;
-
-    // Bottom right corner.
+    
     public int x2 = -48;
     public int y2 = 156;
     public int z2 = -75;
-
-    @EventHandler
-    public void preventspawnexplosion(EntityExplodeEvent event) {
-        if (Utility.getArena().equals(name)) {
-            Location loc = event.getLocation();
-            // Red team
-            if (contains(loc, -12, -25, 88, 83, -46, -60)) event.setCancelled(true);
-
-
-            // Blue team
-            if (contains(loc, -12, -25, 88, 83, 20, 6)) event.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void spawnprotection(BlockBreakEvent event) {
-        if (Utility.getArena().equals(name)) {
-            Location loc = event.getBlock().getLocation();
-            // Red team
-            if (contains(loc, -12, -25, 88, 83, -46, -60)) event.setCancelled(true);
-
-            // Blue team
-            if (contains(loc, -12, -25, 88, 83, 20, 6)) event.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void spawnprotection2(BlockPlaceEvent event) {
-        if (Utility.getArena().equals(name)) {
-            Location loc = event.getBlock().getLocation();
-            // Red team
-            if (contains(loc, -12, -25, 88, 83, -46, -60)) {
-                event.setCancelled(true);
-            }
-
-            // Blue team
-            if (contains(loc, -12, -25, 88, 83, 20, 6)) {
-                event.setCancelled(true);
-            }
-            // Blue team spawn
-            if (contains(loc, -11, 88, 16, -5, 85, 10)) {
-                event.setCancelled(true);
-            }
-            // Red team spawn
-            if (contains(loc, -10, 88, -55, -4, 85, -49)) {
-                event.setCancelled(true);
-            }
-        }
-    }
-
+    //dont really need these
 }
