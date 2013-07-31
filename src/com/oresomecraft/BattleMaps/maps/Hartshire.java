@@ -26,6 +26,7 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
     public Hartshire() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "hartshire";
