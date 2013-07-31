@@ -5,6 +5,7 @@ import java.util.List;
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.Team;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -110,6 +111,10 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
             i.setItem(3, COOKED_FISH);
             i.setItem(4, HEALTH_POTION);
             i.setItem(28, ARROWS);
+
+            if (p.getTeam() == Team.TDM_BLUE) {
+                p.setItem(5, Material.ENDER_PEARL, 1);
+            }
 
         }
     }
