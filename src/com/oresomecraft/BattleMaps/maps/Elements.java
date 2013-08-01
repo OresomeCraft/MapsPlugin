@@ -89,3 +89,4 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
     public int x2 = 7;
     public int y2 = 171;
     public int z2 = 166;
+}
