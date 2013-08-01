@@ -324,7 +324,8 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
         final World world = loc.getWorld();
         String name = p.getName();
 
-        if (battles.spectator.contains(name) || p.getWorld().equals(name)) {
+        if (battles.spectator.contains(name) || p.getWorld().equals("world")) {
+            //disable using the gun at the spawn
             return;
         } else {
             if (contains(loc, x1, x2, y1, y2, z1, z2)) {
@@ -338,10 +339,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
                             p.launchProjectile(Arrow.class);
                             world.playSound(loc, Sound.COW_WALK, 10, 10);
                             ItemStack AMMO = new ItemStack(Material.FLINT, 1);
-                            ItemMeta ammo = AMMO.getItemMeta();
-                            ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
-                            AMMO.setItemMeta(ammo);
-                            inv.removeItem(AMMO);
+                            //Make it remove normal flints, too.
                             p.updateInventory();
 
                         }
