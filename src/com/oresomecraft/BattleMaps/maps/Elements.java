@@ -24,7 +24,6 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
     public Elements() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
-        setAllowBuild(false);
     }
 
     String name = "elements";
