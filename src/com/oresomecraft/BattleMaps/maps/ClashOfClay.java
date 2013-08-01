@@ -75,6 +75,7 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
             ItemStack RED_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 14);
             //Give a LITTLE more clay - R3
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+            LEATHER_CHESTPLATE.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
             ItemStack DIAMOND_HELMET = new ItemStack(Material.DIAMOND_HELMET, 1);
             //Make the rushers a little less weak, about 10% less damage/
             ItemStack TORCH = new ItemStack(Material.TORCH, 16);
