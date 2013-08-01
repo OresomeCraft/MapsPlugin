@@ -32,7 +32,7 @@ public class HauntedHouse extends BattleMap implements IBattleMap, Listener {
     String name = "hauntedhouse";
     String fullName = "Haunted House";
     String creators = "bumsonfire";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
+    Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
