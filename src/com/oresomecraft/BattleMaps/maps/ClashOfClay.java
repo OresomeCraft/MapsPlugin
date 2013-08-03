@@ -133,8 +133,13 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void place(org.bukkit.event.block.BlockPlaceEvent event) {
-        if (contains(event.getBlock().getLocation(), -24, -21, 81, 84, 165, 162)) event.setCancelled(true);
-        if (contains(event.getBlock().getLocation(), -21, -24, 81, 86, 7, 10)) event.setCancelled(true);
+        if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
+        if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
+    }
+       @EventHandler
+    public void place(org.bukkit.event.block.BlockBreakEvent event) {
+        if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
+        if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
     }
     //May be incorrect, if not, fix.
 }
