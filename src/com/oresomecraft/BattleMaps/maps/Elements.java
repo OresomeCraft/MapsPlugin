@@ -56,7 +56,6 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
             final BattlePlayer p = event.getPlayer();
             Inventory i = p.getInventory();
             clearInv(p);
-
             ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
@@ -71,10 +70,10 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
             i.setItem(4, LOG);
             i.setItem(11, ARROWS);
             i.setItem(8, new ItemStack(Material.BREAD, 3));
-
-            //Give players invincibility II and Fire Resistance II for 15 , 20 seconds when they spawn
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 15 * 20, 2));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20 * 20, 2));
+            
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 20 * 20, 2));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15000 * 20, 2));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 2));
 
         }
     }
@@ -89,4 +88,16 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
     public int x2 = 7;
     public int y2 = 171;
     public int z2 = 166;
+    @EventHandler
+    public void nobreak(BlockBreakEvent event){
+        Location loc = event.getBlock().getLocation();
+        if(contains(loc, -34, -15, 85, 129, 155, 138)) event.setCancelled(true);
+        if(contains(loc, -12, -33, 82, 130, 2, 20)) event.setCancelled(true);
+    }
+    @EventHandler
+    public void noplace(BlockPlaceEvent event){
+        Location loc = event.getBlock().getLocation();
+        if(contains(loc, -34, -15, 85, 129, 155, 138)) event.setCancelled(true);
+        if(contains(loc, -12, -33, 82, 130, 2, 20)) event.setCancelled(true);
+    }
 }
