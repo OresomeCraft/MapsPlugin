@@ -71,7 +71,7 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
             i.setItem(4, LOG);
             i.setItem(11, ARROWS);
             i.setItem(8, new ItemStack(Material.BREAD, 3));
-            
+
             p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 20 * 20, 2));
             p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15000 * 20, 2));
             p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 2));
@@ -89,16 +89,18 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
     public int x2 = 7;
     public int y2 = 171;
     public int z2 = 166;
+
     @EventHandler
-    public void nobreak(BlockBreakEvent event){
+    public void nobreak(BlockBreakEvent event) {
         Location loc = event.getBlock().getLocation();
-        if(contains(loc, -34, -15, 85, 129, 155, 138)) event.setCancelled(true);
-        if(contains(loc, -12, -33, 82, 130, 2, 20)) event.setCancelled(true);
+        if (contains(loc, -34, -15, 85, 129, 155, 138)) event.setCancelled(true);
+        if (contains(loc, -12, -33, 82, 130, 2, 20)) event.setCancelled(true);
     }
+
     @EventHandler
-    public void noplace(BlockPlaceEvent event){
+    public void noplace(BlockPlaceEvent event) {
         Location loc = event.getBlock().getLocation();
-        if(contains(loc, -34, -15, 85, 129, 155, 138)) event.setCancelled(true);
-        if(contains(loc, -12, -33, 82, 130, 2, 20)) event.setCancelled(true);
+        if (contains(loc, -34, -15, 85, 129, 155, 138)) event.setCancelled(true);
+        if (contains(loc, -12, -33, 82, 130, 2, 20)) event.setCancelled(true);
     }
 }

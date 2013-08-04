@@ -114,7 +114,7 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
             i.setItem(4, GOLDEN_APPLE);
             i.setItem(27, ARROW);
 
-           //p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
+            //p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
             //p.getInventory().getItem(SHEARS).addEnchantment(Enchantment.DIG_SPEED, 10);
             //p.getInventory().getItem(BOW).addEnchantment(Enchantment.ARROW_KNOCKBACK, 5);
             //p.getInventory().getItem(BOW).addEnchantment(Enchantment.ARROW_INFINITE, 1);

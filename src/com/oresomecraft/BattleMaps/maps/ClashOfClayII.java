@@ -133,16 +133,18 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
             }
         }
     }
+
     @EventHandler
-    public void nobreak(BlockBreakEvent event){
+    public void nobreak(BlockBreakEvent event) {
         Location loc = event.getBlock().getLocation();
-        if(contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
-        if(contains(loc, 15, 23, 70, 88 -17, -30)) event.setCancelled(true);
+        if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
+        if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
     }
+
     @EventHandler
-    public void noplace(BlockPlaceEvent event){
+    public void noplace(BlockPlaceEvent event) {
         Location loc = event.getBlock().getLocation();
-        if(contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
-        if(contains(loc, 15, 23, 70, 88 -17, -30)) event.setCancelled(true);
+        if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
+        if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
     }
 }

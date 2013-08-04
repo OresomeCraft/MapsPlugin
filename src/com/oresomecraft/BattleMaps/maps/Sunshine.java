@@ -105,18 +105,20 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void nobreak(BlockBreakEvent event) {
-        if(event.getBlock().getWorld().equals(name)){
+        if (event.getBlock().getWorld().equals(name)) {
             event.setCancelled(true);
         }
-        
+
     }
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void noplace(BlockPlaceEvent event) {
-        if(event.getBlock().getWorld().equals(name)){
+        if (event.getBlock().getWorld().equals(name)) {
             event.setCancelled(true);
         }
-        
+
     }
+
     //Clears armor drops
     @EventHandler(priority = EventPriority.NORMAL)
     public void death(PlayerDeathEvent event) {

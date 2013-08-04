@@ -72,17 +72,18 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
             i.setItem(2, new ItemStack(Material.IRON_PICKAXE, 1));
             i.setItem(3, new ItemStack(Material.IRON_AXE, 1));
             i.setItem(4, new ItemStack(Material.BAKED_POTATO, 3));
-            i.setItem(5, new ItemStack(Material.LOG, 64, (short)1));
+            i.setItem(5, new ItemStack(Material.LOG, 64, (short) 1));
             i.setItem(6, new ItemStack(Material.GOLDEN_APPLE, 3));
             i.setItem(9, new ItemStack(Material.ARROW, 64));
             p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 0));
             p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 8 * 20, 1));
         }
     }
+
     public int x1 = 52;
     public int y1 = 54;
     public int z1 = 35;
-    
+
     public int x2 = -48;
     public int y2 = 156;
     public int z2 = -75;
