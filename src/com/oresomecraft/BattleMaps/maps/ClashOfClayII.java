@@ -15,6 +15,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -126,5 +128,17 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
                 item.setType(Material.AIR);
             }
         }
+    }
+    @EventHandler
+    public void nobreak(BlockBreakEvent event){
+        Location loc = event.getBlock().getLocation();
+        if(contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
+        if(contains(loc, 15, 23, 70, 88 -17, -30)) event.setCancelled(true);
+    }
+    @EventHandler
+    public void noplace(BlockPlaceEvent event){
+        Location loc = event.getBlock().getLocation();
+        if(contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
+        if(contains(loc, 15, 23, 70, 88 -17, -30)) event.setCancelled(true);
     }
 }
