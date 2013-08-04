@@ -79,6 +79,8 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
             ItemStack DIAMOND_HELMET = new ItemStack(Material.DIAMOND_HELMET, 1);
             ItemStack TORCH = new ItemStack(Material.TORCH, 16);
             ItemStack ARROW = new ItemStack(Material.ARROW, 1);
+            ItemStack STICK = new ItemStack(Material.STICK, 1);
+            ItemStack INGOT = new ItemStack(Material.IRON_INGOT, 1);
 
             p.getInventory().setHelmet(DIAMOND_HELMET);
             BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
@@ -100,6 +102,8 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
 
             i.setItem(6, TORCH);
             i.setItem(27, ARROW);
+            i.setItem(26, STICK);
+            i.setItem(25, INGOT);
 
         }
     }
