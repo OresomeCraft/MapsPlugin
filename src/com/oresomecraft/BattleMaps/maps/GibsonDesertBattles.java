@@ -5,14 +5,17 @@ import java.util.List;
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.World;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.OresomeBattles.Gamemode;

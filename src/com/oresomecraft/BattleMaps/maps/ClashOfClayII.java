@@ -83,16 +83,18 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
             ItemStack INGOT = new ItemStack(Material.IRON_INGOT, 1);
 
             p.getInventory().setHelmet(DIAMOND_HELMET);
+            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+
             BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 
             InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
-            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
 
             i.setItem(0, WOODEN_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, IRON_PICKAXE);
             i.setItem(3, PUMPKIN_PIE);
             i.setItem(4, APPLE);
+
             if (TDM.isRed(p.getName())) {
                 i.setItem(5, RED_STAINED_CLAY);
             }
@@ -135,14 +137,14 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void nobreak(BlockBreakEvent event) {
+    public void noSpawnBreak(BlockBreakEvent event) {
         Location loc = event.getBlock().getLocation();
         if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
         if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
     }
 
     @EventHandler
-    public void noplace(BlockPlaceEvent event) {
+    public void noSpawnPlace(BlockPlaceEvent event) {
         Location loc = event.getBlock().getLocation();
         if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
         if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);

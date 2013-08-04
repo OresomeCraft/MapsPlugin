@@ -6,13 +6,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -105,6 +102,7 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
             p.getInventory().setLeggings(IRON_PANTS);
             p.getInventory().setChestplate(IRON_CHESTPLATE);
             p.getInventory().setHelmet(IRON_HELMET);
+
             i.setItem(0, IRON_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, HEALTH_POTION);

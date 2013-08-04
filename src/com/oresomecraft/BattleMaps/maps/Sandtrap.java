@@ -5,16 +5,16 @@ import java.util.List;
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
-import org.bukkit.*;
-import org.bukkit.block.Block;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.World;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
@@ -28,6 +28,7 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
     public Sandtrap() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     String name = "sandtrap";
@@ -80,7 +81,7 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
             ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
             ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
             ItemStack STONE_SWORD = new ItemStack(Material.DIAMOND_SPADE, 1);
-            //:D
+
             ItemStack GLASS = new ItemStack(Material.GLASS, 22);
             ItemStack SAND = new ItemStack(Material.SAND, 64);
             ItemStack TNT = new ItemStack(Material.TNT, 1);
@@ -117,33 +118,6 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
     public int y2 = 130;
     public int z2 = -10;
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-            if (!(contains(loc, x1, x2, y1, y2, z1, z2))) {
-                event.setCancelled(true);
-            }
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-        if (loc.getWorld().getName().equals(name)) {
-            if (!(contains(loc, x1, x2, y1, y2, z1, z2))) {
-                event.setCancelled(true);
-            }
-        }
-
-    }
-
     @EventHandler
     public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
         Player p = event.getEntity();
@@ -158,5 +132,4 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
             }
         }
     }
-    //Imports may be incorrect
 }

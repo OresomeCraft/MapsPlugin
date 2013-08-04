@@ -2,16 +2,17 @@ package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
-import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.World;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.OresomeBattles.Gamemode;
@@ -91,14 +92,14 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
     public int z2 = 166;
 
     @EventHandler
-    public void nobreak(BlockBreakEvent event) {
+    public void noSpawnBreak(BlockBreakEvent event) {
         Location loc = event.getBlock().getLocation();
         if (contains(loc, -34, -15, 85, 129, 155, 138)) event.setCancelled(true);
         if (contains(loc, -12, -33, 82, 130, 2, 20)) event.setCancelled(true);
     }
 
     @EventHandler
-    public void noplace(BlockPlaceEvent event) {
+    public void noSpawnPlace(BlockPlaceEvent event) {
         Location loc = event.getBlock().getLocation();
         if (contains(loc, -34, -15, 85, 129, 155, 138)) event.setCancelled(true);
         if (contains(loc, -12, -33, 82, 130, 2, 20)) event.setCancelled(true);

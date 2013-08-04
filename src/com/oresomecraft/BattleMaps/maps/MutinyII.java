@@ -11,9 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -87,5 +84,4 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     public int x2 = -48;
     public int y2 = 156;
     public int z2 = -75;
-    //dont really need these
 }

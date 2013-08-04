@@ -1,24 +1,24 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
-import org.bukkit.*;
-import org.bukkit.block.Block;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.Location;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.Material;
+import org.bukkit.World;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
@@ -76,21 +76,7 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
             ItemStack DIAMOND_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
             ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
-            if (TDM.isBlue(p.getName())) {
-
-                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
-                helmetMeta.setColor(Color.BLUE);
-                LEATHER_HELMET.setItemMeta(helmetMeta);
-
-            }
-
-            if (TDM.isRed(p.getName())) {
-
-                LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
-                helmetMeta.setColor(Color.RED);
-                LEATHER_HELMET.setItemMeta(helmetMeta);
-
-            }
+            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
             p.getInventory().setBoots(DIAMOND_BOOTS);
             p.getInventory().setLeggings(GOLD_PANTS);

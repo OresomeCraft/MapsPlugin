@@ -1,12 +1,9 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
@@ -14,12 +11,15 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.Location;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.Material;
+import org.bukkit.World;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
@@ -104,7 +104,6 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
             ItemStack MILK = new ItemStack(Material.MILK_BUCKET, 1);
             ItemStack JUNGLE_WOOD = new ItemStack(Material.WOOD, 32, (short) 3);
-            //You're welcome - R3
 
             ItemMeta arrows = ARROWS.getItemMeta();
             arrows.setDisplayName(ChatColor.GOLD + "Poison Darts");

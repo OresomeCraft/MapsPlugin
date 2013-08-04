@@ -3,24 +3,24 @@ package com.oresomecraft.BattleMaps.maps;
 import java.util.List;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
-import org.bukkit.*;
-import org.bukkit.block.Block;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.World;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.OresomeBattles.Gamemode;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -75,8 +75,11 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
             ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
             ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
             ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+
             p.getInventory().setChestplate(LEATHER_CHESTPLATE);
             p.getInventory().setBoots(LEATHER_BOOTS);
+            p.getInventory().setLeggings(LEATHER_PANTS);
+            p.getInventory().getHelmet(LEATHER_HELMET);
 
 
             i.setItem(0, IRON_AXE);
@@ -85,8 +88,10 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
             i.setItem(3, HEALTH);
             i.setItem(27, ARROW);
 
-            //Give players invincibility and strength for 15 seconds when they spawn
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 7 * 20, 0));
+            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_BOOTS, LEATHER_PANTS, LEATHER_HELMET});
+
+            //Give players invincibility and strength for 7 seconds when they spawn
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 7 * 20, 1));
             p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 7 * 20, 1));
 
         }
@@ -102,22 +107,6 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
     public int x2 = -70;
     public int y2 = 30;
     public int z2 = 50;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void nobreak(BlockBreakEvent event) {
-        if (event.getBlock().getWorld().equals(name)) {
-            event.setCancelled(true);
-        }
-
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void noplace(BlockPlaceEvent event) {
-        if (event.getBlock().getWorld().equals(name)) {
-            event.setCancelled(true);
-        }
-
-    }
 
     //Clears armor drops
     @EventHandler(priority = EventPriority.NORMAL)
