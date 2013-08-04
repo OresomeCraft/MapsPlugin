@@ -79,7 +79,7 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
             p.getInventory().setChestplate(LEATHER_CHESTPLATE);
             p.getInventory().setBoots(LEATHER_BOOTS);
             p.getInventory().setLeggings(LEATHER_PANTS);
-            p.getInventory().getHelmet(LEATHER_HELMET);
+            p.getInventory().setHelmet(LEATHER_HELMET);
 
 
             i.setItem(0, IRON_AXE);

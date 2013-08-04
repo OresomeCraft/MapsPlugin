@@ -1,9 +1,9 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemodes.TDM;
-import org.bukkit.Bukkit;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
@@ -11,23 +11,17 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.Location;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.Material;
-import org.bukkit.World;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
 import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -109,40 +103,7 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
             arrows.setDisplayName(ChatColor.GOLD + "Poison Darts");
             ARROWS.setItemMeta(arrows);
 
-            if (TDM.isBlue(p.getName())) {
-
-                //Sets blue armor
-                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
-                bootsMeta.setColor(Color.BLUE);
-                LEATHER_BOOTS.setItemMeta(bootsMeta);
-
-                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
-                pantsMeta.setColor(Color.BLUE);
-                LEATHER_PANTS.setItemMeta(pantsMeta);
-
-                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
-                chestplateMeta.setColor(Color.BLUE);
-                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
-
-            }
-
-            if (TDM.isRed(p.getName())) {
-
-                //Sets red armor
-                LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
-                bootsMeta.setColor(Color.RED);
-                LEATHER_BOOTS.setItemMeta(bootsMeta);
-
-                LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
-                pantsMeta.setColor(Color.RED);
-                LEATHER_PANTS.setItemMeta(pantsMeta);
-
-                LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
-                chestplateMeta.setColor(Color.RED);
-                LEATHER_CHESTPLATE.setItemMeta(chestplateMeta);
-
-            }
-
+            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_BOOTS, LEATHER_CHESTPLATE, LEATHER_PANTS});
 
             p.getInventory().setBoots(LEATHER_BOOTS);
             p.getInventory().setLeggings(LEATHER_PANTS);
@@ -207,7 +168,7 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
     @SuppressWarnings("deprecation")
     // @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayer(EntityDamageByEntityEvent e) {
-        if (e.getEntity().getWorld().equals(name)) {
+        if (e.getEntity().getWorld().getName().equals(name)) {
             Player damaged = (Player) e.getEntity();
             if (e.getDamager() instanceof Projectile) {
                 Projectile proj = (Projectile) e.getEntity();
