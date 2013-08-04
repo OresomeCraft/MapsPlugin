@@ -80,6 +80,8 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
             //Make the rushers a little less weak, about 10% less damage/
             ItemStack TORCH = new ItemStack(Material.TORCH, 16);
             ItemStack ARROW = new ItemStack(Material.ARROW, 1);
+            ItemStack STICK = new ItemStack(Material.STICK, 1);
+            ItemStack INGOT = new ItemStack(Material.IRON_INGOT, 1);
 
             p.getInventory().setChestplate(LEATHER_CHESTPLATE);
             p.getInventory().setHelmet(DIAMOND_HELMET);
@@ -101,6 +103,8 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
 
             i.setItem(6, TORCH);
             i.setItem(27, ARROW);
+            i.setItem(26, STICK);
+            i.setItem(25, INGOT);
 
         }
     }
