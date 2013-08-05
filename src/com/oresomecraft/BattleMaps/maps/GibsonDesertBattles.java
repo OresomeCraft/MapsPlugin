@@ -138,7 +138,8 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
             if (mat == Material.BOW || mat == Material.LEATHER_BOOTS
                     || mat == Material.LEATHER_LEGGINGS
                     || mat == Material.LEATHER_CHESTPLATE
-                    || mat == Material.LEATHER_HELMET) {
+                    || mat == Material.LEATHER_HELMET
+                    || mat == Material.LAVA_BUCKET) {
 
                 i.setType(Material.AIR);
 
