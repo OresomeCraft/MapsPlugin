@@ -73,14 +73,15 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
             ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
 
             // Armor
-            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-
-            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_BOOTS});
-
-            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-            p.getInventory().setBoots(LEATHER_BOOTS);
-
+            ItemStack C = new ItemStack(Material.IRON_CHESTPLATE, 1);
+            ItemStack B = new ItemStack(Material.IRON_BOOTS, 1);
+            ItemStack L = new ItemStack(Material.IRON_LEGGINGS, 1);
+            ItemStack H = new ItemStack(Material.IRON_HELMET, 1);
+            
+            p.getInventory().setBoots(B);
+            p.getInventory().setChestplate(C);
+            p.getInventory().setLeggings(L);
+            p.getInventory().setHelmet(H);
 
             i.setItem(0, IRON_SWORD);
             i.setItem(1, BOW);
@@ -114,7 +115,7 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
     //No diamond/iron blocks to drop from this, resulting in no diamond/iron armour ;3
     @EventHandler(priority = EventPriority.NORMAL)
     public void blockBreak(BlockBreakEvent event) {
-        if (event.getBlock().getLocation().equals(name)) {
+        if (event.getBlock().getLocation().getWorld().equals(name)) {
             if (event.getBlock().getType() == Material.DIAMOND_BLOCK || event.getBlock().getType() == Material.IRON_BLOCK) {
                 event.setCancelled(true);
             }
