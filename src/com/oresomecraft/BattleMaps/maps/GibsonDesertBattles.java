@@ -77,6 +77,8 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
             ItemStack B = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack L = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack H = new ItemStack(Material.IRON_HELMET, 1);
+
+            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{C, B, L, H});
             
             p.getInventory().setBoots(B);
             p.getInventory().setChestplate(C);
@@ -115,7 +117,7 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
     //No diamond/iron blocks to drop from this, resulting in no diamond/iron armour ;3
     @EventHandler(priority = EventPriority.NORMAL)
     public void blockBreak(BlockBreakEvent event) {
-        if (event.getBlock().getLocation().getWorld().equals(name)) {
+        if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
             if (event.getBlock().getType() == Material.DIAMOND_BLOCK || event.getBlock().getType() == Material.IRON_BLOCK) {
                 event.setCancelled(true);
             }
