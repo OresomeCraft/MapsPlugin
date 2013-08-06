@@ -90,7 +90,7 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
             clearInv(p);
 
             ItemStack GOLDEN_APPLE = new ItemStack(Material.GOLDEN_APPLE, 2);
-            ItemStack CARROT = new ItemStack(Material.CARROT, 8);
+            ItemStack CARROT = new ItemStack(Material.CARROT_ITEM, 8);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROW = new ItemStack(Material.ARROW, 1);
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
@@ -112,10 +112,10 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
             i.setItem(4, GOLDEN_APPLE);
             i.setItem(27, ARROW);
 
-            //p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
-            //p.getInventory().getItem(SHEARS).addEnchantment(Enchantment.DIG_SPEED, 10);
-            //p.getInventory().getItem(BOW).addEnchantment(Enchantment.ARROW_KNOCKBACK, 5);
-            //p.getInventory().getItem(BOW).addEnchantment(Enchantment.ARROW_INFINITE, 1);
+            BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+            BOW.addEnchantment(Enchantment.ARROW_KNOCKBACK, 5);
+            LEATHER_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 4);
+            SHEARS.addEnchantment(Enchantment.DIG_SPEED, 10);
 
         }
     }
