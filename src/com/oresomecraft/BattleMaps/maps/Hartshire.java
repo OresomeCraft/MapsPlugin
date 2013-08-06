@@ -87,25 +87,28 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+            ItemStack LEATHERPANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+            ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
             ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 3);
+            ItemStack S = new ItemStack(Material.STICK, 1);
+            ItemStack I = new ItemStack(Material.IRON_INGOT, 1);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
+            p.getInventory().setBoots(LEATHER_BOOTS);
+            p.getInventory().setLeggings(LEATHER_PANTS);
+            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+            p.getInventory().setHelmet(LEATHER_HELMET);
 
-            i.setItem(0, IRON_SWORD);
+            i.setItem(0, STONE_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, STEAK);
             i.setItem(3, HEALTH);
             i.setItem(10, ARROWS);
+            i.setItem(11, S);
+            i.setItem(12, I);
             i.setItem(4, EXP);
-            //Remove the grapple hook, it just causes trouble.
         }
     }
 
