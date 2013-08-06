@@ -89,7 +89,7 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
             ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
             ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            ItemStack LEATHERPANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
             ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
             ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
             ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 3);
