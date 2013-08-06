@@ -101,6 +101,11 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
 
             InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_BOOTS});
 
+            BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+            BOW.addEnchantment(Enchantment.ARROW_KNOCKBACK, 5);
+            LEATHER_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 4);
+            SHEARS.addEnchantment(Enchantment.DIG_SPEED, 10);
+
             p.getInventory().setBoots(LEATHER_BOOTS);
             p.getInventory().setLeggings(GOLD_PANTS);
             p.getInventory().setChestplate(LEATHER_CHESTPLATE);
@@ -111,11 +116,6 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
             i.setItem(3, CARROT);
             i.setItem(4, GOLDEN_APPLE);
             i.setItem(27, ARROW);
-
-            BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-            BOW.addEnchantment(Enchantment.ARROW_KNOCKBACK, 5);
-            LEATHER_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 4);
-            SHEARS.addEnchantment(Enchantment.DIG_SPEED, 10);
 
         }
     }
