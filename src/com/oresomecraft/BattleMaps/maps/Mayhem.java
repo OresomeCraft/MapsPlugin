@@ -184,7 +184,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
                 } else if (type == Material.GOLD_ORE) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, potionTime, 2));
                 } else if (type == Material.COAL_ORE) {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, potionTime, 2));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, potionTime, 0));
                 } else if (type == Material.LAPIS_ORE) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, potionTime, 2));
                 } else if (type == Material.DIAMOND_ORE) {
