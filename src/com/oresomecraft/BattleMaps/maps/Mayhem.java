@@ -180,17 +180,17 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
             if (!(type == Material.COBBLESTONE)) {
 
                 if (type == Material.REDSTONE_ORE || type == Material.GLOWING_REDSTONE_ORE) {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, potionTime, 2));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, potionTime, 0));
                 } else if (type == Material.GOLD_ORE) {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, potionTime, 2));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, potionTime, 1));
                 } else if (type == Material.COAL_ORE) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, potionTime, 0));
                 } else if (type == Material.LAPIS_ORE) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, potionTime, 2));
                 } else if (type == Material.DIAMOND_ORE) {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, potionTime, 2));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, potionTime, 1));
                 } else if (type == Material.EMERALD_ORE) {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, potionTime, 2));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, potionTime, 1));
                 }
 
                 event.getBlock().setType(Material.COBBLESTONE);
