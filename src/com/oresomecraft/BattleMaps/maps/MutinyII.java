@@ -25,6 +25,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     public MutinyII() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setTDMTime(20);
     }
 
     String name = "mutinyii";
