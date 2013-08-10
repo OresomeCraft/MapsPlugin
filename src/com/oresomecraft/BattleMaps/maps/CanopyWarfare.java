@@ -165,9 +165,8 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    @SuppressWarnings("deprecation")
-    // @EventHandler(priority = EventPriority.NORMAL)
-    public void onPlayer(EntityDamageByEntityEvent e) {
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPlayerEntityDamage(EntityDamageByEntityEvent e) {
         if (e.getEntity().getWorld().getName().equals(name)) {
             Player damaged = (Player) e.getEntity();
             if (e.getDamager() instanceof Projectile) {

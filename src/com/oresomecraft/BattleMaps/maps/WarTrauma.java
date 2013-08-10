@@ -7,6 +7,7 @@ import com.oresomecraft.OresomeBattles.GameUtils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
@@ -14,6 +15,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -336,7 +338,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
     // <--------- Blaze Gun -------->
     @SuppressWarnings("deprecation")
-    //@EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.NORMAL)
     public void gun(PlayerInteractEvent event) {
         Player p = event.getPlayer();
         Location loc = p.getLocation();
@@ -347,44 +349,62 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
         final World world = loc.getWorld();
         String name = p.getName();
 
-        if (battles.spectator.contains(name) || p.getWorld().equals(name)) {
-            return;
+        if (battles.spectator.contains(name)) {
+            event.setCancelled(true);
         } else {
-            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+            if (p.getWorld().getName().equals(name)) {
+                if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
-                if (tool == Material.BLAZE_ROD) {
+                    if (tool == Material.BLAZE_ROD) {
 
-                    if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
+                        if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
 
-                        if (inv.contains(Material.FLINT)) {
+                            if (inv.contains(Material.FLINT)) {
 
-                            p.launchProjectile(Arrow.class);
-                            world.playSound(loc, Sound.COW_WALK, 10, 10);
-                            ItemStack AMMO = new ItemStack(Material.FLINT, 1);
-                            ItemMeta ammo = AMMO.getItemMeta();
-                            ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
-                            AMMO.setItemMeta(ammo);
-                            inv.removeItem(AMMO);
-                            p.updateInventory();
+                                p.launchProjectile(Arrow.class);
+                                world.playSound(loc, Sound.COW_WALK, 10, 10);
+                                ItemStack AMMO = new ItemStack(Material.FLINT, 1);
+                                //Make it remove normal flints, too.
+                                p.updateInventory();
 
+                            }
+
+                        } else {
+                            world.playSound(loc, Sound.CLICK, 10, 10);
                         }
 
-                    } else {
-                        world.playSound(loc, Sound.CLICK, 10, 10);
                     }
 
                 }
 
             }
-
         }
     }
 
-    // Sets arrow damage -7 hearts
-    @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onPlayer(EntityDamageByEntityEvent e) {
-        if (e.getEntity().getWorld().equals(name)) {
+    public void bulletAway(ProjectileHitEvent event) {
+        Entity p = event.getEntity();
+        Location loc = p.getLocation();
+        Block b = loc.getBlock();
+        Material mat = b.getType();
+
+        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+
+            if (p instanceof Arrow) {
+                Arrow a = (Arrow) p;
+                a.remove();
+
+                if (mat == Material.THIN_GLASS) {
+                    b.breakNaturally();
+                }
+
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPlayerEntityDamage(EntityDamageByEntityEvent e) {
+        if (e.getEntity().getWorld().getName().equals(name)) {
             Player damaged = (Player) e.getEntity();
             if (e.getDamager() instanceof Projectile) {
                 Projectile proj = (Projectile) e.getEntity();
@@ -401,3 +421,4 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
         }
     }
 }
+
