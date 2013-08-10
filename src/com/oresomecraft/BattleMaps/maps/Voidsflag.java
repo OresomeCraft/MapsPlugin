@@ -81,6 +81,8 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
             ItemStack BIRCH_LOG = new ItemStack(Material.LOG, 64);
             ItemStack ARROW = new ItemStack(Material.ARROW, 64);
 
+            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_BOOTS, LEATHER_PANTS});
+
             p.getInventory().setBoots(LEATHER_BOOTS);
             p.getInventory().setLeggings(LEATHER_PANTS);
             p.getInventory().setChestplate(LEATHER_CHESTPLATE);
