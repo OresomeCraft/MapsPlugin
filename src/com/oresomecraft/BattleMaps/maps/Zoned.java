@@ -64,20 +64,23 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
 
             ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
             ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
-            ItemStack JUMP = new ItemStack(Material.FIREWORK, 1);
+            ItemStack JUMP = new ItemStack(Material.FIREWORK, 3);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 128);
-            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack WEAPON = new ItemStack(Material.IRON_SWORD, 1);
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
+            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+            ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
-            i.setItem(0, WEAPON);
+            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
+
+            p.getInventory().setBoots(LEATHER_BOOTS);
+            p.getInventory().setLeggings(LEATHER_PANTS);
+            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+            p.getInventory().setHelmet(LEATHER_HELMET);
+
+            i.setItem(0, STONE_SWORD);
             i.setItem(1, BOW);
             i.setItem(2, JUMP);
             i.setItem(3, STEAK);
