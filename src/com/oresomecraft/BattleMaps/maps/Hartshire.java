@@ -1,6 +1,7 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -95,7 +96,9 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
             ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 3);
             ItemStack S = new ItemStack(Material.STICK, 1);
             ItemStack I = new ItemStack(Material.IRON_INGOT, 1);
-            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_LEGGINGS, LEATHER_HELMET, LEATHER_BOOTS});
+
+            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
+
             p.getInventory().setBoots(LEATHER_BOOTS);
             p.getInventory().setLeggings(LEATHER_PANTS);
             p.getInventory().setChestplate(LEATHER_CHESTPLATE);

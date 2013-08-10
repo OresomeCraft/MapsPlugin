@@ -3,7 +3,6 @@ package com.oresomecraft.BattleMaps.maps;
 import java.util.List;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -77,8 +76,6 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
             ItemStack B = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack L = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack H = new ItemStack(Material.IRON_HELMET, 1);
-
-            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{C, B, L, H});
             
             p.getInventory().setBoots(B);
             p.getInventory().setChestplate(C);
@@ -93,7 +90,6 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
             i.setItem(5, HEALTH);
             i.setItem(6, OAK_LOG);
             i.setItem(7, LADDER);
-            i.setItem(8, FLOWER_POT);
             i.setItem(27, ARROW);
 
             //Give players invincibility and strength for 15 seconds when they spawn
