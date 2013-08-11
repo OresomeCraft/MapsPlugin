@@ -28,7 +28,7 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
     public Sandtrap() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
-        setAllowBuild(false);
+        setTDMTime(5);
     }
 
     String name = "sandtrap";

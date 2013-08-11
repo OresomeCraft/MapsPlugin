@@ -30,21 +30,16 @@ public class Template extends BattleMap implements IBattleMap, Listener {
     String name = "template";
     String fullName = "Template";
     String creators = "derp, herp and harpaderp";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.CTF};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.CTF, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
 
-        Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
-        Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
-
-        redSpawns.add(redSpawn);
         redSpawns.add(new Location(w, 0, 99, 27, 2, 0));
         redSpawns.add(new Location(w, -9, 110, -20, 0, 0));
         redSpawns.add(new Location(w, 21, 105, -13, 0, 0));
         redSpawns.add(new Location(w, 4, 106, -41, 0, 0));
 
-        blueSpawns.add(blueSpawn);
         blueSpawns.add(new Location(w, -9, 110, -20, 0, 0));
         blueSpawns.add(new Location(w, 0, 99, 27, 0, 0));
         blueSpawns.add(new Location(w, -16, 108, -3, 0, 0));
@@ -55,14 +50,8 @@ public class Template extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyFFASpawns() {
-
         World w = Bukkit.getServer().getWorld(name);
 
-        Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
-        Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
-
-        FFASpawns.add(redSpawn);
-        FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, 0, 99, 27, 2, 0));
         FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
 
@@ -77,27 +66,25 @@ public class Template extends BattleMap implements IBattleMap, Listener {
             clearInv(p);
 
             ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
             ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
             ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
             ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
             p.getInventory().setBoots(IRON_BOOTS);
             p.getInventory().setLeggings(IRON_PANTS);
             p.getInventory().setChestplate(IRON_CHESTPLATE);
             p.getInventory().setHelmet(IRON_HELMET);
 
-            i.setItem(0, IRON_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, STEAK);
             i.setItem(3, HEALTH_POTION);
-            i.setItem(4, ARROWS);
-            i.setItem(5, EXP);
+
+            // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
+            p.setItem(0, Material.IRON_SWORD, 1);
+            p.setItem(1, Material.BOW, 1);
+            p.setItem(2, Material.COOKED_BEEF, 1);
+            p.setItem(4, Material.ARROW, 64);
+            p.setItem(5, Material.EXP_BOTTLE, 5);
 
         }
     }
