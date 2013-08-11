@@ -1,7 +1,8 @@
-// Provides access to OresomeBattles API. MANY more API additions to be added soon.
 package com.oresomecraft.BattleMaps;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
@@ -10,6 +11,7 @@ import com.oresomecraft.OresomeBattles.gamemodes.KoTH;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -20,7 +22,9 @@ import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.Utility;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.world.WorldLoadEvent;
+import org.bukkit.inventory.ItemStack;
 
 public abstract class BattleMap implements Listener {
 
@@ -45,6 +49,7 @@ public abstract class BattleMap implements Listener {
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
     private boolean allowBuild = true;
+    private Material[] disabledDrops;
 
     // Map details
     String name;
@@ -142,6 +147,15 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
+     * Disables certain items from being dropped on death
+     *
+     * @param items an ItemStack array of items not to drop
+     */
+    public void disableDrops(Material[] items) {
+        disabledDrops = items;
+    }
+
+    /**
      * Sets TDM and CTF spawn points
      */
     public abstract void readyTDMSpawns();
@@ -174,6 +188,20 @@ public abstract class BattleMap implements Listener {
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         if (event.getBlock().getWorld().getName().equals(name) && !allowBuild) event.setCancelled(true);
+    }
+
+    /**
+     * Disables dropping of certain items if declared
+     *
+     * @param event An Event called by the server
+     */
+    @EventHandler
+    public void onDeath(PlayerDeathEvent event) {
+        Player p = event.getEntity();
+        for (ItemStack item : event.getDrops())
+            if (!Arrays.asList(disabledDrops).isEmpty() && Arrays.asList(disabledDrops).contains(item.getType()))
+                item.setType(Material.AIR);
+
     }
 
     /**

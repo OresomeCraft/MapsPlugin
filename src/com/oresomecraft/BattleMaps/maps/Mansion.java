@@ -1,7 +1,5 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.List;
-
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
@@ -12,7 +10,6 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -31,6 +28,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setAllowBuild(false);
+        disableDrops(new Material[]{Material.STONE_SWORD});
     }
 
     String name = "mansion";
@@ -170,20 +168,5 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
             }
         }
 
-    }
-
-    @EventHandler
-    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
-        Player p = event.getEntity();
-        List<ItemStack> drops = event.getDrops();
-
-        for (ItemStack item : drops) {
-            Material mat = item.getType();
-
-            if (mat == Material.STONE_SWORD) {
-
-                item.setType(Material.AIR);
-            }
-        }
     }
 }
