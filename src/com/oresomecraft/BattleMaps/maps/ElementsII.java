@@ -2,6 +2,7 @@ package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.Team;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.event.block.Action;
@@ -76,7 +77,7 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
             ItemStack LOG = new ItemStack(Material.LOG, 25);
             ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
-            if (TDM.isRed(p.getName())) {
+            if (p.getTeam() == Team.TDM_RED) {
                 i.setItem(7, FIRE);
             }
 
@@ -112,12 +113,12 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
                 Block b = event.getClickedBlock();
                 World w = Bukkit.getWorld(name);
 
-                if (TDM.isRed(p.getName())) {
+                if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.TDM_RED) {
                     if (b.getType().equals(Material.REDSTONE_BLOCK)) {
                         p.teleport(new Location(w, -111, 97, 14, 90, 0));
                     }
                 } else {
-                    if (TDM.isBlue(p.getName())) {
+                    if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.TDM_BLUE) {
                         if (b.getType().equals(Material.LAPIS_BLOCK)) {
                             p.teleport(new Location(w, -53, 97, -14, -90, 0));
                         }
