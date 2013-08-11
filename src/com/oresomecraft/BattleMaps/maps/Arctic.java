@@ -1,30 +1,21 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
+import org.bukkit.event.*;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.api.*;
+import com.oresomecraft.OresomeBattles.*;
+import com.oresomecraft.OresomeBattles.events.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
-
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 
 public class Arctic extends BattleMap implements IBattleMap, Listener {
 

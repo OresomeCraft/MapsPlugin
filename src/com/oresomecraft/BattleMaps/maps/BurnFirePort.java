@@ -1,23 +1,16 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-
+import java.util.*;
+import org.bukkit.*;
+import org.bukkit.event.*;
+import org.bukkit.inventory.*;
+import org.bukkit.potion.*;
+import org.bukkit.enchantments.*;
+import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.BattleMaps.api.*;
+import com.oresomecraft.OresomeBattles.*;
+import com.oresomecraft.OresomeBattles.events.*;
 
 public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
@@ -119,16 +112,5 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
     public int x2 = -2;
     public int y2 = 1;
     public int z2 = 215;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventoutofmap(PlayerMoveEvent event) {
-
-        if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
-            if (!(contains(event.getPlayer().getLocation(), x1, x2, y1, y2, z1,
-                    z2))) {
-                event.setCancelled(true);
-            }
-        }
-    }
 
 }

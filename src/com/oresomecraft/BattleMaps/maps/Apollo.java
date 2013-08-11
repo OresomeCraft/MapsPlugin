@@ -1,23 +1,16 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import org.bukkit.Bukkit;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.Location;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.entity.Player;
-import org.bukkit.Material;
-import org.bukkit.World;
-
+import java.util.*;
+import org.bukkit.*;
+import org.bukkit.enchantments.*;
+import org.bukkit.event.*;
+import org.bukkit.inventory.*;
+import org.bukkit.potion.*;
 import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.api.*;
 import com.oresomecraft.OresomeBattles.*;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import com.oresomecraft.OresomeBattles.events.*;
 
 public class Apollo extends BattleMap implements IBattleMap, Listener {
 

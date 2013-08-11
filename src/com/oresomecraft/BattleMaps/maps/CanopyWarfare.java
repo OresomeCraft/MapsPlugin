@@ -1,29 +1,19 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.BattleMaps.api.InvUtils;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
+import java.util.*;
 import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
-
+import org.bukkit.potion.*;
+import org.bukkit.enchantments.*;
+import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import com.oresomecraft.BattleMaps.api.*;
+import com.oresomecraft.OresomeBattles.*;
+import com.oresomecraft.OresomeBattles.events.*;
 
 public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
 
@@ -135,35 +125,6 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
     public int x2 = -9;
     public int y2 = 63;
     public int z2 = 120;
-
-    // Code to prevent block breaking.
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void protection(BlockBreakEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-        }
-
-    }
-
-    // Code to prevent block placing.
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void protection1(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
-    }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerEntityDamage(EntityDamageByEntityEvent e) {

@@ -1,21 +1,16 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-
+import java.util.*;
+import org.bukkit.*;
+import org.bukkit.event.*;
+import org.bukkit.inventory.*;
+import org.bukkit.potion.*;
+import org.bukkit.enchantments.*;
+import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.BattleMaps.api.*;
+import com.oresomecraft.OresomeBattles.*;
+import com.oresomecraft.OresomeBattles.events.*;
 
 public class Battlement extends BattleMap implements IBattleMap, Listener {
 

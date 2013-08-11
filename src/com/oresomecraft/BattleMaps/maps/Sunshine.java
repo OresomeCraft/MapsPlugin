@@ -1,28 +1,14 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.List;
-
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.BattleMaps.api.InvUtils;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemodes.TDM;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.World;
-
+import org.bukkit.*;
+import org.bukkit.event.*;
+import org.bukkit.inventory.*;
+import org.bukkit.potion.*;
+import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import com.oresomecraft.BattleMaps.api.*;
+import com.oresomecraft.OresomeBattles.*;
+import com.oresomecraft.OresomeBattles.events.*;
 
 public class Sunshine extends BattleMap implements IBattleMap, Listener {
 
@@ -30,6 +16,8 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setAllowBuild(false);
+        disableDrops(new Material[]{Material.BOW, Material.LEATHER_HELMET,
+                Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS});
     }
 
     String name = "sunshine";
@@ -107,31 +95,5 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
     public int x2 = -70;
     public int y2 = 30;
     public int z2 = 50;
-
-    //Clears armor drops
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void death(PlayerDeathEvent event) {
-
-        List<ItemStack> drops = event.getDrops();
-        int amount = drops.size();
-        int count = 0;
-
-        for (int none = 0; none < amount; none++) {
-
-            ItemStack i = drops.get(count);
-            count++;
-            Material mat = i.getType();
-
-            if (mat == Material.BOW || mat == Material.LEATHER_BOOTS
-                    || mat == Material.LEATHER_LEGGINGS
-                    || mat == Material.LEATHER_CHESTPLATE
-                    || mat == Material.LEATHER_HELMET) {
-
-                i.setType(Material.AIR);
-
-            }
-
-        }
-    }
 
 }
