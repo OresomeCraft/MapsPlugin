@@ -407,14 +407,9 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
         if (e.getEntity().getWorld().getName().equals(name)) {
             Player damaged = (Player) e.getEntity();
             if (e.getDamager() instanceof Projectile) {
-                Projectile proj = (Projectile) e.getEntity();
-                Arrow arrow = (Arrow) proj;
-                if (arrow.getShooter() instanceof Player) {
-                    Player shooter = (Player) arrow.getShooter();
-                    if (proj instanceof Arrow) {
-                        if (arrow.getShooter() instanceof Player) {
-                            damaged.damage(14);
-                        }
+                if (e.getDamager() instanceof Arrow) {
+                    if (((Arrow) e.getDamager()).getShooter() instanceof Player) {
+                        damaged.damage(14);
                     }
                 }
             }
