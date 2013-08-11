@@ -199,7 +199,7 @@ public abstract class BattleMap implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         Player p = event.getEntity();
         for (ItemStack item : event.getDrops())
-            if (!Arrays.asList(disabledDrops).isEmpty() && Arrays.asList(disabledDrops).contains(item.getType()))
+            if (disabledDrops != null && Arrays.asList(disabledDrops).contains(item.getType()))
                 item.setType(Material.AIR);
 
     }

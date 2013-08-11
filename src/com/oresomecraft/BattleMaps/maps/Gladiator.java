@@ -24,7 +24,7 @@ public class Gladiator extends BattleMap implements IBattleMap, Listener {
 
     // Map details
     String name = "gladiator";
-    String fullName = " Gladiator";
+    String fullName = "Gladiator";
     String creators = "eddie017 ";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH};
 
