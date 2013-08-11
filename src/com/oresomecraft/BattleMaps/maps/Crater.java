@@ -13,10 +13,6 @@ import com.oresomecraft.BattleMaps.api.*;
 import com.oresomecraft.OresomeBattles.*;
 import com.oresomecraft.OresomeBattles.events.*;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-
 public class Crater extends BattleMap implements IBattleMap, Listener {
 
     public Crater() {

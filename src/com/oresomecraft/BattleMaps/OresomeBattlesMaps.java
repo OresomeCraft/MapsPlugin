@@ -78,6 +78,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Electricity();
         new HauntedHouse();
         new Sloped();
+        new Crater();
     }
 
     public static OresomeBattlesMaps getInstance() {

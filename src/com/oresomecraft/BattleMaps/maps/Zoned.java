@@ -1,6 +1,7 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattleHandler;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import org.bukkit.Bukkit;
