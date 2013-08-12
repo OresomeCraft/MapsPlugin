@@ -95,14 +95,14 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -51;
-    public int y1 = 74;
-    public int z1 = 0;
+    public int x1 = 29;
+    public int y1 = 142;
+    public int z1 = 56;
 
     //Bottom right corner.
-    public int x2 = 7;
-    public int y2 = 171;
-    public int z2 = 166;
+    public int x2 = -203;
+    public int y2 = 42;
+    public int z2 = -72;
 
     @EventHandler
     public void onBlockClick(PlayerInteractEvent event) {
