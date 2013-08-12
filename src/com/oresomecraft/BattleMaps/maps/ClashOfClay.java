@@ -10,11 +10,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -143,4 +145,16 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
         if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
     }
     //May be incorrect, if not, fix.
+    @EventHandler
+    public void clay(ProjectileHitEvent event){
+        Location loc = event.getEntity().getLocation();
+        if (contains(loc, -24, -21, 79, 84, 165, 162)) return;
+        if (contains(loc, -21, -24, 79, 86, 7, 10)) return;
+        boolean success = Math.random() < 0.5;
+        if(success == true){
+            Block b = Bukkit.getWorld(name).getBlockAt(loc);
+            b.setType(Material.CLAY);
+        }
+
+    }
 }
