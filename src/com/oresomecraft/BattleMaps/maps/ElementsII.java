@@ -34,7 +34,7 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
 
     String name = "elements2";
     String fullName = "Elements II";
-    String creators = "broddikill, koolguydude4 and MiCkEyMiCE";
+    String creators = "_Moist, psgs and broddikill";
     Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {
