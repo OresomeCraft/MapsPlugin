@@ -402,7 +402,8 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+
+    /*@EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerEntityDamage(EntityDamageByEntityEvent e) {
         if (e.getEntity().getWorld().getName().equals(name)) {
             Player damaged = (Player) e.getEntity();
@@ -414,6 +415,6 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
                 }
             }
         }
-    }
+    } */
 }
 
