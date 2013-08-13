@@ -49,7 +49,7 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
 
-        setKoTHMonument(new Location(w, -82, 115, 0));
+        setKoTHMonument(new Location(w, -82, 116, -0));
     }
 
     public void readyFFASpawns() {
@@ -71,13 +71,13 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
             clearInv(p);
 
             ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack FIRE = new ItemStack(Material.POTION, 1, (short) 8195);
+            ItemStack FIRE = new ItemStack(Material.POTION, 1, (short) 8227);
             ItemStack BOW = new ItemStack(Material.BOW, 1);
             ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
             ItemStack LOG = new ItemStack(Material.LOG, 25);
             ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
-            if (p.getTeam() == Team.TDM_RED) {
+            if (p.getTeam() == Team.KOTH_RED) {
                 i.setItem(7, FIRE);
             }
 
@@ -113,12 +113,12 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
                 Block b = event.getClickedBlock();
                 World w = Bukkit.getWorld(name);
 
-                if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.TDM_RED) {
+                if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_RED) {
                     if (b.getType().equals(Material.REDSTONE_BLOCK)) {
                         p.teleport(new Location(w, -111, 97, 14, 90, 0));
                     }
                 } else {
-                    if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.TDM_BLUE) {
+                    if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_BLUE) {
                         if (b.getType().equals(Material.LAPIS_BLOCK)) {
                             p.teleport(new Location(w, -53, 97, -14, -90, 0));
                         }

@@ -26,10 +26,6 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
         setDetails(name, fullName, creators, modes);
     }
 
-    public ArrayList<Location> redSpawns = new ArrayList<Location>();
-    public ArrayList<Location> blueSpawns = new ArrayList<Location>();
-    public ArrayList<Location> FFASpawns = new ArrayList<Location>();
-
     String name = "suburban";
     String fullName = "Suburban Complex";
     String creators = "R3creat3, zezo268, xannallax33 and kalikakitty";

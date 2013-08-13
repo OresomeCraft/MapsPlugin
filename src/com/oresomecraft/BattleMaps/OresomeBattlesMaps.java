@@ -82,6 +82,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Gladiator();
         new ElementsII();
         new TheBowl();
+        new Simplex();
 
     }
 
