@@ -1,6 +1,7 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import java.util.*;
+
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
@@ -54,7 +55,7 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -34, 79, 18));
         FFASpawns.add(new Location(w, -33, 80, -22));
         FFASpawns.add(new Location(w, -5, 79, 23));
-        FFASpawns.add(new Location(w, -60, 79,  -16));
+        FFASpawns.add(new Location(w, -60, 79, -16));
         FFASpawns.add(new Location(w, 0, 78, -25));
 
         setFFASpawns(name, FFASpawns);

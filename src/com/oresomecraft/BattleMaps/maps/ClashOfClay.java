@@ -5,6 +5,7 @@ import java.util.List;
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.BattleMaps.api.InvUtils;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.Utility;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -144,17 +145,19 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
         if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
         if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
     }
+
     //May be incorrect, if not, fix.
     @EventHandler
-    public void clay(ProjectileHitEvent event){
-        Location loc = event.getEntity().getLocation();
-        if (contains(loc, -24, -21, 79, 84, 165, 162)) return;
-        if (contains(loc, -21, -24, 79, 86, 7, 10)) return;
-        boolean success = Math.random() < 0.5;
-        if(success == true){
-            Block b = Bukkit.getWorld(name).getBlockAt(loc);
-            b.setType(Material.CLAY);
+    public void clay(ProjectileHitEvent event) {
+        if (Utility.getArena().equals(name)) {
+            Location loc = event.getEntity().getLocation();
+            if (contains(loc, -24, -21, 79, 84, 165, 162)) return;
+            if (contains(loc, -21, -24, 79, 86, 7, 10)) return;
+            boolean success = Math.random() < 0.5;
+            if (success) {
+                Block b = Bukkit.getWorld(name).getBlockAt(loc);
+                b.setType(Material.CLAY);
+            }
         }
-
     }
 }

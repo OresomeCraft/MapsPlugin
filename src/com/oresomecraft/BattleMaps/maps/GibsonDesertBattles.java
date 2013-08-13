@@ -76,7 +76,7 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
             ItemStack B = new ItemStack(Material.IRON_BOOTS, 1);
             ItemStack L = new ItemStack(Material.IRON_LEGGINGS, 1);
             ItemStack H = new ItemStack(Material.IRON_HELMET, 1);
-            
+
             p.getInventory().setBoots(B);
             p.getInventory().setChestplate(C);
             p.getInventory().setLeggings(L);
