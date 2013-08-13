@@ -194,14 +194,11 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    byte blueData = 11;
-    byte redData = 14;
-
     public void blueWool(Location loc, World w, Player shooter) {
 
         if (BattlePlayer.getBattlePlayer(shooter).getTeam() == Team.KOTH_RED) {
             if (loc.getBlock().getType().equals(Material.WOOL)) {
-                loc.getBlock().setTypeIdAndData(35, redData, false);
+                loc.getBlock().setTypeIdAndData(Material.WOOL.getId(), DyeColor.RED.getDyeData(), false);
                 w.playEffect(loc, Effect.STEP_SOUND, 152);
             }
         }
@@ -210,7 +207,7 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
     public void redWool(Location loc, World w, Player shooter) {
         if (BattlePlayer.getBattlePlayer(shooter).getTeam() == Team.KOTH_BLUE) {
             if (loc.getBlock().getType().equals(Material.WOOL)) {
-                loc.getBlock().setTypeIdAndData(35, blueData, false);
+                loc.getBlock().setTypeIdAndData(Material.WOOL.getId(), DyeColor.RED.getDyeData(), false);
                 w.playEffect(loc, Effect.STEP_SOUND, 22);
             }
         }
