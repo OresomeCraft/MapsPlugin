@@ -20,7 +20,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
         setDetails(name, fullName, creators, modes);
         setTDMTime(10);
         setAllowBuild(false);
-        disableDrops(new Material[]{ Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
+        disableDrops(new Material[]{Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
                 Material.IRON_CHESTPLATE, Material.FISHING_ROD, Material.DIAMOND_PICKAXE, Material.ARROW});
     }
 
@@ -124,9 +124,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void battleEnd(BattleEndEvent event) {
-        if (event.get(name)) {
-            Bukkit.getScheduler().cancelTask(timer);
-        }
+        Bukkit.getScheduler().cancelTask(timer);
     }
 
     @EventHandler
