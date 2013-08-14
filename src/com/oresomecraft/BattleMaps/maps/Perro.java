@@ -27,7 +27,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.Utility;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 

@@ -1,5 +1,6 @@
 package com.oresomecraft.BattleMaps.maps;
 
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -11,7 +12,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.BattleMaps.api.*;
 import com.oresomecraft.OresomeBattles.*;
 import com.oresomecraft.OresomeBattles.events.*;
 import org.bukkit.inventory.meta.ItemMeta;

@@ -1,7 +1,7 @@
 package com.oresomecraft.BattleMaps.api;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.Team;
+import com.oresomecraft.OresomeBattles.api.Team;
 import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;

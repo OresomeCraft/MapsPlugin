@@ -20,7 +20,7 @@ import org.bukkit.inventory.ItemStack;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.OresomeBattles.BattleHandler;
-import com.oresomecraft.OresomeBattles.Gamemode;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 
 public class Xenon extends BattleMap implements IBattleMap, Listener {

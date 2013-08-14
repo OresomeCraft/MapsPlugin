@@ -1,5 +1,6 @@
 package com.oresomecraft.BattleMaps.maps;
 
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;

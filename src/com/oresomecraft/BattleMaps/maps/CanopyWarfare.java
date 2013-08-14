@@ -1,7 +1,6 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.*;
-
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
@@ -9,7 +8,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.*;
-import org.bukkit.enchantments.*;
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.api.*;

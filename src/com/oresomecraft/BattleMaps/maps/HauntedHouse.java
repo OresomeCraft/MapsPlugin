@@ -1,6 +1,7 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,7 +14,6 @@ import org.bukkit.Material;
 import org.bukkit.World;
 
 import com.oresomecraft.BattleMaps.*;
-import com.oresomecraft.OresomeBattles.*;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 
 public class HauntedHouse extends BattleMap implements IBattleMap, Listener {

@@ -19,7 +19,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.World;
 
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 
 public class Hartshire extends BattleMap implements IBattleMap, Listener {

@@ -18,10 +18,9 @@ import org.bukkit.Material;
 import org.bukkit.World;
 
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
 
 public class Mutiny extends BattleMap implements IBattleMap, Listener {
 

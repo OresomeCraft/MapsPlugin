@@ -3,7 +3,6 @@ package com.oresomecraft.BattleMaps.maps;
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import org.bukkit.*;
-import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Player;
@@ -15,7 +14,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;

@@ -2,6 +2,7 @@ package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.api.InvUtils;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

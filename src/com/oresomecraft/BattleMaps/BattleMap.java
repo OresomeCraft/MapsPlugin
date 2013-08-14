@@ -2,7 +2,6 @@ package com.oresomecraft.BattleMaps;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
@@ -17,7 +16,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
-import com.oresomecraft.OresomeBattles.Gamemode;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.OresomeBattles;
 import com.oresomecraft.OresomeBattles.Utility;
 import org.bukkit.event.block.BlockBreakEvent;
