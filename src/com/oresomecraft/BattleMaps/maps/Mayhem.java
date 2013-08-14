@@ -6,12 +6,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.world.WorldLoadEvent;
-import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.potion.*;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 
 public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
@@ -29,12 +29,8 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     String creators = "ShaunDepro97, meganlovesmusic and Kytria";
     Gamemode[] modes = {Gamemode.TDM};
 
-    @Override
-    @EventHandler
-    public void setSpawns(WorldLoadEvent event) { // Register power block
+    public void onload(WorldLoadEvent event) { // Register power block
         if (event.getWorld().getName().equals(name)) {
-            readyTDMSpawns();
-            readyFFASpawns();
             cyclePowerBlock();
         }
     }
@@ -127,8 +123,8 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void battleEnd(WorldUnloadEvent event) {
-        if (getArena().equals(name)) {
+    public void battleEnd(BattleEndEvent event) {
+        if (event.get(name)) {
             Bukkit.getScheduler().cancelTask(timer);
         }
     }
