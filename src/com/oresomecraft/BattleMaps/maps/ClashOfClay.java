@@ -151,12 +151,14 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
     public void clay(ProjectileHitEvent event) {
         if (Utility.getArena().equals(name)) {
             Location loc = event.getEntity().getLocation();
-            if (contains(loc, -24, -21, 79, 84, 165, 162)) return;
-            if (contains(loc, -21, -24, 79, 86, 7, 10)) return;
-            boolean success = Math.random() < 0.5;
-            if (success) {
-                Block b = Bukkit.getWorld(name).getBlockAt(loc);
-                b.setType(Material.CLAY);
+            if (contains(loc, -24, -21, 79, 84, 165, 162) || contains(loc, 24, -21, 79, 84, 165, 162)) {
+                return;
+            } else {
+                boolean success = Math.random() < 0.5;
+                if (success) {
+                    Block b = Bukkit.getWorld(name).getBlockAt(loc);
+                    b.setType(Material.CLAY);
+                }
             }
         }
     }
