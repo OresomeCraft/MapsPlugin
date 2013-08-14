@@ -1,17 +1,11 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.*;
-
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
-import org.bukkit.enchantments.*;
+
 import com.oresomecraft.BattleMaps.*;
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.BattleMaps.api.*;
-import com.oresomecraft.OresomeBattles.*;
-import com.oresomecraft.OresomeBattles.events.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
@@ -72,39 +66,35 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE,
-                    1);
-            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1,
-                    (short) 16373);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROW = new ItemStack(Material.ARROW, 64);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
-            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 1);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE,
+                1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1,
+                (short) 16373);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROW = new ItemStack(Material.ARROW, 64);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
+        ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 1);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(IRON_HELMET);
 
-            i.setItem(0, IRON_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, HEALTH_POTION);
-            i.setItem(3, STEAK);
-            i.setItem(4, EXP);
-            i.setItem(10, ARROW);
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, HEALTH_POTION);
+        i.setItem(3, STEAK);
+        i.setItem(4, EXP);
+        i.setItem(10, ARROW);
 
-        }
+
     }
 
     public int x1 = -212;

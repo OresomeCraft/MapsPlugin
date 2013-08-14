@@ -1,27 +1,19 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.Team;
-import org.bukkit.Bukkit;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.World;
-
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class ElementsII extends BattleMap implements IBattleMap, Listener {
 
@@ -63,34 +55,29 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack FIRE = new ItemStack(Material.POTION, 1, (short) 8227);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack LOG = new ItemStack(Material.LOG, 25);
-            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+        ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack FIRE = new ItemStack(Material.POTION, 1, (short) 8227);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack LOG = new ItemStack(Material.LOG, 25);
+        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
-            if (p.getTeam() == Team.KOTH_RED) {
-                i.setItem(7, FIRE);
-            }
-
-            i.setItem(0, STONE_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, HEALTH);
-            i.setItem(3, LOG);
-            i.setItem(11, ARROWS);
-            i.setItem(8, new ItemStack(Material.BREAD, 3));
-
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
-
+        if (p.getTeam() == Team.KOTH_RED) {
+            i.setItem(7, FIRE);
         }
+
+        i.setItem(0, STONE_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, HEALTH);
+        i.setItem(3, LOG);
+        i.setItem(11, ARROWS);
+        i.setItem(8, new ItemStack(Material.BREAD, 3));
+
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
+
     }
 
     // Region. (Top corner block and bottom corner block.

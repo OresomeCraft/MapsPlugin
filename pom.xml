@@ -50,9 +50,8 @@
         </dependency>
         <dependency>
             <groupId>com.oresomecraft</groupId>
-            <artifactId>OresomeBattles</artifactId>
+            <artifactId>OresomeBattlesAPI</artifactId>
             <version>1.0</version>
-            <type>jar</type>
         </dependency>
     </dependencies>
     <repositories>

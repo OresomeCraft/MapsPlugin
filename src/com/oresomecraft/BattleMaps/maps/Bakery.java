@@ -1,17 +1,12 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.*;
-
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
+
 import com.oresomecraft.BattleMaps.*;
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.BattleMaps.api.*;
-import com.oresomecraft.OresomeBattles.*;
-import com.oresomecraft.OresomeBattles.events.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Bakery extends BattleMap implements IBattleMap, Listener {
 
@@ -47,34 +42,30 @@ public class Bakery extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-            ItemStack STONE_SWORD = new ItemStack(Material.CAKE, 1);
-            STONE_SWORD.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
+        ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+        ItemStack STONE_SWORD = new ItemStack(Material.CAKE, 1);
+        STONE_SWORD.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(IRON_HELMET);
 
-            i.setItem(0, STONE_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(3, HEALTH);
-            i.setItem(11, ARROWS);
+        i.setItem(0, STONE_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(3, HEALTH);
+        i.setItem(11, ARROWS);
 
-        }
+
     }
 
     // Region. (Top corner block and bottom corner block.

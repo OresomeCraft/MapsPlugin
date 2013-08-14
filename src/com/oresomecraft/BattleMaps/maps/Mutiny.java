@@ -1,40 +1,26 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.List;
-
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import org.bukkit.Bukkit;
+import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
+import org.bukkit.event.*;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.inventory.*;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Mutiny extends BattleMap implements IBattleMap, Listener {
 
     public Mutiny() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.IRON_AXE});
     }
 
     String name = "mutiny";
     String fullName = "Mutiny";
     String creators = "DynaDavidson and JacquiRose";
     Gamemode[] modes = {Gamemode.TDM};
-    //Hey! I helped make Mutiny >:( - R3
 
     public void readyTDMSpawns() {
 
@@ -63,48 +49,37 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack LOGS = new ItemStack(Material.LOG, 12);
-            //You need more resources
-            ItemStack AXE = new ItemStack(Material.IRON_AXE, 1);
-            //So people will stop making wood swords
-            ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
-            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+        ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack LOGS = new ItemStack(Material.LOG, 12);
+        //You need more resources
+        ItemStack AXE = new ItemStack(Material.IRON_AXE, 1);
+        //So people will stop making wood swords
+        ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
+        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(IRON_HELMET);
 
-            i.setItem(0, STONE_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(0, AXE);
-            i.setItem(2, STEAK);
-            i.setItem(3, HEALTH);
-            i.setItem(4, LOGS);
-            i.setItem(10, ARROWS);
+        i.setItem(0, STONE_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(0, AXE);
+        i.setItem(2, STEAK);
+        i.setItem(3, HEALTH);
+        i.setItem(4, LOGS);
+        i.setItem(10, ARROWS);
 
-        }
-    }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void clearSpawns(ClearSpawnsEvent event) {
-        redSpawns.clear();
-        blueSpawns.clear();
-        FFASpawns.clear();
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -151,18 +126,4 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    @EventHandler
-    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
-        Player p = event.getEntity();
-        List<ItemStack> drops = event.getDrops();
-
-        for (ItemStack item : drops) {
-            Material mat = item.getType();
-
-            if (mat == Material.IRON_AXE) {
-
-                item.setType(Material.AIR);
-            }
-        }
-    }
 }

@@ -2,31 +2,26 @@ package com.oresomecraft.BattleMaps.maps;
 
 import java.util.List;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import org.bukkit.Bukkit;
+import org.bukkit.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.World;
-
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listener {
 
     public GibsonDesertBattles() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS,
+                Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LAVA_BUCKET});
     }
 
     String name = "desert";
@@ -52,51 +47,45 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            //Items
-            ItemStack IRON_AXE = new ItemStack(Material.IRON_AXE, 1);
-            ItemStack BREAD = new ItemStack(Material.BREAD, 8);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROW = new ItemStack(Material.ARROW, 64);
-            ItemStack LADDER = new ItemStack(Material.LADDER, 8);
-            ItemStack FLOWER_POT = new ItemStack(Material.FLOWER_POT, 1);
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-            ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1);
-            ItemStack OAK_LOG = new ItemStack(Material.LOG, 32);
-            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
+        //Items
+        ItemStack IRON_AXE = new ItemStack(Material.IRON_AXE, 1);
+        ItemStack BREAD = new ItemStack(Material.BREAD, 8);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROW = new ItemStack(Material.ARROW, 64);
+        ItemStack LADDER = new ItemStack(Material.LADDER, 8);
+        ItemStack FLOWER_POT = new ItemStack(Material.FLOWER_POT, 1);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1);
+        ItemStack OAK_LOG = new ItemStack(Material.LOG, 32);
+        ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
 
-            // Armor
-            ItemStack C = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack B = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack L = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack H = new ItemStack(Material.IRON_HELMET, 1);
+        // Armor
+        ItemStack C = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack B = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack L = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack H = new ItemStack(Material.IRON_HELMET, 1);
 
-            p.getInventory().setBoots(B);
-            p.getInventory().setChestplate(C);
-            p.getInventory().setLeggings(L);
-            p.getInventory().setHelmet(H);
+        p.getInventory().setBoots(B);
+        p.getInventory().setChestplate(C);
+        p.getInventory().setLeggings(L);
+        p.getInventory().setHelmet(H);
 
-            i.setItem(0, IRON_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, IRON_PICKAXE);
-            i.setItem(3, IRON_AXE);
-            i.setItem(4, BREAD);
-            i.setItem(5, HEALTH);
-            i.setItem(6, OAK_LOG);
-            i.setItem(7, LADDER);
-            i.setItem(27, ARROW);
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, IRON_PICKAXE);
+        i.setItem(3, IRON_AXE);
+        i.setItem(4, BREAD);
+        i.setItem(5, HEALTH);
+        i.setItem(6, OAK_LOG);
+        i.setItem(7, LADDER);
+        i.setItem(27, ARROW);
 
-            //Give players invincibility and strength for 15 seconds when they spawn
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 15 * 20, 1));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 15 * 20, 1));
-
-        }
+        //Give players invincibility and strength for 15 seconds when they spawn
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 15 * 20, 1));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 15 * 20, 1));
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -117,33 +106,6 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
             if (event.getBlock().getType() == Material.DIAMOND_BLOCK || event.getBlock().getType() == Material.IRON_BLOCK) {
                 event.setCancelled(true);
             }
-        }
-    }
-
-    //Clears armor drops
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void death(PlayerDeathEvent event) {
-
-        List<ItemStack> drops = event.getDrops();
-        int amount = drops.size();
-        int count = 0;
-
-        for (int none = 0; none < amount; none++) {
-
-            ItemStack i = drops.get(count);
-            count++;
-            Material mat = i.getType();
-
-            if (mat == Material.BOW || mat == Material.LEATHER_BOOTS
-                    || mat == Material.LEATHER_LEGGINGS
-                    || mat == Material.LEATHER_CHESTPLATE
-                    || mat == Material.LEATHER_HELMET
-                    || mat == Material.LAVA_BUCKET) {
-
-                i.setType(Material.AIR);
-
-            }
-
         }
     }
 

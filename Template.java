@@ -1,18 +1,11 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.*;
-
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
-import org.bukkit.entity.*;
-import org.bukkit.enchantments.*;
+
 import com.oresomecraft.BattleMaps.*;
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.BattleMaps.api.*;
-import com.oresomecraft.OresomeBattles.*;
-import com.oresomecraft.OresomeBattles.events.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Template extends BattleMap implements IBattleMap, Listener {
 
@@ -53,35 +46,31 @@ public class Template extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(IRON_HELMET);
 
-            i.setItem(3, HEALTH_POTION);
+        i.setItem(3, HEALTH_POTION);
 
-            // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
-            p.setItem(0, Material.IRON_SWORD, 1);
-            p.setItem(1, Material.BOW, 1);
-            p.setItem(2, Material.COOKED_BEEF, 1);
-            p.setItem(4, Material.ARROW, 64);
-            p.setItem(5, Material.EXP_BOTTLE, 5);
+        // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
+        p.setItem(0, Material.IRON_SWORD, 1);
+        p.setItem(1, Material.BOW, 1);
+        p.setItem(2, Material.COOKED_BEEF, 1);
+        p.setItem(4, Material.ARROW, 64);
+        p.setItem(5, Material.EXP_BOTTLE, 5);
 
-        }
+
     }
 
     // Region. (Top corner block and bottom corner block.

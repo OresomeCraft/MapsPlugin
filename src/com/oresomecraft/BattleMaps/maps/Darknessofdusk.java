@@ -1,13 +1,6 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.BattleMaps.api.InvUtils;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.Location;
 import org.bukkit.inventory.Inventory;
@@ -15,10 +8,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.Material;
 import org.bukkit.World;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.BattleMaps.OresomeBattlesMaps;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
@@ -59,37 +50,33 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack GOLD_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
-            ItemStack DIAMOND_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
-            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack GOLD_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
+        ItemStack DIAMOND_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
+        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
-            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
-            p.getInventory().setBoots(DIAMOND_BOOTS);
-            p.getInventory().setLeggings(GOLD_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(LEATHER_HELMET);
+        p.getInventory().setBoots(DIAMOND_BOOTS);
+        p.getInventory().setLeggings(GOLD_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(LEATHER_HELMET);
 
-            i.setItem(0, STONE_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, STEAK);
-            i.setItem(3, HEALTH_POTION);
-            i.setItem(4, ARROWS);
+        i.setItem(0, STONE_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, STEAK);
+        i.setItem(3, HEALTH_POTION);
+        i.setItem(4, ARROWS);
 
-        }
+
     }
 
     // Region. (Top corner block and bottom corner block.

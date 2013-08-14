@@ -3,38 +3,18 @@ package com.oresomecraft.BattleMaps.maps;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Egg;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
+import org.bukkit.*;
+import org.bukkit.block.*;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.*;
 
 import com.oresomecraft.BattleMaps.*;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.Utility;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Wartown extends BattleMap implements IBattleMap, Listener {
 
@@ -95,58 +75,52 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
-            ItemStack AMMO = new ItemStack(Material.FLINT, 64);
-            ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
-            ItemStack EGG_WARTOWN = new ItemStack(Material.EGG, 1);
-            ItemStack LEATHER = new ItemStack(Material.LEATHER, 1);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack AMMO = new ItemStack(Material.FLINT, 64);
+        ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
+        ItemStack EGG_WARTOWN = new ItemStack(Material.EGG, 1);
+        ItemStack LEATHER = new ItemStack(Material.LEATHER, 1);
 
-            ItemMeta blaze_rod = BLAZE_ROD.getItemMeta();
-            blaze_rod.setDisplayName(ChatColor.BLUE + "Gun");
-            BLAZE_ROD.setItemMeta(blaze_rod);
+        ItemMeta blaze_rod = BLAZE_ROD.getItemMeta();
+        blaze_rod.setDisplayName(ChatColor.BLUE + "Gun");
+        BLAZE_ROD.setItemMeta(blaze_rod);
 
-            ItemMeta ammo = AMMO.getItemMeta();
-            ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
-            AMMO.setItemMeta(ammo);
+        ItemMeta ammo = AMMO.getItemMeta();
+        ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
+        AMMO.setItemMeta(ammo);
 
-            ItemMeta egg_wartown = EGG_WARTOWN.getItemMeta();
-            egg_wartown.setDisplayName(ChatColor.BLUE + "Frag grenade");
-            EGG_WARTOWN.setItemMeta(egg_wartown);
+        ItemMeta egg_wartown = EGG_WARTOWN.getItemMeta();
+        egg_wartown.setDisplayName(ChatColor.BLUE + "Frag grenade");
+        EGG_WARTOWN.setItemMeta(egg_wartown);
 
-            ItemMeta leather = LEATHER.getItemMeta();
-            leather.setDisplayName(ChatColor.BLUE + "C4");
-            LEATHER.setItemMeta(leather);
+        ItemMeta leather = LEATHER.getItemMeta();
+        leather.setDisplayName(ChatColor.BLUE + "C4");
+        LEATHER.setItemMeta(leather);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(IRON_HELMET);
 
-            i.setItem(0, IRON_SWORD);
-            i.setItem(1, BLAZE_ROD);
-            i.setItem(2, EGG_WARTOWN);
-            i.setItem(3, LEATHER);
-            i.setItem(4, STEAK);
-            i.setItem(5, HEALTH_POTION);
-            i.setItem(6, AMMO);
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BLAZE_ROD);
+        i.setItem(2, EGG_WARTOWN);
+        i.setItem(3, LEATHER);
+        i.setItem(4, STEAK);
+        i.setItem(5, HEALTH_POTION);
+        i.setItem(6, AMMO);
 
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 8 * 20, 1));
-
-        }
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 8 * 20, 1));
     }
 
     public int x1 = 128;
@@ -160,7 +134,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     public Map<Block, Player> placerB = new HashMap<Block, Player>();
 
     @SuppressWarnings("deprecation")
-    @EventHandler(priority = EventPriority.NORMAL)
+  /*  @EventHandler(priority = EventPriority.NORMAL)
     public void c4(PlayerInteractEvent event) {
 
         Player p = event.getPlayer();
@@ -221,9 +195,9 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
         }
 
-    }
+    }           */
 
-    @SuppressWarnings("deprecation")
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void c4premature(ProjectileHitEvent event) {
         Projectile p = event.getEntity();
@@ -313,7 +287,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     }
 
     @SuppressWarnings("deprecation")
-    @EventHandler(priority = EventPriority.NORMAL)
+ /*   @EventHandler(priority = EventPriority.NORMAL)
     public void gun(PlayerInteractEvent event) {
         Player p = event.getPlayer();
         Location loc = p.getLocation();
@@ -353,7 +327,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
             }
 
         }
-    }
+    }       */
 
     public int particles;
 
@@ -364,7 +338,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
             public void run() {
                 World world = Bukkit.getWorld(name);
-                if (Utility.getArena().equals(name)) {
+                if (getArena().equals(name)) {
                     if (!(world.getEntities() == null)) {
                         for (Entity arrow : world.getEntities()) {
                             if (arrow instanceof Arrow) {

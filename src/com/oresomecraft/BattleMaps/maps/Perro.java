@@ -1,35 +1,22 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Snowball;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.player.PlayerFishEvent;
-import org.bukkit.event.player.PlayerFishEvent.State;
+import org.bukkit.event.player.*;
+import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.Utility;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Perro extends BattleMap implements IBattleMap, Listener {
 
@@ -110,43 +97,39 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
-            ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
+        ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
 
-            ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
-            fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
-            FISHING_ROD.setItemMeta(fishing_rod);
+        ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
+        fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
+        FISHING_ROD.setItemMeta(fishing_rod);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
-            i.setItem(0, IRON_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, FISHING_ROD);
-            i.setItem(3, EXP);
-            i.setItem(4, STEAK);
-            i.setItem(5, HEALTH_POTION);
-            i.setItem(6, ARROWS);
-            p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(IRON_HELMET);
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, FISHING_ROD);
+        i.setItem(3, EXP);
+        i.setItem(4, STEAK);
+        i.setItem(5, HEALTH_POTION);
+        i.setItem(6, ARROWS);
+        p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
 
-        }
+
     }
 
     public int x1 = -1451;
@@ -168,7 +151,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
 
             if (mat == Material.FISHING_ROD) {
 
-                if (state == State.IN_GROUND) {
+                if (state == PlayerFishEvent.State.IN_GROUND) {
                     p.launchProjectile(Snowball.class);
 
                 }
@@ -236,7 +219,6 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
                     }
                 }
             }
-
         }
     }
 
@@ -267,7 +249,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
     public void arrowBoom(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
-        if (Utility.getArena().equals(name)) {
+        if (getArena().equals(name)) {
             if (arrow instanceof Arrow) {
                 world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
             }
@@ -283,7 +265,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
             particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
                 public void run() {
                     World world = Bukkit.getWorld(name);
-                    if (Utility.getArena().equals(name)) {
+                    if (getArena().equals(name)) {
                         for (org.bukkit.entity.Entity arrow : world.getEntities()) {
                             if (arrow != null) {
                                 if (arrow instanceof org.bukkit.entity.Arrow) {
@@ -298,7 +280,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void cancelParticles(com.oresomecraft.OresomeBattles.events.BattleEndEvent event) {
+    public void cancelParticles(WorldUnloadEvent event) {
         Bukkit.getScheduler().cancelTask(particles);
     }
 

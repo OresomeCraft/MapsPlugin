@@ -58,7 +58,6 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Carnival();
         new Sub();
         new Deepcaverns();
-        new Chaoscity();
         new Darknessofdusk();
         new Docks();
         new Spaceships();

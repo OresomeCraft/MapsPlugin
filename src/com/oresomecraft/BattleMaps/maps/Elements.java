@@ -1,7 +1,7 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -15,8 +15,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.World;
 
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -52,32 +52,28 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
-            ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack LOG = new ItemStack(Material.LOG, 25);
-            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
-            ItemStack STONE_PICK = new ItemStack(Material.STONE_PICKAXE, 1);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            i.setItem(0, STONE_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, STONE_PICK);
-            i.setItem(3, HEALTH);
-            i.setItem(4, LOG);
-            i.setItem(11, ARROWS);
-            i.setItem(8, new ItemStack(Material.BREAD, 3));
+        ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack LOG = new ItemStack(Material.LOG, 25);
+        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+        ItemStack STONE_PICK = new ItemStack(Material.STONE_PICKAXE, 1);
 
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 20 * 20, 2));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15000 * 20, 2));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 2));
+        i.setItem(0, STONE_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, STONE_PICK);
+        i.setItem(3, HEALTH);
+        i.setItem(4, LOG);
+        i.setItem(11, ARROWS);
+        i.setItem(8, new ItemStack(Material.BREAD, 3));
 
-        }
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 20 * 20, 2));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15000 * 20, 2));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 2));
+
     }
 
     // Region. (Top corner block and bottom corner block.

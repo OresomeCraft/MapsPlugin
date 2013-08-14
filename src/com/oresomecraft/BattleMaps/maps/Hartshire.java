@@ -1,26 +1,19 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.BattleMaps.api.InvUtils;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import org.bukkit.Bukkit;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.Location;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.Material;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.World;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Hartshire extends BattleMap implements IBattleMap, Listener {
 
@@ -77,42 +70,37 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-            ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
-            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 3);
-            ItemStack S = new ItemStack(Material.STICK, 1);
-            ItemStack I = new ItemStack(Material.IRON_INGOT, 1);
+        ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+        ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+        ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 3);
+        ItemStack S = new ItemStack(Material.STICK, 1);
+        ItemStack I = new ItemStack(Material.IRON_INGOT, 1);
 
-            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
-            p.getInventory().setBoots(LEATHER_BOOTS);
-            p.getInventory().setLeggings(LEATHER_PANTS);
-            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-            p.getInventory().setHelmet(LEATHER_HELMET);
+        p.getInventory().setBoots(LEATHER_BOOTS);
+        p.getInventory().setLeggings(LEATHER_PANTS);
+        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        p.getInventory().setHelmet(LEATHER_HELMET);
 
-            i.setItem(0, STONE_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, STEAK);
-            i.setItem(3, HEALTH);
-            i.setItem(10, ARROWS);
-            i.setItem(11, S);
-            i.setItem(12, I);
-            i.setItem(4, EXP);
-        }
+        i.setItem(0, STONE_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, STEAK);
+        i.setItem(3, HEALTH);
+        i.setItem(10, ARROWS);
+        i.setItem(11, S);
+        i.setItem(12, I);
+        i.setItem(4, EXP);
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -128,23 +116,24 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void ointment(PlayerInteractEvent event) {
-        Player p = event.getPlayer();
-        Action a = event.getAction();
-        ItemStack i = p.getItemInHand();
-        Inventory inv = p.getInventory();
-        Material tool = i.getType();
+        if (active) {
+            Player p = event.getPlayer();
+            Action a = event.getAction();
+            ItemStack i = p.getItemInHand();
+            Inventory inv = p.getInventory();
+            Material tool = i.getType();
 
-        if (tool == Material.INK_SACK) {
+            if (tool == Material.INK_SACK) {
 
-            if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 2));
+                if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 2));
 
-                inv.removeItem(p.getItemInHand());
-                //Ointment fixed!!! :DD
-                p.updateInventory();
+                    inv.removeItem(p.getItemInHand());
+                    //Ointment fixed!!! :DD
+                    p.updateInventory();
+                }
             }
         }
-
     }
 
 }

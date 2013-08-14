@@ -3,8 +3,7 @@ package com.oresomecraft.BattleMaps.maps;
 import java.util.List;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.BattleMaps.api.InvUtils;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.*;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
@@ -23,8 +22,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
 import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import com.oresomecraft.OresomeBattles.Utility;
 
@@ -109,126 +108,122 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            // Items
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        // Items
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
 
-            // Armor
-            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-            ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 1);
-            ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
-            ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
-            fishing_rod.setDisplayName(ChatColor.GOLD + "Grappling Hook");
-            FISHING_ROD.setItemMeta(fishing_rod);
+        // Armor
+        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+        ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+        ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 1);
+        ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
+        ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
+        fishing_rod.setDisplayName(ChatColor.GOLD + "Grappling Hook");
+        FISHING_ROD.setItemMeta(fishing_rod);
 
-            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
 
-            ItemMeta cooked_beef = STEAK.getItemMeta();
-            cooked_beef.setDisplayName(ChatColor.GOLD + "Roast Beef");
-            STEAK.setItemMeta(cooked_beef);
+        ItemMeta cooked_beef = STEAK.getItemMeta();
+        cooked_beef.setDisplayName(ChatColor.GOLD + "Roast Beef");
+        STEAK.setItemMeta(cooked_beef);
 
-            ItemMeta arrows = ARROWS.getItemMeta();
-            arrows.setDisplayName(ChatColor.GOLD + "Steel Arrow");
-            ARROWS.setItemMeta(arrows);
+        ItemMeta arrows = ARROWS.getItemMeta();
+        arrows.setDisplayName(ChatColor.GOLD + "Steel Arrow");
+        ARROWS.setItemMeta(arrows);
 
-            ItemMeta health_potion = HEALTH_POTION.getItemMeta();
-            health_potion.setDisplayName(ChatColor.RED + "Potion of grand healing");
-            HEALTH_POTION.setItemMeta(health_potion);
+        ItemMeta health_potion = HEALTH_POTION.getItemMeta();
+        health_potion.setDisplayName(ChatColor.RED + "Potion of grand healing");
+        HEALTH_POTION.setItemMeta(health_potion);
 
-            ItemMeta iron_sword = IRON_SWORD.getItemMeta();
-            iron_sword.setDisplayName(ChatColor.GOLD + "Steel Sword");
-            IRON_SWORD.setItemMeta(iron_sword);
+        ItemMeta iron_sword = IRON_SWORD.getItemMeta();
+        iron_sword.setDisplayName(ChatColor.GOLD + "Steel Sword");
+        IRON_SWORD.setItemMeta(iron_sword);
 
-            ItemMeta exp = EXP.getItemMeta();
-            exp.setDisplayName(ChatColor.GOLD + "Potion of Levelling");
-            EXP.setItemMeta(exp);
+        ItemMeta exp = EXP.getItemMeta();
+        exp.setDisplayName(ChatColor.GOLD + "Potion of Levelling");
+        EXP.setItemMeta(exp);
 
-            if (TDM.isBlue(p.getName())) {
+        if (TDM.isBlue(p.getName())) {
 
-                ItemMeta bow = BOW.getItemMeta();
-                bow.setDisplayName(ChatColor.GOLD + "Steel Bow");
-                BOW.setItemMeta(bow);
+            ItemMeta bow = BOW.getItemMeta();
+            bow.setDisplayName(ChatColor.GOLD + "Steel Bow");
+            BOW.setItemMeta(bow);
 
-                ItemMeta leather_helmet = LEATHER_HELMET.getItemMeta();
-                leather_helmet.setDisplayName(ChatColor.BLUE + "StormCloak Helmet");
-                LEATHER_HELMET.setItemMeta(leather_helmet);
+            ItemMeta leather_helmet = LEATHER_HELMET.getItemMeta();
+            leather_helmet.setDisplayName(ChatColor.BLUE + "StormCloak Helmet");
+            LEATHER_HELMET.setItemMeta(leather_helmet);
 
-                // Sets boots name "StormCloak Boots"
-                ItemMeta leather_boots = LEATHER_BOOTS.getItemMeta();
-                leather_boots.setDisplayName(ChatColor.BLUE + "StormCloak Boots");
-                LEATHER_BOOTS.setItemMeta(leather_boots);
+            // Sets boots name "StormCloak Boots"
+            ItemMeta leather_boots = LEATHER_BOOTS.getItemMeta();
+            leather_boots.setDisplayName(ChatColor.BLUE + "StormCloak Boots");
+            LEATHER_BOOTS.setItemMeta(leather_boots);
 
-                // Sets pants name "StormCloak Leggings"
-                ItemMeta leather_pants = LEATHER_PANTS.getItemMeta();
-                leather_pants.setDisplayName(ChatColor.BLUE + "StormCloak Leggings");
-                LEATHER_PANTS.setItemMeta(leather_pants);
+            // Sets pants name "StormCloak Leggings"
+            ItemMeta leather_pants = LEATHER_PANTS.getItemMeta();
+            leather_pants.setDisplayName(ChatColor.BLUE + "StormCloak Leggings");
+            LEATHER_PANTS.setItemMeta(leather_pants);
 
-                // Sets chestplate name "StormCloak ChestPlate"
-                ItemMeta leather_chestplate = LEATHER_CHESTPLATE.getItemMeta();
-                leather_chestplate.setDisplayName(ChatColor.BLUE + "StormCloak ChestPlate");
-                LEATHER_CHESTPLATE.setItemMeta(leather_chestplate);
-
-            }
-
-            if (TDM.isRed(p.getName())) {
-
-                // Sets bow name "Imperial Bow"
-                ItemMeta bow = BOW.getItemMeta();
-                bow.setDisplayName(ChatColor.GOLD + "Imperial Bow");
-                BOW.setItemMeta(bow);
-
-                // Sets helmet name "Imperial Helmet"
-                ItemMeta leather_helmet = LEATHER_HELMET.getItemMeta();
-                leather_helmet.setDisplayName(ChatColor.RED + "Imperial Helmet");
-                LEATHER_HELMET.setItemMeta(leather_helmet);
-
-                // Sets boots name "Imperial Boots"
-                ItemMeta leather_boots = LEATHER_BOOTS.getItemMeta();
-                leather_boots.setDisplayName(ChatColor.RED + "Imperial Boots");
-                LEATHER_BOOTS.setItemMeta(leather_boots);
-
-                // Sets pants name "Imperial Leggings"
-                ItemMeta leather_pants = LEATHER_PANTS.getItemMeta();
-                leather_pants.setDisplayName(ChatColor.RED + "Imperial Leggings");
-                LEATHER_PANTS.setItemMeta(leather_pants);
-
-                // Sets chestplate name "Imperial ChestPlate"
-                ItemMeta leather_chestplate = LEATHER_CHESTPLATE.getItemMeta();
-                leather_chestplate.setDisplayName(ChatColor.RED + "Imperial ChestPlate");
-                LEATHER_CHESTPLATE.setItemMeta(leather_chestplate);
-
-            }
-
-            p.getInventory().setBoots(LEATHER_BOOTS);
-            p.getInventory().setLeggings(LEATHER_PANTS);
-            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-            p.getInventory().setHelmet(LEATHER_HELMET);
-
-            i.setItem(0, IRON_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, STEAK);
-            i.setItem(3, HEALTH_POTION);
-            i.setItem(4, ARROWS);
-            i.setItem(5, EXP);
-            i.setItem(5, FISHING_ROD);
-
-            p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 9);
-            //Do you know how many freaking fall deaths there are?
+            // Sets chestplate name "StormCloak ChestPlate"
+            ItemMeta leather_chestplate = LEATHER_CHESTPLATE.getItemMeta();
+            leather_chestplate.setDisplayName(ChatColor.BLUE + "StormCloak ChestPlate");
+            LEATHER_CHESTPLATE.setItemMeta(leather_chestplate);
 
         }
+
+        if (TDM.isRed(p.getName())) {
+
+            // Sets bow name "Imperial Bow"
+            ItemMeta bow = BOW.getItemMeta();
+            bow.setDisplayName(ChatColor.GOLD + "Imperial Bow");
+            BOW.setItemMeta(bow);
+
+            // Sets helmet name "Imperial Helmet"
+            ItemMeta leather_helmet = LEATHER_HELMET.getItemMeta();
+            leather_helmet.setDisplayName(ChatColor.RED + "Imperial Helmet");
+            LEATHER_HELMET.setItemMeta(leather_helmet);
+
+            // Sets boots name "Imperial Boots"
+            ItemMeta leather_boots = LEATHER_BOOTS.getItemMeta();
+            leather_boots.setDisplayName(ChatColor.RED + "Imperial Boots");
+            LEATHER_BOOTS.setItemMeta(leather_boots);
+
+            // Sets pants name "Imperial Leggings"
+            ItemMeta leather_pants = LEATHER_PANTS.getItemMeta();
+            leather_pants.setDisplayName(ChatColor.RED + "Imperial Leggings");
+            LEATHER_PANTS.setItemMeta(leather_pants);
+
+            // Sets chestplate name "Imperial ChestPlate"
+            ItemMeta leather_chestplate = LEATHER_CHESTPLATE.getItemMeta();
+            leather_chestplate.setDisplayName(ChatColor.RED + "Imperial ChestPlate");
+            LEATHER_CHESTPLATE.setItemMeta(leather_chestplate);
+
+        }
+
+        p.getInventory().setBoots(LEATHER_BOOTS);
+        p.getInventory().setLeggings(LEATHER_PANTS);
+        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        p.getInventory().setHelmet(LEATHER_HELMET);
+
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, STEAK);
+        i.setItem(3, HEALTH_POTION);
+        i.setItem(4, ARROWS);
+        i.setItem(5, EXP);
+        i.setItem(5, FISHING_ROD);
+
+        p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 9);
+        //Do you know how many freaking fall deaths there are?
+
+
     }
 
     // Region. (Top corner block and bottom corner block.

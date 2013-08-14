@@ -1,28 +1,20 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.BattleHandler;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-
-import java.util.List;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Electricity extends BattleMap implements IBattleMap, Listener {
 
@@ -30,6 +22,7 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setAllowBuild(false);
+        disableDrops(new Material[]{Material.GOLD_LEGGINGS, Material.GOLD_CHESTPLATE, Material.GOLD_HELMET, Material.GOLD_BOOTS});
     }
 
     String name = "electricity";
@@ -63,36 +56,31 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            BOW.getItemMeta().setDisplayName(ChatColor.YELLOW + "Lightning Bow");
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack LEATHER_HELMET = new ItemStack(Material.GOLD_HELMET, 1);
-            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.GOLD_CHESTPLATE, 1);
-            ItemStack LEATHER_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
-            ItemStack LEATHER_BOOTS = new ItemStack(Material.GOLD_BOOTS, 1);
-            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1, (short) -1600);
-            p.getInventory().setBoots(LEATHER_BOOTS);
-            p.getInventory().setLeggings(LEATHER_PANTS);
-            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-            p.getInventory().setHelmet(LEATHER_HELMET);
+        ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        BOW.getItemMeta().setDisplayName(ChatColor.YELLOW + "Lightning Bow");
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack LEATHER_HELMET = new ItemStack(Material.GOLD_HELMET, 1);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.GOLD_CHESTPLATE, 1);
+        ItemStack LEATHER_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
+        ItemStack LEATHER_BOOTS = new ItemStack(Material.GOLD_BOOTS, 1);
+        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1, (short) -1600);
+        p.getInventory().setBoots(LEATHER_BOOTS);
+        p.getInventory().setLeggings(LEATHER_PANTS);
+        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        p.getInventory().setHelmet(LEATHER_HELMET);
 
 
-            i.setItem(0, STONE_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, STEAK);
-            i.setItem(3, HEALTH);
-            i.setItem(15, ARROWS);
+        i.setItem(0, STONE_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, STEAK);
+        i.setItem(3, HEALTH);
+        i.setItem(15, ARROWS);
 
-        }
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -115,31 +103,6 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
             }
         }
 
-    }
-
-    //Clears armor drops
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void death(PlayerDeathEvent event) {
-
-        List<ItemStack> drops = event.getDrops();
-        int amount = drops.size();
-        int count = 0;
-
-        for (int none = 0; none < amount; none++) {
-
-            ItemStack i = drops.get(count);
-            count++;
-            Material mat = i.getType();
-
-            if (mat == Material.BOW || mat == Material.GOLD_BOOTS
-                    || mat == Material.GOLD_LEGGINGS
-                    || mat == Material.GOLD_CHESTPLATE
-                    || mat == Material.GOLD_HELMET) {
-
-                i.setType(Material.AIR);
-
-            }
-        }
     }
 
 }

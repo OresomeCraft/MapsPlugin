@@ -1,30 +1,17 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.List;
-
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.Utility;
-import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.world.WorldLoadEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.World;
+import org.bukkit.inventory.*;
+import org.bukkit.potion.*;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 
 public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
@@ -33,6 +20,8 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
         setDetails(name, fullName, creators, modes);
         setTDMTime(10);
         setAllowBuild(false);
+        disableDrops(new Material[]{ Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
+                Material.IRON_CHESTPLATE, Material.FISHING_ROD, Material.DIAMOND_PICKAXE, Material.ARROW});
     }
 
     String name = "mayhem";
@@ -40,12 +29,8 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     String creators = "ShaunDepro97, meganlovesmusic and Kytria";
     Gamemode[] modes = {Gamemode.TDM};
 
-    @Override
-    @EventHandler
-    public void setSpawns(WorldLoadEvent event) { // Register power block
+    public void onload(WorldLoadEvent event) { // Register power block
         if (event.getWorld().getName().equals(name)) {
-            readyTDMSpawns();
-            readyFFASpawns();
             cyclePowerBlock();
         }
     }
@@ -77,35 +62,31 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 48);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack DIAMOND_PICKAXE = new ItemStack(Material.DIAMOND_PICKAXE, 1);
-            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 6);
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 48);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack DIAMOND_PICKAXE = new ItemStack(Material.DIAMOND_PICKAXE, 1);
+        ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 6);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
 
-            i.setItem(0, DIAMOND_PICKAXE);
-            i.setItem(1, BOW);
-            i.setItem(2, STEAK);
-            i.setItem(3, HEALTH_POTION);
-            i.setItem(28, ARROWS);
-            i.setItem(8, EXP);
+        i.setItem(0, DIAMOND_PICKAXE);
+        i.setItem(1, BOW);
+        i.setItem(2, STEAK);
+        i.setItem(3, HEALTH_POTION);
+        i.setItem(28, ARROWS);
+        i.setItem(8, EXP);
 
-        }
+
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -118,27 +99,6 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     public int x2 = 128;
     public int y2 = 255;
     public int z2 = 128;
-
-    @EventHandler
-    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
-        Player p = event.getEntity();
-        List<ItemStack> drops = event.getDrops();
-
-        for (ItemStack item : drops) {
-            Material mat = item.getType();
-
-            if (mat == Material.BOW
-                    || mat == Material.IRON_BOOTS
-                    || mat == Material.IRON_LEGGINGS
-                    || mat == Material.IRON_CHESTPLATE
-                    || mat == Material.FISHING_ROD
-                    || mat == Material.DIAMOND_PICKAXE
-                    || mat == Material.ARROW) {
-
-                item.setType(Material.AIR);
-            }
-        }
-    }
 
     int timer;
     int count = 1;
@@ -164,7 +124,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void battleEnd(BattleEndEvent event) {
-        if (Utility.getArena().equals(name)) {
+        if (event.get(name)) {
             Bukkit.getScheduler().cancelTask(timer);
         }
     }
@@ -175,7 +135,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
         Material type = event.getBlock().getType();
         int potionTime = 45 * 20;
 
-        if (Utility.compareLocations(powerBlock, event.getBlock().getLocation())) {
+        if (compareLocations(powerBlock, event.getBlock().getLocation())) {
 
             if (!(type == Material.COBBLESTONE)) {
 

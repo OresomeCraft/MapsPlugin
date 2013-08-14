@@ -1,14 +1,13 @@
 package com.oresomecraft.BattleMaps.maps;
 
+import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
 import org.bukkit.potion.*;
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.BattleMaps.api.*;
-import com.oresomecraft.OresomeBattles.*;
-import com.oresomecraft.OresomeBattles.events.*;
 
 public class Sunshine extends BattleMap implements IBattleMap, Listener {
 
@@ -43,46 +42,40 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            //Items
-            ItemStack IRON_AXE = new ItemStack(Material.WOOD_SWORD, 1);
-            ItemStack BREAD = new ItemStack(Material.BREAD, 8);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROW = new ItemStack(Material.ARROW, 8);
-            //prevent arrow camping
-            ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
+        //Items
+        ItemStack IRON_AXE = new ItemStack(Material.WOOD_SWORD, 1);
+        ItemStack BREAD = new ItemStack(Material.BREAD, 8);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROW = new ItemStack(Material.ARROW, 8);
+        //prevent arrow camping
+        ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
 
-            // Armor
-            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+        // Armor
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
 
-            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-            p.getInventory().setBoots(LEATHER_BOOTS);
-            p.getInventory().setLeggings(LEATHER_PANTS);
-            p.getInventory().setHelmet(LEATHER_HELMET);
+        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        p.getInventory().setBoots(LEATHER_BOOTS);
+        p.getInventory().setLeggings(LEATHER_PANTS);
+        p.getInventory().setHelmet(LEATHER_HELMET);
 
+        i.setItem(0, IRON_AXE);
+        i.setItem(1, BOW);
+        i.setItem(2, BREAD);
+        i.setItem(3, HEALTH);
+        i.setItem(27, ARROW);
 
-            i.setItem(0, IRON_AXE);
-            i.setItem(1, BOW);
-            i.setItem(2, BREAD);
-            i.setItem(3, HEALTH);
-            i.setItem(27, ARROW);
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_BOOTS, LEATHER_PANTS, LEATHER_HELMET});
 
-            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_BOOTS, LEATHER_PANTS, LEATHER_HELMET});
+        //Give players invincibility and strength for 7 seconds when they spawn
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 7 * 20, 1));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 7 * 20, 1));
 
-            //Give players invincibility and strength for 7 seconds when they spawn
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 7 * 20, 1));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 7 * 20, 1));
-
-        }
     }
 
     // Region. (Top corner block and bottom corner block.
