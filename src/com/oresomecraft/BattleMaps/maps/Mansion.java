@@ -1,8 +1,7 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.BattleMaps.api.InvUtils;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -20,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
 
 public class Mansion extends BattleMap implements IBattleMap, Listener {
 
@@ -100,40 +99,35 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            ItemStack MASK = new ItemStack(Material.SKULL_ITEM, 1);
-            ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
-            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+        ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+        ItemStack MASK = new ItemStack(Material.SKULL_ITEM, 1);
+        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+        ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
-            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
 
-            p.getInventory().setBoots(LEATHER_BOOTS);
-            p.getInventory().setLeggings(LEATHER_PANTS);
-            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-            p.getInventory().setHelmet(MASK);
+        p.getInventory().setBoots(LEATHER_BOOTS);
+        p.getInventory().setLeggings(LEATHER_PANTS);
+        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        p.getInventory().setHelmet(MASK);
 
-            i.setItem(0, STONE_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, EXP);
-            i.setItem(3, STEAK);
-            i.setItem(4, HEALTH_POTION);
-            i.setItem(5, ARROWS);
-            p.getInventory().getHelmet().addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
+        i.setItem(0, STONE_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, EXP);
+        i.setItem(3, STEAK);
+        i.setItem(4, HEALTH_POTION);
+        i.setItem(5, ARROWS);
+        p.getInventory().getHelmet().addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
 
-        }
     }
 
     public int x1 = 410;

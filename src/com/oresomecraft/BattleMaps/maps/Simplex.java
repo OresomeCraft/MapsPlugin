@@ -1,23 +1,14 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
 import org.bukkit.*;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Projectile;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
+import org.bukkit.potion.*;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Simplex extends BattleMap implements IBattleMap, Listener {
 
@@ -77,50 +68,46 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack BREAD = new ItemStack(Material.BREAD, 3);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 32);
-            ItemStack DIAMOND_SWORD = new ItemStack(Material.DIAMOND_SWORD, 1);
-            ItemStack PAINT_GUN = new ItemStack(Material.STICK, 1);
-            ItemStack SHEARS = new ItemStack(Material.SHEARS, 1);
-            ItemStack GOLDEN_CARROT = new ItemStack(Material.GOLDEN_CARROT, 8);
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack BREAD = new ItemStack(Material.BREAD, 3);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 32);
+        ItemStack DIAMOND_SWORD = new ItemStack(Material.DIAMOND_SWORD, 1);
+        ItemStack PAINT_GUN = new ItemStack(Material.STICK, 1);
+        ItemStack SHEARS = new ItemStack(Material.SHEARS, 1);
+        ItemStack GOLDEN_CARROT = new ItemStack(Material.GOLDEN_CARROT, 8);
 
-            ItemStack BLUE_WOOL = new ItemStack(Material.WOOL, 32, (short) 11);
-            ItemStack BLUE_DYE = new ItemStack(Material., 64);
-            ItemStack RED_WOOL = new ItemStack(Material.WOOL, 32, (short) 14);
-            ItemStack RED_DYE = new ItemStack(Material.RED_ROSE, 64);
+        ItemStack BLUE_WOOL = new ItemStack(Material.WOOL, 32, (short) 11);
+        //ItemStack BLUE_DYE = new ItemStack(Material., 64);
+        ItemStack RED_WOOL = new ItemStack(Material.WOOL, 32, (short) 14);
+        ItemStack RED_DYE = new ItemStack(Material.RED_ROSE, 64);
 
-            i.setItem(0, DIAMOND_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, PAINT_GUN);
-            i.setItem(3, SHEARS);
-            i.setItem(4, GOLDEN_CARROT);
-            i.setItem(5, BREAD);
+        i.setItem(0, DIAMOND_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, PAINT_GUN);
+        i.setItem(3, SHEARS);
+        i.setItem(4, GOLDEN_CARROT);
+        i.setItem(5, BREAD);
 
-            i.setItem(8, ARROWS);
+        i.setItem(8, ARROWS);
 
-            if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_RED) {
-                i.setItem(10, RED_WOOL);
-                i.setItem(11, RED_DYE);
-            } else {
-                if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_BLUE) {
-                    i.setItem(10, BLUE_WOOL);
-                    i.setItem(11, BLUE_DYE);
-                }
+        if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_RED) {
+            i.setItem(10, RED_WOOL);
+            i.setItem(11, RED_DYE);
+        } else {
+            if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_BLUE) {
+                i.setItem(10, BLUE_WOOL);
+                //i.setItem(11, BLUE_DYE);
             }
-
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 5 * 20, 2));
-
         }
+
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 5 * 20, 2));
+
+
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -152,7 +139,7 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onProjectileLand(ProjectileHitEvent event) {
-        if (com.oresomecraft.OresomeBattles.BattleHandler.activearena.equals(name)) {
+        if (BattlesAccess.getArena().equals(name)) {
             if (event.getEntityType().equals(org.bukkit.entity.EnderPearl.class)) {
                 World w = Bukkit.getServer().getWorld(name);
                 Projectile proj = event.getEntity();

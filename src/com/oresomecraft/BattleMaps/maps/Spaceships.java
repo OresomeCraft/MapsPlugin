@@ -1,26 +1,14 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.Utility;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.*;
+import org.bukkit.event.*;
+import org.bukkit.event.block.*;
 import org.bukkit.event.entity.EntityExplodeEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
+import org.bukkit.potion.*;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Spaceships extends BattleMap implements IBattleMap, Listener {
 
@@ -61,30 +49,26 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(IRON_HELMET);
 
-            i.setItem(8, new ItemStack(Material.BREAD, 3));
+        i.setItem(8, new ItemStack(Material.BREAD, 3));
 
-            //Give players invincibility for 8 seconds when they spawn.
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40 * 20, 1));
-            //For people who chuck lava on the damned spawn
-        }
+        //Give players invincibility for 8 seconds when they spawn.
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40 * 20, 1));
+        //For people who chuck lava on the damned spawn
+
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -100,7 +84,7 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void preventspawnexplosion(EntityExplodeEvent event) {
-        if (Utility.getArena().equals(name)) {
+        if (getArena().equals(name)) {
             Location loc = event.getLocation();
             // Red team
             if (contains(loc, 206, 214, 42, 38, -79, -60)) {
@@ -116,7 +100,7 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void preventspawnbreak(BlockBreakEvent event) {
-        if (Utility.getArena().equals(name)) {
+        if (getArena().equals(name)) {
             Location loc = event.getBlock().getLocation();
             // Red team
             if (contains(loc, 206, 214, 42, 38, -79, -60)) {
@@ -132,7 +116,7 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void preventspawnplace(BlockPlaceEvent event) {
-        if (Utility.getArena().equals(name)) {
+        if (getArena().equals(name)) {
             Location loc = event.getBlock().getLocation();
             // Red team
             if (contains(loc, 206, 214, 42, 38, -79, -60)) {

@@ -1,24 +1,15 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.BattleMaps.api.InvUtils;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
+import org.bukkit.event.*;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.event.block.*;
+import org.bukkit.inventory.*;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.Utility;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Voidsflag extends BattleMap implements IBattleMap, Listener {
 
@@ -62,43 +53,36 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack STONE_PICKAXE = new ItemStack(Material.STONE_PICKAXE, 1);
-            ItemStack STONE_AXE = new ItemStack(Material.STONE_AXE, 1);
-            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-            ItemStack COOKED_PORKCHOP = new ItemStack(Material.COOKED_BEEF, 4);
-            ItemStack BIRCH_LOG = new ItemStack(Material.LOG, 64);
-            ItemStack ARROW = new ItemStack(Material.ARROW, 64);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack STONE_PICKAXE = new ItemStack(Material.STONE_PICKAXE, 1);
+        ItemStack STONE_AXE = new ItemStack(Material.STONE_AXE, 1);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+        ItemStack COOKED_PORKCHOP = new ItemStack(Material.COOKED_BEEF, 4);
+        ItemStack BIRCH_LOG = new ItemStack(Material.LOG, 64);
+        ItemStack ARROW = new ItemStack(Material.ARROW, 64);
 
-            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_BOOTS, LEATHER_PANTS});
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_BOOTS, LEATHER_PANTS});
 
-            p.getInventory().setBoots(LEATHER_BOOTS);
-            p.getInventory().setLeggings(LEATHER_PANTS);
-            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-            p.getInventory().setHelmet(LEATHER_HELMET);
+        p.getInventory().setBoots(LEATHER_BOOTS);
+        p.getInventory().setLeggings(LEATHER_PANTS);
+        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        p.getInventory().setHelmet(LEATHER_HELMET);
 
-            i.setItem(0, IRON_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, STONE_PICKAXE);
-            i.setItem(3, STONE_AXE);
-            i.setItem(4, COOKED_PORKCHOP);
-            i.setItem(5, BIRCH_LOG);
-            i.setItem(11, ARROW);
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, STONE_PICKAXE);
+        i.setItem(3, STONE_AXE);
+        i.setItem(4, COOKED_PORKCHOP);
+        i.setItem(5, BIRCH_LOG);
+        i.setItem(11, ARROW);
 
-            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
-
-        }
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -119,7 +103,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
         Block b = event.getBlock();
         Location loc = b.getLocation();
 
-        if (Utility.getArena().equals(name)) {
+        if (getArena().equals(name)) {
             if (!contains(loc, x1, x2, y1, y2, z1, z2)) {
 
                 event.setCancelled(true);
@@ -134,13 +118,13 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
         Location loc = b.getLocation();
         Player player = event.getPlayer();
 
-        if (Utility.getArena().equals(name)) {
+        if (getArena().equals(name)) {
             if (b.getType().equals(Material.TNT)) {
-                if (contains(loc, -357, -177, 3, 69, -8, 109) && TDM.isBlue(player.getName())) {
+                if (contains(loc, -357, -177, 3, 69, -8, 109) && BattlePlayer.getBattlePlayer(player).getTeam() == Team.TDM_BLUE) {
                     event.setCancelled(true);
                     player.sendMessage(ChatColor.RED + "TNT can only be placed on the enemy side");
                 }
-                if (contains(loc, -186, 10, 71, 4, 108, -7) && TDM.isRed(player.getName())) {
+                if (contains(loc, -186, 10, 71, 4, 108, -7) && BattlePlayer.getBattlePlayer(player).getTeam() == Team.TDM_RED) {
                     event.setCancelled(true);
                     player.sendMessage(ChatColor.RED + "TNT can only be placed on the enemy side");
                 }

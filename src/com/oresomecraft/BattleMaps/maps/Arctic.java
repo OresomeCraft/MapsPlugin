@@ -1,6 +1,5 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.OresomeBattles.api.Gamemode;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -10,12 +9,11 @@ import org.bukkit.event.*;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
-import com.oresomecraft.BattleMaps.*;
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.*;
-import com.oresomecraft.OresomeBattles.events.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
+
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Arctic extends BattleMap implements IBattleMap, Listener {
 
@@ -87,45 +85,41 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
-            ItemStack SNOWBALL = new ItemStack(Material.SNOW_BALL, 4);
-            ItemStack STONE_HOE = new ItemStack(Material.STONE_HOE, 1);
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
+        ItemStack SNOWBALL = new ItemStack(Material.SNOW_BALL, 4);
+        ItemStack STONE_HOE = new ItemStack(Material.STONE_HOE, 1);
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
 
-            ItemMeta stone_hoe = STONE_HOE.getItemMeta();
-            stone_hoe.setDisplayName(ChatColor.BLUE + "Ice hook");
-            STONE_HOE.setItemMeta(stone_hoe);
+        ItemMeta stone_hoe = STONE_HOE.getItemMeta();
+        stone_hoe.setDisplayName(ChatColor.BLUE + "Ice hook");
+        STONE_HOE.setItemMeta(stone_hoe);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
-            i.setItem(0, IRON_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, STONE_HOE);
-            i.setItem(3, SNOWBALL);
-            i.setItem(4, EXP);
-            i.setItem(5, HEALTH_POTION);
-            i.setItem(6, STEAK);
-            i.setItem(7, ARROWS);
-            p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 3);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(IRON_HELMET);
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, STONE_HOE);
+        i.setItem(3, SNOWBALL);
+        i.setItem(4, EXP);
+        i.setItem(5, HEALTH_POTION);
+        i.setItem(6, STEAK);
+        i.setItem(7, ARROWS);
+        p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 3);
 
-        }
+
     }
 
     public int x1 = 715;

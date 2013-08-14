@@ -3,22 +3,12 @@ package com.oresomecraft.BattleMaps;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
-import com.oresomecraft.OresomeBattles.events.ReadyMapsEvent;
-import com.oresomecraft.OresomeBattles.gamemodes.CTF;
-import com.oresomecraft.OresomeBattles.gamemodes.KoTH;
-import com.oresomecraft.OresomeBattles.gamemodes.TDM;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.api.events.*;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
+import org.bukkit.event.*;
 
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.OresomeBattles;
-import com.oresomecraft.OresomeBattles.Utility;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -28,11 +18,9 @@ import org.bukkit.inventory.ItemStack;
 public abstract class BattleMap implements Listener {
 
     public OresomeBattlesMaps plugin = OresomeBattlesMaps.getInstance();
-    public OresomeBattles battles;
     public BattleMap config;
 
     public BattleMap() {
-        battles = (OresomeBattles) Bukkit.getServer().getPluginManager().getPlugin("OresomeBattles");
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -124,7 +112,7 @@ public abstract class BattleMap implements Listener {
      * @param time Time battle will go for in minutes
      */
     public void setTDMTime(int time) {
-        TDM.setTime(name, time);
+        BattlesAccess.setTDMTime(name, time);
     }
 
     /**
@@ -133,7 +121,7 @@ public abstract class BattleMap implements Listener {
      * @param monument Location of the monument
      */
     public void setKoTHMonument(Location monument) {
-        KoTH.setMonument(monument);
+        BattlesAccess.setKoTHMonument(monument);
     }
 
     /**
@@ -164,10 +152,12 @@ public abstract class BattleMap implements Listener {
      */
     public abstract void readyFFASpawns();
 
+    public abstract void applyInventory(BattlePlayer p);
+
     /**
      * Returns if map is currently being played
      */
-    public boolean active = Utility.getArena().equals(name); // Whether or not map is currently being played
+    public boolean active = BattlesAccess.getArena().equals(name); // Whether or not map is currently being played
 
     /**
      * Prevents block breaking if disabled by the map
@@ -196,11 +186,21 @@ public abstract class BattleMap implements Listener {
      */
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-        Player p = event.getEntity();
-        for (ItemStack item : event.getDrops())
-            if (disabledDrops != null && Arrays.asList(disabledDrops).contains(item.getType()))
-                item.setType(Material.AIR);
+        if (active) {
+            Player p = event.getEntity();
+            for (ItemStack item : event.getDrops())
+                if (disabledDrops != null && Arrays.asList(disabledDrops).contains(item.getType()))
+                    item.setType(Material.AIR);
+        }
 
+    }
+
+    @EventHandler
+    public void applyInventory(InventoryEvent event) {
+        if (event.getMessage().equals(name)) {
+            clearInv(event.getPlayer());
+            config.applyInventory(event.getPlayer());
+        }
     }
 
     /**
@@ -210,42 +210,39 @@ public abstract class BattleMap implements Listener {
      */
 
     public void setRedSpawns(String name, ArrayList<Location> redSpawns) {
-        battles.bp.setRedSpawns(name, redSpawns);
+        BattlesAccess.getInstance().bp.setRedSpawns(name, redSpawns);
     }
 
     public void setBlueSpawns(String name, ArrayList<Location> blueSpawns) {
-        battles.bp.setBlueSpawns(name, blueSpawns);
+        BattlesAccess.getInstance().bp.setBlueSpawns(name, blueSpawns);
     }
 
     public void setFFASpawns(String name, ArrayList<Location> FFASpawns) {
-        battles.bp.setFFASpawns(name, FFASpawns);
+        BattlesAccess.getInstance().bp.setFFASpawns(name, FFASpawns);
     }
 
     public void addMap(String name) {
-        battles.addMap(name);
+        BattlesAccess.getInstance().addMap(name);
     }
 
     public void addCreators(String name, String creators) {
-        battles.addCreators(name, creators);
+        BattlesAccess.getInstance().addCreators(name, creators);
     }
 
     public void setFullName(String name, String fullName) {
-        battles.setFullName(name, fullName);
+        BattlesAccess.getInstance().setFullName(name, fullName);
     }
 
     public void clearInv(Player p) {
-        Utility.clearInv(p);
+        BattlesAccess.clearInv(p);
     }
 
     public void setGamemodes(String name, Gamemode[] modes) {
-        battles.setGamemodes(name, modes);
+        BattlesAccess.getInstance().setGamemodes(name, modes);
     }
 
     public void setCTFFlags(String name, Location redFlag, Location blueFlag) {
-        if (Utility.getMode() == Gamemode.CTF) {
-            CTF.setRedFlag(name, redFlag);
-            CTF.setBlueFlag(name, blueFlag);
-        }
+        BattlesAccess.setCTFFlags(name, redFlag, blueFlag);
     }
 
     /**
@@ -253,6 +250,18 @@ public abstract class BattleMap implements Listener {
      * Useful methods easily useable by all maps                     *
      * ***************************************************************
      */
+
+    public String getArena() {
+        return BattlesAccess.getArena();
+    }
+
+    public Gamemode getMode() {
+        return BattlesAccess.getMode();
+    }
+
+    public boolean compareLocations(Location loc1, Location loc2) {
+        return BattlesAccess.compareLocations(loc1, loc2);
+    }
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,

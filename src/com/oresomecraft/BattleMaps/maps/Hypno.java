@@ -3,37 +3,19 @@ package com.oresomecraft.BattleMaps.maps;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Egg;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.*;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.Utility;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Hypno extends BattleMap implements IBattleMap, Listener {
 
@@ -103,54 +85,49 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-            ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-            ItemStack STONE_SHOVEL = new ItemStack(Material.STONE_SPADE, 1);
-            ItemStack IRON_PICK = new ItemStack(Material.IRON_PICKAXE, 1);
-            ItemStack EMERALD = new ItemStack(Material.EMERALD, 1);
-            ItemStack EGG_HYPNO = new ItemStack(Material.EGG, 1);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack STONE_SHOVEL = new ItemStack(Material.STONE_SPADE, 1);
+        ItemStack IRON_PICK = new ItemStack(Material.IRON_PICKAXE, 1);
+        ItemStack EMERALD = new ItemStack(Material.EMERALD, 1);
+        ItemStack EGG_HYPNO = new ItemStack(Material.EGG, 1);
 
-            ItemMeta egg_hypno = EGG_HYPNO.getItemMeta();
-            egg_hypno.setDisplayName(ChatColor.BLUE + "Flash bang grenade");
+        ItemMeta egg_hypno = EGG_HYPNO.getItemMeta();
+        egg_hypno.setDisplayName(ChatColor.BLUE + "Flash bang grenade");
 
-            List<String> eggLore = new ArrayList<String>();
-            eggLore.add(org.bukkit.ChatColor.BLUE + "Everyone's favourite item!");
-            egg_hypno.setLore(eggLore);
-            EGG_HYPNO.setItemMeta(egg_hypno);
+        List<String> eggLore = new ArrayList<String>();
+        eggLore.add(org.bukkit.ChatColor.BLUE + "Everyone's favourite item!");
+        egg_hypno.setLore(eggLore);
+        EGG_HYPNO.setItemMeta(egg_hypno);
 
-            ItemMeta emerald = EMERALD.getItemMeta();
-            emerald.setDisplayName(ChatColor.BLUE + "Nausea Stone");
-            EMERALD.setItemMeta(emerald);
+        ItemMeta emerald = EMERALD.getItemMeta();
+        emerald.setDisplayName(ChatColor.BLUE + "Nausea Stone");
+        EMERALD.setItemMeta(emerald);
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(IRON_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(IRON_HELMET);
-            i.setItem(0, IRON_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, EMERALD);
-            i.setItem(3, EGG_HYPNO);
-            i.setItem(4, IRON_PICK);
-            i.setItem(5, STONE_SHOVEL);
-            i.setItem(6, STEAK);
-            i.setItem(7, HEALTH_POTION);
-            i.setItem(8, ARROWS);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(IRON_HELMET);
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, EMERALD);
+        i.setItem(3, EGG_HYPNO);
+        i.setItem(4, IRON_PICK);
+        i.setItem(5, STONE_SHOVEL);
+        i.setItem(6, STEAK);
+        i.setItem(7, HEALTH_POTION);
+        i.setItem(8, ARROWS);
 
-        }
     }
 
     public int x1 = -831;
@@ -260,7 +237,7 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
     public void arrowTrail(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
-        if (Utility.getArena().equals(name)) {
+        if (getArena().equals(name)) {
             if (arrow instanceof Arrow) {
                 world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
             }

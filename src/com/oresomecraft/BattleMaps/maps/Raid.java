@@ -1,31 +1,19 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.List;
-
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.BattleMaps.api.InvUtils;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Team;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
+import org.bukkit.*;
 import org.bukkit.event.Listener;
-import org.bukkit.Location;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.inventory.*;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Raid extends BattleMap implements IBattleMap, Listener {
 
     public Raid() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.IRON_SWORD, Material.BOW, Material.IRON_BOOTS, Material.CHAINMAIL_LEGGINGS,
+                Material.IRON_CHESTPLATE, Material.LEATHER_HELMET, Material.ARROW, Material.FISHING_ROD, Material.ENDER_PEARL});
     }
 
     String name = "raid";
@@ -85,41 +73,36 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-            ItemStack COOKED_FISH = new ItemStack(Material.COOKED_FISH, 2);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack ARROWS = new ItemStack(Material.ARROW, 48);
-            ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-            ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-            ItemStack CHAINMAIL_PANTS = new ItemStack(Material.CHAINMAIL_LEGGINGS, 1);
-            ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-            ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack COOKED_FISH = new ItemStack(Material.COOKED_FISH, 2);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 48);
+        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack CHAINMAIL_PANTS = new ItemStack(Material.CHAINMAIL_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
-            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
-            p.getInventory().setBoots(IRON_BOOTS);
-            p.getInventory().setLeggings(CHAINMAIL_PANTS);
-            p.getInventory().setChestplate(IRON_CHESTPLATE);
-            p.getInventory().setHelmet(LEATHER_HELMET);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(CHAINMAIL_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(LEATHER_HELMET);
 
-            i.setItem(0, IRON_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(3, COOKED_FISH);
-            i.setItem(4, HEALTH_POTION);
-            i.setItem(28, ARROWS);
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(3, COOKED_FISH);
+        i.setItem(4, HEALTH_POTION);
+        i.setItem(28, ARROWS);
 
-            if (p.getTeam() == Team.TDM_BLUE) {
-                p.setItem(5, Material.ENDER_PEARL, 1);
-            }
-
+        if (p.getTeam() == Team.TDM_BLUE) {
+            p.setItem(5, Material.ENDER_PEARL, 1);
         }
+
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -132,28 +115,5 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
     public int x2 = 128;
     public int y2 = 256;
     public int z2 = 128;
-
-    @EventHandler
-    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
-        Player p = event.getEntity();
-        List<ItemStack> drops = event.getDrops();
-
-        for (ItemStack item : drops) {
-            Material mat = item.getType();
-
-            if (mat == Material.IRON_SWORD
-                    || mat == Material.BOW
-                    || mat == Material.IRON_BOOTS
-                    || mat == Material.CHAINMAIL_LEGGINGS
-                    || mat == Material.IRON_CHESTPLATE
-                    || mat == Material.LEATHER_HELMET
-                    || mat == Material.ARROW
-                    || mat == Material.FISHING_ROD
-                    || mat == Material.ENDER_PEARL) {
-
-                item.setType(Material.AIR);
-            }
-        }
-    }
 
 }

@@ -2,10 +2,6 @@ package com.oresomecraft.BattleMaps.maps;
 
 import java.util.List;
 
-import com.oresomecraft.BattleMaps.IBattleMap;
-import com.oresomecraft.BattleMaps.api.InvUtils;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemodes.TDM;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -13,16 +9,14 @@ import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.oresomecraft.BattleMaps.BattleMap;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
 
@@ -60,50 +54,40 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         setFFASpawns(name, FFASpawns);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equalsIgnoreCase(name)) {
-            final BattlePlayer p = event.getPlayer();
-            Inventory i = p.getInventory();
-            clearInv(p);
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
 
-            ItemStack WOODEN_SWORD = new ItemStack(Material.WOOD_SWORD, 1, (short) -16373);
-            ItemStack BOW = new ItemStack(Material.BOW, 1);
-            ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1, (short) -1400);
-            ItemStack PUMPKIN_PIE = new ItemStack(Material.PUMPKIN_PIE, 5);
-            ItemStack APPLE = new ItemStack(Material.GOLDEN_APPLE, 2);
-            ItemStack BLUE_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 11);
-            ItemStack RED_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 14);
-            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            LEATHER_CHESTPLATE.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-            ItemStack DIAMOND_HELMET = new ItemStack(Material.DIAMOND_HELMET, 1);
-            ItemStack TORCH = new ItemStack(Material.TORCH, 16);
-            ItemStack ARROW = new ItemStack(Material.ARROW, 1);
+        ItemStack WOODEN_SWORD = new ItemStack(Material.WOOD_SWORD, 1, (short) -16373);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1, (short) -1400);
+        ItemStack PUMPKIN_PIE = new ItemStack(Material.PUMPKIN_PIE, 5);
+        ItemStack APPLE = new ItemStack(Material.GOLDEN_APPLE, 2);
+        ItemStack BLUE_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 11);
+        ItemStack RED_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 14);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+        LEATHER_CHESTPLATE.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+        ItemStack DIAMOND_HELMET = new ItemStack(Material.DIAMOND_HELMET, 1);
+        ItemStack TORCH = new ItemStack(Material.TORCH, 16);
+        ItemStack ARROW = new ItemStack(Material.ARROW, 1);
 
-            p.getInventory().setHelmet(DIAMOND_HELMET);
-            p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
-            BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+        p.getInventory().setHelmet(DIAMOND_HELMET);
+        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
 
-            InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+        BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 
-            i.setItem(0, WOODEN_SWORD);
-            i.setItem(1, BOW);
-            i.setItem(2, IRON_PICKAXE);
-            i.setItem(3, PUMPKIN_PIE);
-            i.setItem(4, APPLE);
+        i.setItem(0, WOODEN_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, IRON_PICKAXE);
+        i.setItem(3, PUMPKIN_PIE);
+        i.setItem(4, APPLE);
 
-            if (TDM.isRed(p.getName())) {
-                i.setItem(5, RED_STAINED_CLAY);
-            }
-            if (TDM.isBlue(p.getName())) {
-                i.setItem(5, BLUE_STAINED_CLAY);
-            }
+        if (p.getTeam() == Team.TDM_RED) i.setItem(5, RED_STAINED_CLAY);
+        if (p.getTeam() == Team.TDM_BLUE) i.setItem(5, BLUE_STAINED_CLAY);
 
-            i.setItem(6, TORCH);
-            i.setItem(27, ARROW);
-
-        }
+        i.setItem(6, TORCH);
+        i.setItem(27, ARROW);
     }
 
     // Region. (Top corner block and bottom corner block.

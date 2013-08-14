@@ -1,6 +1,6 @@
 package com.oresomecraft.BattleMaps;
 
-import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
 
 public interface IBattleMap {
 
