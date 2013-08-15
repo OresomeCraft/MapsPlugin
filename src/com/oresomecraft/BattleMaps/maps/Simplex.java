@@ -123,7 +123,7 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onFireBow(org.bukkit.event.entity.EntityShootBowEvent event) {
-        if (com.oresomecraft.OresomeBattles.BattleHandler.activeArena.equals(name)) {
+        if (getArena().equals(name)) {
             if (event.getEntityType() == org.bukkit.entity.EntityType.PLAYER) {
                 Player player = (Player) event.getEntity();
                 if (player.getInventory().contains(Material.ARROW)) {

@@ -1,7 +1,5 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.List;
-
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.*;
 import org.bukkit.*;
@@ -23,9 +21,6 @@ import org.bukkit.util.Vector;
 
 import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
-import com.oresomecraft.OresomeBattles.gamemodes.TDM;
-import com.oresomecraft.OresomeBattles.Utility;
 
 public class Solitude extends BattleMap implements IBattleMap, Listener {
 
@@ -33,6 +28,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setAllowBuild(false);
+        disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
     }
 
     String name = "solitude";
@@ -151,7 +147,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         exp.setDisplayName(ChatColor.GOLD + "Potion of Levelling");
         EXP.setItemMeta(exp);
 
-        if (TDM.isBlue(p.getName())) {
+        if (p.getTeam() == Team.TDM_BLUE) {
 
             ItemMeta bow = BOW.getItemMeta();
             bow.setDisplayName(ChatColor.GOLD + "Steel Bow");
@@ -178,7 +174,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
 
         }
 
-        if (TDM.isRed(p.getName())) {
+        if (p.getTeam() == Team.TDM_RED) {
 
             // Sets bow name "Imperial Bow"
             ItemMeta bow = BOW.getItemMeta();
@@ -322,44 +318,19 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void death(PlayerDeathEvent event) {
-
-        List<ItemStack> drops = event.getDrops();
-        int amount = drops.size();
-        int count = 0;
-
-        for (int none = 0; none < amount; none++) {
-
-            ItemStack i = drops.get(count);
-            count++;
-            Material mat = i.getType();
-
-            if (mat == Material.BOW || mat == Material.LEATHER_BOOTS
-                    || mat == Material.LEATHER_LEGGINGS
-                    || mat == Material.LEATHER_CHESTPLATE
-                    || mat == Material.LEATHER_HELMET) {
-
-                i.setType(Material.AIR);
-
-            }
-
-        }
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
     public void teamDeath(PlayerDeathEvent event) {
 
-        if (Utility.getArena().equals(name)) {
+        if (getArena().equals(name)) {
 
             Player p = event.getEntity();
             Location l = p.getLocation();
             World world = Bukkit.getWorld(name);
 
-            if (TDM.isRed(p.getName())) {
+            if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.TDM_RED) {
                 // Show red particles (small)
                 world.playEffect(l, Effect.STEP_SOUND, 152);
             } else {
-                if (TDM.isBlue(p.getName())) {
+                if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.TDM_BLUE) {
                     // Show blue particles (small)
                     world.playEffect(l, Effect.STEP_SOUND, 22);
                 }
