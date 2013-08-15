@@ -129,4 +129,17 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
         if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
     }
+        //May be incorrect, if not, fix.
+    @EventHandler
+    public void clay(ProjectileHitEvent event) {
+        if (getArena().equals(name)) {
+            Location loc = event.getEntity().getLocation();
+            if (!contains(loc, 15, 23, 70, 88, -17, -30) || contains(loc, 255, 246, 69, 88, -33, -19)) {
+                if (Math.random() < 0.5) {
+                    Block b = Bukkit.getWorld(name).getBlockAt(loc);
+                    b.setType(Material.CLAY);
+                }
+            }
+        }
+    }
 }
