@@ -44,7 +44,7 @@ public class TheBowl extends BattleMap implements IBattleMap, Listener {
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
 
-        setKoTHMonument(new Location(w, 7, 82, 0));
+        setKoTHMonument(new Location(w, 7, 82, -1));
     }
 
     public void readyFFASpawns() {
