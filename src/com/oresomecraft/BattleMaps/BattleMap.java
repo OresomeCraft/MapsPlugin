@@ -210,27 +210,27 @@ public abstract class BattleMap implements Listener {
      */
 
     public void setRedSpawns(String name, ArrayList<Location> redSpawns) {
-        BattlesAccess.getInstance().bp.setRedSpawns(name, redSpawns);
+        BattlesAccess.setRedSpawns(name, redSpawns);
     }
 
     public void setBlueSpawns(String name, ArrayList<Location> blueSpawns) {
-        BattlesAccess.getInstance().bp.setBlueSpawns(name, blueSpawns);
+        BattlesAccess.setBlueSpawns(name, blueSpawns);
     }
 
     public void setFFASpawns(String name, ArrayList<Location> FFASpawns) {
-        BattlesAccess.getInstance().bp.setFFASpawns(name, FFASpawns);
+        BattlesAccess.setFFASpawns(name, FFASpawns);
     }
 
     public void addMap(String name) {
-        BattlesAccess.getInstance().addMap(name);
+        BattlesAccess.addMap(name);
     }
 
     public void addCreators(String name, String creators) {
-        BattlesAccess.getInstance().addCreators(name, creators);
+        BattlesAccess.addCreators(name, creators);
     }
 
     public void setFullName(String name, String fullName) {
-        BattlesAccess.getInstance().setFullName(name, fullName);
+        BattlesAccess.setFullName(name, fullName);
     }
 
     public void clearInv(Player p) {
@@ -238,7 +238,7 @@ public abstract class BattleMap implements Listener {
     }
 
     public void setGamemodes(String name, Gamemode[] modes) {
-        BattlesAccess.getInstance().setGamemodes(name, modes);
+        BattlesAccess.setGamemodes(name, modes);
     }
 
     public void setCTFFlags(String name, Location redFlag, Location blueFlag) {
