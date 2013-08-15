@@ -3,6 +3,8 @@ OresomeBattles-Maps
 
 Configuration files for OresomeBattles maps.
 
+Build status: [![Build Status](https://travis-ci.org/OresomeCraft/OresomeBattles-Maps.png?branch=master)](https://travis-ci.org/OresomeCraft/OresomeBattles-Maps)
+
 This is an addon (but required) plugin to OresomeBattles. This plugin is what handles the maps, using the OresomeBattles API.
 
 This is here to hopefully be helpful to those trying to configure their own maps and for the people who may want to cover more advancted topics such as item renaming.
