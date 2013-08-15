@@ -41,7 +41,7 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
 
-        setKoTHMonument(new Location(w, -82, 116, -0));
+        setKoTHMonument(new Location(w, -83, 115, -1));
     }
 
     public void readyFFASpawns() {
