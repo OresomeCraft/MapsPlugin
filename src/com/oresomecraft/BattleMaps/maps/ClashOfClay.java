@@ -137,8 +137,19 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
     public void clay(ProjectileHitEvent event) {
         if (getArena().equals(name)) {
             Location loc = event.getEntity().getLocation();
-            if (!contains(loc, -24, -21, 79, 84, 165, 162) || contains(loc, 24, -21, 79, 84, 165, 162)) {
-                if (Math.random() < 0.5) {
+            if (!contains(loc, -24, -21, 79, 84, 165, 162) || !(contains(loc, 24, -21, 79, 84, 165, 162))) {
+                boolean clay = Math.random() > 0.25;
+                boolean tnt = Math.random() > 0.025;
+                if(tnt){
+                    Bukkit.getWorld(name).createExplosion(loc, 4F);
+                    int bursts = 10;
+                    while(bursts > 0){
+                        bursts--;
+                    Bukkit.getWorld(name).strikeLightningEffect(loc);
+                    }
+                    return;
+                }
+                if(clay){
                     Block b = Bukkit.getWorld(name).getBlockAt(loc);
                     b.setType(Material.CLAY);
                 }
