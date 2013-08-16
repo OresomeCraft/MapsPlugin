@@ -23,8 +23,8 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
 
-        redSpawns.add(new Location(w, -16, 84, 128));
-        blueSpawns.add(new Location(w, -50, 84, 11));
+        redSpawns.add(new Location(w, -34, 84, 169));
+        blueSpawns.add(new Location(w, -34, 84, -29));
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
