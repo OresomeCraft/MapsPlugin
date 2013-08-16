@@ -18,6 +18,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setAllowBuild(false);
+        disableDrops(new ItemStack[]{Material.STONE_SWORD, Material.LEATHER_HELMET})
     }
 
     String name = "zoned";
@@ -51,7 +52,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
-        ItemStack JUMP = new ItemStack(Material.FIREWORK, 3);
+        ItemStack JUMP = new ItemStack(Material.FIREWORK, 7);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 128);
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
