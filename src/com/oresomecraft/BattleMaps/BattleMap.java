@@ -186,7 +186,7 @@ public abstract class BattleMap implements Listener {
      */
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-        if (active) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
             Player p = event.getEntity();
             for (ItemStack item : event.getDrops())
                 if (disabledDrops != null && Arrays.asList(disabledDrops).contains(item.getType()))
