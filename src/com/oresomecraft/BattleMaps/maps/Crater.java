@@ -18,7 +18,7 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
     String name = "crater";
     String fullName = "Crater Site";
     String creators = "R3creat3, psgs and Spantezian";
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.FFA};
+    Gamemode[] modes = {Gamemode.CTF};
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
@@ -60,6 +60,8 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack S = new ItemStack(Material.STICK, 1);
+        ItemStack I = new ItemStack(Material.IRON_INGOT, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
@@ -79,6 +81,8 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH);
         i.setItem(10, ARROWS);
+        i.setItem(11, S);
+        i.setItem(12, I);
 
     }
 
