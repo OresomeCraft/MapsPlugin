@@ -24,10 +24,6 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
         setDetails(name, fullName, creators, modes);
     }
 
-    public ArrayList<Location> redSpawns = new ArrayList<Location>();
-    public ArrayList<Location> blueSpawns = new ArrayList<Location>();
-    public ArrayList<Location> FFASpawns = new ArrayList<Location>();
-
     String name = "hypno";
     String fullName = "Hypnosis";
     String creators = "zachoz, pegabeavercorn, DragonDrew and kevlar_miner";
@@ -242,7 +238,5 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
                 world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
             }
         }
-
     }
-
 }

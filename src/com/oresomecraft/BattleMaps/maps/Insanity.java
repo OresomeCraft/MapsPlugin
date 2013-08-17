@@ -104,5 +104,4 @@ public class Insanity extends BattleMap implements IBattleMap, Listener {
             }
         }
     }
-
 }

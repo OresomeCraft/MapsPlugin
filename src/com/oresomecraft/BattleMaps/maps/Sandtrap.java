@@ -19,6 +19,7 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setTDMTime(5);
+        disableDrops(new Material[]{Material.DIAMOND_SPADE});
     }
 
     String name = "sandtrap";
@@ -103,18 +104,4 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
     public int y2 = 130;
     public int z2 = -10;
 
-    @EventHandler
-    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
-        Player p = event.getEntity();
-        List<ItemStack> drops = event.getDrops();
-
-        for (ItemStack item : drops) {
-            Material mat = item.getType();
-
-            if (mat == Material.DIAMOND_SPADE) {
-
-                item.setType(Material.AIR);
-            }
-        }
-    }
 }

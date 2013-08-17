@@ -1,7 +1,5 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -26,6 +24,7 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setTDMTime(20);
+        disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
     }
 
     String name = "clashofclayii";
@@ -104,21 +103,6 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
     public int z2 = 50;
 
     @EventHandler
-    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
-        Player p = event.getEntity();
-        List<ItemStack> drops = event.getDrops();
-
-        for (ItemStack item : drops) {
-            Material mat = item.getType();
-
-            if (mat == Material.DIAMOND_HELMET || mat == Material.WOOD_SWORD) {
-
-                item.setType(Material.AIR);
-            }
-        }
-    }
-
-    @EventHandler
     public void noSpawnBreak(BlockBreakEvent event) {
         Location loc = event.getBlock().getLocation();
         if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
@@ -131,7 +115,8 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
         if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
     }
-        //May be incorrect, if not, fix.
+
+    //May be incorrect, if not, fix.
     @EventHandler
     public void clay(ProjectileHitEvent event) {
         if (getArena().equals(name)) {

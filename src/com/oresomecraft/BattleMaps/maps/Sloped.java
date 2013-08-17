@@ -47,7 +47,6 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -1, 65, 0, 0, 0));
         blueSpawns.add(new Location(w, -5, 65, 0, 0, 0));
 
-        // KOTH Block Location
         setKoTHMonument(new Location(w, 2, 33, 45));
 
         setRedSpawns(name, redSpawns);

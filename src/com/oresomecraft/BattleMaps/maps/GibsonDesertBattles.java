@@ -99,7 +99,6 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
     public int y2 = 31;
     public int z2 = -117;
 
-    //No diamond/iron blocks to drop from this, resulting in no diamond/iron armour ;3
     @EventHandler(priority = EventPriority.NORMAL)
     public void blockBreak(BlockBreakEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(name)) {

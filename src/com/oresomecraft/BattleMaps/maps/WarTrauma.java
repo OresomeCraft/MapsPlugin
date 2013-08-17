@@ -12,8 +12,10 @@ import org.bukkit.potion.*;
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
@@ -28,7 +30,6 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
     String fullName = "War Trauma";
     String creators = "_Moist, niceman506 and psgs";
     Gamemode[] modes = {Gamemode.TDM};
-    //Hell no to ffa and infection.
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
@@ -55,7 +56,6 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
 
-        ItemStack FLOWER_POT = new ItemStack(Material.FLOWER_POT, 1);
         ItemStack BREAD = new ItemStack(Material.BREAD, 4);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack GAPPLE = new ItemStack(Material.GOLDEN_APPLE, 1);
@@ -65,34 +65,20 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-        ItemStack AMMO = new ItemStack(Material.FLINT, 64);
         ItemStack DIRT = new ItemStack(Material.DIRT, 16);
         ItemStack IRON_SHOVEL = new ItemStack(Material.IRON_SPADE, 1);
-        ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
 
         ItemMeta bow = BOW.getItemMeta();
         bow.setDisplayName(ChatColor.RED + "Missile Launcher");
-        BOW.setItemMeta(bow);
 
-            /*ItemMeta bowLore = BOW.getItemMeta();
-            bowLore.setLore("Stand on the sponge in the tanks for extra power!");
-            BOW.setItemMeta(bowLore);*/
+        List<String> bowLore = new ArrayList<String>();
+        bowLore.add(ChatColor.BLUE + "Stand on the sponge in the tanks to shoot missiles!");
+        bow.setLore(bowLore);
+        BOW.setItemMeta(bow);
 
         ItemMeta arrows = ARROWS.getItemMeta();
         arrows.setDisplayName(ChatColor.RED + "Missiles");
         ARROWS.setItemMeta(arrows);
-
-        ItemMeta blaze_rod = BLAZE_ROD.getItemMeta();
-        blaze_rod.setDisplayName(ChatColor.BLUE + "High Power Gun");
-        BLAZE_ROD.setItemMeta(blaze_rod);
-
-        ItemMeta pot = FLOWER_POT.getItemMeta();
-        pot.setDisplayName(ChatColor.GOLD + "C4");
-        FLOWER_POT.setItemMeta(pot);
-
-        ItemMeta ammo = AMMO.getItemMeta();
-        ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
-        AMMO.setItemMeta(ammo);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_PANTS, LEATHER_BOOTS});
 
@@ -102,17 +88,13 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, IRON_SWORD);
-        i.setItem(3, BLAZE_ROD);
-        i.setItem(4, FLOWER_POT);
-        i.setItem(2, IRON_SHOVEL);
-        i.setItem(5, BREAD);
-        i.setItem(6, DIRT);
-        i.setItem(7, AMMO);
-        i.setItem(8, GAPPLE);
         i.setItem(1, BOW);
+        i.setItem(2, IRON_SHOVEL);
+        i.setItem(3, BREAD);
+        i.setItem(4, DIRT);
+        i.setItem(8, GAPPLE);
         i.setItem(29, ARROWS);
 
-        //Give players invincibility II and strength II for 15 seconds when they spawn
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 7 * 20, 2));
         p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 7 * 20, 2));
 
@@ -335,20 +317,5 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
             }
         }
     }
-
-
-    /*@EventHandler(priority = EventPriority.NORMAL)
-    public void onPlayerEntityDamage(EntityDamageByEntityEvent e) {
-        if (e.getEntity().getWorld().getName().equals(name)) {
-            Player damaged = (Player) e.getEntity();
-            if (e.getDamager() instanceof Projectile) {
-                if (e.getDamager() instanceof Arrow) {
-                    if (((Arrow) e.getDamager()).getShooter() instanceof Player) {
-                        damaged.damage(14);
-                    }
-                }
-            }
-        }
-    } */
 }
 

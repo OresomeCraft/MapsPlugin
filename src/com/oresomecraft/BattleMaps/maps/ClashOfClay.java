@@ -1,7 +1,5 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,6 +9,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -24,6 +24,7 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setTDMTime(20);
+        disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
     }
 
     String name = "clashofclay";
@@ -106,28 +107,13 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
     public int z2 = 50;
 
     @EventHandler
-    public void death(org.bukkit.event.entity.PlayerDeathEvent event) {
-        Player p = event.getEntity();
-        List<ItemStack> drops = event.getDrops();
-
-        for (ItemStack item : drops) {
-            Material mat = item.getType();
-
-            if (mat == Material.DIAMOND_HELMET || mat == Material.WOOD_SWORD) {
-
-                item.setType(Material.AIR);
-            }
-        }
-    }
-
-    @EventHandler
-    public void place(org.bukkit.event.block.BlockPlaceEvent event) {
+    public void blockPlace(BlockPlaceEvent event) {
         if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
         if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
     }
 
     @EventHandler
-    public void place(org.bukkit.event.block.BlockBreakEvent event) {
+    public void blockBreak(BlockBreakEvent event) {
         if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
         if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
     }

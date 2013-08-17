@@ -1,8 +1,14 @@
 package com.oresomecraft.BattleMaps.maps;
 
+/*
+* Map unfinished. Waiting on _Moist for Spawn Locations.
+ */
+
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.event.*;
 import org.bukkit.event.block.*;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.*;
@@ -10,19 +16,19 @@ import org.bukkit.potion.*;
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
-public class TheBowl extends BattleMap implements IBattleMap, Listener {
+public class TropicalPaths extends BattleMap implements IBattleMap, Listener {
 
-    public TheBowl() {
+    public TropicalPaths() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS});
     }
 
     // Map details
-    String name = "bowl";
-    String fullName = "The Bowl";
-    String creators = "_Moist, psgs, niceman506 and broddikill";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.KOTH};
+    String name = "tropical";
+    String fullName = "Tropical Paths";
+    String creators = "_Moist, psgs and Evil_Emo";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
@@ -73,18 +79,14 @@ public class TheBowl extends BattleMap implements IBattleMap, Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS});
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -108,21 +110,24 @@ public class TheBowl extends BattleMap implements IBattleMap, Listener {
     public int z2 = 99;
 
     @EventHandler
-    public void onBreak(BlockBreakEvent event) {
-        Player p = event.getPlayer();
-        if (p.getLocation().getWorld().getName().equals(name)) {
-            if (getMode().equals(Gamemode.INFECTION)) {
-                event.setCancelled(true);
-            }
-        }
+    public void blockPlace(BlockPlaceEvent event) {
+        if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
+        if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
     }
 
     @EventHandler
-    public void onPlace(BlockPlaceEvent event) {
+    public void blockBreak(BlockBreakEvent event) {
+        if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
+        if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event) {
         Player p = event.getPlayer();
-        if (p.getLocation().getWorld().getName().equals(name)) {
-            if (getMode().equals(Gamemode.INFECTION)) {
-                event.setCancelled(true);
+        if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            Block b = event.getClickedBlock();
+            if (b.equals(Material.GRASS)) {
+                b.getLocation().add(0,1,0).getBlock().setType(Material.SAPLING);
             }
         }
     }
