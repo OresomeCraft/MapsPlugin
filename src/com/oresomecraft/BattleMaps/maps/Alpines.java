@@ -15,9 +15,9 @@ import org.bukkit.potion.PotionEffectType;
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
-public class ElementsII extends BattleMap implements IBattleMap, Listener {
+public class Alpines extends BattleMap implements IBattleMap, Listener {
 
-    public ElementsII() {
+    public Alpines() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setTDMTime(8);

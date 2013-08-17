@@ -117,7 +117,7 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
     }
 
     //May be incorrect, if not, fix.
-    @EventHandler
+    //@EventHandler
     public void clay(ProjectileHitEvent event) {
         if (getArena().equals(name)) {
             Location loc = event.getEntity().getLocation();
