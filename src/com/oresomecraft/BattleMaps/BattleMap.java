@@ -11,6 +11,8 @@ import org.bukkit.event.*;
 
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.ItemStack;
@@ -36,6 +38,7 @@ public abstract class BattleMap implements Listener {
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
     private boolean allowBuild = true;
+    private boolean preventEnderDamage = false;
     private Material[] disabledDrops;
 
     // Map details
@@ -132,6 +135,15 @@ public abstract class BattleMap implements Listener {
     public void setAllowBuild(boolean allow) {
         allowBuild = allow;
     }
+    
+     /**
+     * Sets whether or not player's take enderpearl damage
+     *
+     * @param ender Wether the players take damage or not
+     */
+    public void preventEnderpearlDamage(boolean ender) {
+        preventEnderDamage = ender;
+    }
 
     /**
      * Disables certain items from being dropped on death
@@ -194,7 +206,23 @@ public abstract class BattleMap implements Listener {
         }
 
     }
-
+       /**
+     * Prevents enderpearl damage if disabled by the map
+     *
+     * @param event Event called by the server
+     */
+    @EventHandler
+        public void preventenderpearldamage(PlayerTeleportEvent event) {
+            Player player = event.getPlayer();
+            TeleportCause cause = event.getCause();
+            Location to = event.getTo();
+            if (event.getBlock().getWorld().getName().equals(name) && (preventEnderDamage == true)){
+                if (cause == TeleportCause.ENDER_PEARL) {
+                   event.setCancelled(true);
+                    player.teleport(to);
+               }
+        }
+    }
     @EventHandler
     public void applyInventory(InventoryEvent event) {
         if (event.getMessage().equals(name)) {
