@@ -14,7 +14,7 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
     public Mutiny() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.IRON_AXE});
+        disableDrops(new Material[]{Material.IRON_AXE, Material.DIAMOND_BOOTS, Material.GOLD_LEGGINGS, Material.IRON_CHESTPLATE, Material.LEATHER_HELMET});
     }
 
     String name = "mutiny";
