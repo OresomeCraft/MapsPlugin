@@ -56,6 +56,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
 
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack STONE_PICKAXE = new ItemStack(Material.STONE_PICKAXE, 1);
@@ -77,10 +78,11 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, STONE_PICKAXE);
-        i.setItem(3, STONE_AXE);
-        i.setItem(4, COOKED_PORKCHOP);
-        i.setItem(5, BIRCH_LOG);
+        i.setItem(2, HEALTH_POTION);
+        i.setItem(3, STONE_PICKAXE);
+        i.setItem(4, STONE_AXE);
+        i.setItem(5, COOKED_PORKCHOP);
+        i.setItem(6, BIRCH_LOG);
         i.setItem(11, ARROW);
 
     }
