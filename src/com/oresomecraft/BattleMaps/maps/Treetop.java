@@ -1,7 +1,6 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldLoadEvent;
@@ -16,14 +15,11 @@ import com.oresomecraft.OresomeBattles.api.*;
 
 public class Treetop extends BattleMap implements IBattleMap, Listener {
 
-    World tmp = null;
-
     public Treetop() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setTDMTime(10);
         setAllowBuild(false);
-        setKoTHMonument(new Location(w, 727, 60, 501));
     }
 
     String name = "treetop";
@@ -45,6 +41,8 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
+
+        setKoTHMonument(new Location(w, 727, 60, 501));
 
     }
 
@@ -95,7 +93,11 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
     public void alwaysNight() {
         new BukkitRunnable() {
             public void run() {
-                tmp.setTime(12000L);
+                if (Bukkit.getWorld(name) != null) {
+                Bukkit.getWorld(name).setTime(12000L);
+                } else {
+                    this.cancel();
+                }
             }
         }.runTaskLater(OresomeBattlesMaps.getInstance(), (60 * 20) * 2);
     }
