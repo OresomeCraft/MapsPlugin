@@ -52,7 +52,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
-        ItemStack JUMP = new ItemStack(Material.FIREWORK, 7);
+        ItemStack JUMP = new ItemStack(Material.FIREWORK, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 128);
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
@@ -94,7 +94,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                 if (p.getItemInHand().getType() == Material.FIREWORK) {
                     p.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
-                    p.setVelocity(new Vector(0, 1.4, 0));
+                    p.setVelocity(new Vector(0, 1.05, 0));
                 }
             }
         }
