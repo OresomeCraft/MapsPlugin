@@ -125,7 +125,7 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
             Location loc = event.getEntity().getLocation();
             if (!contains(loc, -24, -21, 79, 84, 165, 162) || !(contains(loc, 24, -21, 79, 84, 165, 162))) {
                 boolean clay = Math.random() > 0.25;
-                if(clay == true){
+                if (clay == true) {
                     Block b = Bukkit.getWorld(name).getBlockAt(loc);
                     b.setType(Material.CLAY);
                 }

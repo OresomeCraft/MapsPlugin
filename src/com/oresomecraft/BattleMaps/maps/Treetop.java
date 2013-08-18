@@ -94,7 +94,7 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
         new BukkitRunnable() {
             public void run() {
                 if (Bukkit.getWorld(name) != null) {
-                Bukkit.getWorld(name).setTime(12000L);
+                    Bukkit.getWorld(name).setTime(12000L);
                 } else {
                     this.cancel();
                 }
