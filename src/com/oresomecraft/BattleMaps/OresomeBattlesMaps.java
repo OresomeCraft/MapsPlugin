@@ -82,7 +82,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new ElementsII();
         new TheBowl();
         new Simplex();
-
+        new Treetop();
     }
 
     public static OresomeBattlesMaps getInstance() {
