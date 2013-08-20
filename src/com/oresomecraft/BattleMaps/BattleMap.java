@@ -151,9 +151,8 @@ public abstract class BattleMap implements Listener {
      *
      * @param allow Whether damage from enderpearls should be disabled or not
      */
-    public boolean disablePearlDamage(boolean allow) {
+    public void disablePearlDamage(boolean allow) {
         pearlDamage = allow;
-        return allow;
     }
 
     /**
@@ -220,14 +219,12 @@ public abstract class BattleMap implements Listener {
         TeleportCause cause = event.getCause();
         Location destination = event.getTo();
 
-        if (BattlePlayer.getBattlePlayer(player).isSpectator()) {
-            return;
-        } else {
+        if (!BattlePlayer.getBattlePlayer(player).isSpectator()) {
             if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
-                if (disablePearlDamage(true)) {
+                if (pearlDamage) {
                     if (cause == TeleportCause.ENDER_PEARL) {
-                        event.setCancelled(true);
                         player.teleport(destination);
+                        event.setCancelled(true);
                     }
                 }
             }
