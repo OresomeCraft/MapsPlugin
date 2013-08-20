@@ -71,6 +71,7 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 3);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack SOUP = new ItemStack(Material.MUSHROOM_SOUP, 1);
  
       InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
  
@@ -81,12 +82,26 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
  
         i.setItem(0, SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, STEAK);
-        i.setItem(3, HEALTH);
+        i.setItem(2, SOUP);
+        i.setItem(3, STEAK);
+        i.setItem(4, HEALTH);
         i.setItem(5, EXP);
         i.setItem(10, ARROWS);
  
        
+    }
+    
+    public void onEat(PlayerInteractEvent e, final BattlePlayer p)
+    {
+     if(e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)
+     {
+      if(p.getItemInHand().getType == Material.MUSHROOM_SOUP)
+      {
+       p.setHealth(p.getHealth() + 3);
+       p.getItemInHand().setType(Material.AIR);
+      }
+     }
+     
     }
  
     // Region. (Top corner block and bottom corner block.
