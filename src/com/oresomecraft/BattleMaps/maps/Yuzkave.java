@@ -86,7 +86,7 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
         i.setItem(5, EXP);
         i.setItem(10, ARROWS);
  
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
+       
     }
  
     // Region. (Top corner block and bottom corner block.
