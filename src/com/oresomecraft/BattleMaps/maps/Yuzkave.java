@@ -20,6 +20,7 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
     public Yuzkave() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     // Map details

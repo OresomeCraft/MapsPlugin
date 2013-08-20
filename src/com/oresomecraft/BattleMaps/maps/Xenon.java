@@ -19,6 +19,7 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setAllowBuild(false);
+        disablePearlDamage(true);
     }
 
     String name = "xenon";
@@ -94,7 +95,7 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
     public int y2 = 0;
     public int z2 = -37;
 
-    @EventHandler
+    //@EventHandler
     public void preventenderpearldamage(PlayerTeleportEvent event) {
         Player player = event.getPlayer();
         TeleportCause cause = event.getCause();
