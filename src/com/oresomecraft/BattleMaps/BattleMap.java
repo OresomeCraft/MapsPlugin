@@ -1,3 +1,4 @@
+
 package com.oresomecraft.BattleMaps;
 
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ import org.bukkit.event.*;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -37,6 +40,7 @@ public abstract class BattleMap implements Listener {
 
     private boolean allowBuild = true;
     private Material[] disabledDrops;
+    private boolean pearlDamage = true;
 
     // Map details
     String name;
@@ -47,7 +51,7 @@ public abstract class BattleMap implements Listener {
     /**
      * Readies maps to be played
      *
-     * @param event An event called by OresomeBattles
+     * @param event An Event called by OresomeBattles
      */
     @EventHandler // Add map
     public void readyMap(ReadyMapsEvent event) {
@@ -136,10 +140,20 @@ public abstract class BattleMap implements Listener {
     /**
      * Disables certain items from being dropped on death
      *
-     * @param items an ItemStack array of items not to drop
+     * @param items An ItemStack array of items not to drop
      */
     public void disableDrops(Material[] items) {
         disabledDrops = items;
+    }
+
+    /**
+     * Prevents damage when moving using enderpearls
+     *
+     * @param allow Whether damage from enderpearls should be disabled or not
+     */
+    public boolean disablePearlDamage(boolean allow) {
+        pearlDamage = allow;
+        return allow;
     }
 
     /**
@@ -162,7 +176,7 @@ public abstract class BattleMap implements Listener {
     /**
      * Prevents block breaking if disabled by the map
      *
-     * @param event Event called by the server
+     * @param event an Event called by the server
      */
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
@@ -172,7 +186,7 @@ public abstract class BattleMap implements Listener {
     /**
      * Prevents block placing if disabled by the map
      *
-     * @param event Event called by the server
+     * @param event an Event called by the server
      */
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
@@ -182,7 +196,7 @@ public abstract class BattleMap implements Listener {
     /**
      * Disables dropping of certain items if declared
      *
-     * @param event An Event called by the server
+     * @param event an Event called by the server
      */
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
@@ -193,6 +207,31 @@ public abstract class BattleMap implements Listener {
                     item.setType(Material.AIR);
         }
 
+    }
+
+    /**
+     * Disables damage caused by enderpearls if disabled by the map
+     *
+     * @param event an Event called by the server
+     */
+    @EventHandler
+    public void onPearlDamage(PlayerTeleportEvent event) {
+        Player player = event.getPlayer();
+        TeleportCause cause = event.getCause();
+        Location destination = event.getTo();
+
+        if (BattlePlayer.getBattlePlayer(player).isSpectator()) {
+            return;
+        } else {
+            if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
+                if (disablePearlDamage(true)) {
+                    if (cause == TeleportCause.ENDER_PEARL) {
+                        event.setCancelled(true);
+                        player.teleport(destination);
+                    }
+                }
+            }
+        }
     }
 
     @EventHandler
