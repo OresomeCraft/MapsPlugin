@@ -104,7 +104,7 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onLoad(WorldLoadEvent e) {
-        alwaysNight();
+        if (e.getWorld().getName().equals(name)) alwaysNight();
     }
 
 }
