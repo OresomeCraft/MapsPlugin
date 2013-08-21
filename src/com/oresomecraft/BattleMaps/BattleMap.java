@@ -174,6 +174,15 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
+     * Sets a time lock on the map
+     *
+     * @param time The time in ticks
+     */
+    public void lockTime(long time) {
+        this.timeLock = time;
+    }
+
+    /**
      * Sets TDM and CTF spawn points
      */
     public abstract void readyTDMSpawns();
