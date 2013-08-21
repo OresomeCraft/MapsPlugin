@@ -1,6 +1,7 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
 
@@ -13,12 +14,13 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setAllowBuild(false);
+        disableDrops(new ItemStack[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
     }
 
     String name = "crater";
     String fullName = "Crater Site";
     String creators = "R3creat3, psgs and Spantezian";
-    Gamemode[] modes = {Gamemode.CTF};
+    Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
@@ -64,6 +66,7 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
         ItemStack I = new ItemStack(Material.IRON_INGOT, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        LEATHER_HELMET.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
