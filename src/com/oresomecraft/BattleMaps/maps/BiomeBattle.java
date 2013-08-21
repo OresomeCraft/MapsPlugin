@@ -29,6 +29,8 @@ public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
+
+        setKoTHMonument(new Location(w, 0, 67, 0));
     }
 
     public void readyFFASpawns() {
