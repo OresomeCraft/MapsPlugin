@@ -16,6 +16,10 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setAllowBuild(false);
+        setTDMTime(15);
+        disableDrops(new Material[]{Material.MUSHROOM_SOUP, Material.GOLDEN_APPLE});
+        lockTime("night");
+
     }
 
     // Map details
