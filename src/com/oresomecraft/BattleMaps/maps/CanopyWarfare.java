@@ -13,8 +13,6 @@ import com.oresomecraft.OresomeBattles.api.*;
 
 public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
 
-    OresomeBattlesMaps plugin;
-
     public CanopyWarfare() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);

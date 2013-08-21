@@ -1,19 +1,12 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.*;
+import org.bukkit.event.block.*;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
@@ -124,8 +117,7 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
         if (getArena().equals(name)) {
             Location loc = event.getEntity().getLocation();
             if (!contains(loc, -24, -21, 79, 84, 165, 162) || !(contains(loc, 24, -21, 79, 84, 165, 162))) {
-                boolean clay = Math.random() > 0.25;
-                if (clay == true) {
+                if (Math.random() > 0.25) {
                     Block b = Bukkit.getWorld(name).getBlockAt(loc);
                     b.setType(Material.CLAY);
                 }

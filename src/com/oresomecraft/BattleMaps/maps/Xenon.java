@@ -1,9 +1,7 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
-import org.bukkit.entity.EnderPearl;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.*;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;

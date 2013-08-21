@@ -1,13 +1,10 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
+import org.bukkit.event.*;
 import org.bukkit.event.world.WorldLoadEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import org.bukkit.inventory.*;
+import org.bukkit.potion.*;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.oresomecraft.BattleMaps.*;

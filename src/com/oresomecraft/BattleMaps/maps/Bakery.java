@@ -10,8 +10,6 @@ import com.oresomecraft.OresomeBattles.api.*;
 
 public class Bakery extends BattleMap implements IBattleMap, Listener {
 
-    OresomeBattlesMaps plugin;
-
     public Bakery() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);

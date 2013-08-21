@@ -1,19 +1,13 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
-import org.bukkit.Location;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
+import org.bukkit.event.*;
+import org.bukkit.inventory.*;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
 public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
-
-    OresomeBattlesMaps plugin;
 
     public Darknessofdusk() {
         super.initiate(this);

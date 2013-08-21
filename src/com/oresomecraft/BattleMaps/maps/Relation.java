@@ -9,8 +9,6 @@ import com.oresomecraft.OresomeBattles.api.*;
 
 public class Relation extends BattleMap implements IBattleMap, Listener {
 
-    OresomeBattlesMaps plugin;
-
     public Relation() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);

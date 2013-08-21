@@ -1,13 +1,12 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import com.oresomecraft.OresomeBattles.api.*;
-import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
 import org.bukkit.potion.*;
+
 import com.oresomecraft.BattleMaps.*;
-import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.OresomeBattles.api.*;
 
 public class Sunshine extends BattleMap implements IBattleMap, Listener {
 

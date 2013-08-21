@@ -1,10 +1,6 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.List;
-
 import org.bukkit.*;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.*;
 
@@ -12,8 +8,6 @@ import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
 public class Sandtrap extends BattleMap implements IBattleMap, Listener {
-
-    OresomeBattlesMaps plugin;
 
     public Sandtrap() {
         super.initiate(this);

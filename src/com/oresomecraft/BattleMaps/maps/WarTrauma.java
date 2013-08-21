@@ -12,14 +12,9 @@ import org.bukkit.potion.*;
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
+import java.util.*;
 
 public class WarTrauma extends BattleMap implements IBattleMap, Listener {
-
-    OresomeBattlesMaps plugin;
 
     public WarTrauma() {
         super.initiate(this);

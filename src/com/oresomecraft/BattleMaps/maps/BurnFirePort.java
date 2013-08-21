@@ -9,8 +9,6 @@ import com.oresomecraft.OresomeBattles.api.*;
 
 public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
-    OresomeBattlesMaps plugin;
-
     public BurnFirePort() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
