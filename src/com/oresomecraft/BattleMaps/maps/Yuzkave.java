@@ -1,8 +1,11 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.event.*;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -110,19 +113,18 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
         }
 
     }
-    
-      @EventHandler
-  public void arrowAway(org.bukkit.event.entity.ProjectileHitEvent event) {
-      org.bukkit.entity.Entity projectile = event.getEntity();
-      Location loc = projectile.getLocation();
-      if (loc.getWorld().getName().equals(name)) {
-          if (projectile instanceof org.bukkit.entity.Arrow) {
-              org.bukkit.entity.Arrow a = (org.bukkit.entity.Arrow) projectile;
-              a.remove();
-          }
-      }
-  }
 
+    @EventHandler
+    public void arrowAway(ProjectileHitEvent event) {
+        Entity projectile = event.getEntity();
+        Location loc = projectile.getLocation();
+        if (loc.getWorld().getName().equals(name)) {
+            if (projectile instanceof Arrow) {
+                Arrow a = (Arrow) projectile;
+                a.remove();
+            }
+        }
+    }
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
