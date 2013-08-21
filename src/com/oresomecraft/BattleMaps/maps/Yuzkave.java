@@ -110,6 +110,19 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
         }
 
     }
+    
+      @EventHandler
+  public void arrowAway(org.bukkit.event.entity.ProjectileHitEvent event) {
+      org.bukkit.entity.Entity projectile = event.getEntity();
+      Location loc = projectile.getLocation();
+      if (loc.getWorld().getName().equals(name)) {
+          if (projectile instanceof org.bukkit.entity.Arrow) {
+              org.bukkit.entity.Arrow a = (org.bukkit.entity.Arrow) projectile;
+              a.remove();
+          }
+      }
+  }
+
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
