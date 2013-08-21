@@ -14,6 +14,7 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
         setDetails(name, fullName, creators, modes);
         disableDrops(new Material[]{Material.IRON_SWORD, Material.BOW, Material.IRON_BOOTS, Material.CHAINMAIL_LEGGINGS,
                 Material.IRON_CHESTPLATE, Material.LEATHER_HELMET, Material.ARROW, Material.FISHING_ROD, Material.ENDER_PEARL});
+        disablePearlDamage(true);
     }
 
     String name = "raid";

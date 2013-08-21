@@ -1,4 +1,3 @@
-
 package com.oresomecraft.BattleMaps;
 
 import java.util.ArrayList;
