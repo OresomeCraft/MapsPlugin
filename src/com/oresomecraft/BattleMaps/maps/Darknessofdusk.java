@@ -13,6 +13,7 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setAllowBuild(false);
+        lockTime("night");
     }
 
     String name = "dusk";
