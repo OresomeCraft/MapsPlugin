@@ -15,6 +15,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.world.WorldLoadEvent;
+import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class BattleMap implements Listener {
@@ -40,6 +41,7 @@ public abstract class BattleMap implements Listener {
     private boolean allowBuild = true;
     private Material[] disabledDrops;
     private boolean pearlDamage = true;
+    private Long timeLock;
 
     // Map details
     String name;
@@ -70,7 +72,13 @@ public abstract class BattleMap implements Listener {
         if (event.getWorld().getName().equals(name)) {
             config.readyTDMSpawns();
             config.readyFFASpawns();
+
+            if (timeLock != null) startTimeLock();
         }
+    }
+
+    public void worldUnload(WorldUnloadEvent event) {
+        Bukkit.getScheduler().cancelTask(timeLockSchedular);
     }
 
     /**
@@ -155,6 +163,17 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
+     * Sets a time lock on the map
+     *
+     * @param time The time to lock the map to. ("day", "dawn", "night")
+     */
+    public void lockTime(String time) {
+        if (time.equalsIgnoreCase("day")) timeLock = 0L;
+        else if (time.equalsIgnoreCase("dawn")) timeLock = 23000L;
+        else if (time.equalsIgnoreCase("night")) timeLock = 14000L;
+    }
+
+    /**
      * Sets TDM and CTF spawn points
      */
     public abstract void readyTDMSpawns();
@@ -236,6 +255,15 @@ public abstract class BattleMap implements Listener {
             clearInv(event.getPlayer());
             config.applyInventory(event.getPlayer());
         }
+    }
+
+    int timeLockSchedular;
+    public void startTimeLock() {
+        timeLockSchedular = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+            public void run() {
+                Bukkit.getWorld(name).setTime(timeLock);
+            }
+        }, 100L, 100L);
     }
 
     /**
