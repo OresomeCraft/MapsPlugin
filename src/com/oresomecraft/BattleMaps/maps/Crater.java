@@ -15,6 +15,7 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
         setDetails(name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new ItemStack[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
+        lockTime("night");
     }
 
     String name = "crater";
