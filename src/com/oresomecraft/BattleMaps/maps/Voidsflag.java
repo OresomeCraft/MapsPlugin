@@ -113,25 +113,4 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventmultipleplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-        Player player = event.getPlayer();
-
-        if (getArena().equals(name)) {
-            if (b.getType().equals(Material.TNT)) {
-                if (contains(loc, -357, -177, 3, 69, -8, 109) && BattlePlayer.getBattlePlayer(player).getTeam() == Team.TDM_BLUE) {
-                    event.setCancelled(true);
-                    player.sendMessage(ChatColor.RED + "TNT can only be placed on the enemy side");
-                }
-                if (contains(loc, -186, 10, 71, 4, 108, -7) && BattlePlayer.getBattlePlayer(player).getTeam() == Team.TDM_RED) {
-                    event.setCancelled(true);
-                    player.sendMessage(ChatColor.RED + "TNT can only be placed on the enemy side");
-                }
-            }
-        }
-    }
-
 }
