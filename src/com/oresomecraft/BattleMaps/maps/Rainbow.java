@@ -52,6 +52,7 @@ public class Rainbow extends BattleMap implements IBattleMap, Listener {
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack STONE = new ItemStack(Material.STONE, 64);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
@@ -68,6 +69,7 @@ public class Rainbow extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, PICK);
         i.setItem(3, STEAK);
         i.setItem(4, HEALTH);
+        i.setItem(8, STONE);
         i.setItem(10, ARROWS);
 
     }
