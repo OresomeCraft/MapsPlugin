@@ -77,6 +77,7 @@ public abstract class BattleMap implements Listener {
         }
     }
 
+    @EventHandler
     public void worldUnload(WorldUnloadEvent event) {
         Bukkit.getScheduler().cancelTask(timeLockSchedular);
     }
@@ -267,10 +268,15 @@ public abstract class BattleMap implements Listener {
     }
 
     int timeLockSchedular;
+
     public void startTimeLock() {
         timeLockSchedular = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             public void run() {
-                Bukkit.getWorld(name).setTime(timeLock);
+                if (Bukkit.getWorld(name) != null) {
+                    Bukkit.getWorld(name).setTime(timeLock);
+                } else {
+                    Bukkit.getScheduler().cancelTask(timeLockSchedular);
+                }
             }
         }, 100L, 100L);
     }
