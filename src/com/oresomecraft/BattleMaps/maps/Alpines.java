@@ -34,7 +34,7 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
 
-        setKoTHMonument(new Location(w, -83, 115, -1));
+        setKoTHMonument(new Location(w, -1, 133, 4));
     }
 
     public void readyFFASpawns() {
@@ -53,13 +53,11 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-        ItemStack LOG = new ItemStack(Material.LOG, 25);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, HEALTH);
-        i.setItem(3, LOG);
         i.setItem(11, ARROWS);
         i.setItem(8, new ItemStack(Material.BREAD, 3));
 
