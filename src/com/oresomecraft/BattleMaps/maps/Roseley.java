@@ -18,7 +18,7 @@ public class Roseley extends BattleMap implements IBattleMap, Listener {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new ItemStack[]{Material.STONE_SWORD, Material.LEATHER_HELMET});
+        disableDrops(new Material[]{Material.STONE_SWORD, Material.LEATHER_HELMET});
     }
 
     String name = "roseley";
