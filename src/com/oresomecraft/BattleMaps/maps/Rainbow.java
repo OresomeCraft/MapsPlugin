@@ -12,7 +12,7 @@ public class Rainbow extends BattleMap implements IBattleMap, Listener {
     public Rainbow() {
         super.initiate(this);
         setDetails(name, fullName, creators, modes);
-        disableDrops(new ItemStack[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
     }
 
     String name = "rainbow";
