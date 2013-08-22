@@ -31,7 +31,6 @@ public class Rainbow extends BattleMap implements IBattleMap, Listener {
 
         setRedSpawns(name, redSpawns);
         setBlueSpawns(name, blueSpawns);
-        setCTFFlags(name, redFlag, blueFlag);
     }
 
     public void readyFFASpawns() {
