@@ -52,7 +52,7 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
 
         ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
-        ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 4);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
         i.setItem(0, STONE_SWORD);
