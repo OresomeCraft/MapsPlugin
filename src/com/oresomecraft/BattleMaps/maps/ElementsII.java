@@ -5,6 +5,8 @@ import org.bukkit.block.Block;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.*;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.potion.*;
@@ -17,13 +19,12 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
     public ElementsII() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(8);
-        setAllowBuild(false);
     }
 
     String name = "elements2";
     String fullName = "Elements II";
     String creators = "_Moist, psgs and broddikill";
-    Gamemode[] modes = {Gamemode.KOTH};
+    Gamemode[] modes = {Gamemode.KOTH, Gamemode.TDM};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -160, 70, -1, 90, 0));
@@ -46,7 +47,7 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         Inventory i = p.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
-        ItemStack FIRE = new ItemStack(Material.POTION, 1, (short) 8227);
+        ItemStack FIRE = new ItemStack(Material.POTION, 1, (short) 8227); // Keep this here even if it's not used plz
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
@@ -94,6 +95,26 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBreak(BlockBreakEvent event) {
+        Player p = event.getPlayer();
+        if (p.getLocation().getWorld().getName().equals(name)) {
+            if (getMode().equals(Gamemode.KOTH)) {
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlace(BlockPlaceEvent event) {
+        Player p = event.getPlayer();
+        if (p.getLocation().getWorld().getName().equals(name)) {
+            if (getMode().equals(Gamemode.KOTH)) {
+                event.setCancelled(true);
             }
         }
     }
