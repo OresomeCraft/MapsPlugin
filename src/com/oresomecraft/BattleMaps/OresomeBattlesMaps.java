@@ -87,6 +87,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Yuzkave();
         new Alpines();
         new Rainbow();
+        new Equator();
     }
 
     public static OresomeBattlesMaps getInstance() {
