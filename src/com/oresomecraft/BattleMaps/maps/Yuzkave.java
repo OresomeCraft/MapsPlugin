@@ -87,20 +87,30 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
         i.setItem(4, HEALTH);
         i.setItem(5, EXP);
         i.setItem(10, ARROWS);
-
-
     }
+
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = 208;
+    public int y1 = 96;
+    public int z1 = 13;
+
+    //Bottom right corner.
+    public int x2 = 362;
+    public int y2 = 42;
+    public int z2 = -142;
 
     @EventHandler
     public void onEat(PlayerInteractEvent event) {
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK) {
             Player p = event.getPlayer();
             if (p.getItemInHand().getType() == Material.MUSHROOM_SOUP) {
-                p.setHealth(p.getHealth() + 3);
-                p.getItemInHand().setType(Material.AIR);
+                if (p.getHealth() <= 17) {
+                    p.setHealth(p.getHealth() + 3);
+                    p.getItemInHand().setType(Material.AIR);
+                }
             }
         }
-
     }
 
     @EventHandler
@@ -114,16 +124,5 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
             }
         }
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 208;
-    public int y1 = 96;
-    public int z1 = 13;
-
-    //Bottom right corner.
-    public int x2 = 362;
-    public int y2 = 42;
-    public int z2 = -142;
 
 }

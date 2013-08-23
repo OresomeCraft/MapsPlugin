@@ -58,7 +58,8 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         i.setItem(8, new ItemStack(Material.BREAD, 3));
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
-        if (p.getTeam() == Team.KOTH_RED) p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 120 * 20, 2));
+        if (p.getTeam() == Team.KOTH_RED)
+            p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 120 * 20, 2));
 
     }
 

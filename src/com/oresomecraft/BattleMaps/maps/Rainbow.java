@@ -49,7 +49,7 @@ public class Rainbow extends BattleMap implements IBattleMap, Listener {
         ItemStack PICK = new ItemStack(Material.IRON_PICKAXE, 1);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_HELMET});
-        
+
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
         p.getInventory().setBoots(GOLD_BOOTS);
