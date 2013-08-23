@@ -12,8 +12,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Elements extends BattleMap implements IBattleMap, Listener {
 
     public Elements() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setTDMTime(12);
     }
 
@@ -23,22 +22,13 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, -23, 87, 11));
         blueSpawns.add(new Location(w, -25, 86, 147));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, -23, 87, 11));
         FFASpawns.add(new Location(w, -25, 86, 147));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

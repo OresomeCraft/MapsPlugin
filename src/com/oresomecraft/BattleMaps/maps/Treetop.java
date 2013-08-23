@@ -13,8 +13,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Treetop extends BattleMap implements IBattleMap, Listener {
 
     public Treetop() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setTDMTime(10);
         setAllowBuild(false);
     }
@@ -25,9 +24,6 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.KOTH, Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         redSpawns.add(new Location(w, 731, 37, 530));
         redSpawns.add(new Location(w, 724, 37, 512));
         redSpawns.add(new Location(w, 693, 11, 494));
@@ -36,18 +32,10 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 692, 42, 502));
         blueSpawns.add(new Location(w, 713, 35, 490));
 
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
-
         setKoTHMonument(new Location(w, 727, 60, 501));
-
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
-        setFFASpawns(name, FFASpawns);
         FFASpawns.add(new Location(w, 731, 37, 530));
         FFASpawns.add(new Location(w, 724, 37, 512));
         FFASpawns.add(new Location(w, 693, 11, 494));

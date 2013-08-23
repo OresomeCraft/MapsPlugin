@@ -11,8 +11,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Sunshine extends BattleMap implements IBattleMap, Listener {
 
     public Sunshine() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.BOW, Material.LEATHER_HELMET,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.WOOD_SWORD});
@@ -24,21 +23,15 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
         blueSpawns.add(new Location(w, -37, 89, 2));
         redSpawns.add(new Location(w, 32, 89, 2));
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
+
         setKoTHMonument(new Location(w, -3, 88, 2));
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, -37, 89, 2));
         FFASpawns.add(new Location(w, 32, 89, 2));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

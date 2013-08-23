@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
     public BurnFirePort() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -21,8 +20,6 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -130, 29, 152, 176, 0);
         Location blueSpawn = new Location(w, -52, 37, 41, 90, 0);
 
@@ -37,14 +34,9 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -11, 33, 62, 45, 0));
         blueSpawns.add(new Location(w, -115, 30, 79, 90, 0));
         blueSpawns.add(new Location(w, -86, 28, 87, 90, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -106, 26, 112, 179, 0);
         Location blueSpawn = new Location(w, -50, 32, 71, 0, 0);
 
@@ -60,8 +52,6 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -11, 33, 62, 45, 0));
         FFASpawns.add(new Location(w, -115, 30, 79, 90, 0));
         FFASpawns.add(new Location(w, -86, 28, 87, 90, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -69,12 +59,10 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE,
-                1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1,
-                (short) 16373);
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROW = new ItemStack(Material.ARROW, 64);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
@@ -91,8 +79,6 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, STEAK);
         i.setItem(4, EXP);
         i.setItem(10, ARROW);
-
-
     }
 
     public int x1 = -212;

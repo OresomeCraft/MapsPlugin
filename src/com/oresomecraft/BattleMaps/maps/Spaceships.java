@@ -13,8 +13,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Spaceships extends BattleMap implements IBattleMap, Listener {
 
     public Spaceships() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
     }
 
@@ -24,29 +23,17 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location blueSpawn = new Location(w, 142, 43, -80, 0, 0);
         Location redSpawn = new Location(w, 210, 43, -80, 0, 0);
-
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location blueSpawn = new Location(w, 142, 43, -80, 0, 0);
         Location redSpawn = new Location(w, 210, 43, -80, 0, 0);
-
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

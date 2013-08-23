@@ -14,8 +14,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Voidsflag extends BattleMap implements IBattleMap, Listener {
 
     public Voidsflag() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
     }
 
@@ -25,16 +24,10 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -2, 23, 49);
         Location blueSpawn = new Location(w, -348, 23, 51);
-
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
 
         Location redFlag = new Location(w, -71, 45, 60);
         Location blueFlag = new Location(w, -281, 45, 40);
@@ -42,15 +35,10 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -2, 23, 49);
         Location blueSpawn = new Location(w, -348, 23, 51);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

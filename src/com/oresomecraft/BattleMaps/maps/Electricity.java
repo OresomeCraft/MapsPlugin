@@ -12,8 +12,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Electricity extends BattleMap implements IBattleMap, Listener {
 
     public Electricity() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.GOLD_LEGGINGS, Material.GOLD_CHESTPLATE, Material.GOLD_HELMET, Material.GOLD_BOOTS});
     }
@@ -24,7 +23,6 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, 0, 76, 59));
         redSpawns.add(new Location(w, -58, 76, 0));
         redSpawns.add(new Location(w, -16, 76, 32));
@@ -32,21 +30,15 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 0, 76, -58));
         blueSpawns.add(new Location(w, 59, 76, 0));
         blueSpawns.add(new Location(w, 18, 76, -30));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, 0, 76, 59));
         FFASpawns.add(new Location(w, -58, 76, 0));
         FFASpawns.add(new Location(w, -16, 76, 32));
         FFASpawns.add(new Location(w, 0, 76, -58));
         FFASpawns.add(new Location(w, 59, 76, 0));
         FFASpawns.add(new Location(w, 18, 76, -30));
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

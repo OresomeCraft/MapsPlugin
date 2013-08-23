@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Fosscrest extends BattleMap implements IBattleMap, Listener {
 
     public Fosscrest() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -21,20 +20,13 @@ public class Fosscrest extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, 241, 120, -1310));
         redSpawns.add(new Location(w, 236, 94, -1325));
         blueSpawns.add(new Location(w, 236, 94, -1325));
         blueSpawns.add(new Location(w, 235, 101, -1312));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 186, 112, -1293);
         Location blueSpawn = new Location(w, 185, 112, -1288);
 
@@ -50,8 +42,6 @@ public class Fosscrest extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 244, 99, -1289));
         FFASpawns.add(new Location(w, 198, 113, -1288));
         FFASpawns.add(new Location(w, 187, 119, -1267));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

@@ -17,10 +17,8 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Arctic extends BattleMap implements IBattleMap, Listener {
 
     public Arctic() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-
     }
 
     String name = "arctic";
@@ -29,7 +27,6 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
 
         Location redSpawn = new Location(w, 845, 130, -113, -137, 0);
         Location blueSpawn = new Location(w, 761, 128, -72, 51, 0);
@@ -47,14 +44,9 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 831, 144, -64, -175, 0));
         blueSpawns.add(new Location(w, 795, 155, -26, -154, 0));
         blueSpawns.add(new Location(w, 812, 128, -52, 173, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 845, 130, -113, -137, 0);
         Location blueSpawn = new Location(w, 761, 128, -72, 51, 0);
 
@@ -80,8 +72,6 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 855, 130, -50, 136, 0));
         FFASpawns.add(new Location(w, 798, 148, -74, -134, 0));
         FFASpawns.add(new Location(w, 789, 123, -94, 133, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

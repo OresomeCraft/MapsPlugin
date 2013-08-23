@@ -11,8 +11,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Crater extends BattleMap implements IBattleMap, Listener {
 
     public Crater() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
         lockTime("night");
@@ -24,7 +23,6 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
 
         Location redSpawn = new Location(w, -55, 81, 57);
         Location blueSpawn = new Location(w, -14, 81, -53);
@@ -32,20 +30,14 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
 
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
         Location redFlag = new Location(w, -14, 84, 46);
         Location blueFlag = new Location(w, -57, 84, -43);
         setCTFFlags(name, redFlag, blueFlag);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -55, 81, 57);
         Location blueSpawn = new Location(w, -14, 81, -53);
-
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, -34, 79, 18));
@@ -53,8 +45,6 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -5, 79, 23));
         FFASpawns.add(new Location(w, -60, 79, -16));
         FFASpawns.add(new Location(w, 0, 78, -25));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

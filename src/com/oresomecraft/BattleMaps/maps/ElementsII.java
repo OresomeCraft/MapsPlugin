@@ -15,8 +15,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class ElementsII extends BattleMap implements IBattleMap, Listener {
 
     public ElementsII() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setTDMTime(8);
         setAllowBuild(false);
     }
@@ -27,29 +26,20 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, -160, 70, -1, 90, 0));
         redSpawns.add(new Location(w, -160, 70, -12, 90, 0));
 
         blueSpawns.add(new Location(w, -3, 70, 0, -90, 0));
         blueSpawns.add(new Location(w, -3, 70, 12, -90, 0));
 
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
-
         setKoTHMonument(new Location(w, -83, 115, -1));
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, -160, 70, -1, 90, 0));
         FFASpawns.add(new Location(w, -160, 70, -12, 90, 0));
         FFASpawns.add(new Location(w, -3, 70, 0, -90, 0));
         FFASpawns.add(new Location(w, -3, 70, 12, -90, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

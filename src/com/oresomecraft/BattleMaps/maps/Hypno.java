@@ -19,8 +19,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Hypno extends BattleMap implements IBattleMap, Listener {
 
     public Hypno() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
     }
 
     String name = "hypno";
@@ -29,8 +28,6 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         redSpawns.add(new Location(w, -773, 102, -1338, 134, 0));
         redSpawns.add(new Location(w, -779, 92, -1349, 134, 0));
         redSpawns.add(new Location(w, -759, 81, -1355, 173, 0));
@@ -44,13 +41,9 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -808, 79, -1379, -90, 0));
         blueSpawns.add(new Location(w, -784, 63, -1418, -34, 0));
         blueSpawns.add(new Location(w, -800, 62, -1434, -30, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
         Location redSpawn = new Location(w, -783, 91, -1331, 159, 0);
         Location blueSpawn = new Location(w, -814, 83, -1389, -18, 0);
 
@@ -76,8 +69,6 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -800, 87, -1384, -103, 0));
         FFASpawns.add(new Location(w, -781, 69, -1424, -18, 0));
         FFASpawns.add(new Location(w, -746, 73, -1358, 123, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

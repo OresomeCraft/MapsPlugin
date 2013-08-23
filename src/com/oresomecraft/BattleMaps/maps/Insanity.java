@@ -12,8 +12,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Insanity extends BattleMap implements IBattleMap, Listener {
 
     public Insanity() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -27,9 +26,6 @@ public class Insanity extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -1441, 94, -619, 2, 0);
         Location blueSpawn = new Location(w, -1441, 94, -587, 0, 0);
 
@@ -49,8 +45,6 @@ public class Insanity extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -1441, 99, -619, 0, 0));
         FFASpawns.add(new Location(w, -1455, 99, -614, 0, 0));
         FFASpawns.add(new Location(w, -1425, 99, -599, 2, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

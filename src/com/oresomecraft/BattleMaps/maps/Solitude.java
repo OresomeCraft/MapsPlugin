@@ -17,8 +17,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Solitude extends BattleMap implements IBattleMap, Listener {
 
     public Solitude() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
     }
@@ -29,8 +28,6 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         redSpawns.add(new Location(w, 380, 52, 960));
         redSpawns.add(new Location(w, 342, 72, 965));
         redSpawns.add(new Location(w, 260, 95, 939));
@@ -66,15 +63,9 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 406, 46, 966));
         blueSpawns.add(new Location(w, 267, 92, 987));
         blueSpawns.add(new Location(w, 296, 60, 951));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, 380, 52, 960));
         FFASpawns.add(new Location(w, 342, 72, 965));
         FFASpawns.add(new Location(w, 260, 95, 939));
@@ -92,8 +83,6 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 406, 46, 966));
         FFASpawns.add(new Location(w, 267, 92, 987));
         FFASpawns.add(new Location(w, 296, 60, 951));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

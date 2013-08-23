@@ -43,6 +43,8 @@ public abstract class BattleMap implements Listener {
     private boolean pearlDamage = true;
     private Long timeLock;
 
+    public World w;
+
     // Map details
     String name;
     String fullName;
@@ -70,8 +72,12 @@ public abstract class BattleMap implements Listener {
     @EventHandler // Set the spawns
     public void setSpawns(WorldLoadEvent event) { // Internal - Do not change
         if (event.getWorld().getName().equals(name)) {
+            this.w = event.getWorld();
             config.readyTDMSpawns();
             config.readyFFASpawns();
+            setFFASpawns(name, FFASpawns);
+            setRedSpawns(name, redSpawns);
+            setBlueSpawns(name, blueSpawns);
 
             if (timeLock != null) startTimeLock();
         }
@@ -79,27 +85,21 @@ public abstract class BattleMap implements Listener {
 
     @EventHandler
     public void worldUnload(WorldUnloadEvent event) {
+        this.w = null;
         Bukkit.getScheduler().cancelTask(timeLockSchedular);
-    }
-
-    /**
-     * Initiates a map
-     *
-     * @param config A BattleMap config
-     */
-    protected final void initiate(BattleMap config) {
-        this.config = config;
     }
 
     /**
      * Sets details for the map after initiation
      *
+     * @param config   A BattleMap
      * @param name     (Shortened) Name of map
      * @param fullName Full name of the map
      * @param creators Creators of the map
      * @param modes    Gamemodes supported by thr map
      */
-    protected final void setDetails(String name, String fullName, String creators, Gamemode[] modes) {
+    protected final void initiate(BattleMap config, String name, String fullName, String creators, Gamemode[] modes) {
+        this.config = config;
         this.name = name;
         this.fullName = fullName;
         this.creators = creators;

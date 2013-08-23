@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class DimensionalWar extends BattleMap implements IBattleMap, Listener {
 
     public DimensionalWar() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -21,16 +20,12 @@ public class DimensionalWar extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -11, 150, 72, 179, 0);
         Location blueSpawn = new Location(w, -1610, 55, 50, 0, 0); // what are the last 2 paramaters? :_:
         // location is new Location(world,x,y,z); no?
 
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
 
         Location blueFlag = new Location(w, -1610, 56, -263);
         Location redFlag = new Location(w, -1617, 56, -363);
@@ -38,15 +33,10 @@ public class DimensionalWar extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -11, 150, 72, 179, 0);
         Location blueSpawn = new Location(w, -1610, 55, 50, 0, 0);
-
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

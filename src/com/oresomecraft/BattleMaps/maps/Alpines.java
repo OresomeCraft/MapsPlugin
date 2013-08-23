@@ -13,8 +13,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Alpines extends BattleMap implements IBattleMap, Listener {
 
     public Alpines() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setTDMTime(8);
         setAllowBuild(false);
     }
@@ -25,25 +24,14 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, 2, 84, -48));
-
         blueSpawns.add(new Location(w, -3, 84, 58));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
 
         setKoTHMonument(new Location(w, -1, 133, 4));
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
-        setFFASpawns(name, FFASpawns);
         FFASpawns.add(new Location(w, 2, 84, -48));
-
         FFASpawns.add(new Location(w, -3, 84, 58));
     }
 

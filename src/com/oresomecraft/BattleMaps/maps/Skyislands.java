@@ -11,8 +11,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Skyislands extends BattleMap implements IBattleMap, Listener {
 
     public Skyislands() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -22,8 +21,6 @@ public class Skyislands extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 738, 170, -1203, 179, 0);
         Location blueSpawn = new Location(w, 743, 170, -1268, 179, 0);
 
@@ -38,15 +35,9 @@ public class Skyislands extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 734, 170, -1255, 0, 0));
         blueSpawns.add(new Location(w, 771, 182, -1255, 5, 0));
         blueSpawns.add(new Location(w, 742, 209, -1241, 0, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 738, 170, -1203, 179, 0);
         Location blueSpawn = new Location(w, 743, 170, -1268, 0, 0);
 
@@ -70,8 +61,6 @@ public class Skyislands extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 742, 182, -1237, -179, 0));
         FFASpawns.add(new Location(w, 764, 177, -1233, -179, 0));
         FFASpawns.add(new Location(w, 731, 178, -1240, -1, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -121,8 +110,6 @@ public class Skyislands extends BattleMap implements IBattleMap, Listener {
             if (contains(event.getEntity().getLocation(), 691, 162, -1266, 706, 179, -1247)) {
                 event.setCancelled(true);
             }
-
         }
-
     }
 }

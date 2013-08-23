@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Terminal extends BattleMap implements IBattleMap, Listener {
 
     public Terminal() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -21,21 +20,13 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -72, 71, -1208, -1, 0);
-
         Location blueSpawn = new Location(w, -116, 66, -1140, -178, 0);
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -72, 71, -1208, -1, 0);
         Location blueSpawn = new Location(w, -116, 66, -1140, -178, 0);
         FFASpawns.add(redSpawn);
@@ -60,9 +51,6 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -77, 71, -1169, -90, 0));
         FFASpawns.add(new Location(w, -58, 71, -1147, 156, 0));
         FFASpawns.add(new Location(w, -91, 71, -1140, 141, 0));
-
-        // Add spawns to list. (Don't change!)
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

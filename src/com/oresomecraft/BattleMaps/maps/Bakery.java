@@ -11,8 +11,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Bakery extends BattleMap implements IBattleMap, Listener {
 
     public Bakery() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -22,22 +21,13 @@ public class Bakery extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, -81, 70, 26));
         redSpawns.add(new Location(w, 65, 70, 27));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, -81, 70, 26));
         FFASpawns.add(new Location(w, 65, 70, 27));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -62,8 +52,6 @@ public class Bakery extends BattleMap implements IBattleMap, Listener {
         i.setItem(1, BOW);
         i.setItem(3, HEALTH);
         i.setItem(11, ARROWS);
-
-
     }
 
     // Region. (Top corner block and bottom corner block.

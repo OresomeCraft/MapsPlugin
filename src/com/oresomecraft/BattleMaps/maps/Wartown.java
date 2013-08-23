@@ -19,8 +19,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Wartown extends BattleMap implements IBattleMap, Listener {
 
     public Wartown() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
     }
 
     String name = "wartown";
@@ -29,23 +28,13 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 175, 64, -268, 0, 0);
         Location blueSpawn = new Location(w, 175, 67, -146, 179, 0);
-
         redSpawns.add(redSpawn);
-        redSpawns.add(new Location(w, 176, 74, -253, -50, 0));
-
         blueSpawns.add(blueSpawn);
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 175, 64, -272);
         Location blueSpawn = new Location(w, 175, 67, -146, 179, 0);
 
@@ -71,8 +60,6 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 183, 60, -230, -46, 0));
         FFASpawns.add(new Location(w, 200, 60, -251, 47, 0));
         FFASpawns.add(new Location(w, 174, 69, -234, 41, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

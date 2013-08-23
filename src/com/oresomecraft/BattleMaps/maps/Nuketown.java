@@ -16,8 +16,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Nuketown extends BattleMap implements IBattleMap, Listener {
 
     public Nuketown() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -27,8 +26,6 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 1, 7, 41, 0, 0);
         Location blueSpawn = new Location(w, 2, 7, 154, -179, 0);
 
@@ -53,14 +50,9 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -2, 11, 156, 179, 0));
         redSpawns.add(new Location(w, 21, 11, 115, 42, 0));
         blueSpawns.add(new Location(w, 20, 16.5, 138, 119, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 1, 7, 41, 0, 0);
         Location blueSpawn = new Location(w, 2, 7, 154, -179, 0);
 
@@ -85,8 +77,6 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -2, 11, 156, 179, 0));
         FFASpawns.add(new Location(w, 21, 11, 115, 42, 0));
         FFASpawns.add(new Location(w, 20, 16.5, 138, 119, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

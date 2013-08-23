@@ -13,8 +13,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class TheBowl extends BattleMap implements IBattleMap, Listener {
 
     public TheBowl() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS});
     }
 
@@ -25,8 +24,6 @@ public class TheBowl extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 10, 82, -36, 0, 0);
         Location blueSpawn = new Location(w, 4, 84, 38, 179, 0);
 
@@ -42,16 +39,10 @@ public class TheBowl extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -20, 76, 20, -30, 0));
         blueSpawns.add(new Location(w, -7, 68, 16, 90, 0));
 
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
-
         setKoTHMonument(new Location(w, 7, 82, -1));
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, 10, 82, -36, 0, 0));
         FFASpawns.add(new Location(w, 4, 84, 38, 179, 0));
         FFASpawns.add(new Location(w, 21, 72, -26, 0, 0));
@@ -62,8 +53,6 @@ public class TheBowl extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 29, 70, 31, 90, 0));
         FFASpawns.add(new Location(w, -20, 76, 20, -30, 0));
         FFASpawns.add(new Location(w, -7, 68, 16, 90, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

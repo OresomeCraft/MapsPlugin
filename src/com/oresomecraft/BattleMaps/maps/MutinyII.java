@@ -11,8 +11,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class MutinyII extends BattleMap implements IBattleMap, Listener {
 
     public MutinyII() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
     }
 
@@ -22,24 +21,16 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, 32, 94, 12));
         redSpawns.add(new Location(w, 3, 85, 6));
         redSpawns.add(new Location(w, -24, 91, 13));
         blueSpawns.add(new Location(w, 31, 91, -58));
         blueSpawns.add(new Location(w, 3, 85, -51));
         blueSpawns.add(new Location(w, -25, 94, -57));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, 31, 91, -58));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

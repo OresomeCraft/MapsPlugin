@@ -12,8 +12,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Towers extends BattleMap implements IBattleMap, Listener {
 
     public Towers() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -23,21 +22,13 @@ public class Towers extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getWorld(name);
-
         Location redSpawn = new Location(w, 523, 11, -1095, -137, 0);
         Location blueSpawn = new Location(w, 523, 11, -1225, 51, 0);
-
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getWorld(name);
-
         Location redSpawn = new Location(w, 845, 130, -113, -137, 0);
         Location blueSpawn = new Location(w, 523, 11, -1225, 51, 0);
 
@@ -63,8 +54,6 @@ public class Towers extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 555, 12, -1175, 66, 0));
         FFASpawns.add(new Location(w, 539, 11, -1231, 12, 0));
         FFASpawns.add(new Location(w, 486, 13, -1188, -54, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

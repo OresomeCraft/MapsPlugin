@@ -14,8 +14,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
 
     public CanopyWarfare() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
     }
 
     String name = "canopy";
@@ -24,20 +23,11 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         redSpawns.add(new Location(w, 13, 78, -24, 3, -45));
-
         blueSpawns.add(new Location(w, 26, 78, 86, 2, 139));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, 0, 99, 27, 2, 0));
         FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
         FFASpawns.add(new Location(w, 21, 105, -13, 0, 0));
@@ -59,8 +49,6 @@ public class CanopyWarfare extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -46, 97, 7, 0, 0));
         FFASpawns.add(new Location(w, 26, 105, -13, 0, 0));
         FFASpawns.add(new Location(w, 21, 94, 2, 0, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

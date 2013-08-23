@@ -16,8 +16,7 @@ import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
     public Mayhem() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setTDMTime(10);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
@@ -30,36 +29,21 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     public void onload(WorldLoadEvent event) { // Register power block
-        if (event.getWorld().getName().equals(name)) {
-            cyclePowerBlock();
-        }
+        if (event.getWorld().getName().equals(name)) cyclePowerBlock();
     }
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 64, 112, 111, 2, 0);
         Location blueSpawn = new Location(w, 23, 112, 63, 3, 0);
-
         redSpawns.add(redSpawn);
-
         blueSpawns.add(blueSpawn);
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 64, 112, 111, 2, 0);
         Location blueSpawn = new Location(w, 23, 112, 63, 3, 0);
-
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

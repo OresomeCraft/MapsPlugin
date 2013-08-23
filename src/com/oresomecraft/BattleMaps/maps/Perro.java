@@ -18,8 +18,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Perro extends BattleMap implements IBattleMap, Listener {
 
     public Perro() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setTDMTime(5);
         setAllowBuild(false);
     }
@@ -30,8 +29,6 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -1397, 130, -2080, 138, 0);
         Location blueSpawn = new Location(w, -1419, 68, -2137, -1, 0);
 
@@ -63,8 +60,6 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -1397, 130, -2080, 138, 0);
         Location blueSpawn = new Location(w, -1419, 68, -2137, -1, 0);
 
@@ -90,8 +85,6 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -1439, 129, -2093, -87, 0));
         FFASpawns.add(new Location(w, -1410, 114, -2081, -178, 0));
         FFASpawns.add(new Location(w, -1416, 98, -2081, -159, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

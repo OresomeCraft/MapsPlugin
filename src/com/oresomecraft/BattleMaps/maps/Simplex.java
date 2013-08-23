@@ -22,8 +22,7 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
      */
 
     public Simplex() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
     }
 
     String name = "simplex";
@@ -32,8 +31,6 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -143, 66, -51, -45, 0);
         Location blueSpawn = new Location(w, -1, 67, -49, 45, 0);
 
@@ -47,15 +44,10 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -7, 67, -43, -134, 0));
         blueSpawns.add(new Location(w, -7, 67, -49, -45, 0));
 
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
-
         setKoTHMonument(new Location(w, -72, 86, -41));
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, -143, 66, -51, -45, 0));
         FFASpawns.add(new Location(w, -1, 67, -49, 45, 0));
         FFASpawns.add(new Location(w, -143, 66, -45, -134, 0));
@@ -64,8 +56,6 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -1, 67, -43, 134, 0));
         FFASpawns.add(new Location(w, -7, 67, -43, -134, 0));
         FFASpawns.add(new Location(w, -7, 67, -49, -45, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -106,7 +96,6 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
         p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 5 * 20, 2));
-
 
     }
 

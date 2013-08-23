@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class HauntedHouse extends BattleMap implements IBattleMap, Listener {
 
     public HauntedHouse() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         setTDMTime(5);
     }
@@ -23,8 +22,6 @@ public class HauntedHouse extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -230, 78, 17, 0, 0);
         Location blueSpawn = new Location(w, -267, 85, 87, -145, 0);
 
@@ -35,23 +32,15 @@ public class HauntedHouse extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(blueSpawn);
         blueSpawns.add(new Location(w, -214, 83, 92, 150, 0));
         blueSpawns.add(new Location(w, -258, 80, 64, 90, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, -230, 78, 17, 0, 0));
         FFASpawns.add(new Location(w, -267, 85, 87, -145, 0));
         FFASpawns.add(new Location(w, -255, 79, 46, 0, 0));
         FFASpawns.add(new Location(w, -269, 83, 25, -68, 0));
         FFASpawns.add(new Location(w, -214, 83, 92, 150, 0));
         FFASpawns.add(new Location(w, -258, 80, 64, 90, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Relation extends BattleMap implements IBattleMap, Listener {
 
     public Relation() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -21,25 +20,15 @@ public class Relation extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 64, 76, 64, 2, 0);
         Location blueSpawn = new Location(w, 64, 76, 64, 0, 0);
-
         redSpawns.add(redSpawn);
         redSpawns.add(new Location(w, 64, 92, 64, 2, 0));
-
         blueSpawns.add(blueSpawn);
         blueSpawns.add(new Location(w, 64, 92, -64, 0, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 64, 76, 64, 2, 0);
         Location blueSpawn = new Location(w, 64, 76, 64, 0, 0);
 
@@ -59,8 +48,6 @@ public class Relation extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 82, 88, 82, 2, 0));
         FFASpawns.add(new Location(w, 82, 80, 47, 2, 0));
         FFASpawns.add(new Location(w, 47, 80, 82, 2, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
