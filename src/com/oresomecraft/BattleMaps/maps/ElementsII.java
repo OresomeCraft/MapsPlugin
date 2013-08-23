@@ -51,10 +51,6 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
-        if (p.getTeam() == Team.KOTH_RED) {
-            i.setItem(7, FIRE);
-        }
-
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, HEALTH);
@@ -62,6 +58,7 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         i.setItem(8, new ItemStack(Material.BREAD, 3));
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
+        if (p.getTeam() == Team.KOTH_RED) p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 120 * 20, 2));
 
     }
 
