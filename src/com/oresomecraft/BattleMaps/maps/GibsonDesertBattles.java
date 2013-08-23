@@ -12,8 +12,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listener {
 
     public GibsonDesertBattles() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LAVA_BUCKET});
     }
@@ -24,21 +23,13 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
         blueSpawns.add(new Location(w, -10, 60, 3));
         redSpawns.add(new Location(w, 226, 60, -100));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, -10, 60, 3));
         FFASpawns.add(new Location(w, 226, 60, -100));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

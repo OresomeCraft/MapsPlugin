@@ -17,8 +17,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Spire extends BattleMap implements IBattleMap, Listener {
 
     public Spire() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
     }
 
     String name = "spire";
@@ -34,8 +33,6 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
     public int z2 = -2230;
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -1509, 75, -2310);
         Location blueSpawn = new Location(w, -1649, 75, -2310);
 
@@ -61,15 +58,9 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -1578, 76, -2323, -152, 0));
         redSpawns.add(new Location(w, -1580, 94, -2299, 97, 0));
         blueSpawns.add(new Location(w, -1581, 99, -2322, -87, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
-
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, -1510, 74, -2311, -137, 0);
         Location blueSpawn = new Location(w, -1650, 74, -2311, 51, 0);
 
@@ -95,8 +86,6 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -1578, 76, -2323, -152, 0));
         FFASpawns.add(new Location(w, -1580, 94, -2299, 97, 0));
         FFASpawns.add(new Location(w, -1581, 99, -2322, -87, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -298,14 +287,12 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
         Material mat = b.getType();
         Location loc = b.getLocation();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+        if (b.getWorld().getName().equals(name)) {
 
             if (mat == Material.SPONGE) {
                 b.setType(Material.GOLD_BLOCK);
             }
         }
-
     }
-
 
 }

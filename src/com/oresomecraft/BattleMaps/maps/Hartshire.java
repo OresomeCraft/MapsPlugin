@@ -14,8 +14,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Hartshire extends BattleMap implements IBattleMap, Listener {
 
     public Hartshire() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -25,8 +24,6 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 93, 39, -126, -1, 0);
         Location blueSpawn = new Location(w, 188, 45, -130, -178, 0);
 
@@ -40,9 +37,6 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
         redSpawns.add(new Location(w, 229, 56, -148, -50, 0));
         blueSpawns.add(new Location(w, 116, 41, -46, -50, 0));
         redSpawns.add(new Location(w, 94, 53, -106, -50, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
@@ -62,8 +56,6 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 229, 56, -148, -50, 0));
         FFASpawns.add(new Location(w, 116, 41, -46, -50, 0));
         FFASpawns.add(new Location(w, 94, 53, -106, -50, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

@@ -11,8 +11,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Sloped extends BattleMap implements IBattleMap, Listener {
 
     public Sloped() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.BOW, Material.LEATHER_CHESTPLATE, Material.GOLD_LEGGINGS});
     }
@@ -24,8 +23,6 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
         Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
 
@@ -48,24 +45,15 @@ public class Sloped extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -5, 65, 0, 0, 0));
 
         setKoTHMonument(new Location(w, 2, 33, 45));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
         Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
 
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, 2, 34, 45, 2, 0));
-
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

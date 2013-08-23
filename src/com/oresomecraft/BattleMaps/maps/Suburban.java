@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Suburban extends BattleMap implements IBattleMap, Listener {
 
     public Suburban() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
     }
 
     String name = "suburban";
@@ -20,8 +19,6 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         blueSpawns.add(new Location(w, 360, 40, -482));
         blueSpawns.add(new Location(w, 361, 52, -482));
         blueSpawns.add(new Location(w, 364, 41, -579));
@@ -43,15 +40,9 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
         redSpawns.add(new Location(w, 326, 53, -448));
         redSpawns.add(new Location(w, 364, 54, -529));
         redSpawns.add(new Location(w, 437, 58, -482));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, 360, 40, -482));
         FFASpawns.add(new Location(w, 361, 52, -482));
         FFASpawns.add(new Location(w, 364, 41, -579));
@@ -62,7 +53,6 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 326, 53, -448));
         FFASpawns.add(new Location(w, 364, 54, -529));
         FFASpawns.add(new Location(w, 437, 58, -482));
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

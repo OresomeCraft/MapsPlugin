@@ -12,8 +12,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Mutiny extends BattleMap implements IBattleMap, Listener {
 
     public Mutiny() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.IRON_AXE, Material.DIAMOND_BOOTS, Material.GOLD_LEGGINGS, Material.IRON_CHESTPLATE, Material.LEATHER_HELMET});
     }
 
@@ -23,30 +22,21 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, 3, 72, -38));
         redSpawns.add(new Location(w, 1, 77, -19));
         redSpawns.add(new Location(w, 1, 70, -60));
         blueSpawns.add(new Location(w, -38, 72, -38));
         blueSpawns.add(new Location(w, -36, 70, -18));
         blueSpawns.add(new Location(w, -36, 77, -56));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, 3, 72, -38));
         FFASpawns.add(new Location(w, 1, 77, -19));
         FFASpawns.add(new Location(w, 1, 70, -60));
         FFASpawns.add(new Location(w, -38, 72, -38));
         FFASpawns.add(new Location(w, -36, 70, -18));
         FFASpawns.add(new Location(w, -36, 77, -56));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -115,15 +105,8 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void preventblockplace(BlockPlaceEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-            if (!contains(loc, x1, x2, y1, y2, z1, z2)) {
-                event.setCancelled(true);
-            }
-        }
+            if (event.getBlock().getWorld().getName().equals(name)
+                    && !contains(event.getBlock().getLocation(), x1, x2, y1, y2, z1, z2)) event.setCancelled(true);
     }
 
 }

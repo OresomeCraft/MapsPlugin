@@ -12,8 +12,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Apollo extends BattleMap implements IBattleMap, Listener {
 
     public Apollo() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -24,7 +23,6 @@ public class Apollo extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
 
         Location redSpawn = new Location(w, -11, 150, 72, 89, 0);
         Location blueSpawn = new Location(w, -33, 150, 50, -1, 0);
@@ -48,15 +46,9 @@ public class Apollo extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -68, 122, 38, -45, 0));
         blueSpawns.add(new Location(w, -53, 133, 57, -53, 0));
         blueSpawns.add(new Location(w, -62, 136, 80, -131, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, -11, 150, 72, 89, 0));
         FFASpawns.add(new Location(w, -33, 150, 50, -1, 0));
         FFASpawns.add(new Location(w, -55, 150, 72, -111, 0));
@@ -71,8 +63,6 @@ public class Apollo extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -19, 133, 88, 137, 0));
         FFASpawns.add(new Location(w, -82, 133, 25, -44, 0));
         FFASpawns.add(new Location(w, -57, 109, 72, -2, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -109,7 +99,6 @@ public class Apollo extends BattleMap implements IBattleMap, Listener {
                 p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 1000 * 20, 2));
             }
         });
-
 
     }
 

@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Sandtrap extends BattleMap implements IBattleMap, Listener {
 
     public Sandtrap() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setTDMTime(5);
         disableDrops(new Material[]{Material.DIAMOND_SPADE});
     }
@@ -22,7 +21,6 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, -18, 100, -30));
         redSpawns.add(new Location(w, -18, 95, -11));
         redSpawns.add(new Location(w, -18, 81, -31));
@@ -31,14 +29,9 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -18, 86, -86));
         blueSpawns.add(new Location(w, -18, 72, -68));
         blueSpawns.add(new Location(w, -18, 67, -87));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, -18, 100, -30));
         FFASpawns.add(new Location(w, -18, 95, -11));
         FFASpawns.add(new Location(w, -18, 81, -31));
@@ -47,7 +40,6 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -18, 86, -86));
         FFASpawns.add(new Location(w, -18, 72, -68));
         FFASpawns.add(new Location(w, -18, 67, -87));
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

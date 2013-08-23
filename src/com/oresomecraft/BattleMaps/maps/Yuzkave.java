@@ -16,13 +16,11 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Yuzkave extends BattleMap implements IBattleMap, Listener {
 
     public Yuzkave() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         setTDMTime(15);
         disableDrops(new Material[]{Material.MUSHROOM_SOUP, Material.GOLDEN_APPLE});
         lockTime("night");
-
     }
 
     // Map details
@@ -32,8 +30,6 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.CTF, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         redSpawns.add(new Location(w, 247, 67, -4));
         redSpawns.add(new Location(w, 245, 67, -10));
         redSpawns.add(new Location(w, 257, 68, -7));
@@ -41,9 +37,6 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 319, 66, -107));
         blueSpawns.add(new Location(w, 320, 68, -99));
         blueSpawns.add(new Location(w, 310, 69, -103));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
 
         Location redFlag = new Location(w, 256, 69, -9);
         Location blueFlag = new Location(w, 308, 70, -99);
@@ -53,8 +46,6 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, 247, 67, -4));
         FFASpawns.add(new Location(w, 319, 66, -107));
         FFASpawns.add(new Location(w, 267, 69, -53));
@@ -65,8 +56,6 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 307, 64, -33));
         FFASpawns.add(new Location(w, 285, 65, -9));
         FFASpawns.add(new Location(w, 284, 72, -33));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

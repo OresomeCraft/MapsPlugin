@@ -12,8 +12,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Gladiator extends BattleMap implements IBattleMap, Listener {
 
     public Gladiator() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
     }
 
     // Map details
@@ -23,8 +22,6 @@ public class Gladiator extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 207, 101, -31, -90, 0);
         Location blueSpawn = new Location(w, 289, 101, -31, 90, 0);
 
@@ -49,17 +46,11 @@ public class Gladiator extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 265, 110, -30, 90, 0));
         blueSpawns.add(new Location(w, 273, 100, -56, 45, 0));
 
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
-
         setKoTHMonument(new Location(w, 248, 125, -32));
 
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, 248, 101, -73, 0, 0));
         FFASpawns.add(new Location(w, 248, 101, 9, 180, 0));
         FFASpawns.add(new Location(w, 208, 101, -32, -90, 0));
@@ -95,8 +86,6 @@ public class Gladiator extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 248, 108, -41, 0, 0));
         FFASpawns.add(new Location(w, 265, 110, -30, 90, 0));
         FFASpawns.add(new Location(w, 231, 110, -32, -90, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

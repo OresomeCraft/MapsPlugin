@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Docks extends BattleMap implements IBattleMap, Listener {
 
     public Docks() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -21,8 +20,6 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 1796, 18, 490, -90, 0);
         Location blueSpawn = new Location(w, 1793, 23, 490, 90, 0);
 
@@ -33,15 +30,9 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(blueSpawn);
         blueSpawns.add(new Location(w, 1793, 23, 490, 90, 0));
         blueSpawns.add(new Location(w, 1700, 23, 490, 90, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, 1796, 18, 490, -90, 0));
         FFASpawns.add(new Location(w, 1792, 23, 490, 90, 0));
         FFASpawns.add(new Location(w, 1791, 26, 490, 90, 0));
@@ -54,8 +45,6 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 1704, 23, 490, -90, 0));
         FFASpawns.add(new Location(w, 1704, 26, 490, -90, 0));
         FFASpawns.add(new Location(w, 1704, 30, 490, -90, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

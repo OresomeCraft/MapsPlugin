@@ -14,8 +14,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Xenon extends BattleMap implements IBattleMap, Listener {
 
     public Xenon() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disablePearlDamage(true);
     }
@@ -26,21 +25,13 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
         Location redSpawn = new Location(w, 33, 2, 25);
         Location blueSpawn = new Location(w, 73, 2, -14);
-
         redSpawns.add(redSpawn);
-
         blueSpawns.add(blueSpawn);
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 33, 2, 25);
         Location blueSpawn = new Location(w, 73, 2, -14);
 
@@ -52,7 +43,6 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 17, 2, 5));
         FFASpawns.add(new Location(w, 53, 3, -36));
         FFASpawns.add(new Location(w, 53, 11, 5));
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

@@ -13,8 +13,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Mansion extends BattleMap implements IBattleMap, Listener {
 
     public Mansion() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.STONE_SWORD});
     }
@@ -25,8 +24,6 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 442, 64, -324);
         Location blueSpawn = new Location(w, 442, 64, -324);
 
@@ -52,13 +49,9 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 440, 71, -270));
         redSpawns.add(new Location(w, 465, 74, -274));
         blueSpawns.add(new Location(w, 466, 74, -251));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
         Location redSpawn = new Location(w, 442, 64, -324);
         Location blueSpawn = new Location(w, 442, 64, -324);
 
@@ -84,8 +77,6 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 440, 71, -270));
         FFASpawns.add(new Location(w, 465, 74, -274));
         FFASpawns.add(new Location(w, 466, 74, -251));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -128,28 +119,12 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void preventburn(BlockBurnEvent event) {
-
-        Block b = event.getBlock();
-        Location loc = b.getLocation();
-
-        if (loc.getWorld().getName().equals(name)) {
-
-            event.setCancelled(true);
-
-        }
-
+        if (event.getBlock().getWorld().getName().equals(name)) event.setCancelled(true);
     }
 
     @EventHandler
     public void preventspread(BlockSpreadEvent event) {
-
-        if (event.getBlock().getWorld().getName().equals(name)) {
-            if ((event.getBlock().getTypeId() != 2) || (event.getBlock().getTypeId() != 3)) {
-
-                event.setCancelled(true);
-
-            }
-        }
-
+        if (event.getBlock().getWorld().getName().equals(name))
+            if ((event.getBlock().getTypeId() != 2) || (event.getBlock().getTypeId() != 3)) event.setCancelled(true);
     }
 }

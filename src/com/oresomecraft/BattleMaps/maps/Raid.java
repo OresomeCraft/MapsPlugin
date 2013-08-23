@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Raid extends BattleMap implements IBattleMap, Listener {
 
     public Raid() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.IRON_SWORD, Material.BOW, Material.IRON_BOOTS, Material.CHAINMAIL_LEGGINGS,
                 Material.IRON_CHESTPLATE, Material.LEATHER_HELMET, Material.ARROW, Material.FISHING_ROD, Material.ENDER_PEARL});
         disablePearlDamage(true);
@@ -23,7 +22,6 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
 
         Location redSpawn = new Location(w, 5, 68, -5, 1, 0);
         Location blueSpawn = new Location(w, -81, 69, -2, 3, 0);
@@ -55,23 +53,15 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -81, 62, -24, 3, 0));
         blueSpawns.add(new Location(w, -81, 62, -27, 3, 0));
         blueSpawns.add(new Location(w, -81, 62, -30, 3, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 5, 68, -5, 1, 0);
         Location blueSpawn = new Location(w, -81, 69, -2, 3, 0);
 
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, 5, 68, -5, 1, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -100,9 +90,7 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
         i.setItem(4, HEALTH_POTION);
         i.setItem(28, ARROWS);
 
-        if (p.getTeam() == Team.TDM_BLUE) {
-            p.setItem(5, Material.ENDER_PEARL, 1);
-        }
+        if (p.getTeam() == Team.TDM_BLUE) p.setItem(5, Material.ENDER_PEARL, 1);
 
     }
 

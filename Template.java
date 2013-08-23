@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Template extends BattleMap implements IBattleMap, Listener {
 
     public Template() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
     }
 
     // Map details
@@ -21,7 +20,6 @@ public class Template extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.CTF, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
 
         redSpawns.add(new Location(w, 0, 99, 27, 2, 0));
         redSpawns.add(new Location(w, -9, 110, -20, 0, 0));
@@ -32,18 +30,11 @@ public class Template extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 0, 99, 27, 0, 0));
         blueSpawns.add(new Location(w, -16, 108, -3, 0, 0));
         blueSpawns.add(new Location(w, -30, 108, -3, 0, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, 0, 99, 27, 2, 0));
         FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -69,8 +60,6 @@ public class Template extends BattleMap implements IBattleMap, Listener {
         p.setItem(2, Material.COOKED_BEEF, 1);
         p.setItem(4, Material.ARROW, 64);
         p.setItem(5, Material.EXP_BOTTLE, 5);
-
-
     }
 
     // Region. (Top corner block and bottom corner block.

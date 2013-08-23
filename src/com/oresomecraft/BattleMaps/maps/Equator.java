@@ -11,8 +11,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Equator extends BattleMap implements IBattleMap, Listener {
 
     public Equator() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setTDMTime(8);
         setAllowBuild(false);
     }
@@ -23,8 +22,6 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF, Gamemode.INFECTION, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, 53, 75, -24));
         redSpawns.add(new Location(w, 26, 74, -50));
         redSpawns.add(new Location(w, 60, 75, 12));
@@ -32,9 +29,6 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -53, 75, 24));
         blueSpawns.add(new Location(w, -26, 74, 50));
         blueSpawns.add(new Location(w, -60, 74, -12));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
 
         Location redFlag = new Location(w, 75, 76, -4);
         Location blueFlag = new Location(w, -75, 76, 4);
@@ -44,12 +38,7 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
-        setFFASpawns(name, FFASpawns);
         FFASpawns.add(new Location(w, 2, 84, -48));
-
         FFASpawns.add(new Location(w, -3, 84, 58));
     }
 

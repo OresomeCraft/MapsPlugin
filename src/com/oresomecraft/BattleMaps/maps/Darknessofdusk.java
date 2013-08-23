@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
     public Darknessofdusk() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         lockTime("night");
     }
@@ -23,26 +22,18 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
     //Tdm isn't enabled on this, don't need to do spawns.
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
         Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
 
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, 62, 6, 23));
         FFASpawns.add(new Location(w, 62, 6, 149));
         FFASpawns.add(new Location(w, -46, 6, 147));
         FFASpawns.add(new Location(w, -48, 6, 44));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -70,8 +61,6 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
         i.setItem(4, ARROWS);
-
-
     }
 
     // Region. (Top corner block and bottom corner block.

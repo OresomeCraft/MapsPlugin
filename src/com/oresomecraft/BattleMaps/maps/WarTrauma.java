@@ -17,8 +17,7 @@ import java.util.*;
 public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
     public WarTrauma() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
     }
 
     String name = "trauma";
@@ -27,25 +26,13 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         redSpawns.add(new Location(w, -35, 70, 8));
-
         blueSpawns.add(new Location(w, -35, 70, 190));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, -35, 70, 8));
-
         FFASpawns.add(new Location(w, -35, 70, 190));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Deepcaverns extends BattleMap implements IBattleMap, Listener {
 
     public Deepcaverns() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -21,8 +20,6 @@ public class Deepcaverns extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
         Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
 
@@ -50,15 +47,9 @@ public class Deepcaverns extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -46, 97, 7, 0, 0));
         blueSpawns.add(new Location(w, 26, 105, -13, 0, 0));
         blueSpawns.add(new Location(w, 21, 94, 2, 0, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         Location redSpawn = new Location(w, 0, 99, 27, 2, 0);
         Location blueSpawn = new Location(w, -9, 110, -20, 0, 0);
 
@@ -85,8 +76,6 @@ public class Deepcaverns extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -46, 97, 7, 0, 0));
         FFASpawns.add(new Location(w, 26, 105, -13, 0, 0));
         FFASpawns.add(new Location(w, 21, 94, 2, 0, 0));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -114,8 +103,6 @@ public class Deepcaverns extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, HEALTH_POTION);
         i.setItem(4, ARROWS);
         i.setItem(5, EXP);
-
-
     }
 
     // Region. (Top corner block and bottom corner block.

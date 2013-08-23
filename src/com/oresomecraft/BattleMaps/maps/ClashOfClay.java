@@ -14,8 +14,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
 
     public ClashOfClay() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
         disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
     }
@@ -26,26 +25,13 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-        Location redSpawn = new Location(w, -22, 81, 8);
-        Location blueSpawn = new Location(w, -23, 81, 164);
-
-        redSpawns.add(redSpawn);
-
-        blueSpawns.add(blueSpawn);
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
+        redSpawns.add(new Location(w, -22, 81, 8));
+        blueSpawns.add(new Location(w, -23, 81, 164));
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-        Location redSpawn = new Location(w, -22, 81, 8);
-        Location blueSpawn = new Location(w, -23, 81, 164);
-        FFASpawns.add(blueSpawn);
-        FFASpawns.add(redSpawn);
-        setFFASpawns(name, FFASpawns);
+        FFASpawns.add(new Location(w, -22, 81, 8));
+        FFASpawns.add(new Location(w, -23, 81, 164));
     }
 
     public void applyInventory(final BattlePlayer p) {

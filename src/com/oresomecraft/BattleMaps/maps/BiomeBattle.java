@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
 
     public BiomeBattle() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
     }
 
     // Map details
@@ -21,21 +20,13 @@ public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.FFA, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         redSpawns.add(new Location(w, -61, 73, -54));
-
         blueSpawns.add(new Location(w, 48, 72, 42));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
 
         setKoTHMonument(new Location(w, 0, 67, 0));
     }
 
     public void readyFFASpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, -61, 73, -54));
         FFASpawns.add(new Location(w, 48, 72, 42));
         FFASpawns.add(new Location(w, -69, 72, 63));
@@ -47,9 +38,6 @@ public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 13, 69, -3));
         FFASpawns.add(new Location(w, 15, 74, 40));
         FFASpawns.add(new Location(w, -83, 74, -7));
-
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {

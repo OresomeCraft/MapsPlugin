@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Carnival extends BattleMap implements IBattleMap, Listener {
 
     public Carnival() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -21,8 +20,6 @@ public class Carnival extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
-
         redSpawns.add(new Location(w, -83, 39, 1836));
         redSpawns.add(new Location(w, -116, 33, 1832));
         redSpawns.add(new Location(w, -19, 29, 1832));
@@ -46,15 +43,9 @@ public class Carnival extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -18, 5, 1831));
         blueSpawns.add(new Location(w, -79, 21, 1831));
         blueSpawns.add(new Location(w, -17, 49, 1831));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
-
         FFASpawns.add(new Location(w, -83, 39, 1836));
         FFASpawns.add(new Location(w, -116, 33, 1832));
         FFASpawns.add(new Location(w, -19, 29, 1832));
@@ -66,7 +57,6 @@ public class Carnival extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -18, 5, 1831));
         FFASpawns.add(new Location(w, -79, 21, 1831));
         FFASpawns.add(new Location(w, -17, 49, 1831));
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -92,8 +82,6 @@ public class Carnival extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
         i.setItem(11, ARROWS);
-
-
     }
 
     // Region. (Top corner block and bottom corner block.

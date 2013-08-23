@@ -15,8 +15,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Roseley extends BattleMap implements IBattleMap, Listener {
 
     public Roseley() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.STONE_SWORD, Material.LEATHER_HELMET});
     }
@@ -27,20 +26,15 @@ public class Roseley extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.KOTH, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
         redSpawns.add(new Location(w, -131, 70, 1));
         blueSpawns.add(new Location(w, -74, 70, 126));
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
+
         setKoTHMonument(new Location(w, -104, 71, 63));
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, -131, 70, 1));
         FFASpawns.add(new Location(w, -74, 70, 126));
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
