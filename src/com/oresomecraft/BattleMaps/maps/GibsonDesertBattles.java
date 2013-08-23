@@ -14,7 +14,7 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
     public GibsonDesertBattles() {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS,
-                Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LAVA_BUCKET});
+                Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LAVA_BUCKET, Material.IRON_AXE});
     }
 
     String name = "desert";
