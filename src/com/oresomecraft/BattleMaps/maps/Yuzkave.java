@@ -27,7 +27,7 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
     String name = "yuzkave";
     String fullName = "Yuzkave";
     String creators = "Yuzko";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.CTF, Gamemode.KOTH};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF, Gamemode.KOTH, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 247, 67, -4));
