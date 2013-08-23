@@ -10,8 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Mantle extends BattleMap implements IBattleMap, Listener {
 
     public Mantle() {
-        super.initiate(this);
-        setDetails(name, fullName, creators, modes);
+        super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
 
@@ -21,13 +20,9 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.CTF};
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
 
         redSpawns.add(new Location(w, -34, 84, 169));
         blueSpawns.add(new Location(w, -34, 84, -29));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
 
         Location redFlag = new Location(w, -35, 86, 121);
         Location blueFlag = new Location(w, -35, 86, 17);
@@ -35,12 +30,8 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyFFASpawns() {
-
-        World w = Bukkit.getServer().getWorld(name);
         FFASpawns.add(new Location(w, -16, 84, 128));
         FFASpawns.add(new Location(w, -50, 84, 11));
-
-        setFFASpawns(name, FFASpawns);
     }
 
     public void applyInventory(final BattlePlayer p) {
