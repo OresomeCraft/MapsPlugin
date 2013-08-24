@@ -1,11 +1,14 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
-import org.bukkit.event.Listener;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import org.bukkit.block.*;
+import org.bukkit.entity.Player;
+import org.bukkit.event.*;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.*;
+import org.bukkit.potion.*;
+import org.bukkit.util.Vector;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
@@ -42,10 +45,14 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 4);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+        ItemStack STONE_HOE = new ItemStack(Material.STONE_HOE, 1);
+
+        InvUtils.nameItem(STONE_HOE, ChatColor.BLUE + "Dirt Hook");
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, HEALTH);
+        i.setItem(3, STONE_HOE);
         i.setItem(11, ARROWS);
         i.setItem(8, new ItemStack(Material.BREAD, 3));
 
@@ -63,4 +70,32 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
     public int x2 = -203;
     public int y2 = 42;
     public int z2 = -72;
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void dirtPick(PlayerInteractEvent event) {
+        Player p = event.getPlayer();
+        ItemStack i = p.getItemInHand();
+        Material mat = i.getType();
+        Action a = event.getAction();
+        Location loc = p.getLocation();
+        World world = Bukkit.getWorld(name);
+
+        if (event.getPlayer().getWorld().getName().equals(name)) {
+            if (mat == Material.STONE_HOE) {
+                if (a == Action.LEFT_CLICK_BLOCK) {
+                    BlockFace f = event.getBlockFace();
+                    Block b = event.getClickedBlock();
+                    Material Bmat = b.getType();
+                    if (Bmat == Material.DIRT || Bmat == Material.GRASS) {
+                        if (f != BlockFace.UP && f != BlockFace.DOWN) {
+                            p.setVelocity(new Vector(0, 1, 0));
+                            p.setFallDistance(0);
+                            world.playEffect(b.getLocation(), Effect.STEP_SOUND, 79);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
