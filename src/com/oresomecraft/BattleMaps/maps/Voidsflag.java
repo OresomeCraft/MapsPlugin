@@ -16,6 +16,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
     public Voidsflag() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
+        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_AXE, Material.STONE_PICKAXE});
     }
 
     String name = "voidsflag";
