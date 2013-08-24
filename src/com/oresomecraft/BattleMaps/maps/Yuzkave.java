@@ -82,10 +82,9 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, SOUP);
-        i.setItem(3, STEAK);
-        i.setItem(4, HEALTH);
-        i.setItem(5, EXP);
+        i.setItem(2, STEAK);
+        i.setItem(3, HEALTH);
+        i.setItem(4, EXP);
         i.setItem(10, ARROWS);
     }
 
@@ -100,18 +99,6 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
     public int y2 = 42;
     public int z2 = -142;
 
-    @EventHandler
-    public void onEat(PlayerInteractEvent event) {
-        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK) {
-            Player p = event.getPlayer();
-            if (p.getItemInHand().getType() == Material.MUSHROOM_SOUP) {
-                if (p.getHealth() <= 17) {
-                    p.setHealth(p.getHealth() + 3);
-                    p.getItemInHand().setType(Material.AIR);
-                }
-            }
-        }
-    }
 
     @EventHandler
     public void arrowAway(ProjectileHitEvent event) {
