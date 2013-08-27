@@ -18,7 +18,8 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
 
     public ElementsII() {
         super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(8);
+        setTDMTime(5);
+        disableDrops(new Material[]{Material.STONE_SWORD});
     }
 
     String name = "elements2";
