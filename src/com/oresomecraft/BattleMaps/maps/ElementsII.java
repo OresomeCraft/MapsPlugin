@@ -84,12 +84,12 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
                 Block b = event.getClickedBlock();
                 World w = Bukkit.getWorld(name);
 
-                if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_RED) {
+                if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_RED || BattlePlayer.getBattlePlayer(p).getTeam() == Team.TDM_RED ) {
                     if (b.getType().equals(Material.REDSTONE_BLOCK)) {
                         p.teleport(new Location(w, -111, 97, 14, 90, 0));
                     }
                 } else {
-                    if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_BLUE) {
+                    if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_BLUE || BattlePlayer.getBattlePlayer(p).getTeam() == Team.TDM_BLUE) {
                         if (b.getType().equals(Material.LAPIS_BLOCK)) {
                             p.teleport(new Location(w, -53, 97, -14, -90, 0));
                         }
