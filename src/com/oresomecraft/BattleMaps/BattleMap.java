@@ -128,6 +128,15 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
+     * Set the amount of time a CP battle will go for
+     *
+     * @param time Time battle will go for in minutes
+     */
+    public void setCPTime(int time) {
+        BattlesAccess.setCPTime(name, time);
+    }
+
+    /**
      * Sets location for King of the Hill monument
      *
      * @param monument Location of the monument
@@ -184,6 +193,15 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
+     * Sets the capture points for a map
+     *
+     * @param monuments a Monument array
+     */
+    public void setCapturePoints(Monument[] monuments) {
+        BattlesAccess.setCapturePoints(monuments);
+    }
+
+    /**
      * Sets TDM and CTF spawn points
      */
     public abstract void readyTDMSpawns();
@@ -193,6 +211,11 @@ public abstract class BattleMap implements Listener {
      */
     public abstract void readyFFASpawns();
 
+    /**
+     * Applies the map's inventory to a player
+     *
+     * @param p a BattlePlayer
+     */
     public abstract void applyInventory(BattlePlayer p);
 
     /**
