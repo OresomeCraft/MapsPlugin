@@ -60,8 +60,9 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         i.setItem(8, new ItemStack(Material.BREAD, 3));
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
-        if (p.getTeam() == Team.KOTH_RED || p.getTeam() == Team.TDM_RED)
+        if (p.getTeam() == Team.KOTH_RED || p.getTeam() == Team.TDM_RED) {
             p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 120 * 20, 2));
+        }
 
     }
 
@@ -85,7 +86,7 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
                 Block b = event.getClickedBlock();
                 World w = Bukkit.getWorld(name);
 
-                if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_RED || BattlePlayer.getBattlePlayer(p).getTeam() == Team.TDM_RED ) {
+                if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_RED || BattlePlayer.getBattlePlayer(p).getTeam() == Team.TDM_RED) {
                     if (b.getType().equals(Material.REDSTONE_BLOCK)) {
                         p.teleport(new Location(w, -111, 97, 14, 90, 0));
                     }
