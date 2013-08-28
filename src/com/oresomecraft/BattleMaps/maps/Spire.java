@@ -144,52 +144,52 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
     /*
     @EventHandler(priority = EventPriority.NORMAL)
     public void snowDamage(EntityDamageByEntityEvent event) {
-	Entity snow = event.getDamager();
-	Entity entity = event.getEntity();
-	Location loc = entity.getLocation();
+        Entity snow = event.getDamager();
+        Entity entity = event.getEntity();
+        Location loc = entity.getLocation();
 
-	if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
+        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
 
-	    if (snow instanceof Snowball) {
-		Snowball s = (Snowball) snow;
-		LivingEntity shooter = s.getShooter();
+            if (snow instanceof Snowball) {
+                Snowball s = (Snowball) snow;
+                LivingEntity shooter = s.getShooter();
 
-		if (shooter instanceof Player) {
-		    Player sh = (Player) shooter;
-		    String shooterName = sh.getName();
+                if (shooter instanceof Player) {
+                    Player sh = (Player) shooter;
+                    String shooterName = sh.getName();
 
-		    if (entity instanceof Player) {
-			Player p = (Player) entity;
-			String pName = p.getName();
+                    if (entity instanceof Player) {
+                        Player p = (Player) entity;
+                        String pName = p.getName();
 
-			if (Battles.redTeam.containsKey(shooterName)) {
+                        if (Battles.redTeam.containsKey(shooterName)) {
 
-			    if (Battles.blueTeam.containsKey(pName)) {
-				p.damage(2, sh);
-				sh.playSound(loc, Sound.PIG_IDLE, 1, 1);
+                            if (Battles.blueTeam.containsKey(pName)) {
+                                p.damage(2, sh);
+                                sh.playSound(loc, Sound.PIG_IDLE, 1, 1);
 
-			    } else {
-				event.setCancelled(true);
-			    }
+                            } else {
+                                event.setCancelled(true);
+                            }
 
-			} else if (Battles.blueTeam.containsKey(shooterName)) {
-			    if (Battles.redTeam.containsKey(pName)) {
+                        } else if (Battles.blueTeam.containsKey(shooterName)) {
+                            if (Battles.redTeam.containsKey(pName)) {
 
-				p.damage(2, sh);
-				sh.playSound(loc, Sound.PIG_IDLE, 1, 1);
+                                p.damage(2, sh);
+                                sh.playSound(loc, Sound.PIG_IDLE, 1, 1);
 
-			    } else {
-				event.setCancelled(true);
-			    }
-			} else {
-			    event.setCancelled(true);
-			}
+                            } else {
+                                event.setCancelled(true);
+                            }
+                        } else {
+                            event.setCancelled(true);
+                        }
 
-		    }
-		}
-	    }
-	}
-    } */
+                    }
+                }
+            }
+        }
+    }*/
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void explodingArrow(ProjectileHitEvent event) {
