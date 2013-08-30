@@ -18,7 +18,7 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
 
     public ElementsII() {
         super.initiate(this, name, fullName, creators, modes);
-        allowBuild(false);
+        setAllowBuild(false);
         disableDrops(new Material[]{Material.STONE_SWORD});
     }
 
