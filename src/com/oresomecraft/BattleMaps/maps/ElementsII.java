@@ -18,14 +18,14 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
 
     public ElementsII() {
         super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(5);
+        allowBuild(false);
         disableDrops(new Material[]{Material.STONE_SWORD});
     }
 
     String name = "elements2";
     String fullName = "Elements II";
     String creators = "_Moist, psgs and broddikill";
-    Gamemode[] modes = {Gamemode.KOTH, Gamemode.TDM};
+    Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -160, 70, -1, 90, 0));
@@ -60,7 +60,7 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         i.setItem(8, new ItemStack(Material.BREAD, 3));
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
-        if (p.getTeam() == Team.KOTH_RED || p.getTeam() == Team.TDM_RED) {
+        if (p.getTeam() == Team.KOTH_RED) {
             p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 120 * 20, 2));
         }
 
@@ -86,37 +86,17 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
                 Block b = event.getClickedBlock();
                 World w = Bukkit.getWorld(name);
 
-                if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_RED || BattlePlayer.getBattlePlayer(p).getTeam() == Team.TDM_RED) {
+                if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_RED) {
                     if (b.getType().equals(Material.REDSTONE_BLOCK)) {
                         p.teleport(new Location(w, -111, 97, 14, 90, 0));
                     }
                 } else {
-                    if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_BLUE || BattlePlayer.getBattlePlayer(p).getTeam() == Team.TDM_BLUE) {
+                    if (BattlePlayer.getBattlePlayer(p).getTeam() == Team.KOTH_BLUE) {
                         if (b.getType().equals(Material.LAPIS_BLOCK)) {
                             p.teleport(new Location(w, -53, 97, -14, -90, 0));
                         }
                     }
                 }
-            }
-        }
-    }
-
-    @EventHandler
-    public void onBreak(BlockBreakEvent event) {
-        Player p = event.getPlayer();
-        if (p.getLocation().getWorld().getName().equals(name)) {
-            if (getMode().equals(Gamemode.KOTH)) {
-                event.setCancelled(true);
-            }
-        }
-    }
-
-    @EventHandler
-    public void onPlace(BlockPlaceEvent event) {
-        Player p = event.getPlayer();
-        if (p.getLocation().getWorld().getName().equals(name)) {
-            if (getMode().equals(Gamemode.KOTH)) {
-                event.setCancelled(true);
             }
         }
     }
