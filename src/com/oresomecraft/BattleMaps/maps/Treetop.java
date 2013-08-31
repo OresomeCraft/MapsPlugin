@@ -16,6 +16,7 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(10);
         setAllowBuild(false);
+        lockTime("night");
     }
 
     String name = "treetop";
@@ -74,22 +75,5 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
     public int x2 = 756;
     public int y2 = 4;
     public int z2 = 551;
-
-    public void alwaysNight() {
-        new BukkitRunnable() {
-            public void run() {
-                if (Bukkit.getWorld(name) != null) {
-                    Bukkit.getWorld(name).setTime(12000L);
-                } else {
-                    this.cancel();
-                }
-            }
-        }.runTaskLater(OresomeBattlesMaps.getInstance(), (60 * 20) * 2);
-    }
-
-    @EventHandler
-    public void onLoad(WorldLoadEvent e) {
-        if (e.getWorld().getName().equals(name)) alwaysNight();
-    }
 
 }

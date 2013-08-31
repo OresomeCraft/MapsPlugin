@@ -15,6 +15,7 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
         setAllowBuild(false);
         disableDrops(new Material[]{Material.BOW, Material.LEATHER_HELMET,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.WOOD_SWORD});
+        lockTime("day");
     }
 
     String name = "sunshine";
