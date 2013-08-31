@@ -1,0 +1,82 @@
+package com.oresomecraft.BattleMaps.maps;
+
+import org.bukkit.*;
+import org.bukkit.event.*;
+import org.bukkit.inventory.*;
+
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
+
+public class Stimulation extends BattleMap implements IBattleMap, Listener {
+
+    public Stimulation() {
+        super.initiate(this, name, fullName, creators, modes);
+    }
+
+    // Map details
+    String name = "stimulation";
+    String fullName = "Stimulation";
+    String creators = "ShaunDepro97";
+    Gamemode[] modes = {Gamemode.FFA};
+
+    public void readyTDMSpawns() {
+
+        redSpawns.add(new Location(w, -293, 13, 1207, 2, 0));
+
+        blueSpawns.add(new Location(w, -252, 15, 1207, 0, 0));
+    }
+
+    public void readyFFASpawns() {
+        FFASpawns.add(new Location(w, -293, 13, 1207, 2, 0));
+        FFASpawns.add(new Location(w, -252, 15, 1207, 1, 0));
+        FFASpawns.add(new Location(w, -255, 20, 1207, 1, 0));
+        FFASpawns.add(new Location(w, -275, 20, 1207, 2, 0));
+        FFASpawns.add(new Location(w, -264, 25, 1210, 0, 0));
+        FFASpawns.add(new Location(w, -248, 30, 1213, 0, 0));
+        FFASpawns.add(new Location(w, -251, 35, 1204, 0, 0));
+        FFASpawns.add(new Location(w, -274, 35, 1197, 1, 0));
+        FFASpawns.add(new Location(w, -258, 40, 1210, 0, 0));
+        FFASpawns.add(new Location(w, -256, 45, 1221, 1, 0));
+        FFASpawns.add(new Location(w, -257, 45, 1195, 0, 0));
+        FFASpawns.add(new Location(w, -249, 50, 1221, 1, 0));
+        FFASpawns.add(new Location(w, -249, 55, 1197, 0, 0));
+        FFASpawns.add(new Location(w, -250, 60, 1200, 0, 0));
+        FFASpawns.add(new Location(w, -283, 13, 1227, 1, 0));
+        FFASpawns.add(new Location(w, -253, 10, 1199, 0, 0));
+        FFASpawns.add(new Location(w, -250, 5, 1211, 2, 0));
+    }
+
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
+
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+
+        i.setItem(3, HEALTH_POTION);
+
+        // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
+        p.setItem(0, Material.IRON_SWORD, 1);
+        p.setItem(1, Material.BOW, 1);
+        p.setItem(2, Material.COOKED_BEEF, 2);
+        p.setItem(4, Material.ARROW, 48);
+    }
+
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = -228;
+    public int y1 = 200;
+    public int z1 = 1180;
+
+    //Bottom right corner.
+    public int x2 = -303;
+    public int y2 = 1;
+    public int z2 = 1239;
+
+}
