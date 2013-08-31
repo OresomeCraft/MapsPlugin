@@ -2,6 +2,7 @@ package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
 import org.bukkit.block.*;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.block.Action;
@@ -19,6 +20,7 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(8);
         setAllowBuild(false);
+        disableDrops(new Material[]{Material.STONE_SWORD, Material.DIAMOND_BOOTS});
     }
 
     String name = "alpines";
@@ -46,6 +48,8 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         ItemStack ARROWS = new ItemStack(Material.ARROW, 4);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack STONE_HOE = new ItemStack(Material.STONE_HOE, 1);
+        ItemStack BOOTS = new ItemStack(Material.DIAMOND_BOOTS);
+        BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 10);
 
         InvUtils.nameItem(STONE_HOE, ChatColor.BLUE + "Dirt Hook");
 

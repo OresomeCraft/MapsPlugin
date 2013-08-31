@@ -35,11 +35,11 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 320, 68, -99));
         blueSpawns.add(new Location(w, 310, 69, -103));
 
-        Location redFlag = new Location(w, 256, 69, -9);
-        Location blueFlag = new Location(w, 308, 70, -99);
+        Location redFlag = new Location(w, 257, 70, -10);
+        Location blueFlag = new Location(w, 308, 70, -100);
         setCTFFlags(name, redFlag, blueFlag);
 
-        setKoTHMonument(new Location(w, 281, 70, -57));
+        setKoTHMonument(new Location(w, 281, 70, -58));
     }
 
     public void readyFFASpawns() {
