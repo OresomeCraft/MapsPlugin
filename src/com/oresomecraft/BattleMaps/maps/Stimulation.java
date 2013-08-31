@@ -53,7 +53,6 @@ public class Stimulation extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
