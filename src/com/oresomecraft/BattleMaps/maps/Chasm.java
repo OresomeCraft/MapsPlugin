@@ -55,7 +55,7 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-        LEATHER_HELMET.addEnchantment(Enchantment.PROTECTION_FALL, 4);
+        LEATHER_HELMET.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 4);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
