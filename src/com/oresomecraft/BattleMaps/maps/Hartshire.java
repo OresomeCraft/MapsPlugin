@@ -115,10 +115,9 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
 
                 if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 2));
-
-                    inv.removeItem(p.getItemInHand());
-                    //Ointment fixed!!! :DD
-                    p.updateInventory();
+                    ItemStack ointment = new ItemStack(p.getItemInHand());
+                    ointment.setAmount(1);
+                    inv.removeItem(ointment);
                 }
             }
         }

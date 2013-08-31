@@ -6,9 +6,6 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.event.*;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEvent;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;

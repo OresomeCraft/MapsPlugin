@@ -5,8 +5,6 @@ import org.bukkit.block.Block;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.*;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.potion.*;

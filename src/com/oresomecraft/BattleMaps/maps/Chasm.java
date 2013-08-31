@@ -85,7 +85,6 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
         ItemStack i = p.getItemInHand();
         Material mat = i.getType();
         Action a = event.getAction();
-        Location loc = p.getLocation();
         World world = Bukkit.getWorld(name);
 
         if (event.getPlayer().getWorld().getName().equals(name)) {
@@ -96,7 +95,7 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
                     Material Bmat = b.getType();
                     if (Bmat == Material.STONE || Bmat == Material.ICE) {
                         if (f != BlockFace.UP && f != BlockFace.DOWN) {
-                            p.setVelocity(new Vector(0, 1.3, 0));
+                            p.setVelocity(new Vector(0, 1, 0));
                             p.setFallDistance(0);
                             world.playEffect(b.getLocation(), Effect.STEP_SOUND, 79);
                         }

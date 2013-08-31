@@ -81,7 +81,7 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, STEAK);
         i.setItem(4, HEALTH_POTION);
         i.setItem(11, ARROWS);
-        i.setItem(6, STONE);
+        i.setItem(8, STONE);
     }
 
     // Region. (Top corner block and bottom corner block.

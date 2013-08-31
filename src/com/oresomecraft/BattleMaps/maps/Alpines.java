@@ -77,7 +77,6 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         ItemStack i = p.getItemInHand();
         Material mat = i.getType();
         Action a = event.getAction();
-        Location loc = p.getLocation();
         World world = Bukkit.getWorld(name);
 
         if (event.getPlayer().getWorld().getName().equals(name)) {

@@ -41,22 +41,18 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROW = new ItemStack(Material.ARROW, 64);
         ItemStack LADDER = new ItemStack(Material.LADDER, 8);
-        ItemStack FLOWER_POT = new ItemStack(Material.FLOWER_POT, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1);
         ItemStack OAK_LOG = new ItemStack(Material.LOG, 32);
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
 
         // Armor
-        ItemStack C = new ItemStack(Material.IRON_CHESTPLATE, 1);
-        ItemStack B = new ItemStack(Material.IRON_BOOTS, 1);
-        ItemStack L = new ItemStack(Material.IRON_LEGGINGS, 1);
-        ItemStack H = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack C = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+        ItemStack B = new ItemStack(Material.LEATHER_BOOTS, 1);
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{C,B});
 
         p.getInventory().setBoots(B);
         p.getInventory().setChestplate(C);
-        p.getInventory().setLeggings(L);
-        p.getInventory().setHelmet(H);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -87,8 +83,10 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
     @EventHandler(priority = EventPriority.NORMAL)
     public void blockBreak(BlockBreakEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
-            if (event.getBlock().getType() == Material.DIAMOND_BLOCK || event.getBlock().getType() == Material.IRON_BLOCK) {
+            if (event.getBlock().getType() == Material.DIAMOND_BLOCK) {
                 event.setCancelled(true);
+                event.getBlock().setType(Material.DIRT);
+                event.getPlayer().sendMessage(ChatColor.RED + "Diamond Blocks are disabled on this map!");
             }
         }
     }

@@ -33,7 +33,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Apollo();
         new Zoned();
         new Mantle();
-        new Bakery();
+        new Roseley();
         new Perro();
         new Fairwick();
         new Wartown();
