@@ -1,9 +1,9 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
-import org.bukkit.block.Block;
 import org.bukkit.event.*;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.BattleMaps.*;
@@ -47,9 +47,7 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack LOGS = new ItemStack(Material.LOG, 12);
-        //You need more resources
         ItemStack AXE = new ItemStack(Material.IRON_AXE, 1);
-        //So people will stop making wood swords
         ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
@@ -74,14 +72,14 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -50;
-    public int y1 = 50;
-    public int z1 = -76;
+    public int x1 = -71;
+    public int y1 = 134;
+    public int z1 = -100;
 
     //Bottom right corner.
-    public int x2 = 13;
-    public int y2 = 119;
-    public int z2 = -4;
+    public int x2 = 29;
+    public int y2 = 42;
+    public int z2 = 25;
 
     // Getting the region
     public boolean contains(Location loc, int x1, int x2, int y1,
@@ -101,5 +99,20 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         }
         return false;
 
+    }
+
+    @EventHandler
+    public void preventPlaceOutOfMap(BlockPlaceEvent event) {
+        if (event.getBlock().getWorld().getName().equals(name)
+                && !contains(event.getBlock().getLocation(), x1, x2, y1, y2, z1, z2)) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onChangeItem(InventoryInteractEvent event) {
+        if (event.getInventory().contains(Material.WOOD_SWORD)) {
+            event.getInventory().remove(Material.WOOD_SWORD);
+        }
     }
 }
