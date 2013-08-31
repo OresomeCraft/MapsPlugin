@@ -102,11 +102,4 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         return false;
 
     }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockplace(BlockPlaceEvent event) {
-        if (event.getBlock().getWorld().getName().equals(name)
-                && !contains(event.getBlock().getLocation(), x1, x2, y1, y2, z1, z2)) event.setCancelled(true);
-    }
-
 }
