@@ -1,7 +1,10 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.BattleMaps.*;
@@ -11,7 +14,6 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
 
     public Fairwick() {
         super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
     }
 
     String name = "fairwick";
@@ -69,5 +71,12 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
     public int x2 = 129;
     public int y2 = 184;
     public int z2 = -10;
-
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        if (event.getBlock().getType().getId() != 102) event.setCancelled(true);
+    }
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        event.setCancelled(true);
+    }
 }
