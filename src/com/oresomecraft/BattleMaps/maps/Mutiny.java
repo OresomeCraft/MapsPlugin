@@ -53,21 +53,21 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack LOGS = new ItemStack(Material.LOG, 12);
         ItemStack AXE = new ItemStack(Material.IRON_AXE, 1);
-        ItemStack IRON_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-        ItemStack IRON_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
-        ItemStack IRON_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
+        ItemStack GOLD_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
+        ItemStack DIAMOND_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
-        ItemStack allprotect = new ItemStack(Material.EMERALD, 1);
-        ItemMeta a = allprotect.getItemMeta();
-        a.setDisplayName(ChatColor.BLUE + "All Protect Stone");
-        allprotect.setItemMeta(a);
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 0));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 1));
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
+        ItemStack ALLPROTECT = new ItemStack(Material.EMERALD, 1);
+
+        ItemMeta allprotect = ALLPROTECT.getItemMeta();
+        allprotect.setDisplayName(ChatColor.BLUE + "All Protect Stone");
+        ALLPROTECT.setItemMeta(allprotect);
+
+        p.getInventory().setBoots(DIAMOND_BOOTS);
+        p.getInventory().setLeggings(GOLD_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(IRON_HELMET);
+        p.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
@@ -75,8 +75,11 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH);
         i.setItem(4, LOGS);
-        i.setItem(8, allprotect);
+        i.setItem(8, ALLPROTECT);
         i.setItem(10, ARROWS);
+
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 0));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 1));
 
 
     }
@@ -91,26 +94,6 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
     public int x2 = 29;
     public int y2 = 42;
     public int z2 = 25;
-
-    // Getting the region
-    public boolean contains(Location loc, int x1, int x2, int y1,
-                            int y2, int z1, int z2) {
-        int bottomCornerX = x1 < x2 ? x1 : x2;
-        int bottomCornerZ = z1 < z2 ? z1 : z2;
-        int topCornerX = x1 > x2 ? x1 : x2;
-        int topCornerZ = z1 > z2 ? z1 : z2;
-        int bottomCornerY = y1 < y2 ? y1 : y2;
-        int topCornerY = y1 > y2 ? y1 : y2;
-        if (loc.getX() >= bottomCornerX && loc.getX() <= topCornerX) {
-            if (loc.getZ() >= bottomCornerZ && loc.getZ() <= topCornerZ) {
-                if (loc.getY() >= bottomCornerY && loc.getY() <= topCornerY) {
-                    return true;
-                }
-            }
-        }
-        return false;
-
-    }
 
     @EventHandler
     public void preventPlaceOutOfMap(BlockPlaceEvent event) {
@@ -128,10 +111,10 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void protect(EntityDamageEvent event){
-        if(event.getEntity() instanceof Player){
-            Player p = (Player)event.getEntity();
-            if(p.getItemInHand().getType() == Material.EMERALD){
+    public void protectStone(EntityDamageEvent event) {
+        if (event.getEntity() instanceof Player) {
+            Player p = (Player) event.getEntity();
+            if (p.getItemInHand().getType().equals(Material.EMERALD)) {
                 event.setDamage(event.getDamage() / 2);
                 p.sendMessage(ChatColor.RED + "Damage Reduced!");
             }

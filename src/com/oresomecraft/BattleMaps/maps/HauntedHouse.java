@@ -1,7 +1,9 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.BattleMaps.*;
@@ -80,4 +82,13 @@ public class HauntedHouse extends BattleMap implements IBattleMap, Listener {
     public int x2 = -85;
     public int y2 = 62;
     public int z2 = 99;
+
+    @EventHandler
+    public void preventMoveOutOfMap(PlayerMoveEvent event) {
+        if (event.getPlayer().getWorld().getName().equals(name)
+                && !contains(event.getTo(), x1, x2, y1, y2, z1, z2)) {
+            event.setCancelled(true);
+            event.getPlayer().sendMessage(ChatColor.RED + "You're not allowed of the map! Get back in!");
+        }
+    }
 }

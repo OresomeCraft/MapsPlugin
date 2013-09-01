@@ -4,6 +4,7 @@ import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -41,14 +42,12 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
 
-        p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
-        p.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
-        p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
-        p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
-        ItemStack allprotect = new ItemStack(Material.EMERALD, 1);
-        ItemMeta a = allprotect.getItemMeta();
-        a.setDisplayName(ChatColor.BLUE + "All Protect Stone");
-        allprotect.setItemMeta(a);
+        ItemStack ALLPROTECT = new ItemStack(Material.EMERALD, 1);
+
+        ItemMeta allprotect = ALLPROTECT.getItemMeta();
+        allprotect.setDisplayName(ChatColor.BLUE + "All Protect Stone");
+        ALLPROTECT.setItemMeta(allprotect);
+
         i.setItem(0, new ItemStack(Material.IRON_SWORD, 1));
         i.setItem(1, new ItemStack(Material.BOW, 1));
         i.setItem(2, new ItemStack(Material.IRON_PICKAXE, 1));
@@ -56,8 +55,14 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         i.setItem(4, new ItemStack(Material.BAKED_POTATO, 3));
         i.setItem(6, new ItemStack(Material.LOG, 64, (short) 1));
         i.setItem(5, new ItemStack(Material.GOLDEN_APPLE, 3));
-        i.setItem(8, allprotect);
+        i.setItem(8, ALLPROTECT);
         i.setItem(9, new ItemStack(Material.ARROW, 64));
+
+        p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
+        p.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
+        p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+        p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
+
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 0));
         p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 1));
 
@@ -70,11 +75,20 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     public int x2 = -48;
     public int y2 = 156;
     public int z2 = -75;
+
     @EventHandler
-    public void protect(EntityDamageEvent event){
-        if(event.getEntity() instanceof Player){
-            Player p = (Player)event.getEntity();
-            if(p.getItemInHand().getType() == Material.EMERALD){
+    public void preventPlaceOutOfMap(BlockPlaceEvent event) {
+        if (event.getBlock().getWorld().getName().equals(name)
+                && !contains(event.getBlock().getLocation(), x1, x2, y1, y2, z1, z2)) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void protectStone(EntityDamageEvent event) {
+        if (event.getEntity() instanceof Player) {
+            Player p = (Player) event.getEntity();
+            if (p.getItemInHand().getType().equals(Material.EMERALD)) {
                 event.setDamage(event.getDamage() / 2);
                 p.sendMessage(ChatColor.RED + "Damage Reduced!");
             }

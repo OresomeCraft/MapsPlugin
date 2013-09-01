@@ -2,6 +2,8 @@ package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
 import org.bukkit.event.*;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.BattleMaps.*;
@@ -87,5 +89,14 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
     public int x2 = -2;
     public int y2 = 1;
     public int z2 = 215;
+
+    @EventHandler
+    public void preventMoveOutOfMap(PlayerMoveEvent event) {
+        if (event.getPlayer().getWorld().getName().equals(name)
+                && !contains(event.getTo(), x1, x2, y1, y2, z1, z2)) {
+            event.setCancelled(true);
+            event.getPlayer().sendMessage(ChatColor.RED + "You're not allowed of the map! Get back in!");
+        }
+    }
 
 }
