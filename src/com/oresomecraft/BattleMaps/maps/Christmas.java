@@ -1,0 +1,162 @@
+package com.oresomecraft.BattleMaps.maps;
+
+/*
+ * Map Currently under Construction
+ *
+ * Map created for Christmas, to be released at Christmas time, 2013
+ */
+
+import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import org.bukkit.*;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.*;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.OresomeBattles.api.*;
+
+public class Christmas extends BattleMap implements IBattleMap, Listener {
+
+    public Christmas() {
+        super.initiate(this, name, fullName, creators, modes);
+        setAllowBuild(false);
+    }
+
+    String name = "christmas";
+    String fullName = "Christmas";
+    String creators = "psgs, _Moist, Geedubs01, shavahn2003";
+    Gamemode[] modes = {Gamemode.KOTH};
+
+    public void readyTDMSpawns() {
+        Location redSpawn = new Location(w, -107, 55, -44, -45, 0);
+        Location blueSpawn = new Location(w, -0.3, 55, -0, 135, 0);
+
+        redSpawns.add(redSpawn);
+        redSpawns.add(new Location(w, -107, 55, -0, -135, 0));
+
+        blueSpawns.add(blueSpawn);
+        blueSpawns.add(new Location(w, -0.3, 55, -44, 45, 0));
+
+        setKoTHMonument(new Location(w, -53, 55, -22));
+    }
+
+    public void readyFFASpawns() {
+        Location redSpawn = new Location(w, -39, 53, -4, 121, 0);
+        Location blueSpawn = new Location(w, -105, 55, -22, -90, 0);
+
+        FFASpawns.add(redSpawn);
+        FFASpawns.add(blueSpawn);
+    }
+
+    public void applyInventory(final BattlePlayer p) {
+        Inventory i = p.getInventory();
+
+        ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 1);
+        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+        ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+        ItemStack PUDDING = new ItemStack(Material.MUSHROOM_SOUP, 1);
+        ItemStack GAPPLE = new ItemStack(Material.GOLDEN_APPLE, 1);
+
+        LEATHER_CHESTPLATE.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3);
+        LEATHER_BOOTS.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
+
+        ItemMeta pudding = PUDDING.getItemMeta();
+        pudding.setDisplayName(ChatColor.RED + "Pudding");
+        PUDDING.setItemMeta(pudding);
+
+        if (p.getTeam() == Team.TDM_BLUE) {
+            LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
+            helmetMeta.setColor(Color.NAVY);
+            LEATHER_HELMET.setItemMeta(helmetMeta);
+
+            LeatherArmorMeta chestMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+            chestMeta.setColor(Color.NAVY);
+            LEATHER_CHESTPLATE.setItemMeta(chestMeta);
+
+            LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+            pantsMeta.setColor(Color.NAVY);
+            LEATHER_PANTS.setItemMeta(pantsMeta);
+
+            LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+            bootsMeta.setColor(Color.NAVY);
+            LEATHER_BOOTS.setItemMeta(bootsMeta);
+        }
+
+        if (p.getTeam() == Team.TDM_RED) {
+            LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
+            helmetMeta.setColor(Color.FUCHSIA);
+            LEATHER_HELMET.setItemMeta(helmetMeta);
+
+            LeatherArmorMeta chestMeta = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+            chestMeta.setColor(Color.FUCHSIA);
+            LEATHER_CHESTPLATE.setItemMeta(chestMeta);
+
+            LeatherArmorMeta pantsMeta = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+            pantsMeta.setColor(Color.FUCHSIA);
+            LEATHER_PANTS.setItemMeta(pantsMeta);
+
+            LeatherArmorMeta bootsMeta = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+            bootsMeta.setColor(Color.FUCHSIA);
+            LEATHER_BOOTS.setItemMeta(bootsMeta);
+        }
+
+        p.getInventory().setBoots(LEATHER_BOOTS);
+        p.getInventory().setLeggings(LEATHER_PANTS);
+        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        p.getInventory().setHelmet(LEATHER_HELMET);
+
+        i.setItem(0, STONE_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, GAPPLE);
+        i.setItem(3, PUDDING);
+        i.setItem(4, HEALTH_POTION);
+        i.setItem(10, ARROWS);
+
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 1));
+    }
+
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = 10;
+    public int y1 = 87;
+    public int z1 = 13;
+
+    //Bottom right corner.
+    public int x2 = -122;
+    public int y2 = 34;
+    public int z2 = -60;
+
+    @EventHandler
+    public void onConsume(PlayerItemConsumeEvent event) {
+        if (event.getPlayer().getWorld().getName().equals(name)) {
+            Player p = event.getPlayer();
+            ItemStack i = event.getItem();
+
+            if (i.getType().equals(Material.MUSHROOM_SOUP)) {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
+                p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 3 * 20, 1));
+                p.getWorld().playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onEnd(BattleEndEvent event) {
+
+        for (Player p : Bukkit.getOnlinePlayers()) {
+
+        }
+    }
+
+}
