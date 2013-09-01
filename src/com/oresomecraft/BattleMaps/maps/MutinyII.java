@@ -13,6 +13,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     public MutinyII() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
+        disableDrops(new Material[]{Material.IRON_AXE});
     }
 
     String name = "mutinyii";
@@ -48,8 +49,8 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         i.setItem(5, new ItemStack(Material.LOG, 64, (short) 1));
         i.setItem(6, new ItemStack(Material.GOLDEN_APPLE, 3));
         i.setItem(9, new ItemStack(Material.ARROW, 64));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 0));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 8 * 20, 1));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 0));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 1));
 
     }
 

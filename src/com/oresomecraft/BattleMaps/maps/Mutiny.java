@@ -5,6 +5,8 @@ import org.bukkit.event.*;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.inventory.*;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
@@ -53,7 +55,8 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
-
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 0));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 1));
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
