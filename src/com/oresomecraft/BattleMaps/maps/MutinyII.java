@@ -1,8 +1,12 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.*;
 
 import com.oresomecraft.BattleMaps.*;
@@ -41,13 +45,18 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
         p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
         p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
+        ItemStack allprotect = new ItemStack(Material.EMERALD, 1);
+        ItemMeta a = allprotect.getItemMeta();
+        a.setDisplayName(ChatColor.BLUE + "All Protect Stone");
+        allprotect.setItemMeta(a);
         i.setItem(0, new ItemStack(Material.IRON_SWORD, 1));
         i.setItem(1, new ItemStack(Material.BOW, 1));
         i.setItem(2, new ItemStack(Material.IRON_PICKAXE, 1));
         i.setItem(3, new ItemStack(Material.IRON_AXE, 1));
         i.setItem(4, new ItemStack(Material.BAKED_POTATO, 3));
-        i.setItem(5, new ItemStack(Material.LOG, 64, (short) 1));
-        i.setItem(6, new ItemStack(Material.GOLDEN_APPLE, 3));
+        i.setItem(6, new ItemStack(Material.LOG, 64, (short) 1));
+        i.setItem(5, new ItemStack(Material.GOLDEN_APPLE, 3));
+        i.setItem(8, allprotect);
         i.setItem(9, new ItemStack(Material.ARROW, 64));
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 0));
         p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 1));
@@ -61,4 +70,14 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
     public int x2 = -48;
     public int y2 = 156;
     public int z2 = -75;
+    @EventHandler
+    public void protect(EntityDamageEvent event){
+        if(event.getEntity() instanceof Player){
+            Player p = (Player)event.getEntity();
+            if(p.getItemInHand().getType() == Material.EMERALD){
+                event.setDamage(event.getDamage() / 2);
+                p.sendMessage(ChatColor.RED + "Damage Reduced!");
+            }
+        }
+    }
 }

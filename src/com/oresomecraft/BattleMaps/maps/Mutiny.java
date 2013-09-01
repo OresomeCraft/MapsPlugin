@@ -1,10 +1,13 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -55,6 +58,10 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+        ItemStack allprotect = new ItemStack(Material.EMERALD, 1);
+        ItemMeta a = allprotect.getItemMeta();
+        a.setDisplayName(ChatColor.BLUE + "All Protect Stone");
+        allprotect.setItemMeta(a);
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 0));
         p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 1));
         p.getInventory().setBoots(IRON_BOOTS);
@@ -68,6 +75,7 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH);
         i.setItem(4, LOGS);
+        i.setItem(8, allprotect);
         i.setItem(10, ARROWS);
 
 
@@ -116,6 +124,17 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
     public void onChangeItem(InventoryInteractEvent event) {
         if (event.getInventory().contains(Material.WOOD_SWORD)) {
             event.getInventory().remove(Material.WOOD_SWORD);
+        }
+    }
+
+    @EventHandler
+    public void protect(EntityDamageEvent event){
+        if(event.getEntity() instanceof Player){
+            Player p = (Player)event.getEntity();
+            if(p.getItemInHand().getType() == Material.EMERALD){
+                event.setDamage(event.getDamage() / 2);
+                p.sendMessage(ChatColor.RED + "Damage Reduced!");
+            }
         }
     }
 }
