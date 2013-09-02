@@ -3,6 +3,7 @@ package com.oresomecraft.BattleMaps.maps;
 import org.bukkit.*;
 import org.bukkit.enchantments.*;
 import org.bukkit.event.*;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.potion.*;
 
@@ -111,5 +112,10 @@ public class Apollo extends BattleMap implements IBattleMap, Listener {
     public int x2 = -85;
     public int y2 = 62;
     public int z2 = 99;
+
+    @EventHandler
+    public void onMove(PlayerMoveEvent event) { // Theoretically disable fall damage
+        if (event.getPlayer().getWorld().getName().equals(name)) event.getPlayer().setFallDistance(0);
+    }
 
 }

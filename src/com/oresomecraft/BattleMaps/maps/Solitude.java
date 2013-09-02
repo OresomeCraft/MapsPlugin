@@ -197,7 +197,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         i.setItem(5, EXP);
         i.setItem(5, FISHING_ROD);
 
-        p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 9);
+        p.getInventory().getBoots().addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 9);
         //Do you know how many freaking fall deaths there are?
 
 
