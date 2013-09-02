@@ -62,8 +62,8 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
-        if(p.getTeam() == Team.TDM_BLUE || p.getTeam() == Team.TDM_RED || p.getTeam() == Team.ZOMBIES ){
-        i.setItem(4, JUMP);
+        if (p.getTeam() == Team.TDM_BLUE || p.getTeam() == Team.TDM_RED || p.getTeam() == Team.ZOMBIES) {
+            i.setItem(4, JUMP);
         }
         //No fireworks for humans!
         i.setItem(2, STEAK);

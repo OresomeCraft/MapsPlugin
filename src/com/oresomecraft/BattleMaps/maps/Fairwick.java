@@ -71,10 +71,12 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
     public int x2 = 129;
     public int y2 = 184;
     public int z2 = -10;
+
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.getBlock().getType().getId() != 102) event.setCancelled(true);
     }
+
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         event.setCancelled(true);

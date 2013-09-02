@@ -49,7 +49,7 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
         // Armor
         ItemStack C = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack B = new ItemStack(Material.LEATHER_BOOTS, 1);
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{C,B});
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{C, B});
 
         p.getInventory().setBoots(B);
         p.getInventory().setChestplate(C);
