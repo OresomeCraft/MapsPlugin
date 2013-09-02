@@ -17,7 +17,7 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
     public ElementsII() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.STONE_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
     }
 
     String name = "elements2";
@@ -50,12 +50,8 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+        ItemStack BREAD = new ItemStack(Material.BREAD, 3);
 
-        i.setItem(0, STONE_SWORD);
-        i.setItem(1, BOW);
-        i.setItem(2, HEALTH);
-        i.setItem(11, ARROWS);
-        i.setItem(8, new ItemStack(Material.BREAD, 3));
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
@@ -67,9 +63,19 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setLeggings(LEATHER_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
+
+        i.setItem(0, STONE_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, HEALTH);
+        i.setItem(11, ARROWS);
+        i.setItem(8, BREAD);
+
+
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
+
         if (p.getTeam() == Team.KOTH_RED) {
             p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 120 * 20, 2));
+            i.setItem(3, FIRE);
         }
 
     }

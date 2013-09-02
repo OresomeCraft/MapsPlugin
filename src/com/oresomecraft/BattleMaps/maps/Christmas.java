@@ -34,7 +34,7 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
     String name = "christmas";
     String fullName = "Christmas";
     String creators = "psgs, _Moist, Geedubs01, shavahn2003";
-    Gamemode[] modes = {Gamemode.KOTH};
+    Gamemode[] modes = {Gamemode.KOTH, Gamemode.TDM};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, -107, 55, -44, -45, 0);
@@ -78,7 +78,8 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
         pudding.setDisplayName(ChatColor.RED + "Pudding");
         PUDDING.setItemMeta(pudding);
 
-        if (p.getTeam() == Team.TDM_BLUE) {
+        if (p.getTeam().equals(Team.TDM_BLUE) || p.getTeam().equals(Team.KOTH_BLUE)) {
+
             LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
             helmetMeta.setColor(Color.NAVY);
             LEATHER_HELMET.setItemMeta(helmetMeta);
@@ -96,7 +97,8 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
             LEATHER_BOOTS.setItemMeta(bootsMeta);
         }
 
-        if (p.getTeam() == Team.TDM_RED) {
+        if (p.getTeam().equals(Team.TDM_RED) || p.getTeam().equals(Team.KOTH_RED)) {
+
             LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
             helmetMeta.setColor(Color.FUCHSIA);
             LEATHER_HELMET.setItemMeta(helmetMeta);
@@ -150,6 +152,7 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
                 p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
                 p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 3 * 20, 1));
                 p.getWorld().playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
+                p.sendMessage(ChatColor.RED + "Merry " + ChatColor.GREEN + "Christmas!");
             }
         }
     }
@@ -159,13 +162,17 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
 
         for (Player p : Bukkit.getOnlinePlayers()) {
 
-            fireworkLaunch(p);
-            p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
-            final long waitUntil = System.currentTimeMillis() + 100;
+            if (p.getWorld().getName().equals(name) || p.getWorld().getName().equals("world") || p.getWorld().getName().equals("lobby")) {
 
-            while (System.currentTimeMillis() == waitUntil) {
                 fireworkLaunch(p);
                 p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
+                p.sendMessage(ChatColor.RED + "Merry " + ChatColor.GREEN + "Christmas!");
+                final long waitUntil = System.currentTimeMillis() + 100;
+
+                while (System.currentTimeMillis() == waitUntil) {
+                    fireworkLaunch(p);
+                    p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
+                }
             }
         }
     }
