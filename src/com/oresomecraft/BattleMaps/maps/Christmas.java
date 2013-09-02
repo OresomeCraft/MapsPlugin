@@ -9,6 +9,8 @@ package com.oresomecraft.BattleMaps.maps;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Firework;
 import org.bukkit.event.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
@@ -17,6 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.inventory.meta.FireworkMeta;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
@@ -156,7 +159,24 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
 
         for (Player p : Bukkit.getOnlinePlayers()) {
 
+            fireworkLaunch(p);
+            p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
+            final long waitUntil = System.currentTimeMillis() + 100;
+
+            while (System.currentTimeMillis() == waitUntil) {
+                fireworkLaunch(p);
+                p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
+            }
         }
     }
 
+    public void fireworkLaunch(Player p) {
+
+        FireworkMeta fireworkMeta = (FireworkMeta) (new ItemStack(Material.FIREWORK)).getItemMeta();
+        Firework firework = (Firework) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
+
+        fireworkMeta.addEffect(FireworkEffect.builder().with(FireworkEffect.Type.STAR).withColor(Color.GREEN).withColor(Color.RED).withFade(Color.YELLOW).withTrail().build());
+        firework.setFireworkMeta(fireworkMeta);
+
+    }
 }
