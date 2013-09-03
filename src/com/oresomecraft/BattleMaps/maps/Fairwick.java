@@ -74,11 +74,15 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if (event.getBlock().getType().getId() != 102) event.setCancelled(true);
+        if(event.getBlock().getLocation().getWorld().getName() == name){
+            if (event.getBlock().getType().getId() != 102) event.setCancelled(true);
+        }
     }
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        event.setCancelled(true);
+        if(event.getBlock().getLocation().getWorld().getName() == name){
+            event.setCancelled(true);
+        }
     }
 }
