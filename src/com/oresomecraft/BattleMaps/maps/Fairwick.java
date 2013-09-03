@@ -19,7 +19,7 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
     String name = "fairwick";
     String fullName = "Fairwick Village";
     String creators = "R3creat3, ninsai and zachoz";
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.CTF};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 72, 73, 1));
