@@ -89,7 +89,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         if (event.getEntity() instanceof Player) {
             Player p = (Player) event.getEntity();
             if (p.getItemInHand().getType().equals(Material.EMERALD)) {
-                event.setDamage(event.getDamage() / 2);
+                event.setDamage(event.getDamage() - 1);
                 p.sendMessage(ChatColor.RED + "Damage Reduced!");
             }
         }
