@@ -15,6 +15,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MutinyII extends BattleMap implements IBattleMap, Listener {
 
@@ -96,11 +97,9 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         if (event.getEntity() instanceof Player) {
             Player p = (Player) event.getEntity();
             if (p.getItemInHand().getType().equals(Material.EMERALD)) {
-                if ((Math.random() < 0.5)) {
+                Random random = new Random();
+                if (random.nextBoolean() == true) {
                     event.setDamage(event.getDamage() - 5);
-                    if ((Math.random() < 0.5)) {
-                        p.sendMessage(ChatColor.RED + "Damage Reduced!");
-                    }
                 }
             }
         }

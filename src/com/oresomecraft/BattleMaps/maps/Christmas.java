@@ -13,6 +13,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.event.*;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -23,6 +24,8 @@ import org.bukkit.inventory.meta.FireworkMeta;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
+
+import java.util.Random;
 
 public class Christmas extends BattleMap implements IBattleMap, Listener {
 
@@ -185,5 +188,24 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
         fireworkMeta.addEffect(FireworkEffect.builder().with(FireworkEffect.Type.STAR).withColor(Color.GREEN).withColor(Color.RED).withFade(Color.YELLOW).withTrail().build());
         firework.setFireworkMeta(fireworkMeta);
 
+    }
+
+    @EventHandler
+    public void onKill(PlayerDeathEvent event) {
+        if (event.getEntity().getKiller().equals(EntityType.PLAYER)) {
+            Random random = new Random();
+            if (random.nextBoolean() == true) {
+                Player p = event.getEntity().getKiller();
+                if (random.nextBoolean() == true) {
+                    p.awardAchievement(Achievement.OVERKILL);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 1));
+                    p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
+                } else {
+                    p.awardAchievement(Achievement.KILL_ENEMY);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
+                    p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
+                }
+            }
+        }
     }
 }
