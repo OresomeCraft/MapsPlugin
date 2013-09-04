@@ -14,6 +14,9 @@ import org.bukkit.potion.PotionEffectType;
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Mutiny extends BattleMap implements IBattleMap, Listener {
 
     public Mutiny() {
@@ -62,6 +65,10 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
 
         ItemMeta allprotect = ALLPROTECT.getItemMeta();
         allprotect.setDisplayName(ChatColor.BLUE + "All Protect Stone");
+
+        List<String> stoneLore = new ArrayList<String>();
+        stoneLore.add(org.bukkit.ChatColor.BLUE + "Hold this while being attacked to reduce damage");
+        allprotect.setLore(stoneLore);
         ALLPROTECT.setItemMeta(allprotect);
 
         p.getInventory().setBoots(DIAMOND_BOOTS);
@@ -115,8 +122,12 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         if (event.getEntity() instanceof Player) {
             Player p = (Player) event.getEntity();
             if (p.getItemInHand().getType().equals(Material.EMERALD)) {
-                event.setDamage(event.getDamage() - 1);
-                p.sendMessage(ChatColor.RED + "Damage Reduced!");
+                if ((Math.random() < 0.5)) {
+                    event.setDamage(event.getDamage() - 5);
+                    if ((Math.random() < 0.5)) {
+                        p.sendMessage(ChatColor.RED + "Damage Reduced!");
+                    }
+                }
             }
         }
     }
