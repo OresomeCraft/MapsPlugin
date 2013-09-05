@@ -20,7 +20,7 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
     String name = "equator";
     String fullName = "Equator";
     String creators = "Afridge1O1, ViolentShadow, Numinex and SuperDuckFace";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF, Gamemode.INFECTION, Gamemode.KOTH};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 53, 75, -24));

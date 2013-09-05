@@ -12,6 +12,7 @@ public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
     public BiomeBattle() {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.LEATHER_HELMET});
+        setAllowBuild(false);
     }
 
     // Map details
