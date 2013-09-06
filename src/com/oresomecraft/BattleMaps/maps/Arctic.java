@@ -24,7 +24,7 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
     String name = "arctic";
     String fullName = "Arctic";
     String creators = "Dant35tra5t";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
 
@@ -101,11 +101,11 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, STONE_HOE);
-        i.setItem(3, SNOWBALL);
-        i.setItem(4, EXP);
-        i.setItem(5, HEALTH_POTION);
-        i.setItem(6, STEAK);
-        i.setItem(7, ARROWS);
+        i.setItem(8, SNOWBALL);
+        i.setItem(5, EXP);
+        i.setItem(4, HEALTH_POTION);
+        i.setItem(3, STEAK);
+        i.setItem(9, ARROWS);
         p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 3);
 
 

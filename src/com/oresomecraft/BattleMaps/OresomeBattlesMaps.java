@@ -29,7 +29,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
     }
 
     public void loadMaps() {
-
+        new DesertCastle();
         new Apollo();
         new Zoned();
         new Mantle();

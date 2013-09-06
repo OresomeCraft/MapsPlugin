@@ -2,9 +2,13 @@ package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.*;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.BattleMaps.*;
@@ -100,5 +104,34 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
             }
         }
     }
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void explodingArrow(ProjectileHitEvent event) {
+        Entity projectile = event.getEntity();
+        World w = projectile.getWorld();
+        Location hit = projectile.getLocation();
 
+        if (contains(hit, x1, x2, y1, y2, z1, z2)) {
+
+            if (projectile instanceof Arrow) {
+                Arrow arrow = (Arrow) projectile;
+                Entity shooter = arrow.getShooter();
+                Location l = shooter.getLocation();
+                Block bl = l.getBlock();
+                Block b = bl.getRelative(BlockFace.DOWN, 2);
+                Material mat = b.getType();
+
+                if (shooter instanceof Player) {
+                    Player p = (Player) shooter;
+                    ItemStack is = p.getItemInHand();
+                    Material i = is.getType();
+
+                    if (i == Material.BOW && mat == Material.SPONGE) {
+                        w.createExplosion(hit, 2);
+                        Bukkit.getWorld(name).playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
+
+                    }
+                }
+            }
+        }
+    }
 }
