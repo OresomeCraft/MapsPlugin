@@ -21,29 +21,29 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
 
     String name = "treetop";
     String fullName = "Treetop Warfare";
-    String creators = "meganlovesmusic";
+    String creators = "meganlovesmusic, _Husky_";
     Gamemode[] modes = {Gamemode.KOTH, Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, 731, 37, 530));
-        redSpawns.add(new Location(w, 724, 37, 512));
-        redSpawns.add(new Location(w, 693, 11, 494));
+        redSpawns.add(new Location(w, -20, 71, 33));
+        redSpawns.add(new Location(w, 17, 98, 69));
+        redSpawns.add(new Location(w, 10, 98, 51));
 
-        blueSpawns.add(new Location(w, 740, 5, 488));
-        blueSpawns.add(new Location(w, 692, 42, 502));
-        blueSpawns.add(new Location(w, 713, 35, 490));
+        blueSpawns.add(new Location(w, -0, 96, 29));
+        blueSpawns.add(new Location(w, -21, 103, 41));
+        blueSpawns.add(new Location(w, 8, 68, 22));
 
-        setKoTHMonument(new Location(w, 727, 60, 501));
+        setKoTHMonument(new Location(w, 13, 120, 40));
     }
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, 731, 37, 530));
-        FFASpawns.add(new Location(w, 724, 37, 512));
-        FFASpawns.add(new Location(w, 693, 11, 494));
+        FFASpawns.add(new Location(w, -20, 71, 33));
+        FFASpawns.add(new Location(w, 17, 98, 69));
+        FFASpawns.add(new Location(w, 10, 98, 51));
 
-        FFASpawns.add(new Location(w, 740, 5, 488));
-        FFASpawns.add(new Location(w, 692, 42, 502));
-        FFASpawns.add(new Location(w, 713, 35, 490));
+        FFASpawns.add(new Location(w, 8, 68, 22));
+        FFASpawns.add(new Location(w, -21, 103, 41));
+        FFASpawns.add(new Location(w, -0, 96, 29));
     }
 
     public void applyInventory(final BattlePlayer p) {
