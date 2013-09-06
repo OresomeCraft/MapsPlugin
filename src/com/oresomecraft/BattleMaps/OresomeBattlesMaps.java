@@ -29,7 +29,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
     }
 
     public void loadMaps() {
-        new DesertCastle();
+
         new Apollo();
         new Zoned();
         new Mantle();
@@ -89,6 +89,9 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Rainbow();
         new Equator();
         new Chasm();
+        new TowerHill();
+        new DesertCastle();
+
     }
 
     public static OresomeBattlesMaps getInstance() {
@@ -96,5 +99,3 @@ public class OresomeBattlesMaps extends JavaPlugin {
     }
 
 }
-
-
