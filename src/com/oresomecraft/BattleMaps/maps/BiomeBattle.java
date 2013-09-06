@@ -51,6 +51,9 @@ public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack ARROW = new ItemStack(Material.ARROW, 64);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_CAP, LEATHER_BOOTS});
 
@@ -59,15 +62,11 @@ public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_CAP);
 
-
-        i.setItem(3, HEALTH_POTION);
-
-        // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
-        p.setItem(0, Material.IRON_SWORD, 1);
-        p.setItem(1, Material.BOW, 1);
-        p.setItem(2, Material.COOKED_BEEF, 1);
-        p.setItem(4, Material.ARROW, 64);
-        p.setItem(5, Material.ARROW, 64);
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, HEALTH_POTION);
+        i.setItem(3, STEAK);
+        i.setItem(5, ARROW);
 
     }
 
