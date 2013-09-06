@@ -15,6 +15,7 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
     public Spaceships() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
+        disableDrops(new Material[]{Material.DIAMOND_SWORD, Material.DIAMOND_AXE, Material.LAVA_BUCKET, Material.TNT});
     }
 
     String name = "spaceships";
@@ -48,13 +49,16 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
-
-        i.setItem(8, new ItemStack(Material.BREAD, 3));
-
-        //Give players invincibility for 8 seconds when they spawn.
+        i.setItem(0, new ItemStack(Material.DIAMOND_SWORD, 1));
+        i.setItem(1, new ItemStack(Material.BOW, 1));
+        i.setItem(2, new ItemStack(Material.DIAMOND_PICKAXE, 1));
+        i.setItem(3, new ItemStack(Material.COOKED_BEEF, 3));
+        i.setItem(4, new ItemStack(Material.GOLDEN_APPLE, 2));
+        i.setItem(5, new ItemStack(Material.LOG, 64));
+        i.setItem(8, new ItemStack(Material.ENDER_PEARL, 1));
+        i.setItem(9, new ItemStack(Material.ARROW, 64));
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40 * 20, 1));
-        //For people who chuck lava on the damned spawn
 
     }
 
@@ -68,53 +72,5 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
     public int x2 = 246;
     public int y2 = 0;
     public int z2 = -191;
-
-    @EventHandler
-    public void preventspawnexplosion(EntityExplodeEvent event) {
-        if (getArena().equals(name)) {
-            Location loc = event.getLocation();
-            // Red team
-            if (contains(loc, 206, 214, 42, 38, -79, -60)) {
-                event.setCancelled(true);
-            }
-
-            // Blue team
-            if (contains(loc, 138, 146, 42, 38, -79, -58)) {
-                event.setCancelled(true);
-            }
-        }
-    }
-
-    @EventHandler
-    public void preventspawnbreak(BlockBreakEvent event) {
-        if (getArena().equals(name)) {
-            Location loc = event.getBlock().getLocation();
-            // Red team
-            if (contains(loc, 206, 214, 42, 38, -79, -60)) {
-                event.setCancelled(true);
-            }
-
-            // Blue team
-            if (contains(loc, 138, 146, 42, 38, -79, -58)) {
-                event.setCancelled(true);
-            }
-        }
-    }
-
-    @EventHandler
-    public void preventspawnplace(BlockPlaceEvent event) {
-        if (getArena().equals(name)) {
-            Location loc = event.getBlock().getLocation();
-            // Red team
-            if (contains(loc, 206, 214, 42, 38, -79, -60)) {
-                event.setCancelled(true);
-            }
-
-            // Blue team
-            if (contains(loc, 138, 146, 42, 38, -79, -58)) {
-                event.setCancelled(true);
-            }
-        }
-    }
 
 }
