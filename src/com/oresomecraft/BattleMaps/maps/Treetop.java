@@ -33,7 +33,7 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -21, 103, 41));
         blueSpawns.add(new Location(w, 8, 68, 22));
 
-        setKoTHMonument(new Location(w, 13, 120, 40));
+        setKoTHMonument(new Location(w, 13, 119, 40));
     }
 
     public void readyFFASpawns() {
