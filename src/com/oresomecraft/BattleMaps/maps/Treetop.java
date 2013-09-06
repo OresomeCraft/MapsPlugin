@@ -21,7 +21,7 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
 
     String name = "treetop";
     String fullName = "Treetop Warfare";
-    String creators = "meganlovesmusic, _Husky_";
+    String creators = "meganlovesmusic and _Husky_";
     Gamemode[] modes = {Gamemode.KOTH, Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

@@ -51,7 +51,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
-        ItemStack STONE_PICKAXE = new ItemStack(Material.STONE_PICKAXE, 1);
+        ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1);
         ItemStack STONE_AXE = new ItemStack(Material.STONE_AXE, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
@@ -71,7 +71,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, HEALTH_POTION);
-        i.setItem(3, STONE_PICKAXE);
+        i.setItem(3, IRON_PICKAXE);
         i.setItem(4, STONE_AXE);
         i.setItem(5, COOKED_PORKCHOP);
         i.setItem(6, BIRCH_LOG);
