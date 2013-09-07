@@ -125,11 +125,16 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
                     Player p = (Player) shooter;
                     ItemStack is = p.getItemInHand();
                     Material i = is.getType();
-
+                    p.getInventory().removeItem(new ItemStack(Material.ARROW, 20));
                     if (i == Material.BOW && mat == Material.SPONGE) {
-                        w.createExplosion(hit, 2);
-                        Bukkit.getWorld(name).playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
+                        w.createExplosion(hit, 8);
+                        int strikes = 0;
+                        while (strikes < 20) {
+                            strikes++;
+                            w.strikeLightning(hit);
+                        }
                     }
+                    Bukkit.getWorld(name).playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
                 }
             }
         }
