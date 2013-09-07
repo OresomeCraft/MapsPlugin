@@ -98,7 +98,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
             Player p = (Player) event.getEntity();
             if (p.getItemInHand().getType().equals(Material.EMERALD)) {
                 Random random = new Random();
-                if (random.nextBoolean() == true) {
+                if (random.nextBoolean()) {
                     event.setDamage(event.getDamage() - 5);
                 }
             }

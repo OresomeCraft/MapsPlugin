@@ -103,13 +103,4 @@ public class Skyislands extends BattleMap implements IBattleMap, Listener {
     public int y2 = 170;
     public int z2 = -1283;
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventshootonisland(EntityShootBowEvent event) {
-
-        if (event.getEntity().getWorld().getName().equals(name)) {
-            if (contains(event.getEntity().getLocation(), 691, 162, -1266, 706, 179, -1247)) {
-                event.setCancelled(true);
-            }
-        }
-    }
 }

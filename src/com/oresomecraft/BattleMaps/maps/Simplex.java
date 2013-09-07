@@ -128,7 +128,7 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onProjectileLand(ProjectileHitEvent event) {
-        if (BattlesAccess.getArena().equals(name)) {
+        if (getArena().equals(name)) {
             if (event.getEntityType().equals(EntityType.ENDER_PEARL)) {
                 World w = Bukkit.getServer().getWorld(name);
                 Projectile proj = event.getEntity();

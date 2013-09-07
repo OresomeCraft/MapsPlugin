@@ -99,20 +99,12 @@ public class TheBowl extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onBreak(BlockBreakEvent event) {
         Player p = event.getPlayer();
-        if (p.getLocation().getWorld().getName().equals(name)) {
-            if (getMode().equals(Gamemode.INFECTION)) {
-                event.setCancelled(true);
-            }
-        }
+        if (p.getLocation().getWorld().getName().equals(name) && getMode().equals(Gamemode.INFECTION)) event.setCancelled(true);
     }
 
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
         Player p = event.getPlayer();
-        if (p.getLocation().getWorld().getName().equals(name)) {
-            if (getMode().equals(Gamemode.INFECTION)) {
-                event.setCancelled(true);
-            }
-        }
+        if (p.getLocation().getWorld().getName().equals(name) && getMode().equals(Gamemode.INFECTION)) event.setCancelled(true);
     }
 }

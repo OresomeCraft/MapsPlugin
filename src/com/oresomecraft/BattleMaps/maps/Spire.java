@@ -250,35 +250,18 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
         Material mat = block.getType();
         Location loc = block.getLocation();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+        if (loc.getWorld().getName().equals(name) && mat == Material.LAPIS_ORE) {
 
-            if (mat == Material.LAPIS_ORE) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 2400, 1));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 2400, 1));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 2400, 0));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2400, 5));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 2400, 4));
+            player.playSound(loc, Sound.LEVEL_UP, 50, 50);
 
-                PotionEffectType resist = PotionEffectType.DAMAGE_RESISTANCE;
-                PotionEffectType power = PotionEffectType.INCREASE_DAMAGE;
-                PotionEffectType regen = PotionEffectType.REGENERATION;
-                PotionEffectType speed = PotionEffectType.SPEED;
-                PotionEffectType jump = PotionEffectType.JUMP;
-                // effect duration power
-                PotionEffect resiste = new PotionEffect(resist, 2400, 1);
-                PotionEffect powere = new PotionEffect(power, 2400, 1);
-                PotionEffect regene = new PotionEffect(regen, 2400, 0);
-                PotionEffect speede = new PotionEffect(speed, 2400, 5);
-                PotionEffect jumpe = new PotionEffect(jump, 2400, 4);
+            Bukkit.broadcastMessage(player.getDisplayName() + ChatColor.GOLD + " now has the power!");
 
-                player.addPotionEffect(resiste);
-                player.addPotionEffect(powere);
-                player.addPotionEffect(regene);
-                player.addPotionEffect(speede);
-                player.addPotionEffect(jumpe);
-                player.playSound(loc, Sound.LEVEL_UP, 50, 50);
-
-                String dName = player.getDisplayName();
-                Bukkit.broadcastMessage(dName + ChatColor.GOLD + " Now Has The Power!");
-
-            }
         }
-
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -287,12 +270,7 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
         Material mat = b.getType();
         Location loc = b.getLocation();
 
-        if (b.getWorld().getName().equals(name)) {
-
-            if (mat == Material.SPONGE) {
-                b.setType(Material.GOLD_BLOCK);
-            }
-        }
+        if (b.getWorld().getName().equals(name) && mat == Material.SPONGE) b.setType(Material.GOLD_BLOCK);
     }
 
 }

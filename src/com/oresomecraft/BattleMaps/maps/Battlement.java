@@ -93,7 +93,6 @@ public class Battlement extends BattleMap implements IBattleMap, Listener {
         i.setItem(4, ARROWS);
         i.setItem(5, EXP);
 
-
     }
 
     // Region. (Top corner block and bottom corner block.

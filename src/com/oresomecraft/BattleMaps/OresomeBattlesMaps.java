@@ -71,12 +71,10 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Elements();
         new GibsonDesertBattles();
         new WarTrauma();
-        new CanopyWarfare();
         new ClashOfClayII();
         new Sunshine();
         new Electricity();
         new HauntedHouse();
-        new Sloped();
         new Crater();
         new Gladiator();
         new ElementsII();

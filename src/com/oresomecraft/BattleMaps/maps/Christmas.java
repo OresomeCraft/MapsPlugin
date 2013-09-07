@@ -192,11 +192,11 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onKill(PlayerDeathEvent event) {
-        if (event.getEntity().getKiller().equals(EntityType.PLAYER)) {
+        if (event.getEntity().getKiller().getType().equals(EntityType.PLAYER)) {
             Random random = new Random();
-            if (random.nextBoolean() == true) {
+            if (random.nextBoolean()) {
                 Player p = event.getEntity().getKiller();
-                if (random.nextBoolean() == true) {
+                if (random.nextBoolean()) {
                     p.awardAchievement(Achievement.OVERKILL);
                     p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 1));
                     p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);

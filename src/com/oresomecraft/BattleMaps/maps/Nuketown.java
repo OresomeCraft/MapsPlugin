@@ -149,8 +149,7 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
             if (m == Material.BOW) {
                 if (e.getAction() == Action.RIGHT_CLICK_AIR
                         || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                    p.getWorld().playEffect(p.getLocation(),
-                            Effect.MOBSPAWNER_FLAMES, 1, 50);
+                    p.getWorld().playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1, 50);
                 }
             }
         }

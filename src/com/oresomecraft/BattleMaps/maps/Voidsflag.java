@@ -111,7 +111,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
         World w = projectile.getWorld();
         Location hit = projectile.getLocation();
 
-        if (contains(hit, x1, x2, y1, y2, z1, z2)) {
+        if (w.getName().equals(name)) {
 
             if (projectile instanceof Arrow) {
                 Arrow arrow = (Arrow) projectile;
@@ -129,7 +129,6 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
                     if (i == Material.BOW && mat == Material.SPONGE) {
                         w.createExplosion(hit, 2);
                         Bukkit.getWorld(name).playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
-
                     }
                 }
             }
