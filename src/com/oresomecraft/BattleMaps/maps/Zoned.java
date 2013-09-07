@@ -23,7 +23,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
     String name = "zoned";
     String fullName = "Zoned";
     String creators = "R3creat3, MiCkEyMiCE and _Moist";
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -2, 87, 88));
@@ -32,6 +32,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         Location blueFlag = new Location(w, -3, 89, -56);
         Location redFlag = new Location(w, -3, 89, 78);
         setCTFFlags(name, redFlag, blueFlag);
+        setKoTHMonument(new Location(w, -3, 88, 11));
     }
 
     public void readyFFASpawns() {

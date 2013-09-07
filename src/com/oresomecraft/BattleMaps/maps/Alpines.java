@@ -32,7 +32,7 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         redSpawns.add(new Location(w, 2, 84, -48));
         blueSpawns.add(new Location(w, -3, 84, 58));
 
-        setKoTHMonument(new Location(w, -1, 133, 4));
+        setKoTHMonument(new Location(w, -1, 115, 4));
     }
 
     public void readyFFASpawns() {

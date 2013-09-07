@@ -24,7 +24,7 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
     String name = "arctic";
     String fullName = "Arctic";
     String creators = "Dant35tra5t";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
 
@@ -44,6 +44,7 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 831, 144, -64, -175, 0));
         blueSpawns.add(new Location(w, 795, 155, -26, -154, 0));
         blueSpawns.add(new Location(w, 812, 128, -52, 173, 0));
+        setKoTHMonument(new Location(w, 803, 182, -86));
     }
 
     public void readyFFASpawns() {
