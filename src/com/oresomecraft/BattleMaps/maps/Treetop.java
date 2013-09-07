@@ -22,7 +22,7 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
     String name = "treetop";
     String fullName = "Treetop Warfare";
     String creators = "meganlovesmusic and _Husky_";
-    Gamemode[] modes = {Gamemode.KOTH, Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.KOTH, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -20, 71, 33));
@@ -54,7 +54,15 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
         ItemStack ARROWS = new ItemStack(Material.ARROW, 20);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack BREAD = new ItemStack(Material.BREAD, 3);
+        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(IRON_HELMET);
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, HEALTH);
