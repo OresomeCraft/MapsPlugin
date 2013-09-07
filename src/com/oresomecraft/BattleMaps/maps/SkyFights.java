@@ -59,6 +59,7 @@ public class SkyFights extends BattleMap implements IBattleMap, Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 5);
         ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
         ItemStack LOG = new ItemStack(Material.LOG, 64);
+        ItemStack STONE = new ItemStack(Material.STONE, 64);
 
         ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
         fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
@@ -82,6 +83,7 @@ public class SkyFights extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, HEALTH);
         i.setItem(4, STEAK);
         i.setItem(5, LOG);
+        i.setItem(6, STONE);
         i.setItem(11, ARROWS);
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
