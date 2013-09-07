@@ -121,7 +121,7 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
 
-        if (contains(hit, x1, x2, y1, y2, z1, z2)) {
+        if (hit.getWorld().getName().equals(name)) {
 
             if (proj instanceof Snowball) {
                 Snowball fish = (Snowball) proj;
