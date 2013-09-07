@@ -83,13 +83,19 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void blockPlace(BlockPlaceEvent event) {
-        if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
-        if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
+        Location loc = event.getBlock().getLocation();
+        if(loc.getWorld().getName() == name){
+            if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
+            if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
+        }
     }
 
     @EventHandler
     public void blockBreak(BlockBreakEvent event) {
-        if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
-        if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
+        Location loc = event.getBlock().getLocation();
+        if(loc.getWorld().getName() == name){
+            if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
+            if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
+        }
     }
 }
