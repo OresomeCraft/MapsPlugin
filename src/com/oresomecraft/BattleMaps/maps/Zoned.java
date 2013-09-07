@@ -32,7 +32,8 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         Location blueFlag = new Location(w, -3, 89, -56);
         Location redFlag = new Location(w, -3, 89, 78);
         setCTFFlags(name, redFlag, blueFlag);
-        setKoTHMonument(new Location(w, -3, 88, 11));
+
+        setKoTHMonument(new Location(w, -3, 92, 11));
     }
 
     public void readyFFASpawns() {
@@ -63,13 +64,13 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
-        if (p.getTeam() == Team.TDM_BLUE || p.getTeam() == Team.TDM_RED || p.getTeam() == Team.ZOMBIES) {
-            i.setItem(4, JUMP);
-        }
-        //No fireworks for humans!
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH);
         i.setItem(10, ARROWS);
+
+        if (p.getTeam() == Team.TDM_BLUE || p.getTeam() == Team.TDM_RED || p.getTeam() == Team.ZOMBIES) {
+            i.setItem(4, JUMP);
+        }
 
     }
 
@@ -84,7 +85,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
     public int z2 = 156;
 
     @EventHandler
-    public void onBlockPlace(PlayerInteractEvent event) {
+    public void onFireworkUse(PlayerInteractEvent event) {
         if (getArena().equals(name)) {
             Player p = event.getPlayer();
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
