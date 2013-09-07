@@ -110,6 +110,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
+
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, FISHING_ROD);
