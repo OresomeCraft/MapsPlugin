@@ -76,8 +76,8 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setHelmet(IRON_HELMET);
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
-        if(p.getTeam() == Team.TDM_RED || p.getTeam() == Team.TDM_BLUE || p.getTeam() == Team.FFA){
-        i.setItem(2, FISHING_ROD);
+        if (p.getTeam() == Team.TDM_RED || p.getTeam() == Team.TDM_BLUE || p.getTeam() == Team.FFA) {
+            i.setItem(2, FISHING_ROD);
         }
         i.setItem(3, EXP);
         i.setItem(4, STEAK);

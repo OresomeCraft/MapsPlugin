@@ -88,7 +88,7 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void noSpawnBreak(BlockBreakEvent event) {
         Location loc = event.getBlock().getLocation();
-        if(loc.getWorld().getName() == name){
+        if (loc.getWorld().getName().equals(name)) {
             if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
             if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
         }
@@ -97,7 +97,7 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void noSpawnPlace(BlockPlaceEvent event) {
         Location loc = event.getBlock().getLocation();
-        if(loc.getWorld().getName() == name){
+        if (loc.getWorld().getName().equals(name)) {
             if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
             if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
         }
