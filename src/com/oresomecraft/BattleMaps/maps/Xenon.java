@@ -82,21 +82,7 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
     public int x2 = 93;
     public int y2 = 0;
     public int z2 = -37;
-
-    //@EventHandler
-    public void preventenderpearldamage(PlayerTeleportEvent event) {
-        Player player = event.getPlayer();
-        TeleportCause cause = event.getCause();
-        Location to = event.getTo();
-        if (event.getPlayer().getWorld().getName().equals(name)) {
-            //Just a reminder, this applies to all maps. (Rogue method)
-            if (cause == TeleportCause.ENDER_PEARL) {
-                event.setCancelled(true);
-                player.teleport(to);
-            }
-        }
-    }
-
+    
     @EventHandler
     public void onFireBow(EntityShootBowEvent event) {
         if (getArena().equals(name)) {

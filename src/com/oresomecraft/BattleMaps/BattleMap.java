@@ -96,7 +96,7 @@ public abstract class BattleMap implements Listener {
      * @param name     (Shortened) Name of map
      * @param fullName Full name of the map
      * @param creators Creators of the map
-     * @param modes    Gamemodes supported by thr map
+     * @param modes    Gamemodes supported by the map
      */
     protected final void initiate(BattleMap config, String name, String fullName, String creators, Gamemode[] modes) {
         this.config = config;
