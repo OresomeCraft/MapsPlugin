@@ -93,7 +93,7 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
                         if (f != BlockFace.UP && f != BlockFace.DOWN) {
                             p.setVelocity(new Vector(0, 1, 0));
                             p.setFallDistance(0);
-                            world.playEffect(b.getLocation(), Effect.STEP_SOUND, 79);
+                            world.playEffect(b.getLocation(), Effect.STEP_SOUND, 3);
                         }
                     }
                 }
