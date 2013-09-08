@@ -136,7 +136,6 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
                 }
 
                 event.getBlock().setType(Material.COBBLESTONE);
-                cyclePowerBlock();
             } else {
                 p.sendMessage(ChatColor.DARK_AQUA + "The power block has already been broken!");
                 p.sendMessage(ChatColor.DARK_AQUA + "Please wait for it to cycle again!");
