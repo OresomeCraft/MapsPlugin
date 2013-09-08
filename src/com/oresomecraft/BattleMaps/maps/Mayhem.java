@@ -28,6 +28,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     String creators = "ShaunDepro97, meganlovesmusic and Kytria";
     Gamemode[] modes = {Gamemode.TDM};
 
+    @EventHandler
     public void onload(WorldLoadEvent event) { // Register power block
         if (event.getWorld().getName().equals(name)) cyclePowerBlock();
     }
