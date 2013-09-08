@@ -65,9 +65,9 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setHelmet(IRON_HELMET);
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, HEALTH);
+        i.setItem(3, HEALTH);
         i.setItem(11, ARROWS);
-        i.setItem(8, BREAD);
+        i.setItem(2, BREAD);
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
 

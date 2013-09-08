@@ -113,7 +113,7 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, STONE_SHOVEL);
         i.setItem(4, STEAK);
         i.setItem(5, HEALTH_POTION);
-        i.setItem(6, ARROWS);
+        i.setItem(9, ARROWS);
 
     }
 

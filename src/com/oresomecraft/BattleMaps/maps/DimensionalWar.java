@@ -63,7 +63,7 @@ public class DimensionalWar extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
         i.setItem(4, ARROWS);
-        i.setItem(5, EXP);
+        i.setItem(9, EXP);
 
     }
 

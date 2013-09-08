@@ -91,9 +91,9 @@ public class Apollo extends BattleMap implements IBattleMap, Listener {
         i.setItem(1, BOW);
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
-        i.setItem(4, ARROWS);
-        i.setItem(5, EXP);
-        i.setItem(6, ENDER_PEARL);
+        i.setItem(8, ARROWS);
+        i.setItem(4, EXP);
+        i.setItem(8, ENDER_PEARL);
 
         Bukkit.getScheduler().runTask(plugin, new Runnable() {
             public void run() {

@@ -99,6 +99,9 @@ public class SkyFights extends BattleMap implements IBattleMap, Listener {
     public int x2 = 22;
     public int y2 = 23;
     public int z2 = -67;
+    
+    //TODO
+    //If the region isn't defined properly the grapple hook WILL NOT WORK.
 
 
     @EventHandler

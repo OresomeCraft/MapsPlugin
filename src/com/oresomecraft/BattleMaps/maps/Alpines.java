@@ -58,7 +58,7 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, HEALTH);
         i.setItem(3, STONE_HOE);
         i.setItem(11, ARROWS);
-        i.setItem(8, new ItemStack(Material.BREAD, 3));
+        i.setItem(4, new ItemStack(Material.BREAD, 3));
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
 

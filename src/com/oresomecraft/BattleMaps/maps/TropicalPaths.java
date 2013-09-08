@@ -81,7 +81,7 @@ public class TropicalPaths extends BattleMap implements IBattleMap, Listener {
         i.setItem(1, BOW);
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
-        i.setItem(35, ARROWS);
+        i.setItem(9, ARROWS);
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
         p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 5 * 20, 2));

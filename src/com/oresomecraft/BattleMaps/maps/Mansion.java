@@ -102,10 +102,10 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, EXP);
-        i.setItem(3, STEAK);
-        i.setItem(4, HEALTH_POTION);
-        i.setItem(5, ARROWS);
+        i.setItem(4, EXP);
+        i.setItem(2, STEAK);
+        i.setItem(3, HEALTH_POTION);
+        i.setItem(9, ARROWS);
         p.getInventory().getHelmet().addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
 
     }

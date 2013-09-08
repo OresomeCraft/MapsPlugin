@@ -70,9 +70,9 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, HEALTH_POTION);
-        i.setItem(3, IRON_PICKAXE);
-        i.setItem(4, STONE_AXE);
+        i.setItem(5, HEALTH_POTION);
+        i.setItem(2, IRON_PICKAXE);
+        i.setItem(3, STONE_AXE);
         i.setItem(5, COOKED_PORKCHOP);
         i.setItem(6, BIRCH_LOG);
         i.setItem(11, ARROW);

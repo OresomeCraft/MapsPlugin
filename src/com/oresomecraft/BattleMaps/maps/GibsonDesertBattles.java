@@ -61,7 +61,7 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
         i.setItem(4, BREAD);
         i.setItem(5, HEALTH);
         i.setItem(6, OAK_LOG);
-        i.setItem(7, LADDER);
+        i.setItem(8, LADDER);
         i.setItem(27, ARROW);
 
         //Give players invincibility and strength for 15 seconds when they spawn

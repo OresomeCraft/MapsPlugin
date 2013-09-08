@@ -69,7 +69,7 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
         i.setItem(1, BOW);
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH);
-        i.setItem(5, EXP);
+        i.setItem(4, EXP);
         i.setItem(10, ARROWS);
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));

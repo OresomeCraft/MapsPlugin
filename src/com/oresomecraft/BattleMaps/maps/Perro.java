@@ -114,10 +114,10 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, FISHING_ROD);
-        i.setItem(3, EXP);
-        i.setItem(4, STEAK);
-        i.setItem(5, HEALTH_POTION);
-        i.setItem(6, ARROWS);
+        i.setItem(5, EXP);
+        i.setItem(3, STEAK);
+        i.setItem(4, HEALTH_POTION);
+        i.setItem(9, ARROWS);
         p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
 
 

@@ -100,11 +100,11 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BLAZE_ROD);
-        i.setItem(2, EGG_WARTOWN);
-        i.setItem(3, LEATHER);
-        i.setItem(4, STEAK);
-        i.setItem(5, HEALTH_POTION);
-        i.setItem(6, AMMO);
+        i.setItem(6, EGG_WARTOWN);
+        i.setItem(4, LEATHER);
+        i.setItem(2, STEAK);
+        i.setItem(3, HEALTH_POTION);
+        i.setItem(9, AMMO);
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 8 * 20, 1));

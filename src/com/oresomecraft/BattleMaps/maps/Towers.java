@@ -76,10 +76,10 @@ public class Towers extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setHelmet(IRON_HELMET);
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, ARROWS);
-        i.setItem(3, STEAK);
-        i.setItem(4, HEALTH_POTION);
-        i.setItem(5, EXP);
+        i.setItem(9, ARROWS);
+        i.setItem(2, STEAK);
+        i.setItem(3, HEALTH_POTION);
+        i.setItem(4, EXP);
 
     }
 

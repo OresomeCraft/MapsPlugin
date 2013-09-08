@@ -73,8 +73,8 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
         i.setItem(1, BOW);
         i.setItem(2, IRON_SHOVEL);
         i.setItem(3, BREAD);
-        i.setItem(4, DIRT);
-        i.setItem(8, GAPPLE);
+        i.setItem(8, DIRT);
+        i.setItem(4, GAPPLE);
         i.setItem(29, ARROWS);
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 7 * 20, 2));

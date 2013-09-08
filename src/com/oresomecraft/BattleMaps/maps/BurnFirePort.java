@@ -77,8 +77,8 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, HEALTH_POTION);
-        i.setItem(3, STEAK);
+        i.setItem(3, HEALTH_POTION);
+        i.setItem(2, STEAK);
         i.setItem(4, EXP);
         i.setItem(10, ARROW);
     }

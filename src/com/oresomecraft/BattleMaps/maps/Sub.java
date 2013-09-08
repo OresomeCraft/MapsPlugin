@@ -83,7 +83,7 @@ public class Sub extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
         i.setItem(4, EXP);
-        i.setItem(5, ARROWS);
+        i.setItem(9, ARROWS);
 
     }
 

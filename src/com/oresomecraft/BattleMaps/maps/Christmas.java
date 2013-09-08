@@ -126,9 +126,9 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, GAPPLE);
-        i.setItem(3, PUDDING);
-        i.setItem(4, HEALTH_POTION);
+        i.setItem(8, GAPPLE);
+        i.setItem(2, PUDDING);
+        i.setItem(3, HEALTH_POTION);
         i.setItem(10, ARROWS);
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 1));

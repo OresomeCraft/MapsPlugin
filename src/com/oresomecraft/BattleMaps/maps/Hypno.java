@@ -106,13 +106,13 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setHelmet(IRON_HELMET);
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, EMERALD);
-        i.setItem(3, EGG_HYPNO);
-        i.setItem(4, IRON_PICK);
-        i.setItem(5, STONE_SHOVEL);
-        i.setItem(6, STEAK);
-        i.setItem(7, HEALTH_POTION);
-        i.setItem(8, ARROWS);
+        i.setItem(7, EMERALD);
+        i.setItem(6, EGG_HYPNO);
+        i.setItem(2, IRON_PICK);
+        i.setItem(3, STONE_SHOVEL);
+        i.setItem(4, STEAK);
+        i.setItem(5, HEALTH_POTION);
+        i.setItem(9, ARROWS);
 
     }
 

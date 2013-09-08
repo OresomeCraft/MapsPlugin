@@ -50,21 +50,28 @@ public class Stimulation extends BattleMap implements IBattleMap, Listener {
         Inventory i = p.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack COOKED_FISH = new ItemStack(Material.COOKED_FISH, 2);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 48);
+        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack CHAINMAIL_PANTS = new ItemStack(Material.CHAINMAIL_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
         p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setLeggings(CHAINMAIL_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(LEATHER_HELMET);
 
-        i.setItem(3, HEALTH_POTION);
-
-        // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
-        p.setItem(0, Material.IRON_SWORD, 1);
-        p.setItem(1, Material.BOW, 1);
-        p.setItem(2, Material.COOKED_BEEF, 2);
-        p.setItem(4, Material.ARROW, 48);
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(3, COOKED_FISH);
+        i.setItem(4, HEALTH_POTION);
+        i.setItem(28, ARROWS);
+        //Just used raid's inv code since shaun f!cked it all up.
     }
 
     // Region. (Top corner block and bottom corner block.

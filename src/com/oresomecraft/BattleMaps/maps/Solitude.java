@@ -191,11 +191,11 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, STEAK);
-        i.setItem(3, HEALTH_POTION);
-        i.setItem(4, ARROWS);
+        i.setItem(3, STEAK);
+        i.setItem(4, HEALTH_POTION);
+        i.setItem(9, ARROWS);
         i.setItem(5, EXP);
-        i.setItem(5, FISHING_ROD);
+        i.setItem(2, FISHING_ROD);
 
         p.getInventory().getBoots().addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 9);
         //Do you know how many freaking fall deaths there are?

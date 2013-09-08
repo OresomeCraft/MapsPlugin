@@ -66,16 +66,16 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, HEALTH);
+        i.setItem(3, HEALTH);
         i.setItem(11, ARROWS);
-        i.setItem(8, BREAD);
+        i.setItem(4, BREAD);
 
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
 
         if (p.getTeam() == Team.KOTH_RED) {
             p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 120 * 20, 2));
-            i.setItem(3, FIRE);
+            i.setItem(8, FIRE);
         }
 
     }

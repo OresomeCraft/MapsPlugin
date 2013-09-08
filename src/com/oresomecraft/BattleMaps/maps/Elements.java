@@ -44,10 +44,10 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, STONE_PICK);
-        i.setItem(3, HEALTH);
-        i.setItem(4, LOG);
+        i.setItem(4, HEALTH);
+        i.setItem(8, LOG);
         i.setItem(11, ARROWS);
-        i.setItem(8, new ItemStack(Material.BREAD, 3));
+        i.setItem(3, new ItemStack(Material.BREAD, 3));
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 20 * 20, 2));
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15000 * 20, 2));
