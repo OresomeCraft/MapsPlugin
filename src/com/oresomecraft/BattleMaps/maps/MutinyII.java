@@ -67,7 +67,9 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         i.setItem(9, new ItemStack(Material.ARROW, 64));
 
         p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
-        p.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
         p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
 
