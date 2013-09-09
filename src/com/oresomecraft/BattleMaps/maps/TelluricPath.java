@@ -60,7 +60,7 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
         ItemStack ARROW = new ItemStack(Material.ARROW, 1);
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
         ItemStack poison = new ItemStack(Material.FERMENTED_SPIDER_EYE, 1);
-
+        poison.addUnsafeEnchantment(Enchantment.DAMAGE_ARTHROPODS, 1);
         ItemMeta po = poison.getItemMeta();
         po.setDisplayName(ChatColor.BLUE + "Poison Eye");
 
