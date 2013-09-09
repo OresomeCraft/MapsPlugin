@@ -6,8 +6,10 @@ import java.util.List;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.block.*;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -15,6 +17,8 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class TelluricPath extends BattleMap implements IBattleMap, Listener {
 
@@ -33,16 +37,19 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     public void readyTDMSpawns() {
+
         redSpawns.add(new Location(w, -133, 26, -36));
         blueSpawns.add(new Location(w, -1, 26, 34));
         redSpawns.add(new Location(w, -130, 26, 23));
         blueSpawns.add(new Location(w, -7, 26, -27));
+
         Location redFlag = new Location(w, -125, 27, -9);
         Location blueFlag = new Location(w, -12, 27, 6);
         setCTFFlags(name, redFlag, blueFlag);
     }
 
     public void readyFFASpawns() {
+
         FFASpawns.add(new Location(w, -133, 26, -36));
         FFASpawns.add(new Location(w, -1, 26, 34));
         FFASpawns.add(new Location(w, -130, 26, 23));
@@ -58,43 +65,51 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
         ItemStack PUMPKIN_PIE = new ItemStack(Material.PUMPKIN_PIE, 5);
         ItemStack APPLE = new ItemStack(Material.GOLDEN_APPLE, 2);
         ItemStack ARROW = new ItemStack(Material.ARROW, 1);
-        BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-        ItemStack poison = new ItemStack(Material.FERMENTED_SPIDER_EYE, 1);
-        poison.addUnsafeEnchantment(Enchantment.DAMAGE_ARTHROPODS, 1);
-        ItemMeta po = poison.getItemMeta();
-        po.setDisplayName(ChatColor.BLUE + "Poison Eye");
+        ItemStack POISON = new ItemStack(Material.FERMENTED_SPIDER_EYE, 1);
 
-        List<String> pLore = new ArrayList<String>();
-        pLore.add(org.bukkit.ChatColor.BLUE + "Hit players with this to poison them!");
-        po.setLore(pLore);
-        poison.setItemMeta(po);
+        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+        ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+
+        LeatherArmorMeta helmet = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
+        helmet.setColor(Color.PURPLE);
+        LEATHER_HELMET.setItemMeta(helmet);
+
+        LeatherArmorMeta chestplate = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+        chestplate.setColor(Color.PURPLE);
+        LEATHER_CHESTPLATE.setItemMeta(chestplate);
+
+        LeatherArmorMeta leggings = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
+        leggings.setColor(Color.PURPLE);
+        LEATHER_PANTS.setItemMeta(leggings);
+
+        LeatherArmorMeta boots = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+        boots.setColor(Color.PURPLE);
+        LEATHER_BOOTS.setItemMeta(boots);
+
+        ItemMeta poisonMeta = POISON.getItemMeta();
+        poisonMeta.setDisplayName(ChatColor.BLUE + "Poison Eye");
+
+        List<String> poisonLore = new ArrayList<String>();
+        poisonLore.add(org.bukkit.ChatColor.BLUE + "Hit players with this to poison them!");
+        poisonMeta.setLore(poisonLore);
+        POISON.setItemMeta(poisonMeta);
+
+        BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+
+        p.getInventory().setBoots(LEATHER_BOOTS);
+        p.getInventory().setLeggings(LEATHER_PANTS);
+        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        p.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, IRON_PICKAXE);
         i.setItem(3, PUMPKIN_PIE);
         i.setItem(4, APPLE);
-        i.setItem(8, poison);
-        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-        ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-        LeatherArmorMeta hel = (LeatherArmorMeta)LEATHER_HELMET.getItemMeta();
-        hel.setColor(Color.PURPLE);
-        LEATHER_HELMET.setItemMeta(hel);
-        LeatherArmorMeta che = (LeatherArmorMeta)LEATHER_CHESTPLATE.getItemMeta();
-        che.setColor(Color.PURPLE);
-        LEATHER_CHESTPLATE.setItemMeta(che);
-        LeatherArmorMeta leg = (LeatherArmorMeta)LEATHER_PANTS.getItemMeta();
-        leg.setColor(Color.PURPLE);
-        LEATHER_PANTS.setItemMeta(leg);
-        LeatherArmorMeta boo = (LeatherArmorMeta)LEATHER_BOOTS.getItemMeta();
-        boo.setColor(Color.PURPLE);
-        LEATHER_BOOTS.setItemMeta(boo);
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        i.setItem(8, POISON);
+        i.setItem(17, ARROW);
 
     }
 
@@ -108,4 +123,16 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
     public int x2 = -70;
     public int y2 = 30;
     public int z2 = 50;
+
+    public void onPoisonUse(EntityDamageByEntityEvent event) {
+        if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
+            Player damager = (Player) event.getDamager();
+            Player target = (Player) event.getEntity();
+
+            if (damager.getItemInHand().equals(Material.FERMENTED_SPIDER_EYE)) {
+                target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 5 * 20, 1));
+            }
+        }
+
+    }
 }

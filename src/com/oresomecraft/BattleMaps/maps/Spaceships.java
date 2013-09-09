@@ -44,11 +44,14 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
+
         i.setItem(0, new ItemStack(Material.DIAMOND_SWORD, 1));
         i.setItem(1, new ItemStack(Material.BOW, 1));
         i.setItem(2, new ItemStack(Material.DIAMOND_PICKAXE, 1));
@@ -57,6 +60,7 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
         i.setItem(5, new ItemStack(Material.LOG, 64));
         i.setItem(8, new ItemStack(Material.ENDER_PEARL, 1));
         i.setItem(9, new ItemStack(Material.ARROW, 64));
+
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 1));
         p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 1));
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40 * 20, 1));
