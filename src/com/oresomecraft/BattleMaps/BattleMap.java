@@ -277,6 +277,7 @@ public abstract class BattleMap implements Listener {
                 if (pearlDamage) {
                     if (cause == TeleportCause.ENDER_PEARL) {
                         player.teleport(destination);
+                        player.setFallDistance(0);
                         event.setCancelled(true);
                     }
                 }
