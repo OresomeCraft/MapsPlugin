@@ -29,15 +29,15 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, 2, 84, -48));
-        blueSpawns.add(new Location(w, -3, 84, 58));
+        redSpawns.add(new Location(w, 2, 84, -48, -1, 0));
+        blueSpawns.add(new Location(w, -3, 84, 58, -178, 0));
 
         setKoTHMonument(new Location(w, -1, 115, 4));
     }
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, 2, 84, -48));
-        FFASpawns.add(new Location(w, -3, 84, 58));
+        FFASpawns.add(new Location(w, 2, 84, -48, -1, 0));
+        FFASpawns.add(new Location(w, -3, 84, 58, -178, 0));
     }
 
     public void applyInventory(final BattlePlayer p) {
