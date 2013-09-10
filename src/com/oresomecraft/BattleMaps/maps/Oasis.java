@@ -19,7 +19,7 @@ public class Oasis extends BattleMap implements IBattleMap, Listener {
         setAllowBuild(true);
     }
 
-    String name = "oasis";
+    String name = "ballons";
     String fullName = "Oasis";
     String creators = "_Moist and Sky_Aurora";
     Gamemode[] modes = {Gamemode.KOTH};
@@ -34,7 +34,7 @@ public class Oasis extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(blueSpawn);
         blueSpawns.add(new Location(w, -0.3, 55, -44, 45, 0));
 
-        setKoTHMonument(new Location(w, -53, 55, -22));
+        setKoTHMonument(new Location(w, -53, 54, -22));
     }
 
     public void readyFFASpawns() {
