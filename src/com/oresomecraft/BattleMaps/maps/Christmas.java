@@ -147,7 +147,7 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onConsume(PlayerItemConsumeEvent event) {
-        if (event.getPlayer().getWorld().getName().equals(name)) {
+        if (!active) return;
             Player p = event.getPlayer();
             ItemStack i = event.getItem();
 
@@ -156,7 +156,6 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
                 p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 3 * 20, 1));
                 p.getWorld().playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
                 p.sendMessage(ChatColor.RED + "Merry " + ChatColor.GREEN + "Christmas!");
-            }
         }
     }
 
@@ -192,20 +191,19 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onKill(PlayerDeathEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name)) {
-            if (event.getEntity().getKiller().getType().equals(EntityType.PLAYER)) {
-                Random random = new Random();
+        if (!active) return;
+        if (event.getEntity().getKiller().getType().equals(EntityType.PLAYER)) {
+            Random random = new Random();
+            if (random.nextBoolean()) {
+                Player p = event.getEntity().getKiller();
                 if (random.nextBoolean()) {
-                    Player p = event.getEntity().getKiller();
-                    if (random.nextBoolean()) {
-                        p.awardAchievement(Achievement.OVERKILL);
-                        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 1));
-                        p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
-                    } else {
-                        p.awardAchievement(Achievement.KILL_ENEMY);
-                        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
-                        p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
-                    }
+                    p.awardAchievement(Achievement.OVERKILL);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 1));
+                    p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
+                } else {
+                    p.awardAchievement(Achievement.KILL_ENEMY);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
+                    p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
                 }
             }
         }

@@ -2,12 +2,16 @@ package com.oresomecraft.BattleMaps;
 
 import java.util.logging.Logger;
 
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import com.oresomecraft.BattleMaps.maps.*;
 
+/**
+ * OresomeBattlesMaps | Conponent for OresomeBattles
+ *
+ * @author OresomeCraft, Zachoz
+ */
 public class OresomeBattlesMaps extends JavaPlugin {
+
     public final Logger logger = Logger.getLogger("Minecraft");
     protected static OresomeBattlesMaps plugin;
 
@@ -17,19 +21,13 @@ public class OresomeBattlesMaps extends JavaPlugin {
 
     public void onDisable() {
 
-        PluginDescriptionFile pdfFile = getDescription();
-        this.logger.info(pdfFile.getName() + " is now disabled");
     }
 
     public void onEnable() {
-
-        PluginDescriptionFile pdfFile = getDescription();
-        this.logger.info(pdfFile.getName() + " version " + pdfFile.getVersion() + "is now enabled");
         loadMaps();
     }
 
     public void loadMaps() {
-
         new Apollo();
         new Zoned();
         new Mantle();
@@ -93,7 +91,6 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new SkyFights();
         new TelluricPath();
         new ClashOfClayIII();
-
     }
 
     public static OresomeBattlesMaps getInstance() {

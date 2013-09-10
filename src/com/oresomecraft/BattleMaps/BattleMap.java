@@ -38,12 +38,13 @@ public abstract class BattleMap implements Listener {
     public ArrayList<Location> blueSpawns = new ArrayList<Location>();
     public ArrayList<Location> FFASpawns = new ArrayList<Location>();
 
+    // Map attributes
     private boolean allowBuild = true;
     private Material[] disabledDrops;
     private boolean pearlDamage = true;
     private Long timeLock;
 
-    public World w;
+    public World w; // World variable
 
     // Map details
     String name;
@@ -285,6 +286,11 @@ public abstract class BattleMap implements Listener {
         }
     }
 
+    /**
+     * Applies map inventory to a BattlePlayer
+     *
+     * @param event An event called by OresomeBattles
+     */
     @EventHandler
     public void applyInventory(InventoryEvent event) {
         if (event.getMessage().equals(name)) {
@@ -295,6 +301,9 @@ public abstract class BattleMap implements Listener {
 
     int timeLockScheduler;
 
+    /**
+     * Starts time lock timer
+     */
     public void startTimeLock() {
         timeLockScheduler = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             public void run() {
@@ -355,21 +364,48 @@ public abstract class BattleMap implements Listener {
      * ***************************************************************
      */
 
+    /**
+     * Gets the current map/arena being played.
+     *
+     * @return Current map/arena being played.
+     */
     public String getArena() {
         return BattlesAccess.getArena();
     }
 
+    /**
+     * Get's the current game mode being played
+     *
+     * @return Current game mode being played.
+     */
     public Gamemode getMode() {
         return BattlesAccess.getMode();
     }
 
+    /**
+     * Compares two Location objects to see if they're the same location
+     *
+     * @param loc1 A Location
+     * @param loc2 A Location
+     * @return True if co-ords are the same for both Location objects.
+     */
     public boolean compareLocations(Location loc1, Location loc2) {
         return BattlesAccess.compareLocations(loc1, loc2);
     }
 
-    // Getting the region
-    public boolean contains(Location loc, int x1, int x2, int y1,
-                            int y2, int z1, int z2) {
+    /**
+     * Checks if a Location is inbetween a certain co-ord range
+     *
+     * @param loc A Location
+     * @param x1  First X co-ord
+     * @param x2  Second X co-ord
+     * @param y1  First Y co-ord
+     * @param y2  Second Y co-ord
+     * @param z1  First Z co-ord
+     * @param z2  Second Z co-ord
+     * @return Whether or not the co-ords of 'loc' are inside the co-ord range
+     */
+    public boolean contains(Location loc, int x1, int x2, int y1, int y2, int z1, int z2) {
         int bottomCornerX = x1 < x2 ? x1 : x2;
         int bottomCornerZ = z1 < z2 ? z1 : z2;
         int topCornerX = x1 > x2 ? x1 : x2;
@@ -384,7 +420,6 @@ public abstract class BattleMap implements Listener {
             }
         }
         return false;
-
     }
 
 }
