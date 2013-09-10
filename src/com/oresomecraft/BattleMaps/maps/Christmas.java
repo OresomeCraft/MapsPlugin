@@ -192,18 +192,20 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onKill(PlayerDeathEvent event) {
-        if (event.getEntity().getKiller().getType().equals(EntityType.PLAYER)) {
-            Random random = new Random();
-            if (random.nextBoolean()) {
-                Player p = event.getEntity().getKiller();
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity().getKiller().getType().equals(EntityType.PLAYER)) {
+                Random random = new Random();
                 if (random.nextBoolean()) {
-                    p.awardAchievement(Achievement.OVERKILL);
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 1));
-                    p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
-                } else {
-                    p.awardAchievement(Achievement.KILL_ENEMY);
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
-                    p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
+                    Player p = event.getEntity().getKiller();
+                    if (random.nextBoolean()) {
+                        p.awardAchievement(Achievement.OVERKILL);
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 1));
+                        p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
+                    } else {
+                        p.awardAchievement(Achievement.KILL_ENEMY);
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
+                        p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
+                    }
                 }
             }
         }

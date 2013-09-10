@@ -125,14 +125,16 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
     public int z2 = 50;
 
     public void onPoisonUse(EntityDamageByEntityEvent event) {
-        if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
-            Player damager = (Player) event.getDamager();
-            Player target = (Player) event.getEntity();
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
+                Player damager = (Player) event.getDamager();
+                Player target = (Player) event.getEntity();
 
-            if (damager.getItemInHand().equals(Material.FERMENTED_SPIDER_EYE)) {
-                target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 5 * 20, 1));
+                if (damager.getItemInHand().equals(Material.FERMENTED_SPIDER_EYE)) {
+                    target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 5 * 20, 1));
+                }
             }
-        }
 
+        }
     }
 }
