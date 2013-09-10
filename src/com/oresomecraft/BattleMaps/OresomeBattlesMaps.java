@@ -89,6 +89,10 @@ public class OresomeBattlesMaps extends JavaPlugin {
         new Chasm();
         new TowerHill();
         new DesertCastle();
+		new Oasis();
+		new SkyFights();
+		new TelluricPath();
+		new ClashOfClayIII();
 
     }
 
