@@ -1,26 +1,37 @@
-OresomeBattles-Maps
+OresomeBattles-Maps [![Build Status](https://travis-ci.org/OresomeCraft/OresomeBattles-Maps.png?branch=master)](https://travis-ci.org/OresomeCraft/OresomeBattles-Maps)
 ===================
 
-Configuration files for OresomeBattles maps.
+#### Map configuration plugin for OresomeBattles.
 
-Build status: [![Build Status](https://travis-ci.org/OresomeCraft/OresomeBattles-Maps.png?branch=master)](https://travis-ci.org/OresomeCraft/OresomeBattles-Maps)
+### Resources
 
-This is an addon (but required) plugin to OresomeBattles. This plugin is what handles the maps, using the OresomeBattles API.
+* [Wiki](https://github.com/OresomeCraft/OresomeBattles-Maps/wiki)
+* [Configuration guide](https://github.com/OresomeCraft/OresomeBattles-Maps/wiki/Configuration-guide)
+* [Submission guide](https://github.com/OresomeCraft/OresomeBattles-Maps/wiki/Map-Submission-Guide)
 
-This is here to hopefully be helpful to those trying to configure their own maps and for the people who may want to cover more advancted topics such as item renaming.
+### Contributing
 
-If you would like to submit your own map, feel free to make a pull request!
+Please read our [CONTRIBUTING](https://github.com/OresomeCraft/OresomeBattles-Maps/blob/master/CONTRIBUTING.md) file for contribution guidelines.
 
-You may make pull requests for existing maps, but it's likely that they will not be accepted.
-
-### Configuration team:
+### Configuration team
 
 Users with push and pull access to this repo are:
 
 * [Zachoz](https://github.com/Zachoz)
 * [pegabeavercorn](https://github.com/pegabeavercorn)
+* [pegabeavercorn](https://github.com/pegabeavercorn)
 * [NobleFable](https://github.com/NobleFable)
 * [R3creat3](https://github.com/R3creat3)
-* [Husky--](https://github.com/Husky--)
+* [Huskehhh](https://github.com/Huskehhh)
 * [psgs](https://github.com/psgs)
 * [ShaunDepro](https://github.com/shaundepro)
+
+### Compiling
+
+You must have Apache Maven installed to compile. (http://maven.apache.org)
+
+to compile use the following command:
+
+```mvn clean install```
+
+**Note:** Plugin requires OresomeBattles to function and hence will not function on your own servers.
