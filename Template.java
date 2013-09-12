@@ -68,7 +68,7 @@ public class Template extends BattleMap implements IBattleMap, Listener {
     public int y1 = 160;
     public int z1 = -70;
 
-    //Bottom right corner.
+    // Bottom right corner.
     public int x2 = -70;
     public int y2 = 30;
     public int z2 = 50;

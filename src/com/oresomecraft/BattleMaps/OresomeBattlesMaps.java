@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.oresomecraft.BattleMaps.maps.*;
 
 /**
- * OresomeBattlesMaps | Conponent for OresomeBattles
+ * OresomeBattlesMaps | Component for OresomeBattles
  *
  * @author OresomeCraft, Zachoz
  */

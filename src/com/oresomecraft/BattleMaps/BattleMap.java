@@ -66,7 +66,7 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
-     * Sets the spawn points for a map once its world has loaded
+     * Sets the spawn points for a map once it's world has loaded
      *
      * @param event A WorldLoadEvent called by the server
      */
@@ -147,7 +147,7 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
-     * Sets whether or not player's can build on the map
+     * Sets whether or not players can build on the map
      *
      * @param allow Whether or not player's can build on the map
      */
@@ -383,7 +383,7 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
-     * Compares two Location objects to see if they're the same location
+     * Compares two Location objects to see if they share the same co-ordinates
      *
      * @param loc1 A Location
      * @param loc2 A Location
@@ -394,7 +394,7 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
-     * Checks if a Location is inbetween a certain co-ord range
+     * Checks if a Location's co-ords is inbetween a certain co-ord range
      *
      * @param loc A Location
      * @param x1  First X co-ord
