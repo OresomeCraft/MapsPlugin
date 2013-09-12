@@ -76,6 +76,7 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
         i.setItem(1, BOW);
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
+        i.setItem(4, SPY_WATCH);
         i.setItem(9, ARROWS);
     }
 
