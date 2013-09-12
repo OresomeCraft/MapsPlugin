@@ -34,6 +34,27 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <!-- Shade plugin: Used to include sk89q's command framework into the jar -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <includes>
+                                    <include>org.reflections:reflections</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -52,6 +73,11 @@
             <groupId>com.oresomecraft</groupId>
             <artifactId>OresomeBattlesAPI</artifactId>
             <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.9-RC1</version>
         </dependency>
     </dependencies>
     <repositories>
