@@ -131,6 +131,7 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
     
     @EventHandler
     public void manipulator(BlockBreakEvent event){
+        if(!active) return;
         if(event.getBlock().getType() == Material.SPONGE){
             event.getBlock().getWorld().getBlockAt(event.getBlock().getLocation()).setType(Material.OBSIDIAN);
             manipulation = false;

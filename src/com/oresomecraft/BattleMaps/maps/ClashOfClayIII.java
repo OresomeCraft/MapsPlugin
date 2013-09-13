@@ -22,30 +22,20 @@ public class ClashOfClayIII extends BattleMap implements IBattleMap, Listener {
     String name = "clashofclay3";
     String fullName = "Clash Of Clay III";
     String creators = "_Moist and R3creat3";
-    Gamemode[] modes = {Gamemode.KOTH};
+    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-        Location redSpawn = new Location(w, -103, 30, -11, 177, 0);
-        Location blueSpawn = new Location(w, -43, 71, -1, 87, 0);
-
-        blueSpawns.add(new Location(w, -15, 70, -28, 91, 0));
-        redSpawns.add(new Location(w, -108, 28, -51, -90, 0));
-
-        redSpawns.add(redSpawn);
-        blueSpawns.add(blueSpawn);
-
-        setKoTHMonument(new Location(w, -63, 34, -26));
+        blueSpawns.add(new Location(w, -288, 70, -29));
+        redSpawns.add(new Location(w, -43, 71, -1));
+        blueSpawns.add(new Location(w, -259, 72, -55));
+        redSpawns.add(new Location(w, -16, 70, -28));
     }
 
     public void readyFFASpawns() {
-        Location redSpawn = new Location(w, -103, 30, -11, 177, 0);
-        Location blueSpawn = new Location(w, -43, 71, -1, 87, 0);
-
-        FFASpawns.add(new Location(w, -15, 70, -28, 91, 0));
-        FFASpawns.add(new Location(w, -108, 28, -51, -90, 0));
-
-        FFASpawns.add(blueSpawn);
-        FFASpawns.add(redSpawn);
+        FFASpawns.add(new Location(w, -288, 70, -29));
+        FFASpawns.add(new Location(w, -43, 71, -1));
+        FFASpawns.add(new Location(w, -259, 72, -55));
+        FFASpawns.add(new Location(w, -16, 70, -28));
     }
 
     public void applyInventory(final BattlePlayer p) {
