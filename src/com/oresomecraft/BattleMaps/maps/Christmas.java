@@ -147,7 +147,7 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onConsume(PlayerItemConsumeEvent event) {
-        if (!active) return;
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
             Player p = event.getPlayer();
             ItemStack i = event.getItem();
 
@@ -159,7 +159,7 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    @EventHandler
+    //@EventHandler
     public void onEnd(BattleEndEvent event) {
 
         for (Player p : Bukkit.getOnlinePlayers()) {
@@ -191,7 +191,7 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onKill(PlayerDeathEvent event) {
-        if (!active) return;
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
         if (event.getEntity().getKiller().getType().equals(EntityType.PLAYER)) {
             Random random = new Random();
             if (random.nextBoolean()) {
