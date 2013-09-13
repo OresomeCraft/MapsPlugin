@@ -25,6 +25,8 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Christmas extends BattleMap implements IBattleMap, Listener {
@@ -79,6 +81,9 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
 
         ItemMeta pudding = PUDDING.getItemMeta();
         pudding.setDisplayName(ChatColor.RED + "Pudding");
+        List<String> puddingLore = new ArrayList<String>();
+        puddingLore.add(org.bukkit.ChatColor.BLUE + "A lovely warm pudding to eat!");
+        pudding.setLore(puddingLore);
         PUDDING.setItemMeta(pudding);
 
         if (p.getTeam().equals(Team.TDM_BLUE) || p.getTeam().equals(Team.KOTH_BLUE)) {
@@ -148,19 +153,20 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onConsume(PlayerItemConsumeEvent event) {
         if (!active) return;
-            Player p = event.getPlayer();
-            ItemStack i = event.getItem();
+        Player p = event.getPlayer();
+        ItemStack i = event.getItem();
 
-            if (i.getType().equals(Material.MUSHROOM_SOUP)) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
-                p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 3 * 20, 1));
-                p.getWorld().playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
-                p.sendMessage(ChatColor.RED + "Merry " + ChatColor.GREEN + "Christmas!");
+        if (i.getType().equals(Material.MUSHROOM_SOUP)) {
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 3 * 20, 1));
+            p.getWorld().playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
+            p.sendMessage(ChatColor.RED + "Merry " + ChatColor.GREEN + "Christmas!");
         }
     }
 
     @EventHandler
     public void onEnd(BattleEndEvent event) {
+        if (!active) return;
 
         for (Player p : Bukkit.getOnlinePlayers()) {
 

@@ -97,6 +97,7 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
         POISON.setItemMeta(poisonMeta);
 
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+        POISON.addEnchantment(Enchantment.DAMAGE_ARTHROPODS, 1);
 
         p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_PANTS);
@@ -123,18 +124,4 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
     public int x2 = -70;
     public int y2 = 30;
     public int z2 = 50;
-
-    public void onPoisonUse(EntityDamageByEntityEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name)) {
-            if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
-                Player damager = (Player) event.getDamager();
-                Player target = (Player) event.getEntity();
-
-                if (damager.getItemInHand().equals(Material.FERMENTED_SPIDER_EYE)) {
-                    target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 5 * 20, 1));
-                }
-            }
-
-        }
-    }
 }
