@@ -98,7 +98,7 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
         Action a = event.getAction();
         if(a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK){
             if(p.getItemInHand().getType() == Material.WATCH){
-                p.getInventory().remove(new ItemStack(Material.WATCH, 1));
+                p.getInventory().remove(p.getItemInHand());
                 p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
                 p.getInventory().setChestplate(new ItemStack(Material.AIR, 1));
                 p.getInventory().setLeggings(new ItemStack(Material.AIR, 1));
@@ -113,6 +113,7 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
                 ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
                 InvUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(p), new ItemStack[]{LEATHER_CHESTPLATE});
                 p.getInventory().addItem(LEATHER_CHESTPLATE);
+                p.updateInventory();
                 p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 15*20, 0));
             }
         }
