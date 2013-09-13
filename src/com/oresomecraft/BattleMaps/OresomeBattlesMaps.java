@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
+import com.oresomecraft.OresomeBattles.api.events.*;
 import org.bukkit.Bukkit;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.reflections.Reflections;
 
@@ -44,7 +45,14 @@ public class OresomeBattlesMaps extends JavaPlugin {
 
     public void onDisable() {
         Bukkit.getPluginManager().callEvent(new ClearSpawnsEvent()); // Clear spawns
-        maps.clear();
+
+        for (BattleMap map : maps) { // Unregister events
+            HandlerList.unregisterAll(map);
+        }
+
+        HandlerList.unregisterAll(this); // Unregister any remaining events from this plugin
+
+        maps.clear(); // Remove some final references
     }
 
     public static OresomeBattlesMaps getInstance() {
