@@ -49,7 +49,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         ItemStack ALLPROTECT = new ItemStack(Material.EMERALD, 1);
 
         ItemMeta allprotect = ALLPROTECT.getItemMeta();
-        allprotect.setDisplayName(ChatColor.BLUE + "All Protect Stone");
+        allprotect.setDisplayName(ChatColor.GREEN + "All Protect Stone");
 
         List<String> stoneLore = new ArrayList<String>();
         stoneLore.add(org.bukkit.ChatColor.BLUE + "Hold this while being attacked to reduce damage");
