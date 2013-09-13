@@ -16,7 +16,7 @@ public class Oasis extends BattleMap implements IBattleMap, Listener {
 
     public Oasis() {
         super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(true);
+        setAllowBuild(false);
     }
 
     String name = "ballons";
@@ -83,6 +83,7 @@ public class Oasis extends BattleMap implements IBattleMap, Listener {
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_BOOTS, LEATHER_PANTS, LEATHER_HELMET});
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 1));
+        p.sendMessage(ChatColor.GOLD + "Stand on wheat to gain health!");
     }
 
     // Region. (Top corner block and bottom corner block.
