@@ -22,6 +22,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Fairwick extends BattleMap implements IBattleMap, Listener {
 
     public Fairwick() {
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.WATCH});
         super.initiate(this, name, fullName, creators, modes);
     }
 
@@ -120,7 +121,7 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
     }
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if (event.getBlock().getLocation().getWorld().getName().equals(name) && event.getBlock().getType().getId() != 102)
+        if (event.getBlock().getLocation().getWorld().getName().equals(name) && event.getBlock().getType().getId() != 102 && event.getBlock().getType().getId() != 5)
             event.setCancelled(true);
     }
 
