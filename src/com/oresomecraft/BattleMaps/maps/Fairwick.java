@@ -107,12 +107,12 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
                 p.getInventory().remove(new ItemStack(Material.IRON_BOOTS));
                 p.getInventory().remove(new ItemStack(Material.IRON_LEGGINGS));
                 p.getInventory().remove(new ItemStack(Material.IRON_HELMET));
-                p.getInventory().remove(new ItemStack(Material.LEATHER_CHESTPLATE));
+                ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+                InvUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(p), new ItemStack[]{LEATHER_CHESTPLATE});     
+                p.getInventory().remove(LEATHER_CHESTPLATE);
                 p.getInventory().addItem(new ItemStack(Material.IRON_BOOTS));
                 p.getInventory().addItem(new ItemStack(Material.IRON_LEGGINGS));
                 p.getInventory().addItem(new ItemStack(Material.IRON_HELMET));
-                ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-                InvUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(p), new ItemStack[]{LEATHER_CHESTPLATE});
                 p.getInventory().addItem(LEATHER_CHESTPLATE);
                 p.updateInventory();
                 p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 15*20, 0));
