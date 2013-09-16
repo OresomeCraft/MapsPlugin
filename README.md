@@ -19,7 +19,6 @@ Users with push and pull access to this repo are:
 
 * [Zachoz](https://github.com/Zachoz)
 * [pegabeavercorn](https://github.com/pegabeavercorn)
-* [pegabeavercorn](https://github.com/pegabeavercorn)
 * [NobleFable](https://github.com/NobleFable)
 * [R3creat3](https://github.com/R3creat3)
 * [Huskehhh](https://github.com/Huskehhh)
