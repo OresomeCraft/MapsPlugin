@@ -97,7 +97,7 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
         POISON.setItemMeta(poisonMeta);
 
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-        POISON.addEnchantment(Enchantment.DAMAGE_ARTHROPODS, 1);
+        POISON.addUnsafeEnchantment(Enchantment.DAMAGE_ARTHROPODS, 1);
 
         p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_PANTS);
