@@ -105,7 +105,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    //@EventHandler(priority = EventPriority.NORMAL)
     public void explodingArrow(ProjectileHitEvent event) {
         Entity projectile = event.getEntity();
         World w = projectile.getWorld();
