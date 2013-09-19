@@ -82,9 +82,9 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, STICK);
-        i.setItem(3, HEALTH_POTION);
-        i.setItem(4, STEAK);
+        i.setItem(2, HEALTH_POTION);
+        i.setItem(3, STEAK);
+        i.setItem(4, STICK);
         i.setItem(14, ARROWS);
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
@@ -103,10 +103,12 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-            if (event.getPlayer().getItemInHand().equals(Material.STICK)) {
-                event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.SKELETON);
-                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
-                event.getPlayer().sendMessage(ChatColor.GREEN + "The stick of life has given you a skeleton!");
+            Player p = event.getPlayer();
+            if (p.getItemInHand().equals(Material.STICK)) {
+                p.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.SKELETON);
+                p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
+                p.sendMessage(ChatColor.GREEN + "The stick of life has given you a skeleton!");
+                p.getItemInHand().setType(Material.AIR);
             }
         }
     }
