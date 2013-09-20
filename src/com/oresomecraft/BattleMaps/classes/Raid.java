@@ -42,7 +42,7 @@ public class Raid extends BattleMap implements MapInterface, Listener {
     String fullName = "Raid";
     String creators = "ShaunDepro97";
     Gamemode[] modes = {Gamemode.TDM};
-    //Map download link: http://www.filedropper.com/raid
+    //Map download link: https://www.dropbox.com/s/i9m8dy0xt809jo5/Raid.zip
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void readyMap(ReadyMapsEvent event) {
