@@ -11,6 +11,7 @@ Interested in having your map added to OresomeCraft Battles? Oresome! Just make 
   are unacceptable.
 * **Don't tag classes with messages like 'configured by <username>', etc**
 * **Test your code.** We're not interested in broken code, for the obvious reasons.
+* **Commits made should always be made in the present tense. For example, "Added ..." is not appriopriate. "Add CastleMap" is appropriate.**
 
 
 Checklist
