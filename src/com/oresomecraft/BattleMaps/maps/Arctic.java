@@ -36,7 +36,7 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         redSpawns.add(new Location(w, 834, 132, -84, 60, 0));
         redSpawns.add(new Location(w, 802, 137, -113, -3, 0));
         redSpawns.add(new Location(w, 779, 141, -110, -6, 0));
-        redSpawns.add(new Location(w, 807, 159, -114, 7, 0));
+        redSpawns.add(new Location(w, 804, 137, -111, 0, 0));
 
         blueSpawns.add(blueSpawn);
         blueSpawns.add(new Location(w, 784, 136, -56, -150, 0));
@@ -44,6 +44,7 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 831, 144, -64, -175, 0));
         blueSpawns.add(new Location(w, 795, 155, -26, -154, 0));
         blueSpawns.add(new Location(w, 812, 128, -52, 173, 0));
+
         setKoTHMonument(new Location(w, 803, 182, -86));
     }
 
@@ -58,12 +59,11 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 813, 128, -41, -93, 0));
         FFASpawns.add(new Location(w, 773, 121, -110, -58, 0));
         FFASpawns.add(new Location(w, 779, 141, -110, -44, 0));
-        FFASpawns.add(new Location(w, 808, 159, -144, -2, 0));
+        FFASpawns.add(new Location(w, 804, 137, -111, 0, 0));
         FFASpawns.add(new Location(w, 820, 129, -68, 129, 0));
         FFASpawns.add(new Location(w, 788, 128, -81, -124, 0));
         FFASpawns.add(new Location(w, 784, 182, -85, -113, 0));
         FFASpawns.add(new Location(w, 761, 132, -133, -27, 0));
-        FFASpawns.add(new Location(w, 820, 149, -88, 2, 0));
         FFASpawns.add(new Location(w, 820, 149, -88, 2, 0));
         FFASpawns.add(new Location(w, 779, 130, -87, -87, 0));
         FFASpawns.add(new Location(w, 832, 133, -67, 133, 0));
