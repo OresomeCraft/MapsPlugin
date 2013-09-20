@@ -5,6 +5,8 @@ import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.event.world.WorldUnloadEvent;
@@ -20,7 +22,6 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
     public Perro() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(5);
-        setAllowBuild(false);
     }
 
     String name = "perro";
@@ -269,10 +270,18 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
             }, 5L, 5L);
         }
     }
-
     @EventHandler
     public void cancelParticles(WorldUnloadEvent event) {
         Bukkit.getScheduler().cancelTask(particles);
     }
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        if (event.getBlock().getLocation().getWorld().getName().equals(name) && event.getBlock().getType().getId() != 102)
+            event.setCancelled(true);
+    }
 
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        if (event.getBlock().getLocation().getWorld().getName().equals(name)) event.setCancelled(true);
+    }
 }
