@@ -193,7 +193,7 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
 
                     Entity near = nearby.get(count);
 
-                    if (near instanceof Player) {
+                    if (near instanceof Player && !BattlePlayer.getBattlePlayer((Player) near).isSpectator()) {
 
                         Player p = (Player) near;
 
