@@ -11,6 +11,7 @@ public class Stimulation extends BattleMap implements IBattleMap, Listener {
 
     public Stimulation() {
         super.initiate(this, name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.IRON_CHESTPLATE, Material.CHAINMAIL_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.BOW});
     }
 
     // Map details
@@ -27,6 +28,7 @@ public class Stimulation extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyFFASpawns() {
+
         FFASpawns.add(new Location(w, -293, 13, 1207, 2, 0));
         FFASpawns.add(new Location(w, -252, 15, 1207, 1, 0));
         FFASpawns.add(new Location(w, -255, 20, 1207, 1, 0));
@@ -53,11 +55,12 @@ public class Stimulation extends BattleMap implements IBattleMap, Listener {
         ItemStack COOKED_FISH = new ItemStack(Material.COOKED_FISH, 2);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 48);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
         ItemStack CHAINMAIL_PANTS = new ItemStack(Material.CHAINMAIL_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
@@ -71,7 +74,6 @@ public class Stimulation extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, COOKED_FISH);
         i.setItem(4, HEALTH_POTION);
         i.setItem(28, ARROWS);
-        //Just used raid's inv code since shaun f!cked it all up.
     }
 
     // Region. (Top corner block and bottom corner block.
