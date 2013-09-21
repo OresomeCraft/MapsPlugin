@@ -11,7 +11,7 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
 
     public Raid() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.IRON_SWORD, Material.BOW, Material.IRON_BOOTS, Material.CHAINMAIL_LEGGINGS,
+        disableDrops(new Material[]{Material.IRON_SWORD, Material.BOW, Material.GOLD_BOOTS, Material.CHAINMAIL_LEGGINGS,
                 Material.IRON_CHESTPLATE, Material.LEATHER_HELMET, Material.ARROW, Material.FISHING_ROD, Material.ENDER_PEARL});
         disablePearlDamage(true);
     }
@@ -74,12 +74,12 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
         ItemStack CHAINMAIL_PANTS = new ItemStack(Material.CHAINMAIL_LEGGINGS, 1);
-        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack GOLD_BOOTS = new ItemStack(Material.GOLD_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
-        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setBoots(GOLD_BOOTS);
         p.getInventory().setLeggings(CHAINMAIL_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
