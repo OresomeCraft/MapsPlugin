@@ -25,7 +25,7 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
     String name = "chasm";
     String fullName = "The Chasm";
     String creators = "R3creat3, danielschroeder, Spantezian and DynaDavidson";
-    Gamemode[] modes = {Gamemode.CTF};
+    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
 
