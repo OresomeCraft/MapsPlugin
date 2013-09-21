@@ -116,13 +116,12 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    public int x1 = -831;
-    public int y1 = 62;
-    public int z1 = -1452;
-    public int x2 = -726;
-    public int y2 = 118;
-    public int z2 = -1275;
-
+    public int x1 = -721;
+    public int y1 = 2;
+    public int z1 = -1460;
+    public int x2 = -941;
+    public int y2 = 158;
+    public int z2 = -1258;
     @EventHandler(priority = EventPriority.NORMAL)
     public void preventblockbreak(BlockBreakEvent event) {
         Block b = event.getBlock();
