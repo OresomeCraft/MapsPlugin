@@ -148,14 +148,14 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onConsume(PlayerItemConsumeEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-            Player p = event.getPlayer();
-            ItemStack i = event.getItem();
+        Player p = event.getPlayer();
+        ItemStack i = event.getItem();
 
-            if (i.getType().equals(Material.MUSHROOM_SOUP)) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
-                p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 3 * 20, 1));
-                p.getWorld().playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
-                p.sendMessage(ChatColor.RED + "Merry " + ChatColor.GREEN + "Christmas!");
+        if (i.getType().equals(Material.MUSHROOM_SOUP)) {
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 3 * 20, 1));
+            p.getWorld().playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
+            p.sendMessage(ChatColor.RED + "Merry " + ChatColor.GREEN + "Christmas!");
         }
     }
 

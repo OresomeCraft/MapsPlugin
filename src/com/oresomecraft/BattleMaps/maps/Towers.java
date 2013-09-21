@@ -95,7 +95,8 @@ public class Towers extends BattleMap implements IBattleMap, Listener {
     public void arrowParticle(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
-        if (getArena().equals(name) && arrow instanceof Arrow) world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
+        if (getArena().equals(name) && arrow instanceof Arrow)
+            world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
     }
 
 }

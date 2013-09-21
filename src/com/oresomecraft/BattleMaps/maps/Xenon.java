@@ -82,7 +82,7 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
     public int x2 = 93;
     public int y2 = 0;
     public int z2 = -37;
-    
+
     @EventHandler
     public void onFireBow(EntityShootBowEvent event) {
         if (getArena().equals(name)) {

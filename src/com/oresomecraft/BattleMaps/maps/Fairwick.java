@@ -93,12 +93,12 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
     public int z2 = -10;
 
     @EventHandler
-    public void onSpyWatchInteract(PlayerInteractEvent event){
-        if(!event.getPlayer().getWorld().getName().equals(name)) return;
+    public void onSpyWatchInteract(PlayerInteractEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
         Player p = event.getPlayer();
         Action a = event.getAction();
-        if(a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK){
-            if(p.getItemInHand().getType() == Material.WATCH){
+        if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
+            if (p.getItemInHand().getType() == Material.WATCH) {
                 p.getInventory().remove(p.getItemInHand());
                 p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
                 p.getInventory().setChestplate(new ItemStack(Material.AIR, 1));
@@ -108,17 +108,18 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
                 p.getInventory().remove(new ItemStack(Material.IRON_LEGGINGS));
                 p.getInventory().remove(new ItemStack(Material.IRON_HELMET));
                 ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-                InvUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(p), new ItemStack[]{LEATHER_CHESTPLATE});     
+                InvUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(p), new ItemStack[]{LEATHER_CHESTPLATE});
                 p.getInventory().remove(LEATHER_CHESTPLATE);
                 p.getInventory().addItem(new ItemStack(Material.IRON_BOOTS));
                 p.getInventory().addItem(new ItemStack(Material.IRON_LEGGINGS));
                 p.getInventory().addItem(new ItemStack(Material.IRON_HELMET));
                 p.getInventory().addItem(LEATHER_CHESTPLATE);
                 p.updateInventory();
-                p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 15*20, 0));
+                p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 15 * 20, 0));
             }
         }
     }
+
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(name) && event.getBlock().getType().getId() != 102 && event.getBlock().getType().getId() != 5)

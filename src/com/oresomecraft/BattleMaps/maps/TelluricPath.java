@@ -127,10 +127,10 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
     public int x2 = -70;
     public int y2 = 30;
     public int z2 = 50;
-    
+
     @EventHandler
-    public void endermanHit(EntityDamageEvent event){
-        if(event.getEntity() instanceof Enderman){
+    public void endermanHit(EntityDamageEvent event) {
+        if (event.getEntity() instanceof Enderman) {
             event.setDamage(1000);
         }
     }

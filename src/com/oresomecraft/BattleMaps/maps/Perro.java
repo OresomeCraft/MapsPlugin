@@ -270,10 +270,12 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
             }, 5L, 5L);
         }
     }
+
     @EventHandler
     public void cancelParticles(WorldUnloadEvent event) {
         Bukkit.getScheduler().cancelTask(particles);
     }
+
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(name) && event.getBlock().getType().getId() != 102)
