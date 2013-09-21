@@ -6,10 +6,12 @@ import java.util.List;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.block.*;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -17,6 +19,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
+
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -33,7 +36,7 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
 
     String name = "telluricpath";
     String fullName = "Telluric Path";
-    String creators = "R3creat3";
+    String creators = "R3creat3 ";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     public void readyTDMSpawns() {
@@ -124,4 +127,11 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
     public int x2 = -70;
     public int y2 = 30;
     public int z2 = 50;
+    
+    @EventHandler
+    public void endermanHit(EntityDamageEvent event){
+        if(event.getEntity() instanceof Enderman){
+            event.setDamage(1000);
+        }
+    }
 }

@@ -18,7 +18,7 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
 
     String name = "raid";
     String fullName = "Raid";
-    String creators = "ShaunDepro97";
+    String creators = "ShaunDepro97 ";
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

@@ -18,7 +18,7 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
 
     String name = "burnfireport";
     String fullName = "Burnfire Port";
-    String creators = "bumsonfire";
+    String creators = "bumsonfire ";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
