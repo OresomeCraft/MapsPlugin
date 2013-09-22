@@ -49,9 +49,9 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
         i.setItem(11, ARROWS);
         i.setItem(3, new ItemStack(Material.BREAD, 3));
 
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 20 * 20, 2));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15000 * 20, 2));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 2));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 5 * 20, 2));
 
     }
 
