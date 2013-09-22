@@ -22,7 +22,7 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
         setAllowBuild(false);
     }
 
-    String name = "corrigan";
+    String name = "treeoflife";
     String fullName = "Tree of Life";
     String creators = "Corrigan1998";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
