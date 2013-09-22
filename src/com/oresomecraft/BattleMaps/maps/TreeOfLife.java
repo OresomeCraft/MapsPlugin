@@ -6,6 +6,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -104,12 +105,19 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
     public void onInteract(PlayerInteractEvent event) {
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             Player p = event.getPlayer();
-            if (p.getItemInHand().equals(Material.STICK)) {
+            if (p.getItemInHand().equals(new ItemStack(Material.STICK))) {
                 p.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.SKELETON);
                 p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
                 p.sendMessage(ChatColor.GREEN + "The stick of life has given you a skeleton!");
                 p.getItemInHand().setType(Material.AIR);
             }
+        }
+    }
+
+    @EventHandler
+    public void onLeafDecay(LeavesDecayEvent event) {
+        if (event.getBlock().getWorld().getName().equals(name)) {
+            event.setCancelled(true);
         }
     }
 
