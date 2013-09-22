@@ -87,7 +87,7 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         i.setItem(10, ARROWS);
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 0));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 1));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 7 * 20, 1));
 
 
     }
