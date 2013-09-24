@@ -38,7 +38,9 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onload(WorldLoadEvent event) {
+        if(event.getWorld().getName().equals("gravity")){
         gravityArrows();
+        }
     }
 
     public void readyTDMSpawns() {
@@ -103,7 +105,6 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
     int distort;
 
     public void gravityArrows() {
-
         Bukkit.getServer().getScheduler().cancelTask(distort);
         distort = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 
@@ -147,6 +148,7 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void manipulatorEffect(PlayerMoveEvent event) {
+        if(!active) return;
         Player p = event.getPlayer();
         if (manipulation == true) {
             if (p.getItemInHand().getType() != Material.DIAMOND) {
