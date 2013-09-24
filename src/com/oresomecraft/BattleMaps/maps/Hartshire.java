@@ -1,15 +1,24 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import org.bukkit.*;
+import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.InvUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.event.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
-
-import com.oresomecraft.BattleMaps.*;
-import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class Hartshire extends BattleMap implements IBattleMap, Listener {
 
@@ -105,20 +114,20 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void ointment(PlayerInteractEvent event) {
-        if (!active) return;
         Player p = event.getPlayer();
         Action a = event.getAction();
         ItemStack i = p.getItemInHand();
         Inventory inv = p.getInventory();
         Material tool = i.getType();
+        if (p.getWorld().getName().equalsIgnoreCase("hartshire")) {
+            if (tool == Material.INK_SACK) {
 
-        if (tool == Material.INK_SACK) {
-
-            if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 2));
-                ItemStack ointment = new ItemStack(p.getItemInHand());
-                ointment.setAmount(1);
-                inv.removeItem(ointment);
+                if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 2));
+                    ItemStack ointment = new ItemStack(p.getItemInHand());
+                    ointment.setAmount(1);
+                    inv.removeItem(ointment);
+                }
             }
         }
     }
