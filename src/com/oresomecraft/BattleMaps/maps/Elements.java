@@ -13,6 +13,7 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
 
     public Elements() {
         super.initiate(this, name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.STONE_SWORD, Material.STONE_PICKAXE});
         setTDMTime(12);
     }
 
@@ -51,8 +52,19 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15000 * 20, 2));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 5 * 20, 2));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 5 * 10, 2));
 
+        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+        ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
+
+        p.getInventory().setBoots(LEATHER_BOOTS);
+        p.getInventory().setLeggings(LEATHER_PANTS);
+        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        p.getInventory().setHelmet(LEATHER_HELMET);
     }
 
     // Region. (Top corner block and bottom corner block.
