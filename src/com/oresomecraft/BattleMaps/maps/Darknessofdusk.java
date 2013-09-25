@@ -1,11 +1,20 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.*;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
@@ -50,6 +59,14 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
         ItemStack DIAMOND_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
+        ItemStack LUCKY_CANE = new ItemStack(Material.SUGAR_CANE, 1);
+        ItemMeta s = LUCKY_CANE.getItemMeta();
+        s.setDisplayName(ChatColor.BLUE + "Lucky Cane");
+
+        List<String> sLore = new ArrayList<String>();
+        sLore.add(org.bukkit.ChatColor.BLUE + "What will you get? Who knows!");
+        s.setLore(sLore);
+        LUCKY_CANE.setItemMeta(s);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
         p.getInventory().setBoots(DIAMOND_BOOTS);
@@ -61,7 +78,8 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
         i.setItem(1, BOW);
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
-        i.setItem(4, ARROWS);
+        i.setItem(8, LUCKY_CANE);
+        i.setItem(9, ARROWS);
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -69,10 +87,53 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
     public int x1 = 115;
     public int y1 = 57;
     public int z1 = -14;
-
     //Bottom right corner.
     public int x2 = -88;
     public int y2 = 0;
     public int z2 = 191;
 
+    @EventHandler
+    public void onVirtualLuck(PlayerInteractEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        Player p = event.getPlayer();
+        Action a = event.getAction();
+        if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
+            if (p.getItemInHand().getType() == Material.SUGAR_CANE) {
+                ItemStack LUCKY_CANE = new ItemStack(Material.SUGAR_CANE, 3);
+                ItemMeta s = LUCKY_CANE.getItemMeta();
+                s.setDisplayName(ChatColor.BLUE + "Lucky Cane");
+
+                List<String> sLore = new ArrayList<String>();
+                sLore.add(org.bukkit.ChatColor.BLUE + "What will you get? Who knows!");
+                s.setLore(sLore);
+                LUCKY_CANE.setItemMeta(s);
+                p.getInventory().removeItem(LUCKY_CANE);
+                Inventory i = Bukkit.createInventory(null, 9);
+                if (Math.random() < 1) {
+                    i.addItem(new ItemStack(Material.WOOD_SWORD, 1));
+                    if (Math.random() < 0.5) {
+                        i.addItem(new ItemStack(Material.IRON_SWORD, 1));
+                        if (Math.random() < 0.5) {
+                            i.addItem(new ItemStack(Material.DIAMOND_SWORD, 1));
+                            if (Math.random() < 0.5) {
+                                double thing = Math.random() * 10;
+                                i.addItem(new ItemStack(Material.POTION, 1,(short) thing));
+                                if (Math.random() < 0.5) {
+                                    i.addItem(LUCKY_CANE);
+                                    if (Math.random() < 0.5) {
+                                        i.addItem(new ItemStack(Material.GOLDEN_APPLE, 16));
+                                        if (Math.random() < 0.5) {
+                                            i.addItem(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
+                                            i.addItem(new ItemStack(Material.IRON_LEGGINGS, 1));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                p.openInventory(i);
+            }
+        }
+    }
 }

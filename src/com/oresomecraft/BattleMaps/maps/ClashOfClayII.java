@@ -29,6 +29,9 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         Location blueSpawn = new Location(w, 250, 77, -27);
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
+        Monument m1 = new Monument("m1", name, new Location(Bukkit.getWorld(name), 0, 0, 0));
+        Monument m2 = new Monument("m2", name, new Location(Bukkit.getWorld(name), 0, 0, 0));
+        setCapturePoints(new Monument[]{m1, m2});
     }
 
     public void readyFFASpawns() {
