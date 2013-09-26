@@ -10,8 +10,8 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
 
     public SubwaySurvival() {
-      super.initiate(this, subwaysurvival, Subway Survival, iVelocityGaming and XxH4XxX, FFA and Infection);
-      setAllowBuild(false); // <-- Disables block breaking and placing!
+        super.initiate(this, name, fullName, creators, modes);
+      setAllowBuild(false);
       lockTime("night");
       disableDrops(new Material[]{Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.BOW, Material.ARROW});
     }
@@ -22,7 +22,9 @@ public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
     String creators = "iVelocityGaming and XxH4XxX";
     Gamemode[] modes = {Gamemode.FFA, Gamemode.INFECTION};
     // Map download link: bit.ly/19IKGtb  // Download link to map.
-
+    public void readyTDMSpawns(){
+        //Don't need anything here.
+    }
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 36, 75, 54, -50, 0));
         FFASpawns.add(new Location(w, 46, 70, 38, -50, 0));
@@ -56,9 +58,9 @@ public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
 
         // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
         p.setItem(0, Material.IRON_SWORD, 1);
-        p.setItem(1, Material.BOW, 1, );
+        p.setItem(1, Material.BOW, 1);
         p.setItem(2, Material.COOKED_BEEF, 1);
-        p.setItem(4, Material.ARROW, 64);
+        p.setItem(9, Material.ARROW, 64);
     }
 
   @EventHandler
