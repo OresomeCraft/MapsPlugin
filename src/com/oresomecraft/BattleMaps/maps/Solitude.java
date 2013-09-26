@@ -24,7 +24,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
 
     String name = "solitude";
     String fullName = "Solitude";
-    String creators = "R3creat3, dutchy336, tarko2411 and PMC";
+    String creators = "AnomalousRei, dutchy336, tarko2411 and PMC";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {

@@ -27,7 +27,7 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
     String name = "dusk";
     String fullName = "Darkness of Dusk";
-    String creators = "R3creat3, xannallax33, dinner1111 and pepsidawg00";
+    String creators = "xannallax33, dinner1111, pepsidawg00 and AnomalousRei";
     Gamemode[] modes = {Gamemode.INFECTION};
 
     //Tdm isn't enabled on this, don't need to do spawns.

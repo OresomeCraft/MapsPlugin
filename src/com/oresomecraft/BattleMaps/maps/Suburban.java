@@ -15,7 +15,7 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
 
     String name = "suburban";
     String fullName = "Suburban Complex";
-    String creators = "R3creat3, zezo268, xannallax33 and kalikakitty";
+    String creators = "AnomalousRei, zezo268, xannallax33 and kalikakitty";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {

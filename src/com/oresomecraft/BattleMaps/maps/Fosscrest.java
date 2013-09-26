@@ -16,7 +16,7 @@ public class Fosscrest extends BattleMap implements IBattleMap, Listener {
 
     String name = "fosscrest";
     String fullName = "Fosscrest Village";
-    String creators = "R3creat3, danielschroeder and xXJazzerXx";
+    String creators = "danielschroeder, xXJazzerXx and AnomalousRei";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

@@ -22,7 +22,7 @@ public class Roseley extends BattleMap implements IBattleMap, Listener {
 
     String name = "roseley";
     String fullName = "Roseley";
-    String creators = "R3creat3, simonwilson123, DynaDavidson, meganlovesmusic, MintyPvP, callumary and PKBeam";
+    String creators = "simonwilson123, DynaDavidson, meganlovesmusic, MintyPvP, callumary, PKBeam and AnomalousRei";
     Gamemode[] modes = {Gamemode.KOTH, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

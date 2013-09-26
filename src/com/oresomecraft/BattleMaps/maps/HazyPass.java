@@ -37,7 +37,7 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
 
     String name = "hazypass";
     String fullName = "Hazy Pass";
-    String creators = "R3creat3 ";
+    String creators = "AnomalousRei ";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM, Gamemode.INFECTION};
     //I'm trusting people wont camp up on top of the edges of the mountains. Don't let e down guys.
 
