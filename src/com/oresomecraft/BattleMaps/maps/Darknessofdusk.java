@@ -117,7 +117,7 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
                             i.addItem(new ItemStack(Material.DIAMOND_SWORD, 1));
                             if (Math.random() < 0.5) {
                                 double thing = Math.random() * 10;
-                                i.addItem(new ItemStack(Material.POTION, 1,(short) thing));
+                                i.addItem(new ItemStack(Material.POTION, 1, (short) thing));
                                 if (Math.random() < 0.5) {
                                     i.addItem(LUCKY_CANE);
                                     if (Math.random() < 0.5) {

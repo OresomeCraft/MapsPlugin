@@ -38,8 +38,8 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onload(WorldLoadEvent event) {
-        if(event.getWorld().getName().equals("gravity")){
-        gravityArrows();
+        if (event.getWorld().getName().equals("gravity")) {
+            gravityArrows();
         }
     }
 
@@ -148,7 +148,7 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void manipulatorEffect(PlayerMoveEvent event) {
-        if(!active) return;
+        if (!active) return;
         Player p = event.getPlayer();
         if (manipulation == true) {
             if (p.getItemInHand().getType() != Material.DIAMOND) {
