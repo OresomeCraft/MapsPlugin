@@ -72,7 +72,7 @@
         <dependency>
             <groupId>com.oresomecraft</groupId>
             <artifactId>OresomeBattlesAPI</artifactId>
-            <version>1.0</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
