@@ -28,7 +28,7 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
     String name = "mutiny";
     String fullName = "Mutiny";
     String creators = "DynaDavidson and JacquiRose";
-    Gamemode[] modes = {Gamemode.TDM};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 3, 72, -38));
@@ -105,9 +105,14 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void preventPlaceOutOfMap(BlockPlaceEvent event) {
-        if (event.getBlock().getWorld().getName().equals(name)
-                && !contains(event.getBlock().getLocation(), x1, x2, y1, y2, z1, z2)) {
-            event.setCancelled(true);
+        if (event.getBlock().getWorld().getName().equals(name)){
+            if(event.getBlock().getLocation().getY() > 78 && getMode() == Gamemode.INFECTION){
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(ChatColor.RED + "You can't build past this height on infection!");
+            }
+            if (!contains(event.getBlock().getLocation(), x1, x2, y1, y2, z1, z2)){
+                event.setCancelled(true);
+            }
         }
     }
 

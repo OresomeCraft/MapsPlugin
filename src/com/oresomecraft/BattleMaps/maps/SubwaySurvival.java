@@ -10,7 +10,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
 
     public SubwaySurvival() {
-        super.initiate(this, name, fullName, creators, modes);
+      super.initiate(this, name, fullName, creators, modes);
       setAllowBuild(false);
       lockTime("night");
       disableDrops(new Material[]{Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.BOW, Material.ARROW});
@@ -47,7 +47,6 @@ public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
@@ -56,7 +55,6 @@ public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(3, HEALTH_POTION);
 
-        // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
         p.setItem(0, Material.IRON_SWORD, 1);
         p.setItem(1, Material.BOW, 1);
         p.setItem(2, Material.COOKED_BEEF, 1);
