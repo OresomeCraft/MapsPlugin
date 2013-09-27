@@ -38,7 +38,7 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onload(WorldLoadEvent event) {
-        if (event.getWorld().getName().equals("gravity")) {
+        if (event.getWorld().getName().equalsIgnoreCase("gravity")) {
             gravityArrows();
         }
     }
@@ -132,28 +132,30 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void manipulator(BlockBreakEvent event) {
-        if (!active) return;
-        if (event.getBlock().getType() == Material.SPONGE) {
-            event.getBlock().getWorld().getBlockAt(event.getBlock().getLocation()).setType(Material.OBSIDIAN);
-            manipulation = false;
-            Bukkit.broadcastMessage(ChatColor.AQUA + "The Gravity Manipulator was turned off! Gravity returned to normal!");
-            return;
-        }
-        if (event.getBlock().getType() == Material.OBSIDIAN) {
-            event.getBlock().getWorld().getBlockAt(event.getBlock().getLocation()).setType(Material.SPONGE);
-            manipulation = true;
-            Bukkit.broadcastMessage(ChatColor.AQUA + "The Gravity Manipulator was turned on! Gravity intensified!");
+        if (event.getBlock().getWorld().getName().equalsIgnoreCase("gravity")) {
+            if (event.getBlock().getType() == Material.SPONGE) {
+                event.getBlock().getWorld().getBlockAt(event.getBlock().getLocation()).setType(Material.OBSIDIAN);
+                manipulation = false;
+                Bukkit.broadcastMessage(ChatColor.AQUA + "The Gravity Manipulator was turned off! Gravity returned to normal!");
+                return;
+            }
+            if (event.getBlock().getType() == Material.OBSIDIAN) {
+                event.getBlock().getWorld().getBlockAt(event.getBlock().getLocation()).setType(Material.SPONGE);
+                manipulation = true;
+                Bukkit.broadcastMessage(ChatColor.AQUA + "The Gravity Manipulator was turned on! Gravity intensified!");
+            }
         }
     }
 
     @EventHandler
     public void manipulatorEffect(PlayerMoveEvent event) {
-        if (!active) return;
-        Player p = event.getPlayer();
-        if (manipulation == true) {
-            if (p.getItemInHand().getType() != Material.DIAMOND) {
-                if (event.getFrom().getY() > event.getTo().getY()) {
-                    p.setVelocity(new Vector(0, p.getVelocity().getY() - 0.3, 0));
+        if (event.getPlayer().getWorld().getName().equalsIgnoreCase("gravity")) {
+            Player p = event.getPlayer();
+            if (manipulation == true) {
+                if (p.getItemInHand().getType() != Material.DIAMOND) {
+                    if (event.getFrom().getY() > event.getTo().getY()) {
+                        p.setVelocity(new Vector(0, p.getVelocity().getY() - 0.3, 0));
+                    }
                 }
             }
         }
