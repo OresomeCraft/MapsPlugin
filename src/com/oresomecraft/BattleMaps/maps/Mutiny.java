@@ -105,12 +105,12 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void preventPlaceOutOfMap(BlockPlaceEvent event) {
-        if (event.getBlock().getWorld().getName().equals(name)){
-            if(event.getBlock().getLocation().getY() > 78 && getMode() == Gamemode.INFECTION){
+        if (event.getBlock().getWorld().getName().equals(name)) {
+            if (event.getBlock().getLocation().getY() > 78 && getMode() == Gamemode.INFECTION) {
                 event.setCancelled(true);
                 event.getPlayer().sendMessage(ChatColor.RED + "You can't build past this height on infection!");
             }
-            if (!contains(event.getBlock().getLocation(), x1, x2, y1, y2, z1, z2)){
+            if (!contains(event.getBlock().getLocation(), x1, x2, y1, y2, z1, z2)) {
                 event.setCancelled(true);
             }
         }
@@ -125,12 +125,14 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void protectStone(EntityDamageEvent event) {
-        if (event.getEntity() instanceof Player) {
-            Player p = (Player) event.getEntity();
-            if (p.getItemInHand().getType().equals(Material.EMERALD)) {
-                Random random = new Random();
-                if (random.nextBoolean()) {
-                    event.setDamage(event.getDamage() - 5);
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof Player) {
+                Player p = (Player) event.getEntity();
+                if (p.getItemInHand().getType().equals(Material.EMERALD)) {
+                    Random random = new Random();
+                    if (random.nextBoolean()) {
+                        event.setDamage(event.getDamage() - 5);
+                    }
                 }
             }
         }

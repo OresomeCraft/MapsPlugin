@@ -1,19 +1,27 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.block.*;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.*;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Elements extends BattleMap implements IBattleMap, Listener {
 
     public Elements() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.STONE_SWORD, Material.STONE_PICKAXE});
+        disableDrops(new Material[]{Material.STONE_SWORD, Material.STONE_PICKAXE, Material.LEATHER_HELMET});
         setTDMTime(12);
     }
 
@@ -35,18 +43,28 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
 
-        ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack LOG = new ItemStack(Material.LOG, 25);
-        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
-        ItemStack STONE_PICK = new ItemStack(Material.STONE_PICKAXE, 1);
+        ItemStack DIAMOND_SWORD = new ItemStack(Material.DIAMOND_SWORD, 1);
+        ItemStack IRON_PICK = new ItemStack(Material.IRON_PICKAXE, 1);
+        ItemStack FILI = new ItemStack(Material.EMERALD, 1);
 
-        i.setItem(0, STONE_SWORD);
+        ItemMeta a = FILI.getItemMeta();
+        a.setDisplayName(ChatColor.BLUE + "Fili Shield");
+
+        List<String> aLore = new ArrayList<String>();
+        aLore.add(org.bukkit.ChatColor.BLUE + "Hold this to take less damage from enemy projectiles!");
+        a.setLore(aLore);
+        FILI.setItemMeta(a);
+
+        i.setItem(0, DIAMOND_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, STONE_PICK);
+        i.setItem(2, IRON_PICK);
         i.setItem(4, HEALTH);
-        i.setItem(8, LOG);
+        i.setItem(7, LOG);
+        i.setItem(8, FILI);
         i.setItem(11, ARROWS);
         i.setItem(3, new ItemStack(Material.BREAD, 3));
 
@@ -90,5 +108,19 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
         Location loc = event.getBlock().getLocation();
         if (contains(loc, -34, -15, 85, 129, 155, 138)) event.setCancelled(true);
         if (contains(loc, -12, -33, 82, 130, 2, 20)) event.setCancelled(true);
+    }
+    @EventHandler
+    public void fili(EntityDamageByEntityEvent event) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof Player) {
+                Player p = (Player) event.getEntity();
+                if (p.getItemInHand().getType().equals(Material.EMERALD) && event.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)) {
+                    Random random = new Random();
+                    if (random.nextBoolean()) {
+                        event.setDamage(event.getDamage() - 3);
+                    }
+                }
+            }
+        }
     }
 }
