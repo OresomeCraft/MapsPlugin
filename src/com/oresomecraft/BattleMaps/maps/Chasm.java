@@ -73,7 +73,7 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, IRON_PICKAXE);
+        i.setItem(2, PICK);
         i.setItem(4, STEAK);
         i.setItem(5, HEALTH);
         i.setItem(3, STONE_HOE);
