@@ -133,14 +133,12 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void manipulator(BlockBreakEvent event) {
         if (event.getBlock().getWorld().getName().equalsIgnoreCase("gravity")) {
-            if (event.getBlock().getType() == Material.SPONGE) {
-                event.getBlock().getWorld().getBlockAt(event.getBlock().getLocation()).setType(Material.OBSIDIAN);
+            if (event.getBlock().getType() == Material.OBSIDIAN && manipulation == true) {
                 manipulation = false;
                 Bukkit.broadcastMessage(ChatColor.AQUA + "The Gravity Manipulator was turned off! Gravity returned to normal!");
                 return;
             }
-            if (event.getBlock().getType() == Material.OBSIDIAN) {
-                event.getBlock().getWorld().getBlockAt(event.getBlock().getLocation()).setType(Material.SPONGE);
+            if (event.getBlock().getType() == Material.OBSIDIAN && manipulation == false) {
                 manipulation = true;
                 Bukkit.broadcastMessage(ChatColor.AQUA + "The Gravity Manipulator was turned on! Gravity intensified!");
             }
