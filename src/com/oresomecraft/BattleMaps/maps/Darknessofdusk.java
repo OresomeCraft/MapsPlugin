@@ -65,6 +65,7 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
         List<String> sLore = new ArrayList<String>();
         sLore.add(org.bukkit.ChatColor.BLUE + "What will you get? Who knows!");
+        sLore.add(org.bukkit.ChatColor.BLUE + "Jackpot chance = 0.177!");
         s.setLore(sLore);
         LUCKY_CANE.setItemMeta(s);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
@@ -105,24 +106,30 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
                 List<String> sLore = new ArrayList<String>();
                 sLore.add(org.bukkit.ChatColor.BLUE + "What will you get? Who knows!");
+                sLore.add(org.bukkit.ChatColor.BLUE + "Jackpot chance = 0.177!");
                 s.setLore(sLore);
                 LUCKY_CANE.setItemMeta(s);
+                LUCKY_CANE.setAmount(1);
                 p.getInventory().removeItem(LUCKY_CANE);
                 Inventory i = Bukkit.createInventory(null, 9);
                 if (Math.random() < 1) {
                     i.addItem(new ItemStack(Material.WOOD_SWORD, 1));
-                    if (Math.random() < 0.5) {
+                    if (Math.random() < 0.75) {
+                        i.clear();
                         i.addItem(new ItemStack(Material.IRON_SWORD, 1));
-                        if (Math.random() < 0.5) {
+                        if (Math.random() < 0.75) {
+                            i.clear();
                             i.addItem(new ItemStack(Material.DIAMOND_SWORD, 1));
-                            if (Math.random() < 0.5) {
+                            if (Math.random() < 0.75) {
                                 double thing = Math.random() * 10;
                                 i.addItem(new ItemStack(Material.POTION, 1, (short) thing));
-                                if (Math.random() < 0.5) {
+                                if (Math.random() < 0.75) {
                                     i.addItem(LUCKY_CANE);
-                                    if (Math.random() < 0.5) {
+                                    i.addItem(LUCKY_CANE);
+                                    i.addItem(LUCKY_CANE);
+                                    if (Math.random() < 0.75) {
                                         i.addItem(new ItemStack(Material.GOLDEN_APPLE, 16));
-                                        if (Math.random() < 0.5) {
+                                        if (Math.random() < 0.75) {
                                             i.addItem(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
                                             i.addItem(new ItemStack(Material.IRON_LEGGINGS, 1));
                                         }

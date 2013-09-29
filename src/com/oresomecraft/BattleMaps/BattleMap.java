@@ -206,7 +206,7 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
-     * Sets TDM and CTF spawn points
+     * Sets TDM, CTF and CP spawn points
      */
     public abstract void readyTDMSpawns();
 
@@ -360,7 +360,7 @@ public abstract class BattleMap implements Listener {
 
     /**
      * ***************************************************************
-     * Useful methods easily useable by all maps                     *
+     * Useful methods easily use-able by all maps                     *
      * ***************************************************************
      */
 
@@ -374,7 +374,7 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
-     * Get's the current game mode being played
+     * Gets the current game mode being played
      *
      * @return Current game mode being played.
      */
@@ -387,14 +387,14 @@ public abstract class BattleMap implements Listener {
      *
      * @param loc1 A Location
      * @param loc2 A Location
-     * @return True if co-ords are the same for both Location objects.
+     * @return True if coordinates are the same for both Location objects.
      */
     public boolean compareLocations(Location loc1, Location loc2) {
         return BattlesAccess.compareLocations(loc1, loc2);
     }
 
     /**
-     * Checks if a Location's co-ords is inbetween a certain co-ord range
+     * Checks if a Location's coordinates is in between a certain co-ord range
      *
      * @param loc A Location
      * @param x1  First X co-ord
@@ -403,7 +403,7 @@ public abstract class BattleMap implements Listener {
      * @param y2  Second Y co-ord
      * @param z1  First Z co-ord
      * @param z2  Second Z co-ord
-     * @return Whether or not the co-ords of 'loc' are inside the co-ord range
+     * @return Whether or not the coordinates of 'loc' are inside the co-ord range
      */
     public boolean contains(Location loc, int x1, int x2, int y1, int y2, int z1, int z2) {
         int bottomCornerX = x1 < x2 ? x1 : x2;
