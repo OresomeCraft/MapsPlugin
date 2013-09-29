@@ -17,7 +17,6 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
 
     public Chasm() {
         super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
         lockTime("day");
     }
@@ -59,8 +58,10 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+        ItemStack PICK = new ItemStack(Material.IRON_PICKAXE, 1);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack STONE_HOE = new ItemStack(Material.STONE_HOE, 1);
+        ItemStack STONE = new ItemStack(Material.STONE, 64);
 
         InvUtils.nameItem(STONE_HOE, ChatColor.BLUE + "Ice Hook");
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
@@ -72,9 +73,11 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
-        i.setItem(3, STEAK);
-        i.setItem(4, HEALTH);
-        i.setItem(2, STONE_HOE);
+        i.setItem(2, IRON_PICKAXE);
+        i.setItem(4, STEAK);
+        i.setItem(5, HEALTH);
+        i.setItem(3, STONE_HOE);
+        i.setItem(8, STONE);
         i.setItem(10, ARROWS);
 
     }
