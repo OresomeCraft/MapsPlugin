@@ -110,7 +110,7 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
                     p.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.SKELETON);
                     p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
                     p.sendMessage(ChatColor.GREEN + "The stick of life has given you a skeleton!");
-                    p.getItemInHand().setType(Material.AIR);
+                    p.getInventory().removeItem(p.getItemInHand());
                 }
             }
         }
