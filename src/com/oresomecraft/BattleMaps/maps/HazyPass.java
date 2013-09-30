@@ -4,6 +4,7 @@ import com.oresomecraft.BattleMaps.BattleMap;
 import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.InvUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -13,6 +14,8 @@ import org.bukkit.entity.PigZombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -38,8 +41,7 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
     String name = "hazypass";
     String fullName = "Hazy Pass";
     String creators = "AnomalousRei ";
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM, Gamemode.INFECTION};
-    //I'm trusting people wont camp up on top of the edges of the mountains. Don't let me down guys.
+    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     public void readyTDMSpawns() {
 
@@ -92,6 +94,7 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
         LeatherArmorMeta helmet = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
         helmet.setColor(Color.ORANGE);
@@ -143,9 +146,68 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
     public int z2 = 50;
 
     @EventHandler
+    public void flagRegions(BlockBreakEvent event) {
+        if(event.getPlayer().getWorld().getName().equals(name)) {
+            if(contains(event.getBlock().getLocation(), 152, 159, 108, 117, -23, -19) || event.isCancelled() == false){
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(ChatColor.RED + "You can't build around the flag!");
+            }
+            if(contains(event.getBlock().getLocation(), 4, -2, 108, 117, 4, 29) || event.isCancelled() == false){
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(ChatColor.RED + "You can't build around the flag!");
+            }
+
+        }
+    }
+
+    @EventHandler
+    public void flagRegions(BlockPlaceEvent event) {
+        if(event.getPlayer().getWorld().getName().equals(name)) {
+            if(contains(event.getBlock().getLocation(), 152, 159, 108, 117, -23, -19) || event.isCancelled() == false){
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(ChatColor.RED + "You can't build around the flag!");
+            }
+            if(contains(event.getBlock().getLocation(), 4, -2, 108, 117, 4, 29) || event.isCancelled() == false){
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(ChatColor.RED + "You can't build around the flag!");
+            }
+
+        }
+    }
+    @EventHandler
     public void blazeRod(PlayerInteractEvent event) {
-        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if (event.getPlayer().getItemInHand().getType() == Material.BLAZE_ROD) {
+        if (event.getPlayer().getWorld().getName().equals(name)) {
+            if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                if (event.getPlayer().getItemInHand().getType() == Material.BLAZE_ROD) {
+                    ItemStack FIRE = new ItemStack(Material.BLAZE_ROD, 1);
+                    ItemMeta fMeta = FIRE.getItemMeta();
+                    fMeta.setDisplayName(ChatColor.BLUE + "Levitation Rod");
+
+                    List<String> fLore = new ArrayList<String>();
+                    fLore.add(org.bukkit.ChatColor.BLUE + "Interact with this to hover into the air!");
+                    fMeta.setLore(fLore);
+                    FIRE.setItemMeta(fMeta);
+                    event.getPlayer().getInventory().removeItem(FIRE);
+                    event.getPlayer().setVelocity(new Vector(0, 1.5, 0));
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void pigZombieHit(EntityDamageEvent event) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof PigZombie) {
+                event.setDamage(1000);
+            }
+        }
+    }
+
+    @EventHandler
+    public void pigZombieDeath(EntityDeathEvent event) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof PigZombie) {
+                event.getDrops().clear();
                 ItemStack FIRE = new ItemStack(Material.BLAZE_ROD, 1);
                 ItemMeta fMeta = FIRE.getItemMeta();
                 fMeta.setDisplayName(ChatColor.BLUE + "Levitation Rod");
@@ -154,33 +216,9 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
                 fLore.add(org.bukkit.ChatColor.BLUE + "Interact with this to hover into the air!");
                 fMeta.setLore(fLore);
                 FIRE.setItemMeta(fMeta);
-                event.getPlayer().getInventory().removeItem(FIRE);
-                event.getPlayer().setVelocity(new Vector(0, 1.5, 0));
+
+                event.getDrops().add(FIRE);
             }
-        }
-    }
-
-    @EventHandler
-    public void pigZombieHit(EntityDamageEvent event) {
-        if (event.getEntity() instanceof PigZombie) {
-            event.setDamage(1000);
-        }
-    }
-
-    @EventHandler
-    public void pigZombieDeath(EntityDeathEvent event) {
-        if (event.getEntity() instanceof PigZombie) {
-            event.getDrops().clear();
-            ItemStack FIRE = new ItemStack(Material.BLAZE_ROD, 1);
-            ItemMeta fMeta = FIRE.getItemMeta();
-            fMeta.setDisplayName(ChatColor.BLUE + "Levitation Rod");
-
-            List<String> fLore = new ArrayList<String>();
-            fLore.add(org.bukkit.ChatColor.BLUE + "Interact with this to hover into the air!");
-            fMeta.setLore(fLore);
-            FIRE.setItemMeta(fMeta);
-
-            event.getDrops().add(FIRE);
         }
     }
 }
