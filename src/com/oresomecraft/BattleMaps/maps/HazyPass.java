@@ -33,7 +33,6 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
     public HazyPass() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
-        setAllowBuild(false);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
                 Material.LEATHER_LEGGINGS, Material.STONE_SWORD});
     }

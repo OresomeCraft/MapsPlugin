@@ -43,10 +43,10 @@ public class DaybreakRidge extends BattleMap implements IBattleMap, Listener {
     public void readyTDMSpawns() {
         blueSpawns.add(new Location(w, -118, 54, -109));
         redSpawns.add(new Location(w, 81, 54, -117));
-        Monument m1 = new Monument("m1", name, new Location(w, -19, 92, -181));
-        Monument m2 = new Monument("m2", name, new Location(w, -19, 71, -138 ));
-        Monument m3 = new Monument("m3", name, new Location(w, -18, 93, -89));
-        Monument m4 = new Monument("m4", name, new Location(w, -19, 85, -47));
+        Monument m1 = new Monument("Alpha", name, new Location(w, -19, 92, -181));
+        Monument m2 = new Monument("Beta", name, new Location(w, -19, 71, -138));
+        Monument m3 = new Monument("Gamma", name, new Location(w, -18, 93, -89));
+        Monument m4 = new Monument("Delta", name, new Location(w, -19, 85, -47));
         setCapturePoints(new Monument[]{m1, m2, m3, m4});
     }
 
@@ -95,46 +95,53 @@ public class DaybreakRidge extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void springFeather(PlayerInteractEvent event) {
-        Player p = event.getPlayer();
-        Action a = event.getAction();
-        ItemStack i = p.getItemInHand();
-        Inventory inv = p.getInventory();
-        Material tool = i.getType();
-        if (p.getWorld().getName().equals(name)){
-            if (tool == Material.FEATHER) {
+        if (event.getPlayer().getWorld().getName().equals(name)) {
+            Player p = event.getPlayer();
+            Action a = event.getAction();
+            ItemStack i = p.getItemInHand();
+            Inventory inv = p.getInventory();
+            Material tool = i.getType();
+            if (p.getWorld().getName().equals(name)) {
+                if (tool == Material.FEATHER) {
 
-                if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 10*20, 5));
-                    ItemStack ointment = new ItemStack(p.getItemInHand());
-                    ointment.setAmount(1);
-                    inv.removeItem(ointment);
+                    if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 10 * 20, 5));
+                        ItemStack ointment = new ItemStack(p.getItemInHand());
+                        ointment.setAmount(1);
+                        inv.removeItem(ointment);
+                    }
                 }
             }
         }
     }
+
     @EventHandler
     public void zombieHit(EntityDamageEvent event) {
-        if (event.getEntity() instanceof Zombie) {
-            event.getEntity().getWorld().playSound(event.getEntity().getLocation(), Sound.GHAST_SCREAM, 1F, 1F);
-            event.setDamage(1000);
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof Zombie) {
+                event.getEntity().getWorld().playSound(event.getEntity().getLocation(), Sound.GHAST_SCREAM, 1F, 1F);
+                event.setDamage(1000);
+            }
         }
     }
 
     @EventHandler
     public void zombieDeath(EntityDeathEvent event) {
-        if (event.getEntity() instanceof Zombie) {
-            event.getDrops().clear();
-            ItemStack FIRE = new ItemStack(Material.FEATHER, 1);
-            ItemMeta fMeta = FIRE.getItemMeta();
-            fMeta.setDisplayName(ChatColor.BLUE + "Spring Feather");
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof Zombie) {
+                event.getDrops().clear();
+                ItemStack FIRE = new ItemStack(Material.FEATHER, 1);
+                ItemMeta fMeta = FIRE.getItemMeta();
+                fMeta.setDisplayName(ChatColor.BLUE + "Spring Feather");
 
-            List<String> fLore = new ArrayList<String>();
-            fLore.add(org.bukkit.ChatColor.BLUE + "Who wants a jump boost??");
-            fMeta.setLore(fLore);
-            FIRE.setItemMeta(fMeta);
+                List<String> fLore = new ArrayList<String>();
+                fLore.add(org.bukkit.ChatColor.BLUE + "Who wants a jump boost??");
+                fMeta.setLore(fLore);
+                FIRE.setItemMeta(fMeta);
 
-            event.getDrops().add(FIRE);
-            //Lol, can't be stuffed changing the names again, someone else do it pls. ~ R3
+                event.getDrops().add(FIRE);
+                //Lol, can't be stuffed changing the names again, someone else do it pls. ~ R3
+            }
         }
     }
 }
