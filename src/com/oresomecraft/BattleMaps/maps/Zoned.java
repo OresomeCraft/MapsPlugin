@@ -26,8 +26,8 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, -2, 87, 88));
-        blueSpawns.add(new Location(w, -2, 87, -65));
+        redSpawns.add(new Location(w, -2, 88, 49));
+        blueSpawns.add(new Location(w, -2, 88, -265));
 
         Location blueFlag = new Location(w, -3, 89, -56);
         Location redFlag = new Location(w, -3, 89, 78);
@@ -67,11 +67,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH);
         i.setItem(10, ARROWS);
-
-        if (p.getTeam() == Team.TDM_BLUE || p.getTeam() == Team.TDM_RED || p.getTeam() == Team.ZOMBIES ||
-                p.getTeam() == Team.KOTH_BLUE || p.getTeam() == Team.KOTH_RED) {
-            i.setItem(4, JUMP);
-        }
+        i.setItem(4, JUMP);
 
     }
 
