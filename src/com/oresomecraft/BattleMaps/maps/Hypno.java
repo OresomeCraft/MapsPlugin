@@ -1,20 +1,29 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Egg;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.*;
-import org.bukkit.inventory.*;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.*;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
-import com.oresomecraft.BattleMaps.*;
-import com.oresomecraft.OresomeBattles.api.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Hypno extends BattleMap implements IBattleMap, Listener {
 
@@ -197,6 +206,19 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
                     if (near instanceof Player && !BattlePlayer.getBattlePlayer((Player) near).isSpectator()) {
 
                         Player p = (Player) near;
+                        Player s = null;
+                        if (event.getEntity().getShooter() instanceof Player)
+                            s = (Player) event.getEntity().getShooter();
+                        BattlePlayer pp = null;
+                        BattlePlayer ss = null;
+                        try {
+                            pp = BattlePlayer.getBattlePlayer(s);
+                            ss = BattlePlayer.getBattlePlayer(p);
+                        } catch (Exception ex) {
+                            System.out.println("Couldn't cast player " + pp + " or " + ss + " to BattlePlayer!");
+                            //erps.
+                        }
+                        if (ss.getTeam().equals(pp.getTeam())) return;
 
                         PotionEffectType blind = PotionEffectType.BLINDNESS;
                         PotionEffectType slow = PotionEffectType.SLOW;
@@ -209,13 +231,12 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
                         p.addPotionEffect(blindE);
                         p.addPotionEffect(slowE);
                         p.addPotionEffect(flashE);
-
                     }
-                    count++;
-
                 }
+                count++;
 
             }
+
         }
     }
 

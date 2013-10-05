@@ -26,7 +26,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
 
     String name = "perro";
     String fullName = "Casa de Perro";
-    String creators = "zachoz, pegabeavercorn and dogmode555";
+    String creators = "zachoz, pegabeavercorn and Dogmode555";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
