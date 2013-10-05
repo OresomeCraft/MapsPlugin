@@ -144,35 +144,7 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
     public int y2 = 30;
     public int z2 = 50;
 
-    @EventHandler
-    public void flagRegions(BlockBreakEvent event) {
-        if(event.getPlayer().getWorld().getName().equals(name)) {
-            if(contains(event.getBlock().getLocation(), 152, 159, 108, 117, -23, -19) || event.isCancelled() == false){
-                event.setCancelled(true);
-                event.getPlayer().sendMessage(ChatColor.RED + "You can't build around the flag!");
-            }
-            if(contains(event.getBlock().getLocation(), 4, -2, 108, 117, 4, 29) || event.isCancelled() == false){
-                event.setCancelled(true);
-                event.getPlayer().sendMessage(ChatColor.RED + "You can't build around the flag!");
-            }
 
-        }
-    }
-
-    @EventHandler
-    public void flagRegions(BlockPlaceEvent event) {
-        if(event.getPlayer().getWorld().getName().equals(name)) {
-            if(contains(event.getBlock().getLocation(), 152, 159, 108, 117, -23, -19) || event.isCancelled() == false){
-                event.setCancelled(true);
-                event.getPlayer().sendMessage(ChatColor.RED + "You can't build around the flag!");
-            }
-            if(contains(event.getBlock().getLocation(), 4, -2, 108, 117, 4, 29) || event.isCancelled() == false){
-                event.setCancelled(true);
-                event.getPlayer().sendMessage(ChatColor.RED + "You can't build around the flag!");
-            }
-
-        }
-    }
     @EventHandler
     public void blazeRod(PlayerInteractEvent event) {
         if (event.getPlayer().getWorld().getName().equals(name)) {
