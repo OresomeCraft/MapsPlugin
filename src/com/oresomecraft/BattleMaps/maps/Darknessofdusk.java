@@ -92,7 +92,6 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
     public int x2 = -88;
     public int y2 = 0;
     public int z2 = 191;
-
     @EventHandler
     public void onVirtualLuck(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
@@ -106,38 +105,21 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
                 List<String> sLore = new ArrayList<String>();
                 sLore.add(org.bukkit.ChatColor.BLUE + "What will you get? Who knows!");
-                sLore.add(org.bukkit.ChatColor.BLUE + "Jackpot chance = 0.177!");
                 s.setLore(sLore);
                 LUCKY_CANE.setItemMeta(s);
                 LUCKY_CANE.setAmount(1);
                 p.getInventory().removeItem(LUCKY_CANE);
-                Inventory i = Bukkit.createInventory(null, 9);
-                if (Math.random() < 1) {
-                    i.addItem(new ItemStack(Material.WOOD_SWORD, 1));
-                    if (Math.random() < 0.25) {
-                        i.clear();
-                        i.addItem(new ItemStack(Material.IRON_SWORD, 1));
-                        if (Math.random() < 0.25) {
-                            i.clear();
-                            i.addItem(new ItemStack(Material.DIAMOND_SWORD, 1));
-                            if (Math.random() < 0.25) {
-                                double thing = Math.random() * 10;
-                                i.addItem(new ItemStack(Material.POTION, 1, (short) thing));
-                                if (Math.random() < 0.25) {
-                                    i.addItem(LUCKY_CANE);
-                                    i.addItem(LUCKY_CANE);
-                                    i.addItem(LUCKY_CANE);
-                                    if (Math.random() < 0.25) {
-                                        i.addItem(new ItemStack(Material.GOLDEN_APPLE, 16));
-                                        if (Math.random() < 0.25) {
-                                            i.addItem(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
-                                            i.addItem(new ItemStack(Material.IRON_LEGGINGS, 1));
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                Inventory i = Bukkit.createInventory(null, 18);
+                ItemStack[] items = new ItemStack[]{new ItemStack(Material.EXP_BOTTLE, 3), new ItemStack(Material.SEEDS, 1),
+                        new ItemStack(Material.IRON_SWORD, 1), new ItemStack(Material.EGG, 6), new ItemStack(Material.SNOW_BALL, 6),
+                        new ItemStack(Material.FEATHER, 1), new ItemStack(Material.POTION, 1, (short)16428), new ItemStack(Material.WOOD_SWORD, 1),
+                        new ItemStack(Material.DIAMOND_AXE, 1), new ItemStack(Material.BOAT, 6), new ItemStack(Material.GOLDEN_APPLE, 3),
+                        new ItemStack(Material.GOLD_RECORD, 1), new ItemStack(Material.CHAINMAIL_HELMET, 1), new ItemStack(Material.FIREWORK, 6),
+                        new ItemStack(Material.BAKED_POTATO, 12), new ItemStack(Material.EYE_OF_ENDER, 6), new ItemStack(Material.COOKIE, 32),
+                        LUCKY_CANE};
+                for(ItemStack it: items){
+                    boolean success = Math.random() <= 0.2;
+                    if(success)  i.addItem(it);
                 }
                 p.openInventory(i);
             }
