@@ -2,7 +2,9 @@ package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.*;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.BattleMaps.*;
@@ -63,6 +65,7 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+        ItemStack SAND = new ItemStack(Material.SAND, 4);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
@@ -75,6 +78,7 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
         i.setItem(1, BOW);
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH);
+        i.setItem(8, SAND);
         i.setItem(10, ARROWS);
         i.setItem(11, S);
         i.setItem(12, I);
@@ -91,5 +95,14 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
     public int x2 = -38;
     public int y2 = 112;
     public int z2 = -1125;
+
+    @EventHandler
+    public void blockPlace(BlockPlaceEvent event){
+        if(getMode() == Gamemode.CTF) return;
+        if(!event.getBlock().getWorld().getName().equals(name)) return;
+        if(!(event.getBlock().getType() == Material.TNT)) return;
+        event.getPlayer().getInventory().removeItem(new ItemStack(Material.TNT, 1));
+        event.getBlock().getWorld().spawnEntity(event.getBlock().getLocation(), EntityType.PRIMED_TNT);
+    }
 
 }
