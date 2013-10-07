@@ -4,12 +4,17 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.oresomecraft</groupId>
     <artifactId>OresomeBattlesMaps</artifactId>
-    <packaging>jar</packaging>
     <name>OresomeBattlesMaps</name>
+    <description>The plugin that powers OresomeCraft Battles.</description>
+    <packaging>jar</packaging>
+
+    <version>1.0</version>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.class>com.oresomecraft.BattlesMaps.OresomeBattlesMaps</main.class>
     </properties>
+
     <build>
         <finalName>${project.name}</finalName>
         <sourceDirectory>${basedir}/src</sourceDirectory>
@@ -57,6 +62,18 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>OresomeCraft</id>
+            <url>http://assets.oresomecraft.com/maven</url>
+        </repository>
+        <repository>
+            <id>bukkit-repo</id>
+            <url>http://repo.bukkit.org/content/groups/public</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>
@@ -80,32 +97,26 @@
             <version>0.9.9-RC1</version>
         </dependency>
     </dependencies>
-    <repositories>
-        <repository>
-            <id>OresomeCraft</id>
-            <url>http://assets.oresomecraft.com/maven</url>
-        </repository>
-        <repository>
-            <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public</url>
-        </repository>
-    </repositories>
+
     <scm>
         <tag>HEAD</tag>
         <connection>scm:git:git://github.com/OresomeCraft/OresomeBattlesMaps.git</connection>
         <url>https://github.com/OresomeCraft/OresomeBattles</url>
         <developerConnection>scm:git:ssh://git@github.com:OresomeCraft/OresomeBattlesMaps.git</developerConnection>
     </scm>
-    <description>The plugin that powers OresomeCraft Battles.</description>
+
+
     <organization>
         <name>OresomeCraft</name>
         <url>http://oresomecraft.com/</url>
     </organization>
+
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/OresomeCraft/OresomeBattlesMaps/issues</url>
     </issueManagement>
+
     <inceptionYear>2012-09-13</inceptionYear>
     <url>http://oresomecraft.com/</url>
-    <version>1.0</version>
+
 </project>

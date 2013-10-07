@@ -47,17 +47,20 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
-        BOW.getItemMeta().setDisplayName(ChatColor.YELLOW + "Lightning Bow");
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-        ItemStack LEATHER_HELMET = new ItemStack(Material.GOLD_HELMET, 1);
-        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.GOLD_CHESTPLATE, 1);
-        ItemStack LEATHER_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
-        ItemStack LEATHER_BOOTS = new ItemStack(Material.GOLD_BOOTS, 1);
+
+        ItemStack GOLD_HELMET = new ItemStack(Material.GOLD_HELMET, 1);
+        ItemStack GOLD_CHESTPLATE = new ItemStack(Material.GOLD_CHESTPLATE, 1);
+        ItemStack GOLD_PANTS = new ItemStack(Material.GOLD_LEGGINGS, 1);
+        ItemStack GOLD_BOOTS = new ItemStack(Material.GOLD_BOOTS, 1);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1, (short) -1600);
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+
+        BOW.getItemMeta().setDisplayName(ChatColor.YELLOW + "Lightning Bow");
+
+        p.getInventory().setBoots(GOLD_BOOTS);
+        p.getInventory().setLeggings(GOLD_PANTS);
+        p.getInventory().setChestplate(GOLD_CHESTPLATE);
+        p.getInventory().setHelmet(GOLD_HELMET);
 
 
         i.setItem(0, STONE_SWORD);
