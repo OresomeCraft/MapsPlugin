@@ -21,7 +21,7 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
 
     public Elements() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.STONE_SWORD, Material.STONE_PICKAXE, Material.LEATHER_HELMET});
+        disableDrops(new Material[]{Material.STONE_SWORD, Material.STONE_PICKAXE, Material.LEATHER_HELMET, Material.DIAMOND_SWORD});
         setTDMTime(12);
     }
 
