@@ -34,7 +34,7 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
-                Material.LEATHER_LEGGINGS, Material.STONE_SWORD});
+                Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE});
     }
 
     String name = "hazypass";
