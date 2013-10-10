@@ -93,17 +93,18 @@ public class Fantasy extends BattleMap implements IBattleMap, Listener {
     public int y2 = 77;
     public int z2 = 41;
 
-    Location blockLoc = new Location(w, -25, 108, -43);
-
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Player p = event.getPlayer();
-        if (event.getItem().equals(Material.MAGMA_CREAM)) {
+        if (event.getPlayer().getWorld().getName().equals(name) &&
+                (event.getItem() != null && event.getItem().getType().equals(Material.MAGMA_CREAM))) {
             transport(p);
         }
     }
 
     public void transport(Player p) {
+        Location blockLoc = new Location(w, -25, 108, -43);
+
         p.setVelocity(p.getLocation().getDirection().setX(blockLoc.getX()));
         p.setVelocity(p.getLocation().getDirection().setY(blockLoc.getY()));
         p.setVelocity(p.getLocation().getDirection().setZ(blockLoc.getZ()));
