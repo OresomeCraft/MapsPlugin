@@ -110,14 +110,14 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
                     ItemStack item = p.getItemInHand();
                     item.setAmount(1);
                     p.getInventory().removeItem(item);
-                    if(Math.random() <= 0.4){
+                    if (Math.random() <= 0.4) {
                         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
                         p.sendMessage(ChatColor.GREEN + "The stick of life has given you health!");
-                    }else{
-                    p.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.SKELETON);
+                    } else {
+                        p.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.SKELETON);
                         p.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.SPIDER);
                         p.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.ZOMBIE);
-                    p.sendMessage(ChatColor.GREEN + "The stick of life has forsaken you!");
+                        p.sendMessage(ChatColor.GREEN + "The stick of life has forsaken you!");
                     }
                 }
             }

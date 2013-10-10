@@ -92,6 +92,7 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
     public int x2 = -88;
     public int y2 = 0;
     public int z2 = 191;
+
     @EventHandler
     public void onVirtualLuck(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
@@ -112,14 +113,14 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
                 Inventory i = Bukkit.createInventory(null, 18);
                 ItemStack[] items = new ItemStack[]{new ItemStack(Material.EXP_BOTTLE, 3), new ItemStack(Material.SEEDS, 1),
                         new ItemStack(Material.IRON_SWORD, 1), new ItemStack(Material.EGG, 6), new ItemStack(Material.SNOW_BALL, 6),
-                        new ItemStack(Material.FEATHER, 1), new ItemStack(Material.POTION, 1, (short)16428), new ItemStack(Material.WOOD_SWORD, 1),
+                        new ItemStack(Material.FEATHER, 1), new ItemStack(Material.POTION, 1, (short) 16428), new ItemStack(Material.WOOD_SWORD, 1),
                         new ItemStack(Material.DIAMOND_AXE, 1), new ItemStack(Material.BOAT, 6), new ItemStack(Material.GOLDEN_APPLE, 3),
                         new ItemStack(Material.GOLD_RECORD, 1), new ItemStack(Material.CHAINMAIL_HELMET, 1), new ItemStack(Material.FIREWORK, 6),
                         new ItemStack(Material.BAKED_POTATO, 12), new ItemStack(Material.EYE_OF_ENDER, 6), new ItemStack(Material.COOKIE, 32),
                         LUCKY_CANE};
-                for(ItemStack it: items){
+                for (ItemStack it : items) {
                     boolean success = Math.random() <= 0.2;
-                    if(success)  i.addItem(it);
+                    if (success) i.addItem(it);
                 }
                 p.openInventory(i);
             }

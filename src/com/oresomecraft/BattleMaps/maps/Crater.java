@@ -97,10 +97,10 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
     public int z2 = -1125;
 
     @EventHandler
-    public void blockPlace(BlockPlaceEvent event){
-        if(getMode() == Gamemode.CTF) return;
-        if(!event.getBlock().getWorld().getName().equals(name)) return;
-        if(!(event.getBlock().getType() == Material.TNT)) return;
+    public void blockPlace(BlockPlaceEvent event) {
+        if (getMode() == Gamemode.CTF) return;
+        if (!event.getBlock().getWorld().getName().equals(name)) return;
+        if (!(event.getBlock().getType() == Material.TNT)) return;
         event.getPlayer().getInventory().removeItem(new ItemStack(Material.TNT, 1));
         event.getBlock().getWorld().spawnEntity(event.getBlock().getLocation(), EntityType.PRIMED_TNT);
     }

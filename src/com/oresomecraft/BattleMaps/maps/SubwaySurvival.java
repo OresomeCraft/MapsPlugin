@@ -10,10 +10,10 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
 
     public SubwaySurvival() {
-      super.initiate(this, name, fullName, creators, modes);
-      setAllowBuild(false);
-      lockTime("night");
-      disableDrops(new Material[]{Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.BOW, Material.ARROW});
+        super.initiate(this, name, fullName, creators, modes);
+        setAllowBuild(false);
+        lockTime("night");
+        disableDrops(new Material[]{Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.BOW, Material.ARROW});
     }
 
     // Map details
@@ -21,10 +21,12 @@ public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
     String fullName = "Subway Survival";
     String creators = "iVelocityGaming and XxH4XxX";
     Gamemode[] modes = {Gamemode.FFA, Gamemode.INFECTION};
+
     // Map download link: bit.ly/19IKGtb  // Download link to map.
-    public void readyTDMSpawns(){
+    public void readyTDMSpawns() {
         //Don't need anything here.
     }
+
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 36, 75, 54, -50, 0));
         FFASpawns.add(new Location(w, 46, 70, 38, -50, 0));
@@ -61,16 +63,17 @@ public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
         p.setItem(9, Material.ARROW, 64);
     }
 
-  @EventHandler
-  public void arrowBoom(org.bukkit.event.entity.ProjectileHitEvent event) {
-      org.bukkit.entity.Entity arrow = event.getEntity();
-      World world = Bukkit.getWorld(name);
-      if (getArena().equals(name)) {
-          if (arrow instanceof org.bukkit.entity.Arrow) {
-              world.playEffect(arrow.getLocation(), org.bukkit.Effect.STEP_SOUND, 8);
-          }
-      }
-  }
+    @EventHandler
+    public void arrowBoom(org.bukkit.event.entity.ProjectileHitEvent event) {
+        org.bukkit.entity.Entity arrow = event.getEntity();
+        World world = Bukkit.getWorld(name);
+        if (getArena().equals(name)) {
+            if (arrow instanceof org.bukkit.entity.Arrow) {
+                world.playEffect(arrow.getLocation(), org.bukkit.Effect.STEP_SOUND, 8);
+            }
+        }
+    }
+
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
     public int x1 = 142;

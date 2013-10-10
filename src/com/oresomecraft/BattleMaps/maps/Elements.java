@@ -109,6 +109,7 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
         if (contains(loc, -34, -15, 85, 129, 155, 138)) event.setCancelled(true);
         if (contains(loc, -12, -33, 82, 130, 2, 20)) event.setCancelled(true);
     }
+
     @EventHandler
     public void fili(EntityDamageByEntityEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
