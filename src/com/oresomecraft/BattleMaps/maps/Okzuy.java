@@ -126,6 +126,7 @@ public class Okzuy extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onBreak(BlockBreakEvent event) {
+        if(!event.getBlock().getWorld().getName().equals(name)) return;
         Location location = event.getBlock().getLocation();
 
         switch (event.getBlock().getType()) {
