@@ -28,7 +28,7 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
     String name = "mutiny";
     String fullName = "Mutiny";
     String creators = "DynaDavidson and JacquiRose";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 3, 72, -38));
