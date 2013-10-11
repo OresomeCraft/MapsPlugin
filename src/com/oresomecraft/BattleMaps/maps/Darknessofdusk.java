@@ -65,7 +65,6 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
 
         List<String> sLore = new ArrayList<String>();
         sLore.add(org.bukkit.ChatColor.BLUE + "What will you get? Who knows!");
-        sLore.add(org.bukkit.ChatColor.BLUE + "Jackpot chance = 0.177!");
         s.setLore(sLore);
         LUCKY_CANE.setItemMeta(s);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
