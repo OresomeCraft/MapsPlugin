@@ -27,7 +27,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -2, 88, 49));
-        blueSpawns.add(new Location(w, -2, 88, -265));
+        blueSpawns.add(new Location(w, -2, 88, -26));
 
         Location blueFlag = new Location(w, -3, 89, -56);
         Location redFlag = new Location(w, -3, 89, 78);
