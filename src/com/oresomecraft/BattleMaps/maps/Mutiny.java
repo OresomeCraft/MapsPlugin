@@ -106,10 +106,6 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void preventPlaceOutOfMap(BlockPlaceEvent event) {
         if (event.getBlock().getWorld().getName().equals(name)) {
-            if (event.getBlock().getLocation().getY() > 78 && getMode() == Gamemode.INFECTION) {
-                event.setCancelled(true);
-                event.getPlayer().sendMessage(ChatColor.RED + "You can't build past this height on infection!");
-            }
             if (!contains(event.getBlock().getLocation(), x1, x2, y1, y2, z1, z2)) {
                 event.setCancelled(true);
             }
