@@ -30,17 +30,26 @@ import java.util.List;
 
 public class HazyPass extends BattleMap implements IBattleMap, Listener {
 
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = -100;
+    public int y1 = 160;
+    public int z1 = -70;
+    //Bottom right corner.
+    public int x2 = -70;
+    public int y2 = 30;
+    public int z2 = 50;
+    String name = "hazypass";
+    String fullName = "Hazy Pass";
+    String creators = "AnomalousRei ";
+    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM, Gamemode.INFECTION};
+
     public HazyPass() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
                 Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE});
     }
-
-    String name = "hazypass";
-    String fullName = "Hazy Pass";
-    String creators = "AnomalousRei ";
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     public void readyTDMSpawns() {
 
@@ -133,18 +142,6 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
-
-    //Bottom right corner.
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
-
-
     @EventHandler
     public void blazeRod(PlayerInteractEvent event) {
         if (event.getPlayer().getWorld().getName().equals(name)) {
@@ -189,6 +186,34 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
                 FIRE.setItemMeta(fMeta);
 
                 event.getDrops().add(FIRE);
+            }
+        }
+    }
+
+    @EventHandler
+    public void blockStuff(BlockPlaceEvent event) {
+        if (event.getPlayer().getWorld().getName().equals(name)) {
+            if (getMode() == Gamemode.INFECTION) {
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(ChatColor.RED + "Your power to build was suppressed!");
+            }
+            if (event.getBlock().getWorld().getBlockAt(1, 110, 8).getLocation().distance(event.getBlock().getLocation()) < 15) {
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(ChatColor.RED + "You can't build around the flag!");
+            }
+            if (event.getBlock().getWorld().getBlockAt(155, 109, -22).getLocation().distance(event.getBlock().getLocation()) < 15) {
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(ChatColor.RED + "You can't build around the flag!");
+            }
+        }
+    }
+
+    @EventHandler
+    public void blockStuff(BlockBreakEvent event) {
+        if (event.getPlayer().getWorld().getName().equals(name)) {
+            if (getMode() == Gamemode.INFECTION) {
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(ChatColor.RED + "Your power to build was suppressed!");
             }
         }
     }
