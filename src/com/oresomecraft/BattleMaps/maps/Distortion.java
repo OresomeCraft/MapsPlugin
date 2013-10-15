@@ -74,7 +74,7 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
         a.setDisplayName(ChatColor.BLUE + "Anti-Gravity Stone");
 
         List<String> aLore = new ArrayList<String>();
-        aLore.add(org.bukkit.ChatColor.BLUE + "Hold this to be uninfluenced by the gravity manipulator!");
+        aLore.add(org.bukkit.ChatColor.BLUE + "Hold this to reverse the current effects of gravity!");
         a.setLore(aLore);
         ANTIGRAVITY.setItemMeta(a);
 
@@ -151,6 +151,13 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
             Player p = event.getPlayer();
             if (manipulation == true) {
                 if (p.getItemInHand().getType() != Material.DIAMOND) {
+                    if (event.getFrom().getY() > event.getTo().getY()) {
+                        p.setVelocity(new Vector(0, p.getVelocity().getY() - 0.3, 0));
+                    }
+                }
+            }
+            if (manipulation == false) {
+                if (p.getItemInHand().getType() == Material.DIAMOND) {
                     if (event.getFrom().getY() > event.getTo().getY()) {
                         p.setVelocity(new Vector(0, p.getVelocity().getY() - 0.3, 0));
                     }
