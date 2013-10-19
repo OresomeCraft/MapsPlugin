@@ -16,7 +16,7 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
 
     String name = "terminal";
     String fullName = "Terminal";
-    String creators = "Zachoz, XxXShadowSoul and Slider302";
+    String creators = "zachoz, XxXShadowSoul and Slider302";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

@@ -18,6 +18,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.util.Vector;
 
 public class Fairwick extends BattleMap implements IBattleMap, Listener {
 
@@ -72,6 +73,7 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
+        ItemStack JUMP = new ItemStack(Material.FIREWORK, 3);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -79,6 +81,7 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, HEALTH_POTION);
         i.setItem(4, SPY_WATCH);
         i.setItem(9, ARROWS);
+        i.setItem(8, JUMP);
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -129,5 +132,18 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(name)) event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onFireworkUse(PlayerInteractEvent event) {
+        if (getArena().equals(name)) {
+            Player p = event.getPlayer();
+            if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+                if (p.getItemInHand().getType() == Material.FIREWORK) {
+                    p.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
+                    p.setVelocity(new Vector(0, 1.05, 0));
+                }
+            }
+        }
     }
 }

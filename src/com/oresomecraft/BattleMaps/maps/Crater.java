@@ -2,13 +2,21 @@ package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.PigZombie;
 import org.bukkit.event.*;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Crater extends BattleMap implements IBattleMap, Listener {
 
@@ -102,7 +110,39 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
         if (!event.getBlock().getWorld().getName().equals(name)) return;
         if (!(event.getBlock().getType() == Material.TNT)) return;
         event.getPlayer().getInventory().removeItem(new ItemStack(Material.TNT, 1));
+        event.getBlock().getWorld().playSound(event.getBlock().getLocation(), Sound.FUSE, 1, 1);
         event.getBlock().getWorld().spawnEntity(event.getBlock().getLocation(), EntityType.PRIMED_TNT);
     }
+
+
+
+    @EventHandler
+    public void pigZombieHit(EntityDamageEvent event) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof Creeper) {
+                event.setDamage(1000);
+            }
+        }
+    }
+
+    @EventHandler
+    public void pigZombieDeath(EntityDeathEvent event) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof Creeper) {
+                event.getDrops().clear();
+                ItemStack FIRE = new ItemStack(Material.SULPHUR, 1);
+                ItemMeta fMeta = FIRE.getItemMeta();
+                fMeta.setDisplayName(ChatColor.BLUE + "Enhanced Gunpowder");
+
+                List<String> fLore = new ArrayList<String>();
+                fLore.add(org.bukkit.ChatColor.BLUE + "Make some TNT yo!");
+                fMeta.setLore(fLore);
+                FIRE.setItemMeta(fMeta);
+
+                event.getDrops().add(FIRE);
+            }
+        }
+    }
+
 
 }

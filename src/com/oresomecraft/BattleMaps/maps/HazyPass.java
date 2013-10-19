@@ -11,11 +11,13 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -41,7 +43,7 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
     public int z2 = 50;
     String name = "hazypass";
     String fullName = "Hazy Pass";
-    String creators = "AnomalousRei ";
+    String creators = "AnomalousRei and R3creat3";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM, Gamemode.INFECTION};
 
     public HazyPass() {
@@ -167,6 +169,15 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
         if (event.getEntity().getWorld().getName().equals(name)) {
             if (event.getEntity() instanceof PigZombie) {
                 event.setDamage(1000);
+            }
+        }
+    }
+
+    @EventHandler
+    public void pigZombieHit(EntityDamageByEntityEvent event) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof Player && event.getDamager() instanceof PigZombie){
+                event.setDamage(0);
             }
         }
     }

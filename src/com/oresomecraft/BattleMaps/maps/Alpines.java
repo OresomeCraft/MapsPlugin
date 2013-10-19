@@ -26,7 +26,7 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
     String name = "alpines";
     String fullName = "Alpines";
     String creators = "simonwilson123, Evil_Emo and AnomalousRei";
-    Gamemode[] modes = {Gamemode.KOTH};
+    Gamemode[] modes = {Gamemode.KOTH, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 2, 84, -48, -1, 0));

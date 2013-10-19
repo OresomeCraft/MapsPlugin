@@ -1,6 +1,7 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -48,7 +49,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack JUMP = new ItemStack(Material.FIREWORK, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
-        ItemStack ARROWS = new ItemStack(Material.ARROW, 128);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 1);
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
@@ -61,6 +62,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setLeggings(LEATHER_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
+        BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
@@ -87,6 +89,21 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
             Player p = event.getPlayer();
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                 if (p.getItemInHand().getType() == Material.FIREWORK) {
+                    if(getMode().equals(Gamemode.INFECTION)){
+                        p.sendMessage(ChatColor.RED + "Zoned fireworks on infection act more strangely!");
+                        p.setFoodLevel(0);
+                        double x = Math.random();
+                        double z = Math.random();
+                        if(Math.random() <= 0.5){
+                            z = z - (z * 2);
+                        }
+                        if(Math.random() <= 0.5){
+                            x = x - (x * 2);
+                        }
+                        p.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
+                        p.setVelocity(new Vector(0, 1.05, 0));
+                        return;
+                    }
                     p.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
                     p.setVelocity(new Vector(0, 1.05, 0));
                 }

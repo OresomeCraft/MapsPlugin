@@ -103,10 +103,12 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
-        if (event.getPlayer().getWorld().getName().equals(name)) {
+        if (event.getPlayer().getWorld().getName().equalsIgnoreCase(name)) {
+            //Dunno if the case is wrong ~ R3
             if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
                 Player p = event.getPlayer();
-                if (p.getItemInHand().equals(new ItemStack(Material.STICK))) {
+                if (p.getItemInHand().getType().equals(Material.STICK)) {
+                    //Oh wow, you didn't use getType() whoever configured this map...
                     ItemStack item = p.getItemInHand();
                     item.setAmount(1);
                     p.getInventory().removeItem(item);

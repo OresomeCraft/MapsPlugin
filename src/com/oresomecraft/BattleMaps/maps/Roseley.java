@@ -1,6 +1,7 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -42,14 +43,15 @@ public class Roseley extends BattleMap implements IBattleMap, Listener {
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
-        ItemStack JUMP = new ItemStack(Material.FIREWORK, 1);
+        ItemStack JUMP = new ItemStack(Material.FIREWORK, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
-        ItemStack ARROWS = new ItemStack(Material.ARROW, 128);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 1);
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+        BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
