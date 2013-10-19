@@ -50,11 +50,12 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         ItemStack JUMP = new ItemStack(Material.FIREWORK, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 1);
+        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
+
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
@@ -89,15 +90,15 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
             Player p = event.getPlayer();
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                 if (p.getItemInHand().getType() == Material.FIREWORK) {
-                    if(getMode().equals(Gamemode.INFECTION)){
+                    if (getMode().equals(Gamemode.INFECTION)) {
                         p.sendMessage(ChatColor.RED + "Zoned fireworks on infection act more strangely!");
                         p.setFoodLevel(0);
                         double x = Math.random();
                         double z = Math.random();
-                        if(Math.random() <= 0.5){
+                        if (Math.random() <= 0.5) {
                             z = z - (z * 2);
                         }
-                        if(Math.random() <= 0.5){
+                        if (Math.random() <= 0.5) {
                             x = x - (x * 2);
                         }
                         p.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));

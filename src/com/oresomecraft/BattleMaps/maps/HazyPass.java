@@ -5,6 +5,7 @@ import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -32,26 +33,18 @@ import java.util.List;
 
 public class HazyPass extends BattleMap implements IBattleMap, Listener {
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
-    //Bottom right corner.
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
-    String name = "hazypass";
-    String fullName = "Hazy Pass";
-    String creators = "AnomalousRei and R3creat3";
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM, Gamemode.INFECTION};
-
     public HazyPass() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
                 Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE});
     }
+
+    // Map details
+    String name = "hazypass";
+    String fullName = "Hazy Pass";
+    String creators = "AnomalousRei and R3creat3";
+    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
 
@@ -144,6 +137,16 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
 
     }
 
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = -100;
+    public int y1 = 160;
+    public int z1 = -70;
+    //Bottom right corner.
+    public int x2 = -70;
+    public int y2 = 30;
+    public int z2 = 50;
+
     @EventHandler
     public void blazeRod(PlayerInteractEvent event) {
         if (event.getPlayer().getWorld().getName().equals(name)) {
@@ -176,7 +179,7 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void pigZombieHit(EntityDamageByEntityEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
-            if (event.getEntity() instanceof Player && event.getDamager() instanceof PigZombie){
+            if (event.getEntity() instanceof Player && event.getDamager() instanceof PigZombie) {
                 event.setDamage(0);
             }
         }

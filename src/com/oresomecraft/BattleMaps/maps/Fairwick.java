@@ -50,30 +50,38 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
         Inventory i = p.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.GOLDEN_APPLE, 1);
-        //Limit golden apples to one, since absorption was added.
         ItemStack SPY_WATCH = new ItemStack(Material.WATCH, 1);
-        ItemMeta s = SPY_WATCH.getItemMeta();
-        s.setDisplayName(ChatColor.BLUE + "Spy Watch");
-
-        List<String> sLore = new ArrayList<String>();
-        sLore.add(org.bukkit.ChatColor.BLUE + "Interact with this watch to go temporarily invisible!");
-        s.setLore(sLore);
-        SPY_WATCH.setItemMeta(s);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack JUMP = new ItemStack(Material.FIREWORK, 3);
+
         ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+
+        ItemMeta spywatchMeta = SPY_WATCH.getItemMeta();
+        spywatchMeta.setDisplayName(ChatColor.BLUE + "Spy Watch");
+        List<String> spyLore = new ArrayList<String>();
+        spyLore.add(org.bukkit.ChatColor.BLUE + "Interact with this watch to go temporarily invisible!");
+        spywatchMeta.setLore(spyLore);
+        SPY_WATCH.setItemMeta(spywatchMeta);
+
+        ItemMeta jumpMeta = JUMP.getItemMeta();
+        jumpMeta.setDisplayName(ChatColor.GOLD + "Boost Rocket");
+        List<String> jumpLore = new ArrayList<String>();
+        jumpLore.add(org.bukkit.ChatColor.BLUE + "Interact with this rocket for a boost!");
+        jumpMeta.setLore(jumpLore);
+        JUMP.setItemMeta(jumpMeta);
+
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
-        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
-        ItemStack JUMP = new ItemStack(Material.FIREWORK, 3);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);

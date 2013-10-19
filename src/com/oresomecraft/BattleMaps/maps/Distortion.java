@@ -64,11 +64,12 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 48);
+        ItemStack DIAMOND_PICKAXE = new ItemStack(Material.DIAMOND_PICKAXE, 1);
+        ItemStack ANTIGRAVITY = new ItemStack(Material.DIAMOND, 1);
+
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-        ItemStack DIAMOND_PICKAXE = new ItemStack(Material.DIAMOND_PICKAXE, 1);
-        ItemStack ANTIGRAVITY = new ItemStack(Material.DIAMOND, 1);
 
         ItemMeta a = ANTIGRAVITY.getItemMeta();
         a.setDisplayName(ChatColor.BLUE + "Anti-Gravity Stone");

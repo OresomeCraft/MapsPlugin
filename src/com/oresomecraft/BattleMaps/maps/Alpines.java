@@ -49,8 +49,8 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack STONE_HOE = new ItemStack(Material.STONE_HOE, 1);
         ItemStack BOOTS = new ItemStack(Material.DIAMOND_BOOTS);
-        BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 10);
 
+        BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 10);
         InvUtils.nameItem(STONE_HOE, ChatColor.BLUE + "Dirt Hook");
 
         i.setItem(0, STONE_SWORD);

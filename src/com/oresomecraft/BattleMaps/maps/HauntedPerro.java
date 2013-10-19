@@ -127,7 +127,6 @@ public class HauntedPerro extends BattleMap implements IBattleMap, Listener {
         i.setItem(9, ARROWS);
         p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
 
-
     }
 
     public int x1 = -1451;

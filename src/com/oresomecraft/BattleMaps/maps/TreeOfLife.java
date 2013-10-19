@@ -16,6 +16,8 @@ import org.bukkit.potion.PotionEffectType;
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
+import java.util.Random;
+
 public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
 
     public TreeOfLife() {
@@ -57,16 +59,16 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
         Inventory i = p.getInventory();
 
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
-
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
         ItemStack STICK = new ItemStack(Material.STICK, 1);
+
+        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
 
         ItemMeta stick = STICK.getItemMeta();
         stick.setDisplayName(ChatColor.GREEN + "Stick of Life");
@@ -104,15 +106,15 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         if (event.getPlayer().getWorld().getName().equalsIgnoreCase(name)) {
-            //Dunno if the case is wrong ~ R3
             if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
                 Player p = event.getPlayer();
                 if (p.getItemInHand().getType().equals(Material.STICK)) {
-                    //Oh wow, you didn't use getType() whoever configured this map...
                     ItemStack item = p.getItemInHand();
                     item.setAmount(1);
                     p.getInventory().removeItem(item);
-                    if (Math.random() <= 0.4) {
+                    Random random = new Random();
+                    // 2/5 Chance
+                    if (random.nextInt((10 - 1) + 1) > 5) {
                         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
                         p.sendMessage(ChatColor.GREEN + "The stick of life has given you health!");
                     } else {
