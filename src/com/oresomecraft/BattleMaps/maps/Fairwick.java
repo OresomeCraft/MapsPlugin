@@ -69,13 +69,6 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
         spywatchMeta.setLore(spyLore);
         SPY_WATCH.setItemMeta(spywatchMeta);
 
-        ItemMeta jumpMeta = JUMP.getItemMeta();
-        jumpMeta.setDisplayName(ChatColor.GOLD + "Boost Rocket");
-        List<String> jumpLore = new ArrayList<String>();
-        jumpLore.add(org.bukkit.ChatColor.BLUE + "Interact with this rocket for a boost!");
-        jumpMeta.setLore(jumpLore);
-        JUMP.setItemMeta(jumpMeta);
-
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
         p.getInventory().setBoots(IRON_BOOTS);
