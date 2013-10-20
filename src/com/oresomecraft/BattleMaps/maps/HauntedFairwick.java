@@ -33,8 +33,8 @@ public class HauntedFairwick extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
     }
 
-    String name = "fairwick";
-    String fullName = "Fairwick Village";
+    String name = "hauntedfairwick";
+    String fullName = "Haunted Fairwick Village";
     String creators = "R3creat3, ninsai, zachoz and meganlovesmusic";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.CP};
 
