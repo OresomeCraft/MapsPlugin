@@ -115,7 +115,6 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
     }
 
 
-
     @EventHandler
     public void pigZombieHit(EntityDamageEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
