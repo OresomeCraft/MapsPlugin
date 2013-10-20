@@ -33,8 +33,8 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.CTF};
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, 72, 73, 1));
-        blueSpawns.add(new Location(w, 72, 73, 133));
+        blueSpawns.add(new Location(w, 72, 73, 1));
+        redSpawns.add(new Location(w, 72, 73, 133));
 
         Location redFlag = new Location(w, 72, 74, -2);
         Location blueFlag = new Location(w, 72, 74, 136);
