@@ -11,6 +11,7 @@ public class Spleef extends BattleMap implements IBattleMap, Listener {
 
     public Spleef() {
         super.initiate(this, name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.DIAMOND_SPADE});
     }
 
     // Map details
