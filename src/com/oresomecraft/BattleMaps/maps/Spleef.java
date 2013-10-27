@@ -34,8 +34,28 @@ public class Spleef extends BattleMap implements IBattleMap, Listener {
 
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
-        p.setItem(0, Material.DIAMOND_SPADE, 1);
-        p.setItem(1, Material.SNOW_BALL, 16);
+        
+        ItemStack DIAMOND_SPADE = new ItemStack(Material.DIAMOND_SPADE, 1);
+        ItemStack SNOW_BALL = new ItemStack(Material.SNOW_BALL, 16);
+        ItemStack CHAINMAIL_HELMET = new ItemStack(Material.CHAINMAIL_HELMET, 1);
+        ItemStack CHAINMAIL_CHESTPLATE = new ItemStack(Material.CHAINMAIL_CHESTPLATE, 1);
+        ItemStack CHAINMAIL_PANTS = new ItemStack(Material.CHAINMAIL_LEGGINGS, 1);
+        ItemStack CHAINMAIL_BOOTS = new ItemStack(Material.CHAINMAIL_BOOTS, 1);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
+        
+        ItemMeta diamond_spade = DIAMOND_SPADE.getItemMeta();
+        diamond_spade.setDisplayName(ChatColor.BLUE + "Spleefer's Shovel");
+        DIAMOND_SPADE.setItemMeta(diamond_spade);
+        
+        p.getInventory().setBoots(CHAINMAIL_BOOTS);
+        p.getInventory().setLeggings(CHAINMAIL_PANTS);
+        p.getInventory().setChestplate(CHAINMAIL_CHESTPLATE);
+        p.getInventory().setHelmet(CHAINMAIL_HELMET);
+        
+        i.setItem(0, DIAMOND_SHOVEL);
+        i.setItem(1, SNOW_BALL);
+        i.setItem(2, STEAK);
+
     }
 
     // Region. (Top corner block and bottom corner block.
