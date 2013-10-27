@@ -43,16 +43,14 @@ public class Spleef extends BattleMap implements IBattleMap, Listener {
         ItemStack CHAINMAIL_BOOTS = new ItemStack(Material.CHAINMAIL_BOOTS, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         
-        ItemMeta diamond_spade = DIAMOND_SPADE.getItemMeta();
-        diamond_spade.setDisplayName(ChatColor.BLUE + "Spleefer's Shovel");
-        DIAMOND_SPADE.setItemMeta(diamond_spade);
+        InvUtils.nameItem(DIAMOND_SPADE, ChatColor.BLUE + "Spleefer's Shovel");
         
         p.getInventory().setBoots(CHAINMAIL_BOOTS);
         p.getInventory().setLeggings(CHAINMAIL_PANTS);
         p.getInventory().setChestplate(CHAINMAIL_CHESTPLATE);
         p.getInventory().setHelmet(CHAINMAIL_HELMET);
         
-        i.setItem(0, DIAMOND_SHOVEL);
+        i.setItem(0, DIAMOND_SPADE);
         i.setItem(1, SNOW_BALL);
         i.setItem(2, STEAK);
 
