@@ -1,14 +1,20 @@
 package com.oresomecraft.BattleMaps;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import com.oresomecraft.OresomeBattles.api.*;
-import com.oresomecraft.OresomeBattles.api.events.*;
-import org.bukkit.*;
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.BattlesAccess;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.Monument;
+import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
+import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
+import com.oresomecraft.OresomeBattles.api.events.ReadyMapsEvent;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.event.*;
-
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -17,6 +23,9 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class BattleMap implements Listener {
 
@@ -43,6 +52,7 @@ public abstract class BattleMap implements Listener {
     private Material[] disabledDrops;
     private boolean pearlDamage = true;
     private Long timeLock;
+    private int blockLimit = 256;
 
     public World w; // World variable
 
@@ -165,6 +175,15 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
+     * Disables block interaction above a certain height
+     *
+     * @param limit The block limit in Y
+     */
+    public void setBuildLimit(int limit) {
+        blockLimit = limit;
+    }
+
+    /**
      * Prevents damage when moving using enderpearls
      *
      * @param allow Whether damage from enderpearls should be disabled or not
@@ -229,22 +248,26 @@ public abstract class BattleMap implements Listener {
 
     /**
      * Prevents block breaking if disabled by the map
+     * Also prevents block breaking above the height limit
      *
      * @param event an Event called by the server
      */
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.getBlock().getWorld().getName().equals(name) && !allowBuild) event.setCancelled(true);
+        if (event.getBlock().getY() > blockLimit) event.setCancelled(true);
     }
 
     /**
      * Prevents block placing if disabled by the map
+     * Also prevents block placing above the height limit
      *
      * @param event an Event called by the server
      */
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         if (event.getBlock().getWorld().getName().equals(name) && !allowBuild) event.setCancelled(true);
+        if (event.getBlock().getY() > blockLimit) event.setCancelled(true);
     }
 
     /**

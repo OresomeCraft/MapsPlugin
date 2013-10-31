@@ -1,20 +1,24 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.event.block.*;
-import org.bukkit.event.entity.EntityExplodeEvent;
-import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
-
-import com.oresomecraft.BattleMaps.*;
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.InvUtils;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class Spaceships extends BattleMap implements IBattleMap, Listener {
 
     public Spaceships() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
+        setBuildLimit(72);
         disableDrops(new Material[]{Material.DIAMOND_SWORD, Material.DIAMOND_AXE, Material.DIAMOND_PICKAXE, Material.LAVA_BUCKET, Material.TNT});
     }
 
@@ -77,5 +81,4 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
     public int x2 = 246;
     public int y2 = 0;
     public int z2 = -191;
-
 }
