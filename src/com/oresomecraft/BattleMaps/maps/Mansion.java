@@ -19,7 +19,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
     }
 
     String name = "mansion";
-    String fullName = "The haunted mansion";
+    String fullName = "The Haunted Mansion";
     String creators = "pegabeavercorn, Hourani95 and kevlar_miner";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
