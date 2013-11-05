@@ -108,18 +108,21 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
     public void amplitudeTimer() {
         Bukkit.getServer().getScheduler().cancelTask(a);
-        a = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 
+        a = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             public void run() {
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     if (p.isSneaking() && p.getItemInHand().getType() == Material.IRON_SWORD) {
+
                         if (p.getTotalExperience() >= 50) {
                             p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1F, (p.getTotalExperience() / 12));
                             return;
                         }
+
                         if (p.getTotalExperience() == 49) {
                             p.sendMessage(ChatColor.GREEN + "Aura blast fully charged!");
                         }
+
                         p.setTotalExperience(p.getTotalExperience() + 1);
                         p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1F, (p.getTotalExperience() / 12));
                     } else {
@@ -135,9 +138,10 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
-        if(!event.getEntity().getWorld().equals(name)) return;
+        if (!event.getEntity().getWorld().equals(name)) return;
         if (!(event.getDamager() instanceof Player)) return;
         Player p = (Player) event.getDamager();
+
         if (p.getTotalExperience() >= 50) {
             int strikes = 20;
             while (strikes > 0) {
@@ -149,6 +153,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
             p.setTotalExperience(0);
             return;
         }
+
         if (p.getTotalExperience() >= 40) {
             p.getWorld().strikeLightningEffect(event.getEntity().getLocation());
             p.getWorld().createExplosion(event.getEntity().getLocation(), 2F, false);
@@ -156,6 +161,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
             p.setTotalExperience(0);
             return;
         }
+
         if (p.getTotalExperience() >= 30) {
             event.setDamage(event.getDamage() + 2);
             p.setTotalExperience(0);
@@ -171,7 +177,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onExplode(EntityExplodeEvent event) {
-        if(!event.getLocation().getWorld().equals(name)) return;
+        if (!event.getLocation().getWorld().equals(name)) return;
         event.blockList().clear();
     }
 }

@@ -34,7 +34,7 @@ public class Spleef extends BattleMap implements IBattleMap, Listener {
 
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
-        
+
         ItemStack DIAMOND_SPADE = new ItemStack(Material.DIAMOND_SPADE, 1);
         ItemStack SNOW_BALL = new ItemStack(Material.SNOW_BALL, 16);
         ItemStack CHAINMAIL_HELMET = new ItemStack(Material.CHAINMAIL_HELMET, 1);
@@ -42,14 +42,14 @@ public class Spleef extends BattleMap implements IBattleMap, Listener {
         ItemStack CHAINMAIL_PANTS = new ItemStack(Material.CHAINMAIL_LEGGINGS, 1);
         ItemStack CHAINMAIL_BOOTS = new ItemStack(Material.CHAINMAIL_BOOTS, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
-        
+
         InvUtils.nameItem(DIAMOND_SPADE, ChatColor.BLUE + "Spleefer's Shovel");
-        
+
         p.getInventory().setBoots(CHAINMAIL_BOOTS);
         p.getInventory().setLeggings(CHAINMAIL_PANTS);
         p.getInventory().setChestplate(CHAINMAIL_CHESTPLATE);
         p.getInventory().setHelmet(CHAINMAIL_HELMET);
-        
+
         i.setItem(0, DIAMOND_SPADE);
         i.setItem(1, SNOW_BALL);
         i.setItem(2, STEAK);
