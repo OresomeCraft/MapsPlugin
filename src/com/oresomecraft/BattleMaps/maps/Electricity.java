@@ -20,7 +20,7 @@ public class Electricity extends BattleMap implements IBattleMap, Listener {
     String name = "electricity";
     String fullName = "Electricity";
     String creators = "kingfisher83, danielschroeder, AnomalousRei and _Moist";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 0, 76, 59));
