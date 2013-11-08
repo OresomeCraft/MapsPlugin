@@ -8,10 +8,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Zoned extends BattleMap implements IBattleMap, Listener {
 
@@ -49,6 +55,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack JUMP = new ItemStack(Material.FIREWORK, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack SPY_WATCH = new ItemStack(Material.WATCH, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 1);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
@@ -56,6 +63,13 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+
+        ItemMeta spywatchMeta = SPY_WATCH.getItemMeta();
+        spywatchMeta.setDisplayName(ChatColor.BLUE + "Spy Watch");
+        List<String> spyLore = new ArrayList<String>();
+        spyLore.add(org.bukkit.ChatColor.BLUE + "Interact with this watch to go temporarily invisible!");
+        spywatchMeta.setLore(spyLore);
+        SPY_WATCH.setItemMeta(spywatchMeta);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
@@ -71,6 +85,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, HEALTH);
         i.setItem(10, ARROWS);
         i.setItem(4, JUMP);
+        i.setItem(8, SPY_WATCH);
 
     }
 
@@ -104,6 +119,35 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
                     p.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
                     p.setVelocity(new Vector(0, 1.05, 0));
                 }
+            }
+        }
+    }
+
+
+    @EventHandler
+    public void onSpyWatchInteract(PlayerInteractEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        Player p = event.getPlayer();
+        Action a = event.getAction();
+        if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
+            if (p.getItemInHand().getType() == Material.WATCH) {
+                p.getInventory().remove(p.getItemInHand());
+                p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
+                p.getInventory().setChestplate(new ItemStack(Material.AIR, 1));
+                p.getInventory().setLeggings(new ItemStack(Material.AIR, 1));
+                p.getInventory().setBoots(new ItemStack(Material.AIR, 1));
+                p.getInventory().remove(new ItemStack(Material.IRON_BOOTS));
+                p.getInventory().remove(new ItemStack(Material.IRON_LEGGINGS));
+                p.getInventory().remove(new ItemStack(Material.IRON_HELMET));
+                ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+                InvUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(p), new ItemStack[]{LEATHER_CHESTPLATE});
+                p.getInventory().remove(LEATHER_CHESTPLATE);
+                p.getInventory().addItem(new ItemStack(Material.IRON_BOOTS));
+                p.getInventory().addItem(new ItemStack(Material.IRON_LEGGINGS));
+                p.getInventory().addItem(new ItemStack(Material.IRON_HELMET));
+                p.getInventory().addItem(LEATHER_CHESTPLATE);
+                p.updateInventory();
+                p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 15 * 20, 0));
             }
         }
     }
