@@ -139,7 +139,6 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
         if (!event.getEntity().getWorld().equals(name)) return;
-        if (!(event.getDamager() instanceof Player)) return;
         Player p = (Player) event.getDamager();
 
         if (p.getTotalExperience() >= 50) {
