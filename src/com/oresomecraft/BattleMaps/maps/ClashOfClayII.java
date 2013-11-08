@@ -1,15 +1,18 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.event.*;
-import org.bukkit.event.block.*;
-import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.inventory.*;
-
-import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
 
@@ -25,8 +28,8 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
-        Location redSpawn = new Location(w, 20, 77, -25);
-        Location blueSpawn = new Location(w, 250, 77, -27);
+        Location blueSpawn = new Location(w, 20, 77, -25);
+        Location redSpawn = new Location(w, 222, 77, -27);
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
         Monument m1 = new Monument("m1", name, new Location(Bukkit.getWorld(name), 0, 0, 0));
