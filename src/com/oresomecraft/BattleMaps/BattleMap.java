@@ -255,7 +255,7 @@ public abstract class BattleMap implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.getBlock().getWorld().getName().equals(name) && !allowBuild) event.setCancelled(true);
-        if (event.getBlock().getY() > blockLimit) event.setCancelled(true);
+        if (event.getBlock().getWorld().getName().equals(name) && event.getBlock().getY() > blockLimit) event.setCancelled(true);
     }
 
     /**
@@ -268,6 +268,7 @@ public abstract class BattleMap implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
         if (event.getBlock().getWorld().getName().equals(name) && !allowBuild) event.setCancelled(true);
         if (event.getBlock().getY() > blockLimit) event.setCancelled(true);
+
     }
 
     /**
