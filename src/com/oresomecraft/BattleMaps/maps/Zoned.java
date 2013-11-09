@@ -107,8 +107,8 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
                 if (p.getItemInHand().getType() == Material.FIREWORK) {
                     if (getMode().equals(Gamemode.INFECTION)) {
                         p.sendMessage(ChatColor.RED + "Zoned fireworks on infection act more strangely!");
-                        float x = (float) (Math.random() / 12);
-                        float z = (float) Math.random() / 12;
+                        float x = (float) (Math.random() / 2);
+                        float z = (float) Math.random() / 2;
 
                         if (Math.random() > 0.5) x = x - (x * 2);
                         if (Math.random() > 0.5) z = z - (z * 2);
