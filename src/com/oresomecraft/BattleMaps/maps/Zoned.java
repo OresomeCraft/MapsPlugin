@@ -59,10 +59,10 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         ItemStack ARROWS = new ItemStack(Material.ARROW, 1);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
-        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-        ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
 
         ItemMeta spywatchMeta = SPY_WATCH.getItemMeta();
         spywatchMeta.setDisplayName(ChatColor.BLUE + "Spy Watch");
@@ -71,12 +71,12 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         spywatchMeta.setLore(spyLore);
         SPY_WATCH.setItemMeta(spywatchMeta);
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        p.getInventory().setHelmet(IRON_HELMET);
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 
         i.setItem(0, STONE_SWORD);
