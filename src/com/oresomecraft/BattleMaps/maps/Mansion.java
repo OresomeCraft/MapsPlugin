@@ -1,14 +1,20 @@
 package com.oresomecraft.BattleMaps.maps;
 
-import org.bukkit.*;
-import org.bukkit.block.Block;
+import com.oresomecraft.BattleMaps.BattleMap;
+import com.oresomecraft.BattleMaps.IBattleMap;
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.InvUtils;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.event.*;
-import org.bukkit.event.block.*;
-import org.bukkit.inventory.*;
-
-import com.oresomecraft.BattleMaps.*;
-import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBurnEvent;
+import org.bukkit.event.block.BlockSpreadEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 public class Mansion extends BattleMap implements IBattleMap, Listener {
 
@@ -68,7 +74,6 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 415, 64, -269));
         FFASpawns.add(new Location(w, 412, 64, -266));
         FFASpawns.add(new Location(w, 419, 71, -260));
-        FFASpawns.add(new Location(w, 416, 74, -307));
         FFASpawns.add(new Location(w, 446, 74, -271));
         FFASpawns.add(new Location(w, 467, 74, -310));
         FFASpawns.add(new Location(w, 416, 74, -305));
