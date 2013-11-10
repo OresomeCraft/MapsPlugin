@@ -114,6 +114,8 @@ public class Containment extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
 
+        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 20*20, 2));
+
         i.setItem(0, IRON_SWORD);
         i.setItem(1, STEAK);
         i.setItem(2, HEALTH_POTION);
