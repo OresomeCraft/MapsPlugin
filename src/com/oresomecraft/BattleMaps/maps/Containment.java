@@ -146,7 +146,7 @@ public class Containment extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onKey(PlayerInteractEvent event) {
-        if(!event.getPlayer().getWorld().equals(name)) return;
+        if(!event.getPlayer().getWorld().getName().equalsIgnoreCase(name)) return;
         Player p = event.getPlayer();
         Action a = event.getAction();
         Inventory i = p.getInventory();
