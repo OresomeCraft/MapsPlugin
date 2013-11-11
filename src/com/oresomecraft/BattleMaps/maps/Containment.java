@@ -146,7 +146,7 @@ public class Containment extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onKey(PlayerInteractEvent event) {
-        if(!event.getPlayer().getWorld().getName().equalsIgnoreCase(name)) return;
+        if (!event.getPlayer().getWorld().getName().equalsIgnoreCase(name)) return;
         Player p = event.getPlayer();
         Action a = event.getAction();
         Inventory i = p.getInventory();
@@ -256,7 +256,7 @@ public class Containment extends BattleMap implements IBattleMap, Listener {
 
     public int getClearance(ItemStack i) {
         int clearance = 0;
-        if(i.getType() != Material.TRIPWIRE_HOOK) return 0;
+        if (i.getType() != Material.TRIPWIRE_HOOK) return 0;
         ItemMeta im = i.getItemMeta();
         if (im.getDisplayName().equals(ChatColor.BLUE + "Level 1 security key")) clearance = 1;
         if (im.getDisplayName().equals(ChatColor.GREEN + "Level 2 security key")) clearance = 2;
