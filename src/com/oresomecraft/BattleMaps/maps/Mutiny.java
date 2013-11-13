@@ -72,6 +72,8 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         allprotect.setLore(stoneLore);
         ALLPROTECT.setItemMeta(allprotect);
 
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
+
         p.getInventory().setBoots(DIAMOND_BOOTS);
         p.getInventory().setLeggings(GOLD_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
