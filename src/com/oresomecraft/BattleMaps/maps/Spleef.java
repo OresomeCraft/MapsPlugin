@@ -3,6 +3,7 @@ package com.oresomecraft.BattleMaps.maps;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.BattleMaps.*;
@@ -62,7 +63,7 @@ public class Spleef extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
-        event.setCancelled(true);
+        if(event.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) event.setCancelled(true);
     }
 
 }
