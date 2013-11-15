@@ -109,6 +109,13 @@ public class Containment extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack KEY = new ItemStack(Material.TRIPWIRE_HOOK);
+        ItemMeta km = KEY.getItemMeta();
+        km.setDisplayName(ChatColor.BLUE + "Level 1 security key");
+        ArrayList<String> lore = new ArrayList<String>();
+        lore.add(ChatColor.BLUE + "Opens level 1 security doors");
+        km.setLore(lore);
+        KEY.setItemMeta(km);
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
@@ -118,6 +125,7 @@ public class Containment extends BattleMap implements IBattleMap, Listener {
         i.setItem(1, STEAK);
         i.setItem(2, HEALTH_POTION);
         i.setItem(28, ARROWS);
+        i.setItem(9, KEY);
 
 
     }
