@@ -48,7 +48,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
         redSpawns.add(new Location(w, 419, 71, -260));
         blueSpawns.add(new Location(w, 416, 74, -307));
         redSpawns.add(new Location(w, 446, 74, -271));
-        blueSpawns.add(new Location(w, 467, 74, -310));
+        blueSpawns.add(new Location(w, 467, 74, -309));
         redSpawns.add(new Location(w, 416, 74, -305));
         blueSpawns.add(new Location(w, 454, 72, -267));
         redSpawns.add(new Location(w, 467, 64, -264));
