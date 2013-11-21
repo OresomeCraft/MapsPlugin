@@ -17,6 +17,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
@@ -51,6 +53,7 @@ public abstract class BattleMap implements Listener {
     private boolean allowBuild = true;
     private Material[] disabledDrops;
     private boolean pearlDamage = true;
+    private boolean damage = true;
     private Long timeLock;
     private int blockLimit = 256;
 
@@ -184,6 +187,15 @@ public abstract class BattleMap implements Listener {
     }
 
     /**
+     * Disables PvP and mob damage
+     *
+     * @param check The boolean to set it
+     */
+    public void setAllowPhysicalDamage(boolean check) {
+        damage = check;
+    }
+
+    /**
      * Prevents damage when moving using enderpearls
      *
      * @param allow Whether damage from enderpearls should be disabled or not
@@ -255,7 +267,8 @@ public abstract class BattleMap implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.getBlock().getWorld().getName().equals(name) && !allowBuild) event.setCancelled(true);
-        if (event.getBlock().getWorld().getName().equals(name) && event.getBlock().getY() > blockLimit) event.setCancelled(true);
+        if (event.getBlock().getWorld().getName().equals(name) && event.getBlock().getY() > blockLimit)
+            event.setCancelled(true);
     }
 
     /**
@@ -267,7 +280,8 @@ public abstract class BattleMap implements Listener {
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         if (event.getBlock().getWorld().getName().equals(name) && !allowBuild) event.setCancelled(true);
-        if (event.getBlock().getWorld().getName().equals(name) && event.getBlock().getY() > blockLimit) event.setCancelled(true);
+        if (event.getBlock().getWorld().getName().equals(name) && event.getBlock().getY() > blockLimit)
+            event.setCancelled(true);
 
     }
 
@@ -308,6 +322,18 @@ public abstract class BattleMap implements Listener {
                 }
             }
         }
+    }
+
+    /**
+     * Disables damage caused by ENTITY_ATTACK if disabled
+     *
+     * @param event and Event called by bukkit
+     */
+    @EventHandler
+    public void onDamage(EntityDamageByEntityEvent event) {
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!damage) return;
+        if (event.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) event.setCancelled(true);
     }
 
     /**
