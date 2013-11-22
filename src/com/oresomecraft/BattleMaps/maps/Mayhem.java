@@ -1,6 +1,8 @@
 package com.oresomecraft.BattleMaps.maps;
 
 import org.bukkit.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,6 +14,7 @@ import org.bukkit.potion.*;
 import com.oresomecraft.BattleMaps.*;
 import com.oresomecraft.OresomeBattles.api.*;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import org.bukkit.util.Vector;
 
 public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
@@ -31,6 +34,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onload(WorldLoadEvent event) { // Register power block
         if (event.getWorld().getName().equals(name)) cyclePowerBlock();
+        if (event.getWorld().getName().equals(name)) gravityArrows();
     }
 
     public void readyTDMSpawns() {
@@ -107,9 +111,34 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
     }
 
+    int distort;
+
+    public void gravityArrows() {
+        Bukkit.getServer().getScheduler().cancelTask(distort);
+        distort = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+
+            public void run() {
+                if (getArena().equals(name)) {
+                    World world = Bukkit.getWorld("gravity");
+                    if (!(world.getEntities() == null)) {
+                        for (Entity arrow : world.getEntities()) {
+                            if (arrow instanceof Arrow) {
+                                if(contains(arrow.getLocation(), 62, 66, 112, 116, 49, 49) || contains(arrow.getLocation(), 79, 79, 116, 112, 66, 62)){
+                                arrow.setVelocity(new Vector(arrow.getVelocity().getX(), arrow.getVelocity().getY() - 100, arrow.getVelocity().getZ()));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }, 5L, 5L);
+    }
+
     @EventHandler
     public void battleEnd(BattleEndEvent event) {
         Bukkit.getScheduler().cancelTask(timer);
+        Bukkit.getScheduler().cancelTask(distort);
     }
 
     @EventHandler
