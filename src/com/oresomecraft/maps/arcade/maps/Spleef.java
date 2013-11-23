@@ -1,19 +1,15 @@
-package com.oresomecraft.maps.battles.maps;
+package com.oresomecraft.maps.arcade.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.arcade.ArcadeMap;
-import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
-public class Spleef extends ArcadeMap implements IBattleMap, Listener {
+public class Spleef extends ArcadeMap implements Listener {
 
     public Spleef() {
         super.initiate(this, name, fullName, creators, modes);
@@ -24,12 +20,8 @@ public class Spleef extends ArcadeMap implements IBattleMap, Listener {
     // Map details
     String name = "spleef";
     String fullName = "Spleef";
-    String creators = "Zachoz ";
+    String creators = "zachoz ";
     Gamemode[] modes = {Gamemode.LMS};
-
-    public void readyTDMSpawns() {
-        // Dud
-    }
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 3, 66, 1));
@@ -51,18 +43,6 @@ public class Spleef extends ArcadeMap implements IBattleMap, Listener {
         i.setItem(0, DIAMOND_SPADE);
         i.setItem(1, SNOW_BALL);
         i.setItem(2, STEAK);
-
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
-
-    // Bottom right corner.
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
 
 }
