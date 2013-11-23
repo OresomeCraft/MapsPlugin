@@ -1,4 +1,4 @@
-name: OresomeBattlesMaps
-main: com.oresomecraft.BattleMaps.OresomeBattlesMaps
+name: MapsPlugin
+main: com.oresomecraft.maps.MapsPlugin
 version: 1.0
 depend: [OresomeBattles]
