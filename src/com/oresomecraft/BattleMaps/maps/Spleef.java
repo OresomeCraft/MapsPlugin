@@ -12,7 +12,6 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Spleef extends BattleMap implements IBattleMap, Listener {
 
     public Spleef() {
-        setAllowPhysicalDamage(false);
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.DIAMOND_SPADE});
     }
@@ -60,5 +59,11 @@ public class Spleef extends BattleMap implements IBattleMap, Listener {
     public int x2 = -70;
     public int y2 = 30;
     public int z2 = 50;
+
+    @EventHandler
+    public void onDamage(EntityDamageByEntityEvent event) {
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if(event.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) event.setCancelled(true);
+    }
 
 }
