@@ -13,22 +13,30 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 @MapConfig
-public class Spleef_Beta extends ArcadeMap implements Listener {
+public class Spleef_Charlie extends ArcadeMap implements Listener {
 
-    public Spleef_Beta() {
+    public Spleef_Charlie() {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.DIAMOND_SPADE, Material.COOKED_BEEF});
         setAllowPhysicalDamage(false);
     }
 
     // Map details
-    String name = "spleef_beta";
-    String fullName = "Spleef (Beta)";
+    String name = "spleef_charlie";
+    String fullName = "Spleef (Charlie)";
     String creators = "zachoz ";
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, -7, 64, 18));
+        FFASpawns.add(new Location(w, 0, 66, -22));
+        FFASpawns.add(new Location(w, -11, 66, 11));
+        FFASpawns.add(new Location(w, -21, 66, -0));
+        FFASpawns.add(new Location(w, -11, 66, 12));
+        FFASpawns.add(new Location(w, -0, 66, 23));
+        FFASpawns.add(new Location(w, 0, 66, 23));
+        FFASpawns.add(new Location(w, 12, 66, 12));
+        FFASpawns.add(new Location(w, 22, 66, 0));
+        FFASpawns.add(new Location(w, 11, 66, -11));
     }
 
     public void applyInventory(final BattlePlayer p) {
