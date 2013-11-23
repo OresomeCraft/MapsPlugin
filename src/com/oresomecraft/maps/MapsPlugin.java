@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.OresomeBattles.api.events.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;

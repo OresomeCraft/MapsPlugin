@@ -1,27 +1,16 @@
 package com.oresomecraft.maps;
 
-import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.BattlesAccess;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
-import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
-import com.oresomecraft.OresomeBattles.api.events.ReadyMapsEvent;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import com.oresomecraft.maps.battles.*;
+import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.api.events.*;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.*;
+import org.bukkit.event.block.*;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-import org.bukkit.event.world.WorldLoadEvent;
-import org.bukkit.event.world.WorldUnloadEvent;
+import org.bukkit.event.world.*;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
