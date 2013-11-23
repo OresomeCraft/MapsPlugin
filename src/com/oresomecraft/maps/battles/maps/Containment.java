@@ -1,5 +1,6 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
@@ -24,6 +25,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 
+@MapConfig
 public class Containment extends BattleMap implements IBattleMap, Listener {
 
     public Containment() {

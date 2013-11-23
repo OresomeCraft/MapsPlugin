@@ -3,6 +3,7 @@ package com.oresomecraft.maps.battles.maps;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
@@ -16,6 +17,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import com.oresomecraft.OresomeBattles.api.*;
 
+@MapConfig
 public class TelluricPath extends BattleMap implements IBattleMap, Listener {
 
     public TelluricPath() {

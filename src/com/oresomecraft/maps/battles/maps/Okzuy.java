@@ -1,5 +1,6 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
@@ -14,6 +15,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+@MapConfig
 public class Okzuy extends BattleMap implements IBattleMap, Listener {
 
     public Okzuy() {

@@ -1,5 +1,6 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
@@ -18,6 +19,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 
 import java.util.Random;
 
+@MapConfig
 public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
 
     public TreeOfLife() {

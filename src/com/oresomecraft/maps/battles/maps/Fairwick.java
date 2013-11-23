@@ -1,5 +1,6 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
@@ -25,6 +26,7 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
+@MapConfig
 public class Fairwick extends BattleMap implements IBattleMap, Listener {
 
     public Fairwick() {

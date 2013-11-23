@@ -1,5 +1,6 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
@@ -18,6 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+@MapConfig
 public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
     public Amplitude() {

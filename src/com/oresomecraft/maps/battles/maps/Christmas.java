@@ -6,6 +6,7 @@ package com.oresomecraft.maps.battles.maps;
  * Map created for Christmas, to be released at Christmas time, 2013
  */
 
+import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
@@ -28,6 +29,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 
 import java.util.Random;
 
+@MapConfig
 public class Christmas extends BattleMap implements IBattleMap, Listener {
 
     public Christmas() {

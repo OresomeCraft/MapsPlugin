@@ -1,5 +1,6 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
@@ -13,6 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import com.oresomecraft.OresomeBattles.api.*;
 
+@MapConfig
 public class Oasis extends BattleMap implements IBattleMap, Listener {
 
     public Oasis() {

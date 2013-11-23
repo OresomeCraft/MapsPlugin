@@ -4,6 +4,7 @@ package com.oresomecraft.maps.battles.maps;
 * Map unfinished. Waiting on _Moist for Spawn Locations.
  */
 
+import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
@@ -17,6 +18,7 @@ import org.bukkit.potion.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
 
+@MapConfig
 public class TropicalPaths extends BattleMap implements IBattleMap, Listener {
 
     public TropicalPaths() {

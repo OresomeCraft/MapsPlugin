@@ -1,5 +1,6 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
@@ -20,6 +21,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@MapConfig
 public class Zoned extends BattleMap implements IBattleMap, Listener {
 
     public Zoned() {

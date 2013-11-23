@@ -28,11 +28,11 @@ public class MapsPlugin extends JavaPlugin {
 
     public static void loadMaps(String packageName) {
         Reflections reflections = new Reflections(packageName);
-        Set<Class<? extends Map>> classes = reflections.getSubTypesOf(Map.class);
-        for (Class<? extends Map> clazz : classes) {
+        Set<Class<?>> classes = reflections.getTypesAnnotatedWith(MapConfig.class);
+        for (Class<?> clazz : classes) {
             try {
-                Map map = clazz.newInstance();
-                maps.add(map);
+                Object map = clazz.newInstance();
+                maps.add((Map) map);
             } catch (Exception e) {
                 logger.severe("Unable to load map: " + clazz.getName());
                 e.printStackTrace();

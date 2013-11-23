@@ -3,6 +3,7 @@ package com.oresomecraft.maps.battles.maps;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
@@ -21,6 +22,7 @@ import org.bukkit.util.Vector;
 import com.oresomecraft.OresomeBattles.api.*;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 
+@MapConfig
 public class Distortion extends BattleMap implements IBattleMap, Listener {
 
     public Distortion() {
