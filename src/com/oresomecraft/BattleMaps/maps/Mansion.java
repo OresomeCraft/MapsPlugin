@@ -98,6 +98,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
+        p.getInventory().getHelmet().addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
 
         p.getInventory().setBoots(LEATHER_BOOTS);
@@ -111,7 +112,6 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
         i.setItem(9, ARROWS);
-        p.getInventory().getHelmet().addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
 
     }
 
