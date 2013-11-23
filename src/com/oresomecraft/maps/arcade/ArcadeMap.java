@@ -38,7 +38,7 @@ public abstract class ArcadeMap extends Map {
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
-        if (!damage) return;
+        if (damage) return;
         if (event.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) event.setCancelled(true);
     }
 
