@@ -20,6 +20,7 @@ public class OresomeBattlesMaps extends JavaPlugin {
     public static final Logger logger = Logger.getLogger("Minecraft");
     protected static OresomeBattlesMaps plugin;
     private static ArrayList<BattleMap> maps = new ArrayList<BattleMap>();
+    private static ArrayList<BattleMap> arcadeMaps = new ArrayList<BattleMap>();
 
     public void onEnable() {
         loadMaps("com.oresomecraft.BattleMaps.maps");
