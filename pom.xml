@@ -3,16 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.oresomecraft</groupId>
-    <artifactId>OresomeBattlesMaps</artifactId>
-    <name>OresomeBattlesMaps</name>
-    <description>The plugin that powers OresomeCraft Battles.</description>
+    <artifactId>MapsPlugin</artifactId>
+    <name>MapsPlugin</name>
+    <description>Maps component for OresomeBattles</description>
     <packaging>jar</packaging>
 
     <version>1.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <main.class>com.oresomecraft.BattlesMaps.OresomeBattlesMaps</main.class>
+        <main.class>com.oresomecraft.maps.MapsPlugin</main.class>
     </properties>
 
     <build>
