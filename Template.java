@@ -1,12 +1,14 @@
-package com.oresomecraft.BattleMaps.maps;
+package com.oresomecraft.maps.battles.maps;
 
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
 
-import com.oresomecraft.BattleMaps.*;
+import com.oresomecraft.maps.*;
+import com.oresomecraft.maps.battles.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
+@MapConfig
 public class Template extends BattleMap implements IBattleMap, Listener {
 
     public Template() {
