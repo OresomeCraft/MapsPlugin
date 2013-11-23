@@ -1,6 +1,7 @@
 package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.arcade.ArcadeMap;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
@@ -12,11 +13,12 @@ import org.bukkit.inventory.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
-public class Spleef extends BattleMap implements IBattleMap, Listener {
+public class Spleef extends ArcadeMap implements IBattleMap, Listener {
 
     public Spleef() {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.DIAMOND_SPADE});
+        setAllowPhysicalDamage(false);
     }
 
     // Map details
@@ -62,11 +64,5 @@ public class Spleef extends BattleMap implements IBattleMap, Listener {
     public int x2 = -70;
     public int y2 = 30;
     public int z2 = 50;
-
-    @EventHandler
-    public void onDamage(EntityDamageByEntityEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
-        if(event.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) event.setCancelled(true);
-    }
 
 }

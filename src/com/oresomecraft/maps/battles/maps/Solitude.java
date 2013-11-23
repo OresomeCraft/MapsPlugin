@@ -97,14 +97,15 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 3);
+        ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
 
         // Armor
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-        ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 1);
-        ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
+
         ItemMeta fishing_rod = FISHING_ROD.getItemMeta();
         fishing_rod.setDisplayName(ChatColor.GOLD + "Grappling Hook");
         FISHING_ROD.setItemMeta(fishing_rod);
