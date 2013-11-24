@@ -103,7 +103,7 @@ public class BombDrop_Alpha extends ArcadeMap implements Listener {
                     type.add(CaveSpider.class);
                 }
                 if (bombs.size() > 65) {
-                    type.add(WitherSkull.class);
+
                     type.add(Villager.class);
                 }
                 if (bombs.size() > 70) {
@@ -196,9 +196,11 @@ public class BombDrop_Alpha extends ArcadeMap implements Listener {
                 }
             } else if (et == EntityType.SKELETON) {
                 Random rdom = new Random();
-                for (int i = 0; i <= 5; i++) {
-                    loc.getWorld().spawnEntity(loc, EntityType.ARROW).setVelocity(new Vector(rdom.nextDouble() - 0.5, 1.5, rdom.nextDouble() - 0.5));
+
+                for (int i = 0; i <= 4; i++) {
+                    loc.getWorld().spawnEntity(loc, EntityType.ZOMBIE).setVelocity(new Vector(rdom.nextDouble() - 0.5, 3, rdom.nextDouble() - 0.5));
                 }
+
             } else if (et == EntityType.SILVERFISH) {
                 Random rdom = new Random();
                 loc.getWorld().spawnFallingBlock(loc, Material.MONSTER_EGGS, (byte) 0).setVelocity(new Vector(rdom.nextDouble() - 0.5, 3, rdom.nextDouble() - 0.5));
@@ -215,9 +217,7 @@ public class BombDrop_Alpha extends ArcadeMap implements Listener {
             } else if (et == EntityType.WITHER_SKULL) {
                 Random rdom = new Random();
 
-                for (int i = 0; i <= 4; i++) {
-                    loc.getWorld().spawnEntity(loc, EntityType.ZOMBIE).setVelocity(new Vector(rdom.nextDouble() - 0.5, 3, rdom.nextDouble() - 0.5));
-                }
+
             }
             if (et == EntityType.ZOMBIE) {
                 Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
