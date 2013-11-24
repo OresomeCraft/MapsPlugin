@@ -3,7 +3,9 @@ package com.oresomecraft.maps.arcade.maps;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.MapsPlugin;
 import com.oresomecraft.maps.arcade.ArcadeMap;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,9 +18,6 @@ import org.bukkit.inventory.ItemStack;
 
 @MapConfig
 public class TNTRun_Alpha extends ArcadeMap implements Listener {
-
-    boolean hasPassedGrace = false;
-    long startTime;
 
     public TNTRun_Alpha() {
         super.initiate(this, name, fullName, creators, modes);
@@ -57,23 +56,24 @@ public class TNTRun_Alpha extends ArcadeMap implements Listener {
 
     }
 
+    boolean hasPassedGrace = false;
+
     @EventHandler
     public void onLoad(WorldLoadEvent event) {
-        if (event.getWorld().equals(w)) {
-            startTime = System.currentTimeMillis();
+        if (event.getWorld().getName().equals(name)) {
+            Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
+                public void run() {
+                    hasPassedGrace = true;
+                }
+            }, 100L);
         }
     }
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        if (BattlePlayer.getBattlePlayer(event.getPlayer()).isSpectator()) return;
-        if (!hasPassedGrace) {
-            if (System.currentTimeMillis() > startTime + 200) {
-                hasPassedGrace = true;
-            } else {
-                event.setCancelled(true);
-            }
+        if (hasPassedGrace) {
+            event.setCancelled(true);
         }
     }
 }
