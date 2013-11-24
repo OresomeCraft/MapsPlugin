@@ -27,18 +27,18 @@ public class TNTRun_Alpha extends ArcadeMap implements Listener {
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, 39, 67.4, 0, 90, 0));
-        FFASpawns.add(new Location(w, 0, 67.4, -38, 0, 0));
-        FFASpawns.add(new Location(w, -38, 67.4, 0, -90, 0));
-        FFASpawns.add(new Location(w, 0, 67.4, 39, 179, 0));
-        FFASpawns.add(new Location(w, -25, 67.4, 28, -135, 0));
-        FFASpawns.add(new Location(w, -25, 67.4, -28, -42, 0));
-        FFASpawns.add(new Location(w, 26, 67.4, -27, 43, 0));
-        FFASpawns.add(new Location(w, 26, 67.4, 27, 136, 0));
-        FFASpawns.add(new Location(w, 15, 67.4, 35, 179, 0));
-        FFASpawns.add(new Location(w, -14, 67.4, 35, 179, 0));
-        FFASpawns.add(new Location(w, -14, 67.4, -34, 0, 0));
-        FFASpawns.add(new Location(w, 15, 67.4, -34, 0, 0));
+        FFASpawns.add(new Location(w, 39, 69, 0, 90, 0));
+        FFASpawns.add(new Location(w, 0, 69, -38, 0, 0));
+        FFASpawns.add(new Location(w, -38, 69, 0, -90, 0));
+        FFASpawns.add(new Location(w, 0, 69, 39, 179, 0));
+        FFASpawns.add(new Location(w, -25, 69, 28, -135, 0));
+        FFASpawns.add(new Location(w, -25, 69, -28, -42, 0));
+        FFASpawns.add(new Location(w, 26, 69, -27, 43, 0));
+        FFASpawns.add(new Location(w, 26, 69, 27, 136, 0));
+        FFASpawns.add(new Location(w, 15, 69, 35, 179, 0));
+        FFASpawns.add(new Location(w, -14, 69, 35, 179, 0));
+        FFASpawns.add(new Location(w, -14, 69, -34, 0, 0));
+        FFASpawns.add(new Location(w, 15, 69, -34, 0, 0));
     }
 
     public void applyInventory(final BattlePlayer p) {
