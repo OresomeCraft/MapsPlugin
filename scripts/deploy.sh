@@ -14,8 +14,8 @@ echo "Compiling..."
 mvn clean install
 
 echo "Replacing jar files..."
-mv target/MapsPlugin.jar ~/servers/battles/plugins/MapsPlugin.jar
-mv target/MapsPlugin.jar ~/servers/arcade/plugins/MapsPlugin.jar
+cp target/MapsPlugin.jar ~/servers/battles/plugins/MapsPlugin.jar
+cp target/MapsPlugin.jar ~/servers/arcade/plugins/MapsPlugin.jar
 cd ..
 
 echo "Cleaning up files..."
