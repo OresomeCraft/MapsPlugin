@@ -23,7 +23,7 @@ public abstract class ArcadeMap extends Map {
     /**
      * Disables PvP and mob damage
      *
-     * @param check The boolean to set it
+     * @param check The boolean that defines whether physical damage is allowed
      */
     public void setAllowPhysicalDamage(boolean check) {
         damage = check;
@@ -33,7 +33,7 @@ public abstract class ArcadeMap extends Map {
     /**
      * Disables damage caused by ENTITY_ATTACK if disabled
      *
-     * @param event and Event called by bukkit
+     * @param event an Event called by bukkit
      */
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {

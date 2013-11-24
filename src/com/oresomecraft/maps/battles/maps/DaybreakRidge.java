@@ -1,13 +1,16 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.OresomeBattles.api.Monument;
-import org.bukkit.*;
+import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.maps.battles.IBattleMap;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
@@ -131,17 +134,16 @@ public class DaybreakRidge extends BattleMap implements IBattleMap, Listener {
         if (event.getEntity().getWorld().getName().equals(name)) {
             if (event.getEntity() instanceof Zombie) {
                 event.getDrops().clear();
-                ItemStack FIRE = new ItemStack(Material.FEATHER, 1);
-                ItemMeta fMeta = FIRE.getItemMeta();
+                ItemStack FEATHER = new ItemStack(Material.FEATHER, 1);
+                ItemMeta fMeta = FEATHER.getItemMeta();
                 fMeta.setDisplayName(ChatColor.BLUE + "Spring Feather");
 
                 List<String> fLore = new ArrayList<String>();
                 fLore.add(org.bukkit.ChatColor.BLUE + "Who wants a jump boost??");
                 fMeta.setLore(fLore);
-                FIRE.setItemMeta(fMeta);
+                FEATHER.setItemMeta(fMeta);
 
-                event.getDrops().add(FIRE);
-                //Lol, can't be stuffed changing the names again, someone else do it pls. ~ R3
+                event.getDrops().add(FEATHER);
             }
         }
     }
