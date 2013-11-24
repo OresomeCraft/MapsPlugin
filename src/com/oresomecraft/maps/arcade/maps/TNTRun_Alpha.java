@@ -7,12 +7,18 @@ import com.oresomecraft.maps.arcade.ArcadeMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 @MapConfig
 public class TNTRun_Alpha extends ArcadeMap implements Listener {
+
+    boolean hasPassedGrace = false;
+    long startTime;
 
     public TNTRun_Alpha() {
         super.initiate(this, name, fullName, creators, modes);
@@ -49,5 +55,25 @@ public class TNTRun_Alpha extends ArcadeMap implements Listener {
 
         p.sendMessage(ChatColor.RED + "RUN!!!");
 
+    }
+
+    @EventHandler
+    public void onLoad(WorldLoadEvent event) {
+        if (event.getWorld().equals(w)) {
+            startTime = System.currentTimeMillis();
+        }
+    }
+
+    @EventHandler
+    public void onInteract(PlayerInteractEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (BattlePlayer.getBattlePlayer(event.getPlayer()).isSpectator()) return;
+        if (!hasPassedGrace) {
+            if (System.currentTimeMillis() > startTime + 200) {
+                hasPassedGrace = true;
+            } else {
+                event.setCancelled(true);
+            }
+        }
     }
 }
