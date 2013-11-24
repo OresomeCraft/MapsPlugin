@@ -1,20 +1,14 @@
 package com.oresomecraft.maps.arcade.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.MapsPlugin;
-import com.oresomecraft.maps.arcade.ArcadeMap;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.*;
+import org.bukkit.event.*;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.world.WorldLoadEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
+import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import com.oresomecraft.maps.*;
+import com.oresomecraft.maps.arcade.ArcadeMap;
 
 @MapConfig
 public class TNTRun_Alpha extends ArcadeMap implements Listener {
@@ -23,6 +17,7 @@ public class TNTRun_Alpha extends ArcadeMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.COOKED_BEEF});
         setAllowPhysicalDamage(false);
+        setAllowBuild(false);
     }
 
     // Map details
@@ -53,7 +48,6 @@ public class TNTRun_Alpha extends ArcadeMap implements Listener {
         i.setItem(0, STEAK);
 
         p.sendMessage(ChatColor.RED + "RUN!!!");
-
     }
 
     boolean hasPassedGrace = false;
@@ -70,10 +64,18 @@ public class TNTRun_Alpha extends ArcadeMap implements Listener {
     }
 
     @EventHandler
-    public void onInteract(PlayerInteractEvent event) {
+    public void onEnd(BattleEndEvent event) {
+        hasPassedGrace = false;
+    }
+
+    @EventHandler
+    public void onMove(PlayerMoveEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (BattlePlayer.getBattlePlayer(event.getPlayer()).isSpectator()) return;
+        Location loc = event.getPlayer().getLocation();
         if (hasPassedGrace) {
-            event.setCancelled(true);
+            Bukkit.getWorld(name).getBlockAt((int) loc.getX(), ((int) loc.getY() - 1), (int) loc.getZ()).setType(Material.AIR);
         }
     }
+
 }
