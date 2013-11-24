@@ -116,7 +116,7 @@ public class BombDrop_Alpha extends ArcadeMap implements Listener {
 
                 loc.getWorld().spawn(loc, T);
             }
-        }.runTaskTimer(MapsPlugin.getInstance(), 40, 40);
+        }.runTaskTimer(MapsPlugin.getInstance(), 30, 30);
     }
 
     @EventHandler
