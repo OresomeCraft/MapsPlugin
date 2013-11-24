@@ -84,7 +84,6 @@ public class BombDrop_Alpha extends ArcadeMap implements Listener {
                 if (bombs.size() > 20) type.add(Cow.class);
                 if (bombs.size() > 30) type.add(Pig.class);
                 if (bombs.size() > 40) type.add(Sheep.class);
-                if (bombs.size() > 45) type.add(Squid.class);
                 if (bombs.size() > 50) type.add(Wolf.class);
                 if (bombs.size() > 55) {
                     type.add(Spider.class);
