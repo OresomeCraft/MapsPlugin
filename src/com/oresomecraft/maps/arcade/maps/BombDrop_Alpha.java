@@ -13,6 +13,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
@@ -122,11 +123,12 @@ public class BombDrop_Alpha extends ArcadeMap implements Listener {
     @EventHandler
     public void onDrop(EntityDamageEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (event.getEntity() instanceof Player) return;
 
         final Entity e = event.getEntity();
         EntityType et = e.getType();
         final Location loc = e.getLocation();
-        if (event.getCause() != EntityDamageEvent.DamageCause.FIRE_TICK && event.getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
+        if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
             if (et == EntityType.CREEPER) {
                 Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                     public void run() {
@@ -254,6 +256,11 @@ public class BombDrop_Alpha extends ArcadeMap implements Listener {
             }
         }
 
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        if (event.getBlock().getWorld().getName().equals(name)) event.getBlock().getDrops().clear();
     }
 
     public List<Block> getBlocks() {
