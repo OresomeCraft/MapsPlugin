@@ -1,16 +1,22 @@
 package com.oresomecraft.maps.arcade.maps;
 
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.MapsPlugin;
-import org.bukkit.*;
+import com.oresomecraft.maps.arcade.ArcadeMap;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
-import org.bukkit.event.*;
-import com.oresomecraft.OresomeBattles.api.*;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.arcade.ArcadeMap;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.world.WorldLoadEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -27,6 +33,7 @@ public class BombDrop_Alpha extends ArcadeMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowPhysicalDamage(false);
         setAllowBuild(false);
+        lockTime("day");
     }
 
     // Map details
@@ -40,7 +47,9 @@ public class BombDrop_Alpha extends ArcadeMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        // No Invewntory needed
+        Inventory i = p.getInventory();
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
+        i.setItem(0, STEAK);
     }
 
     @EventHandler
