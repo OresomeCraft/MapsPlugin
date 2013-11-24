@@ -1,5 +1,6 @@
 package com.oresomecraft.maps.arcade.maps;
 
+import com.oresomecraft.maps.arcade.games.TNTRunMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -11,7 +12,7 @@ import com.oresomecraft.maps.*;
 import com.oresomecraft.maps.arcade.ArcadeMap;
 
 @MapConfig
-public class TNTRun_Alpha extends ArcadeMap implements Listener {
+public class TNTRun_Alpha extends TNTRunMap implements Listener {
 
     public TNTRun_Alpha() {
         super.initiate(this, name, fullName, creators, modes);
@@ -48,34 +49,6 @@ public class TNTRun_Alpha extends ArcadeMap implements Listener {
         i.setItem(0, STEAK);
 
         p.sendMessage(ChatColor.RED + "RUN!!!");
-    }
-
-    boolean hasPassedGrace = false;
-
-    @EventHandler
-    public void onLoad(WorldLoadEvent event) {
-        if (event.getWorld().getName().equals(name)) {
-            Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
-                public void run() {
-                    hasPassedGrace = true;
-                }
-            }, 100L);
-        }
-    }
-
-    @EventHandler
-    public void onEnd(BattleEndEvent event) {
-        hasPassedGrace = false;
-    }
-
-    @EventHandler
-    public void onMove(PlayerMoveEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        if (BattlePlayer.getBattlePlayer(event.getPlayer()).isSpectator()) return;
-        Location loc = event.getPlayer().getLocation();
-        if (hasPassedGrace) {
-            Bukkit.getWorld(name).getBlockAt((int) loc.getX(), ((int) loc.getY() - 1), (int) loc.getZ()).setType(Material.AIR);
-        }
     }
 
 }
