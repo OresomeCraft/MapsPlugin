@@ -214,11 +214,6 @@ public abstract class BombDropMap extends ArcadeMap {
 
     }
 
-    @EventHandler
-    public void onBlockBreak(BlockBreakEvent event) {
-        if (event.getBlock().getWorld().getName().equals(name)) event.getBlock().getDrops().clear();
-    }
-
     public List<Block> getBlocks() {
         List<Block> blocks = new ArrayList<Block>();
         if (loc1 == null || loc2 == null) return blocks;
