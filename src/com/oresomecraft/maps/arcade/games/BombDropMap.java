@@ -7,7 +7,6 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.potion.*;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -53,7 +52,6 @@ public abstract class BombDropMap extends ArcadeMap {
                 if (bombs.size() > 50) type.add(Wolf.class);
                 if (bombs.size() > 55) {
                     type.add(Spider.class);
-                    type.add(Skeleton.class);
                 }
                 if (bombs.size() > 60) {
                     type.add(Silverfish.class);
@@ -67,13 +65,13 @@ public abstract class BombDropMap extends ArcadeMap {
                     type.add(MushroomCow.class);
                     type.add(Slime.class);
                 }
-                if (bombs.size() > 80) type.add(MagmaCube.class);
+                if (bombs.size() > 80) type.add(Skeleton.class);
 
                 Class T = type.get(rdom.nextInt(type.size()));
 
                 loc.getWorld().spawn(loc, T);
             }
-        }.runTaskTimer(MapsPlugin.getInstance(), 30, 30);
+        }.runTaskTimer(MapsPlugin.getInstance(), 20, 20);
     }
 
     @EventHandler
@@ -206,7 +204,7 @@ public abstract class BombDropMap extends ArcadeMap {
                         loc.getWorld().createExplosion(loc, (float) 6);
                     }
                 }, 30);
-            } else if (et == EntityType.MAGMA_CUBE) {
+            } else if (et == EntityType.SKELETON) {
                 Random rdom = new Random();
                 loc.getWorld().spawnFallingBlock(loc, Material.LAVA, (byte) 0).setVelocity(new Vector(rdom.nextDouble() - 0.5, 1, rdom.nextDouble() - 0.5));
             }
