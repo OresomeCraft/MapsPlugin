@@ -6,10 +6,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 
 public abstract class ArcadeMap extends Map {
 
     private boolean damage = true;
+    private boolean explosions = true;
 
 
     /**
@@ -29,6 +31,15 @@ public abstract class ArcadeMap extends Map {
         damage = check;
     }
 
+    /**
+     * Disables PvP and mob damage
+     *
+     * @param check The boolean that defines whether physical damage is allowed
+     */
+    public void setAllowTerrainExplosion(boolean check) {
+        explosions = check;
+    }
+
 
     /**
      * Disables damage caused by ENTITY_ATTACK if disabled
@@ -40,6 +51,17 @@ public abstract class ArcadeMap extends Map {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         if (damage) return;
         if (event.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) event.setCancelled(true);
+    }
+
+
+    /**
+     * Disables terrain being damaged by ENTITY_EXPLOSION
+     *
+     * @param event an Event called by bukkit
+     */
+    @EventHandler
+    public void onExplode(EntityExplodeEvent event) {
+        if (event.getEntity().getWorld().getName().equals(name) && !explosions) event.blockList().clear();
     }
 
 }
