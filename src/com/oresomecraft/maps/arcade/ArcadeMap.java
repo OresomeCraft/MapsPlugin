@@ -86,7 +86,7 @@ public abstract class ArcadeMap extends Map {
      */
     @EventHandler
     public void onExplode(EntityExplodeEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name) && !explosions) event.blockList().clear();
+        // if (event.getEntity().getWorld().getName().equals(name) && !explosions) event.blockList().clear();
     }
 
 
@@ -98,8 +98,10 @@ public abstract class ArcadeMap extends Map {
     @EventHandler
     public void onExplode(BlockPlaceEvent event) {
         if (!event.getBlock().getWorld().getName().equals(name)) return;
-        event.getBlock().setType(Material.AIR);
-        event.getBlock().getWorld().spawnEntity(event.getBlock().getLocation(), EntityType.PRIMED_TNT);
+        if (autoTNT && event.getBlock().getType() == Material.TNT) {
+            event.getBlock().setType(Material.AIR);
+            event.getBlock().getWorld().spawnEntity(event.getBlock().getLocation(), EntityType.PRIMED_TNT);
+        }
     }
 
 }
