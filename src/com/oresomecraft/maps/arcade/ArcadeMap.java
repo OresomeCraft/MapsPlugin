@@ -5,6 +5,7 @@ import com.oresomecraft.maps.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -13,9 +14,10 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 
 public abstract class ArcadeMap extends Map {
 
-    private boolean damage = true;
+    private boolean physicalDamage = true;
     private boolean explosions = true;
     private boolean autoTNT = false;
+    private boolean playerDamage = true;
 
 
     /**
@@ -32,7 +34,7 @@ public abstract class ArcadeMap extends Map {
      * @param check The boolean that defines whether physical damage is allowed
      */
     public void setAllowPhysicalDamage(boolean check) {
-        damage = check;
+        physicalDamage = check;
     }
 
     /**
@@ -53,6 +55,9 @@ public abstract class ArcadeMap extends Map {
         autoTNT = check;
     }
 
+    public void setAllowPlayerDamage(boolean allow) {
+        this.playerDamage = allow;
+    }
 
     /**
      * Disables damage caused by ENTITY_ATTACK if disabled
@@ -62,8 +67,15 @@ public abstract class ArcadeMap extends Map {
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
-        if (damage) return;
-        if (event.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) event.setCancelled(true);
+        if (!physicalDamage) {
+            if (event.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) event.setCancelled(true);
+        }
+
+        if (!playerDamage) {
+            if (event.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)
+                    && event.getDamager() instanceof Player)
+                event.setCancelled(true);
+        }
     }
 
 
