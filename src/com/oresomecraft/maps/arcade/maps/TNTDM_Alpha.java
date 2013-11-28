@@ -24,10 +24,7 @@ public class TNTDM_Alpha extends ArcadeMap implements Listener {
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, 0, 69, 28));
-        FFASpawns.add(new Location(w, 0, 69, -28));
-        FFASpawns.add(new Location(w, -27, 69, 0));
-        FFASpawns.add(new Location(w, -27, 69, -0));
+        FFASpawns.add(new Location(w, 0, 66, 0));
     }
 
     public void applyInventory(final BattlePlayer p) {
