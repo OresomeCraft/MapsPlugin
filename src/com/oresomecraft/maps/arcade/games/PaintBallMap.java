@@ -22,8 +22,9 @@ public abstract class PaintBallMap extends ArcadeMap {
             Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                 public void run() {
                     hasPassedGrace = true;
+                    Bukkit.broadcastMessage(ChatColor.RED + "The grace period has ended! Paintball!");
                 }
-            }, 100L);
+            }, 200L);
         }
     }
 
@@ -43,10 +44,14 @@ public abstract class PaintBallMap extends ArcadeMap {
     }
 
     @EventHandler
-    public void onDamage(EntityDamageByEntityEvent event) {
+    public void onDamage(final EntityDamageByEntityEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
             if (event.getDamager() instanceof Snowball && event.getEntity() instanceof Player) {
-                ((Player) event.getEntity()).setHealth(0.0);
+                Bukkit.getScheduler().scheduleSyncDelayedTask(MapsPlugin.getInstance(), new Runnable() {
+                    public void run() {
+                        ((Player) event.getEntity()).setHealth(0.0);
+                    }
+                }, 1L);
             }
         }
     }
