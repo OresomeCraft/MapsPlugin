@@ -15,6 +15,7 @@ public class Spleef extends ArcadeMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.DIAMOND_SPADE});
         setAllowPhysicalDamage(false);
+        setBuildLimit(66);
     }
 
     // Map details
