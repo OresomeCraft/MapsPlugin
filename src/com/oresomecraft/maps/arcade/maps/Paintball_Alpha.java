@@ -20,6 +20,7 @@ public class Paintball_Alpha extends PaintBallMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.DIAMOND_SPADE, Material.COOKED_BEEF});
         setAllowPhysicalDamage(false);
+        setAllowBuild(false);
     }
 
     // Map details
