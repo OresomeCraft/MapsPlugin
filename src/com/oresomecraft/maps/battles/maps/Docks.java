@@ -27,7 +27,6 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
         Location blueSpawn = new Location(w, 1793, 23, 490, 90, 0);
 
         redSpawns.add(redSpawn);
-        redSpawns.add(new Location(w, 1796, 18, 490, -90, 0));
         redSpawns.add(new Location(w, 1793, 23, 490, 90, 0));
 
         blueSpawns.add(blueSpawn);
