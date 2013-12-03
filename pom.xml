@@ -54,6 +54,7 @@
                             <artifactSet>
                                 <includes>
                                     <include>org.reflections:reflections</include>
+                                    <include>javassist:javassist</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
@@ -96,6 +97,12 @@
             <artifactId>reflections</artifactId>
             <version>0.9.9-RC1</version>
         </dependency>
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.3</version>
+        </dependency>
+
     </dependencies>
 
     <scm>
