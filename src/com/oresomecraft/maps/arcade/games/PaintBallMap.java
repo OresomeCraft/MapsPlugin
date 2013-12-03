@@ -49,7 +49,7 @@ public abstract class PaintBallMap extends ArcadeMap {
             if (event.getDamager() instanceof Snowball && event.getEntity() instanceof Player) {
                 Bukkit.getScheduler().scheduleSyncDelayedTask(MapsPlugin.getInstance(), new Runnable() {
                     public void run() {
-                        event.setDamage(4);
+                        ((Player) event.getEntity()).setHealth(0.0);
                     }
                 }, 1L);
             }
