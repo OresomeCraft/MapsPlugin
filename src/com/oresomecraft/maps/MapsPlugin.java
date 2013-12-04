@@ -1,14 +1,14 @@
 package com.oresomecraft.maps;
 
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.logging.Logger;
-
-import com.oresomecraft.OresomeBattles.api.events.*;
+import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.reflections.Reflections;
+
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.logging.Logger;
 
 /**
  * MapsPlugin | Component for OresomeBattles

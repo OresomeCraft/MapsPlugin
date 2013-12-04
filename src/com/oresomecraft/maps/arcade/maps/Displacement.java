@@ -11,9 +11,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 @MapConfig
-public class Paintball_Alpha extends PaintBallMap implements Listener {
+public class Displacement extends PaintBallMap implements Listener {
 
-    public Paintball_Alpha() {
+    public Displacement() {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.DIAMOND_SPADE, Material.COOKED_BEEF, Material.SNOW_BALL});
         setAllowPhysicalDamage(false);
@@ -21,18 +21,13 @@ public class Paintball_Alpha extends PaintBallMap implements Listener {
     }
 
     // Map details
-    String name = "paintball_alpha";
-    String fullName = "Paintball (Alpha)";
-    String creators = "Ninsai and SuperDuckFace";
+    String name = "displacement";
+    String fullName = "Displacement";
+    String creators = "BlueVortexed, Rynocraft and niceman506";
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, -87, 68, 65));
-        FFASpawns.add(new Location(w, -137, 99, 101));
-        FFASpawns.add(new Location(w, -33, 95, 36));
-        FFASpawns.add(new Location(w, -63, 101, 114));
-        FFASpawns.add(new Location(w, -139, 89, 54));
-        FFASpawns.add(new Location(w, -30, 96, 54));
+        FFASpawns.add(new Location(w, 0, 37, -2));
     }
 
     public void applyInventory(final BattlePlayer p) {
