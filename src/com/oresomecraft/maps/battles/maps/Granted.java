@@ -35,7 +35,7 @@ public class Granted extends BattleMap implements IBattleMap, Listener {
         redSpawns.add(new Location(w, 49, 71, 80, 179, 0));
         blueSpawns.add(new Location(w, 15, 71, -102, -1, 0));
 
-        setKoTHMonument(new Location(w, 31, 71, -9));
+        setKoTHMonument(new Location(w, 31, 71, -10));
 
     }
 
