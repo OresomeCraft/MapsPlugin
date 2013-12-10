@@ -19,6 +19,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 public class Chasm extends BattleMap implements IBattleMap, Listener {
 
     public Chasm() {
+        setAllowBuild(false);
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
         lockTime("day");
@@ -56,7 +57,6 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-        ItemStack PICK = new ItemStack(Material.IRON_PICKAXE, 1);
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack STONE_HOE = new ItemStack(Material.STONE_HOE, 1);
         ItemStack STONE = new ItemStack(Material.STONE, 64);
@@ -78,7 +78,6 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, PICK);
         i.setItem(4, STEAK);
         i.setItem(5, HEALTH);
         i.setItem(3, STONE_HOE);
