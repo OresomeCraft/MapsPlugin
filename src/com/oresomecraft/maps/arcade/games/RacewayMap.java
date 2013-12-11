@@ -27,6 +27,12 @@ public abstract class RacewayMap extends ArcadeMap {
         bz2 = z2;
     }
 
+    public void setSpawnLocation(int x, int y, int z) {
+        bx = x;
+        by = y;
+        bz = z;
+    }
+
     public void setFinishArea(int x1, int x2, int y1, int y2, int z1, int z2) {
         fx1 = x1;
         fx2 = x2;
@@ -36,11 +42,15 @@ public abstract class RacewayMap extends ArcadeMap {
         fz2 = z2;
     }
 
-    public void setFootY(int y) {
+    public void setFootY(int y){
         footY = y;
     }
 
     int footY;
+
+    int bx;
+    int by;
+    int bz;
 
     int bx1;
     int bx2;
@@ -78,7 +88,7 @@ public abstract class RacewayMap extends ArcadeMap {
         }
         if (!hasPassedGrace && !contains(e.getPlayer().getLocation(), bx1, bx2, by1, by2, bz1, bz2)) {
             e.getPlayer().sendMessage(ChatColor.RED + "You cannot leave this area yet!");
-            e.setCancelled(true);
+            e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), bx, by, bz));
         }
         if (hasPassedGrace && contains(e.getPlayer().getLocation(), fx1, fx2, fy1, fy2, fz1, fz2)) {
             Bukkit.broadcastMessage(ChatColor.RED + e.getPlayer().getName() + " WON!!!");

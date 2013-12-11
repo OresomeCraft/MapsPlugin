@@ -24,6 +24,7 @@ public class Raceway_alpha extends RacewayMap implements Listener {
 
         //RacewayMap attributes
         setStartArea(-19, -17, 65, 65, -14, 0);
+        setSpawnLocation(-17, 65, -5);
         setFinishArea(-12, -15, 72, 64, 1, -15);
         setFootY(65);
     }
