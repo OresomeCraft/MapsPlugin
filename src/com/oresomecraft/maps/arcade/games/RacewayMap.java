@@ -63,25 +63,21 @@ public abstract class RacewayMap extends ArcadeMap {
             event.getPlayer().getLocation().setY(footY);
             event.getPlayer().sendMessage(ChatColor.RED + "No jumping!");
         }
-        if (!hasPassedGrace && !contains(event.getPlayer().getLocation(), bx1, bx2, by1, by2, bz1, bz2)) {
+        if (!hasPassedGrace && !contains(e.getPlayer().getLocation(), bx1, bx2, by1, by2, bz1, bz2)) {
             event.getPlayer().sendMessage(ChatColor.RED + "You cannot leave this area yet!");
             event.setCancelled(true);
-            if (!hasPassedGrace && !contains(event.getPlayer().getLocation(), bx1, bx2, by1, by2, bz1, bz2)) {
-                event.getPlayer().sendMessage(ChatColor.RED + "You cannot leave this area yet!");
-                event.setCancelled(true);
-            }
-            if (hasPassedGrace && contains(event.getPlayer().getLocation(), fx1, fx2, fy1, fy2, fz1, fz2)) {
-                Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " WON!!!");
-                Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
-                    public void run() {
-                        for (Player p : event.getPlayer().getWorld().getPlayers()) {
-                            if (!p.getName().equals(event.getPlayer().getName())) {
-                                p.setHealth(0);
-                            }
+        }
+        if (hasPassedGrace && contains(event.getPlayer().getLocation(), fx1, fx2, fy1, fy2, fz1, fz2)) {
+            Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " WON!!!");
+            Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
+                public void run() {
+                    for (Player p : event.getPlayer().getWorld().getPlayers()) {
+                        if (!p.getName().equals(event.getPlayer().getName())) {
+                            p.setHealth(0);
                         }
                     }
-                }, 1L);
-            }
+                }
+            }, 1L);
         }
     }
 
