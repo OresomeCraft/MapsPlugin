@@ -1,18 +1,14 @@
 package com.oresomecraft.maps.arcade.games;
 
-import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
-import com.oresomecraft.maps.MapsPlugin;
-import com.oresomecraft.maps.arcade.ArcadeMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.world.WorldLoadEvent;
+import com.oresomecraft.maps.MapsPlugin;
+import com.oresomecraft.maps.arcade.ArcadeMap;
+import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 
 public abstract class RacewayMap extends ArcadeMap {
 
@@ -63,7 +59,7 @@ public abstract class RacewayMap extends ArcadeMap {
             event.getPlayer().getLocation().setY(footY);
             event.getPlayer().sendMessage(ChatColor.RED + "No jumping!");
         }
-        if (!hasPassedGrace && !contains(e.getPlayer().getLocation(), bx1, bx2, by1, by2, bz1, bz2)) {
+        if (!hasPassedGrace && !contains(event.getPlayer().getLocation(), bx1, bx2, by1, by2, bz1, bz2)) {
             event.getPlayer().sendMessage(ChatColor.RED + "You cannot leave this area yet!");
             event.setCancelled(true);
         }
