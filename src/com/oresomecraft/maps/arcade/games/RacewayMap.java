@@ -27,12 +27,6 @@ public abstract class RacewayMap extends ArcadeMap {
         bz2 = z2;
     }
 
-    public void setSpawnLocation(int x, int y, int z) {
-        bx = x;
-        by = y;
-        bz = z;
-    }
-
     public void setFinishArea(int x1, int x2, int y1, int y2, int z1, int z2) {
         fx1 = x1;
         fx2 = x2;
@@ -42,29 +36,12 @@ public abstract class RacewayMap extends ArcadeMap {
         fz2 = z2;
     }
 
-    public void setFootY(int y){
+    public void setFootY(int y) {
         footY = y;
     }
 
-    int footY;
+    int footY, bx1, bx2, by1, by2, bz1, bz2, fx1, fx2, fy1, fy2, fz1, fz2;
 
-    int bx;
-    int by;
-    int bz;
-
-    int bx1;
-    int bx2;
-    int by1;
-    int by2;
-    int bz1;
-    int bz2;
-
-    int fx1;
-    int fx2;
-    int fy1;
-    int fy2;
-    int fz1;
-    int fz2;
 
     @EventHandler
     public void onLoad(WorldLoadEvent event) {
@@ -80,22 +57,30 @@ public abstract class RacewayMap extends ArcadeMap {
     }
 
     @EventHandler
-    public void moveChecker(PlayerMoveEvent e) {
-        if (!e.getPlayer().getWorld().getName().equals(name)) return;
-        if (e.getPlayer().getLocation().getY() >= 66) {
-            e.getPlayer().getLocation().setY(footY);
-            e.getPlayer().sendMessage(ChatColor.RED + "No jumping!");
+    public void moveChecker(final PlayerMoveEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (event.getPlayer().getLocation().getY() >= 66) {
+            event.getPlayer().getLocation().setY(footY);
+            event.getPlayer().sendMessage(ChatColor.RED + "No jumping!");
         }
-        if (!hasPassedGrace && !contains(e.getPlayer().getLocation(), bx1, bx2, by1, by2, bz1, bz2)) {
-            e.getPlayer().sendMessage(ChatColor.RED + "You cannot leave this area yet!");
-            e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), bx, by, bz));
-        }
-        if (hasPassedGrace && contains(e.getPlayer().getLocation(), fx1, fx2, fy1, fy2, fz1, fz2)) {
-            Bukkit.broadcastMessage(ChatColor.RED + e.getPlayer().getName() + " WON!!!");
-            for (Player p : e.getPlayer().getWorld().getPlayers()) {
-                if (!p.getName().equals(e.getPlayer().getName())) {
-                    p.setHealth(0);
-                }
+        if (!hasPassedGrace && !contains(event.getPlayer().getLocation(), bx1, bx2, by1, by2, bz1, bz2)) {
+            event.getPlayer().sendMessage(ChatColor.RED + "You cannot leave this area yet!");
+            event.setCancelled(true);
+            if (!hasPassedGrace && !contains(event.getPlayer().getLocation(), bx1, bx2, by1, by2, bz1, bz2)) {
+                event.getPlayer().sendMessage(ChatColor.RED + "You cannot leave this area yet!");
+                event.setCancelled(true);
+            }
+            if (hasPassedGrace && contains(event.getPlayer().getLocation(), fx1, fx2, fy1, fy2, fz1, fz2)) {
+                Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " WON!!!");
+                Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
+                    public void run() {
+                        for (Player p : event.getPlayer().getWorld().getPlayers()) {
+                            if (!p.getName().equals(event.getPlayer().getName())) {
+                                p.setHealth(0);
+                            }
+                        }
+                    }
+                }, 1L);
             }
         }
     }
