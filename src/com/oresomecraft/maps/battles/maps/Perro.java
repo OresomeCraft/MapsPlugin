@@ -146,7 +146,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
 
             if (mat == Material.FISHING_ROD) {
 
-                if (state == PlayerFishEvent.State.IN_GROUND) {
+                if (state == PlayerFishEvent.State.FISHING || state == PlayerFishEvent.State.FAILED_ATTEMPT) {
                     p.launchProjectile(Snowball.class);
 
                 }
