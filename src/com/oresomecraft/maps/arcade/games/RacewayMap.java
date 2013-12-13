@@ -55,69 +55,53 @@ public abstract class RacewayMap extends ArcadeMap {
 
     @EventHandler
     public void moveChecker(final PlayerMoveEvent event) {
-
         Player p = event.getPlayer();
-
         if (!p.getWorld().getName().equals(name)) return;
-
-        if (!p.isOnGround()) {
+        if (isGrounded(p)) {
             p.getLocation().setY(footY);
             p.sendMessage(ChatColor.RED + "Oi! No jumping!");
         }
-
         if (p.getLocation().getBlock().getType() != Material.COAL_BLOCK) {
-
             p.sendMessage(ChatColor.RED + "You have 3 seconds to get back on the road..");
-
             Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
-
                 public void run() {
-
                     if (event.getPlayer().getLocation().getBlock().getType() == Material.COAL_BLOCK) {
                         event.getPlayer().sendMessage(ChatColor.GREEN + "That's better, now stay on the road!");
                     } else {
                         event.getPlayer().setHealth(0);
                         event.getPlayer().sendMessage(ChatColor.RED + "Game over, bud, that's what you get for going off the road!");
                     }
-
                 }
-
-            }, (3 * 20));
-
+            }, (3 * 20)); // amount of seconds * 20 ticks
         }
-
         if (!hasPassedGrace && !contains(p.getLocation(), bx1, bx2, by1, by2, bz1, bz2)) {
             p.sendMessage(ChatColor.RED + "You cannot leave this area yet!");
             event.setCancelled(true);
         }
-
         if (hasPassedGrace && contains(p.getLocation(), fx1, fx2, fy1, fy2, fz1, fz2)) {
-
             Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " WON!!!");
-
             Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                 public void run() {
-
                     for (Player pl : event.getPlayer().getWorld().getPlayers()) {
-
                         if (!pl.getName().equals(event.getPlayer().getName())) {
-
                             pl.setHealth(0);
-
                         }
-
                     }
-
                 }
             }, 1L);
-
         }
+    }
 
+    private boolean isGrounded(Player p) {
+        if (p.getLocation().getBlock().getType() != Material.AIR) return true;
+        if (p.getLocation().getBlockY() == footY) return true;
+        return false;
     }
 
     @EventHandler
     public void onEnd(BattleEndEvent event) {
         hasPassedGrace = false;
     }
+
 
 }
