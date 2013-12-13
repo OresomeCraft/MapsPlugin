@@ -33,9 +33,13 @@ public abstract class TNTRunMap extends ArcadeMap {
     public void onMove(PlayerMoveEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         if (BattlePlayer.getBattlePlayer(event.getPlayer()).isSpectator()) return;
-        Location loc = event.getPlayer().getLocation();
+        final Location loc = event.getPlayer().getLocation();
         if (hasPassedGrace) {
-            new Location(loc.getWorld(), loc.getX(), loc.getY() - 1, loc.getZ()).getBlock().setType(Material.AIR);
+            Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
+                public void run() {
+                    new Location(loc.getWorld(), loc.getX(), loc.getY() - 1, loc.getZ()).getBlock().setType(Material.AIR);
+                }
+            }, 10L);
         }
     }
 
