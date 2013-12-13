@@ -1,14 +1,15 @@
 package com.oresomecraft.maps.arcade.games;
 
+import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import com.oresomecraft.maps.MapsPlugin;
+import com.oresomecraft.maps.arcade.ArcadeMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.world.WorldLoadEvent;
-import com.oresomecraft.maps.MapsPlugin;
-import com.oresomecraft.maps.arcade.ArcadeMap;
-import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 
 public abstract class RacewayMap extends ArcadeMap {
 
@@ -48,33 +49,70 @@ public abstract class RacewayMap extends ArcadeMap {
                     hasPassedGrace = true;
                     Bukkit.broadcastMessage(ChatColor.RED + "GO!");
                 }
-            }, 200L);
+            }, (10 * 20)); // amount of seconds * 20 ticks
         }
     }
 
     @EventHandler
     public void moveChecker(final PlayerMoveEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        if (event.getPlayer().getLocation().getY() >= 66) {
-            event.getPlayer().getLocation().setY(footY);
-            event.getPlayer().sendMessage(ChatColor.RED + "No jumping!");
+
+        Player p = event.getPlayer();
+
+        if (!p.getWorld().getName().equals(name)) return;
+
+        if (!p.isOnGround()) {
+            p.getLocation().setY(footY);
+            p.sendMessage(ChatColor.RED + "Oi! No jumping!");
         }
-        if (!hasPassedGrace && !contains(event.getPlayer().getLocation(), bx1, bx2, by1, by2, bz1, bz2)) {
-            event.getPlayer().sendMessage(ChatColor.RED + "You cannot leave this area yet!");
+
+        if (p.getLocation().getBlock().getType() != Material.COAL_BLOCK) {
+
+            p.sendMessage(ChatColor.RED + "You have 3 seconds to get back on the road..");
+
+            Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
+
+                public void run() {
+
+                    if (event.getPlayer().getLocation().getBlock().getType() == Material.COAL_BLOCK) {
+                        event.getPlayer().sendMessage(ChatColor.GREEN + "That's better, now stay on the road!");
+                    } else {
+                        event.getPlayer().setHealth(0);
+                        event.getPlayer().sendMessage(ChatColor.RED + "Game over, bud, that's what you get for going off the road!");
+                    }
+
+                }
+
+            }, (3 * 20));
+
+        }
+
+        if (!hasPassedGrace && !contains(p.getLocation(), bx1, bx2, by1, by2, bz1, bz2)) {
+            p.sendMessage(ChatColor.RED + "You cannot leave this area yet!");
             event.setCancelled(true);
         }
-        if (hasPassedGrace && contains(event.getPlayer().getLocation(), fx1, fx2, fy1, fy2, fz1, fz2)) {
-            Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " WON!!!");
+
+        if (hasPassedGrace && contains(p.getLocation(), fx1, fx2, fy1, fy2, fz1, fz2)) {
+
+            Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " WON!!!");
+
             Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                 public void run() {
-                    for (Player p : event.getPlayer().getWorld().getPlayers()) {
-                        if (!p.getName().equals(event.getPlayer().getName())) {
-                            p.setHealth(0);
+
+                    for (Player pl : event.getPlayer().getWorld().getPlayers()) {
+
+                        if (!pl.getName().equals(event.getPlayer().getName())) {
+
+                            pl.setHealth(0);
+
                         }
+
                     }
+
                 }
             }, 1L);
+
         }
+
     }
 
     @EventHandler

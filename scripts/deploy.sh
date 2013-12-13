@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script used to deploy latest maps code to OresomeCraft Battles production server
-echo "Starting OresomeBattlesMaps update!"
+echo "Starting MapsPlugin update!"
 cd "`dirname "$0"`"
 
 echo "Downloading latest code from GitHub..."
