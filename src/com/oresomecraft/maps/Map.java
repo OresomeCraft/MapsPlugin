@@ -53,11 +53,8 @@ public abstract class Map implements Listener {
 
     /**
      * Readies maps to be played
-     *
-     * @param event An Event called by OresomeBattles
      */
-    @EventHandler // Add map
-    public void readyMap(ReadyMapsEvent event) {
+    public void readyMap() {
         addMap(name);
         setGamemodes(name, modes);
         addCreators(name, creators);
@@ -107,6 +104,7 @@ public abstract class Map implements Listener {
         this.fullName = fullName;
         this.creators = creators;
         this.modes = modes;
+        readyMap();
     }
 
     /**
