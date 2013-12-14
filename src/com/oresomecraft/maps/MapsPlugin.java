@@ -67,6 +67,7 @@ public class MapsPlugin extends JavaPlugin {
         Bukkit.getPluginManager().callEvent(new ClearSpawnsEvent()); // Clear spawns
         for (Map map : maps) HandlerList.unregisterAll(map); // Unregister events
         HandlerList.unregisterAll(this); // Unregister any remaining events from this plugin
+        maps.clear();
     }
 
     public static MapsPlugin getInstance() {
