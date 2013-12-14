@@ -68,8 +68,8 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
         i.setItem(9, new ItemStack(Material.ARROW, 64));
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 1));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 1));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40 * 20, 1));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 10, 1));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40 * 200000, 1));
 
     }
 
