@@ -38,8 +38,8 @@ public class BombDrop_Beta extends BombDropMap implements Listener {
     @EventHandler
     public void onWorld(WorldLoadEvent event) {
         if (event.getWorld().getName().equals(name)) {
-            loc1 = new Location(event.getWorld(), -25, 254, -25);
-            loc2 = new Location(event.getWorld(), 25, 254, 25);
+            loc1 = new Location(event.getWorld(), -22, 254, -22);
+            loc2 = new Location(event.getWorld(), 22, 254, 22);
 
             bombs();
         }
