@@ -21,21 +21,22 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
     public ClashOfClayII() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
+        setCPTime(10);
         disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
     }
 
     String name = "clashofclayii";
     String fullName = "Clash Of Clay II";
     String creators = "_Moist and R3creat3";
-    Gamemode[] modes = {Gamemode.TDM};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.CP};
 
     public void readyTDMSpawns() {
         Location blueSpawn = new Location(w, 20, 77, -25);
         Location redSpawn = new Location(w, 222, 77, -27);
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
-        Monument m1 = new Monument("m1", name, new Location(Bukkit.getWorld(name), 0, 0, 0));
-        Monument m2 = new Monument("m2", name, new Location(Bukkit.getWorld(name), 0, 0, 0));
+        Monument m1 = new Monument("Blue's Monument", name, new Location(Bukkit.getWorld(name), 96, 79, -29));
+        Monument m2 = new Monument("Red's Monument", name, new Location(Bukkit.getWorld(name), 144, 79, -30));
         setCapturePoints(new Monument[]{m1, m2});
     }
 
@@ -94,21 +95,30 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
     public int z2 = 50;
 
     @EventHandler
-    public void noSpawnBreak(BlockBreakEvent event) {
+    public void breakListener(BlockBreakEvent event) {
         Location loc = event.getBlock().getLocation();
         if (loc.getWorld().getName().equals(name)) {
+
+            //Spawn Breaking
             if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
             if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
         }
     }
 
     @EventHandler
-    public void noSpawnPlace(BlockPlaceEvent event) {
+    public void placeListener(BlockPlaceEvent event) {
         Location loc = event.getBlock().getLocation();
         if (loc.getWorld().getName().equals(name)) {
+
+            if(event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 96, 79, -29)) <= 5) event.setCancelled(true);
+            if(event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 144, 79, -30)) <= 5) event.setCancelled(true);
+
+            //Dud method that doesn't work, don't know why it's here.
             if (event.getBlock().getType() == Material.LAVA) {
                 event.setCancelled(true);
             }
+
+            //Spawn placing
             if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
             if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
         }
