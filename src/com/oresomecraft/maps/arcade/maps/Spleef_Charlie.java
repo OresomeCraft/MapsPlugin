@@ -19,6 +19,7 @@ public class Spleef_Charlie extends ArcadeMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.DIAMOND_SPADE, Material.COOKED_BEEF});
         setAllowPhysicalDamage(false);
+        setAllowPlace(false);
     }
 
     // Map details

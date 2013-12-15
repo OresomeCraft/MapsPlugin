@@ -38,6 +38,7 @@ public abstract class Map implements Listener {
 
     // Map attributes
     private boolean allowBuild = true;
+    private boolean allowPlace = true;
     private Material[] disabledDrops;
     private boolean pearlDamage = true;
     private Long timeLock;
@@ -129,6 +130,15 @@ public abstract class Map implements Listener {
     }
 
     /**
+     * Sets whether or not players can place blocks on the map
+     *
+     * @param allow Whether or not player's can place blocks on the map
+     */
+    public void setAllowPlace(boolean allow) {
+        allowPlace = allow;
+    }
+
+    /**
      * Disables certain items from being dropped on death
      *
      * @param items An ItemStack array of items not to drop
@@ -217,6 +227,7 @@ public abstract class Map implements Listener {
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         if (event.getBlock().getWorld().getName().equals(name) && !allowBuild) event.setCancelled(true);
+        if (event.getBlock().getWorld().getName().equals(name) && !allowPlace) event.setCancelled(true);
         if (event.getBlock().getWorld().getName().equals(name) && event.getBlock().getY() > blockLimit)
             event.setCancelled(true);
 

@@ -20,6 +20,7 @@ public class Spleef_Beta extends ArcadeMap implements Listener {
         disableDrops(new Material[]{Material.DIAMOND_SPADE, Material.COOKED_BEEF});
         setAllowPhysicalDamage(false);
         setBuildLimit(64);
+        setAllowPlace(false);
     }
 
     // Map details
