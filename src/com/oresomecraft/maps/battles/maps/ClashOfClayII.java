@@ -20,7 +20,7 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
 
     public ClashOfClayII() {
         super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(20);
+        setTDMTime(15);
         disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
     }
 
