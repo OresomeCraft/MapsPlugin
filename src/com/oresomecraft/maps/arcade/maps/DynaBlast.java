@@ -26,14 +26,14 @@ public class DynaBlast extends ArcadeMap implements Listener {
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, -29, 65, -29, 0, 0));
-        FFASpawns.add(new Location(w, 11, 65, -29, 0, 0));
-        FFASpawns.add(new Location(w, -29, 65, 11, 0, 0));
-        FFASpawns.add(new Location(w, 11, 65, 11, 0, 0));
-        FFASpawns.add(new Location(w, 1, 65, 1, 0, 0));
-        FFASpawns.add(new Location(w, -19, 65, 1, 0, 0));
-        FFASpawns.add(new Location(w, -19, 65, -19, 0, 0));
-        FFASpawns.add(new Location(w, 1, 65, -19, 0, 0));
+        FFASpawns.add(new Location(w, -29.5, 65, -29.5, 0, 0));
+        FFASpawns.add(new Location(w, 11.5, 65, -29.5, 0, 0));
+        FFASpawns.add(new Location(w, -29.5, 65, 11.5, 0, 0));
+        FFASpawns.add(new Location(w, 11.5, 65, 11.5, 0, 0));
+        FFASpawns.add(new Location(w, 1.5, 65, 1.5, 0, 0));
+        FFASpawns.add(new Location(w, -19.5, 65, 1.5, 0, 0));
+        FFASpawns.add(new Location(w, -19.5, 65, -19.5, 0, 0));
+        FFASpawns.add(new Location(w, 1.5, 65, -19.5, 0, 0));
     }
 
     public void applyInventory(final BattlePlayer p) {
