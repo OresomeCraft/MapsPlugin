@@ -2,6 +2,9 @@ package com.oresomecraft.maps.arcade.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.arcade.ArcadeMap;
+
+import com.oresomecraft.OresomeBattles.api.*;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.Listener;
