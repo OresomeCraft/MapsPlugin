@@ -6,7 +6,11 @@ import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.arcade.games.PaintBallMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.*;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
  
@@ -62,7 +66,7 @@ public class Paintball_Beta extends PaintBallMap implements Listener {
                 World w = Bukkit.getWorld(name);
                 
                 // I don't know if 'PISTON_BLOCK' is a thing.
-                if (b.getType().equals(Material.PISTON_BLOCK)) {
+                if (b.getType().equals(Material.PISTON_BASE)) {
                     if (p.getLocation().getY() < 80) {
                         p.teleport(new Location(w, -45, 94, 53));
                     } else if (p.getLocation().getY() > 90) {
