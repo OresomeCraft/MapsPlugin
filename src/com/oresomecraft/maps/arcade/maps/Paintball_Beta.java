@@ -28,7 +28,7 @@ public class Paintball_Beta extends PaintBallMap implements Listener {
     // Map details
     String name = "hideandgoseek"; // Maybe 'hideandgoseek'?
     String fullName = "Paintball (Beta)";
-    String creators = "Meganlovesmusic, Geedubs01, Ninsai and SuperDuckFace";
+    String creators = "meganlovesmusic, Geedubs01, Ninsai and SuperDuckFace";
     Gamemode[] modes = {Gamemode.LMS};
  
     public void readyFFASpawns() {
