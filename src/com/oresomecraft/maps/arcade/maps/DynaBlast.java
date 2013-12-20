@@ -26,14 +26,14 @@ public class DynaBlast extends ArcadeMap implements Listener {
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, -29.5, 65, -29.5, 0, 0));
-        FFASpawns.add(new Location(w, 11.5, 65, -29.5, 0, 0));
-        FFASpawns.add(new Location(w, -29.5, 65, 11.5, 0, 0));
-        FFASpawns.add(new Location(w, 11.5, 65, 11.5, 0, 0));
-        FFASpawns.add(new Location(w, 1.5, 65, 1.5, 0, 0));
-        FFASpawns.add(new Location(w, -19.5, 65, 1.5, 0, 0));
-        FFASpawns.add(new Location(w, -19.5, 65, -19.5, 0, 0));
-        FFASpawns.add(new Location(w, 1.5, 65, -19.5, 0, 0));
+        FFASpawns.add(new Location(w, -28.50, 65.00, -28.50, 0, 0));
+        FFASpawns.add(new Location(w, 11.50, 65.00, -28.50, 0, 0));
+        FFASpawns.add(new Location(w, -28.50, 65.00, 11.50, 0, 0));
+        FFASpawns.add(new Location(w, 11.50, 65.00, 11.50, 0, 0));
+        FFASpawns.add(new Location(w, 1.50, 65.50, 1.50, 0, 0));
+        FFASpawns.add(new Location(w, -18.50, 65.00, 1.50, 0, 0));
+        FFASpawns.add(new Location(w, -18.50, 65.00, -18.50, 0, 0));
+        FFASpawns.add(new Location(w, 1.50, 65.00, -18.50, 0, 0)); 
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -48,13 +48,13 @@ public class DynaBlast extends ArcadeMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -30;
-    public int y1 = 70;
-    public int z1 = 12;
+    public int x1 = -27;
+    public int y1 = 73;
+    public int z1 = 15;
 
     // Bottom right corner.
-    public int x2 = 12;
-    public int y2 = 62;
-    public int z2 = -30;
+    public int x2 = 15;
+    public int y2 = 60;
+    public int z2 = -27;
 
 }
