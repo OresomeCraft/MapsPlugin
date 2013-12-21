@@ -32,6 +32,7 @@ public class MapsPlugin extends JavaPlugin {
     public static final String ARCADE_MAPS_PACKAGE = "com.oresomecraft.maps.arcade.maps";
 
     private static ArrayList<Map> maps = new ArrayList<Map>();
+    private static ArrayList<String> availableMaps = new ArrayList<String>();
 
     public void onEnable() {
         oresomebattlesConfig = YamlConfiguration.loadConfiguration(new File("plugins/OresomeBattles/config.yml"));
@@ -43,6 +44,19 @@ public class MapsPlugin extends JavaPlugin {
             loadMaps(BATTLE_MAPS_PACKAGE);
             battleMapsLoaded = false;
         }
+
+        refreshMapArray();
+    }
+
+    private static void refreshMapArray() {
+        availableMaps.clear();
+        for (Map m : maps) {
+            availableMaps.add(m.name);
+        }
+    }
+
+    public static boolean mapExists(String mapName) {
+        return availableMaps.contains(mapName);
     }
 
     public static void loadMaps(String packageName) {
