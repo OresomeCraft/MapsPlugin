@@ -1,10 +1,8 @@
 package com.oresomecraft.maps.arcade.maps;
 
 import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.arcade.ArcadeMap;
-
 import com.oresomecraft.OresomeBattles.api.*;
-
+import com.oresomecraft.maps.arcade.games.DynaBlastMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.Listener;
@@ -12,17 +10,17 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 @MapConfig
-public class DynaBlast extends ArcadeMap implements Listener {
+public class DynaBlast_Alpha extends DynaBlastMap implements Listener {
 
-    public DynaBlast() {
+    public DynaBlast_Alpha() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowPhysicalDamage(false);
     }
 
     // Map details
-    String name = "dynablast";
-    String fullName = "DynaBlast";
-    String creators = "Htgan";
+    String name = "dynablast_alpha";
+    String fullName = "DynaBlast (Alpha)";
+    String creators = "Htgan ";
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
@@ -33,7 +31,7 @@ public class DynaBlast extends ArcadeMap implements Listener {
         FFASpawns.add(new Location(w, 1.50, 65.50, 1.50, 0, 0));
         FFASpawns.add(new Location(w, -18.50, 65.00, 1.50, 0, 0));
         FFASpawns.add(new Location(w, -18.50, 65.00, -18.50, 0, 0));
-        FFASpawns.add(new Location(w, 1.50, 65.00, -18.50, 0, 0)); 
+        FFASpawns.add(new Location(w, 1.50, 65.00, -18.50, 0, 0));
     }
 
     public void applyInventory(final BattlePlayer p) {
