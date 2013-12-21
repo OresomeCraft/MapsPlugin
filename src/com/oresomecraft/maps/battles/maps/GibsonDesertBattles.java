@@ -18,6 +18,7 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LAVA_BUCKET, Material.IRON_AXE});
+        setAutoSpawnProtection(15);
     }
 
     String name = "desert";
@@ -66,10 +67,6 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
         i.setItem(6, OAK_LOG);
         i.setItem(8, LADDER);
         i.setItem(27, ARROW);
-
-        //Give players invincibility and strength for 15 seconds when they spawn
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 15 * 20, 1));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 15 * 20, 1));
     }
 
     // Region. (Top corner block and bottom corner block.

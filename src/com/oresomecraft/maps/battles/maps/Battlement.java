@@ -1,5 +1,4 @@
 package com.oresomecraft.maps.battles.maps;
-package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
@@ -16,6 +15,7 @@ public class Battlement extends BattleMap implements IBattleMap, Listener {
     public Battlement() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
+        setAutoSpawnProtection(10);
     }
 
     String name = "battlement";

@@ -23,6 +23,7 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
         lockTime("day");
+        setAutoSpawnProtection(10);
         setCPTime(10);
     }
 

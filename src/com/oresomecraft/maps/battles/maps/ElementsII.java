@@ -20,6 +20,7 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
     public ElementsII() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
+        setAutoSpawnProtection(10);
         disableDrops(new Material[]{Material.STONE_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
     }
 
@@ -72,9 +73,6 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, HEALTH);
         i.setItem(11, ARROWS);
         i.setItem(4, BREAD);
-
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
 
         if (p.getTeam() == Team.KOTH_RED) {
             p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 120 * 20, 2));

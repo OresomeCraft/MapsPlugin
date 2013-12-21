@@ -19,6 +19,7 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
         disableDrops(new Material[]{Material.BOW, Material.LEATHER_HELMET,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.WOOD_SWORD});
         lockTime("day");
+        setAutoSpawnProtection(5);
     }
 
     String name = "sunshine";
@@ -67,10 +68,6 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
         i.setItem(27, ARROW);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_BOOTS, LEATHER_PANTS, LEATHER_HELMET});
-
-        //Give players invincibility and strength for 7 seconds when they spawn
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 7 * 20, 1));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 7 * 20, 1));
 
     }
 

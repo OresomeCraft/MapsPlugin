@@ -24,6 +24,7 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         setTDMTime(8);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.STONE_SWORD, Material.DIAMOND_BOOTS});
+        setAutoSpawnProtection(10);
     }
 
     String name = "alpines";
@@ -62,8 +63,6 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, STONE_HOE);
         i.setItem(11, ARROWS);
         i.setItem(4, new ItemStack(Material.BREAD, 3));
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
 
     }
 

@@ -24,6 +24,7 @@ public class TropicalPaths extends BattleMap implements IBattleMap, Listener {
     public TropicalPaths() {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS});
+        setAutoSpawnProtection(5);
     }
 
     // Map details
@@ -85,9 +86,6 @@ public class TropicalPaths extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
         i.setItem(9, ARROWS);
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 5 * 20, 2));
 
     }
 

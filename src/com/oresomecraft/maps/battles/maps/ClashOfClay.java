@@ -18,6 +18,7 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
         disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
+        setAutoSpawnProtection(10);
     }
 
     String name = "clashofclay";

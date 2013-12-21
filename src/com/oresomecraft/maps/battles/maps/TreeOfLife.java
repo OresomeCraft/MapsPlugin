@@ -25,6 +25,7 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
     public TreeOfLife() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
+        setAutoSpawnProtection(10);
     }
 
     String name = "treeoflife";
@@ -91,8 +92,6 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, STEAK);
         i.setItem(4, STICK);
         i.setItem(14, ARROWS);
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
 
     }
 

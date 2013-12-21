@@ -22,6 +22,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
     public WarTrauma() {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.IRON_SWORD, Material.LEATHER_HELMET});
+        setAutoSpawnProtection(10);
     }
 
     String name = "trauma";
@@ -80,10 +81,6 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
         i.setItem(8, DIRT);
         i.setItem(4, GAPPLE);
         i.setItem(29, ARROWS);
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 7 * 20, 2));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 7 * 20, 2));
-
     }
 
     // Region. (Top corner block and bottom corner block.

@@ -26,6 +26,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
         disableDrops(new Material[]{Material.IRON_AXE});
+        setAutoSpawnProtection(7);
     }
 
     String name = "mutinyii";
@@ -75,9 +76,6 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
         p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 0));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 20, 1));
 
     }
 

@@ -23,6 +23,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
     public Wartown() {
         super.initiate(this, name, fullName, creators, modes);
+        setAutoSpawnProtection(8);
     }
 
     String name = "wartown";
@@ -108,9 +109,6 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
         i.setItem(9, AMMO);
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 8 * 20, 1));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 8 * 20, 1));
     }
 
     public int x1 = 128;

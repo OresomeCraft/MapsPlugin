@@ -18,6 +18,7 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
         setTDMTime(10);
         setAllowBuild(false);
         lockTime("night");
+        setAutoSpawnProtection(5);
     }
 
     String name = "treetop";
@@ -69,8 +70,6 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, HEALTH);
         i.setItem(11, ARROWS);
         i.setItem(2, BREAD);
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
 
     }
 

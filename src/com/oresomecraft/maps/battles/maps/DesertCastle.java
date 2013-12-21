@@ -24,6 +24,7 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
         setAllowBuild(false);
+        setAutoSpawnProtection(10);
     }
 
     String name = "desertcastle";

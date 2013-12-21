@@ -18,6 +18,7 @@ public class TheBowl extends BattleMap implements IBattleMap, Listener {
     public TheBowl() {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS});
+        setAutoSpawnProtection(7);
     }
 
     // Map details
@@ -84,9 +85,6 @@ public class TheBowl extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
         i.setItem(35, ARROWS);
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 5 * 20, 2));
 
     }
 

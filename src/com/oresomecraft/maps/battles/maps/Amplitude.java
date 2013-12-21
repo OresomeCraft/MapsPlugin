@@ -24,6 +24,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
     public Amplitude() {
         super.initiate(this, name, fullName, creators, modes);
+        setAutoSpawnProtection(10);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
     }
@@ -89,10 +90,6 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, HEALTH);
         i.setItem(11, ARROWS);
         i.setItem(4, BREAD);
-
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
-
     }
 
     // Region. (Top corner block and bottom corner block.

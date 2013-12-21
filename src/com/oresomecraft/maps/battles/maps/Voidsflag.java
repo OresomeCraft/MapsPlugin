@@ -23,6 +23,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_AXE, Material.STONE_PICKAXE});
+        setAutoSpawnProtection(10);
     }
 
     String name = "voidsflag";

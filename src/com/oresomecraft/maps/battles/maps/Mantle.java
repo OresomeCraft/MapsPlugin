@@ -15,6 +15,7 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
     public Mantle() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
+        setAutoSpawnProtection(5);
     }
 
     String name = "mantle";
