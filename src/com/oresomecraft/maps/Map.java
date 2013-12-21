@@ -298,13 +298,13 @@ public abstract class Map implements Listener {
     @EventHandler
     public void applyInventory(InventoryEvent event) {
         if (event.getMessage().equals(name)) {
+            if (autoSpawnProtection) {
+                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, spawnProtectionDuration * 20, 1));
+                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, spawnProtectionDuration * 20, 1));
+                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.HEAL, spawnProtectionDuration * 20, 1));
+            }
             clearInv(event.getPlayer());
             config.applyInventory(event.getPlayer());
-        }
-        if (autoSpawnProtection) {
-            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, spawnProtectionDuration * 20, 1));
-            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, spawnProtectionDuration * 20, 1));
-            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.HEAL, spawnProtectionDuration * 20, 1));
         }
     }
 
