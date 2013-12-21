@@ -26,6 +26,7 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.STONE_SWORD, Material.STONE_PICKAXE, Material.LEATHER_HELMET, Material.DIAMOND_SWORD});
         setTDMTime(12);
+        setAutoSpawnProtection(15);
     }
 
     String name = "elements";
@@ -70,10 +71,6 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
         i.setItem(8, FILI);
         i.setItem(11, ARROWS);
         i.setItem(3, new ItemStack(Material.BREAD, 3));
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15000 * 20, 2));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 5 * 20, 2));
 
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);

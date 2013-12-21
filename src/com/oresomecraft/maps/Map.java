@@ -5,13 +5,18 @@ import com.oresomecraft.OresomeBattles.api.*;
 import com.oresomecraft.OresomeBattles.api.events.*;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.*;
 import org.bukkit.event.block.*;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.world.*;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +47,8 @@ public abstract class Map implements Listener {
     private Material[] disabledDrops;
     private boolean pearlDamage = true;
     private Long timeLock;
+    private boolean autoSpawnProtection;
+    private int spawnProtectionDuration;
     private int blockLimit = 256;
 
     public World w; // World variable
@@ -127,6 +134,17 @@ public abstract class Map implements Listener {
      */
     public void setAllowBuild(boolean allow) {
         allowBuild = allow;
+    }
+
+
+    /**
+     * Sets auto spawn protection for players
+     *
+     * @param duration How long it lasts for
+     */
+    public void setAutoSpawnProtection(int duration) {
+        autoSpawnProtection = true;
+        spawnProtectionDuration = duration;
     }
 
     /**
@@ -282,6 +300,11 @@ public abstract class Map implements Listener {
         if (event.getMessage().equals(name)) {
             clearInv(event.getPlayer());
             config.applyInventory(event.getPlayer());
+        }
+        if (autoSpawnProtection) {
+            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, spawnProtectionDuration * 20, 1));
+            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, spawnProtectionDuration * 20, 1));
+            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.HEAL, spawnProtectionDuration * 20, 1));
         }
     }
 
