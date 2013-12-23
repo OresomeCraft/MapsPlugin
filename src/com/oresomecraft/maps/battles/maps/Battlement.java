@@ -15,7 +15,6 @@ public class Battlement extends BattleMap implements IBattleMap, Listener {
     public Battlement() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        setAutoSpawnProtection(10);
     }
 
     String name = "battlement";

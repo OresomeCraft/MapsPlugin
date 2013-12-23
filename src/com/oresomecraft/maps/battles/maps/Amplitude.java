@@ -24,7 +24,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
     public Amplitude() {
         super.initiate(this, name, fullName, creators, modes);
-        setAutoSpawnProtection(10);
+        setAutoSpawnProtection(4);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
     }

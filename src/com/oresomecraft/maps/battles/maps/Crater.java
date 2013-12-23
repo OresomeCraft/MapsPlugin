@@ -27,7 +27,7 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
         setAllowBuild(false);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
         lockTime("night");
-        setAutoSpawnProtection(10);
+        setAutoSpawnProtection(4);
         setTDMTime(10);
     }
 

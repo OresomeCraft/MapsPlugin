@@ -23,7 +23,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
     public Wartown() {
         super.initiate(this, name, fullName, creators, modes);
-        setAutoSpawnProtection(8);
+        setAutoSpawnProtection(3);
     }
 
     String name = "wartown";

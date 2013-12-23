@@ -25,7 +25,7 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
     public TreeOfLife() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        setAutoSpawnProtection(10);
+        setAutoSpawnProtection(2);
     }
 
     String name = "treeoflife";

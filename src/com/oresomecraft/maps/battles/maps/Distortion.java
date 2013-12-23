@@ -31,7 +31,7 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
         setAllowBuild(false);
         disableDrops(new Material[]{Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
                 Material.LEATHER_CHESTPLATE, Material.IRON_HELMET, Material.FISHING_ROD, Material.DIAMOND_PICKAXE, Material.ARROW, Material.DIAMOND});
-        setAutoSpawnProtection(10);
+        setAutoSpawnProtection(2);
     }
 
     String name = "gravity";

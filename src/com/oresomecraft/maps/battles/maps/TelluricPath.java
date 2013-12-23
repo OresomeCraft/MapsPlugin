@@ -27,7 +27,7 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
         disablePearlDamage(true);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
                 Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE, Material.IRON_PICKAXE});
-        setAutoSpawnProtection(7);
+        setAutoSpawnProtection(2);
     }
 
     String name = "telluricpath";

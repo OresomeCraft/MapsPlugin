@@ -37,7 +37,7 @@ public class DaybreakRidge extends BattleMap implements IBattleMap, Listener {
         setAllowBuild(false);
         setCPTime(20);
         disableDrops(new Material[]{Material.STONE_SWORD, Material.LEATHER_HELMET});
-        setAutoSpawnProtection(10);
+        setAutoSpawnProtection(4);
     }
 
     String name = "daybreakridge";

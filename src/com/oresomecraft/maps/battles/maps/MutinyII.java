@@ -26,7 +26,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
         disableDrops(new Material[]{Material.IRON_AXE});
-        setAutoSpawnProtection(7);
+        setAutoSpawnProtection(2);
     }
 
     String name = "mutinyii";

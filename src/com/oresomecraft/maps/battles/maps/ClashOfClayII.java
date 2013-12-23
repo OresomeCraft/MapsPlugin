@@ -23,7 +23,6 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         setTDMTime(15);
         setCPTime(10);
         disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
-        setAutoSpawnProtection(10);
     }
 
     String name = "clashofclayii";

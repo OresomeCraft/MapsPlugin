@@ -24,7 +24,7 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
         setAllowBuild(false);
         disableDrops(new Material[]{Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
                 Material.IRON_CHESTPLATE, Material.FISHING_ROD, Material.DIAMOND_PICKAXE, Material.ARROW});
-        setAutoSpawnProtection(10);
+        setAutoSpawnProtection(2);
     }
 
     String name = "mayhem";

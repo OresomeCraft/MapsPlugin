@@ -22,7 +22,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
     public WarTrauma() {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.IRON_SWORD, Material.LEATHER_HELMET});
-        setAutoSpawnProtection(10);
+        setAutoSpawnProtection(5);
     }
 
     String name = "trauma";

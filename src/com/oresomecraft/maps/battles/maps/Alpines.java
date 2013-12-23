@@ -24,7 +24,7 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         setTDMTime(8);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.STONE_SWORD, Material.DIAMOND_BOOTS});
-        setAutoSpawnProtection(10);
+        setAutoSpawnProtection(4);
     }
 
     String name = "alpines";

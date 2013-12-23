@@ -18,7 +18,7 @@ public class Treetop extends BattleMap implements IBattleMap, Listener {
         setTDMTime(10);
         setAllowBuild(false);
         lockTime("night");
-        setAutoSpawnProtection(5);
+        setAutoSpawnProtection(2);
     }
 
     String name = "treetop";
