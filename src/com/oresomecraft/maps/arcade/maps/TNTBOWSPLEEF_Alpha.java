@@ -9,11 +9,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.xml.stream.events.EntityDeclaration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +67,14 @@ public class TNTBOWSPLEEF_Alpha extends ArcadeMap implements Listener {
         i.setItem(0, BOW);
         i.setItem(1, STEAK);
         i.setItem(14, ARROW);
+    }
+
+    @EventHandler
+    public void arrow(EntityDamageEvent e){
+        if(!e.getEntity().getWorld().getName().equals(name)) return;
+        if(e.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)) e.setCancelled(true);
+        if(e.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) e.setCancelled(true);
+
     }
 
 }
