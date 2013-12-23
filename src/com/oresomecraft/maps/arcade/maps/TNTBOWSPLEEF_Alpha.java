@@ -70,10 +70,10 @@ public class TNTBOWSPLEEF_Alpha extends ArcadeMap implements Listener {
     }
 
     @EventHandler
-    public void arrow(EntityDamageEvent e){
-        if(!e.getEntity().getWorld().getName().equals(name)) return;
-        if(e.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)) e.setCancelled(true);
-        if(e.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) e.setCancelled(true);
+    public void arrow(EntityDamageEvent e) {
+        if (!e.getEntity().getWorld().getName().equals(name)) return;
+        if (e.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)) e.setCancelled(true);
+        if (e.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) e.setCancelled(true);
 
     }
 
