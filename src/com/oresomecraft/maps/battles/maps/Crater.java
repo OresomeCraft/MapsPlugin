@@ -33,7 +33,7 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
 
     String name = "crater";
     String fullName = "Crater Site";
-    String creators = "R3creat3, psgs and Spantezian";
+    String creators = "__R3, psgs and Spantezian";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     public void readyTDMSpawns() {

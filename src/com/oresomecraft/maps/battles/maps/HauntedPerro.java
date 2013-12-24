@@ -35,7 +35,7 @@ public class HauntedPerro extends BattleMap implements IBattleMap, Listener {
 
     String name = "hauntedperro";
     String fullName = "Haunted Perro";
-    String creators = "zachoz, pegabeavercorn, Dogmode555, R3creat3, DynaDavidson and Evil_Emo";
+    String creators = "zachoz, pegabeavercorn, Dogmode555, __R3, DynaDavidson and Evil_Emo";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

@@ -32,7 +32,7 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
 
     String name = "hartshire";
     String fullName = "Hartshire";
-    String creators = "R3creat3, kalikakitty and xannallax33";
+    String creators = "__R3, kalikakitty and xannallax33";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

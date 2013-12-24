@@ -32,7 +32,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
 
     String name = "zoned";
     String fullName = "Zoned";
-    String creators = "AnomalousRei, MiCkEyMiCE and _Moist";
+    String creators = "__R3, MiCkEyMiCE and _Moist";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION, Gamemode.KOTH};
 
     public void readyTDMSpawns() {

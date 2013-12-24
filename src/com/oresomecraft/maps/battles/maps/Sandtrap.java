@@ -20,7 +20,7 @@ public class Sandtrap extends BattleMap implements IBattleMap, Listener {
 
     String name = "sandtrap";
     String fullName = "Sand Trap";
-    String creators = "R3creat3 and danielschroeder";
+    String creators = "__R3 and danielschroeder";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

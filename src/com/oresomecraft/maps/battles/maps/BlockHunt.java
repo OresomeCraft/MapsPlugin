@@ -41,7 +41,7 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
 
     String name = "blockhunt";
     String fullName = "Block Hunt";
-    String creators = "R3creat3 ";
+    String creators = "__R3 ";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
 
     //Disguise stuff

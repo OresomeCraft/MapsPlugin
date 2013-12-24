@@ -36,7 +36,7 @@ public class Containment extends BattleMap implements IBattleMap, Listener {
 
     String name = "containment";
     String fullName = "Containment Breach";
-    String creators = "R3creat3, MiCkEyMiCE, LanderA and _Moist";
+    String creators = "AnomalousRei, MiCkEyMiCE, LanderA and _Moist";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

@@ -19,7 +19,7 @@ public class Carnival extends BattleMap implements IBattleMap, Listener {
 
     String name = "carnival";
     String fullName = "Carnival";
-    String creators = "R3creat3 and FaazM";
+    String creators = "__R3 and FaazM";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

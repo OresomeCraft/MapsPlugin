@@ -31,7 +31,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
     String name = "amplitude";
     String fullName = "Amplitude";
-    String creators = "xXxTakumaxXx, R3creat3 and LanderA";
+    String creators = "xXxTakumaxXx, __R3 and InstantInsanity";
     Gamemode[] modes = {Gamemode.KOTH, Gamemode.INFECTION, Gamemode.FFA, Gamemode.TDM, Gamemode.LMS};
 
     @EventHandler

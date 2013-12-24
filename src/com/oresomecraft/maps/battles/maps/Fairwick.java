@@ -36,7 +36,7 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
 
     String name = "fairwick";
     String fullName = "Fairwick Village";
-    String creators = "R3creat3, ninsai and zachoz";
+    String creators = "__R3, ninsai and zachoz";
     Gamemode[] modes = {Gamemode.CTF};
 
     public void readyTDMSpawns() {

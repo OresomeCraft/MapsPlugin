@@ -42,7 +42,7 @@ public class DaybreakRidge extends BattleMap implements IBattleMap, Listener {
 
     String name = "daybreakridge";
     String fullName = "Daybreak Ridge";
-    String creators = "LanderA, _Moist and AnomalousRei";
+    String creators = "LanderA, _Moist and __R3";
     Gamemode[] modes = {Gamemode.CP};
 
     public void readyTDMSpawns() {

@@ -19,7 +19,7 @@ public class Rainbow extends BattleMap implements IBattleMap, Listener {
 
     String name = "rainbow";
     String fullName = "Rainbow Road";
-    String creators = "R3creat3, MintyPvP, JacquiRose, DynaDavidson, AlphaMinecraft91, simonwilson123, callumary and _Moist";
+    String creators = "__R3, MintyPvP, JacquiRose, DynaDavidson, AlphaMinecraft91, simonwilson123, callumary and _Moist";
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

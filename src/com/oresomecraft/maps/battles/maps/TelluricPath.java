@@ -32,7 +32,7 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
 
     String name = "telluricpath";
     String fullName = "Telluric Path";
-    String creators = "AnomalousRei ";
+    String creators = "__R3 ";
     Gamemode[] modes = {Gamemode.CTF};
 
     public void readyTDMSpawns() {

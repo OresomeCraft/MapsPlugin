@@ -28,7 +28,7 @@ public class Voidsflag extends BattleMap implements IBattleMap, Listener {
 
     String name = "voidsflag";
     String fullName = "Voids Flag";
-    String creators = "_Moist, MiCkEyMiCE and R3creat3";
+    String creators = "_Moist, MiCkEyMiCE and __R3";
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

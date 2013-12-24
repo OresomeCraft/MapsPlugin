@@ -21,7 +21,7 @@ public class ClashOfClayIII extends BattleMap implements IBattleMap, Listener {
 
     String name = "clashofclay3";
     String fullName = "Clash Of Clay III";
-    String creators = "_Moist and R3creat3";
+    String creators = "_Moist and __R3";
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

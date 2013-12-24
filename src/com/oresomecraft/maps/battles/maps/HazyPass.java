@@ -46,7 +46,7 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
     // Map details
     String name = "hazypass";
     String fullName = "Hazy Pass";
-    String creators = "AnomalousRei and R3creat3";
+    String creators = "AnomalousRei and __R3";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
