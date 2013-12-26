@@ -20,7 +20,7 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
     String name = "docks";
     String fullName = "The Docks";
     String creators = "RhinoViru5, tomfoowe1 and yozy3";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.LTS};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, 1796, 18, 490, -90, 0);
