@@ -91,7 +91,7 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         ItemStack SNOWBALL = new ItemStack(Material.SNOW_BALL, 4);
         ItemStack STONE_HOE = new ItemStack(Material.STONE_HOE, 1);
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
 
         ItemMeta stone_hoe = STONE_HOE.getItemMeta();
         stone_hoe.setDisplayName(ChatColor.BLUE + "Ice hook");
