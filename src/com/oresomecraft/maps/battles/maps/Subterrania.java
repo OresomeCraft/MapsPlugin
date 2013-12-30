@@ -20,6 +20,7 @@ public class Subterrania extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.STONE_SWORD});
+        setFireSpread(false);
     }
 
     String name = "subterrania";

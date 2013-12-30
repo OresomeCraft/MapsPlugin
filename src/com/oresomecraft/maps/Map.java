@@ -1,19 +1,28 @@
 package com.oresomecraft.maps;
 
-import com.oresomecraft.maps.battles.*;
-import com.oresomecraft.OresomeBattles.api.*;
-import com.oresomecraft.OresomeBattles.api.events.*;
-import org.bukkit.*;
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.BattlesAccess;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
+import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
+import com.oresomecraft.maps.battles.BattleMap;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
-import org.bukkit.event.*;
-import org.bukkit.event.block.*;
-import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockBurnEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-import org.bukkit.event.world.*;
+import org.bukkit.event.world.WorldLoadEvent;
+import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -50,6 +59,7 @@ public abstract class Map implements Listener {
     private boolean autoSpawnProtection;
     private int spawnProtectionDuration;
     private int blockLimit = 256;
+    private boolean fireSpread = true;
 
     public World w; // World variable
 
@@ -163,6 +173,15 @@ public abstract class Map implements Listener {
      */
     public void disableDrops(Material[] items) {
         disabledDrops = items;
+    }
+
+    /**
+     * Disables fire spread
+     *
+     * @param allow Whether or not fire spreads and catches
+     */
+    public void setFireSpread(boolean allow) {
+        fireSpread = allow;
     }
 
     /**
@@ -288,6 +307,29 @@ public abstract class Map implements Listener {
                 }
             }
         }
+    }
+
+    /**
+     * Disables blocks catching on fire if disabled by the map
+     *
+     * @param event an Event called by the server
+     */
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void preventburn(BlockBurnEvent event) {
+        if (fireSpread) return;
+        if (event.getBlock().getWorld().getName().equals(name)) event.setCancelled(true);
+    }
+
+    /**
+     * Disables fire spread if disabled by the map
+     *
+     * @param event an Event called by the server
+     */
+    @EventHandler
+    public void preventspread(BlockSpreadEvent event) {
+        if (fireSpread) return;
+        if (event.getBlock().getWorld().getName().equals(name))
+            if ((event.getBlock().getTypeId() != 2) || (event.getBlock().getTypeId() != 3)) event.setCancelled(true);
     }
 
     /**

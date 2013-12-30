@@ -24,6 +24,7 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.STONE_SWORD});
+        setFireSpread(false);
     }
 
     String name = "mansion";
@@ -124,15 +125,4 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
     public int x2 = 473;
     public int y2 = 101;
     public int z2 = -228;
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void preventburn(BlockBurnEvent event) {
-        if (event.getBlock().getWorld().getName().equals(name)) event.setCancelled(true);
-    }
-
-    @EventHandler
-    public void preventspread(BlockSpreadEvent event) {
-        if (event.getBlock().getWorld().getName().equals(name))
-            if ((event.getBlock().getTypeId() != 2) || (event.getBlock().getTypeId() != 3)) event.setCancelled(true);
-    }
 }
