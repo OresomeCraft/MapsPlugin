@@ -226,11 +226,11 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         Material mat = is.getType();
         Location loc = p.getLocation();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+        if (loc.getWorld().getName().equals(name)) {
 
             if (mat == Material.FISHING_ROD) {
 
-                if (state == State.IN_GROUND) {
+                if (state == PlayerFishEvent.State.IN_GROUND || state == PlayerFishEvent.State.FAILED_ATTEMPT) {
                     p.launchProjectile(Snowball.class);
 
                 }
@@ -298,7 +298,6 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
                     }
                 }
             }
-
         }
     }
 
