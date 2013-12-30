@@ -84,15 +84,7 @@ public class Raceway_alpha extends RacewayMap implements Listener {
         }
         if (hasPassedGrace && contains(p.getLocation(), -12, -15, 72, 64, 1, -15)) {
             Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " has won the race!");
-            Bukkit.getScheduler().runTaskLater(plugin.getInstance(), new Runnable() {
-                public void run() {
-                    for (Player pl : event.getPlayer().getWorld().getPlayers()) {
-                        if (!pl.getName().equals(event.getPlayer().getName())) {
-                            pl.setHealth(0);
-                        }
-                    }
-                }
-            }, 1L);
+            Bukkit.getPluginManager().callEvent(new BattleEndEvent(getMode()));
         }
         if (p.getLocation().subtract(0, 1, 0).getBlock().getType() != Material.COAL_BLOCK &&
                 event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType() != Material.QUARTZ_BLOCK &&
@@ -112,6 +104,7 @@ public class Raceway_alpha extends RacewayMap implements Listener {
                         } else {
                             event.getPlayer().setHealth(0);
                             event.getPlayer().sendMessage(ChatColor.RED + "Game over bud, that's what you get for going off the road!");
+                            BattlePlayer.getBattlePlayer(event.getPlayer()).spectate();
                         }
                         checker.remove(p.getName());
                     }
