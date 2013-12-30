@@ -4,8 +4,16 @@ import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
@@ -17,14 +25,14 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(8);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.GLASS, Material.LEATHER_HELMET, Material.STONE_SWORD});
         setAutoSpawnProtection(4);
     }
 
     String name = "equator";
     String fullName = "Equator";
-    String creators = "Afridge1O1, ViolentShadow, Numinex and SuperDuckFace";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF, Gamemode.KOTH};
+    String creators = "Afridge1O1, SuperDuckFace, Numinex, XUHAVON, beadycottonwood and ViolentShadow";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 53, 75, -24));
@@ -50,7 +58,8 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
 
-        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
+        ItemStack BLUE_GLASS = new ItemStack(Material.GLASS, (short) 11);
+        ItemStack RED_GLASS = new ItemStack(Material.GLASS, (short) 14);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
@@ -60,23 +69,39 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 3);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
+        ItemStack TORCH = new ItemStack(Material.TORCH, 1);
+        ItemStack OPSWORD = new ItemStack(Material.DIAMOND_SWORD, 1);
+        ItemMeta torch = TORCH.getItemMeta();
+        torch.setDisplayName(ChatColor.RED + "Blazing Stick");
+        TORCH.setItemMeta(torch);
+        TORCH.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 1);
+        ItemMeta opsword = OPSWORD.getItemMeta();
+        opsword.setDisplayName(ChatColor.BLUE + "Soul Destroyer");
+        OPSWORD.setItemMeta(opsword);
+        OPSWORD.setDurability((short) 1561);
+        OPSWORD.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 10);
 
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
 
         p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+
+        if(p.getTeam() == Team.TDM_RED); p.getInventory().setHelemt(RED_GLASS);
+        if(p.getTeam() == Team.TDM_BLUE); p.getInventory().setHelemt(BLUE_GLASS);
 
         i.setItem(0, SWORD);
-        i.setItem(1, BOW);
-        i.setItem(2, STEAK);
-        i.setItem(3, HEALTH);
-        i.setItem(4, EXP);
+        i.setItem(1, OPSWORD);
+        i.setItem(2, BOW);
+        i.setItem(3, STEAK);
+        i.setItem(4, HEALTH);
+        i.setItem(5, EXP);
+        i.setItem(6, TORCH);
         i.setItem(10, ARROWS);
 
     }
+    
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
