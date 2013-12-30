@@ -1,13 +1,18 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-import org.bukkit.*;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.*;
-
-import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 @MapConfig
 public class Suburban extends BattleMap implements IBattleMap, Listener {
@@ -18,8 +23,8 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
 
     String name = "suburban";
     String fullName = "Suburban Complex";
-    String creators = "AnomalousRei, zezo268, xannallax33 and kalikakitty";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
+    String creators = "__R3, _Moist and kalikakitty";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
         blueSpawns.add(new Location(w, 360, 40, -482));
@@ -43,6 +48,8 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
         redSpawns.add(new Location(w, 326, 53, -448));
         redSpawns.add(new Location(w, 364, 54, -529));
         redSpawns.add(new Location(w, 437, 58, -482));
+
+        setKoTHMonument(new Location(w, 363, 54, -483));
     }
 
     public void readyFFASpawns() {
@@ -97,5 +104,29 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
     public int x2 = -44;
     public int y2 = 232;
     public int z2 = 1136;
+
+    @EventHandler
+    public void breakListener(BlockBreakEvent event) {
+        Location loc = event.getBlock().getLocation();
+        if (loc.getWorld().getName().equals(name)) {
+
+            if (event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 363, 54, -483)) <= 10){
+                if(getMode() == Gamemode.KOTH)
+                    event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void placeListener(BlockPlaceEvent event) {
+        Location loc = event.getBlock().getLocation();
+        if (loc.getWorld().getName().equals(name)) {
+
+            if (event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 363, 54, -483)) <= 10){
+                if(getMode() == Gamemode.KOTH)
+                event.setCancelled(true);
+            }
+        }
+    }
 
 }
