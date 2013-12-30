@@ -1,12 +1,11 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
-
+import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -47,7 +46,7 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
     String name = "hazypass";
     String fullName = "Hazy Pass";
     String creators = "AnomalousRei and __R3";
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM, Gamemode.INFECTION};
+    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     public void readyTDMSpawns() {
 
