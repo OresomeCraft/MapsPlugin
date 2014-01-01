@@ -69,14 +69,8 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 3);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-        ItemStack TORCH = new ItemStack(Material.TORCH, 1);
-        ItemMeta torch = TORCH.getItemMeta();
-        torch.setDisplayName(ChatColor.RED + "Blazing Stick");
-        TORCH.setItemMeta(torch);
-        TORCH.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 1);
 
-
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS, TORCH});
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
 
         p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_PANTS);
@@ -90,7 +84,6 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH);
         i.setItem(4, EXP);
-        i.setItem(5, TORCH);
         i.setItem(10, ARROWS);
 
     }
