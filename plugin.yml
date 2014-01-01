@@ -1,4 +1,0 @@
-name: OresomeBattlesMaps
-main: com.oresomecraft.BattleMaps.OresomeBattlesMaps
-version: 1.0
-depend: [OresomeBattles]
