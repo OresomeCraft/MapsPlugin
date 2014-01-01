@@ -93,7 +93,7 @@ public class Raid extends BattleMap implements IBattleMap, Listener {
         i.setItem(4, HEALTH_POTION);
         i.setItem(28, ARROWS);
 
-        if (p.getTeam() == Team.TDM_BLUE) p.setItem(5, Material.ENDER_PEARL, 1);
+        if (p.getTeam() == Team.TDM_BLUE) p.setItem(5, Material.ENDER_PEARL, 2);
 
     }
 
