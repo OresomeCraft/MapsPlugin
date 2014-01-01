@@ -53,12 +53,12 @@ public class Epic extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setLeggings(LEATHER_LEGGINGS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
- 
+
         // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
-        p.setItem(0, WOOD_SWORD);
-        p.setItem(1, GOLDEN_APPLE, 3);
-        p.setItem(2, STEAK, 4);
-        p.setItem(3, EXP_BOTTLE, 3);
+        i.setItem(0, WOOD_SWORD);
+        i.setItem(1, GOLDEN_APPLE, 3);
+        i.setItem(2, STEAK, 4);
+        i.setItem(3, EXP_BOTTLE, 3);
     }
  
     // Region. (Top corner block and bottom corner block.
