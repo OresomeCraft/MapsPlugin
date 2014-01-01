@@ -112,7 +112,7 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
                     if (b.getLocation().equals(new Location(w, -37, 75, 43))) {
                         p.teleport(new Location(w, -29, 74, 43));
                     } else if (b.getLocation().equals(new Location(w, 74, 75, 43))) {
-                        p.teleport(new Location(w, -66, 75, 43)); //blue
+                        p.teleport(new Location(w, 66, 75, 43)); //blue
                     }
                 }
             }
