@@ -34,12 +34,12 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
     String name = "warehouse";
     String fullName = "Warehouse";
     String creators = "SuperDuckFace, meganlovesmusic and _Husky_";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF, Gamemode.INFECTION, Gamemode.LTS};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF, Gamemode.LTS};
 
     public void readyTDMSpawns() {
 
-        Location redFlag = new Location(w, -24, 75, 43);
-        Location blueFlag = new Location(w, -33, 150, 50);
+        Location redFlag = new Location(w, -25, 75, 43);
+        Location blueFlag = new Location(w, -61, 75, 43);
 
         redSpawns.add(new Location(w, -34, 74, 43));
         blueSpawns.add(new Location(w, 71, 74, 43));
@@ -109,8 +109,8 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
 
                 Team team = BattlePlayer.getBattlePlayer(p).getTeam();
                 if (b.getType().equals(Material.PISTON_BASE)) {
-                    if (b.getLocation().equals(new Location(w, -37, 75, 43))) {
-                        p.teleport(new Location(w, -29, 74, 43));
+                    if (b.getLocation().equals(new Location(w, -38, 75, 43))) {
+                        p.teleport(new Location(w, -29, 74, 43)); //red
                     } else if (b.getLocation().equals(new Location(w, 74, 75, 43))) {
                         p.teleport(new Location(w, 66, 75, 43)); //blue
                     }
