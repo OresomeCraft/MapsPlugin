@@ -63,7 +63,7 @@ public class Epic extends BattleMap implements IBattleMap, Listener {
  
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -67
+    public int x1 = -67;
     public int y1 = 40;
     public int z1 = 15;
  
