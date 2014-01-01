@@ -81,7 +81,7 @@ public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
                     if (team == Team.LTS_RED) {
                         p.teleport(new Location(w, -29, 74, 43));
                     } else if (team == Team.LTS_BLUE) {
-                        p.teleport(new Location(w, -66, 75, 43));
+                        p.teleport(new Location(w, 66, 75, 43));
                     }
                 }
             }
