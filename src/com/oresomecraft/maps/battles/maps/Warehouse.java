@@ -27,7 +27,9 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
 
     public Warehouse() {
         super.initiate(this, name, fullName, creators, modes);
+        setTDMTime(15);
         setAllowBuild(false);
+        disableDrops(new Material[]{Material.LEATHER_HELMET});
     }
 
     // Map details
@@ -39,7 +41,7 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
     public void readyTDMSpawns() {
 
         Location redFlag = new Location(w, -25, 75, 43);
-        Location blueFlag = new Location(w, -61, 75, 43);
+        Location blueFlag = new Location(w, 61, 75, 43);
 
         redSpawns.add(new Location(w, -34, 74, 43));
         blueSpawns.add(new Location(w, 71, 74, 43));
