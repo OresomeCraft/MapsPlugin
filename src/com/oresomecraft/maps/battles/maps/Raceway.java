@@ -20,7 +20,7 @@ public class Raceway extends BattleMap implements IBattleMap, Listener {
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
     }
 
-    String name = "raceway";
+    String name = "raceway_alpha";
     String fullName = "Raceway";
     String creators = "Evil_Emo and Turt1eManLol";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
