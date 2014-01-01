@@ -15,6 +15,7 @@ public class Epic extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         setTDMTime(10);
+        disableDrops(new Material[]{Material.LEATHER_HELMET});
     }
 
     // Map details
