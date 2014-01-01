@@ -78,10 +78,10 @@ public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
 
                 Team team = BattlePlayer.getBattlePlayer(p).getTeam();
                 if (b.getType().equals(Material.PISTON_BASE)) {
-                    if (team == Team.LTS_RED) {
-                        p.teleport(new Location(w, -29, 74, 43));
-                    } else if (team == Team.LTS_BLUE) {
-                        p.teleport(new Location(w, 66, 75, 43));
+                    if (b.getLocation().equals(new Location(w, -38, 75, 43))) {
+                        p.teleport(new Location(w, -29, 74, 43)); // red
+                    } else if (b.getLocation().equals(new Location(w, 74, 75, 43))) {
+                        p.teleport(new Location(w, 66, 75, 43)); // blue
                     }
                 }
             }
