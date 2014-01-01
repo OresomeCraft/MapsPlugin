@@ -58,8 +58,8 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
 
-        ItemStack BLUE_GLASS = new ItemStack(Material.GLASS, (short) 11);
-        ItemStack RED_GLASS = new ItemStack(Material.GLASS, (short) 14);
+        ItemStack BLUE_GLASS = new ItemStack(Material.GLASS, 1, (short) 11);
+        ItemStack RED_GLASS = new ItemStack(Material.GLASS, 1, (short) 14);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
@@ -70,19 +70,13 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 3);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack TORCH = new ItemStack(Material.TORCH, 1);
-        ItemStack OPSWORD = new ItemStack(Material.DIAMOND_SWORD, 1);
         ItemMeta torch = TORCH.getItemMeta();
         torch.setDisplayName(ChatColor.RED + "Blazing Stick");
         TORCH.setItemMeta(torch);
         TORCH.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 1);
-        ItemMeta opsword = OPSWORD.getItemMeta();
-        opsword.setDisplayName(ChatColor.BLUE + "Soul Destroyer");
-        OPSWORD.setItemMeta(opsword);
-        OPSWORD.setDurability((short) 1561);
-        OPSWORD.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 10);
 
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS, TORCH});
 
         p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_PANTS);
@@ -92,12 +86,11 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
         if(p.getTeam() == Team.TDM_BLUE); p.getInventory().setHelmet(BLUE_GLASS);
 
         i.setItem(0, SWORD);
-        i.setItem(1, OPSWORD);
-        i.setItem(2, BOW);
-        i.setItem(3, STEAK);
-        i.setItem(4, HEALTH);
-        i.setItem(5, EXP);
-        i.setItem(6, TORCH);
+        i.setItem(1, BOW);
+        i.setItem(2, STEAK);
+        i.setItem(3, HEALTH);
+        i.setItem(4, EXP);
+        i.setItem(5, TORCH);
         i.setItem(10, ARROWS);
 
     }
