@@ -51,7 +51,7 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyFFASpawns() {
-    	FFASpawns.add(new Location(w, -34, 74, 43));
+        FFASpawns.add(new Location(w, -34, 74, 43));
         FFASpawns.add(new Location(w, 71, 74, 43));
     }
 
