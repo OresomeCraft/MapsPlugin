@@ -25,14 +25,14 @@ public class Epic extends BattleMap implements IBattleMap, Listener {
  
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -14, 66, -193, 0, 0));
-        blueSpawns.add(new Location(w, -17 66, -2, 180, 0));
+        blueSpawns.add(new Location(w, -17, 66, -2, 180, 0));
         
         setKoTHMonument(new Location(w, -16, 67, -106));
     }
  
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -14, 66, -193, 0, 0));
-        FFASpawns.add(new Location(w, -17 66, -2, 180, 0));
+        FFASpawns.add(new Location(w, -17, 66, -2, 180, 0));
     }
  
     public void applyInventory(final BattlePlayer p) {
