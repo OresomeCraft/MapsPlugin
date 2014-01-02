@@ -16,6 +16,7 @@ public class Gladiator extends BattleMap implements IBattleMap, Listener {
 
     public Gladiator() {
         super.initiate(this, name, fullName, creators, modes);
+        setAllowBuild(false);
         lockTime("day");
     }
 
