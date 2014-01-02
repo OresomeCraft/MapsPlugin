@@ -110,7 +110,7 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
 
             if (mat == Material.FISHING_ROD) {
 
-                if (state == PlayerFishEvent.State.IN_GROUND) {
+                if (state == PlayerFishEvent.State.IN_GROUND || state == PlayerFishEvent.State.FAILED_ATTEMPT) {
                     p.launchProjectile(Snowball.class);
 
                 }
@@ -179,29 +179,6 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
                 }
             }
         }
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void glassShot(ProjectileHitEvent event) {
-        Entity proj = event.getEntity();
-        Location hit = proj.getLocation();
-        Block b = hit.getBlock();
-        Material mat = b.getType();
-
-        if (contains(hit, x1, x2, y1, y2, z1, z2)) {
-
-            if (proj instanceof Arrow) {
-
-                if (mat == Material.THIN_GLASS) {
-
-                    b.breakNaturally();
-
-                }
-
-            }
-
-        }
-
     }
 
     @EventHandler
