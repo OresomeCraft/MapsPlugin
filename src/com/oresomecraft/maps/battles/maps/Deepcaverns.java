@@ -37,7 +37,7 @@ public class Deepcaverns extends BattleMap implements IBattleMap, Listener {
         redSpawns.add(new Location(w, 28, 105, 10, 0, 0));
         redSpawns.add(new Location(w, 27, 96, 0, 0, 0));
         redSpawns.add(new Location(w, 30, 105, -14, 0, 0));
-        redSpawns.add(new Location(w, -9, 106, 18, 0, 0));
+        redSpawns.add(new Location(w, -9, 107, 14, 0, 0));
 
         blueSpawns.add(blueSpawn);
         blueSpawns.add(new Location(w, -9, 110, -20, 0, 0));
