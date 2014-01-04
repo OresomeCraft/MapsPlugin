@@ -58,8 +58,8 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
 
-        ItemStack BLUE_GLASS = new ItemStack(Material.GLASS, 1, (short) 11);
-        ItemStack RED_GLASS = new ItemStack(Material.GLASS, 1, (short) 14);
+        ItemStack BLUE_GLASS = new ItemStack(Material.STAINED_GLASS, 1, (short) 11);
+        ItemStack RED_GLASS = new ItemStack(Material.STAINED_GLASS, 1, (short) 14);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
