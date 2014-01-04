@@ -32,7 +32,8 @@ public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
 
     @Override
     public void readyFFASpawns() {
-        // Nothing to see here. :-)
+        FFASpawns.add(new Location(w, -34, 74, 43));
+        FFASpawns.add(new Location(w, 71, 74, 43));
     }
 
     // Map details
