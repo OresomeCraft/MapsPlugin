@@ -25,7 +25,7 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(8);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.GLASS, Material.LEATHER_HELMET, Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.RED_GLASS, Material.BLUE_GLASS, Material.LEATHER_HELMET, Material.STONE_SWORD});
         setAutoSpawnProtection(4);
     }
 
