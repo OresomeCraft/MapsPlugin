@@ -30,17 +30,17 @@ public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
         setAllowBuild(false);
     }
 
-    @Override
-    public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, -34, 74, 43));
-        FFASpawns.add(new Location(w, 71, 74, 43));
-    }
-
     // Map details
     String name = "warehouse";
     String fullName = "Paintball (Charlie)";
     String creators = "meganlovesmusic, SuperDuckFace and _Husky_";
     Gamemode[] modes = {Gamemode.LTS};
+
+    @Override
+    public void readyFFASpawns() {
+        FFASpawns.add(new Location(w, -34, 74, 43));
+        FFASpawns.add(new Location(w, 71, 74, 43));
+    }
 
     public void readyTDMSpawns() {
         World w = Bukkit.getServer().getWorld(name);
