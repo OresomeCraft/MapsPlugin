@@ -133,18 +133,46 @@ public class Geomancy extends BattleMap implements IBattleMap, Listener {
             int y = event.getBlock().getLocation().getBlockY();
             int z = event.getBlock().getLocation().getBlockZ();
 
-            if(y == 148){
-                if(x == 1 && z == 4) b1 = true;
-                if(x == 0 && z == 4) b2 = true;
-                if(x == -1 && z == 4) b3 = true;
-                if(x == -1 && z == 3) b4 = true;
-                if(x == 0 && z == 3) b5 = true;
-                if(x == 1 && z == 3) b6 = true;
-                if(x == 1 && z == 2) b7 = true;
-                if(x == 0 && z == 2) b8 = true;
-                if(x == -1 && z == 2) b9 = true;
+            if (y == 148) {
+                if (x == 1 && z == 4) {
+                    b1 = true;
+                    event.setCancelled(false);
+                }
+                if (x == 0 && z == 4) {
+                    b2 = true;
+                    event.setCancelled(false);
+                }
+                if (x == -1 && z == 4) {
+                    b3 = true;
+                    event.setCancelled(false);
+                }
+                if (x == -1 && z == 3) {
+                    b4 = true;
+                    event.setCancelled(false);
+                }
+                if (x == 0 && z == 3) {
+                    b5 = true;
+                    event.setCancelled(false);
+                }
+                if (x == 1 && z == 3) {
+                    b6 = true;
+                    event.setCancelled(false);
+                }
+                if (x == 1 && z == 2) {
+                    b7 = true;
+                    event.setCancelled(false);
+                }
+                if (x == 0 && z == 2) {
+                    b8 = true;
+                    event.setCancelled(false);
+                }
+                if (x == -1 && z == 2) {
+                    b9 = true;
+                    event.setCancelled(false);
+                }
+
             }
-            if(b1 && b2 && b3 && b4 && b5 && b6 && b7 && b8 && b9){
+            if (b1 && b2 && b3 && b4 && b5 && b6 && b7 && b8 && b9) {
                 callEndSandFall();
             }
         }
