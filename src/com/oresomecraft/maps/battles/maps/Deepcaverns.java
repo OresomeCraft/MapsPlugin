@@ -19,7 +19,7 @@ public class Deepcaverns extends BattleMap implements IBattleMap, Listener {
 
     String name = "deepcaverns";
     String fullName = "Deep Caverns";
-    String creators = "kalysar, AlphaMinecraft91 and MR_SKINNA7";
+    String creators = "kalysar, CobblestonePvP and MR_SKINNA7";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
