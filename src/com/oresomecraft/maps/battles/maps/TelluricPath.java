@@ -11,6 +11,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Enderman;
 import org.bukkit.event.*;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -126,8 +127,16 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void endermanHit(EntityDamageEvent event) {
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
         if (event.getEntity() instanceof Enderman) {
             event.setDamage(1000);
         }
+    }
+
+    @EventHandler
+    public void death(EntityDeathEvent e) {
+        if (!e.getEntity().getWorld().getName().equals(name)) return;
+        e.getDrops().clear();
+        e.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
     }
 }
