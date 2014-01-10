@@ -101,7 +101,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         // Items
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 3);
