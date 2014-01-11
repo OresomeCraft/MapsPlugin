@@ -29,7 +29,7 @@ public class Okzuy extends BattleMap implements IBattleMap, Listener {
 
 
     public void readyTDMSpawns() {
-
+// u r gay
         Location redSpawn = new Location(w, -409, 77, 71);
         Location blueSpawn = new Location(w, -317, 74, 146);
 
