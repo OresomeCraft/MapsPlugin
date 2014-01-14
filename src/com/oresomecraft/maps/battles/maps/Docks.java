@@ -23,7 +23,7 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        Location redSpawn = new Location(w, 1796, 18, 490, -90, 0);
+        Location redSpawn = new Location(w, 1790, 30, 491, -90, 0);
         Location blueSpawn = new Location(w, 1793, 23, 490, 90, 0);
 
         redSpawns.add(redSpawn);
