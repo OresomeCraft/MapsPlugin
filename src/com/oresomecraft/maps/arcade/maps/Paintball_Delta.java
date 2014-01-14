@@ -5,7 +5,6 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.arcade.games.TeamPaintBallMap;
-
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -77,18 +76,15 @@ public class Paintball_Delta extends TeamPaintBallMap implements Listener {
 
                 Team team = BattlePlayer.getBattlePlayer(p).getTeam();
                 if (b.getType().equals(Material.PISTON_BASE)) {
-                    if (b.getLocation().equals(new Location(w, -44, 54, -36))) {
+                    if (b.getLocation().getBlockY() < 70) {
                         p.teleport(new Location(w, -42, 70, -36, -90, 0)); // To Top
                     } else {
-                        if (b.getLocation().equals(new Location(w, -44, 71, -36))) {
-                            p.teleport(new Location(w, -42, 53, -36, -90, 0)); // To Bottom
-                        }
+                        p.teleport(new Location(w, -42, 53, -36, -90, 0)); // To Bottom
                     }
                 }
             }
         }
-
-}
+    }
 
     @EventHandler
     public void onTeleport(PlayerTeleportEvent event) {

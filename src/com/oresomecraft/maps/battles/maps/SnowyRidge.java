@@ -7,7 +7,6 @@ import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
@@ -33,6 +32,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         Bukkit.getWorld(name).setTime(12000);
+        disableDrops(new Material[]{Material.LEATHER_HELMET});
     }
 
     String name = "snowyridge";
@@ -200,17 +200,14 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
 
                 Team team = BattlePlayer.getBattlePlayer(p).getTeam();
                 if (b.getType().equals(Material.PISTON_BASE)) {
-                    if (b.getLocation().equals(new Location(w, -44, 54, -36))) {
+                    if (b.getLocation().getBlockY() < 70) {
                         p.teleport(new Location(w, -42, 70, -36, -90, 0)); // To Top
                     } else {
-                        if (b.getLocation().equals(new Location(w, -44, 71, -36))) {
-                            p.teleport(new Location(w, -42, 53, -36, -90, 0)); // To Bottom
-                        }
+                        p.teleport(new Location(w, -42, 53, -36, -90, 0)); // To Bottom
                     }
                 }
             }
         }
-
     }
 
     @EventHandler
