@@ -22,5 +22,4 @@ public abstract class RacewayMap extends ArcadeMap {
     public abstract void moveChecker(PlayerMoveEvent event);
 
 
-
 }

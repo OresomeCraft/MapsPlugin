@@ -76,8 +76,10 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setLeggings(LEATHER_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
 
-        if(p.getTeam() == Team.TDM_RED); p.getInventory().setHelmet(RED_GLASS);
-        if(p.getTeam() == Team.TDM_BLUE); p.getInventory().setHelmet(BLUE_GLASS);
+        if (p.getTeam() == Team.TDM_RED) ;
+        p.getInventory().setHelmet(RED_GLASS);
+        if (p.getTeam() == Team.TDM_BLUE) ;
+        p.getInventory().setHelmet(BLUE_GLASS);
 
         i.setItem(0, SWORD);
         i.setItem(1, BOW);
@@ -87,7 +89,7 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
         i.setItem(10, ARROWS);
 
     }
-    
+
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
