@@ -24,12 +24,13 @@ public class Paintball_Delta extends TeamPaintBallMap implements Listener {
         disableDrops(new Material[]{Material.COOKED_BEEF, Material.SNOW_BALL});
         setAllowPhysicalDamage(false);
         setAllowBuild(false);
+        setFireSpread(false);
     }
 
     // Map details
     String name = "snowyridge";
     String fullName = "Paintball (Delta aka. Snowy Ridge)";
-    String creators = "meganlovesmuslims, SuperDuckFace and ninsai";
+    String creators = "meganlovesmusic, SuperDuckFace and ninsai";
     Gamemode[] modes = {Gamemode.LTS};
 
     @Override

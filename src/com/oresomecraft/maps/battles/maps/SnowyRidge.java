@@ -33,11 +33,12 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
         setAllowBuild(false);
         Bukkit.getWorld(name).setTime(12000);
         disableDrops(new Material[]{Material.LEATHER_HELMET});
+        setFireSpread(false);
     }
 
     String name = "snowyridge";
     String fullName = "Snowy Ridge";
-    String creators = "meganlovesmuslims, ninsai and SuperDuckFace ";
+    String creators = "meganlovesmusic, ninsai and SuperDuckFace ";
     Gamemode[] modes = {Gamemode.FFA, Gamemode.TDM};
 
     public void readyTDMSpawns() {
@@ -75,6 +76,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+        InvUtils.nameItem(FISHING_ROD, ChatColor.GOLD + "Grappling Hook");
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
 
         p.getInventory().setBoots(LEATHER_BOOTS);
