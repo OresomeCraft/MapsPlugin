@@ -43,8 +43,13 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
         Location redFlag = new Location(w, -25, 75, 43);
         Location blueFlag = new Location(w, 61, 75, 43);
 
-        redSpawns.add(new Location(w, -34, 74, 43));
-        blueSpawns.add(new Location(w, 71, 74, 43));
+        if (!getMode().equals(Gamemode.LTS)) {
+            redSpawns.add(new Location(w, -34, 74, 43));
+            blueSpawns.add(new Location(w, 71, 74, 43));
+        } else {
+            redSpawns.add(new Location(w, -29, 74, 43));
+            blueSpawns.add(new Location(w, 66, 75, 43));
+        }
 
         setCTFFlags(name, redFlag, blueFlag);
 
@@ -106,7 +111,7 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
 
         if (p.getLocation().getWorld().getName().equals(name)) {
 
-            if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
                 Block b = event.getClickedBlock();
                 World w = Bukkit.getWorld(name);
 
