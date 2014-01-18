@@ -29,7 +29,7 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_HELMET});
+        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.WOOL});
     }
 
     // Map details

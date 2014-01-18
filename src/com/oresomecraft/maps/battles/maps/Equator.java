@@ -1,22 +1,19 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.InvUtils;
+import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-import org.bukkit.*;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.inventory.*;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.*;
-
-import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 @MapConfig
 public class Equator extends BattleMap implements IBattleMap, Listener {
@@ -25,7 +22,7 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(8);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.STAINED_GLASS, Material.LEATHER_HELMET, Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.STAINED_GLASS, Material.LEATHER_HELMET, Material.STONE_SWORD, Material.WOOL});
         setAutoSpawnProtection(4);
     }
 
@@ -99,5 +96,14 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
     public int x2 = -103;
     public int y2 = 0;
     public int z2 = -103;
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
+            if (event.getBlock().getType().equals(Material.WOOL)) {
+                event.getBlock().getDrops().clear();
+            }
+        }
+    }
 
 }

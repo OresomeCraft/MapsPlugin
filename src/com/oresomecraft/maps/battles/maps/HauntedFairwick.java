@@ -31,7 +31,7 @@ import java.util.List;
 public class HauntedFairwick extends BattleMap implements IBattleMap, Listener {
 
     public HauntedFairwick() {
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.WATCH});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.WATCH, Material.WOOL});
         super.initiate(this, name, fullName, creators, modes);
     }
 
