@@ -23,6 +23,8 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         setTDMTime(15);
         setCPTime(10);
         disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
+        protectRegion(newCuboid(255, 246, 69, 88, -33, -19));
+        protectRegion(newCuboid(15, 23, 70, 88, -17, -30));
     }
 
     String name = "clashofclayii";
@@ -103,10 +105,6 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
                 event.setCancelled(true);
             if (event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 144, 79, -30)) <= 5)
                 event.setCancelled(true);
-
-            //Spawn Breaking
-            if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
-            if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
         }
     }
 
@@ -119,15 +117,6 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
                 event.setCancelled(true);
             if (event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 144, 79, -30)) <= 5)
                 event.setCancelled(true);
-
-            //Dud method that doesn't work, don't know why it's here.
-            if (event.getBlock().getType() == Material.LAVA) {
-                event.setCancelled(true);
-            }
-
-            //Spawn placing
-            if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
-            if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
         }
     }
 }

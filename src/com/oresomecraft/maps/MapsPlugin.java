@@ -1,5 +1,6 @@
 package com.oresomecraft.maps;
 
+import com.oresomecraft.maps.object.GlobalController;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.*;
@@ -35,6 +36,7 @@ public class MapsPlugin extends JavaPlugin {
 
     public void onEnable() {
         oresomebattlesConfig = YamlConfiguration.loadConfiguration(new File("plugins/OresomeBattles/config.yml"));
+        new GlobalController(this);
 
         if (oresomebattlesConfig.getBoolean("arcade_mode")) { // Is Arcade server?
             loadMaps(ARCADE_MAPS_PACKAGE);
