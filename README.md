@@ -32,3 +32,7 @@ to compile use the following command:
 ```mvn clean install```
 
 **Note:** Plugin requires OresomeBattles to function and hence will not function on your own servers.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/OresomeCraft/mapsplugin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
