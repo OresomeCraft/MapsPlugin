@@ -25,7 +25,7 @@ public class Arziri extends BattleMap implements IBattleMap, Listener {
 
     String name = "arziri";
     String fullName = "Arziri's crypt";
-    String creators = "xZizle123";
+    String creators = "xZizle123 ";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
@@ -39,8 +39,8 @@ public class Arziri extends BattleMap implements IBattleMap, Listener {
 
         Location redFlag = new Location(w, 108, 51, 2);
         Location blueFlag = new Location(w, 16, 51, 2);
+        
         setCTFFlags(name, redFlag, blueFlag);
-
         setKoTHMonument(new Location(w, 62, 49, 2));
     }
 
