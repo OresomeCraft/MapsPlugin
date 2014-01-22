@@ -26,8 +26,8 @@ public class WinterEquator extends BattleMap implements IBattleMap, Listener {
         setAutoSpawnProtection(4);
     }
 
-    String name = "equator";
-    String fullName = "Equator";
+    String name = "winterequator";
+    String fullName = "Winter Equator";
     String creators = "Afridge1O1, SuperDuckFace, Numinex, XUHAVON, beadycottonwood, ViolentShadow and meganlovesmusic";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
 
