@@ -26,7 +26,7 @@ public class Epic extends BattleMap implements IBattleMap, Listener {
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -14, 66, -193, 0, 0));
-        blueSpawns.add(new Location(w, -17, 66, -2, 180, 0));
+        blueSpawns.add(new Location(w, -15, 66, -17, 180, 0));
 
         setKoTHMonument(new Location(w, -16, 67, -106));
     }
