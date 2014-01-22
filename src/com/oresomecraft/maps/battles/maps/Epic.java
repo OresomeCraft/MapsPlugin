@@ -21,7 +21,7 @@ public class Epic extends BattleMap implements IBattleMap, Listener {
     // Map details
     String name = "ep1c";
     String fullName = "Bridge";
-    String creators = "fkbear and ep1cn00bt00b";
+    String creators = "fkBear and ep1cn00bt00b";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
