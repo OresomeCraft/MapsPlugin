@@ -8,9 +8,20 @@ import com.oresomecraft.maps.arcade.ArcadeMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @MapConfig
 public class Spleef_Charlie extends ArcadeMap implements Listener {
@@ -44,14 +55,29 @@ public class Spleef_Charlie extends ArcadeMap implements Listener {
         Inventory i = p.getInventory();
 
         ItemStack DIAMOND_SPADE = new ItemStack(Material.DIAMOND_SPADE, 1);
-        ItemStack SNOW_BALL = new ItemStack(Material.SNOW_BALL, 16);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
 
-        InvUtils.nameItem(DIAMOND_SPADE, ChatColor.BLUE + "Spleefer's Shovel");
+        InvUtils.nameItem(DIAMOND_SPADE, ChatColor.BLUE + "Advanced Spleefer's Shovel");
+
+        ItemMeta diamond_spade = DIAMOND_SPADE.getItemMeta();
+        List<String> spade_lore = new ArrayList<String>();
+        spade_lore.add(ChatColor.DARK_PURPLE + "" + ChatColor.ITALIC  + "Right click to shoot snowballs!");
+        diamond_spade.setLore(spade_lore);
+        DIAMOND_SPADE.setItemMeta(diamond_spade);
 
         i.setItem(0, DIAMOND_SPADE);
-        i.setItem(1, SNOW_BALL);
-        i.setItem(2, STEAK);
+        i.setItem(1, STEAK);
     }
 
+    @EventHandler
+    public void onSpadeInteract(PlayerInteractEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        Player p = event.getPlayer();
+        Action a = event.getAction();
+        if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
+            if (p.getItemInHand().getType() == Material.DIAMOND_SPADE) {
+                p.launchProjectile(Snowball.class);
+            }
+        }
+    }
 }
