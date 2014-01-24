@@ -13,16 +13,7 @@ public abstract class BattleMap extends Map {
      * @param time Time battle will go for in minutes
      */
     public void setTDMTime(int time) {
-        BattlesAccess.setTDMTime(name, time);
-    }
-
-    /**
-     * Set the amount of time a CP battle will go for
-     *
-     * @param time Time battle will go for in minutes
-     */
-    public void setCPTime(int time) {
-        BattlesAccess.setCPTime(name, time);
+        this.tdmTime = time;
     }
 
     /**
@@ -31,16 +22,7 @@ public abstract class BattleMap extends Map {
      * @param monument Location of the monument
      */
     public void setKoTHMonument(Location monument) {
-        BattlesAccess.setKoTHMonument(monument);
-    }
-
-    /**
-     * Sets the capture points for a map
-     *
-     * @param monuments a Monument array
-     */
-    public void setCapturePoints(Monument[] monuments) {
-        BattlesAccess.setCapturePoints(monuments);
+        this.kothFlag = monument;
     }
 
     /**

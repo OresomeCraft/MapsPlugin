@@ -29,6 +29,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public abstract class Map implements Listener {
 
@@ -60,23 +61,37 @@ public abstract class Map implements Listener {
     private int spawnProtectionDuration;
     private int blockLimit = 256;
     private boolean fireSpread = true;
+    protected int tdmTime = 15;
+    public Location ctfRedFlag, ctfBlueFlag, kothFlag;
 
     public World w; // World variable
 
     // Map details
     public String name;
-    String fullName;
-    String creators;
-    Gamemode[] modes;
+    private String fullName;
+    private String creators;
+    private Gamemode[] modes;
 
-    /**
-     * Readies maps to be played
-     */
-    public void readyMap() {
-        addMap(name);
-        setGamemodes(name, modes);
-        addCreators(name, creators);
-        setFullName(name, fullName);
+    public String getName() {
+        return this.name;
+    }
+
+    public String getFullName() {
+        return this.fullName;
+    }
+
+    public String getCreators() {
+        return this.creators;
+    }
+
+    public Gamemode[] getModes() {
+        return this.modes;
+    }
+
+    public Location getSpectatorSpawn() {
+        Random spawns = new Random();
+        int index = spawns.nextInt(FFASpawns.size());
+        return FFASpawns.get(index);
     }
 
     /**
@@ -90,12 +105,9 @@ public abstract class Map implements Listener {
             this.w = event.getWorld();
             if (this.config instanceof BattleMap) {
                 ((BattleMap) config).readyTDMSpawns();
-                setRedSpawns(name, redSpawns);
-                setBlueSpawns(name, blueSpawns);
             }
 
             config.readyFFASpawns();
-            setFFASpawns(name, FFASpawns);
 
             if (timeLock != null) startTimeLock();
         }
@@ -122,7 +134,6 @@ public abstract class Map implements Listener {
         this.fullName = fullName;
         this.creators = creators;
         this.modes = modes;
-        readyMap();
     }
 
     /**
@@ -135,6 +146,9 @@ public abstract class Map implements Listener {
         redSpawns.clear();
         blueSpawns.clear();
         FFASpawns.clear();
+        ctfBlueFlag = null;
+        ctfRedFlag = null;
+        kothFlag = null;
     }
 
     /**
@@ -200,6 +214,10 @@ public abstract class Map implements Listener {
      */
     public void disablePearlDamage(boolean allow) {
         pearlDamage = allow;
+    }
+
+    public int getTdmTime() {
+        return this.tdmTime;
     }
 
     /**
@@ -339,7 +357,7 @@ public abstract class Map implements Listener {
      */
     @EventHandler
     public void applyInventory(InventoryEvent event) {
-        if (event.getMessage().equals(name)) {
+        if (getArena().equals(name)) {
             if (autoSpawnProtection) {
                 event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, spawnProtectionDuration * 20, 1));
                 event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.HEAL, spawnProtectionDuration * 20, 1));
@@ -372,40 +390,14 @@ public abstract class Map implements Listener {
      * ***************************************************************
      */
 
-    public void setRedSpawns(String name, ArrayList<Location> redSpawns) {
-        BattlesAccess.setRedSpawns(name, redSpawns);
-    }
-
-    public void setBlueSpawns(String name, ArrayList<Location> blueSpawns) {
-        BattlesAccess.setBlueSpawns(name, blueSpawns);
-    }
-
-    public void setFFASpawns(String name, ArrayList<Location> FFASpawns) {
-        BattlesAccess.setFFASpawns(name, FFASpawns);
-    }
-
-    public void addMap(String name) {
-        BattlesAccess.addMap(name);
-    }
-
-    public void addCreators(String name, String creators) {
-        BattlesAccess.addCreators(name, creators);
-    }
-
-    public void setFullName(String name, String fullName) {
-        BattlesAccess.setFullName(name, fullName);
-    }
-
     public void clearInv(Player p) {
         BattlesAccess.clearInv(p);
     }
 
-    public void setGamemodes(String name, Gamemode[] modes) {
-        BattlesAccess.setGamemodes(name, modes);
-    }
 
     public void setCTFFlags(String name, Location redFlag, Location blueFlag) {
-        BattlesAccess.setCTFFlags(name, redFlag, blueFlag);
+        this.ctfRedFlag = redFlag;
+        this.ctfBlueFlag = blueFlag;
     }
 
     /**

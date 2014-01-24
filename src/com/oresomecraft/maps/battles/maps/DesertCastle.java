@@ -39,9 +39,6 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(blueSpawn);
         redSpawns.add(new Location(w, -37, 78, 30));
         blueSpawns.add(new Location(w, 38, 66, 29));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {

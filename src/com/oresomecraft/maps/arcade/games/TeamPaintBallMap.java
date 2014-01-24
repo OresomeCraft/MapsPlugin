@@ -13,8 +13,6 @@ public abstract class TeamPaintBallMap extends PaintBallMap {
             this.w = event.getWorld();
             if (w.getName().equals(name)) {
                 readyTDMSpawns();
-                setRedSpawns(name, redSpawns);
-                setBlueSpawns(name, blueSpawns);
             }
         }
     }
