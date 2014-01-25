@@ -31,7 +31,6 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
     public SnowyRidge() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        Bukkit.getWorld(name).setTime(12000);
         disableDrops(new Material[]{Material.LEATHER_HELMET});
         setFireSpread(false);
     }
@@ -44,6 +43,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -65, 62, -3, -88, 0));
         blueSpawns.add(new Location(w, 40, 62, 35, 137, 0));
+        Bukkit.getWorld(name).setTime(12000);
     }
 
     public void readyFFASpawns() {
