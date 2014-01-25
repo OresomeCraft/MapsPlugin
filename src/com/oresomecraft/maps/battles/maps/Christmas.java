@@ -84,7 +84,7 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
         pudding.setDisplayName(ChatColor.RED + "Pudding");
         PUDDING.setItemMeta(pudding);
 
-        if (p.getTeam().equals(Team.TDM_BLUE) || p.getTeam().equals(Team.KOTH_BLUE)) {
+        if (p.getTeam().getTeamType().equals(Team.TDM_BLUE) || p.getTeam().getTeamType().equals(Team.KOTH_BLUE)) {
 
             LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
             helmetMeta.setColor(Color.NAVY);
@@ -103,7 +103,7 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
             LEATHER_BOOTS.setItemMeta(bootsMeta);
         }
 
-        if (p.getTeam().equals(Team.TDM_RED) || p.getTeam().equals(Team.KOTH_RED)) {
+        if (p.getTeam().getTeamType().equals(Team.TDM_RED) || p.getTeam().getTeamType().equals(Team.KOTH_RED)) {
 
             LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
             helmetMeta.setColor(Color.FUCHSIA);

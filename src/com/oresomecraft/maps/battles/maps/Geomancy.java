@@ -99,8 +99,8 @@ public class Geomancy extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, PUMPKIN_PIE);
         i.setItem(4, APPLE);
 
-        if (p.getTeam() == Team.TDM_RED) i.setItem(5, RED_STAINED_CLAY);
-        if (p.getTeam() == Team.TDM_BLUE) i.setItem(5, BLUE_STAINED_CLAY);
+        if (p.getTeam().getTeamType() == Team.TDM_RED) i.setItem(5, RED_STAINED_CLAY);
+        if (p.getTeam().getTeamType() == Team.TDM_BLUE) i.setItem(5, BLUE_STAINED_CLAY);
 
         i.setItem(6, TORCH);
         i.setItem(27, ARROW);
@@ -122,11 +122,11 @@ public class Geomancy extends BattleMap implements IBattleMap, Listener {
         Location loc = event.getBlock().getLocation();
         if (loc.getWorld().getName().equals(name)) {
 
-            if (event.getBlock().getType().getId() == 44 && BattlePlayer.getBattlePlayer(event.getPlayer()).getTeam() == Team.TDM_BLUE) {
+            if (event.getBlock().getType().getId() == 44 && BattlePlayer.getBattlePlayer(event.getPlayer()).getTeam().getTeamType() == Team.TDM_BLUE) {
                 event.setCancelled(true);
             }
             if (event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 0, 152, 3)) <= 10
-                    && BattlePlayer.getBattlePlayer(event.getPlayer().getName()).getTeam() == Team.TDM_BLUE)
+                    && BattlePlayer.getBattlePlayer(event.getPlayer().getName()).getTeam().getTeamType() == Team.TDM_BLUE)
                 event.setCancelled(true);
 
             //Middle breaking
@@ -188,7 +188,7 @@ public class Geomancy extends BattleMap implements IBattleMap, Listener {
         if (loc.getWorld().getName().equals(name)) {
 
             if (event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 0, 152, 3)) <= 10
-                    && BattlePlayer.getBattlePlayer(event.getPlayer().getName()).getTeam() == Team.TDM_BLUE)
+                    && BattlePlayer.getBattlePlayer(event.getPlayer().getName()).getTeam().getTeamType() == Team.TDM_BLUE)
                 event.setCancelled(true);
             //Middle placing
             if (contains(loc, 2, -2, 144, 156, 5, 1)) event.setCancelled(true);
