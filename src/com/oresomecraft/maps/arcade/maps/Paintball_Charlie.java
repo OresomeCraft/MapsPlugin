@@ -77,7 +77,7 @@ public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
                 Block b = event.getClickedBlock();
                 World w = Bukkit.getWorld(name);
 
-                Team team = BattlePlayer.getBattlePlayer(p).getTeam().getTeamType();
+                Team team = BattlePlayer.getBattlePlayer(p).getTeamType();
                 if (b.getType().equals(Material.PISTON_BASE)) {
                     if (b.getLocation().equals(new Location(w, -38, 75, 43))) {
                         p.teleport(new Location(w, -29, 74, 43)); // red

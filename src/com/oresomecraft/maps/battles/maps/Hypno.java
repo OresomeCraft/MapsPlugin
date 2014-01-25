@@ -211,7 +211,7 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
                             System.out.println("Couldn't cast player " + pp + " or " + ss + " to BattlePlayer!");
                             //erps.
                         }
-                        if (ss.getTeam().equals(pp.getTeam())) return;
+                        if (ss.getTeamType().equals(pp.getTeamType())) return;
 
                         PotionEffectType blind = PotionEffectType.BLINDNESS;
                         PotionEffectType slow = PotionEffectType.SLOW;

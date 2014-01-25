@@ -87,11 +87,11 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(8, ARROWS);
 
-        if (BattlePlayer.getBattlePlayer(p).getTeam().getTeamType() == Team.KOTH_RED) {
+        if (BattlePlayer.getBattlePlayer(p).getTeamType() == Team.KOTH_RED) {
             i.setItem(10, RED_WOOL);
             i.setItem(11, RED_DYE);
         } else {
-            if (BattlePlayer.getBattlePlayer(p).getTeam().getTeamType() == Team.KOTH_BLUE) {
+            if (BattlePlayer.getBattlePlayer(p).getTeamType() == Team.KOTH_BLUE) {
                 i.setItem(10, BLUE_WOOL);
                 //i.setItem(11, BLUE_DYE);
             }
@@ -174,7 +174,7 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
 
     public void blueWool(Location loc, World w, Player shooter) {
 
-        if (BattlePlayer.getBattlePlayer(shooter).getTeam().getTeamType() == Team.KOTH_RED) {
+        if (BattlePlayer.getBattlePlayer(shooter).getTeamType() == Team.KOTH_RED) {
             if (loc.getBlock().getType().equals(Material.WOOL)) {
                 loc.getBlock().setTypeIdAndData(Material.WOOL.getId(), DyeColor.RED.getDyeData(), false);
                 w.playEffect(loc, Effect.STEP_SOUND, 152);
@@ -183,7 +183,7 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
     }
 
     public void redWool(Location loc, World w, Player shooter) {
-        if (BattlePlayer.getBattlePlayer(shooter).getTeam().getTeamType() == Team.KOTH_BLUE) {
+        if (BattlePlayer.getBattlePlayer(shooter).getTeamType() == Team.KOTH_BLUE) {
             if (loc.getBlock().getType().equals(Material.WOOL)) {
                 loc.getBlock().setTypeIdAndData(Material.WOOL.getId(), DyeColor.RED.getDyeData(), false);
                 w.playEffect(loc, Effect.STEP_SOUND, 22);

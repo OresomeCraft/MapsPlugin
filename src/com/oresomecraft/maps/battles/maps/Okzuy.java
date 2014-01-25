@@ -99,11 +99,11 @@ public class Okzuy extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setLeggings(CHAIN_LEGGINGS);
         p.getInventory().setChestplate(CHAIN_CHESTPLATE);
 
-        if (p.getTeam().getTeamType().equals(Team.KOTH_BLUE)) {
+        if (p.getTeamType().equals(Team.KOTH_BLUE)) {
             p.getInventory().setHelmet(new ItemStack(Material.LAPIS_BLOCK, 1));
         }
 
-        if (p.getTeam().getTeamType().equals(Team.KOTH_RED)) {
+        if (p.getTeamType().equals(Team.KOTH_RED)) {
             p.getInventory().setHelmet(new ItemStack(Material.NETHERRACK, 1));
         }
 

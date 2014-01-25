@@ -200,7 +200,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
                 Block b = event.getClickedBlock();
                 World w = Bukkit.getWorld(name);
 
-                Team team = BattlePlayer.getBattlePlayer(p).getTeam().getTeamType();
+                Team team = BattlePlayer.getBattlePlayer(p).getTeamType();
                 if (b.getType().equals(Material.PISTON_BASE)) {
                     if (b.getLocation().getBlockY() < 70) {
                         p.teleport(new Location(w, -42, 70, -36, -90, 0)); // To Top

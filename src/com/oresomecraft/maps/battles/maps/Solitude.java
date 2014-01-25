@@ -136,7 +136,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         exp.setDisplayName(ChatColor.GOLD + "Potion of Levelling");
         EXP.setItemMeta(exp);
 
-        if (p.getTeam().getTeamType() == Team.TDM_BLUE) {
+        if (p.getTeamType() == Team.TDM_BLUE) {
 
             ItemMeta bow = BOW.getItemMeta();
             bow.setDisplayName(ChatColor.GOLD + "Steel Bow");
@@ -163,7 +163,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
 
         }
 
-        if (p.getTeam().getTeamType() == Team.TDM_RED) {
+        if (p.getTeamType() == Team.TDM_RED) {
 
             // Sets bow name "Imperial Bow"
             ItemMeta bow = BOW.getItemMeta();
@@ -314,11 +314,11 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
             Location l = p.getLocation();
             World world = Bukkit.getWorld(name);
 
-            if (BattlePlayer.getBattlePlayer(p).getTeam().getTeamType() == Team.TDM_RED) {
+            if (BattlePlayer.getBattlePlayer(p).getTeamType() == Team.TDM_RED) {
                 // Show red particles (small)
                 world.playEffect(l, Effect.STEP_SOUND, 152);
             } else {
-                if (BattlePlayer.getBattlePlayer(p).getTeam().getTeamType() == Team.TDM_BLUE) {
+                if (BattlePlayer.getBattlePlayer(p).getTeamType() == Team.TDM_BLUE) {
                     // Show blue particles (small)
                     world.playEffect(l, Effect.STEP_SOUND, 22);
                 }
