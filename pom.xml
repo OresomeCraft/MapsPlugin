@@ -8,7 +8,7 @@
     <description>Maps component for OresomeBattles</description>
     <packaging>jar</packaging>
 
-    <version>1.0</version>
+    <version>3.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

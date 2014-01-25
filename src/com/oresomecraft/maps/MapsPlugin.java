@@ -11,6 +11,7 @@ import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -31,7 +32,7 @@ public class MapsPlugin extends JavaPlugin {
     public static final String BATTLE_MAPS_PACKAGE = "com.oresomecraft.maps.battles.maps";
     public static final String ARCADE_MAPS_PACKAGE = "com.oresomecraft.maps.arcade.maps";
 
-    private static ArrayList<Map> maps = new ArrayList<Map>();
+    private static HashMap<String, Map> maps = new HashMap<String, Map>();
 
     public void onEnable() {
         oresomebattlesConfig = YamlConfiguration.loadConfiguration(new File("plugins/OresomeBattles/config.yml"));
@@ -45,13 +46,22 @@ public class MapsPlugin extends JavaPlugin {
         }
     }
 
+    public static Map getMap(String map) {
+        if (maps.containsKey(map)) return maps.get(map);
+        else return null;
+    }
+
+    public static HashMap<String, Map> getMaps() {
+        return maps;
+    }
+
     public static void loadMaps(String packageName) {
         Reflections reflections = new Reflections(packageName);
         Set<Class<?>> classes = reflections.getTypesAnnotatedWith(MapConfig.class);
         for (Class<?> clazz : classes) {
             try {
                 Object map = clazz.newInstance();
-                maps.add((Map) map);
+                maps.put(((Map) map).getName(), (Map) map);
             } catch (Exception e) {
                 logger.severe("Unable to load map: " + clazz.getName());
                 e.printStackTrace();
@@ -65,7 +75,7 @@ public class MapsPlugin extends JavaPlugin {
 
     public void onDisable() {
         Bukkit.getPluginManager().callEvent(new ClearSpawnsEvent()); // Clear spawns
-        for (Map map : maps) HandlerList.unregisterAll(map); // Unregister events
+        for (Map map : maps.values()) HandlerList.unregisterAll(map); // Unregister events
         HandlerList.unregisterAll(this); // Unregister any remaining events from this plugin
         maps.clear();
     }

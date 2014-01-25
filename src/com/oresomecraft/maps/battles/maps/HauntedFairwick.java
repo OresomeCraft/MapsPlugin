@@ -38,7 +38,7 @@ public class HauntedFairwick extends BattleMap implements IBattleMap, Listener {
     String name = "hauntedfairwick";
     String fullName = "Haunted Fairwick Village";
     String creators = "R3creat3, ninsai, zachoz and meganlovesmusic";
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.CP};
+    Gamemode[] modes = {Gamemode.CTF};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 72, 92, 117));
@@ -47,11 +47,6 @@ public class HauntedFairwick extends BattleMap implements IBattleMap, Listener {
         Location redFlag = new Location(w, 72, 74, -2);
         Location blueFlag = new Location(w, 72, 74, 136);
         setCTFFlags(name, redFlag, blueFlag);
-
-        Monument m1 = new Monument("Central", name, new Location(w, 72, 74, 67));
-        Monument m2 = new Monument("North", name, new Location(w, 138, 74, 67));
-        Monument m3 = new Monument("South", name, new Location(w, 6, 74, 67));
-        setCapturePoints(new Monument[]{m1, m2, m3});
     }
 
     public void readyFFASpawns() {

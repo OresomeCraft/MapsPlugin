@@ -64,9 +64,6 @@ public class HauntedPerro extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -1439, 129, -2093, -87, 0));
         redSpawns.add(new Location(w, -1410, 114, -2081, -178, 0));
         blueSpawns.add(new Location(w, -1416, 98, -2081, -159, 0));
-
-        setRedSpawns(name, redSpawns);
-        setBlueSpawns(name, blueSpawns);
     }
 
     public void readyFFASpawns() {

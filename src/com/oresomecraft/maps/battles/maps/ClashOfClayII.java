@@ -21,23 +21,19 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
     public ClashOfClayII() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
-        setCPTime(10);
         disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
     }
 
     String name = "clashofclayii";
     String fullName = "Clash Of Clay II";
     String creators = "_Moist and __R3";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.CP};
+    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
         Location blueSpawn = new Location(w, 20, 77, -25);
         Location redSpawn = new Location(w, 222, 77, -27);
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
-        Monument m1 = new Monument("Blue's Monument", name, new Location(Bukkit.getWorld(name), 96, 79, -29));
-        Monument m2 = new Monument("Red's Monument", name, new Location(Bukkit.getWorld(name), 144, 79, -30));
-        setCapturePoints(new Monument[]{m1, m2});
     }
 
     public void readyFFASpawns() {
