@@ -122,11 +122,15 @@ public class Geomancy extends BattleMap implements IBattleMap, Listener {
         Location loc = event.getBlock().getLocation();
         if (loc.getWorld().getName().equals(name)) {
 
+            if (event.getBlock().getType().getId() == 44 && BattlePlayer.getBattlePlayer(event.getPlayer()).getTeam() == Team.TDM_BLUE) {
+                event.setCancelled(true;);
+            }
             if (event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 0, 152, 3)) <= 10
                     && BattlePlayer.getBattlePlayer(event.getPlayer().getName()).getTeam() == Team.TDM_BLUE)
+                event.setCancelled(true);
 
-                //Middle breaking
-                if (contains(loc, 2, -2, 144, 156, 5, 1)) event.setCancelled(true);
+            //Middle breaking
+            if (contains(loc, 2, -2, 144, 156, 5, 1)) event.setCancelled(true);
 
             //Listeners
             int x = event.getBlock().getLocation().getBlockX();
@@ -196,6 +200,5 @@ public class Geomancy extends BattleMap implements IBattleMap, Listener {
         Bukkit.broadcastMessage(ChatColor.RED + "##################################");
         Bukkit.broadcastMessage(ChatColor.RED + "Red Team " + ChatColor.DARK_AQUA + "released all the sand and won the battle!");
         Bukkit.broadcastMessage(ChatColor.RED + "##################################");
-
     }
 }
