@@ -106,8 +106,8 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onBlockClick(PlayerInteractEvent event) {
-
         Player p = event.getPlayer();
+        if (BattlePlayer.getBattlePlayer(p).isSpectator()) return;
 
         if (p.getLocation().getWorld().getName().equals(name)) {
 
