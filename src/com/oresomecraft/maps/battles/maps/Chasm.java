@@ -24,13 +24,12 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
         lockTime("day");
         setAutoSpawnProtection(10);
-        setCPTime(5);
     }
 
     String name = "chasm";
     String fullName = "The Chasm";
     String creators = "__R3, danielschroeder, Spantezian and DynaDavidson";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.CP, Gamemode.KOTH};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
 
@@ -43,10 +42,6 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
         Location redFlag = new Location(w, 48, 88, -132);
         Location blueFlag = new Location(w, 54, 88, 4);
         setCTFFlags(name, redFlag, blueFlag);
-        Monument m1 = new Monument("Central Monument", name, new Location(Bukkit.getWorld(name), 51, 92, -64));
-        Monument m2 = new Monument("Alpha Monument", name, new Location(Bukkit.getWorld(name), 28, 92, -64));
-        Monument m3 = new Monument("Beta Monument", name, new Location(Bukkit.getWorld(name), 92, 92, -64));
-        setCapturePoints(new Monument[]{m1, m2, m3});
         setKoTHMonument(new Location(w, 51, 92, -64));
     }
 
