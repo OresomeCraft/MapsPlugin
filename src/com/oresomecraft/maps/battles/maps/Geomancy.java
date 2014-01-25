@@ -127,7 +127,7 @@ public class Geomancy extends BattleMap implements IBattleMap, Listener {
         if (loc.getWorld().getName().equals(name)) {
 
             if (event.getBlock().getType().getId() == 44 && BattlePlayer.getBattlePlayer(event.getPlayer()).getTeam() == Team.TDM_BLUE) {
-                event.setCancelled(true;);
+                event.setCancelled(true);
             }
             if (event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 0, 152, 3)) <= 10
                     && BattlePlayer.getBattlePlayer(event.getPlayer().getName()).getTeam() == Team.TDM_BLUE)
