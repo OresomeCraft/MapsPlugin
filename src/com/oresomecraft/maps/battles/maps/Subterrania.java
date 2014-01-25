@@ -19,17 +19,25 @@ public class Subterrania extends BattleMap implements IBattleMap, Listener {
     public Subterrania() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.STONE_SWORD, Material.RAILS});
         setFireSpread(false);
     }
 
     String name = "subterrania";
     String fullName = "Subterrania";
-    String creators = "__R3, _Moist and the spuds who didn't help at all; Rynocraft, niceman506 and BlueVortexed";
-    Gamemode[] modes = {Gamemode.INFECTION};
+    String creators = "__R3 and _Moist";
+    Gamemode[] modes = {Gamemode.INFECTION, Gamemode.FFA, Gamemode.TDM};
 
     public void readyTDMSpawns() {
-        //Do you know what else is a dud, chazzo's face.
+        redSpawns.add(new Location(w, 18, 28, 84));
+        redSpawns.add(new Location(w, 13, 25, 61));
+        redSpawns.add(new Location(w, -10, 25, 38));
+        redSpawns.add(new Location(w, -53, 23, 19));
+        blueSpawns.add(new Location(w, -110, 21, 43));
+        blueSpawns.add(new Location(w, -83, 21, 13));
+        blueSpawns.add(new Location(w, -128, 49, 32));
+        blueSpawns.add(new Location(w, -70, 49, 50));
+        blueSpawns.add(new Location(w, -77, 50, 0));
     }
 
     public void readyFFASpawns() {
