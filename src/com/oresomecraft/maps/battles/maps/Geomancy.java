@@ -71,10 +71,6 @@ public class Geomancy extends BattleMap implements IBattleMap, Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        if (p.getTeam() == Team.TDM_RED)
-            p.sendMessage(ChatColor.RED + "LEAK ALL THE SAND OUT OF BLUE'S CONTAINER IN THE MIDDLE TO WIN!");
-        if (p.getTeam() == Team.TDM_BLUE)
-            p.sendMessage(ChatColor.RED + "DON'T LET RED TEAM NEAR YOUR CONTAINER IN THE MIDDLE!");
         Inventory i = p.getInventory();
 
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1, (short) -16373);
