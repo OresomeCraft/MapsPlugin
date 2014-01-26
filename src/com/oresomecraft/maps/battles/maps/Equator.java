@@ -97,7 +97,7 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
     public int y2 = 0;
     public int z2 = -103;
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = false)
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
             if (event.getBlock().getType().equals(Material.WOOL)) {
