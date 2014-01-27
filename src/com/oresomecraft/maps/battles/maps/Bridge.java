@@ -16,6 +16,7 @@ public class Bridge extends BattleMap implements IBattleMap, Listener {
         setAllowBuild(false);
         setTDMTime(10);
         disableDrops(new Material[]{Material.LEATHER_HELMET});
+        setAutoSpawnProtection(15);
     }
 
     // Map details
@@ -47,6 +48,8 @@ public class Bridge extends BattleMap implements IBattleMap, Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 4);
         ItemStack GOLDEN_APPLE = new ItemStack(Material.GOLDEN_APPLE, 3);
         ItemStack EXP_BOTTLE = new ItemStack(Material.EXP_BOTTLE, 3);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROWS = new ItemStack(Material.ARROW, 16);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_LEGGINGS, LEATHER_BOOTS});
 
@@ -57,8 +60,10 @@ public class Bridge extends BattleMap implements IBattleMap, Listener {
 
         // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
         i.setItem(0, WOOD_SWORD);
-        i.setItem(1, GOLDEN_APPLE);
-        i.setItem(2, STEAK);
+        i.setItem(2, GOLDEN_APPLE);
+        i.setItem(1, BOW);
+        i.setItem(9, ARROWS);
+        i.setItem(3, STEAK);
         i.setItem(3, EXP_BOTTLE);
     }
 
