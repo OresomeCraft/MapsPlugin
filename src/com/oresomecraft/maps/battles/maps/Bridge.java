@@ -9,9 +9,9 @@ import com.oresomecraft.maps.battles.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
-public class Epic extends BattleMap implements IBattleMap, Listener {
+public class Bridge extends BattleMap implements IBattleMap, Listener {
 
-    public Epic() {
+    public Bridge() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         setTDMTime(10);
@@ -19,7 +19,7 @@ public class Epic extends BattleMap implements IBattleMap, Listener {
     }
 
     // Map details
-    String name = "ep1c";
+    String name = "bridge";
     String fullName = "Bridge";
     String creators = "fkBear and ep1cn00bt00b";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH};
