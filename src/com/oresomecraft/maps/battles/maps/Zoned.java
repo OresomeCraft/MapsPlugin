@@ -126,7 +126,6 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-
     @EventHandler
     public void onSpyWatchInteract(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
