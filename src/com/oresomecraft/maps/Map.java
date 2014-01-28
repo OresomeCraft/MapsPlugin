@@ -3,9 +3,12 @@ package com.oresomecraft.maps;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.BattlesAccess;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
 import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.maps.object.Cuboid;
+import com.oresomecraft.maps.object.GlobalController;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -382,6 +385,24 @@ public abstract class Map implements Listener {
                 }
             }
         }, 100L, 100L);
+    }
+
+    /**
+     * ***************************************************************
+     * Methods to interact with MapsPlugin                       *
+     * ***************************************************************
+     */
+
+    public void protectRegion(Cuboid c) {
+        GlobalController.newProtectedRegion(c);
+    }
+
+    public Cuboid newCuboid(int x1, int x2, int y1, int y2, int z1, int z2) {
+        return new Cuboid(new Location(w, x1, y1, z1), new Location(w, x2, y2, z2), null);
+    }
+
+    public Cuboid perTeamCuboid(Team[] teams, int x1, int x2, int y1, int y2, int z1, int z2) {
+        return new Cuboid(new Location(w, x1, y1, z1), new Location(w, x2, y2, z2), teams);
     }
 
     /**
