@@ -2,6 +2,7 @@ package com.oresomecraft.maps;
 
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.BattlesAccess;
+import com.oresomecraft.OresomeBattles.api.CuboidRegion;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
@@ -63,6 +64,7 @@ public abstract class Map implements Listener {
     private boolean fireSpread = true;
     protected int tdmTime = 15;
     public Location ctfRedFlag, ctfBlueFlag, kothFlag;
+    public CuboidRegion criminalTester;
 
     public World w; // World variable
 
@@ -149,6 +151,7 @@ public abstract class Map implements Listener {
         ctfBlueFlag = null;
         ctfRedFlag = null;
         kothFlag = null;
+        criminalTester = null;
     }
 
     /**
@@ -160,6 +163,9 @@ public abstract class Map implements Listener {
         allowBuild = allow;
     }
 
+    public void setCriminalTester(CuboidRegion region) {
+        this.criminalTester = region;
+    }
 
     /**
      * Sets auto spawn protection for players
