@@ -40,7 +40,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
 
     String name = "courtyard";
     String fullName = "Wolfston Courtyard";
-    String creators = "__R3, reggie449, _Arch_Rider, Boomyay and 123Oblivious ";
+    String creators = "__R3, reggie449, _Arch_Rider, Boomyay and 123Oblivious";
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
