@@ -15,6 +15,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.PotionSplashEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -278,5 +280,18 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         TANK,
         ARCHER,
         MEDIC;
+    }
+
+    @EventHandler
+    public void drop(PlayerDropItemEvent e) {
+        if (!e.getPlayer().getWorld().getName().equals(name)) return;
+        e.setCancelled(true);
+    }
+
+    @EventHandler
+    public void PotionsSplash(PotionSplashEvent e) {
+        if (e.getEntity().getShooter() instanceof Player && e.getAffectedEntities().contains(e.getEntity().getShooter())) {
+            e.getEntity().getShooter().removePotionEffect(e.getPotion().getEffects().iterator().next().getType());
+        }
     }
 }
