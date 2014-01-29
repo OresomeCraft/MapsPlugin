@@ -160,7 +160,6 @@ public class TelluricPathII extends BattleMap implements IBattleMap, Listener {
                     Player player = (Player) event.getEntity();
                     if (player.getInventory().contains(Material.ARROW)) {
                         event.setCancelled(true);
-                        player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
                         player.launchProjectile(EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
                     } else {
                         event.setCancelled(true);
