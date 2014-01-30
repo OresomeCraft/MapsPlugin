@@ -6,7 +6,9 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.event.Listener;
 
 @MapConfig
@@ -24,6 +26,8 @@ public class OresomeTown extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {
+        World world = Bukkit.getWorld(name);
+
         FFASpawns.add(new Location(world, 3, 70, -11));
         FFASpawns.add(new Location(world, -1, 70, -40));
         FFASpawns.add(new Location(world, 26, 70, -25));
