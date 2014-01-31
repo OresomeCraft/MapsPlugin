@@ -20,7 +20,7 @@ public class OresomeTown extends BattleMap implements IBattleMap, Listener {
     // Map details
     String name = "oresometowntiot";
     String fullName = "OresomeTown";
-    String creators = "meganlovesmusic, SuperDuckFace and _Husky_";
+    String creators = "ninsai, beadycottonwood, xuhavon, meganlovesmusic, SuperDuckFace and _Husky_";
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {
