@@ -19,14 +19,14 @@ public class MiniHartshire extends BattleMap implements IBattleMap, Listener {
 
     // Map details
     String name = "minihartshire";
-    String fullName = "Mini Hartshire TiOT";
+    String fullName = "Hartshire TiOT";
     String creators = "__R3, kalikakitty, xannallax33 and 123Oblivious";
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -61, 91, 50));
 
-        setCriminalTester(new CuboidRegion(new Location(w, -58, 91, 42), new Location(w, -57, 94, 39)));
+        setCriminalTester(new CuboidRegion(new Location(w, -59, 94, 38), new Location(w, -56, 90, 43)));
     }
 
     public void readyTDMSpawns() {
