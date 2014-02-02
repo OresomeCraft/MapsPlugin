@@ -1,16 +1,10 @@
 package com.oresomecraft.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.BattlesAccess;
-import com.oresomecraft.OresomeBattles.api.CuboidRegion;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.*;
 import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
 import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -25,6 +19,8 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -367,6 +363,7 @@ public abstract class Map implements Listener {
             if (autoSpawnProtection) {
                 event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, spawnProtectionDuration * 20, 1));
                 event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.HEAL, spawnProtectionDuration * 20, 1));
+                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, spawnProtectionDuration * 20, 1));
             }
             clearInv(event.getPlayer());
             config.applyInventory(event.getPlayer());
@@ -439,6 +436,63 @@ public abstract class Map implements Listener {
      */
     public boolean compareLocations(Location loc1, Location loc2) {
         return BattlesAccess.compareLocations(loc1, loc2);
+    }
+
+    /**
+     * Gives a BattlePlayer it's colored leather armor
+     *
+     * @param bp A BattlePlayer
+     */
+    public void setColouredArmorAccordingToTeam(BattlePlayer bp) {
+        PlayerInventory i = bp.getInventory();
+
+        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET);
+        LeatherArmorMeta hm = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
+        hm.setColor(parseTeamColor(bp.getTeamType()));
+        LEATHER_HELMET.setItemMeta(hm);
+
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE);
+        LeatherArmorMeta cm = (LeatherArmorMeta) LEATHER_CHESTPLATE.getItemMeta();
+        cm.setColor(parseTeamColor(bp.getTeamType()));
+        LEATHER_CHESTPLATE.setItemMeta(cm);
+
+        ItemStack LEATHER_LEGGINGS = new ItemStack(Material.LEATHER_LEGGINGS);
+        LeatherArmorMeta lm = (LeatherArmorMeta) LEATHER_LEGGINGS.getItemMeta();
+        lm.setColor(parseTeamColor(bp.getTeamType()));
+        LEATHER_LEGGINGS.setItemMeta(lm);
+
+        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS);
+        LeatherArmorMeta bm = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
+        bm.setColor(parseTeamColor(bp.getTeamType()));
+        LEATHER_BOOTS.setItemMeta(bm);
+
+        i.setHelmet(LEATHER_HELMET);
+        i.setChestplate(LEATHER_CHESTPLATE);
+        i.setLeggings(LEATHER_LEGGINGS);
+        i.setBoots(LEATHER_BOOTS);
+    }
+
+    /**
+     * Parses Team to Color
+     *
+     * @param t A team
+     */
+    public Color parseTeamColor(Team t) {
+        // if (t == Team.CP_BLUE) return Color.BLUE;
+        if (t == Team.KOTH_BLUE) return Color.BLUE;
+        if (t == Team.CTF_BLUE) return Color.BLUE;
+        if (t == Team.TDM_BLUE) return Color.BLUE;
+        if (t == Team.LTS_BLUE) return Color.BLUE;
+        // if (t == Team.CP_BLUE) return Color.RED;
+        if (t == Team.KOTH_RED) return Color.RED;
+        if (t == Team.CTF_RED) return Color.RED;
+        if (t == Team.TDM_RED) return Color.RED;
+        if (t == Team.LTS_RED) return Color.RED;
+        if (t == Team.FFA) return Color.OLIVE;
+        if (t == Team.HUMANS) return Color.OLIVE;
+        if (t == Team.LMS) return Color.BLUE;
+        if (t == Team.ZOMBIES) return Color.MAROON;
+        return Color.WHITE;
     }
 
     /**

@@ -50,23 +50,13 @@ public class Sunshine extends BattleMap implements IBattleMap, Listener {
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
 
         // Armor
-        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-        ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
-        ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        setColouredArmorAccordingToTeam(p);
 
         i.setItem(0, IRON_AXE);
         i.setItem(1, BOW);
         i.setItem(2, BREAD);
         i.setItem(3, HEALTH);
         i.setItem(27, ARROW);
-
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_BOOTS, LEATHER_PANTS, LEATHER_HELMET});
 
     }
 
