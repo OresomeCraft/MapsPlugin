@@ -24,12 +24,12 @@ public class OresomeAcademy extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, 1, 65, -5));
-        FFASpawns.add(new Location(w, 13, 63, -12));
-        FFASpawns.add(new Location(w, 19, 63, -11));
+        FFASpawns.add(new Location(w, 4, 63, -3, 90, 0));
+        FFASpawns.add(new Location(w, 13, 63, -12, -0, 0));
+        FFASpawns.add(new Location(w, 19, 63, -11, -0, 0));
         FFASpawns.add(new Location(w, 54, 63, 18));
-        FFASpawns.add(new Location(w, 85, 63, 56));
-        FFASpawns.add(new Location(w, 53, 63, 71));
+        FFASpawns.add(new Location(w, 85, 63, 56, 90, 0));
+        FFASpawns.add(new Location(w, 53, 63, 71, -180, 0));
         FFASpawns.add(new Location(w, 35, 63, 76));
         FFASpawns.add(new Location(w, 27, 63, 25));
         FFASpawns.add(new Location(w, 23, 64, 64));
@@ -38,13 +38,10 @@ public class OresomeAcademy extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 0, 63, 11));
         FFASpawns.add(new Location(w, 0, 63, 51));
         FFASpawns.add(new Location(w, -26, 63, 36));
-        FFASpawns.add(new Location(w, -26, 68, 24));
+        FFASpawns.add(new Location(w, -26, 68, 24, -0, 0));
         FFASpawns.add(new Location(w, -1, 64, 64));
         FFASpawns.add(new Location(w, -15, 64, 65));
         FFASpawns.add(new Location(w, -21, 64, 64));
-        FFASpawns.add(new Location(w, -36, 70, -37));
-        FFASpawns.add(new Location(w, -20, 70, -40));
-        FFASpawns.add(new Location(w, 15, 81, -39));
         FFASpawns.add(new Location(w, 40, 76, 20));
 
         setCriminalTester(new CuboidRegion(new Location(w, 21, 63, 68), new Location(w, 25, 67, 71)));
