@@ -1,0 +1,61 @@
+package com.oresomecraft.maps.tiot;
+
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.CuboidRegion;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.maps.battles.IBattleMap;
+import org.bukkit.Location;
+import org.bukkit.event.Listener;
+
+@MapConfig
+public class OresomeAcademy extends BattleMap implements IBattleMap, Listener {
+
+    public OresomeAcademy() {
+        super.initiate(this, name, fullName, creators, modes);
+        setAllowBuild(false);
+    }
+
+    // Map details
+    String name = "academy";
+    String fullName = "OresomeTown Academy";
+    String creators = "meganlovesmusic and SuperDuckFace";
+    Gamemode[] modes = {Gamemode.TIOT};
+
+    public void readyFFASpawns() {
+        FFASpawns.add(new Location(w, 1, 65, -5));
+        FFASpawns.add(new Location(w, 13, 63, -12));
+        FFASpawns.add(new Location(w, 19, 63, -11));
+        FFASpawns.add(new Location(w, 54, 63, 18));
+        FFASpawns.add(new Location(w, 85, 63, 56));
+        FFASpawns.add(new Location(w, 53, 63, 71));
+        FFASpawns.add(new Location(w, 35, 63, 76));
+        FFASpawns.add(new Location(w, 27, 63, 25));
+        FFASpawns.add(new Location(w, 23, 64, 64));
+        FFASpawns.add(new Location(w, 81, 64, 32));
+        FFASpawns.add(new Location(w, 82, 64, 4));
+        FFASpawns.add(new Location(w, 0, 63, 11));
+        FFASpawns.add(new Location(w, 0, 63, 51));
+        FFASpawns.add(new Location(w, -26, 63, 36));
+        FFASpawns.add(new Location(w, -26, 68, 24));
+        FFASpawns.add(new Location(w, -1, 64, 64));
+        FFASpawns.add(new Location(w, -15, 64, 65));
+        FFASpawns.add(new Location(w, -21, 64, 64));
+        FFASpawns.add(new Location(w, -36, 70, -37));
+        FFASpawns.add(new Location(w, -20, 70, -40));
+        FFASpawns.add(new Location(w, 15, 81, -39));
+        FFASpawns.add(new Location(w, 40, 76, 20));
+
+        setCriminalTester(new CuboidRegion(new Location(w, 21, 63, 68), new Location(w, 25, 67, 71)));
+    }
+
+    public void readyTDMSpawns() {
+        // No TDM spawns
+    }
+
+    public void applyInventory(final BattlePlayer p) {
+        // No predefined inventory
+    }
+
+}
