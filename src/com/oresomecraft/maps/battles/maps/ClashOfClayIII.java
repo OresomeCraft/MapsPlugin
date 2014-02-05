@@ -13,11 +13,11 @@ import com.oresomecraft.OresomeBattles.api.*;
 @MapConfig
 public class ClashOfClayIII extends BattleMap implements IBattleMap, Listener {
 
-    public ClashOfClayIII() {
+    /*public ClashOfClayIII() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
         disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS});
-    }
+    }*/
 
     String name = "clashofclay3";
     String fullName = "Clash Of Clay III";
