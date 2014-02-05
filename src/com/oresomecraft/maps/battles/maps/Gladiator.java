@@ -149,6 +149,7 @@ public class Gladiator extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void grapple(org.bukkit.event.entity.ProjectileHitEvent event) {
+        if(!event.getEntity().getWorld().getName().equals(name)) return;
         org.bukkit.entity.Entity proj = event.getEntity();
         Location hit = proj.getLocation();
         if (hit.getWorld().getName().equals(name)) {

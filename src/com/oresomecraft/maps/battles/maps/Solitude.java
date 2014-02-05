@@ -20,8 +20,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.inventory.meta.ItemMeta;;
 import org.bukkit.util.Vector;
 
 @MapConfig
@@ -248,12 +247,11 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
     public void grapple(ProjectileHitEvent event) {
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
-
-        if (contains(hit, x1, x2, y1, y2, z1, z2)) {
+        if(!event.getEntity().getWorld().getName().equals(name)) return;
 
             if (proj instanceof Snowball) {
                 Snowball fish = (Snowball) proj;
-                ProjectileSource shooter = fish.getShooter();
+                Entity shooter = fish.getShooter();
 
                 if (shooter instanceof Player) {
                     Player p = (Player) shooter;
@@ -298,11 +296,10 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
                             co[2] = 0;
                         }
 
-                        p.setVelocity(new Vector(co[0], co[1], co[2]));
+                        p.setVelocity(new Vector(co[0], co[1] / 2, co[2]));
 
                     }
                 }
-            }
         }
     }
 

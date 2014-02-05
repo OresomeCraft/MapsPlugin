@@ -4,7 +4,6 @@ import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
-import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
@@ -13,7 +12,6 @@ import org.bukkit.event.player.*;
 import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
 import com.oresomecraft.OresomeBattles.api.*;
@@ -126,7 +124,7 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
 
             if (proj instanceof Snowball) {
                 Snowball fish = (Snowball) proj;
-                ProjectileSource shooter = fish.getShooter();
+                Entity shooter = fish.getShooter();
 
                 if (shooter instanceof Player) {
                     Player p = (Player) shooter;
