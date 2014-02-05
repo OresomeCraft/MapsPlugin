@@ -163,7 +163,7 @@ public class HazyPass extends BattleMap implements IBattleMap, Listener {
                     fMeta.setLore(fLore);
                     FIRE.setItemMeta(fMeta);
                     event.getPlayer().getInventory().removeItem(FIRE);
-                    event.getPlayer().setVelocity(new Vector(0, 1.5, 0));
+                    event.getPlayer().setVelocity(new Vector(0, 1, 0));
                 }
             }
         }

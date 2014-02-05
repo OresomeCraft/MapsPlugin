@@ -22,7 +22,7 @@ public class Geomancy extends BattleMap implements IBattleMap, Listener {
 
     public Geomancy() {
         super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(60);
+        setTDMTime(20);
         disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
         setBuildLimit(173);
     }
