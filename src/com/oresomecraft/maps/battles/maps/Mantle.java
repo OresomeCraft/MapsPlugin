@@ -1,13 +1,17 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-import org.bukkit.*;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.*;
-
-import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 @MapConfig
 public class Mantle extends BattleMap implements IBattleMap, Listener {
@@ -16,6 +20,7 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         setAutoSpawnProtection(3);
+        disableDrops(new Material[]{Material.WOOL});
     }
 
     String name = "mantle";
@@ -74,5 +79,14 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
     public int x2 = 15;
     public int y2 = 108;
     public int z2 = 138;
+
+    @EventHandler
+    public void onWoolDrop(BlockBreakEvent event) {
+        if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
+            if (event.getBlock().getType().equals(Material.WOOL)) {
+                event.getBlock().getDrops().clear();
+            }
+        }
+    }
 
 }
