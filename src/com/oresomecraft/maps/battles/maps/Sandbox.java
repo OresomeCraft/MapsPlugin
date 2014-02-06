@@ -19,6 +19,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
 @MapConfig
@@ -115,7 +116,7 @@ public class Sandbox extends BattleMap implements IBattleMap, Listener {
 
             if (proj instanceof Snowball) {
                 Snowball fish = (Snowball) proj;
-                Entity shooter = fish.getShooter();
+                ProjectileSource shooter = fish.getShooter();
 
                 if (shooter instanceof Player) {
                     Player p = (Player) shooter;

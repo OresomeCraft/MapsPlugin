@@ -10,6 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.projectiles.ProjectileSource;
 
 @MapConfig
 public class SkyFights extends BattleMap implements IBattleMap, Listener {
@@ -117,7 +118,7 @@ public class SkyFights extends BattleMap implements IBattleMap, Listener {
         Location hit = proj.getLocation();
         if (hit.getWorld().getName().equals(name) && proj instanceof org.bukkit.entity.Snowball) {
             org.bukkit.entity.Snowball fish = (org.bukkit.entity.Snowball) proj;
-            org.bukkit.entity.Entity shooter = fish.getShooter();
+            ProjectileSource shooter = fish.getShooter();
             if (shooter instanceof org.bukkit.entity.Player) {
                 org.bukkit.entity.Player p = (org.bukkit.entity.Player) shooter;
                 Location loc = p.getLocation();

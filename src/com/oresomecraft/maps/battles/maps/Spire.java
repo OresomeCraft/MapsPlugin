@@ -15,6 +15,7 @@ import org.bukkit.inventory.*;
 import org.bukkit.potion.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.projectiles.ProjectileSource;
 
 @MapConfig
 public class Spire extends BattleMap implements IBattleMap, Listener {
@@ -205,14 +206,14 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
 
             if (projectile instanceof Arrow) {
                 Arrow arrow = (Arrow) projectile;
-                Entity shooter = arrow.getShooter();
-                Location l = shooter.getLocation();
-                Block bl = l.getBlock();
-                Block b = bl.getRelative(BlockFace.DOWN, 2);
-                Material mat = b.getType();
+                ProjectileSource shooter = arrow.getShooter();
 
                 if (shooter instanceof Player) {
                     Player p = (Player) shooter;
+                    Location l = p.getLocation();
+                    Block bl = l.getBlock();
+                    Block b = bl.getRelative(BlockFace.DOWN, 2);
+                    Material mat = b.getType();
                     ItemStack is = p.getItemInHand();
                     Material i = is.getType();
 

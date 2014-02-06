@@ -13,6 +13,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.projectiles.ProjectileSource;
 
 import java.util.*;
 
@@ -105,14 +106,14 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
             if (projectile instanceof org.bukkit.entity.Arrow) {
                 org.bukkit.entity.Arrow arrow = (org.bukkit.entity.Arrow) projectile;
-                org.bukkit.entity.Entity shooter = arrow.getShooter();
-                Location l = shooter.getLocation();
-                Block bl = l.getBlock();
-                Block b = bl.getRelative(org.bukkit.block.BlockFace.DOWN, 2);
-                Material mat = b.getType();
+                ProjectileSource shooter = arrow.getShooter();
 
                 if (shooter instanceof Player) {
                     Player p = (Player) shooter;
+                    Location l = p.getLocation();
+                    Block bl = l.getBlock();
+                    Block b = bl.getRelative(org.bukkit.block.BlockFace.DOWN, 2);
+                    Material mat = b.getType();
                     ItemStack is = p.getItemInHand();
                     Material i = is.getType();
 

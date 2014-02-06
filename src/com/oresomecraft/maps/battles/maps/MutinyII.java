@@ -31,7 +31,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
 
     String name = "mutinyii";
     String fullName = "Mutiny II";
-    String creators = "zachoz, Buster1824, MiCkEyMiCE and AnomalousRei";
+    String creators = "__R3, Buster1824 and MiCkEyMiCE";
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
@@ -101,7 +101,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
             Player p = (Player) event.getEntity();
             if (p.getItemInHand().getType().equals(Material.EMERALD)) {
                 Random random = new Random();
-                if (random.nextBoolean()) {
+                if (random.nextBoolean() && random.nextBoolean()) {
                     event.setDamage(event.getDamage() - 5);
                 }
             }

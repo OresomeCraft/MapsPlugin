@@ -19,7 +19,6 @@ public class Arziri extends BattleMap implements IBattleMap, Listener {
     public Arziri() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        Bukkit.getWorld(name).setTime(12000);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
     }
 

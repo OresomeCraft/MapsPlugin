@@ -291,7 +291,8 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void PotionsSplash(PotionSplashEvent e) {
         if (e.getEntity().getShooter() instanceof Player && e.getAffectedEntities().contains(e.getEntity().getShooter())) {
-            e.getEntity().getShooter().removePotionEffect(e.getPotion().getEffects().iterator().next().getType());
+            if (e.getAffectedEntities().contains(e.getEntity().getShooter()))
+                e.getAffectedEntities().remove(e.getEntity().getShooter());
         }
     }
 }

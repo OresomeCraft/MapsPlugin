@@ -137,7 +137,7 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
                 Projectile proj = event.getEntity();
                 Location projloc = proj.getLocation();
 
-                if (proj.getShooter().getType().equals(EntityType.PLAYER)) {
+                if (proj.getShooter() instanceof Player) {
                     Player shooter = (Player) proj.getShooter();
 
                     int x = projloc.getBlockX();

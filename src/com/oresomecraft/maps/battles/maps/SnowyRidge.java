@@ -23,6 +23,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
 @MapConfig
@@ -136,7 +137,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
 
             if (proj instanceof Snowball) {
                 Snowball fish = (Snowball) proj;
-                Entity shooter = fish.getShooter();
+                ProjectileSource shooter = fish.getShooter();
 
                 if (shooter instanceof Player) {
                     Player p = (Player) shooter;
