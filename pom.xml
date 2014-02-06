@@ -107,9 +107,9 @@
 
     <scm>
         <tag>HEAD</tag>
-        <connection>scm:git:git://github.com/OresomeCraft/OresomeBattlesMaps.git</connection>
-        <url>https://github.com/OresomeCraft/OresomeBattles</url>
-        <developerConnection>scm:git:ssh://git@github.com:OresomeCraft/OresomeBattlesMaps.git</developerConnection>
+        <connection>scm:git:git://github.com/OresomeCraft/MapsPlugin.git</connection>
+        <url>https://github.com/OresomeCraft/MapsPlugin</url>
+        <developerConnection>scm:git:ssh://git@github.com:OresomeCraft/MapsPlugin.git</developerConnection>
     </scm>
 
 
@@ -120,7 +120,7 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/OresomeCraft/OresomeBattlesMaps/issues</url>
+        <url>https://github.com/OresomeCraft/MapsPlugin/issues</url>
     </issueManagement>
 
     <inceptionYear>2012-09-13</inceptionYear>
