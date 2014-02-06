@@ -107,9 +107,7 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         if (loc.getWorld().getName().equals(name)) {
 
             //Dud method that doesn't work, don't know why it's here.
-            if (event.getBlock().getType() == Material.LAVA) {
-                event.setCancelled(true);
-            }
+            if (event.getBlockPlaced().getType() == Material.LAVA) event.setCancelled(true);
 
             //Spawn placing
             if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);

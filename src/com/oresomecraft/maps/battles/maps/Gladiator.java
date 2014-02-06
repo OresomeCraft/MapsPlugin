@@ -10,6 +10,7 @@ import org.bukkit.inventory.*;
 import org.bukkit.entity.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.projectiles.ProjectileSource;
 
 @MapConfig
 public class Gladiator extends BattleMap implements IBattleMap, Listener {
@@ -156,7 +157,7 @@ public class Gladiator extends BattleMap implements IBattleMap, Listener {
             if (proj instanceof org.bukkit.entity.Snowball) {
 
                 org.bukkit.entity.Snowball fish = (org.bukkit.entity.Snowball) proj;
-                org.bukkit.entity.Entity shooter = fish.getShooter();
+                ProjectileSource shooter = fish.getShooter();
 
                 if (shooter instanceof Player) {
 
