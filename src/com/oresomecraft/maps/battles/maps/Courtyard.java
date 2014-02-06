@@ -76,7 +76,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                     return;
                 }
                 if (sign.getLine(1).contains("Spy")) {
-                    if (player.hasPermission("oresomebattles.rank.donator") || player.hasPermission("oresomebattles.rank.donator+")) {
+                    if (player.hasPermission("oresomebattles.rank.donator") || player.hasPermission("oresomebattles.rank.donator.plus")) {
                         handKit(player, Group.SPY);
                         return;
                     } else {
