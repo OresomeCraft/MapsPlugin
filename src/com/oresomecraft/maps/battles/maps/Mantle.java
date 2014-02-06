@@ -80,9 +80,10 @@ public class Mantle extends BattleMap implements IBattleMap, Listener {
     public int y2 = 108;
     public int z2 = 138;
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = false)
     public void onWoolDrop(BlockBreakEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
+            event.setCancelled(true);
             if (event.getBlock().getType().equals(Material.WOOL)) {
                 event.getBlock().getDrops().clear();
             }

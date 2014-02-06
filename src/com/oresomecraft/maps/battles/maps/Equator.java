@@ -100,6 +100,7 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
     @EventHandler(ignoreCancelled = false)
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
+            event.setCancelled(true);
             if (event.getBlock().getType().equals(Material.WOOL)) {
                 event.getBlock().getDrops().clear();
             }
