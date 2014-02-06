@@ -19,7 +19,7 @@ Users with push and pull access to this repo are:
 
 * [Zachoz](https://github.com/Zachoz)
 * [pegabeavercorn](https://github.com/pegabeavercorn)
-* [R3creat3](https://github.com/R3creat3)
+* [__R3](https://github.com/AnomalousRei)
 * [Huskehhh](https://github.com/Huskehhh)
 * [psgs](https://github.com/psgs)
 
