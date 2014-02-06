@@ -108,7 +108,7 @@
     <scm>
         <tag>HEAD</tag>
         <connection>scm:git:git://github.com/OresomeCraft/MapsPlugin.git</connection>
-        <url>https://github.com/OresomeCraft/MapsPlugin</url>
+        <url>https://github.com/OresomeCraft/OresomeBattles</url>
         <developerConnection>scm:git:ssh://git@github.com:OresomeCraft/MapsPlugin.git</developerConnection>
     </scm>
 
