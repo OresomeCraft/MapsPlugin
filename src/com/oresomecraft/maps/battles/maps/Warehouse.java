@@ -16,6 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -127,4 +128,13 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
         }
     }
 
+    @EventHandler
+    public void onPlayerSpectate(PlayerDeathEvent event) {
+        if (event.getEntity().getLocation().getWorld().getName().equals(name)){
+            if (BattlePlayer.getBattlePlayer(event.getEntity()).isSpectator()) {
+                event.getEntity().addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000 * 20, 2));
+            }
+        }
+
+    }
 }

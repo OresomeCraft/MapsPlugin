@@ -1,8 +1,8 @@
 package com.oresomecraft.maps.battles.maps;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
@@ -15,12 +15,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.world.WorldLoadEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
-import com.oresomecraft.OresomeBattles.api.*;
-import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 @MapConfig
 public class Distortion extends BattleMap implements IBattleMap, Listener {
@@ -114,7 +115,7 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
         distort = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 
             public void run() {
-                if (manipulation == false) return;
+                if (!manipulation) return;
                 if (getArena().equals(name)) {
                     World world = Bukkit.getWorld("gravity");
                     if (!(world.getEntities() == null)) {
@@ -138,12 +139,12 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void manipulator(BlockBreakEvent event) {
         if (event.getBlock().getWorld().getName().equalsIgnoreCase("gravity")) {
-            if (event.getBlock().getType() == Material.OBSIDIAN && manipulation == true) {
+            if (event.getBlock().getType() == Material.OBSIDIAN && manipulation) {
                 manipulation = false;
                 Bukkit.broadcastMessage(ChatColor.AQUA + "The Gravity Manipulator was turned off! Gravity returned to normal!");
                 return;
             }
-            if (event.getBlock().getType() == Material.OBSIDIAN && manipulation == false) {
+            if (event.getBlock().getType() == Material.OBSIDIAN && !manipulation) {
                 manipulation = true;
                 Bukkit.broadcastMessage(ChatColor.AQUA + "The Gravity Manipulator was turned on! Gravity intensified!");
             }
@@ -154,14 +155,14 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
     public void manipulatorEffect(PlayerMoveEvent event) {
         if (event.getPlayer().getWorld().getName().equalsIgnoreCase("gravity")) {
             Player p = event.getPlayer();
-            if (manipulation == true) {
+            if (!BattlePlayer.getBattlePlayer(p).isSpectator() && manipulation) {
                 if (p.getItemInHand().getType() != Material.DIAMOND) {
                     if (event.getFrom().getY() > event.getTo().getY()) {
                         p.setVelocity(new Vector(0, p.getVelocity().getY() - 0.3, 0));
                     }
                 }
             }
-            if (manipulation == false) {
+            if (!BattlePlayer.getBattlePlayer(p).isSpectator() && !manipulation) {
                 if (p.getItemInHand().getType() == Material.DIAMOND) {
                     if (event.getFrom().getY() > event.getTo().getY()) {
                         p.setVelocity(new Vector(0, p.getVelocity().getY() - 0.3, 0));
