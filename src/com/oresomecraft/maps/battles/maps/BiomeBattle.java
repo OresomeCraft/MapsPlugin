@@ -5,9 +5,16 @@ import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.util.Vector;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @MapConfig
 public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
@@ -21,7 +28,7 @@ public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
     // Map details
     String name = "biomebattle";
     String fullName = "BiomeBattle";
-    String creators = "SuperDuckFace, Evil_Emo and Yuzko";
+    String creators = "SuperDuckFace and Evil_Emo";
     Gamemode[] modes = {Gamemode.FFA, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
@@ -57,6 +64,15 @@ public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
         ItemStack ARROW = new ItemStack(Material.ARROW, 64);
+        ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
+
+        ItemMeta fMeta = BLAZE_ROD.getItemMeta();
+        fMeta.setDisplayName(ChatColor.BLUE + "Levitation Rod");
+
+        List<String> fLore = new ArrayList<String>();
+        fLore.add(ChatColor.BLUE + "Interact with this to hover into the air!");
+        fMeta.setLore(fLore);
+        BLAZE_ROD.setItemMeta(fMeta);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_CAP, LEATHER_BOOTS});
 
@@ -69,6 +85,7 @@ public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
         i.setItem(1, BOW);
         i.setItem(3, HEALTH_POTION);
         i.setItem(2, STEAK);
+        i.setItem(4, BLAZE_ROD);
         i.setItem(8, ARROW);
 
     }
@@ -84,4 +101,23 @@ public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
     public int y2 = -38;
     public int z2 = 109;
 
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        if (event.getPlayer().getWorld().getName().equals(name)) {
+            if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                if (event.getPlayer().getItemInHand().getType() == Material.BLAZE_ROD) {
+                    ItemStack FIRE = new ItemStack(Material.BLAZE_ROD, 1);
+                    ItemMeta fMeta = FIRE.getItemMeta();
+                    fMeta.setDisplayName(ChatColor.BLUE + "Levitation Rod");
+
+                    List<String> fLore = new ArrayList<String>();
+                    fLore.add(ChatColor.BLUE + "Interact with this to hover into the air!");
+                    fMeta.setLore(fLore);
+                    FIRE.setItemMeta(fMeta);
+                    event.getPlayer().getInventory().removeItem(FIRE);
+                    event.getPlayer().setVelocity(new Vector(0, 1, 0));
+                }
+            }
+        }
+    }
 }
