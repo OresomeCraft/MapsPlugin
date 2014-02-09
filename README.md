@@ -1,4 +1,4 @@
-MapsPlugin [![Build Status](https://travis-ci.org/OresomeCraft/MapsPlugin.png?branch=master)](https://travis-ci.org/OresomeCraft/MapsPlugin)
+MapsPlugin [![Build Status](https://travis-ci.org/OresomeCraft/MapsPlugin.png?branch=master)](https://travis-ci.org/OresomeCraft/MapsPlugin)    [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/OresomeCraft/mapsplugin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 ===================
 
 #### Map configuration plugin for OresomeBattles.
@@ -32,7 +32,3 @@ to compile use the following command:
 ```mvn clean install```
 
 **Note:** Plugin requires OresomeBattles to function and hence will not function on your own servers.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/OresomeCraft/mapsplugin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
