@@ -5,6 +5,6 @@ depend: [OresomeBattles]
 commands:
    enablemaps:
       description: Loads maps of a specific type
-      usage: /<command> <battle/arcade>
+      usage: /<command> <battle/arcade/tiot>
       permission: oresomebattles.admin
       permission-message: You don't have <permission>

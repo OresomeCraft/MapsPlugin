@@ -1,16 +1,15 @@
 package com.oresomecraft.maps;
 
+import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.*;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.reflections.Reflections;
-import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -28,6 +27,7 @@ public class MapsPlugin extends JavaPlugin {
 
     protected boolean battleMapsLoaded = false;
     protected boolean arcadeMapsLoaded = false;
+    protected boolean tiotMapsLoaded = false;
 
     public static final String BATTLE_MAPS_PACKAGE = "com.oresomecraft.maps.battles.maps";
     public static final String ARCADE_MAPS_PACKAGE = "com.oresomecraft.maps.arcade.maps";
@@ -41,10 +41,12 @@ public class MapsPlugin extends JavaPlugin {
         if (oresomebattlesConfig.getBoolean("arcade_mode")) { // Is Arcade server?
             loadMaps(ARCADE_MAPS_PACKAGE);
             arcadeMapsLoaded = true;
-        } else {
+        } else if (oresomebattlesConfig.getBoolean("battles_mode")) {
             loadMaps(BATTLE_MAPS_PACKAGE);
+            battleMapsLoaded = true;
+        } else {
             loadMaps(TIOT_MAPS_PACKAGE);
-            battleMapsLoaded = false;
+            tiotMapsLoaded = true;
         }
     }
 
@@ -89,8 +91,8 @@ public class MapsPlugin extends JavaPlugin {
     public boolean onCommand(final CommandSender sender, org.bukkit.command.Command cmd, String label, final String[] args) {
         if (cmd.getName().equalsIgnoreCase("enablemaps")) {
 
-            if (args.length < 1 && !args[0].equalsIgnoreCase("battles") && !args[0].equalsIgnoreCase("arcade")) {
-                sender.sendMessage(ChatColor.RED + "Invalid map type! Options: 'battles','arcade'");
+            if (args.length < 1 && !args[0].equalsIgnoreCase("battles") && !args[0].equalsIgnoreCase("arcade") && !args[0].equalsIgnoreCase("tiot")) {
+                sender.sendMessage(ChatColor.RED + "Invalid map type! Options: 'battles','arcade','tiot'");
                 return false;
             }
 
@@ -113,6 +115,16 @@ public class MapsPlugin extends JavaPlugin {
                     arcadeMapsLoaded = true;
                 } else {
                     sender.sendMessage(ChatColor.RED + "Arcade maps already loaded!");
+                }
+            }
+
+            if (type.equalsIgnoreCase("tiot")) {
+                if (!tiotMapsLoaded) {
+                    loadMaps(TIOT_MAPS_PACKAGE);
+                    sender.sendMessage(ChatColor.DARK_AQUA + "Loaded TiOT maps!");
+                    tiotMapsLoaded = true;
+                } else {
+                    sender.sendMessage(ChatColor.RED + "TiOT maps already loaded!");
                 }
             }
         }
