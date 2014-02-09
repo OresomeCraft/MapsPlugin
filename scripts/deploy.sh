@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script used to deploy latest maps code to OresomeCraft Battles production server
+# Script used to deploy latest maps code to OresomeCraft Battles production servers
 echo "Starting MapsPlugin update!"
 cd "`dirname "$0"`"
 
@@ -13,9 +13,10 @@ cd MapsPlugin-master/
 echo "Compiling..."
 mvn clean install
 
-echo "Replacing jar files..."
-cp target/MapsPlugin.jar ~/servers/battles/plugins/MapsPlugin.jar
-cp target/MapsPlugin.jar ~/servers/arcade/plugins/MapsPlugin.jar
+echo "Adding files to update directory..."
+cp target/MapsPlugin.jar ~/servers/battles/plugins/Updater/MapsPlugin.jar
+cp target/MapsPlugin.jar ~/servers/arcade/plugins/Updater/MapsPlugin.jar
+cp target/MapsPlugin.jar ~/servers/tiot/plugins/Updater/MapsPlugin.jar
 cd ..
 
 echo "Cleaning up files..."
