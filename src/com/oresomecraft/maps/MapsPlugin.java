@@ -3,7 +3,7 @@ package com.oresomecraft.maps;
 import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
+import org.bukkit.command.*;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
