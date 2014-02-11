@@ -297,7 +297,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
                             co[2] = 0;
                         }
 
-                        p.setVelocity(new Vector(co[0], co[1] / 2, co[2]));
+                        p.setVelocity(new Vector(co[0], co[1], co[2]));
 
                     }
                 }
