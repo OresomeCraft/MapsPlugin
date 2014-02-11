@@ -45,8 +45,8 @@ public class Bridge extends BattleMap implements IBattleMap, Listener {
         ItemStack LEATHER_LEGGINGS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
         ItemStack WOOD_SWORD = new ItemStack(Material.WOOD_SWORD, 1);
-        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 4);
-        ItemStack GOLDEN_APPLE = new ItemStack(Material.GOLDEN_APPLE, 3);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
+        ItemStack GOLDEN_APPLE = new ItemStack(Material.GOLDEN_APPLE, 1);
         ItemStack EXP_BOTTLE = new ItemStack(Material.EXP_BOTTLE, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 16);
@@ -64,7 +64,7 @@ public class Bridge extends BattleMap implements IBattleMap, Listener {
         i.setItem(1, BOW);
         i.setItem(9, ARROWS);
         i.setItem(3, STEAK);
-        i.setItem(3, EXP_BOTTLE);
+        i.setItem(4, EXP_BOTTLE);
     }
 
     // Region. (Top corner block and bottom corner block.
