@@ -235,7 +235,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
 
             if (mat == Material.FISHING_ROD) {
 
-                if (state == PlayerFishEvent.State.IN_GROUND || state == PlayerFishEvent.State.FISHING) {
+                if (state == PlayerFishEvent.State.IN_GROUND) {
                     p.launchProjectile(Snowball.class);
 
                 }
@@ -297,7 +297,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
                             co[2] = 0;
                         }
 
-                        p.setVelocity(new Vector(co[0], co[1], co[2]));
+                        p.setVelocity(new Vector(co[0], co[1] / 1.25, co[2]));
 
                     }
                 }
