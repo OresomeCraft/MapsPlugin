@@ -48,13 +48,13 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -9, 51, 111, -83, 0));
         FFASpawns.add(new Location(w, 0, -112, -103 ));
         FFASpawns.add(new Location(w, -1, -123, 106, -111, -0));
-        FFASpawns.add(new Location(w, -62, 106, -92, 0));
+        FFASpawns.add(new Location(w, 0, -62, 106, -92, 0));
         FFASpawns.add(new Location(w, 0, -105, 107, -84, 0));
-        FFASpawns.add(new Location(w, 0, -120, 108, -52));
+        FFASpawns.add(new Location(w, 0, -120, 108, -52, 0));
         FFASpawns.add(new Location(w, -125, 108, 1));
         FFASpawns.add(new Location(w, -122, 107, 67));
         FFASpawns.add(new Location(w, -90, 105, 94));
-        FFASpawns.add(new Location(w, -47, 77, 41)):
+        FFASpawns.add(new Location(w, -47, 77, 41));
         FFASpawns.add(new Location(w, -25, 80, 5));
         FFASpawns.add(new Location(w, -27, 76, -54));
     }
