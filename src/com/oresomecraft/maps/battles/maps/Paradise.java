@@ -112,7 +112,7 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
                         if (entity instanceof Player) {
                             Player player = (Player) entity;
                             player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 5 * 20, 1));
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.POSION, 4 * 20, 1));
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 4 * 20, 1));
                         }
                     }
 
