@@ -51,7 +51,6 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         redSpawns.add(new Location(w, 231, 53, 798));
         redSpawns.add(new Location(w, 231, 59, 748));
         redSpawns.add(new Location(w, 269, 57, 893));
-        redSpawns.add(new Location(w, 351, 13, 889));
         redSpawns.add(new Location(w, 406, 46, 966));
         redSpawns.add(new Location(w, 267, 92, 987));
         redSpawns.add(new Location(w, 296, 60, 951));
@@ -68,7 +67,6 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, 231, 53, 798));
         blueSpawns.add(new Location(w, 231, 59, 748));
         blueSpawns.add(new Location(w, 269, 57, 893));
-        blueSpawns.add(new Location(w, 351, 13, 889));
         blueSpawns.add(new Location(w, 406, 46, 966));
         blueSpawns.add(new Location(w, 267, 92, 987));
         blueSpawns.add(new Location(w, 296, 60, 951));
@@ -87,7 +85,6 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 231, 53, 798));
         FFASpawns.add(new Location(w, 231, 59, 748));
         FFASpawns.add(new Location(w, 269, 57, 893));
-        FFASpawns.add(new Location(w, 351, 13, 889));
         FFASpawns.add(new Location(w, 406, 46, 966));
         FFASpawns.add(new Location(w, 267, 92, 987));
         FFASpawns.add(new Location(w, 296, 60, 951));
