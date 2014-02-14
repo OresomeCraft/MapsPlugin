@@ -33,7 +33,7 @@ public class OresomeTownOffices extends BattleMap implements IBattleMap, Listene
         FFASpawns.add(new Location(w, 4, 58, 40, 152, 0));
         FFASpawns.add(new Location(w, -3, 58, -50, -23, 0));
 
-        setCriminalTester(new CuboidRegion(new Location(w, 2, 65, 2), new Location(w, -1, 68, -1)));
+        setCriminalTester(new CuboidRegion(new Location(w, 2, 65, 2), new Location(w, -2, 70, -2)));
     }
 
     public void readyTDMSpawns() {
