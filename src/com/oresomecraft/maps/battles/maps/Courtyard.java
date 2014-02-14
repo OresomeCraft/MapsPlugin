@@ -11,6 +11,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,6 +26,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @MapConfig
@@ -34,10 +36,11 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         setTDMTime(20);
-        disableDrops(new Material[]{Material.FLINT, Material.BOW, Material.STONE_SWORD, Material.BLAZE_ROD, Material.WATCH, Material.COOKED_BEEF,
+        disableDrops(new Material[]{Material.FLINT, Material.BOW, Material.STONE_SWORD, Material.BLAZE_ROD, Material.WATCH,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_HELMET, Material.DIAMOND_HELMET,
                 Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS, Material.GOLD_HELMET, Material.GOLD_CHESTPLATE,
-                Material.GOLD_LEGGINGS, Material.GOLD_BOOTS, Material.STONE_SWORD, Material.WOOD_SWORD, Material.DIAMOND_SWORD, Material.GOLDEN_APPLE});
+                Material.GOLD_LEGGINGS, Material.GOLD_BOOTS, Material.STONE_SWORD, Material.WOOD_SWORD, Material.DIAMOND_SWORD, Material.GOLDEN_APPLE,
+                Material.POTION});
     }
 
     String name = "courtyard";
@@ -288,11 +291,21 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         e.setCancelled(true);
     }
 
+
     @EventHandler
     public void PotionsSplash(PotionSplashEvent e) {
-        if (e.getEntity().getShooter() instanceof Player && e.getAffectedEntities().contains(e.getEntity().getShooter())) {
-            if (e.getAffectedEntities().contains(e.getEntity().getShooter()))
-                e.getAffectedEntities().remove(e.getEntity().getShooter());
+        if (!e.getEntity().getWorld().getName().equals(name)) return;
+        e.setCancelled(true);
+        Iterator i = e.getAffectedEntities().iterator();
+        while (i.hasNext()) {
+            LivingEntity target = (LivingEntity) i.next();
+            if (e.getEntity().getShooter() == target) {
+                Player p = (Player) target;
+                p.sendMessage(ChatColor.RED + "You cannot heal yourself!");
+            } else {
+                LivingEntity en = (LivingEntity) target;
+                en.addPotionEffect(e.getPotion().getEffects().iterator().next());
+            }
         }
     }
 }
