@@ -36,7 +36,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onload(WorldLoadEvent event) {
-        if (event.getWorld().getName().equalsIgnoreCase("amplitude")) {
+        if (event.getWorld().getName().equalsIgnoreCase(name)) {
             amplitudeTimer();
         }
     }
