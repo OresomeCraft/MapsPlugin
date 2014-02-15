@@ -93,6 +93,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
         i.setItem(5, EXP);
         i.setItem(6, SNOWBALLS);
         i.setItem(9, ARROWS);
+        p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 3);
 
     }
 
