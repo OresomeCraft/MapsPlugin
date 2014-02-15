@@ -130,7 +130,7 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onPlayerSpectate(PlayerDeathEvent event) {
-        if (event.getEntity().getLocation().getWorld().getName().equals(name)){
+        if (event.getEntity().getLocation().getWorld().getName().equals(name)) {
             if (BattlePlayer.getBattlePlayer(event.getEntity()).isSpectator()) {
                 event.getEntity().addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000 * 20, 2));
             }

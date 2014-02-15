@@ -38,7 +38,7 @@ public class Arziri extends BattleMap implements IBattleMap, Listener {
 
         Location redFlag = new Location(w, 108, 51, 2);
         Location blueFlag = new Location(w, 16, 51, 2);
-        
+
         setCTFFlags(name, redFlag, blueFlag);
         setKoTHMonument(new Location(w, 62, 49, 2));
     }

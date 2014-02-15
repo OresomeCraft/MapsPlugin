@@ -46,7 +46,7 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 0, -102, 108, 103, 0));
         FFASpawns.add(new Location(w, -9, 51, 111, -83, 0));
-        FFASpawns.add(new Location(w, 0, -112, -103 ));
+        FFASpawns.add(new Location(w, 0, -112, -103));
         FFASpawns.add(new Location(w, -1, -123, 106, -111, -0));
         FFASpawns.add(new Location(w, 0, -62, 106, -92, 0));
         FFASpawns.add(new Location(w, 0, -105, 107, -84, 0));

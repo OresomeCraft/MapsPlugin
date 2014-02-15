@@ -24,9 +24,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 public abstract class Map implements Listener {
 
@@ -470,6 +468,59 @@ public abstract class Map implements Listener {
         i.setChestplate(LEATHER_CHESTPLATE);
         i.setLeggings(LEATHER_LEGGINGS);
         i.setBoots(LEATHER_BOOTS);
+    }
+
+    // The player can stand inside these materials
+    public static final Set<Integer> HOLLOW_MATERIALS = new HashSet<Integer>();
+
+    static {
+        HOLLOW_MATERIALS.add(Material.AIR.getId());
+        HOLLOW_MATERIALS.add(Material.SAPLING.getId());
+        HOLLOW_MATERIALS.add(Material.POWERED_RAIL.getId());
+        HOLLOW_MATERIALS.add(Material.DETECTOR_RAIL.getId());
+        HOLLOW_MATERIALS.add(Material.LONG_GRASS.getId());
+        HOLLOW_MATERIALS.add(Material.DEAD_BUSH.getId());
+        HOLLOW_MATERIALS.add(Material.YELLOW_FLOWER.getId());
+        HOLLOW_MATERIALS.add(Material.RED_ROSE.getId());
+        HOLLOW_MATERIALS.add(Material.BROWN_MUSHROOM.getId());
+        HOLLOW_MATERIALS.add(Material.RED_MUSHROOM.getId());
+        HOLLOW_MATERIALS.add(Material.TORCH.getId());
+        HOLLOW_MATERIALS.add(Material.REDSTONE_WIRE.getId());
+        HOLLOW_MATERIALS.add(Material.SEEDS.getId());
+        HOLLOW_MATERIALS.add(Material.SIGN_POST.getId());
+        HOLLOW_MATERIALS.add(Material.WOODEN_DOOR.getId());
+        HOLLOW_MATERIALS.add(Material.LADDER.getId());
+        HOLLOW_MATERIALS.add(Material.RAILS.getId());
+        HOLLOW_MATERIALS.add(Material.WALL_SIGN.getId());
+        HOLLOW_MATERIALS.add(Material.LEVER.getId());
+        HOLLOW_MATERIALS.add(Material.STONE_PLATE.getId());
+        HOLLOW_MATERIALS.add(Material.IRON_DOOR_BLOCK.getId());
+        HOLLOW_MATERIALS.add(Material.WOOD_PLATE.getId());
+        HOLLOW_MATERIALS.add(Material.REDSTONE_TORCH_OFF.getId());
+        HOLLOW_MATERIALS.add(Material.REDSTONE_TORCH_ON.getId());
+        HOLLOW_MATERIALS.add(Material.STONE_BUTTON.getId());
+        HOLLOW_MATERIALS.add(Material.SNOW.getId());
+        HOLLOW_MATERIALS.add(Material.SUGAR_CANE_BLOCK.getId());
+        HOLLOW_MATERIALS.add(Material.DIODE_BLOCK_OFF.getId());
+        HOLLOW_MATERIALS.add(Material.DIODE_BLOCK_ON.getId());
+        HOLLOW_MATERIALS.add(Material.PUMPKIN_STEM.getId());
+        HOLLOW_MATERIALS.add(Material.MELON_STEM.getId());
+        HOLLOW_MATERIALS.add(Material.VINE.getId());
+        HOLLOW_MATERIALS.add(Material.FENCE_GATE.getId());
+        HOLLOW_MATERIALS.add(Material.WATER_LILY.getId());
+        HOLLOW_MATERIALS.add(Material.NETHER_WARTS.getId());
+        try // 1.6 update
+        {
+            HOLLOW_MATERIALS.add(Material.CARPET.getId());
+        } catch (java.lang.NoSuchFieldError e) {
+            System.out.println("No such field!");
+        }
+
+        for (Integer integer : HOLLOW_MATERIALS) {
+            HOLLOW_MATERIALS.add(integer);
+        }
+        HOLLOW_MATERIALS.add(Material.WATER.getId());
+        HOLLOW_MATERIALS.add(Material.STATIONARY_WATER.getId());
     }
 
     /**
