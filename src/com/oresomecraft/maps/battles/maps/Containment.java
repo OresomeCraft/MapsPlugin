@@ -36,8 +36,8 @@ public class Containment extends BattleMap implements IBattleMap, Listener {
 
     String name = "containment";
     String fullName = "Containment Breach";
-    String creators = "AnomalousRei, MiCkEyMiCE, LanderA and _Moist";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
+    String creators = "AnomalousRei, MiCkEyMiCE, Fliine, __R3 and _Moist";
+    Gamemode[] modes = {Gamemode.LTS, Gamemode.LMS, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         //Main spawn
@@ -152,7 +152,7 @@ public class Containment extends BattleMap implements IBattleMap, Listener {
 
         }
     }
-
+/*
 
     @EventHandler
     public void onKey(PlayerInteractEvent event) {
@@ -274,5 +274,5 @@ public class Containment extends BattleMap implements IBattleMap, Listener {
         if (im.getDisplayName().equals(ChatColor.RED + "Level 4 security key")) clearance = 4;
         if (im.getDisplayName().equals(ChatColor.DARK_RED + "Level 5 security key")) clearance = 5;
         return clearance;
-    }
+    }*/
 }
