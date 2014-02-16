@@ -13,13 +13,14 @@ public class Template extends BattleMap implements IBattleMap, Listener {
 
     public Template() {
         super.initiate(this, name, fullName, creators, modes);
+        setAllowBuild(false);
     }
 
     // Map details
     String name = "template";
     String fullName = "Template";
     String creators = "Contributor1, Contributor2 and Contributor3";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.CTF, Gamemode.KOTH, Gamemode.CP};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.CTF, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 0, 99, 27, 2, 0));

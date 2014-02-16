@@ -339,7 +339,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                 Player p = (Player) target;
                 p.sendMessage(ChatColor.RED + "You cannot heal yourself!");
             } else {
-                LivingEntity en = (LivingEntity) target;
+                LivingEntity en = target;
                 en.addPotionEffect(e.getPotion().getEffects().iterator().next());
             }
         }
