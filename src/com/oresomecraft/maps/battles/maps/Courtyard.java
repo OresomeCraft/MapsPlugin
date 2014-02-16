@@ -176,7 +176,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
             player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
             player.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
 
-            player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1));
+            player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1, (short)-283476));
             player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
         }
         if (group.equals(Group.ARCHER)) {
