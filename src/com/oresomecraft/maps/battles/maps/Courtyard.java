@@ -59,7 +59,8 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        // Not needed due to custom classes
+        handKit(p, Group.KNIGHT);
+        p.sendMessage(ChatColor.GOLD + "You're currently a knight! Right click one of the signs to change class...");
     }
 
     @EventHandler
