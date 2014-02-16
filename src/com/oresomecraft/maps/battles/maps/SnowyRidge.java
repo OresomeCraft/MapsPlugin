@@ -176,7 +176,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
     public void onTeleport(PlayerTeleportEvent event) {
         if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
             if (event.getTo().equals(new Location(w, -17, 59, -54, -0, 0))) {
-                event.getPlayer().sendMessage(ChatColor.BOLD + "CONGRATS! You spawned in Zachoz' house!");
+                event.getPlayer().sendMessage(ChatColor.BOLD + "CONGRATS! You spawned in Zachoz's house!");
             }
         }
     }
