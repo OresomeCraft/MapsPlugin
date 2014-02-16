@@ -11,11 +11,14 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -59,8 +62,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        handKit(p, Group.KNIGHT);
-        p.sendMessage(ChatColor.GOLD + "You're currently a knight! Right click one of the signs to change class...");
+        p.sendMessage(ChatColor.GOLD + "" + ChatColor.GOLD + "Right click one of the signs to change class!");
     }
 
     @EventHandler
@@ -87,6 +89,14 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                         player.sendMessage(ChatColor.RED + "That's a donator class!");
                     }
                 }
+                if (sign.getLine(1).contains("Demolition")) {
+                    if (player.hasPermission("oresomebattles.rank.donator.plus")) {
+                        handKit(player, Group.DEMOLITION);
+                        return;
+                    } else {
+                        player.sendMessage(ChatColor.RED + "That's a donator+ class!");
+                    }
+                }
                 if (sign.getLine(1).contains("Knight")) {
                     handKit(player, Group.KNIGHT);
                     return;
@@ -101,6 +111,9 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                 }
                 if (sign.getLine(1).contains("Tank")) {
                     handKit(player, Group.TANK);
+                }
+                if (sign.getLine(1).contains("Scout")) {
+                    handKit(player, Group.SCOUT);
                 }
             }
         } catch (NullPointerException ex) {
@@ -170,13 +183,23 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
             player.getInventory().setItem(0, new ItemStack(Material.IRON_SWORD, 1));
             player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
         }
+        if (group.equals(Group.DEMOLITION)) {
+            player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
+            player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
+            player.getInventory().setLeggings(new ItemStack(Material.LEATHER_LEGGINGS, 1));
+            player.getInventory().setBoots(new ItemStack(Material.LEATHER_BOOTS, 1));
+
+            player.getInventory().setItem(0, new ItemStack(Material.GOLD_SWORD, 1));
+            player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
+            player.getInventory().setItem(2, new ItemStack(Material.TNT, 32));
+        }
         if (group.equals(Group.TANK)) {
             player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
             player.getInventory().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
             player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
             player.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
 
-            player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1, (short)-283476));
+            player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1, (short) -283476));
             player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
         }
         if (group.equals(Group.ARCHER)) {
@@ -198,6 +221,16 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
             player.getInventory().setItem(0, new ItemStack(Material.STONE_SWORD, 1));
             player.getInventory().setItem(1, new ItemStack(Material.POTION, 32, (short) 16437));
             player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
+        }
+        if (group.equals(Group.SCOUT)) {
+            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+            player.getInventory().setChestplate(LEATHER_CHESTPLATE);
+
+            player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1));
+            player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
+
+            player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 2));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 2));
         }
         player.updateInventory();
     }
@@ -283,7 +316,9 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         KNIGHT,
         TANK,
         ARCHER,
-        MEDIC;
+        MEDIC,
+        DEMOLITION,
+        SCOUT;
     }
 
     @EventHandler
@@ -295,7 +330,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void PotionsSplash(PotionSplashEvent e) {
-        if (!e.getEntity().getWorld().getName().equals(name)) return;
+        if (!e.getPotion().getWorld().getName().equals(name)) return;
         e.setCancelled(true);
         Iterator i = e.getAffectedEntities().iterator();
         while (i.hasNext()) {
@@ -308,5 +343,23 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                 en.addPotionEffect(e.getPotion().getEffects().iterator().next());
             }
         }
+    }
+
+    @EventHandler
+    public void placetnt(BlockPlaceEvent e) {
+        if (!e.getPlayer().getWorld().getName().equals(name)) return;
+        if (contains(e.getBlock().getLocation(), 39, 69, 59, 124, 33, -60) || contains(e.getBlock().getLocation(), -19, -40, 50, 101, -45, 42))
+            return;
+        if (e.getBlockPlaced().getType() == Material.TNT) {
+            e.getPlayer().getInventory().removeItem(new ItemStack(Material.TNT, 1));
+            e.getPlayer().getWorld().spawnEntity(e.getBlockPlaced().getLocation().add(0, 1, 0), EntityType.PRIMED_TNT);
+            e.getPlayer().getWorld().playSound(e.getBlockPlaced().getLocation(), Sound.FUSE, 1L, 1L);
+        }
+    }
+
+    @EventHandler
+    public void explode(EntityExplodeEvent e) {
+        if (!e.getEntity().getWorld().getName().equals(name)) return;
+        e.blockList().clear();
     }
 }
