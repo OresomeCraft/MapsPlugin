@@ -1,4 +1,4 @@
-MapsPlugin [![Build Status](https://travis-ci.org/OresomeCraft/MapsPlugin.png?branch=master)](https://travis-ci.org/OresomeCraft/MapsPlugin)    [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/OresomeCraft/mapsplugin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+MapsPlugin [![Build Status](https://travis-ci.org/OresomeCraft/MapsPlugin.png?branch=master)](https://travis-ci.org/OresomeCraft/MapsPlugin)    [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/OresomeCraft/mapsplugin/trend.png)](https://bitdeli.com/OresomeCraft "Bitdeli Badge")
 ===================
 
 #### Map configuration plugin for OresomeBattles.
