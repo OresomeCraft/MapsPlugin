@@ -121,18 +121,24 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    private void handKit(Player player, Group group) {
+    private void handKit(final Player player, final Group group) {
         player.sendMessage(ChatColor.GREEN + "You have chosen " + ChatColor.AQUA + group.toString().toLowerCase() + ChatColor.GREEN + " as your class!");
 
         player.getInventory().clear();
+        player.updateInventory();
         player.getInventory().setHelmet(new ItemStack(Material.AIR, 0));
         player.getInventory().setChestplate(new ItemStack(Material.AIR, 0));
         player.getInventory().setLeggings(new ItemStack(Material.AIR, 0));
         player.getInventory().setBoots(new ItemStack(Material.AIR, 0));
+        player.updateInventory();
 
         for (PotionEffect effect : player.getActivePotionEffects()) {
             player.removePotionEffect(effect.getType());
         }
+
+        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+            @Override
+            public void run() {
 
         if (group.equals(Group.FIREARMS)) {
             ItemStack AMMO = new ItemStack(Material.FLINT, 64);
@@ -233,6 +239,8 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
             player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 2));
         }
         player.updateInventory();
+            }
+        }, 10L);
     }
 
     @EventHandler
