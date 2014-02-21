@@ -139,14 +139,14 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
         ItemStack is = p.getItemInHand();
         Material mat = is.getType();
         Location loc = p.getLocation();
+        Location bobber = event.getHook().getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
 
             if (mat == Material.FISHING_ROD) {
 
-                if (state == PlayerFishEvent.State.IN_GROUND || state == PlayerFishEvent.State.FISHING) {
+                if (event.getHook().getVelocity().getY() < 0.02 && isLocationNearBlock(bobber)) {
                     p.launchProjectile(Snowball.class);
-
                 }
             }
         }

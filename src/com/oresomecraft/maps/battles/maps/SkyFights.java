@@ -4,13 +4,19 @@ import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
 import org.bukkit.event.*;
+import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
 import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.util.Vector;
 
 @MapConfig
 public class SkyFights extends BattleMap implements IBattleMap, Listener {
@@ -100,32 +106,49 @@ public class SkyFights extends BattleMap implements IBattleMap, Listener {
     public int y2 = 23;
     public int z2 = -67;
 
-    //TODO
-    //If the region isn't defined properly the grapple hook WILL NOT WORK.
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void fishing(PlayerFishEvent event) {
+        PlayerFishEvent.State state = event.getState();
+        Player p = event.getPlayer();
+        ItemStack is = p.getItemInHand();
+        Material mat = is.getType();
+        Location loc = p.getLocation();
+        Location bobber = event.getHook().getLocation();
 
+        if (loc.getWorld().getName().equals(name)) {
 
-    @EventHandler
-    public void fishing(org.bukkit.event.player.PlayerFishEvent event) {
-        Material mat = event.getPlayer().getItemInHand().getType();
-        if (event.getPlayer().getLocation().getWorld().getName().equals(name) && mat == Material.FISHING_ROD
-                && event.getState() == org.bukkit.event.player.PlayerFishEvent.State.IN_GROUND)
-            event.getPlayer().launchProjectile(org.bukkit.entity.Snowball.class);
+            if (mat == Material.FISHING_ROD) {
+
+                if (event.getHook().getVelocity().getY() < 0.02 && isLocationNearBlock(bobber)) {
+                    p.launchProjectile(Snowball.class);
+                }
+            }
+        }
+
     }
 
-    @EventHandler
-    public void grapple(org.bukkit.event.entity.ProjectileHitEvent event) {
-        org.bukkit.entity.Entity proj = event.getEntity();
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void grapple(ProjectileHitEvent event) {
+        Entity proj = event.getEntity();
         Location hit = proj.getLocation();
-        if (hit.getWorld().getName().equals(name) && proj instanceof org.bukkit.entity.Snowball) {
-            org.bukkit.entity.Snowball fish = (org.bukkit.entity.Snowball) proj;
+
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
+
+        if (proj instanceof Snowball) {
+            Snowball fish = (Snowball) proj;
             ProjectileSource shooter = fish.getShooter();
-            if (shooter instanceof org.bukkit.entity.Player) {
-                org.bukkit.entity.Player p = (org.bukkit.entity.Player) shooter;
+
+            if (shooter instanceof Player) {
+                Player p = (Player) shooter;
                 Location loc = p.getLocation();
-                Material mat = p.getItemInHand().getType();
+                ItemStack is = p.getItemInHand();
+                Material mat = is.getType();
+
                 if (mat == Material.FISHING_ROD) {
+
                     p.setFallDistance(0);
-                    p.playSound(loc, org.bukkit.Sound.ARROW_HIT, 1, 1);
+                    p.playSound(loc, Sound.ARROW_HIT, 1, 1);
+
                     int hitx = hit.getBlockX();
                     int hity = hit.getBlockY();
                     int hitz = hit.getBlockZ();
@@ -134,19 +157,32 @@ public class SkyFights extends BattleMap implements IBattleMap, Listener {
                     int locz = loc.getBlockZ();
                     double co[] = new double[3];
 
-                    if (hitx > locx) co[0] = 1.3;
-                    else if (hitx < locx) co[0] = -1.3;
-                    else if (hitx == locx) co[0] = 0;
+                    if (hitx > locx) {
+                        co[0] = 1.2;
+                    } else if (hitx < locx) {
+                        co[0] = -1.2;
+                    } else if (hitx == locx) {
+                        co[0] = 0;
+                    }
 
-                    if (hity > locy) co[1] = 1.5;
-                    else if (hity < locy) co[1] = -0.9;
-                    else if (hity == locy) co[1] = 0;
+                    if (hity > locy) {
+                        co[1] = 1.4;
+                    } else if (hity < locy) {
+                        co[1] = -0.8;
+                    } else if (hity == locy) {
+                        co[1] = 0;
+                    }
 
-                    if (hitz > locz) co[2] = 1.3;
-                    else if (hitz < locz) co[2] = -1.3;
-                    else if (hitz == locz) co[2] = 0;
+                    if (hitz > locz) {
+                        co[2] = 1.2;
+                    } else if (hitz < locz) {
+                        co[2] = -1.2;
+                    } else if (hitz == locz) {
+                        co[2] = 0;
+                    }
 
-                    p.setVelocity(new org.bukkit.util.Vector(co[0], co[1], co[2]));
+                    p.setVelocity(new Vector(co[0], co[1] / 1.25, co[2]));
+
                 }
             }
         }

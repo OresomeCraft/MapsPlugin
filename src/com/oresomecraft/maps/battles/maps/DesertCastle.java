@@ -102,14 +102,14 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
         ItemStack is = p.getItemInHand();
         Material mat = is.getType();
         Location loc = p.getLocation();
+        Location bobber = event.getHook().getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
 
             if (mat == Material.FISHING_ROD) {
 
-                if (state == PlayerFishEvent.State.IN_GROUND || state == PlayerFishEvent.State.FISHING) {
+                if (event.getHook().getVelocity().getY() < 0.02 && isLocationNearBlock(bobber)) {
                     p.launchProjectile(Snowball.class);
-
                 }
             }
         }
@@ -121,58 +121,57 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
 
-        if (hit.getWorld().getName().equals(name)) {
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
 
-            if (proj instanceof Snowball) {
-                Snowball fish = (Snowball) proj;
-                ProjectileSource shooter = fish.getShooter();
+        if (proj instanceof Snowball) {
+            Snowball fish = (Snowball) proj;
+            ProjectileSource shooter = fish.getShooter();
 
-                if (shooter instanceof Player) {
-                    Player p = (Player) shooter;
-                    Location loc = p.getLocation();
-                    ItemStack is = p.getItemInHand();
-                    Material mat = is.getType();
+            if (shooter instanceof Player) {
+                Player p = (Player) shooter;
+                Location loc = p.getLocation();
+                ItemStack is = p.getItemInHand();
+                Material mat = is.getType();
 
-                    if (mat == Material.FISHING_ROD) {
+                if (mat == Material.FISHING_ROD) {
 
-                        p.setFallDistance(0);
-                        p.playSound(loc, Sound.ARROW_HIT, 1, 1);
+                    p.setFallDistance(0);
+                    p.playSound(loc, Sound.ARROW_HIT, 1, 1);
 
-                        int hitx = hit.getBlockX();
-                        int hity = hit.getBlockY();
-                        int hitz = hit.getBlockZ();
-                        int locx = loc.getBlockX();
-                        int locy = loc.getBlockY();
-                        int locz = loc.getBlockZ();
-                        double co[] = new double[3];
+                    int hitx = hit.getBlockX();
+                    int hity = hit.getBlockY();
+                    int hitz = hit.getBlockZ();
+                    int locx = loc.getBlockX();
+                    int locy = loc.getBlockY();
+                    int locz = loc.getBlockZ();
+                    double co[] = new double[3];
 
-                        if (hitx > locx) {
-                            co[0] = 1.2;
-                        } else if (hitx < locx) {
-                            co[0] = -1.2;
-                        } else if (hitx == locx) {
-                            co[0] = 0;
-                        }
-
-                        if (hity > locy) {
-                            co[1] = 1.4;
-                        } else if (hity < locy) {
-                            co[1] = -0.8;
-                        } else if (hity == locy) {
-                            co[1] = 0;
-                        }
-
-                        if (hitz > locz) {
-                            co[2] = 1.2;
-                        } else if (hitz < locz) {
-                            co[2] = -1.2;
-                        } else if (hitz == locz) {
-                            co[2] = 0;
-                        }
-
-                        p.setVelocity(new Vector(co[0], co[1], co[2]));
-
+                    if (hitx > locx) {
+                        co[0] = 1.2;
+                    } else if (hitx < locx) {
+                        co[0] = -1.2;
+                    } else if (hitx == locx) {
+                        co[0] = 0;
                     }
+
+                    if (hity > locy) {
+                        co[1] = 1.4;
+                    } else if (hity < locy) {
+                        co[1] = -0.8;
+                    } else if (hity == locy) {
+                        co[1] = 0;
+                    }
+
+                    if (hitz > locz) {
+                        co[2] = 1.2;
+                    } else if (hitz < locz) {
+                        co[2] = -1.2;
+                    } else if (hitz == locz) {
+                        co[2] = 0;
+                    }
+
+                    p.setVelocity(new Vector(co[0], co[1] / 1.25, co[2]));
+
                 }
             }
         }

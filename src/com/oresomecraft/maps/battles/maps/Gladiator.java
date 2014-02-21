@@ -5,12 +5,14 @@ import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.entity.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
 import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.util.Vector;
 
 @MapConfig
 public class Gladiator extends BattleMap implements IBattleMap, Listener {
@@ -131,79 +133,83 @@ public class Gladiator extends BattleMap implements IBattleMap, Listener {
     public int y2 = 148;
     public int z2 = -103;
 
-
     @EventHandler(priority = EventPriority.NORMAL)
-    public void fishing(org.bukkit.event.player.PlayerFishEvent event) {
-        org.bukkit.event.player.PlayerFishEvent.State state = event.getState();
+    public void fishing(PlayerFishEvent event) {
+        PlayerFishEvent.State state = event.getState();
         Player p = event.getPlayer();
         ItemStack is = p.getItemInHand();
         Material mat = is.getType();
         Location loc = p.getLocation();
+        Location bobber = event.getHook().getLocation();
+
         if (loc.getWorld().getName().equals(name)) {
+
             if (mat == Material.FISHING_ROD) {
-                if (state == PlayerFishEvent.State.IN_GROUND || state == PlayerFishEvent.State.FISHING) {
+
+                if (event.getHook().getVelocity().getY() < 0.02 && isLocationNearBlock(bobber)) {
                     p.launchProjectile(Snowball.class);
                 }
             }
         }
+
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void grapple(org.bukkit.event.entity.ProjectileHitEvent event) {
-        if(!event.getEntity().getWorld().getName().equals(name)) return;
-        org.bukkit.entity.Entity proj = event.getEntity();
+    public void grapple(ProjectileHitEvent event) {
+        Entity proj = event.getEntity();
         Location hit = proj.getLocation();
-        if (hit.getWorld().getName().equals(name)) {
-            if (proj instanceof org.bukkit.entity.Snowball) {
 
-                org.bukkit.entity.Snowball fish = (org.bukkit.entity.Snowball) proj;
-                ProjectileSource shooter = fish.getShooter();
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
 
-                if (shooter instanceof Player) {
+        if (proj instanceof Snowball) {
+            Snowball fish = (Snowball) proj;
+            ProjectileSource shooter = fish.getShooter();
 
-                    Player p = (Player) shooter;
-                    Location loc = p.getLocation();
-                    ItemStack is = p.getItemInHand();
-                    Material mat = is.getType();
-                    if (mat == Material.FISHING_ROD) {
-                        p.setFallDistance(0);
-                        p.playSound(loc, org.bukkit.Sound.ARROW_HIT, 1, 1);
+            if (shooter instanceof Player) {
+                Player p = (Player) shooter;
+                Location loc = p.getLocation();
+                ItemStack is = p.getItemInHand();
+                Material mat = is.getType();
 
-                        int hitx = hit.getBlockX();
-                        int hity = hit.getBlockY();
-                        int hitz = hit.getBlockZ();
-                        int locx = loc.getBlockX();
-                        int locy = loc.getBlockY();
-                        int locz = loc.getBlockZ();
-                        double co[] = new double[3];
+                if (mat == Material.FISHING_ROD) {
 
-                        if (hitx > locx) {
-                            co[0] = 1.2;
-                        } else if (hitx < locx) {
-                            co[0] = -1.2;
-                        } else if (hitx == locx) {
-                            co[0] = 0;
-                        }
+                    p.setFallDistance(0);
+                    p.playSound(loc, Sound.ARROW_HIT, 1, 1);
 
-                        if (hity > locy) {
-                            co[1] = 1.4;
-                        } else if (hity < locy) {
-                            co[1] = -0.8;
-                        } else if (hity == locy) {
-                            co[1] = 0;
-                        }
+                    int hitx = hit.getBlockX();
+                    int hity = hit.getBlockY();
+                    int hitz = hit.getBlockZ();
+                    int locx = loc.getBlockX();
+                    int locy = loc.getBlockY();
+                    int locz = loc.getBlockZ();
+                    double co[] = new double[3];
 
-                        if (hitz > locz) {
-                            co[2] = 1.2;
-                        } else if (hitz < locz) {
-                            co[2] = -1.2;
-                        } else if (hitz == locz) {
-                            co[2] = 0;
-                        }
-
-                        p.setVelocity(new org.bukkit.util.Vector(co[0], co[1], co[2]));
-
+                    if (hitx > locx) {
+                        co[0] = 1.2;
+                    } else if (hitx < locx) {
+                        co[0] = -1.2;
+                    } else if (hitx == locx) {
+                        co[0] = 0;
                     }
+
+                    if (hity > locy) {
+                        co[1] = 1.4;
+                    } else if (hity < locy) {
+                        co[1] = -0.8;
+                    } else if (hity == locy) {
+                        co[1] = 0;
+                    }
+
+                    if (hitz > locz) {
+                        co[2] = 1.2;
+                    } else if (hitz < locz) {
+                        co[2] = -1.2;
+                    } else if (hitz == locz) {
+                        co[2] = 0;
+                    }
+
+                    p.setVelocity(new Vector(co[0], co[1] / 1.25, co[2]));
+
                 }
             }
         }
