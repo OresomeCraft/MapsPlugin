@@ -369,5 +369,17 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     public void explode(EntityExplodeEvent e) {
         if (!e.getEntity().getWorld().getName().equals(name)) return;
         e.blockList().clear();
+        }
+    }
+    
+    @EventHandler
+    public void arrowAway(org.bukkit.event.entity.ProjectileHitEvent event) {
+        org.bukkit.entity.Entity projectile = event.getEntity();
+        Location loc = projectile.getLocation();
+        if (loc.getWorld().getName().equals(name)) {
+            if (projectile instanceof org.bukkit.entity.Arrow) {
+                org.bukkit.entity.Arrow a = (org.bukkit.entity.Arrow) projectile;
+                a.remove();
+    
     }
 }
