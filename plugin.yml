@@ -8,3 +8,7 @@ commands:
       usage: /<command> <battle/arcade>
       permission: oresomebattles.admin
       permission-message: You don't have <permission>
+      
+   guess:
+      description: Guess a pictionary build
+      usage: /<command> <pictionary guess>

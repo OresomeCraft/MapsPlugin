@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class PictionaryMap extends ArcadeMap {
+public abstract class PictionaryMap extends ArcadeMap implements CommandExecutor {
 
     boolean hasPassedDelay = false;
     List<Player> players;
@@ -148,6 +149,8 @@ public abstract class PictionaryMap extends ArcadeMap {
                         } else {
                             sender.sendMessage(ChatColor.RED + "You can't guess at what " + ChatColor.ITALIC + "you're" + ChatColor.RESET + " building!");
                         }
+                    } else {
+                        sender.sendMessage(ChatColor.RED + "You must be in the game to guess at a pictionary build!");
                     }
                 }
             }
