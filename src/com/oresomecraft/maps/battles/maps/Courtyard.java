@@ -140,105 +140,105 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
             @Override
             public void run() {
 
-        if (group.equals(Group.FIREARMS)) {
-            ItemStack AMMO = new ItemStack(Material.FLINT, 64);
-            ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
+                if (group.equals(Group.FIREARMS)) {
+                    ItemStack AMMO = new ItemStack(Material.FLINT, 64);
+                    ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
 
-            ItemMeta blaze_rod = BLAZE_ROD.getItemMeta();
-            blaze_rod.setDisplayName(ChatColor.BLUE + "Retro Wartown Gun");
-            BLAZE_ROD.setItemMeta(blaze_rod);
+                    ItemMeta blaze_rod = BLAZE_ROD.getItemMeta();
+                    blaze_rod.setDisplayName(ChatColor.BLUE + "Retro Wartown Gun");
+                    BLAZE_ROD.setItemMeta(blaze_rod);
 
-            ItemMeta ammo = AMMO.getItemMeta();
-            ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
-            AMMO.setItemMeta(ammo);
+                    ItemMeta ammo = AMMO.getItemMeta();
+                    ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
+                    AMMO.setItemMeta(ammo);
 
-            player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
-            player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
-            player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
-            player.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS, 1));
+                    player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
+                    player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
+                    player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
+                    player.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS, 1));
 
-            player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1));
-            player.getInventory().setItem(1, BLAZE_ROD);
-            player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
-            player.getInventory().setItem(9, AMMO);
-        }
-        if (group.equals(Group.SPY)) {
-            ItemStack SPY_WATCH = new ItemStack(Material.WATCH, 5);
-            ItemMeta spywatchMeta = SPY_WATCH.getItemMeta();
-            spywatchMeta.setDisplayName(ChatColor.BLUE + "Spy Watch");
-            List<String> spyLore = new ArrayList<String>();
-            spyLore.add(org.bukkit.ChatColor.BLUE + "Interact with this watch to go temporarily invisible!");
-            spywatchMeta.setLore(spyLore);
-            SPY_WATCH.setItemMeta(spywatchMeta);
+                    player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1));
+                    player.getInventory().setItem(1, BLAZE_ROD);
+                    player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
+                    player.getInventory().setItem(9, AMMO);
+                }
+                if (group.equals(Group.SPY)) {
+                    ItemStack SPY_WATCH = new ItemStack(Material.WATCH, 5);
+                    ItemMeta spywatchMeta = SPY_WATCH.getItemMeta();
+                    spywatchMeta.setDisplayName(ChatColor.BLUE + "Spy Watch");
+                    List<String> spyLore = new ArrayList<String>();
+                    spyLore.add(org.bukkit.ChatColor.BLUE + "Interact with this watch to go temporarily invisible!");
+                    spywatchMeta.setLore(spyLore);
+                    SPY_WATCH.setItemMeta(spywatchMeta);
 
-            player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
-            player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
-            player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
-            player.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS, 1));
+                    player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
+                    player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
+                    player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
+                    player.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS, 1));
 
-            player.getInventory().setItem(0, new ItemStack(Material.STONE_SWORD, 1));
-            player.getInventory().setItem(2, SPY_WATCH);
-            player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
-        }
-        if (group.equals(Group.KNIGHT)) {
-            player.getInventory().setHelmet(new ItemStack(Material.GOLD_HELMET, 1));
-            player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
-            player.getInventory().setLeggings(new ItemStack(Material.GOLD_LEGGINGS, 1));
-            player.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
+                    player.getInventory().setItem(0, new ItemStack(Material.STONE_SWORD, 1));
+                    player.getInventory().setItem(2, SPY_WATCH);
+                    player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
+                }
+                if (group.equals(Group.KNIGHT)) {
+                    player.getInventory().setHelmet(new ItemStack(Material.GOLD_HELMET, 1));
+                    player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
+                    player.getInventory().setLeggings(new ItemStack(Material.GOLD_LEGGINGS, 1));
+                    player.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
 
-            player.getInventory().setItem(0, new ItemStack(Material.IRON_SWORD, 1));
-            player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
-        }
-        if (group.equals(Group.DEMOLITION)) {
-            player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
-            player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
-            player.getInventory().setLeggings(new ItemStack(Material.LEATHER_LEGGINGS, 1));
-            player.getInventory().setBoots(new ItemStack(Material.LEATHER_BOOTS, 1));
+                    player.getInventory().setItem(0, new ItemStack(Material.IRON_SWORD, 1));
+                    player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
+                }
+                if (group.equals(Group.DEMOLITION)) {
+                    player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
+                    player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
+                    player.getInventory().setLeggings(new ItemStack(Material.LEATHER_LEGGINGS, 1));
+                    player.getInventory().setBoots(new ItemStack(Material.LEATHER_BOOTS, 1));
 
-            player.getInventory().setItem(0, new ItemStack(Material.GOLD_SWORD, 1));
-            player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
-            player.getInventory().setItem(2, new ItemStack(Material.TNT, 32));
-        }
-        if (group.equals(Group.TANK)) {
-            player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
-            player.getInventory().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
-            player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
-            player.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
+                    player.getInventory().setItem(0, new ItemStack(Material.GOLD_SWORD, 1));
+                    player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
+                    player.getInventory().setItem(2, new ItemStack(Material.TNT, 32));
+                }
+                if (group.equals(Group.TANK)) {
+                    player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
+                    player.getInventory().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
+                    player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
+                    player.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
 
-            player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1, (short) -283476));
-            player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
-        }
-        if (group.equals(Group.ARCHER)) {
-            player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
-            player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
-            player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
-            player.getInventory().setBoots(new ItemStack(Material.GOLD_BOOTS, 1));
+                    player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1, (short) -283476));
+                    player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
+                }
+                if (group.equals(Group.ARCHER)) {
+                    player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
+                    player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
+                    player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
+                    player.getInventory().setBoots(new ItemStack(Material.GOLD_BOOTS, 1));
 
-            player.getInventory().setItem(0, new ItemStack(Material.BOW, 1));
-            player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
-            player.getInventory().setItem(9, new ItemStack(Material.ARROW, 64));
-        }
-        if (group.equals(Group.MEDIC)) {
-            player.getInventory().setHelmet(new ItemStack(Material.GOLD_HELMET, 1));
-            player.getInventory().setChestplate(new ItemStack(Material.GOLD_CHESTPLATE, 1));
-            player.getInventory().setLeggings(new ItemStack(Material.GOLD_LEGGINGS, 1));
-            player.getInventory().setBoots(new ItemStack(Material.GOLD_BOOTS, 1));
+                    player.getInventory().setItem(0, new ItemStack(Material.BOW, 1));
+                    player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
+                    player.getInventory().setItem(9, new ItemStack(Material.ARROW, 64));
+                }
+                if (group.equals(Group.MEDIC)) {
+                    player.getInventory().setHelmet(new ItemStack(Material.GOLD_HELMET, 1));
+                    player.getInventory().setChestplate(new ItemStack(Material.GOLD_CHESTPLATE, 1));
+                    player.getInventory().setLeggings(new ItemStack(Material.GOLD_LEGGINGS, 1));
+                    player.getInventory().setBoots(new ItemStack(Material.GOLD_BOOTS, 1));
 
-            player.getInventory().setItem(0, new ItemStack(Material.STONE_SWORD, 1));
-            player.getInventory().setItem(1, new ItemStack(Material.POTION, 32, (short) 16437));
-            player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
-        }
-        if (group.equals(Group.SCOUT)) {
-            ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-            player.getInventory().setChestplate(LEATHER_CHESTPLATE);
+                    player.getInventory().setItem(0, new ItemStack(Material.STONE_SWORD, 1));
+                    player.getInventory().setItem(1, new ItemStack(Material.POTION, 32, (short) 16437));
+                    player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
+                }
+                if (group.equals(Group.SCOUT)) {
+                    ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+                    player.getInventory().setChestplate(LEATHER_CHESTPLATE);
 
-            player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1));
-            player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
+                    player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1));
+                    player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
 
-            player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 2));
-            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 2));
-        }
-        player.updateInventory();
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 2));
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 2));
+                }
+                player.updateInventory();
             }
         }, 10L);
     }
@@ -369,9 +369,8 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     public void explode(EntityExplodeEvent e) {
         if (!e.getEntity().getWorld().getName().equals(name)) return;
         e.blockList().clear();
-        }
     }
-    
+
     @EventHandler
     public void arrowAway(org.bukkit.event.entity.ProjectileHitEvent event) {
         org.bukkit.entity.Entity projectile = event.getEntity();
@@ -380,6 +379,8 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
             if (projectile instanceof org.bukkit.entity.Arrow) {
                 org.bukkit.entity.Arrow a = (org.bukkit.entity.Arrow) projectile;
                 a.remove();
-    
+            }
+        }
+
     }
 }
