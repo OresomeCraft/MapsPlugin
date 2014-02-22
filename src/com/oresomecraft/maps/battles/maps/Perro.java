@@ -25,7 +25,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
 
     public Perro() {
         super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(5);
+        setTDMTime(15);
     }
 
     String name = "perro";
