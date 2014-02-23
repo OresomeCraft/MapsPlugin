@@ -203,9 +203,9 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
 
                 Team team = BattlePlayer.getBattlePlayer(p).getTeamType();
                 if (b.getType().equals(Material.PISTON_BASE)) {
-                    if (b.getLocation().getBlockY() < 70) {
+                    if (b.getLocation().getBlockY() == 54) {
                         p.teleport(new Location(w, -42, 70, -36, -90, 0)); // To Top
-                    } else {
+                    } else if (b.getLocation().getBlockY() == 71) {
                         p.teleport(new Location(w, -42, 53, -36, -90, 0)); // To Bottom
                     }
                 }

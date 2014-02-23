@@ -68,10 +68,10 @@ public class Paintball_Beta extends PaintBallMap implements Listener {
 
                 // I don't know if 'PISTON_BLOCK' is a thing.
                 if (b.getType().equals(Material.PISTON_BASE)) {
-                    if (p.getLocation().getY() < 80) {
-                        p.teleport(new Location(w, -45, 94, 53));
-                    } else if (p.getLocation().getY() > 90) {
-                        p.teleport(new Location(w, -45, 77, 53));
+                    if (p.getLocation().getY() == 78) {
+                        p.teleport(new Location(w, -45, 94, 53)); // To Top
+                    } else if (p.getLocation().getY() == 95) {
+                        p.teleport(new Location(w, -45, 77, 53)); // To Bottom
                     }
                 }
             }
