@@ -45,9 +45,9 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
 
     //Disguise stuff
-    //private DisguiseManager disguiseManager = new DisguiseManager(MapsPlugin.getInstance());
+    private DisguiseManager disguiseManager = new DisguiseManager(MapsPlugin.getInstance());
 
-    /*@EventHandler
+    @EventHandler
     public void battleStart(WorldLoadEvent e) {
         if (e.getWorld().getName().equals(name)) {
             disguiseManager.startTask();
@@ -57,7 +57,7 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void battleEnd(BattleEndEvent e) {
         disguiseManager.cancelTask();
-    }*/
+    }
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 2, 84, -48, -1, 0));
@@ -111,7 +111,7 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
      * ALL CODE FOR DISGUISE MANAGER GOES BELOW HERE, DON'T TOUCH!
      */
 
-    /*
+
     private class DisguisedPlayer {
         public final Material material;
         public final byte blockData;
@@ -268,11 +268,13 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
+        if (!(e.getPlayer().getWorld().getName().equals(name))) return;
         disguiseManager.hideDisguisedPlayersFrom(e.getPlayer());
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
+        if (!(e.getPlayer().getWorld().getName().equals(name))) return;
         disguiseManager.undisguise(e.getPlayer());
     }
 
@@ -284,6 +286,7 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
+        if (!(e.getPlayer().getWorld().getName().equals(name))) return;
         try {
             if (disguiseManager.isDisguisedBlock(e.getClickedBlock())) {
                 Player p = Bukkit.getPlayer(disguiseManager.undisguiseIfDisguised(e.getClickedBlock()).getName());
@@ -320,6 +323,4 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
 
         }
     }
-
-    */
 }

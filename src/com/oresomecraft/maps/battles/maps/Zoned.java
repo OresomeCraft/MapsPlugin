@@ -23,7 +23,6 @@ import java.util.List;
 
 @MapConfig
 public class Zoned extends BattleMap implements IBattleMap, Listener {
-
     public Zoned() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);

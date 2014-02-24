@@ -162,12 +162,12 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    //@EventHandler
+    @EventHandler
     public void onEnd(BattleEndEvent event) {
 
         for (Player p : Bukkit.getOnlinePlayers()) {
 
-            if (p.getWorld().getName().equals(name) || p.getWorld().getName().equals("world") || p.getWorld().getName().equals("lobby")) {
+            if (p.getWorld().getName().equals(name)) {
 
                 fireworkLaunch(p);
                 p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
@@ -183,7 +183,6 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
     }
 
     public void fireworkLaunch(Player p) {
-
         FireworkMeta fireworkMeta = (FireworkMeta) (new ItemStack(Material.FIREWORK)).getItemMeta();
         Firework firework = (Firework) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
 
