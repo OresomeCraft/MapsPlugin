@@ -135,6 +135,9 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         for (PotionEffect effect : player.getActivePotionEffects()) {
             player.removePotionEffect(effect.getType());
         }
+                
+        p.getItemInHand().setType(Material.AIR);
+        player.updateInventory();
 
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
@@ -225,7 +228,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                     player.getInventory().setBoots(new ItemStack(Material.GOLD_BOOTS, 1));
 
                     player.getInventory().setItem(0, new ItemStack(Material.STONE_SWORD, 1));
-                    player.getInventory().setItem(1, new ItemStack(Material.POTION, 32, (short) 16437));
+                    player.getInventory().setItem(1, new ItemStack(Material.POTION, 48, (short) 16437));
                     player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
                 }
                 if (group.equals(Group.SCOUT)) {
