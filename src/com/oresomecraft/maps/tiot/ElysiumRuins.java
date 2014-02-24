@@ -20,6 +20,7 @@ public class ElysiumRuins extends BattleMap implements IBattleMap, Listener {
     public ElysiumRuins() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
+        lockTime(0);
     }
 
     // Map details
