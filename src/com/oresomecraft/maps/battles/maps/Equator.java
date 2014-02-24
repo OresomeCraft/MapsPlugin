@@ -20,7 +20,7 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
 
     public Equator() {
         super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(8);
+        setTDMTime(15);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.STAINED_GLASS, Material.LEATHER_HELMET, Material.STONE_SWORD, Material.WOOL});
         setAutoSpawnProtection(4);
