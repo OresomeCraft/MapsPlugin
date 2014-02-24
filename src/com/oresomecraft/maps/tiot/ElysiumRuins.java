@@ -25,7 +25,7 @@ public class ElysiumRuins extends BattleMap implements IBattleMap, Listener {
     // Map details
     String name = "elysiumruins";
     String fullName = "Elysium Ruins";
-    String creators = "meganlovesmusic";
+    String creators = "meganlovesmusic and SuperDuckFace";
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {
