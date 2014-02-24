@@ -119,15 +119,12 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
                         }
 
                         if (p.getTotalExperience() == 49) {
-                            p.sendMessage(ChatColor.GREEN + "Aura blast fully charged!");
+                            p.sendMessage(ChatColor.GREEN + "Aura blast fully charged! Hit a player to strike them!");
                         }
 
                         p.setTotalExperience(p.getTotalExperience() + 1);
-                        p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1F, (p.getTotalExperience() / 12));
-                    } else {
-                        p.setTotalExperience(0);
-                        p.setLevel(0);
-                        p.setExp(0);
+                        p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1F, (p.getTotalExperience() / 10));
+                    } else {v
                     }
                 }
             }
