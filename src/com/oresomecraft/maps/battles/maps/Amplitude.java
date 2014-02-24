@@ -124,7 +124,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
                         p.setTotalExperience(p.getTotalExperience() + 1);
                         p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1F, (p.getTotalExperience() / 10));
-                    } else {v
+                    } else {
                     }
                 }
             }
