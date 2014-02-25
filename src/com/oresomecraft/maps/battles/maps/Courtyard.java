@@ -111,9 +111,11 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                 }
                 if (sign.getLine(1).contains("Tank")) {
                     handKit(player, Group.TANK);
+                    return;
                 }
                 if (sign.getLine(1).contains("Scout")) {
                     handKit(player, Group.SCOUT);
+                    return;
                 }
             }
         } catch (NullPointerException ex) {
@@ -135,16 +137,13 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         for (PotionEffect effect : player.getActivePotionEffects()) {
             player.removePotionEffect(effect.getType());
         }
-                
-        p.getItemInHand().setType(Material.AIR);
-        player.updateInventory();
 
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
 
                 if (group.equals(Group.FIREARMS)) {
-                    ItemStack AMMO = new ItemStack(Material.FLINT, 64);
+                    ItemStack AMMO = new ItemStack(Material.FLINT, 128);
                     ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
 
                     ItemMeta blaze_rod = BLAZE_ROD.getItemMeta();
@@ -208,7 +207,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                     player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
                     player.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
 
-                    player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1, (short) -283476));
+                    player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1, (short) -200));
                     player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
                 }
                 if (group.equals(Group.ARCHER)) {
@@ -243,7 +242,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                 }
                 player.updateInventory();
             }
-        }, 10L);
+        }, 40L);
     }
 
     @EventHandler
