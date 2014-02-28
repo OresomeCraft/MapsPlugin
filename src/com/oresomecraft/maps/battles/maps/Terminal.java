@@ -15,6 +15,7 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
     public Terminal() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
+        setAutoSpawnProtection(10);
     }
 
     String name = "terminal";
@@ -23,10 +24,10 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
-        Location redSpawn = new Location(w, -72, 71, -1208, -1, 0);
-        Location blueSpawn = new Location(w, -116, 66, -1140, -178, 0);
-        redSpawns.add(redSpawn);
-        blueSpawns.add(blueSpawn);
+        blueSpawns.add(new Location(w, -118, 79, -1158, -1, 0));
+        blueSpawns.add(new Location(w, -116, 66, -1140, -178, 0));
+        redSpawns.add(new Location(w, -72, 71, -1208, -1, 0));
+        redSpawns.add(new Location(w, -85, 79, -1198, -1, 0));
     }
 
     public void readyFFASpawns() {
