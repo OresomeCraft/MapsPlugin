@@ -43,7 +43,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_HELMET, Material.DIAMOND_HELMET,
                 Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS, Material.GOLD_HELMET, Material.GOLD_CHESTPLATE,
                 Material.GOLD_LEGGINGS, Material.GOLD_BOOTS, Material.STONE_SWORD, Material.WOOD_SWORD, Material.DIAMOND_SWORD, Material.GOLDEN_APPLE,
-                Material.POTION, Material.TNT});
+                Material.POTION, Material.TNT, Material.GOLD_SWORD});
     }
 
     String name = "courtyard";
