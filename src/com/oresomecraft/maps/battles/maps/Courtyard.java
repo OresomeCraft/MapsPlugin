@@ -207,8 +207,9 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                     player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
                     player.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
 
-                    player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1, (short) -200));
+                    player.getInventory().setItem(0, new ItemStack(Material.IRON_SWORD, 1, (short) -200));
                     player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20000 * 20, 1));
                 }
                 if (group.equals(Group.ARCHER)) {
                     player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
