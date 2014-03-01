@@ -29,7 +29,7 @@ public class TelluricPathII extends BattleMap implements IBattleMap, Listener {
 
     public TelluricPathII() {
         super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(20);
+        setTDMTime(10);
         setAllowBuild(false);
         disablePearlDamage(true);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
