@@ -17,10 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -40,9 +37,9 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
     }
 
     String name = "blockhunt";
-    String fullName = "Block Hunt";
-    String creators = "__R3 ";
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
+    String fullName = "The Block Hunt";
+    String creators = "Psystrom, 123Oblivious, microstevey, __R3, AnomalousRei, DynaDavidson, _Trezo_, Tatik, Fliine and SecretSeriousity";
+    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     //Disguise stuff
     private DisguiseManager disguiseManager = new DisguiseManager(MapsPlugin.getInstance());
@@ -60,15 +57,15 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, 2, 84, -48, -1, 0));
-        blueSpawns.add(new Location(w, -3, 84, 58, -178, 0));
+        redSpawns.add(new Location(w, 35.5, 68, -11.5));
+        blueSpawns.add(new Location(w, -96.5, 68, -28.));
 
-        setKoTHMonument(new Location(w, -1, 115, 4));
+        setCTFFlags(name, new Location(w, 11, 69, -13), new Location(w, -71, 69, -30));
     }
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, 2, 84, -48, -1, 0));
-        FFASpawns.add(new Location(w, -3, 84, 58, -178, 0));
+        FFASpawns.add(new Location(w, 35.5, 68, -11.5));
+        FFASpawns.add(new Location(w, -96.5, 68, -28.));
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -93,6 +90,9 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
         i.setItem(11, ARROWS);
         i.setItem(3, new ItemStack(Material.BREAD, 3));
         i.setItem(8, e);
+
+        setColouredArmorAccordingToTeam(p);
+        p.getInventory().setBoots(BOOTS);
 
     }
 
@@ -279,16 +279,16 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void onWorldChange(PlayerChangedWorldEvent e) {
+    public void onWorldChange(PlayerTeleportEvent e) {
         if (!(e.getPlayer().getWorld().getName().equals(name))) return;
-        disguiseManager.undisguise(e.getPlayer());
+        if (BattlePlayer.getBattlePlayer(e.getPlayer()).isSpectator()) disguiseManager.undisguise(e.getPlayer());
     }
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
         if (!(e.getPlayer().getWorld().getName().equals(name))) return;
         try {
-            if (disguiseManager.isDisguisedBlock(e.getClickedBlock())) {
+            if (disguiseManager.isDisguisedBlock(e.getClickedBlock()) || !BattlePlayer.getBattlePlayer(e.getPlayer()).isSpectator()) {
                 Player p = Bukkit.getPlayer(disguiseManager.undisguiseIfDisguised(e.getClickedBlock()).getName());
                 p.sendMessage(ChatColor.RED + "You were revealed!");
                 e.getPlayer().sendMessage(ChatColor.RED + "You revealed " + p.getName() + "!");
