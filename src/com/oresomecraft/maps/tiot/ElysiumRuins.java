@@ -6,13 +6,8 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-import org.bukkit.ChatColor;
-import org.bukkit.Color;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 @MapConfig
 public class ElysiumRuins extends BattleMap implements IBattleMap, Listener {
@@ -20,7 +15,7 @@ public class ElysiumRuins extends BattleMap implements IBattleMap, Listener {
     public ElysiumRuins() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        lockTime(0);
+        lockTime("night");
     }
 
     // Map details
