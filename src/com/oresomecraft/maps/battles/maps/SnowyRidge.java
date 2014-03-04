@@ -32,7 +32,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
     public SnowyRidge() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_HELMET});
+        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.SNOW_BALL});
         setFireSpread(false);
     }
 

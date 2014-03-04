@@ -7,35 +7,23 @@ import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.Sign;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 
 @MapConfig
@@ -87,7 +75,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void quit(PlayerQuitEvent e) {
-        if (!e.getPlayer().getWorld().equals(name)) return;
+        if (!e.getPlayer().getWorld().getName().equals(name)) return;
         if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName()))
             Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has left!");
         red.remove(e.getPlayer().getName());
@@ -97,7 +85,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void death(PlayerDeathEvent e) {
-        if (!e.getEntity().getWorld().equals(name)) return;
+        if (!e.getEntity().getWorld().getName().equals(name)) return;
         red.remove(e.getEntity().getName());
         blue.remove(e.getEntity().getName());
         if (red.contains(e.getEntity().getName()) || blue.contains(e.getEntity().getName()))
@@ -114,15 +102,15 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
                 public void run() {
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         try {
-                            if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_RED) {
+                            if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType().equals(Team.LTS_RED)) {
                                 red.add(p.getName());
                                 Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " is red!");
                             }
-                            if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_BLUE) {
+                            if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType().equals(Team.LTS_BLUE)) {
                                 blue.add(p.getName());
                                 Bukkit.broadcastMessage(ChatColor.BLUE + p.getName() + " is blue!");
                             }
-                        } catch (NullPointerException ev) {
+                        } catch (NullPointerException ex) {
                             //null
                         }
                     }
@@ -134,7 +122,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void leavespec(PlayerCommandPreprocessEvent e) {
-        if (!e.getPlayer().getWorld().equals(name)) return;
+        if (!e.getPlayer().getWorld().getName().equals(name)) return;
         if (e.getMessage().toLowerCase().startsWith("/leave")) {
             if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName()))
                 Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has left!");
@@ -153,9 +141,9 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void ironblock(PlayerInteractEvent e) {
-        if (!e.getPlayer().getWorld().equals(name)) return;
+        if (!e.getPlayer().getWorld().getName().equals(name)) return;
         try {
-            if (e.getClickedBlock().getType() == Material.IRON_BLOCK) {
+            if (e.getClickedBlock().getType().equals(Material.IRON_BLOCK)) {
                 join(e.getPlayer().getName());
             }
         } catch (NullPointerException ex) {
@@ -186,12 +174,12 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
         Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] Round over! Picking new players!");
         try {
             Bukkit.getPlayer(currentBlue).teleport(new Location(Bukkit.getWorld(name), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
-        } catch (NullPointerException e) {
+        } catch (NullPointerException ex) {
 
         }
         try {
             Bukkit.getPlayer(currentRed).teleport(new Location(Bukkit.getWorld(name), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
-        } catch (NullPointerException e) {
+        } catch (NullPointerException ex) {
 
         }
         if (red.size() == 0 || blue.size() == 0) {
@@ -261,10 +249,12 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
+
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, STEAK);
