@@ -113,10 +113,18 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                 public void run() {
                     for (Player p : Bukkit.getOnlinePlayers()) {
-                        if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_RED)
-                            red.add(p.getName());
-                        if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_BLUE)
-                            blue.add(p.getName());
+                        try {
+                            if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_RED) {
+                                red.add(p.getName());
+                                Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " is red!");
+                            }
+                            if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_BLUE) {
+                                blue.add(p.getName());
+                                Bukkit.broadcastMessage(ChatColor.BLUE + p.getName() + " is blue!");
+                            }
+                        } catch (NullPointerException ev) {
+                            //null
+                        }
                     }
                     newRound();
                 }
@@ -244,7 +252,6 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
 
     private void handKit(Player p) {
         Inventory i = p.getInventory();
-
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
