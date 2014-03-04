@@ -67,7 +67,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
-        ItemStack SNOWBALLS = new ItemStack(Material.SNOW_BALL, 10);
+        ItemStack SNOWBALLS = new ItemStack(Material.SNOW_BALL, 16);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 1);
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
