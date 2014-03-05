@@ -101,7 +101,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                 public void run() {
                     for (Player p : Bukkit.getOnlinePlayers()) {
-                        if (BattlePlayer.getBattlePlayer(p.getName()).getType() != null) {
+                        if (BattlePlayer.getBattlePlayer(p.getName()).getTeam() != null) {
                             if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_RED) {
                                 red.add(p.getName());
                             }
