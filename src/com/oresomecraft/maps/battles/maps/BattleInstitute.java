@@ -101,7 +101,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
         red.remove(e.getEntity().getName());
         blue.remove(e.getEntity().getName());
         if (red.contains(e.getEntity().getName()) || blue.contains(e.getEntity().getName()))
-            Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has died!");
+            Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has quit!");
         if (currentRed.equals(e.getEntity().getName()) || currentBlue.equals(e.getEntity().getName())) endRound();
         e.getEntity().setHealth(20);
     }

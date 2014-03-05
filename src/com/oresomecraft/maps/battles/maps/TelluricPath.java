@@ -2,6 +2,7 @@ package com.oresomecraft.maps.battles.maps;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
@@ -137,6 +138,6 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
     public void death(EntityDeathEvent e) {
         if (!e.getEntity().getWorld().getName().equals(name)) return;
         e.getDrops().clear();
-        e.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
+        if (Math.random() >= 0.5) e.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
     }
 }

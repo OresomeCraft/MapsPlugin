@@ -23,6 +23,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
@@ -122,7 +123,8 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
             if (mat == Material.FISHING_ROD) {
 
                 if (event.getHook().getVelocity().getY() < 0.02 && isLocationNearBlock(bobber)) {
-                    p.launchProjectile(Snowball.class);
+                    Snowball snowball = p.launchProjectile(Snowball.class);
+                    snowball.setTicksLived(99999 * 20);
                 }
             }
         }
@@ -138,7 +140,9 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
 
         if (proj instanceof Snowball) {
             Snowball fish = (Snowball) proj;
-            ProjectileSource shooter = fish.getShooter();
+            if (proj.getTicksLived() < (99999 * 20))
+                return; //So normal snowballs don't clash with the grapple snowballs. Grapple snowballs use TicksLived instead of metadata lol
+            ProjectileSource shooter = (ProjectileSource) fish.getShooter();
 
             if (shooter instanceof Player) {
                 Player p = (Player) shooter;

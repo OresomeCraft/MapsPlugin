@@ -162,8 +162,7 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
 
         if (proj instanceof Snowball) {
             Snowball fish = (Snowball) proj;
-            ProjectileSource shooter = fish.getShooter();
-
+            ProjectileSource shooter = (ProjectileSource) fish.getShooter();
             if (shooter instanceof Player) {
                 Player p = (Player) shooter;
                 Location loc = p.getLocation();

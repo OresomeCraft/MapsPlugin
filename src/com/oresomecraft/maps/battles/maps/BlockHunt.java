@@ -281,6 +281,7 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onWorldChange(PlayerTeleportEvent e) {
         if (!(e.getPlayer().getWorld().getName().equals(name))) return;
+        if (e.getTo().getWorld().getName().equals(e.getFrom().getWorld().getName())) return;
         if (BattlePlayer.getBattlePlayer(e.getPlayer()).isSpectator()) disguiseManager.undisguise(e.getPlayer());
     }
 
