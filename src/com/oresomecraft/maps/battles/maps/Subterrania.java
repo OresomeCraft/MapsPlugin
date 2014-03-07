@@ -26,7 +26,7 @@ public class Subterrania extends BattleMap implements IBattleMap, Listener {
     String name = "subterrania";
     String fullName = "Subterrania";
     String creators = "__R3 and _Moist";
-    Gamemode[] modes = {Gamemode.INFECTION, Gamemode.FFA, Gamemode.TDM};
+    Gamemode[] modes = {Gamemode.FFA, Gamemode.TDM};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 18, 28, 84));
