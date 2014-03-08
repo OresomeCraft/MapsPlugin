@@ -10,8 +10,10 @@ import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.*;
@@ -121,69 +123,43 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     public Map<Player, Block> placer = new HashMap<Player, Block>();
     public Map<Block, Player> placerB = new HashMap<Block, Player>();
 
-    @SuppressWarnings("deprecation")
-  /*  @EventHandler(priority = EventPriority.NORMAL)
-    public void c4(PlayerInteractEvent event) {
-
-        Player p = event.getPlayer();
-        Location loc = p.getLocation();
-        Action a = event.getAction();
-        ItemStack i = p.getItemInHand();
+    @EventHandler
+    public void gun(PlayerInteractEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        Player player = event.getPlayer();
+        Location loc = player.getLocation();
+        Action action = event.getAction();
+        ItemStack i = player.getItemInHand();
+        Inventory inv = player.getInventory();
         Material tool = i.getType();
-        BlockFace face = event.getBlockFace();
-        Inventory inv = p.getInventory();
-        String name = p.getName();
+        final World world = loc.getWorld();
 
-        if (!battles.spectator.contains(name)) {
+        if (tool.equals(Material.BLAZE_ROD)) {
 
-            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
-                if (tool == Material.LEATHER) {
+            if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
 
-                    if (a == Action.RIGHT_CLICK_BLOCK) {
+                if (inv.contains(Material.FLINT)) {
+                    player.launchProjectile(Arrow.class);
+                    world.playSound(loc, Sound.COW_WALK, 10, 10);
+                    ItemStack AMMO = new ItemStack(Material.FLINT, 1);
+                    inv.removeItem(AMMO);
 
-                        Block b = event.getClickedBlock();
-                        Block place = b.getRelative(face);
+                    ItemMeta ammo = AMMO.getItemMeta();
+                    ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
+                    AMMO.setItemMeta(ammo);
+                    inv.removeItem(AMMO);
 
-                        if (!placerB.containsValue(p)) {
-
-                            place.setType(Material.BRICK);
-                            p.playSound(loc, Sound.STEP_GRAVEL, 1, 1);
-
-                            placer.put(p, place);
-                            placerB.put(place, p);
-
-                        }
-                    }
-
+                    // Make it remove normal flints, too.
+                    player.updateInventory();
+                } else {
+                    world.playSound(loc, Sound.CLICK, 10, 10);
                 }
 
-                if (a == Action.RIGHT_CLICK_AIR) {
-
-                    if (placer.containsKey(p) && placerB.containsValue(p)) {
-
-                        Block charge = placer.get(p);
-                        Location chargeloc = charge.getLocation();
-                        World w = charge.getWorld();
-                        p.playSound(loc, Sound.CLICK, 1, 1);
-                        w.createExplosion(chargeloc, 4);
-
-                        ItemStack LEATHER = new ItemStack(Material.LEATHER, 1);
-                        ItemMeta leather = LEATHER.getItemMeta();
-                        leather.setDisplayName(ChatColor.BLUE + "C4");
-                        LEATHER.setItemMeta(leather);
-
-                        inv.removeItem(LEATHER);
-                        p.updateInventory();
-                        placer.remove(p);
-                        placerB.remove(charge);
-
-                    }
-                }
             }
 
         }
 
-    }           */
+    }
 
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -273,49 +249,6 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
         }
 
     }
-
-    @SuppressWarnings("deprecation")
- /*   @EventHandler(priority = EventPriority.NORMAL)
-    public void gun(PlayerInteractEvent event) {
-        Player p = event.getPlayer();
-        Location loc = p.getLocation();
-        Action a = event.getAction();
-        ItemStack i = p.getItemInHand();
-        Inventory inv = p.getInventory();
-        Material tool = i.getType();
-        final World world = loc.getWorld();
-        String name = p.getName();
-
-        if (battles.spectator.contains(name) || p.getWorld().equals("world")) {
-            //disable using the gun at the spawn
-            return;
-        } else {
-            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
-
-                if (tool == Material.BLAZE_ROD) {
-
-                    if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
-
-                        if (inv.contains(Material.FLINT)) {
-
-                            p.launchProjectile(Arrow.class);
-                            world.playSound(loc, Sound.COW_WALK, 10, 10);
-                            ItemStack AMMO = new ItemStack(Material.FLINT, 1);
-                            //Make it remove normal flints, too.
-                            p.updateInventory();
-
-                        }
-
-                    } else {
-                        world.playSound(loc, Sound.CLICK, 10, 10);
-                    }
-
-                }
-
-            }
-
-        }
-    }       */
 
     public int particles;
 
