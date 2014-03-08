@@ -68,6 +68,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void interact(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if(event.getAction() == Action.RIGHT_CLICK_BLOCK) return;
         try {
             Player player = event.getPlayer();
             Block block = event.getClickedBlock();
@@ -243,7 +244,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                 }
                 player.updateInventory();
             }
-        }, 40L);
+        }, 10L);
     }
 
     @EventHandler
