@@ -144,7 +144,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
             public void run() {
 
                 if (group.equals(Group.FIREARMS)) {
-                    ItemStack AMMO = new ItemStack(Material.FLINT, 128);
+                    ItemStack AMMO = new ItemStack(Material.FLINT, 32);
                     ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
 
                     ItemMeta blaze_rod = BLAZE_ROD.getItemMeta();
