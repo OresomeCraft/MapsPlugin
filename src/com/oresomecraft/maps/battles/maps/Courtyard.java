@@ -2,6 +2,7 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
@@ -62,15 +63,25 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        p.sendMessage(ChatColor.GOLD + "" + ChatColor.GOLD + "Punch click one of the signs to change class!");
+        p.sendMessage(ChatColor.GOLD + "" + ChatColor.GOLD + "Interact with one of the signs to change class!");
+    }
+
+    ArrayList<String> selecting = new ArrayList<String>();
+
+    @EventHandler
+    public void end(BattleEndEvent e) {
+        selecting.clear();
     }
 
     @EventHandler
     public void interact(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        if(event.getAction() == Action.RIGHT_CLICK_BLOCK) return;
         try {
             Player player = event.getPlayer();
+            if (selecting.contains(player.getName())) {
+                player.sendMessage(ChatColor.RED + "You are already selecting a class, please wait!");
+                return;
+            }
             Block block = event.getClickedBlock();
 
             if (block.getType().equals(Material.SIGN_POST) || block.getType().equals(Material.WALL_SIGN)) {
@@ -142,7 +153,6 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
-
                 if (group.equals(Group.FIREARMS)) {
                     ItemStack AMMO = new ItemStack(Material.FLINT, 32);
                     ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
@@ -243,8 +253,9 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                     player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 2));
                 }
                 player.updateInventory();
+                selecting.remove(player.getName());
             }
-        }, 10L);
+        }, 30L);
     }
 
     @EventHandler
