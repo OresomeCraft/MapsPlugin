@@ -63,8 +63,8 @@ public class Sandbox extends BattleMap implements IBattleMap, Listener {
         ItemStack WOODEN_SWORD = new ItemStack(Material.WOOD_SWORD, 1);
         ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
 
-        IRON_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 2);
-        WOODEN_SWORD.addEnchantment(Enchantment.DURABILITY, 5);
+        IRON_BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 2);
+        WOODEN_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 5);
 
         p.getInventory().setBoots(IRON_BOOTS);
 
@@ -116,7 +116,7 @@ public class Sandbox extends BattleMap implements IBattleMap, Listener {
 
             if (proj instanceof Snowball) {
                 Snowball fish = (Snowball) proj;
-                ProjectileSource shooter = fish.getShooter();
+                ProjectileSource shooter = (ProjectileSource) fish.getShooter();
 
                 if (shooter instanceof Player) {
                     Player p = (Player) shooter;
