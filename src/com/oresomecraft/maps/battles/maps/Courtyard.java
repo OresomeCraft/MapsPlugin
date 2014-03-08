@@ -62,7 +62,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        p.sendMessage(ChatColor.GOLD + "" + ChatColor.GOLD + "Right click one of the signs to change class!");
+        p.sendMessage(ChatColor.GOLD + "" + ChatColor.GOLD + "Punch click one of the signs to change class!");
     }
 
     @EventHandler
