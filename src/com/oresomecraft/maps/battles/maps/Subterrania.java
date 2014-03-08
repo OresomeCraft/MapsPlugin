@@ -12,6 +12,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 @MapConfig
 public class Subterrania extends BattleMap implements IBattleMap, Listener {
@@ -82,6 +84,8 @@ public class Subterrania extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
         i.setItem(9, ARROWS);
+
+        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 10000 * 20, 10000 * 20));
 
     }
 
