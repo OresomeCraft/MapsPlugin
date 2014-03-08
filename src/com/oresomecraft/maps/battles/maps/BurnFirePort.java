@@ -37,7 +37,6 @@ public class BurnFirePort extends BattleMap implements IBattleMap, Listener {
         blueSpawns.add(new Location(w, -99, 40, 41, 90, 0));
         blueSpawns.add(new Location(w, -11, 33, 62, 45, 0));
         blueSpawns.add(new Location(w, -115, 30, 79, 90, 0));
-        blueSpawns.add(new Location(w, -86, 28, 87, 90, 0));
     }
 
     public void readyFFASpawns() {
