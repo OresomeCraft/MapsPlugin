@@ -1,24 +1,25 @@
 package com.oresomecraft.maps.battles.maps;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
-import org.bukkit.block.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.*;
-import org.bukkit.event.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.*;
-
-import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
 public class Wartown extends BattleMap implements IBattleMap, Listener {
@@ -81,7 +82,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
         ItemStack AMMO = new ItemStack(Material.FLINT, 64);
         ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
         ItemStack EGG_WARTOWN = new ItemStack(Material.EGG, 1);
-        ItemStack LEATHER = new ItemStack(Material.LEATHER, 1);
+        ItemStack GUN_POWDER = new ItemStack(Material.SULPHUR, 1);
 
         ItemMeta blaze_rod = BLAZE_ROD.getItemMeta();
         blaze_rod.setDisplayName(ChatColor.BLUE + "Gun");
@@ -95,9 +96,9 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
         egg_wartown.setDisplayName(ChatColor.BLUE + "Frag grenade");
         EGG_WARTOWN.setItemMeta(egg_wartown);
 
-        ItemMeta leather = LEATHER.getItemMeta();
-        leather.setDisplayName(ChatColor.BLUE + "C4");
-        LEATHER.setItemMeta(leather);
+        ItemMeta gun_powder = GUN_POWDER.getItemMeta();
+        gun_powder.setDisplayName(ChatColor.BLUE + "C4");
+        GUN_POWDER.setItemMeta(gun_powder);
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
@@ -106,10 +107,10 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BLAZE_ROD);
+        i.setItem(2, HEALTH_POTION);
+        i.setItem(3, STEAK);
+        i.setItem(4, GUN_POWDER);
         i.setItem(6, EGG_WARTOWN);
-        i.setItem(4, LEATHER);
-        i.setItem(2, STEAK);
-        i.setItem(3, HEALTH_POTION);
         i.setItem(9, AMMO);
     }
 
@@ -120,8 +121,15 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     public int y2 = 91;
     public int z2 = -145;
 
-    public Map<Player, Block> placer = new HashMap<Player, Block>();
-    public Map<Block, Player> placerB = new HashMap<Block, Player>();
+    @EventHandler
+    public void c4(PlayerDropItemEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (event.getItemDrop().equals(new ItemStack(Material.SULPHUR))) {
+            Entity tnt = event.getPlayer().getWorld().spawn(event.getItemDrop().getLocation(), TNTPrimed.class);
+            ((TNTPrimed) tnt).setFuseTicks(60);
+            event.getItemDrop().setItemStack(new ItemStack(Material.AIR));
+        }
+    }
 
     @EventHandler
     public void gun(PlayerInteractEvent event) {
@@ -157,95 +165,6 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
             }
 
-        }
-
-    }
-
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void c4premature(ProjectileHitEvent event) {
-        Projectile p = event.getEntity();
-        World w = p.getWorld();
-        World world = Bukkit.getWorld(name);
-        if (event.getEntity().getWorld().getName().equals(name)) {
-            if (p instanceof Arrow) {
-
-                world.playEffect(p.getLocation(), Effect.STEP_SOUND, 10);
-            }
-        }
-        Location loc = p.getLocation();
-        Block b = loc.getBlock();
-        Block bD = b.getRelative(BlockFace.DOWN);
-        Block bU = b.getRelative(BlockFace.UP);
-        Block bE = b.getRelative(BlockFace.EAST);
-        Block bW = b.getRelative(BlockFace.WEST);
-        Block bN = b.getRelative(BlockFace.NORTH);
-        Block bS = b.getRelative(BlockFace.SOUTH);
-
-        ItemStack LEATHER = new ItemStack(Material.LEATHER, 1);
-        ItemMeta leather = LEATHER.getItemMeta();
-        leather.setDisplayName(ChatColor.BLUE + "C4");
-        LEATHER.setItemMeta(leather);
-
-        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
-
-            if (placer.containsValue(b)) {
-                Player own = placerB.get(b);
-                Inventory i = own.getInventory();
-                i.removeItem(LEATHER);
-                own.updateInventory();
-                w.createExplosion(loc, 4);
-                placerB.remove(b);
-
-            } else if (placer.containsValue(bD)) {
-                Player own = placerB.get(bD);
-                Inventory i = own.getInventory();
-                i.removeItem(LEATHER);
-                own.updateInventory();
-                w.createExplosion(loc, 4);
-                placerB.remove(bD);
-
-            } else if (placer.containsValue(bU)) {
-                Player own = placerB.get(bU);
-                Inventory i = own.getInventory();
-                i.removeItem(LEATHER);
-                own.updateInventory();
-                w.createExplosion(loc, 4);
-                placerB.remove(bU);
-
-            } else if (placer.containsValue(bE)) {
-                Player own = placerB.get(bE);
-                Inventory i = own.getInventory();
-                i.removeItem(LEATHER);
-                own.updateInventory();
-                w.createExplosion(loc, 4);
-                placerB.remove(bE);
-
-            } else if (placer.containsValue(bW)) {
-                Player own = placerB.get(bW);
-                // Inventory i = own.getInventory();
-                // i.removeItem(LEATHER);
-                own.updateInventory();
-                w.createExplosion(loc, 4);
-                placerB.remove(bW);
-
-            } else if (placer.containsValue(bN)) {
-                Player own = placerB.get(bN);
-                Inventory i = own.getInventory();
-                i.removeItem(LEATHER);
-                own.updateInventory();
-                w.createExplosion(loc, 4);
-                placerB.remove(bN);
-
-            } else if (placer.containsValue(bS)) {
-                Player own = placerB.get(bS);
-                // Inventory i = own.getInventory();
-                // i.removeItem(LEATHER);
-                own.updateInventory();
-                w.createExplosion(loc, 4);
-                placerB.remove(bS);
-
-            }
         }
 
     }
@@ -292,23 +211,23 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
             if (p instanceof Egg) {
 
-                if (b.getType() == Material.AIR)
+                if (b.getType().equals(Material.AIR))
                     b.setType(Material.FIRE);
-                if (bN.getType() == Material.AIR)
+                if (bN.getType().equals(Material.AIR))
                     bN.setType(Material.FIRE);
-                if (bS.getType() == Material.AIR)
+                if (bS.getType().equals(Material.AIR))
                     bS.setType(Material.FIRE);
-                if (bW.getType() == Material.AIR)
+                if (bW.getType().equals(Material.AIR))
                     bE.setType(Material.FIRE);
-                if (bNW.getType() == Material.AIR)
+                if (bNW.getType().equals(Material.AIR))
                     bW.setType(Material.FIRE);
-                if (bNW.getType() == Material.AIR)
+                if (bNW.getType().equals(Material.AIR))
                     bNW.setType(Material.FIRE);
-                if (bNE.getType() == Material.AIR)
+                if (bNE.getType().equals(Material.AIR))
                     bNE.setType(Material.FIRE);
-                if (bSW.getType() == Material.AIR)
+                if (bSW.getType().equals(Material.AIR))
                     bSW.setType(Material.FIRE);
-                if (bSE.getType() == Material.AIR)
+                if (bSE.getType().equals(Material.AIR))
                     bSE.setType(Material.FIRE);
             }
         }
@@ -328,7 +247,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
                 Arrow a = (Arrow) p;
                 a.remove();
 
-                if (mat == Material.THIN_GLASS) {
+                if (mat.equals(Material.THIN_GLASS)) {
                     b.breakNaturally();
                 }
 
@@ -339,15 +258,15 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void moltovHit(EntityDamageByEntityEvent event) {
 
-        Entity e = event.getEntity();
+        Entity entity = event.getEntity();
         Entity proj = event.getDamager();
-        Location loc = e.getLocation();
+        Location loc = entity.getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
 
             if (proj instanceof Egg) {
 
-                e.setFireTicks(500);
+                entity.setFireTicks(500);
 
             }
 
