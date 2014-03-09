@@ -131,10 +131,12 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void c4(PlayerDropItemEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        if (event.getItemDrop().equals(new ItemStack(Material.SULPHUR))) {
+        if (event.getItemDrop().getItemStack().getType() == Material.SULPHUR) {
+            event.getPlayer().getWorld().playSound(event.getItemDrop().getLocation(), Sound.FUSE, 1L, 1L);
             Entity tnt = event.getPlayer().getWorld().spawn(event.getItemDrop().getLocation(), TNTPrimed.class);
-            ((TNTPrimed) tnt).setFuseTicks(60);
-            event.getItemDrop().setItemStack(new ItemStack(Material.AIR));
+            ((TNTPrimed) tnt).setFuseTicks(10 * 20);
+            tnt.getLocation().subtract(0, 1, 0).getBlock().setType(Material.BRICK);
+            event.getItemDrop().remove();
         }
     }
 
@@ -174,6 +176,17 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
         }
 
+    }
+
+    @EventHandler
+    public void hit(ProjectileHitEvent e) {
+        if (!e.getEntity().getWorld().getName().equals(name)) return;
+        for (Entity en : e.getEntity().getNearbyEntities(3, 3, 3)) {
+            if (en instanceof TNTPrimed) {
+                TNTPrimed tnt = (TNTPrimed) en;
+                tnt.setFuseTicks(1);
+            }
+        }
     }
 
     public int particles;
