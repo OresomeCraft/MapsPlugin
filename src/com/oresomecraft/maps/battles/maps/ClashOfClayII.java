@@ -72,8 +72,8 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, PUMPKIN_PIE);
         i.setItem(4, APPLE);
 
-        if (p.getTeamType() == Team.TDM_RED) i.setItem(5, RED_STAINED_CLAY);
-        if (p.getTeamType() == Team.TDM_BLUE) i.setItem(5, BLUE_STAINED_CLAY);
+        if (p.getTeamType() == Team.TDM_RED || p.getTeamType() == Team.LTS_RED) i.setItem(5, RED_STAINED_CLAY);
+        if (p.getTeamType() == Team.TDM_BLUE || p.getTeamType() == Team.LTS_BLUE) i.setItem(5, BLUE_STAINED_CLAY);
 
         i.setItem(6, TORCH);
         i.setItem(27, ARROW);
