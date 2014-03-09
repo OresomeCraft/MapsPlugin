@@ -83,6 +83,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                 return;
             }
             Block block = event.getClickedBlock();
+            selecting.add(player.getName());
 
             if (block.getType().equals(Material.SIGN_POST) || block.getType().equals(Material.WALL_SIGN)) {
                 BlockState state = block.getState();
