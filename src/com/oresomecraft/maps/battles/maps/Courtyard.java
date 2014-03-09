@@ -78,13 +78,13 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         try {
             Player player = event.getPlayer();
-            if (selecting.contains(player.getName())) {
-                player.sendMessage(ChatColor.RED + "You are already selecting a class, please wait!");
-                return;
-            }
             Block block = event.getClickedBlock();
 
             if (block.getType().equals(Material.SIGN_POST) || block.getType().equals(Material.WALL_SIGN)) {
+                if (selecting.contains(player.getName())) {
+                    player.sendMessage(ChatColor.RED + "You are already selecting a class, please wait!");
+                    return;
+                }
                 BlockState state = block.getState();
                 Sign sign = (Sign) state;
 
