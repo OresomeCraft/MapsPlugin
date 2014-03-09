@@ -46,10 +46,11 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
         ItemStack BLUE_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 11);
         ItemStack RED_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 14);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-        LEATHER_CHESTPLATE.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
         ItemStack DIAMOND_HELMET = new ItemStack(Material.DIAMOND_HELMET, 1);
         ItemStack TORCH = new ItemStack(Material.TORCH, 16);
         ItemStack ARROW = new ItemStack(Material.ARROW, 1);
+
+        LEATHER_CHESTPLATE.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
         //This goes before you set the armor.
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
@@ -62,8 +63,8 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, PUMPKIN_PIE);
         i.setItem(4, APPLE);
 
-        if (p.getTeamType() == Team.TDM_RED) i.setItem(5, RED_STAINED_CLAY);
-        if (p.getTeamType() == Team.TDM_BLUE) i.setItem(5, BLUE_STAINED_CLAY);
+        if (p.getTeamType().equals(Team.TDM_RED)) i.setItem(5, RED_STAINED_CLAY);
+        if (p.getTeamType().equals(Team.TDM_BLUE)) i.setItem(5, BLUE_STAINED_CLAY);
 
         i.setItem(6, TORCH);
         i.setItem(27, ARROW);

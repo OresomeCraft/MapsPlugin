@@ -1,10 +1,12 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.InvUtils;
+import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-import com.oresomecraft.OresomeBattles.api.*;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -72,8 +74,8 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, PUMPKIN_PIE);
         i.setItem(4, APPLE);
 
-        if (p.getTeamType() == Team.TDM_RED || p.getTeamType() == Team.LTS_RED) i.setItem(5, RED_STAINED_CLAY);
-        if (p.getTeamType() == Team.TDM_BLUE || p.getTeamType() == Team.LTS_BLUE) i.setItem(5, BLUE_STAINED_CLAY);
+        if (p.getTeamType().equals(Team.TDM_RED) || p.getTeamType().equals(Team.LTS_RED)) i.setItem(5, RED_STAINED_CLAY);
+        if (p.getTeamType().equals(Team.TDM_BLUE) || p.getTeamType().equals(Team.LTS_BLUE)) i.setItem(5, BLUE_STAINED_CLAY);
 
         i.setItem(6, TORCH);
         i.setItem(27, ARROW);
@@ -107,7 +109,7 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         if (loc.getWorld().getName().equals(name)) {
 
             //Dud method that doesn't work, don't know why it's here.
-            if (event.getBlockPlaced().getType() == Material.LAVA) event.setCancelled(true);
+            if (event.getBlockPlaced().getType().equals(Material.LAVA)) event.setCancelled(true);
 
             //Spawn placing
             if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
