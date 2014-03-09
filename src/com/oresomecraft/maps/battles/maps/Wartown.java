@@ -81,7 +81,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 4);
         ItemStack AMMO = new ItemStack(Material.FLINT, 64);
         ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
         ItemStack EGG_WARTOWN = new ItemStack(Material.EGG, 1);
