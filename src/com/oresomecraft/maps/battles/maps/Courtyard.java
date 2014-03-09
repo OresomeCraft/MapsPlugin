@@ -87,7 +87,6 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
             if (block.getType().equals(Material.SIGN_POST) || block.getType().equals(Material.WALL_SIGN)) {
                 BlockState state = block.getState();
                 Sign sign = (Sign) state;
-                selecting.add(player.getName());
 
                 // Sign options
                 if (sign.getLine(1).contains("Firearms")) {
@@ -147,6 +146,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         for (PotionEffect effect : player.getActivePotionEffects()) {
             player.removePotionEffect(effect.getType());
         }
+        selecting.add(player.getName());
 
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
