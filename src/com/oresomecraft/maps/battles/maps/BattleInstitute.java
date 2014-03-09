@@ -122,6 +122,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     public void leavespec(final PlayerCommandPreprocessEvent e) {
         if (e.getMessage().toLowerCase().startsWith("/join")) {
             if (!red.contains(e.getPlayer().getName()) && !blue.contains(e.getPlayer().getName()) && Bukkit.getWorld(name) != null) {
+                if (Bukkit.getWorld(name).getPlayers().size() == 0) return;
                 Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                     @Override
                     public void run() {
