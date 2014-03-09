@@ -65,7 +65,6 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
 
         p.getInventory().setHelmet(DIAMOND_HELMET);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 
         i.setItem(0, WOODEN_SWORD);
