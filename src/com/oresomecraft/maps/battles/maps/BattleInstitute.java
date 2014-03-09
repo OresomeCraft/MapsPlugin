@@ -127,11 +127,14 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
                     @Override
                     public void run() {
                         try {
-                            Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has joined!");
-                            if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_RED)
+                            if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_RED) {
+                                Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has joined!");
                                 red.add(e.getPlayer().getName());
-                            if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_BLUE)
+                            }
+                            if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_BLUE) {
+                                Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has joined!");
                                 blue.add(e.getPlayer().getName());
+                            }
                         } catch (NullPointerException ex) {
                             //noteam
                         }
