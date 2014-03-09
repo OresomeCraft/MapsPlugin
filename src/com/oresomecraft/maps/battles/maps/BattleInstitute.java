@@ -195,10 +195,6 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
             }
             p.setHealth(20);
             p.setFoodLevel(20);
-            if (red.contains(p.getName()))
-                p.teleport(new Location(Bukkit.getWorld(name), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
-            if (blue.contains(p.getName()))
-                p.teleport(new Location(Bukkit.getWorld(name), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
             p.updateInventory();
         }
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
