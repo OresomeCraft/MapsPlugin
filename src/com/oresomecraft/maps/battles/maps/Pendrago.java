@@ -19,6 +19,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
@@ -469,7 +470,13 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void explode(EntityExplodeEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
-        event.blockList().clear();
+        for (Block b : event.blockList()) {
+            try {
+                event.blockList().remove(b);
+            } catch (Exception e) {
+                //null
+            }
+        }
     }
 
     @EventHandler
@@ -683,5 +690,11 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
 
         }
         return i;
+    }
+
+    @EventHandler
+    public void drop(PlayerDropItemEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        event.setCancelled(true);
     }
 }
