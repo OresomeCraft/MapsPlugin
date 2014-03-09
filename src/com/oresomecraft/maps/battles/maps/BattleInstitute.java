@@ -51,7 +51,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        p.sendMessage(ChatColor.GOLD + "" + ChatColor.GOLD + "Wait until you are called and then punch the block!");
+        p.sendMessage( ChatColor.GOLD + "Wait until you are called and then punch the block!");
     }
 
     ArrayList<String> red = new ArrayList<String>();
@@ -77,7 +77,6 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     public void quit(PlayerQuitEvent e) {
         if (!e.getPlayer().getWorld().getName().equals(name)) return;
         if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName()))
-            Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has left!");
         red.remove(e.getPlayer().getName());
         blue.remove(e.getPlayer().getName());
         if (currentRed.equals(e.getPlayer().getName()) || currentBlue.equals(e.getPlayer().getName())) endRound();
@@ -89,7 +88,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
         red.remove(e.getEntity().getName());
         blue.remove(e.getEntity().getName());
         if (red.contains(e.getEntity().getName()) || blue.contains(e.getEntity().getName()))
-            Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has quit!");
+            Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has fallen!");
         if (currentRed.equals(e.getEntity().getName()) || currentBlue.equals(e.getEntity().getName())) endRound();
         e.getEntity().setHealth(20);
     }
@@ -120,6 +119,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void leavespec(final PlayerCommandPreprocessEvent e) {
+        if (!active) return;
         if (e.getMessage().toLowerCase().startsWith("/join")) {
             if (!red.contains(e.getPlayer().getName()) && !blue.contains(e.getPlayer().getName()) && Bukkit.getWorld(name) != null) {
                 if (Bukkit.getWorld(name).getPlayers().size() == 0) return;
@@ -128,11 +128,9 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
                     public void run() {
                         try {
                             if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_RED) {
-                                Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has joined!");
                                 red.add(e.getPlayer().getName());
                             }
                             if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_BLUE) {
-                                Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has joined!");
                                 blue.add(e.getPlayer().getName());
                             }
                         } catch (NullPointerException ex) {
@@ -147,14 +145,12 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
         if (!e.getPlayer().getWorld().getName().equals(name)) return;
         if (e.getMessage().toLowerCase().startsWith("/leave")) {
             if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName()))
-                Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has left!");
             red.remove(e.getPlayer().getName());
             blue.remove(e.getPlayer().getName());
             if (currentRed.equals(e.getPlayer().getName()) || currentBlue.equals(e.getPlayer().getName())) endRound();
         }
         if (e.getMessage().toLowerCase().startsWith("/spectate")) {
             if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName()))
-                Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has left!");
             red.remove(e.getPlayer().getName());
             blue.remove(e.getPlayer().getName());
             if (currentRed.equals(e.getPlayer().getName()) || currentBlue.equals(e.getPlayer().getName())) endRound();
@@ -196,10 +192,6 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
         Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] Round over! Picking new players!");
         try {
             Bukkit.getPlayer(currentBlue).teleport(new Location(Bukkit.getWorld(name), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
-        } catch (NullPointerException ex) {
-
-        }
-        try {
             Bukkit.getPlayer(currentRed).teleport(new Location(Bukkit.getWorld(name), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
         } catch (NullPointerException ex) {
 
