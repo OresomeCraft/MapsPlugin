@@ -39,7 +39,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     public Courtyard() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        setTDMTime(20);
+        setTDMTime(15);
         disableDrops(new Material[]{Material.FLINT, Material.BOW, Material.STONE_SWORD, Material.BLAZE_ROD, Material.WATCH,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_HELMET, Material.DIAMOND_HELMET,
                 Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS, Material.GOLD_HELMET, Material.GOLD_CHESTPLATE,

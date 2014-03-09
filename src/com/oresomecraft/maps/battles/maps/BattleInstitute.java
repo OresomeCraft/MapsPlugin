@@ -119,7 +119,27 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void leavespec(PlayerCommandPreprocessEvent e) {
+    public void leavespec(final PlayerCommandPreprocessEvent e) {
+        if (e.getMessage().toLowerCase().startsWith("/join")) {
+            if (!red.contains(e.getPlayer().getName()) && !blue.contains(e.getPlayer().getName()) && Bukkit.getWorld(name) != null) {
+                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has joined!");
+                            if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_RED)
+                                red.add(e.getPlayer().getName());
+                            if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_BLUE)
+                                blue.add(e.getPlayer().getName());
+                        } catch (NullPointerException ex) {
+                            //noteam
+                        }
+                    }
+                }, 2L);
+            }
+        }
+
+        //this is the blocked stuff
         if (!e.getPlayer().getWorld().getName().equals(name)) return;
         if (e.getMessage().toLowerCase().startsWith("/leave")) {
             if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName()))
