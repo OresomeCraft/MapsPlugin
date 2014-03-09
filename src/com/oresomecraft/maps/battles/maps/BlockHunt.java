@@ -38,7 +38,7 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
 
     String name = "blockhunt";
     String fullName = "The Block Hunt";
-    String creators = "Psystrom, 123Oblivious, microstevey, __R3, AnomalousRei, DynaDavidson, _Trezo_, Tatik, Fliine and SecretSeriousity";
+    String creators = "Psystrom, 123Oblivious, microstevey, __R3, AnomalousRei, AnomalousDyna, _Trezo_, Tatik, Fliine and SecretSeriousity";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     //Disguise stuff

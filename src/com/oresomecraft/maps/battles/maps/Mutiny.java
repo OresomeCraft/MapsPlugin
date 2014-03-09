@@ -31,7 +31,7 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
 
     String name = "mutiny";
     String fullName = "Mutiny";
-    String creators = "DynaDavidson and JacquiRose";
+    String creators = "AnomalousDyna and JacquiRose";
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

@@ -37,7 +37,7 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
 
     String name = "gravity";
     String fullName = "Distortion";
-    String creators = "__R3, _Moist, Turt1eManLol, _Arch_Rider DynaDavidson, meganlovesmusic and LanderA";
+    String creators = "__R3, _Moist, Turt1eManLol, _Arch_Rider, AnomalousDyna, meganlovesmusic and LanderA";
     Gamemode[] modes = {Gamemode.TDM};
     protected boolean manipulation = false;
 
