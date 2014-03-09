@@ -37,7 +37,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
 
     String name = "battleinstitute";
     String fullName = "The Battle Institute";
-    String creators = "bishoptaj, microstevey, _Trezo_, __R3 and DynaDavidson";
+    String creators = "bishoptaj, microstevey, _Trezo_, __R3 and AnomalousDyna";
     Gamemode[] modes = {Gamemode.LTS};
 
     public void readyTDMSpawns() {
