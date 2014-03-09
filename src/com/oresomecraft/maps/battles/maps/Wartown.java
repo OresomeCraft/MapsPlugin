@@ -21,6 +21,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @MapConfig
 public class Wartown extends BattleMap implements IBattleMap, Listener {
 
@@ -98,6 +101,10 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
         ItemMeta gun_powder = GUN_POWDER.getItemMeta();
         gun_powder.setDisplayName(ChatColor.BLUE + "C4");
+
+        List<String> gunPowderLore = new ArrayList<String>();
+        gunPowderLore.add(ChatColor.BLUE + "Drop this to activate C4!");
+        gun_powder.setLore(gunPowderLore);
         GUN_POWDER.setItemMeta(gun_powder);
 
         p.getInventory().setBoots(IRON_BOOTS);
