@@ -451,9 +451,7 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
     public void PotionsSplash(PotionSplashEvent event) {
         if (!event.getPotion().getWorld().getName().equals(name)) return;
         event.setCancelled(true);
-        Iterator i = event.getAffectedEntities().iterator();
-        while (i.hasNext()) {
-            LivingEntity target = (LivingEntity) i.next();
+        for (LivingEntity target : event.getAffectedEntities()) {
             ArrayList<PotionEffect> effects = new ArrayList<PotionEffect>(event.getPotion().getEffects());
             if (event.getEntity().getShooter().equals(target)) {
                 Player p = (Player) target;
