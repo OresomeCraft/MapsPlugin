@@ -625,11 +625,11 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
                     if (p.getWorld().getName().equals("pendrago") && p.getGameMode() == GameMode.SURVIVAL) {
                         double distance = new Location(Bukkit.getWorld("pendrago"), -41, 108, 6).distance(p.getLocation());
                         if (distance <= 15) {
-                            p.setHealth(p.getHealth() - 20);
+                            p.damage(40);
                         } else if (distance <= 30) {
-                            p.setHealth(p.getHealth() - 10);
+                            p.damage(20);
                         } else if (distance > 30) {
-                            p.setHealth(p.getHealth() - 5);
+                            p.damage(10);
                         }
                     }
                 }
