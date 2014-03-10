@@ -51,7 +51,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        p.sendMessage( ChatColor.GOLD + "Wait until you are called and then punch the block!");
+        p.sendMessage(ChatColor.GOLD + "Wait until you are called and then punch the block!");
     }
 
     ArrayList<String> red = new ArrayList<String>();
@@ -77,7 +77,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     public void quit(PlayerQuitEvent e) {
         if (!e.getPlayer().getWorld().getName().equals(name)) return;
         if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName()))
-        red.remove(e.getPlayer().getName());
+            red.remove(e.getPlayer().getName());
         blue.remove(e.getPlayer().getName());
         if (currentRed.equals(e.getPlayer().getName()) || currentBlue.equals(e.getPlayer().getName())) endRound();
     }
@@ -119,7 +119,6 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void leavespec(final PlayerCommandPreprocessEvent e) {
-        if (!active) return;
         if (e.getMessage().toLowerCase().startsWith("/join")) {
             if (!red.contains(e.getPlayer().getName()) && !blue.contains(e.getPlayer().getName()) && Bukkit.getWorld(name) != null) {
                 if (Bukkit.getWorld(name).getPlayers().size() == 0) return;
@@ -144,16 +143,20 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
         //this is the blocked stuff
         if (!e.getPlayer().getWorld().getName().equals(name)) return;
         if (e.getMessage().toLowerCase().startsWith("/leave")) {
-            if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName()))
-            red.remove(e.getPlayer().getName());
-            blue.remove(e.getPlayer().getName());
-            if (currentRed.equals(e.getPlayer().getName()) || currentBlue.equals(e.getPlayer().getName())) endRound();
+            if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName())) {
+                red.remove(e.getPlayer().getName());
+                blue.remove(e.getPlayer().getName());
+                if (currentRed.equals(e.getPlayer().getName()) || currentBlue.equals(e.getPlayer().getName()))
+                    endRound();
+            }
         }
         if (e.getMessage().toLowerCase().startsWith("/spectate")) {
-            if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName()))
-            red.remove(e.getPlayer().getName());
-            blue.remove(e.getPlayer().getName());
-            if (currentRed.equals(e.getPlayer().getName()) || currentBlue.equals(e.getPlayer().getName())) endRound();
+            if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName())) {
+                red.remove(e.getPlayer().getName());
+                blue.remove(e.getPlayer().getName());
+                if (currentRed.equals(e.getPlayer().getName()) || currentBlue.equals(e.getPlayer().getName()))
+                    endRound();
+            }
         }
     }
 
