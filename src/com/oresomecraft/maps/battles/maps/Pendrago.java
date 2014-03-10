@@ -469,7 +469,7 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void explode(EntityExplodeEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getLocation().getWorld().getName().equals(name)) return;
         for (Block b : event.blockList()) {
             try {
                 event.blockList().remove(b);
