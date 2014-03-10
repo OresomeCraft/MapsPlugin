@@ -131,12 +131,15 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void c4(PlayerDropItemEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        if (event.getItemDrop().getItemStack().getType() == Material.SULPHUR) {
-            event.getPlayer().getWorld().playSound(event.getItemDrop().getLocation(), Sound.FUSE, 1L, 1L);
-            Entity tnt = event.getPlayer().getWorld().spawn(event.getItemDrop().getLocation(), TNTPrimed.class);
-            ((TNTPrimed) tnt).setFuseTicks(10 * 20);
-            tnt.getLocation().subtract(0, 1, 0).getBlock().setType(Material.BRICK);
-            event.getItemDrop().remove();
+        if (event.getItemDrop().getItemStack().getType().equals(Material.SULPHUR)) {
+            if (!contains(event.getItemDrop().getLocation(), 186, 162, 63, 86, -257, -278) && !contains(event.getItemDrop().getLocation(), 154, 197, 77, 63, -185, -143)) {
+                event.getPlayer().getWorld().playSound(event.getItemDrop().getLocation(), Sound.FUSE, 1L, 1L);
+                Entity tnt = event.getPlayer().getWorld().spawn(event.getItemDrop().getLocation().subtract(0, 1, 0), TNTPrimed.class);
+                ((TNTPrimed) tnt).setFuseTicks(3 * 20);
+                event.getItemDrop().remove();
+            }
+        } else {
+            event.getPlayer().sendMessage(ChatColor.RED + "You can't detonate C4 in a spawn!");
         }
     }
 
