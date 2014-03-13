@@ -192,6 +192,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                         player.getInventory().setItem(0, new ItemStack(Material.STONE_SWORD, 1));
                         player.getInventory().setItem(2, SPY_WATCH);
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
+                        player.updateInventory();
                         break;
 
                     case KNIGHT:
@@ -256,7 +257,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                         player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
 
                         player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 2));
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 2));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 0));
                         break;
                 }
                 selecting.remove(player.getName());
