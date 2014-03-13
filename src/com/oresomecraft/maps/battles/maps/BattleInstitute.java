@@ -120,37 +120,35 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void leavespec(final PlayerCommandPreprocessEvent e) {
         if (e.getMessage().toLowerCase().startsWith("/join")) {
-            if (!red.contains(e.getPlayer().getName()) && !blue.contains(e.getPlayer().getName()) && Bukkit.getWorld(name) != null) {
-                if (Bukkit.getWorld(name).getPlayers().size() == 0) return;
-                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_RED) {
-                                red.add(e.getPlayer().getName());
+            try {
+                if (!red.contains(e.getPlayer().getName()) && !blue.contains(e.getPlayer().getName()) && Bukkit.getWorld(name).getPlayers().size() != 0) {
+                    if (Bukkit.getWorld(name).getPlayers().size() == 0) return;
+                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_RED) {
+                                    red.add(e.getPlayer().getName());
+                                    Bukkit.broadcastMessage(ChatColor.RED + e.getPlayer().getName() + " joined red!");
+                                }
+                                if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_BLUE) {
+                                    blue.add(e.getPlayer().getName());
+                                    Bukkit.broadcastMessage(ChatColor.BLUE + e.getPlayer().getName() + " joined blue!");
+                                }
+                            } catch (NullPointerException ex) {
+                                //noteam
                             }
-                            if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_BLUE) {
-                                blue.add(e.getPlayer().getName());
-                            }
-                        } catch (NullPointerException ex) {
-                            //noteam
                         }
-                    }
-                }, 2L);
+                    }, 2L);
+
+                }
+            } catch (NullPointerException exc) {
             }
         }
 
         //this is the blocked stuff
         if (!e.getPlayer().getWorld().getName().equals(name)) return;
-        if (e.getMessage().toLowerCase().startsWith("/leave")) {
-            if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName())) {
-                red.remove(e.getPlayer().getName());
-                blue.remove(e.getPlayer().getName());
-                if (currentRed.equals(e.getPlayer().getName()) || currentBlue.equals(e.getPlayer().getName()))
-                    endRound();
-            }
-        }
-        if (e.getMessage().toLowerCase().startsWith("/spectate")) {
+        if (e.getMessage().toLowerCase().startsWith("/leave") || e.getMessage().toLowerCase().startsWith("/spectate")) {
             if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName())) {
                 red.remove(e.getPlayer().getName());
                 blue.remove(e.getPlayer().getName());
