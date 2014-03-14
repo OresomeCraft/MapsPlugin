@@ -7,10 +7,7 @@ import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -126,7 +123,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
                     Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                         @Override
                         public void run() {
-                            try {
+                            if (e.getPlayer().getGameMode() == GameMode.SURVIVAL) {
                                 if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_RED) {
                                     red.add(e.getPlayer().getName());
                                     Bukkit.broadcastMessage(ChatColor.RED + e.getPlayer().getName() + " joined red!");
@@ -135,14 +132,13 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
                                     blue.add(e.getPlayer().getName());
                                     Bukkit.broadcastMessage(ChatColor.BLUE + e.getPlayer().getName() + " joined blue!");
                                 }
-                            } catch (NullPointerException ex) {
-                                //noteam
                             }
                         }
                     }, 2L);
 
                 }
-            } catch (NullPointerException exc) {
+            } catch (Exception exc) {
+                System.out.println(exc.getMessage());
             }
         }
 
@@ -150,6 +146,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
         if (!e.getPlayer().getWorld().getName().equals(name)) return;
         if (e.getMessage().toLowerCase().startsWith("/leave") || e.getMessage().toLowerCase().startsWith("/spectate")) {
             if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName())) {
+                Bukkit.broadcastMessage(ChatColor.RED + e.getPlayer().getName() + " left the round!!");
                 red.remove(e.getPlayer().getName());
                 blue.remove(e.getPlayer().getName());
                 if (currentRed.equals(e.getPlayer().getName()) || currentBlue.equals(e.getPlayer().getName()))
@@ -201,6 +198,11 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
             Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] GAME OVER!");
             return;
         }
+        try {
+            checkForNewPlayers();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.getInventory().clear();
             p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
@@ -220,6 +222,23 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
                 newRound();
             }
         }, 40L);
+    }
+
+    private void checkForNewPlayers() throws Exception {
+        for (Player p : Bukkit.getWorld(name).getPlayers()) {
+            if (p.getGameMode() == GameMode.SURVIVAL) {
+                if (!(red.contains(p.getName())) && !(blue.contains(p.getName()))) {
+                    if (BattlePlayer.getBattlePlayer(p).getTeamType() == Team.LTS_RED) {
+                        red.add(p.getName());
+                        Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " was detected as not in the round as was put on red!");
+                    }
+                    if (BattlePlayer.getBattlePlayer(p).getTeamType() == Team.LTS_BLUE) {
+                        blue.add(p.getName());
+                        Bukkit.broadcastMessage(ChatColor.BLUE + p.getName() + " was detected as not in the round as was put on blue!");
+                    }
+                }
+            }
+        }
     }
 
     private void join(String player) {
