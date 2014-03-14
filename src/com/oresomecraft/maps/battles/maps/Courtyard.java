@@ -11,6 +11,7 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -228,14 +229,13 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                         break;
 
                     case ARCHER:
-                        player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
-                        player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
-                        player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
                         player.getInventory().setBoots(new ItemStack(Material.GOLD_BOOTS, 1));
 
-                        player.getInventory().setItem(0, new ItemStack(Material.BOW, 1));
+                        ItemStack BOW = new ItemStack(Material.BOW, 1);
+                        BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+                        player.getInventory().setItem(0, BOW);
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
-                        player.getInventory().setItem(9, new ItemStack(Material.ARROW, 64));
+                        player.getInventory().setItem(9, new ItemStack(Material.ARROW, 1));
                         break;
 
                     case MEDIC:
