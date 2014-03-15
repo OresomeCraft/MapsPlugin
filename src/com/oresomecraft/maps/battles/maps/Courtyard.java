@@ -2,6 +2,7 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
@@ -261,6 +262,13 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                         break;
                 }
                 selecting.remove(player.getName());
+                try {
+                    Team t = BattlePlayer.getBattlePlayer(player).getTeamType();
+                    if (t == Team.TDM_RED) player.teleport(new Location(player.getWorld(), 40, 73, -5));
+                    if (t == Team.TDM_BLUE) player.teleport(new Location(player.getWorld(), -19, 73, 0));
+                } catch (Exception e) {
+
+                }
             }
         }, 30L);
     }
