@@ -94,7 +94,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void worldLoad(WorldLoadEvent event) {
         if (event.getWorld().getName().equalsIgnoreCase(name)) {
-            Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] Starting up!");
+            Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleInstitute] Starting up!");
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                 public void run() {
                     for (Player p : Bukkit.getOnlinePlayers()) {
@@ -146,10 +146,10 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
         if (event.getMessage().toLowerCase().startsWith("/leave") || event.getMessage().toLowerCase().startsWith("/spectate")) {
             if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
                 Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " left the round!!");
-                red.remove(event.getPlayer().getName());
-                blue.remove(event.getPlayer().getName());
                 if (currentRed.equals(event.getPlayer().getName()) || currentBlue.equals(event.getPlayer().getName()))
                     endRound();
+                red.remove(event.getPlayer().getName());
+                blue.remove(event.getPlayer().getName());
             }
         }
     }
