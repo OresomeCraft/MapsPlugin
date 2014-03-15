@@ -62,7 +62,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     boolean redEnter = false;
 
     @EventHandler
-    public void end(BattleEndEvent e) {
+    public void end(BattleEndEvent event) {
         blueEnter = false;
         redEnter = false;
         currentBlue = "None";
@@ -72,36 +72,36 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void quit(PlayerQuitEvent e) {
-        if (!e.getPlayer().getWorld().getName().equals(name)) return;
-        if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName()))
-            red.remove(e.getPlayer().getName());
-        blue.remove(e.getPlayer().getName());
-        if (currentRed.equals(e.getPlayer().getName()) || currentBlue.equals(e.getPlayer().getName())) endRound();
+    public void quit(PlayerQuitEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName()))
+            red.remove(event.getPlayer().getName());
+        blue.remove(event.getPlayer().getName());
+        if (currentRed.equals(event.getPlayer().getName()) || currentBlue.equals(event.getPlayer().getName())) endRound();
     }
 
     @EventHandler
-    public void death(PlayerDeathEvent e) {
-        if (!e.getEntity().getWorld().getName().equals(name)) return;
-        red.remove(e.getEntity().getName());
-        blue.remove(e.getEntity().getName());
-        if (red.contains(e.getEntity().getName()) || blue.contains(e.getEntity().getName()))
+    public void death(PlayerDeathEvent event) {
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        red.remove(event.getEntity().getName());
+        blue.remove(event.getEntity().getName());
+        if (red.contains(event.getEntity().getName()) || blue.contains(event.getEntity().getName()))
             Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has fallen!");
-        if (currentRed.equals(e.getEntity().getName()) || currentBlue.equals(e.getEntity().getName())) endRound();
-        e.getEntity().setHealth(20);
+        if (currentRed.equals(event.getEntity().getName()) || currentBlue.equals(event.getEntity().getName())) endRound();
+        event.getEntity().setHealth(20);
     }
 
     @EventHandler
-    public void worldLoad(WorldLoadEvent e) {
-        if (e.getWorld().getName().equalsIgnoreCase(name)) {
+    public void worldLoad(WorldLoadEvent event) {
+        if (event.getWorld().getName().equalsIgnoreCase(name)) {
             Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] Starting up!");
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                 public void run() {
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         try {
-                            if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_RED) {
+                            if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType().equals(Team.LTS_RED)) {
                                 red.add(p.getName());
-                            } else if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_BLUE) {
+                            } else if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType().equals(Team.LTS_BLUE)) {
                                 blue.add(p.getName());
                             }
                         } catch (Exception ex) {
@@ -115,21 +115,21 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void leavespec(final PlayerCommandPreprocessEvent e) {
-        if (e.getMessage().toLowerCase().startsWith("/join")) {
+    public void leaveSpec(final PlayerCommandPreprocessEvent event) {
+        if (event.getMessage().toLowerCase().startsWith("/join")) {
             try {
-                if (!red.contains(e.getPlayer().getName()) && !blue.contains(e.getPlayer().getName()) && Bukkit.getWorld(name).getPlayers().size() != 0) {
+                if (!red.contains(event.getPlayer().getName()) && !blue.contains(event.getPlayer().getName()) && Bukkit.getWorld(name).getPlayers().size() != 0) {
                     if (Bukkit.getWorld(name).getPlayers().size() == 0) return;
                     Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                         @Override
                         public void run() {
-                            if (e.getPlayer().getGameMode() == GameMode.SURVIVAL) {
-                                if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_RED) {
-                                    red.add(e.getPlayer().getName());
-                                    Bukkit.broadcastMessage(ChatColor.RED + e.getPlayer().getName() + " joined red!");
-                                } else if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_BLUE) {
-                                    blue.add(e.getPlayer().getName());
-                                    Bukkit.broadcastMessage(ChatColor.BLUE + e.getPlayer().getName() + " joined blue!");
+                            if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
+                                if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType().equals(Team.LTS_RED)) {
+                                    red.add(event.getPlayer().getName());
+                                    Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " joined red!");
+                                } else if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType().equals(Team.LTS_BLUE)) {
+                                    blue.add(event.getPlayer().getName());
+                                    Bukkit.broadcastMessage(ChatColor.BLUE + event.getPlayer().getName() + " joined blue!");
                                 }
                             }
                         }
@@ -141,25 +141,25 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
             }
         }
 
-        //this is the blocked stuff
-        if (!e.getPlayer().getWorld().getName().equals(name)) return;
-        if (e.getMessage().toLowerCase().startsWith("/leave") || e.getMessage().toLowerCase().startsWith("/spectate")) {
-            if (red.contains(e.getPlayer().getName()) || blue.contains(e.getPlayer().getName())) {
-                Bukkit.broadcastMessage(ChatColor.RED + e.getPlayer().getName() + " left the round!!");
-                red.remove(e.getPlayer().getName());
-                blue.remove(e.getPlayer().getName());
-                if (currentRed.equals(e.getPlayer().getName()) || currentBlue.equals(e.getPlayer().getName()))
+        // This is the blocked stuff
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (event.getMessage().toLowerCase().startsWith("/leave") || event.getMessage().toLowerCase().startsWith("/spectate")) {
+            if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
+                Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " left the round!!");
+                red.remove(event.getPlayer().getName());
+                blue.remove(event.getPlayer().getName());
+                if (currentRed.equals(event.getPlayer().getName()) || currentBlue.equals(event.getPlayer().getName()))
                     endRound();
             }
         }
     }
 
     @EventHandler
-    public void ironblock(PlayerInteractEvent e) {
-        if (!e.getPlayer().getWorld().getName().equals(name)) return;
+    public void ironBlock(PlayerInteractEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
         try {
-            if (e.getClickedBlock().getType().equals(Material.IRON_BLOCK)) {
-                join(e.getPlayer().getName());
+            if (event.getClickedBlock().getType().equals(Material.IRON_BLOCK)) {
+                join(event.getPlayer().getName());
             }
         } catch (NullPointerException ex) {
 
@@ -199,8 +199,8 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
         }
         try {
             checkForNewPlayers();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.getInventory().clear();
@@ -225,13 +225,13 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
 
     private void checkForNewPlayers() throws Exception {
         for (Player p : Bukkit.getWorld(name).getPlayers()) {
-            if (p.getGameMode() == GameMode.SURVIVAL) {
+            if (p.getGameMode().equals(GameMode.SURVIVAL)) {
                 if (!(red.contains(p.getName())) && !(blue.contains(p.getName()))) {
-                    if (BattlePlayer.getBattlePlayer(p).getTeamType() == Team.LTS_RED) {
+                    if (BattlePlayer.getBattlePlayer(p).getTeamType().equals(Team.LTS_RED)) {
                         red.add(p.getName());
                         Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " was detected as not in the round as was put on red!");
                     }
-                    if (BattlePlayer.getBattlePlayer(p).getTeamType() == Team.LTS_BLUE) {
+                    if (BattlePlayer.getBattlePlayer(p).getTeamType().equals(Team.LTS_BLUE)) {
                         blue.add(p.getName());
                         Bukkit.broadcastMessage(ChatColor.BLUE + p.getName() + " was detected as not in the round as was put on blue!");
                     }
@@ -293,8 +293,8 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void worldLoad(FoodLevelChangeEvent e) {
-        if (!e.getEntity().getWorld().equals(name)) return;
-        e.setFoodLevel(20);
+    public void worldLoad(FoodLevelChangeEvent event) {
+        if (!event.getEntity().getWorld().equals(name)) return;
+        event.setFoodLevel(20);
     }
 }

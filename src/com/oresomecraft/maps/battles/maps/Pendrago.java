@@ -32,7 +32,6 @@ import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -245,6 +244,7 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
 
                         player.getInventory().setItem(0, new ItemStack(Material.DIAMOND_SWORD, 1));
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20000 * 20, 1));
                         break;
 
                     case GREAT_KNIGHT:
@@ -400,7 +400,7 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
         Player player = event.getPlayer();
         Action action = event.getAction();
         if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
-            if (player.getItemInHand().getType() == Material.WATCH) {
+            if (player.getItemInHand().getType().equals(Material.WATCH)) {
 
                 ItemStack SPY_WATCH = new ItemStack(Material.WATCH, 1);
                 ItemMeta spywatchMeta = SPY_WATCH.getItemMeta();
@@ -454,9 +454,9 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
         for (LivingEntity target : event.getAffectedEntities()) {
             ArrayList<PotionEffect> effects = new ArrayList<PotionEffect>(event.getPotion().getEffects());
             if (event.getEntity().getShooter().equals(target)) {
-                Player p = (Player) target;
+                Player player = (Player) target;
                 if (effects.get(0).toString().startsWith("HEAL")) {
-                    p.sendMessage(ChatColor.RED + "You cannot heal yourself!");
+                    player.sendMessage(ChatColor.RED + "You cannot heal yourself!");
                 } else {
                     target.addPotionEffect(event.getPotion().getEffects().iterator().next());
                 }
@@ -469,10 +469,10 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void explode(EntityExplodeEvent event) {
         if (!event.getLocation().getWorld().getName().equals(name)) return;
-        for (Block b : event.blockList()) {
+        for (Block block : event.blockList()) {
             try {
-                event.blockList().remove(b);
-            } catch (Exception e) {
+                event.blockList().remove(block);
+            } catch (Exception ex) {
                 //null
             }
         }
@@ -621,7 +621,7 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
                 Bukkit.getWorld("pendrago").createExplosion(new Location(Bukkit.getWorld("pendrago"), -41, 108, 6), 90F);
 
                 for (Player p : Bukkit.getOnlinePlayers()) {
-                    if (p.getWorld().getName().equals("pendrago") && p.getGameMode() == GameMode.SURVIVAL) {
+                    if (p.getWorld().getName().equals("pendrago") && p.getGameMode().equals(GameMode.SURVIVAL)) {
                         double distance = new Location(Bukkit.getWorld("pendrago"), -41, 108, 6).distance(p.getLocation());
                         if (distance <= 15) {
                             p.damage(40);
@@ -680,15 +680,15 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    private ItemStack colorArmor(ItemStack i, Color c) {
+    private ItemStack colorArmor(ItemStack itemStack, Color color) {
         try {
-            LeatherArmorMeta meta = (LeatherArmorMeta) i.getItemMeta();
-            meta.setColor(c);
-            i.setItemMeta(meta);
+            LeatherArmorMeta meta = (LeatherArmorMeta) itemStack.getItemMeta();
+            meta.setColor(color);
+            itemStack.setItemMeta(meta);
         } catch (NullPointerException ex) {
 
         }
-        return i;
+        return itemStack;
     }
 
     @EventHandler
