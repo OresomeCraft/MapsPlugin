@@ -100,8 +100,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
                         try {
                             if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_RED) {
                                 red.add(p.getName());
-                            }
-                            if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_BLUE) {
+                            } else if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_BLUE) {
                                 blue.add(p.getName());
                             }
                         } catch (Exception ex) {
@@ -127,8 +126,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
                                 if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_RED) {
                                     red.add(e.getPlayer().getName());
                                     Bukkit.broadcastMessage(ChatColor.RED + e.getPlayer().getName() + " joined red!");
-                                }
-                                if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_BLUE) {
+                                } else if (BattlePlayer.getBattlePlayer(e.getPlayer()).getTeamType() == Team.LTS_BLUE) {
                                     blue.add(e.getPlayer().getName());
                                     Bukkit.broadcastMessage(ChatColor.BLUE + e.getPlayer().getName() + " joined blue!");
                                 }

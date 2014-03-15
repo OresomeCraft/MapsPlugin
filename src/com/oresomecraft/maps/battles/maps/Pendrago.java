@@ -349,7 +349,6 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
                         player.getInventory().setItem(2, new ItemStack(Material.POTION, 12, (short) 16437));
                         player.getInventory().setItem(3, new ItemStack(Material.POTION, 12, (short) 16433));
                         player.getInventory().setItem(4, new ItemStack(Material.POTION, 12, (short) 16440));
-                        player.getInventory().setItem(5, new ItemStack(Material.POTION, 1, (short) 16441));
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
                         break;
                 }
