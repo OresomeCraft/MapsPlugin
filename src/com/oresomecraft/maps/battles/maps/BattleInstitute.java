@@ -11,6 +11,7 @@ import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -289,5 +290,11 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, HEALTH_POTION);
         i.setItem(9, ARROWS);
         p.updateInventory();
+    }
+
+    @EventHandler
+    public void worldLoad(FoodLevelChangeEvent e) {
+        if (!e.getEntity().getWorld().equals(name)) return;
+        e.setFoodLevel(20);
     }
 }
