@@ -253,8 +253,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                     case SCOUT:
                         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
                         player.getInventory().setChestplate(LEATHER_CHESTPLATE);
-
-                        player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1));
+                        
                         player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
 
                         player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 2));

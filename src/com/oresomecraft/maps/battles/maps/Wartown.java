@@ -137,9 +137,10 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
                 Entity tnt = event.getPlayer().getWorld().spawn(event.getItemDrop().getLocation().subtract(0, 1, 0), TNTPrimed.class);
                 ((TNTPrimed) tnt).setFuseTicks(3 * 20);
                 event.getItemDrop().remove();
+            } else {
+                event.getPlayer().sendMessage(ChatColor.RED + "You can't detonate C4 in a spawn!");
+                event.setCancelled(true);
             }
-        } else {
-            event.getPlayer().sendMessage(ChatColor.RED + "You can't detonate C4 in a spawn!");
         }
     }
 
