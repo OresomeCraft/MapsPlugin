@@ -106,8 +106,8 @@ public class Yuzkave extends BattleMap implements IBattleMap, Listener {
         Location loc = projectile.getLocation();
         if (loc.getWorld().getName().equals(name)) {
             if (projectile instanceof Arrow) {
-                Arrow a = (Arrow) projectile;
-                a.remove();
+                Arrow arrow = (Arrow) projectile;
+                arrow.remove();
             }
         }
     }

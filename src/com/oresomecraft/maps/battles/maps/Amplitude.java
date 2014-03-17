@@ -1,12 +1,12 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,8 +16,6 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 @MapConfig
 public class Amplitude extends BattleMap implements IBattleMap, Listener {
@@ -111,7 +109,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
         a = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             public void run() {
                 for (Player p : Bukkit.getOnlinePlayers()) {
-                    if (p.isSneaking() && p.getItemInHand().getType() == Material.IRON_SWORD) {
+                    if (p.isSneaking() && p.getItemInHand().getType().equals(Material.IRON_SWORD)) {
 
                         if (p.getTotalExperience() >= 50) {
                             p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1F, (p.getTotalExperience() / 12));
@@ -124,7 +122,6 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
                         p.setTotalExperience(p.getTotalExperience() + 1);
                         p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1F, (p.getTotalExperience() / 10));
-                    } else {
                     }
                 }
             }
@@ -134,7 +131,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
-        if (!event.getEntity().getWorld().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
         Player p = (Player) event.getDamager();
 
         if (p.getTotalExperience() >= 50) {
@@ -160,7 +157,6 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
         if (p.getTotalExperience() >= 30) {
             event.setDamage(event.getDamage() + 2);
             p.setTotalExperience(0);
-            return;
         }
     }
 
@@ -172,7 +168,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onExplode(EntityExplodeEvent event) {
-        if (!event.getLocation().getWorld().equals(name)) return;
+        if (!event.getLocation().getWorld().getName().equals(name)) return;
         event.blockList().clear();
     }
 }

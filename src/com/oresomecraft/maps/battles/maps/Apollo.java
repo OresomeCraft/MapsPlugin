@@ -1,16 +1,21 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-import org.bukkit.*;
-import org.bukkit.enchantments.*;
-import org.bukkit.event.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
-
-import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 @MapConfig
 public class Apollo extends BattleMap implements IBattleMap, Listener {
@@ -117,8 +122,10 @@ public class Apollo extends BattleMap implements IBattleMap, Listener {
     public int z2 = 99;
 
     @EventHandler
-    public void onMove(PlayerMoveEvent event) { // Theoretically disable fall damage
-        if (event.getPlayer().getWorld().getName().equals(name)) event.getPlayer().setFallDistance(0);
+    public void onMove(PlayerMoveEvent event) {
+        if (event.getPlayer().getWorld().getName().equals(name)) {
+            event.getPlayer().setFallDistance(0);
+        }
     }
 
 }

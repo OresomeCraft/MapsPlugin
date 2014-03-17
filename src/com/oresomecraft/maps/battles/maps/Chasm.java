@@ -88,23 +88,23 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void icePick(PlayerInteractEvent event) {
-        Player p = event.getPlayer();
-        ItemStack i = p.getItemInHand();
-        Material mat = i.getType();
-        Action a = event.getAction();
+        Player player = event.getPlayer();
+        ItemStack itemStack = player.getItemInHand();
+        Material material = itemStack.getType();
+        Action action = event.getAction();
         World world = Bukkit.getWorld(name);
 
         if (event.getPlayer().getWorld().getName().equals(name)) {
-            if (mat == Material.STONE_HOE) {
-                if (a == Action.LEFT_CLICK_BLOCK) {
-                    BlockFace f = event.getBlockFace();
-                    Block b = event.getClickedBlock();
-                    Material Bmat = b.getType();
-                    if (Bmat == Material.STONE || Bmat == Material.ICE) {
-                        if (f != BlockFace.UP && f != BlockFace.DOWN) {
-                            p.setVelocity(new Vector(0, 1, 0));
-                            p.setFallDistance(0);
-                            world.playEffect(b.getLocation(), Effect.STEP_SOUND, 79);
+            if (material.equals(Material.STONE_HOE)) {
+                if (action.equals(Action.LEFT_CLICK_BLOCK)) {
+                    BlockFace blockFace = event.getBlockFace();
+                    Block block = event.getClickedBlock();
+                    Material blockMaterial = block.getType();
+                    if (blockMaterial.equals(Material.STONE) || blockMaterial.equals(Material.ICE)) {
+                        if (!blockFace.equals(BlockFace.UP) && !blockFace.equals(BlockFace.DOWN)) {
+                            player.setVelocity(new Vector(0, 1, 0));
+                            player.setFallDistance(0);
+                            world.playEffect(block.getLocation(), Effect.STEP_SOUND, 79);
                         }
                     }
                 }

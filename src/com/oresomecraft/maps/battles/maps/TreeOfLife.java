@@ -108,21 +108,21 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
     public void onInteract(PlayerInteractEvent event) {
         if (event.getPlayer().getWorld().getName().equalsIgnoreCase(name)) {
             if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-                Player p = event.getPlayer();
-                if (p.getItemInHand().getType().equals(Material.STICK)) {
-                    ItemStack item = p.getItemInHand();
+                Player player = event.getPlayer();
+                if (player.getItemInHand().getType().equals(Material.STICK)) {
+                    ItemStack item = player.getItemInHand();
                     item.setAmount(1);
-                    p.getInventory().removeItem(item);
+                    player.getInventory().removeItem(item);
                     Random random = new Random();
                     // 2/5 Chance
                     if (random.nextInt((10 - 1) + 1) > 5) {
-                        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
-                        p.sendMessage(ChatColor.GREEN + "The stick of life has given you health!");
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
+                        player.sendMessage(ChatColor.GREEN + "The stick of life has given you health!");
                     } else {
-                        p.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.SKELETON);
-                        p.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.SPIDER);
-                        p.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.ZOMBIE);
-                        p.sendMessage(ChatColor.GREEN + "The stick of life has forsaken you!");
+                        player.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.SKELETON);
+                        player.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.SPIDER);
+                        player.getWorld().spawnEntity(event.getPlayer().getLocation(), EntityType.ZOMBIE);
+                        player.sendMessage(ChatColor.GREEN + "The stick of life has forsaken you!");
                     }
                 }
             }

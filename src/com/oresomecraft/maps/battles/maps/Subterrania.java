@@ -58,8 +58,6 @@ public class Subterrania extends BattleMap implements IBattleMap, Listener {
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
 
-        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 5000 * 20, 5000 * 20));
-
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 6);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -79,6 +77,7 @@ public class Subterrania extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setHelmet(MASK);
 
         p.getInventory().getHelmet().addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
+        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 5000 * 20, 5000 * 20));
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
@@ -86,7 +85,6 @@ public class Subterrania extends BattleMap implements IBattleMap, Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
         i.setItem(9, ARROWS);
-
     }
 
     public int x1 = 410;

@@ -23,7 +23,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.MetadataValue;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
@@ -78,6 +77,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+        p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 3);
         InvUtils.nameItem(FISHING_ROD, ChatColor.GOLD + "Grappling Hook");
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
 
@@ -94,7 +94,6 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
         i.setItem(5, EXP);
         i.setItem(6, SNOWBALLS);
         i.setItem(9, ARROWS);
-        p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 3);
 
     }
 
@@ -111,19 +110,18 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
-        PlayerFishEvent.State state = event.getState();
-        Player p = event.getPlayer();
-        ItemStack is = p.getItemInHand();
-        Material mat = is.getType();
-        Location loc = p.getLocation();
+        Player player = event.getPlayer();
+        ItemStack itemStack = player.getItemInHand();
+        Material material = itemStack.getType();
+        Location location = player.getLocation();
         Location bobber = event.getHook().getLocation();
 
-        if (loc.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(name)) {
 
-            if (mat == Material.FISHING_ROD) {
+            if (material.equals(Material.FISHING_ROD)) {
 
                 if (event.getHook().getVelocity().getY() < 0.02 && isLocationNearBlock(bobber)) {
-                    Snowball snowball = p.launchProjectile(Snowball.class);
+                    Snowball snowball = player.launchProjectile(Snowball.class);
                     snowball.setTicksLived(99999 * 20);
                 }
             }
@@ -145,22 +143,22 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
             ProjectileSource shooter = (ProjectileSource) fish.getShooter();
 
             if (shooter instanceof Player) {
-                Player p = (Player) shooter;
-                Location loc = p.getLocation();
-                ItemStack is = p.getItemInHand();
-                Material mat = is.getType();
+                Player player = (Player) shooter;
+                Location location = player.getLocation();
+                ItemStack is = player.getItemInHand();
+                Material material = is.getType();
 
-                if (mat == Material.FISHING_ROD) {
+                if (material.equals(Material.FISHING_ROD)) {
 
-                    p.setFallDistance(0);
-                    p.playSound(loc, Sound.ARROW_HIT, 1, 1);
+                    player.setFallDistance(0);
+                    player.playSound(location, Sound.ARROW_HIT, 1, 1);
 
                     int hitx = hit.getBlockX();
                     int hity = hit.getBlockY();
                     int hitz = hit.getBlockZ();
-                    int locx = loc.getBlockX();
-                    int locy = loc.getBlockY();
-                    int locz = loc.getBlockZ();
+                    int locx = location.getBlockX();
+                    int locy = location.getBlockY();
+                    int locz = location.getBlockZ();
                     double co[] = new double[3];
 
                     if (hitx > locx) {
@@ -187,7 +185,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
                         co[2] = 0;
                     }
 
-                    p.setVelocity(new Vector(co[0], co[1] / 1.25, co[2]));
+                    player.setVelocity(new Vector(co[0], co[1] / 1.25, co[2]));
 
                 }
             }
@@ -197,20 +195,20 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onBlockClick(PlayerInteractEvent event) {
 
-        Player p = event.getPlayer();
+        Player player = event.getPlayer();
 
-        if (p.getLocation().getWorld().getName().equals(name)) {
+        if (player.getLocation().getWorld().getName().equals(name)) {
 
             if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-                Block b = event.getClickedBlock();
-                World w = Bukkit.getWorld(name);
+                Block block = event.getClickedBlock();
+                World world = Bukkit.getWorld(name);
 
-                Team team = BattlePlayer.getBattlePlayer(p).getTeamType();
-                if (b.getType().equals(Material.PISTON_BASE)) {
-                    if (b.getLocation().getBlockY() == 54) {
-                        p.teleport(new Location(w, -42, 70, -36, -90, 0)); // To Top
-                    } else if (b.getLocation().getBlockY() == 71) {
-                        p.teleport(new Location(w, -42, 53, -36, -90, 0)); // To Bottom
+                Team team = BattlePlayer.getBattlePlayer(player).getTeamType();
+                if (block.getType().equals(Material.PISTON_BASE)) {
+                    if (block.getLocation().getBlockY() == 54) {
+                        player.teleport(new Location(w, -42, 70, -36, -90, 0)); // To Top
+                    } else if (block.getLocation().getBlockY() == 71) {
+                        player.teleport(new Location(w, -42, 53, -36, -90, 0)); // To Bottom
                     }
                 }
             }

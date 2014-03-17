@@ -7,7 +7,6 @@ import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
 
@@ -83,7 +82,7 @@ public class GibsonDesertBattles extends BattleMap implements IBattleMap, Listen
     @EventHandler(priority = EventPriority.NORMAL)
     public void blockBreak(BlockBreakEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
-            if (event.getBlock().getType() == Material.DIAMOND_BLOCK) {
+            if (event.getBlock().getType().equals(Material.DIAMOND_BLOCK)) {
                 event.setCancelled(true);
                 event.getBlock().setType(Material.DIRT);
                 event.getPlayer().sendMessage(ChatColor.RED + "Diamond Blocks are disabled on this map!");

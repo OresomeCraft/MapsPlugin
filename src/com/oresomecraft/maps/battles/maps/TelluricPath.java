@@ -1,23 +1,27 @@
 package com.oresomecraft.maps.battles.maps;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-import org.bukkit.*;
+import org.bukkit.ChatColor;
+import org.bukkit.Color;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Enderman;
-import org.bukkit.event.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @MapConfig
 public class TelluricPath extends BattleMap implements IBattleMap, Listener {
@@ -135,9 +139,9 @@ public class TelluricPath extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void death(EntityDeathEvent e) {
-        if (!e.getEntity().getWorld().getName().equals(name)) return;
-        e.getDrops().clear();
-        if (Math.random() >= 0.5) e.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
+    public void death(EntityDeathEvent event) {
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        event.getDrops().clear();
+        if (Math.random() >= 0.5) event.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
     }
 }

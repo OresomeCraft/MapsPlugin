@@ -93,26 +93,24 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void breakListener(BlockBreakEvent event) {
-        Location loc = event.getBlock().getLocation();
-        if (loc.getWorld().getName().equals(name)) {
+        Location location = event.getBlock().getLocation();
+        if (location.getWorld().getName().equals(name)) {
 
-            //Spawn Breaking
-            if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
-            if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
+            if (contains(location, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
+            if (contains(location, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void placeListener(BlockPlaceEvent event) {
-        Location loc = event.getBlock().getLocation();
-        if (loc.getWorld().getName().equals(name)) {
+        Location location = event.getBlock().getLocation();
+        if (location.getWorld().getName().equals(name)) {
 
-            //Dud method that doesn't work, don't know why it's here.
+            // Method may not work
             if (event.getBlockPlaced().getType().equals(Material.LAVA)) event.setCancelled(true);
 
-            //Spawn placing
-            if (contains(loc, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
-            if (contains(loc, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
+            if (contains(location, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
+            if (contains(location, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
         }
     }
 }

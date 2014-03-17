@@ -116,7 +116,7 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onFireBow(org.bukkit.event.entity.EntityShootBowEvent event) {
         if (getArena().equals(name)) {
-            if (event.getEntityType() == org.bukkit.entity.EntityType.PLAYER) {
+            if (event.getEntityType().equals(EntityType.PLAYER)) {
                 Player player = (Player) event.getEntity();
                 if (player.getInventory().contains(Material.ARROW)) {
                     event.setCancelled(true);
@@ -174,7 +174,7 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
 
     public void blueWool(Location loc, World w, Player shooter) {
 
-        if (BattlePlayer.getBattlePlayer(shooter).getTeamType() == Team.KOTH_RED) {
+        if (BattlePlayer.getBattlePlayer(shooter).getTeamType().equals(Team.KOTH_RED)) {
             if (loc.getBlock().getType().equals(Material.WOOL)) {
                 loc.getBlock().setTypeIdAndData(Material.WOOL.getId(), DyeColor.RED.getDyeData(), false);
                 w.playEffect(loc, Effect.STEP_SOUND, 152);
@@ -183,7 +183,7 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
     }
 
     public void redWool(Location loc, World w, Player shooter) {
-        if (BattlePlayer.getBattlePlayer(shooter).getTeamType() == Team.KOTH_BLUE) {
+        if (BattlePlayer.getBattlePlayer(shooter).getTeamType().equals(Team.KOTH_BLUE)) {
             if (loc.getBlock().getType().equals(Material.WOOL)) {
                 loc.getBlock().setTypeIdAndData(Material.WOOL.getId(), DyeColor.RED.getDyeData(), false);
                 w.playEffect(loc, Effect.STEP_SOUND, 22);

@@ -125,11 +125,11 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void icePick(PlayerInteractEvent event) {
-        Player p = event.getPlayer();
-        ItemStack i = p.getItemInHand();
-        Material mat = i.getType();
-        Action a = event.getAction();
-        Location loc = p.getLocation();
+        Player player = event.getPlayer();
+        ItemStack itemStack = player.getItemInHand();
+        Material material = itemStack.getType();
+        Action action = event.getAction();
+        Location location = player.getLocation();
 
         ItemStack STONE_HOE = new ItemStack(Material.STONE_HOE, 1);
         ItemMeta stone_hoe = STONE_HOE.getItemMeta();
@@ -137,23 +137,23 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         STONE_HOE.setItemMeta(stone_hoe);
         World world = Bukkit.getWorld(name);
 
-        if (loc.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(name)) {
 
-            if (mat == Material.STONE_HOE) {
+            if (material.equals(Material.STONE_HOE)) {
 
-                if (a == Action.LEFT_CLICK_BLOCK) {
+                if (action.equals(Action.LEFT_CLICK_BLOCK)) {
 
-                    BlockFace f = event.getBlockFace();
-                    Block b = event.getClickedBlock();
-                    Material Bmat = b.getType();
+                    BlockFace blockFace = event.getBlockFace();
+                    Block block = event.getClickedBlock();
+                    Material blockMaterial = block.getType();
 
-                    if (Bmat == Material.STONE || Bmat == Material.ICE) {
+                    if (blockMaterial.equals(Material.STONE) || blockMaterial.equals(Material.ICE)) {
 
-                        if (f != BlockFace.UP && f != BlockFace.DOWN) {
+                        if (!blockFace.equals(BlockFace.UP) && !blockFace.equals(BlockFace.DOWN)) {
 
-                            p.setVelocity(new Vector(0, 1, 0));
-                            p.setFallDistance(0);
-                            world.playEffect(b.getLocation(), Effect.STEP_SOUND, 79);
+                            player.setVelocity(new Vector(0, 1, 0));
+                            player.setFallDistance(0);
+                            world.playEffect(block.getLocation(), Effect.STEP_SOUND, 79);
 
                         }
 

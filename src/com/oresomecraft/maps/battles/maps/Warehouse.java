@@ -107,21 +107,21 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void onBlockClick(PlayerInteractEvent event) {
-        Player p = event.getPlayer();
-        if (BattlePlayer.getBattlePlayer(p).isSpectator()) return;
+        Player player = event.getPlayer();
+        if (BattlePlayer.getBattlePlayer(player).isSpectator()) return;
 
-        if (p.getLocation().getWorld().getName().equals(name)) {
+        if (player.getLocation().getWorld().getName().equals(name)) {
 
             if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
-                Block b = event.getClickedBlock();
-                World w = Bukkit.getWorld(name);
+                Block block = event.getClickedBlock();
+                World world = Bukkit.getWorld(name);
 
-                Team team = BattlePlayer.getBattlePlayer(p).getTeamType();
-                if (b.getType().equals(Material.PISTON_BASE)) {
-                    if (b.getLocation().equals(new Location(w, -38, 75, 43))) {
-                        p.teleport(new Location(w, -29, 74, 43)); //red
-                    } else if (b.getLocation().equals(new Location(w, 74, 75, 43))) {
-                        p.teleport(new Location(w, 66, 75, 43)); //blue
+                Team team = BattlePlayer.getBattlePlayer(player).getTeamType();
+                if (block.getType().equals(Material.PISTON_BASE)) {
+                    if (block.getLocation().equals(new Location(w, -38, 75, 43))) {
+                        player.teleport(new Location(w, -29, 74, 43)); //red
+                    } else if (block.getLocation().equals(new Location(w, 74, 75, 43))) {
+                        player.teleport(new Location(w, 66, 75, 43)); //blue
                     }
                 }
             }

@@ -13,6 +13,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.Effect;
 
 public class Arziri extends BattleMap implements IBattleMap, Listener {
 
@@ -90,24 +94,24 @@ public class Arziri extends BattleMap implements IBattleMap, Listener {
     public int z2 = 48;
 
     @EventHandler
-    public void arrowBoom(org.bukkit.event.entity.ProjectileHitEvent event) {
-        org.bukkit.entity.Entity arrow = event.getEntity();
+    public void arrowBoom(ProjectileHitEvent event) {
+        Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
         if (getArena().equals(name)) {
-            if (arrow instanceof org.bukkit.entity.Arrow) {
-                world.playEffect(arrow.getLocation(), org.bukkit.Effect.STEP_SOUND, 10);
+            if (arrow instanceof Arrow) {
+                world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
             }
         }
     }
 
     @EventHandler
-    public void arrowAway(org.bukkit.event.entity.ProjectileHitEvent event) {
-        org.bukkit.entity.Entity projectile = event.getEntity();
-        Location loc = projectile.getLocation();
-        if (loc.getWorld().getName().equals(name)) {
-            if (projectile instanceof org.bukkit.entity.Arrow) {
-                org.bukkit.entity.Arrow a = (org.bukkit.entity.Arrow) projectile;
-                a.remove();
+    public void arrowAway(ProjectileHitEvent event) {
+        Entity projectile = event.getEntity();
+        Location location = projectile.getLocation();
+        if (location.getWorld().getName().equals(name)) {
+            if (projectile instanceof Arrow) {
+                Arrow arrow = (Arrow) projectile;
+                arrow.remove();
             }
         }
     }

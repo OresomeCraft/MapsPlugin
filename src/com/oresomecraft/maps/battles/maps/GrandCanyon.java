@@ -73,7 +73,6 @@ public class GrandCanyon extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
 
-
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, HEALTH);
@@ -97,7 +96,7 @@ public class GrandCanyon extends BattleMap implements IBattleMap, Listener {
     public void onFly(PlayerToggleFlightEvent event) {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(name)) {
-            if (player.getGameMode() != GameMode.CREATIVE) {
+            if (!player.getGameMode().equals(GameMode.CREATIVE)) {
                 event.setCancelled(true);
                 player.setAllowFlight(false);
                 player.setFlying(false);

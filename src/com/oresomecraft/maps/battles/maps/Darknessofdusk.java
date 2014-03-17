@@ -96,20 +96,21 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onVirtualLuck(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        Player p = event.getPlayer();
-        Action a = event.getAction();
-        if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
-            if (p.getItemInHand().getType() == Material.SUGAR_CANE) {
+        Player player = event.getPlayer();
+        Action action = event.getAction();
+        if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
+            if (player.getItemInHand().getType().equals(Material.SUGAR_CANE)) {
                 ItemStack LUCKY_CANE = new ItemStack(Material.SUGAR_CANE, 3);
-                ItemMeta s = LUCKY_CANE.getItemMeta();
-                s.setDisplayName(ChatColor.BLUE + "Lucky Cane");
+                ItemMeta caneMeta = LUCKY_CANE.getItemMeta();
+                caneMeta.setDisplayName(ChatColor.BLUE + "Lucky Cane");
 
                 List<String> sLore = new ArrayList<String>();
                 sLore.add(org.bukkit.ChatColor.BLUE + "What will you get? Who knows!");
-                s.setLore(sLore);
-                LUCKY_CANE.setItemMeta(s);
+                caneMeta.setLore(sLore);
+                LUCKY_CANE.setItemMeta(caneMeta);
                 LUCKY_CANE.setAmount(1);
-                p.getInventory().removeItem(LUCKY_CANE);
+
+                player.getInventory().removeItem(LUCKY_CANE);
                 Inventory i = Bukkit.createInventory(null, 18);
                 ItemStack[] items = new ItemStack[]{new ItemStack(Material.EXP_BOTTLE, 3), new ItemStack(Material.SEEDS, 1),
                         new ItemStack(Material.IRON_SWORD, 1), new ItemStack(Material.EGG, 6), new ItemStack(Material.SNOW_BALL, 6),
@@ -122,7 +123,7 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
                     boolean success = Math.random() <= 0.2;
                     if (success) i.addItem(it);
                 }
-                p.openInventory(i);
+                player.openInventory(i);
             }
         }
     }

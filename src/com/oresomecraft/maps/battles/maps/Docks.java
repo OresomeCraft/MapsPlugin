@@ -6,6 +6,9 @@ import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.entity.Entity;
 
 import com.oresomecraft.OresomeBattles.api.*;
 
@@ -91,11 +94,11 @@ public class Docks extends BattleMap implements IBattleMap, Listener {
     public int z2 = 531;
 
     @EventHandler
-    public void arrowBoom(org.bukkit.event.entity.ProjectileHitEvent event) {
-        org.bukkit.entity.Entity arrow = event.getEntity();
+    public void arrowBoom(ProjectileHitEvent event) {
+        Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
         if (getArena().equals(name)) {
-            if (arrow instanceof org.bukkit.entity.Arrow) {
+            if (arrow instanceof Arrow) {
                 world.playEffect(arrow.getLocation(), org.bukkit.Effect.STEP_SOUND, 119);
             }
         }

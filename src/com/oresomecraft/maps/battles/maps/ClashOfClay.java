@@ -52,10 +52,9 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
 
         LEATHER_CHESTPLATE.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
-        //This goes before you set the armor.
+        BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(DIAMOND_HELMET);
-        BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 
         i.setItem(0, WOODEN_SWORD);
         i.setItem(1, BOW);
@@ -85,8 +84,8 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void blockPlace(BlockPlaceEvent event) {
-        Location loc = event.getBlock().getLocation();
-        if (loc.getWorld().getName().equals(name)) {
+        Location location = event.getBlock().getLocation();
+        if (location.getWorld().getName().equals(name)) {
             if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
             if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
         }
@@ -94,8 +93,8 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void blockBreak(BlockBreakEvent event) {
-        Location loc = event.getBlock().getLocation();
-        if (loc.getWorld().getName().equals(name)) {
+        Location location = event.getBlock().getLocation();
+        if (location.getWorld().getName().equals(name)) {
             if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
             if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
         }

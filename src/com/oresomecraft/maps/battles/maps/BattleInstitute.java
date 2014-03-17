@@ -191,7 +191,8 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
             Bukkit.getPlayer(currentBlue).teleport(new Location(Bukkit.getWorld(name), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
             Bukkit.getPlayer(currentRed).teleport(new Location(Bukkit.getWorld(name), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
         } catch (NullPointerException ex) {
-
+            System.out.println("[MapsPlugin] [ERROR] A NullPointerException occured when trying to teleport players to a floating point location!");
+            System.out.println("[MapsPlugin] [ERROR] battles/maps/BattleInstitute:193");
         }
         if (red.size() == 0 || blue.size() == 0) {
             Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] GAME OVER!");
@@ -294,7 +295,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void worldLoad(FoodLevelChangeEvent event) {
-        if (!event.getEntity().getWorld().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
         event.setFoodLevel(20);
     }
 }

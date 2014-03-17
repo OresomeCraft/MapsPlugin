@@ -119,27 +119,25 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
         i.setItem(4, STEAK);
         i.setItem(5, HEALTH_POTION);
         i.setItem(9, ARROWS);
-
     }
 
-    // special arena effects
     @EventHandler(priority = EventPriority.NORMAL)
     public void spireTurret(PlayerInteractEvent eve) {
-        Player p = eve.getPlayer();
+        Player player = eve.getPlayer();
         ItemStack item = eve.getItem();
         Action action = eve.getAction();
-        Location l = p.getLocation();
-        Block bl = l.getBlock();
-        Block b = bl.getRelative(BlockFace.DOWN, 2);
-        Material mat = b.getType();
+        Location location = player.getLocation();
+        Block block = location.getBlock();
+        Block block2 = block.getRelative(BlockFace.DOWN, 2);
+        Material material = block.getType();
 
-        if (contains(l, x1, x2, y1, y2, z1, z2)) {
+        if (contains(location, x1, x2, y1, y2, z1, z2)) {
 
-            if (mat == Material.SPONGE && action == Action.RIGHT_CLICK_AIR) {
+            if (material.equals(Material.SPONGE) && action.equals(Action.RIGHT_CLICK_AIR)) {
 
-                if (item.getType() == Material.IRON_SWORD) {
+                if (item.getType().equals(Material.IRON_SWORD)) {
 
-                    p.launchProjectile(Snowball.class);
+                    player.launchProjectile(Snowball.class);
 
                 }
             }
@@ -209,15 +207,15 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
                 ProjectileSource shooter = arrow.getShooter();
 
                 if (shooter instanceof Player) {
-                    Player p = (Player) shooter;
-                    Location l = p.getLocation();
-                    Block bl = l.getBlock();
-                    Block b = bl.getRelative(BlockFace.DOWN, 2);
-                    Material mat = b.getType();
-                    ItemStack is = p.getItemInHand();
-                    Material i = is.getType();
+                    Player player = (Player) shooter;
+                    Location location = player.getLocation();
+                    Block block = location.getBlock();
+                    Block block2 = block.getRelative(BlockFace.DOWN, 2);
+                    Material material = block.getType();
+                    ItemStack itemStack = player.getItemInHand();
+                    Material material2 = itemStack.getType();
 
-                    if (i == Material.BOW && mat == Material.SPONGE) {
+                    if (material2.equals(Material.BOW) && material2.equals(Material.SPONGE)) {
                         w.createExplosion(hit, 2);
                         Bukkit.getWorld(name).playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
 
@@ -230,20 +228,20 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void superEgg(PlayerEggThrowEvent event) {
         Egg egg = event.getEgg();
-        World w = egg.getWorld();
+        World world = egg.getWorld();
         Location location = egg.getLocation();
         // basic start and variables
 
         if (contains(location, x1, x2, y1, y2, z1, z2)) {
             event.setHatching(true);
-            w.createExplosion(location, 25);
+            world.createExplosion(location, 25);
 
             int strikes = 0;
             while (strikes < 20) {
                 strikes++;
                 // This causes a counting affect to count 20 times by adding 1
                 // to 0 till the number 20 for 20 lightning bolts
-                w.strikeLightning(location);
+                world.strikeLightning(location);
             }
         }
     }
@@ -252,17 +250,17 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
     public void superBlock(BlockBreakEvent event) {
         Player player = event.getPlayer();
         Block block = event.getBlock();
-        Material mat = block.getType();
-        Location loc = block.getLocation();
+        Material material = block.getType();
+        Location location = block.getLocation();
 
-        if (loc.getWorld().getName().equals(name) && mat == Material.LAPIS_ORE) {
+        if (location.getWorld().getName().equals(name) && material.equals(Material.LAPIS_ORE)) {
 
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 2400, 1));
             player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 2400, 1));
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 2400, 0));
             player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2400, 5));
             player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 2400, 4));
-            player.playSound(loc, Sound.LEVEL_UP, 50, 50);
+            player.playSound(location, Sound.LEVEL_UP, 50, 50);
 
             Bukkit.broadcastMessage(player.getDisplayName() + ChatColor.GOLD + " now has the power!");
 
@@ -271,11 +269,11 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void spongeGone(BlockBreakEvent event) {
-        Block b = event.getBlock();
-        Material mat = b.getType();
-        Location loc = b.getLocation();
+        Block block = event.getBlock();
+        Material material = block.getType();
+        Location location = block.getLocation();
 
-        if (b.getWorld().getName().equals(name) && mat == Material.SPONGE) b.setType(Material.GOLD_BLOCK);
+        if (block.getWorld().getName().equals(name) && material.equals(Material.SPONGE)) block.setType(Material.GOLD_BLOCK);
     }
 
 }

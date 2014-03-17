@@ -6,7 +6,6 @@ import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
 

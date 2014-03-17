@@ -76,13 +76,13 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 
-        ItemMeta a = ANTIGRAVITY.getItemMeta();
-        a.setDisplayName(ChatColor.BLUE + "Anti-Gravity Stone");
+        ItemMeta gravityMeta = ANTIGRAVITY.getItemMeta();
+        gravityMeta.setDisplayName(ChatColor.BLUE + "Anti-Gravity Stone");
 
-        List<String> aLore = new ArrayList<String>();
-        aLore.add(org.bukkit.ChatColor.BLUE + "Hold this to reverse the current effects of gravity!");
-        a.setLore(aLore);
-        ANTIGRAVITY.setItemMeta(a);
+        List<String> gravityLore = new ArrayList<String>();
+        gravityLore.add(org.bukkit.ChatColor.BLUE + "Hold this to reverse the current effects of gravity!");
+        gravityMeta.setLore(gravityLore);
+        ANTIGRAVITY.setItemMeta(gravityMeta);
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
@@ -117,7 +117,7 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
             public void run() {
                 if (!manipulation) return;
                 if (getArena().equals(name)) {
-                    World world = Bukkit.getWorld("gravity");
+                    World world = Bukkit.getWorld(name);
                     if (!(world.getEntities() == null)) {
                         for (Entity arrow : world.getEntities()) {
                             if (arrow instanceof Arrow) {
@@ -138,13 +138,13 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void manipulator(BlockBreakEvent event) {
-        if (event.getBlock().getWorld().getName().equalsIgnoreCase("gravity")) {
-            if (event.getBlock().getType() == Material.OBSIDIAN && manipulation) {
+        if (event.getBlock().getWorld().getName().equalsIgnoreCase(name)) {
+            if (event.getBlock().getType().equals(Material.OBSIDIAN) && manipulation) {
                 manipulation = false;
                 Bukkit.broadcastMessage(ChatColor.AQUA + "The Gravity Manipulator was turned off! Gravity returned to normal!");
                 return;
             }
-            if (event.getBlock().getType() == Material.OBSIDIAN && !manipulation) {
+            if (event.getBlock().getType().equals(Material.OBSIDIAN) && !manipulation) {
                 manipulation = true;
                 Bukkit.broadcastMessage(ChatColor.AQUA + "The Gravity Manipulator was turned on! Gravity intensified!");
             }
@@ -153,17 +153,17 @@ public class Distortion extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void manipulatorEffect(PlayerMoveEvent event) {
-        if (event.getPlayer().getWorld().getName().equalsIgnoreCase("gravity")) {
+        if (event.getPlayer().getWorld().getName().equalsIgnoreCase(name)) {
             Player p = event.getPlayer();
             if (!BattlePlayer.getBattlePlayer(p).isSpectator() && manipulation) {
-                if (p.getItemInHand().getType() != Material.DIAMOND) {
+                if (!p.getItemInHand().getType().equals(Material.DIAMOND)) {
                     if (event.getFrom().getY() > event.getTo().getY()) {
                         p.setVelocity(new Vector(0, p.getVelocity().getY() - 0.3, 0));
                     }
                 }
             }
             if (!BattlePlayer.getBattlePlayer(p).isSpectator() && !manipulation) {
-                if (p.getItemInHand().getType() == Material.DIAMOND) {
+                if (p.getItemInHand().getType().equals(Material.DIAMOND)) {
                     if (event.getFrom().getY() > event.getTo().getY()) {
                         p.setVelocity(new Vector(0, p.getVelocity().getY() - 0.3, 0));
                     }

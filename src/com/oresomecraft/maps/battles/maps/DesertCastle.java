@@ -10,6 +10,7 @@ import org.bukkit.event.*;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.event.world.WorldUnloadEvent;
+import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.projectiles.ProjectileSource;
@@ -97,19 +98,19 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
-        PlayerFishEvent.State state = event.getState();
-        Player p = event.getPlayer();
-        ItemStack is = p.getItemInHand();
-        Material mat = is.getType();
-        Location loc = p.getLocation();
+        PlayerFishEvent.State fishingState = event.getState();
+        Player player = event.getPlayer();
+        ItemStack itemStack = player.getItemInHand();
+        Material material = itemStack.getType();
+        Location location = player.getLocation();
         Location bobber = event.getHook().getLocation();
 
-        if (loc.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(name)) {
 
-            if (mat == Material.FISHING_ROD) {
+            if (material.equals(Material.FISHING_ROD)) {
 
                 if (event.getHook().getVelocity().getY() < 0.02 && isLocationNearBlock(bobber)) {
-                    p.launchProjectile(Snowball.class);
+                    player.launchProjectile(Snowball.class);
                 }
             }
         }
@@ -128,22 +129,22 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
             ProjectileSource shooter = fish.getShooter();
 
             if (shooter instanceof Player) {
-                Player p = (Player) shooter;
-                Location loc = p.getLocation();
-                ItemStack is = p.getItemInHand();
-                Material mat = is.getType();
+                Player player = (Player) shooter;
+                Location location = player.getLocation();
+                ItemStack itemStack = player.getItemInHand();
+                Material material = itemStack.getType();
 
-                if (mat == Material.FISHING_ROD) {
+                if (material.equals(Material.FISHING_ROD)) {
 
-                    p.setFallDistance(0);
-                    p.playSound(loc, Sound.ARROW_HIT, 1, 1);
+                    player.setFallDistance(0);
+                    player.playSound(location, Sound.ARROW_HIT, 1, 1);
 
                     int hitx = hit.getBlockX();
                     int hity = hit.getBlockY();
                     int hitz = hit.getBlockZ();
-                    int locx = loc.getBlockX();
-                    int locy = loc.getBlockY();
-                    int locz = loc.getBlockZ();
+                    int locx = location.getBlockX();
+                    int locy = location.getBlockY();
+                    int locz = location.getBlockZ();
                     double co[] = new double[3];
 
                     if (hitx > locx) {
@@ -170,7 +171,7 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
                         co[2] = 0;
                     }
 
-                    p.setVelocity(new Vector(co[0], co[1] / 1.25, co[2]));
+                    player.setVelocity(new Vector(co[0], co[1] / 1.25, co[2]));
 
                 }
             }
@@ -192,16 +193,16 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
     public int particles;
 
     @EventHandler
-    public void arrowParticles(org.bukkit.event.world.WorldLoadEvent event) {
+    public void arrowParticles(WorldLoadEvent event) {
         if (event.getWorld().getName().equals(name)) {
             particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
                 public void run() {
                     World world = Bukkit.getWorld(name);
                     if (getArena().equals(name)) {
-                        for (org.bukkit.entity.Entity arrow : world.getEntities()) {
+                        for (Entity arrow : world.getEntities()) {
                             if (arrow != null) {
-                                if (arrow instanceof org.bukkit.entity.Arrow) {
-                                    world.playEffect(arrow.getLocation(), org.bukkit.Effect.SMOKE, 10);
+                                if (arrow instanceof Arrow) {
+                                    world.playEffect(arrow.getLocation(), Effect.SMOKE, 10);
                                 }
                             }
                         }

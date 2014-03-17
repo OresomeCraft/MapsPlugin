@@ -127,14 +127,14 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void preventblockbreak(BlockBreakEvent event) {
-        Block b = event.getBlock();
-        int mat = b.getTypeId();
-        Location loc = b.getLocation();
+        Block block = event.getBlock();
+        int material = block.getTypeId();
+        Location loc = block.getLocation();
         if (loc.getWorld().getName().equals(name)) {
             if (contains(loc, x1, x2, y1, y2, z1, z2)) {
 
-                if (mat == 43 || mat == 44 || mat == 35 || mat == 42
-                        || mat == 49 || mat == 123 || mat == 69 || mat == 124) {
+                if (material == 43 || material == 44 || material == 35 || material == 42
+                        || material == 49 || material == 123 || material == 69 || material == 124) {
 
                     event.setCancelled(true);
                 }
@@ -154,22 +154,20 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
 
                 Player damagerP = (Player) damager;
                 ItemStack weapon = damagerP.getItemInHand();
-                Material mat = weapon.getType();
+                Material material = weapon.getType();
 
                 if (e instanceof Player) {
 
                     Player p = (Player) e;
 
-                    if (mat == Material.EMERALD) {
+                    if (material.equals(Material.EMERALD)) {
 
                         PotionEffectType confuse = PotionEffectType.CONFUSION;
                         PotionEffect confuseE = new PotionEffect(confuse, 400,
                                 1);
                         p.addPotionEffect(confuseE);
                     }
-
                 }
-
             }
         }
     }
@@ -208,7 +206,7 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
                             pp = BattlePlayer.getBattlePlayer(s);
                             ss = BattlePlayer.getBattlePlayer(p);
                         } catch (Exception ex) {
-                            System.out.println("Couldn't cast player " + pp + " or " + ss + " to BattlePlayer!");
+                            System.out.println("Couldn't cast player " + pp.getName() + " or " + ss.getName() + " to BattlePlayer!");
                             //erps.
                         }
                         if (ss.getTeamType().equals(pp.getTeamType())) return;

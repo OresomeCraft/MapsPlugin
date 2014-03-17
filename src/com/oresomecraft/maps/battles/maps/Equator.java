@@ -106,5 +106,4 @@ public class Equator extends BattleMap implements IBattleMap, Listener {
             }
         }
     }
-
 }

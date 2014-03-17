@@ -87,7 +87,7 @@ public class Xenon extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onFireBow(EntityShootBowEvent event) {
         if (getArena().equals(name)) {
-            if (event.getEntityType() == EntityType.PLAYER) {
+            if (event.getEntityType().equals(EntityType.PLAYER)) {
 
                 Player player = (Player) event.getEntity();
                 if (player.getInventory().contains(Material.ARROW)) {

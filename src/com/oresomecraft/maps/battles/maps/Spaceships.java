@@ -70,7 +70,6 @@ public class Spaceships extends BattleMap implements IBattleMap, Listener {
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 1));
         p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 10, 1));
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40 * 200000, 1));
-
     }
 
     // Region. (Top corner block and bottom corner block.

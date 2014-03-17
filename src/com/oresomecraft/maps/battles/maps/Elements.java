@@ -120,7 +120,7 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void fili(EntityDamageByEntityEvent event) {
+    public void filiShield(EntityDamageByEntityEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
             if (event.getEntity() instanceof Player) {
                 Player p = (Player) event.getEntity();

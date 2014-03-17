@@ -88,18 +88,18 @@ public class Sandbox extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
-        PlayerFishEvent.State state = event.getState();
-        Player p = event.getPlayer();
-        ItemStack is = p.getItemInHand();
-        Material mat = is.getType();
-        Location loc = p.getLocation();
+        PlayerFishEvent.State fishingState = event.getState();
+        Player player = event.getPlayer();
+        ItemStack itemStack = player.getItemInHand();
+        Material material = itemStack.getType();
+        Location loc = player.getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
 
-            if (mat == Material.FISHING_ROD) {
+            if (material.equals(Material.FISHING_ROD)) {
 
-                if (state == PlayerFishEvent.State.IN_GROUND || state == PlayerFishEvent.State.FAILED_ATTEMPT) {
-                    p.launchProjectile(Snowball.class);
+                if (fishingState.equals(PlayerFishEvent.State.IN_GROUND) || fishingState.equals(PlayerFishEvent.State.FAILED_ATTEMPT)) {
+                    player.launchProjectile(Snowball.class);
 
                 }
             }
@@ -119,22 +119,22 @@ public class Sandbox extends BattleMap implements IBattleMap, Listener {
                 ProjectileSource shooter = (ProjectileSource) fish.getShooter();
 
                 if (shooter instanceof Player) {
-                    Player p = (Player) shooter;
-                    Location loc = p.getLocation();
-                    ItemStack is = p.getItemInHand();
-                    Material mat = is.getType();
+                    Player player = (Player) shooter;
+                    Location location = player.getLocation();
+                    ItemStack itemStack = player.getItemInHand();
+                    Material material = itemStack.getType();
 
-                    if (mat == Material.FISHING_ROD) {
+                    if (material.equals(Material.FISHING_ROD)) {
 
-                        p.setFallDistance(0);
-                        p.playSound(loc, Sound.ARROW_HIT, 1, 1);
+                        player.setFallDistance(0);
+                        player.playSound(location, Sound.ARROW_HIT, 1, 1);
 
                         int hitx = hit.getBlockX();
                         int hity = hit.getBlockY();
                         int hitz = hit.getBlockZ();
-                        int locx = loc.getBlockX();
-                        int locy = loc.getBlockY();
-                        int locz = loc.getBlockZ();
+                        int locx = location.getBlockX();
+                        int locy = location.getBlockY();
+                        int locz = location.getBlockZ();
                         double co[] = new double[3];
 
                         if (hitx > locx) {
@@ -161,7 +161,7 @@ public class Sandbox extends BattleMap implements IBattleMap, Listener {
                             co[2] = 0;
                         }
 
-                        p.setVelocity(new Vector(co[0], co[1], co[2]));
+                        player.setVelocity(new Vector(co[0], co[1], co[2]));
 
                     }
                 }

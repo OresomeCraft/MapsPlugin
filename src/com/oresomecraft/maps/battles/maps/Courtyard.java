@@ -22,6 +22,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
@@ -416,13 +417,13 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void arrowAway(org.bukkit.event.entity.ProjectileHitEvent event) {
+    public void arrowAway(ProjectileHitEvent event) {
         org.bukkit.entity.Entity projectile = event.getEntity();
-        Location loc = projectile.getLocation();
-        if (loc.getWorld().getName().equals(name)) {
-            if (projectile instanceof org.bukkit.entity.Arrow) {
-                Arrow a = (Arrow) projectile;
-                a.remove();
+        Location location = projectile.getLocation();
+        if (location.getWorld().getName().equals(name)) {
+            if (projectile instanceof Arrow) {
+                Arrow arrow = (Arrow) projectile;
+                arrow.remove();
             }
         }
 

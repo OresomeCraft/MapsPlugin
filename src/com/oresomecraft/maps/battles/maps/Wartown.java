@@ -155,25 +155,25 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
             Player player = event.getPlayer();
             Location loc = player.getLocation();
             Action action = event.getAction();
-            ItemStack i = player.getItemInHand();
-            Inventory inv = player.getInventory();
-            Material tool = i.getType();
+            ItemStack itemStack = player.getItemInHand();
+            Inventory inventory = player.getInventory();
+            Material tool = itemStack.getType();
             final World world = loc.getWorld();
 
             if (tool.equals(Material.BLAZE_ROD)) {
 
                 if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
 
-                    if (inv.contains(Material.FLINT)) {
+                    if (inventory.contains(Material.FLINT)) {
                         player.launchProjectile(Arrow.class);
                         world.playSound(loc, Sound.COW_WALK, 10, 10);
                         ItemStack AMMO = new ItemStack(Material.FLINT, 1);
-                        inv.removeItem(AMMO);
+                        inventory.removeItem(AMMO);
 
                         ItemMeta ammo = AMMO.getItemMeta();
                         ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
                         AMMO.setItemMeta(ammo);
-                        inv.removeItem(AMMO);
+                        inventory.removeItem(AMMO);
 
                         // Make it remove normal flints, too.
                         player.updateInventory();
@@ -191,9 +191,9 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void hit(ProjectileHitEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
-        for (Entity en : event.getEntity().getNearbyEntities(3, 3, 3)) {
-            if (en instanceof TNTPrimed) {
-                TNTPrimed tnt = (TNTPrimed) en;
+        for (Entity entity : event.getEntity().getNearbyEntities(3, 3, 3)) {
+            if (entity instanceof TNTPrimed) {
+                TNTPrimed tnt = (TNTPrimed) entity;
                 tnt.setFuseTicks(1);
             }
         }
@@ -266,19 +266,19 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void bulletAway(ProjectileHitEvent event) {
-        Entity p = event.getEntity();
-        Location loc = p.getLocation();
-        Block b = loc.getBlock();
-        Material mat = b.getType();
+        Entity player = event.getEntity();
+        Location location = player.getLocation();
+        Block block = location.getBlock();
+        Material material = block.getType();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+        if (contains(location, x1, x2, y1, y2, z1, z2)) {
 
-            if (p instanceof Arrow) {
-                Arrow a = (Arrow) p;
-                a.remove();
+            if (player instanceof Arrow) {
+                Arrow arrow = (Arrow) player;
+                arrow.remove();
 
-                if (mat.equals(Material.THIN_GLASS)) {
-                    b.breakNaturally();
+                if (material.equals(Material.THIN_GLASS)) {
+                    block.breakNaturally();
                 }
 
             }
@@ -286,7 +286,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void moltovHit(EntityDamageByEntityEvent event) {
+    public void molotovHit(EntityDamageByEntityEvent event) {
 
         Entity entity = event.getEntity();
         Entity proj = event.getDamager();
@@ -299,9 +299,6 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
                 entity.setFireTicks(500);
 
             }
-
         }
-
     }
-
 }

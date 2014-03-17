@@ -1,10 +1,10 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
@@ -139,18 +139,18 @@ public class HauntedPerro extends BattleMap implements IBattleMap, Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
         PlayerFishEvent.State state = event.getState();
-        Player p = event.getPlayer();
-        ItemStack is = p.getItemInHand();
-        Material mat = is.getType();
-        Location loc = p.getLocation();
+        Player player = event.getPlayer();
+        ItemStack is = player.getItemInHand();
+        Material material = is.getType();
+        Location loc = player.getLocation();
         Location bobber = event.getHook().getLocation();
 
         if (loc.getWorld().getName().equals(name)) {
 
-            if (mat == Material.FISHING_ROD) {
+            if (material.equals(Material.FISHING_ROD)) {
 
                 if (event.getHook().getVelocity().getY() < 0.02 && isLocationNearBlock(bobber)) {
-                    p.launchProjectile(Snowball.class);
+                    player.launchProjectile(Snowball.class);
                 }
             }
         }
@@ -169,22 +169,22 @@ public class HauntedPerro extends BattleMap implements IBattleMap, Listener {
             ProjectileSource shooter = fish.getShooter();
 
             if (shooter instanceof Player) {
-                Player p = (Player) shooter;
-                Location loc = p.getLocation();
-                ItemStack is = p.getItemInHand();
-                Material mat = is.getType();
+                Player player = (Player) shooter;
+                Location location = player.getLocation();
+                ItemStack itemStack = player.getItemInHand();
+                Material material = itemStack.getType();
 
-                if (mat == Material.FISHING_ROD) {
+                if (material.equals(Material.FISHING_ROD)) {
 
-                    p.setFallDistance(0);
-                    p.playSound(loc, Sound.ARROW_HIT, 1, 1);
+                    player.setFallDistance(0);
+                    player.playSound(location, Sound.ARROW_HIT, 1, 1);
 
                     int hitx = hit.getBlockX();
                     int hity = hit.getBlockY();
                     int hitz = hit.getBlockZ();
-                    int locx = loc.getBlockX();
-                    int locy = loc.getBlockY();
-                    int locz = loc.getBlockZ();
+                    int locx = location.getBlockX();
+                    int locy = location.getBlockY();
+                    int locz = location.getBlockZ();
                     double co[] = new double[3];
 
                     if (hitx > locx) {
@@ -211,7 +211,7 @@ public class HauntedPerro extends BattleMap implements IBattleMap, Listener {
                         co[2] = 0;
                     }
 
-                    p.setVelocity(new Vector(co[0], co[1] / 1.25, co[2]));
+                    player.setVelocity(new Vector(co[0], co[1] / 1.25, co[2]));
 
                 }
             }
@@ -222,23 +222,20 @@ public class HauntedPerro extends BattleMap implements IBattleMap, Listener {
     public void glassShot(ProjectileHitEvent event) {
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
-        Block b = hit.getBlock();
-        Material mat = b.getType();
+        Block block = hit.getBlock();
+        Material material = block.getType();
 
         if (contains(hit, x1, x2, y1, y2, z1, z2)) {
 
             if (proj instanceof Arrow) {
 
-                if (mat == Material.THIN_GLASS) {
+                if (material.equals(Material.THIN_GLASS)) {
 
-                    b.breakNaturally();
+                    block.breakNaturally();
 
                 }
-
             }
-
         }
-
     }
 
     @EventHandler

@@ -135,19 +135,19 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void bulletAway(ProjectileHitEvent event) {
-        Entity p = event.getEntity();
-        Location loc = p.getLocation();
-        Block b = loc.getBlock();
-        Material mat = b.getType();
+        Entity player = event.getEntity();
+        Location location = player.getLocation();
+        Block block = location.getBlock();
+        Material material = block.getType();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+        if (contains(location, x1, x2, y1, y2, z1, z2)) {
 
-            if (p instanceof Arrow) {
-                Arrow a = (Arrow) p;
-                a.remove();
+            if (player instanceof Arrow) {
+                Arrow arrow = (Arrow) player;
+                arrow.remove();
 
-                if (mat == Material.THIN_GLASS) {
-                    b.breakNaturally();
+                if (material.equals(Material.THIN_GLASS)) {
+                    block.breakNaturally();
                 }
 
             }

@@ -63,7 +63,6 @@ public class Granted extends BattleMap implements IBattleMap, Listener {
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
 
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
         p.getInventory().setBoots(LEATHER_BOOTS);

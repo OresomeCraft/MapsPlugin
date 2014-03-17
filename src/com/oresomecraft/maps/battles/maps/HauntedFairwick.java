@@ -6,7 +6,6 @@ import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
-import com.oresomecraft.OresomeBattles.api.Monument;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -70,12 +69,12 @@ public class HauntedFairwick extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
 
-        ItemMeta spywatchMeta = SPY_WATCH.getItemMeta();
-        spywatchMeta.setDisplayName(ChatColor.GOLD + "Haunted Spy Watch");
+        ItemMeta spyWatchMeta = SPY_WATCH.getItemMeta();
+        spyWatchMeta.setDisplayName(ChatColor.GOLD + "Haunted Spy Watch");
         List<String> spyLore = new ArrayList<String>();
         spyLore.add(ChatColor.BLUE + "Interact with this watch to go temporarily invisible!");
-        spywatchMeta.setLore(spyLore);
-        SPY_WATCH.setItemMeta(spywatchMeta);
+        spyWatchMeta.setLore(spyLore);
+        SPY_WATCH.setItemMeta(spyWatchMeta);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
@@ -107,27 +106,27 @@ public class HauntedFairwick extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onSpyWatchInteract(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        Player p = event.getPlayer();
-        Action a = event.getAction();
-        if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
-            if (p.getItemInHand().getType() == Material.WATCH) {
-                p.getInventory().remove(p.getItemInHand());
-                p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
-                p.getInventory().setChestplate(new ItemStack(Material.AIR, 1));
-                p.getInventory().setLeggings(new ItemStack(Material.AIR, 1));
-                p.getInventory().setBoots(new ItemStack(Material.AIR, 1));
-                p.getInventory().remove(new ItemStack(Material.IRON_BOOTS));
-                p.getInventory().remove(new ItemStack(Material.IRON_LEGGINGS));
-                p.getInventory().remove(new ItemStack(Material.IRON_HELMET));
+        Player player = event.getPlayer();
+        Action action = event.getAction();
+        if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
+            if (player.getItemInHand().getType().equals(Material.WATCH)) {
+                player.getInventory().remove(player.getItemInHand());
+                player.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
+                player.getInventory().setChestplate(new ItemStack(Material.AIR, 1));
+                player.getInventory().setLeggings(new ItemStack(Material.AIR, 1));
+                player.getInventory().setBoots(new ItemStack(Material.AIR, 1));
+                player.getInventory().remove(new ItemStack(Material.IRON_BOOTS));
+                player.getInventory().remove(new ItemStack(Material.IRON_LEGGINGS));
+                player.getInventory().remove(new ItemStack(Material.IRON_HELMET));
                 ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-                InvUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(p), new ItemStack[]{LEATHER_CHESTPLATE});
-                p.getInventory().remove(LEATHER_CHESTPLATE);
-                p.getInventory().addItem(new ItemStack(Material.IRON_BOOTS));
-                p.getInventory().addItem(new ItemStack(Material.IRON_LEGGINGS));
-                p.getInventory().addItem(new ItemStack(Material.IRON_HELMET));
-                p.getInventory().addItem(LEATHER_CHESTPLATE);
-                p.updateInventory();
-                p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 15 * 20, 0));
+                InvUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(player), new ItemStack[]{LEATHER_CHESTPLATE});
+                player.getInventory().remove(LEATHER_CHESTPLATE);
+                player.getInventory().addItem(new ItemStack(Material.IRON_BOOTS));
+                player.getInventory().addItem(new ItemStack(Material.IRON_LEGGINGS));
+                player.getInventory().addItem(new ItemStack(Material.IRON_HELMET));
+                player.getInventory().addItem(LEATHER_CHESTPLATE);
+                player.updateInventory();
+                player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 15 * 20, 0));
             }
         }
     }
@@ -146,11 +145,11 @@ public class HauntedFairwick extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onFireworkUse(PlayerInteractEvent event) {
         if (getArena().equals(name)) {
-            Player p = event.getPlayer();
+            Player player = event.getPlayer();
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-                if (p.getItemInHand().getType() == Material.FIREWORK) {
-                    p.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
-                    p.setVelocity(new Vector(0, 1.05, 0));
+                if (player.getItemInHand().getType().equals(Material.FIREWORK)) {
+                    player.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
+                    player.setVelocity(new Vector(0, 1.05, 0));
                 }
             }
         }

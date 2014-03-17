@@ -6,6 +6,9 @@ import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Arrow;
+import org.bukkit.event.entity.ProjectileHitEvent;
 
 import com.oresomecraft.OresomeBattles.api.*;
 
@@ -25,7 +28,7 @@ public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
     String creators = "iVelocityGaming and XxH4XxX";
     Gamemode[] modes = {Gamemode.FFA, Gamemode.INFECTION};
 
-    // Map download link: bit.ly/19IKGtb  // Download link to map.
+    // Map download link: bit.ly/19IKGtb
     public void readyTDMSpawns() {
         //Don't need anything here.
     }
@@ -58,21 +61,20 @@ public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
 
-        i.setItem(3, HEALTH_POTION);
-
         p.setItem(0, Material.IRON_SWORD, 1);
         p.setItem(1, Material.BOW, 1);
         p.setItem(2, Material.COOKED_BEEF, 1);
+        i.setItem(3, HEALTH_POTION);
         p.setItem(9, Material.ARROW, 64);
     }
 
     @EventHandler
-    public void arrowBoom(org.bukkit.event.entity.ProjectileHitEvent event) {
-        org.bukkit.entity.Entity arrow = event.getEntity();
+    public void arrowBoom(ProjectileHitEvent event) {
+        Entity arrow = event.getEntity();
         World world = Bukkit.getWorld(name);
         if (getArena().equals(name)) {
-            if (arrow instanceof org.bukkit.entity.Arrow) {
-                world.playEffect(arrow.getLocation(), org.bukkit.Effect.STEP_SOUND, 8);
+            if (arrow instanceof Arrow) {
+                world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
             }
         }
     }

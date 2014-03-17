@@ -17,7 +17,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -41,18 +44,17 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
     String creators = "Psystrom, 123Oblivious, microstevey, __R3, AnomalousRei, AnomalousDyna, _Trezo_, Tatik, Fliine and SecretSeriousity";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
-    //Disguise stuff
     private DisguiseManager disguiseManager = new DisguiseManager(MapsPlugin.getInstance());
 
     @EventHandler
-    public void battleStart(WorldLoadEvent e) {
-        if (e.getWorld().getName().equals(name)) {
+    public void battleStart(WorldLoadEvent event) {
+        if (event.getWorld().getName().equals(name)) {
             disguiseManager.startTask();
         }
     }
 
     @EventHandler
-    public void battleEnd(BattleEndEvent e) {
+    public void battleEnd(BattleEndEvent event) {
         disguiseManager.cancelTask();
     }
 
@@ -77,22 +79,21 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack BOOTS = new ItemStack(Material.DIAMOND_BOOTS);
 
-        BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 10);
+        ItemStack EMERALD = new ItemStack(Material.EMERALD, 2);
+        ItemMeta itemMeta = EMERALD.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.BLUE + "RIGHT CLICK A BLOCK TO DISGUISE AS IT!");
+        EMERALD.setItemMeta(itemMeta);
 
-        ItemStack e = new ItemStack(Material.EMERALD, 2);
-        ItemMeta im = e.getItemMeta();
-        im.setDisplayName(ChatColor.BLUE + "RIGHT CLICK A BLOCK TO DISGUISE AS IT!");
-        e.setItemMeta(im);
+        BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 10);
+        setColouredArmorAccordingToTeam(p);
+        p.getInventory().setBoots(BOOTS);
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, HEALTH);
         i.setItem(11, ARROWS);
         i.setItem(3, new ItemStack(Material.BREAD, 3));
-        i.setItem(8, e);
-
-        setColouredArmorAccordingToTeam(p);
-        p.getInventory().setBoots(BOOTS);
+        i.setItem(8, EMERALD);
 
     }
 
@@ -110,7 +111,6 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
     /**
      * ALL CODE FOR DISGUISE MANAGER GOES BELOW HERE, DON'T TOUCH!
      */
-
 
     private class DisguisedPlayer {
         public final Material material;
@@ -267,58 +267,61 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
-        if (!(e.getPlayer().getWorld().getName().equals(name))) return;
-        disguiseManager.hideDisguisedPlayersFrom(e.getPlayer());
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        if (!(event.getPlayer().getWorld().getName().equals(name))) return;
+        disguiseManager.hideDisguisedPlayersFrom(event.getPlayer());
     }
 
     @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent e) {
-        if (!(e.getPlayer().getWorld().getName().equals(name))) return;
-        disguiseManager.undisguise(e.getPlayer());
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        if (!(event.getPlayer().getWorld().getName().equals(name))) return;
+        disguiseManager.undisguise(event.getPlayer());
     }
 
     @EventHandler
-    public void onWorldChange(PlayerTeleportEvent e) {
-        if (!(e.getPlayer().getWorld().getName().equals(name))) return;
-        if (e.getTo().getWorld().getName().equals(e.getFrom().getWorld().getName())) return;
-        if (BattlePlayer.getBattlePlayer(e.getPlayer()).isSpectator()) disguiseManager.undisguise(e.getPlayer());
+    public void onWorldChange(PlayerTeleportEvent event) {
+        if (!(event.getPlayer().getWorld().getName().equals(name))) return;
+        if (event.getTo().getWorld().getName().equals(event.getFrom().getWorld().getName())) return;
+        if (BattlePlayer.getBattlePlayer(event.getPlayer()).isSpectator())
+            disguiseManager.undisguise(event.getPlayer());
     }
 
     @EventHandler
-    public void onInteract(PlayerInteractEvent e) {
-        if (!(e.getPlayer().getWorld().getName().equals(name))) return;
+    public void onInteract(PlayerInteractEvent event) {
+        if (!(event.getPlayer().getWorld().getName().equals(name))) return;
         try {
-            if (disguiseManager.isDisguisedBlock(e.getClickedBlock()) || !BattlePlayer.getBattlePlayer(e.getPlayer()).isSpectator()) {
-                Player p = Bukkit.getPlayer(disguiseManager.undisguiseIfDisguised(e.getClickedBlock()).getName());
-                p.sendMessage(ChatColor.RED + "You were revealed!");
-                e.getPlayer().sendMessage(ChatColor.RED + "You revealed " + p.getName() + "!");
+            if (disguiseManager.isDisguisedBlock(event.getClickedBlock()) || !BattlePlayer.getBattlePlayer(event.getPlayer()).isSpectator()) {
+                Player player = Bukkit.getPlayer(disguiseManager.undisguiseIfDisguised(event.getClickedBlock()).getName());
+                player.sendMessage(ChatColor.RED + "You were revealed!");
+                event.getPlayer().sendMessage(ChatColor.RED + "You revealed " + player.getName() + "!");
             }
         } catch (NullPointerException ex) {
+
         }
 
         try {
-            if (!(e.getAction() == Action.RIGHT_CLICK_BLOCK)) return;
-            if (e.getPlayer().getItemInHand().getType().equals(Material.EMERALD)) {
-                Player p = e.getPlayer();
-                Block b = e.getClickedBlock();
-                if (b.getType() == Material.WOOD || b.getType() == Material.RAILS || b.getTypeId() == 36 ||
-                        b.getType() == Material.LOG || b.getType() == Material.TORCH || b.getTypeId() == 102 ||
-                        b.getType() == Material.LONG_GRASS || b.getType() == Material.RED_ROSE
-                        || b.getType() == Material.YELLOW_FLOWER || b.getType() == Material.LADDER ||
-                        b.getType() == Material.GRASS || b.getType() == Material.LEAVES || b.getType()
-                        == Material.STATIONARY_WATER || b.getType() == Material.WATER) {
-                    p.sendMessage(ChatColor.RED + "That block is not allowed!");
+            if (!(event.getAction().equals(Action.RIGHT_CLICK_BLOCK))) return;
+            if (event.getPlayer().getItemInHand().getType().equals(Material.EMERALD)) {
+                Player player = event.getPlayer();
+                Block block = event.getClickedBlock();
+                if (block.getType().equals(Material.WOOD) || block.getType().equals(Material.RAILS) || block.getTypeId() == 36 ||
+                        block.getType().equals(Material.LOG) || block.getType().equals(Material.TORCH) || block.getTypeId() == 102 ||
+                        block.getType().equals(Material.LONG_GRASS) || block.getType().equals(Material.RED_ROSE)
+                        || block.getType().equals(Material.YELLOW_FLOWER) || block.getType().equals(Material.LADDER) ||
+                        block.getType().equals(Material.GRASS) || block.getType().equals(Material.LEAVES) || block.getType()
+                        .equals(Material.STATIONARY_WATER) || block.getType().equals(Material.WATER)) {
+                    player.sendMessage(ChatColor.RED + "That block is not allowed!");
                     return;
                 }
-                disguiseManager.disguise(p, p.getTargetBlock(null, 10).getType(), p.getTargetBlock(null, 10).getData());
-                p.sendMessage(ChatColor.GREEN + "Disguised as a " + b.getType().toString().toLowerCase().replace("_", " "));
-                ItemStack i = new ItemStack(Material.EMERALD, 1);
-                ItemMeta im = i.getItemMeta();
-                im.setDisplayName(ChatColor.BLUE + "RIGHT CLICK A BLOCK TO DISGUISE AS IT!");
-                i.setItemMeta(im);
-                e.getPlayer().getInventory().removeItem(i);
-                e.getPlayer().updateInventory();
+                disguiseManager.disguise(player, player.getTargetBlock(null, 10).getType(), player.getTargetBlock(null, 10).getData());
+                player.sendMessage(ChatColor.GREEN + "Disguised as a " + block.getType().toString().toLowerCase().replace("_", " "));
+
+                ItemStack EMERALD = new ItemStack(Material.EMERALD, 1);
+                ItemMeta itemMeta = EMERALD.getItemMeta();
+                itemMeta.setDisplayName(ChatColor.BLUE + "RIGHT CLICK A BLOCK TO DISGUISE AS IT!");
+                EMERALD.setItemMeta(itemMeta);
+                event.getPlayer().getInventory().removeItem(EMERALD);
+                event.getPlayer().updateInventory();
             }
         } catch (NullPointerException ex) {
 

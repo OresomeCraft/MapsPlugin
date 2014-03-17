@@ -1,19 +1,24 @@
 package com.oresomecraft.maps.battles.maps;
 
-import java.util.List;
-
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import java.util.List;
 
 @MapConfig
 public class Nuketown extends BattleMap implements IBattleMap, Listener {
@@ -128,16 +133,16 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void arrowCollide(ProjectileHitEvent e) {
-        if (e.getEntity().getWorld().getName().equals(name)) {
-            if (e.getEntity() instanceof Arrow) {
-                Arrow a = (Arrow) e.getEntity();
+    public void arrowCollide(ProjectileHitEvent event) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof Arrow) {
+                Arrow arrow = (Arrow) event.getEntity();
                 //Location loc1 = a.getLocation();
-                List<Entity> nearby = a.getNearbyEntities(1, 1, 1);
-                for (Entity ent : nearby) {
-                    if (ent instanceof Player) {
+                List<Entity> nearby = arrow.getNearbyEntities(1, 1, 1);
+                for (Entity entity : nearby) {
+                    if (entity instanceof Player) {
                         //Player p = (Player) ent;
-                        ent.playEffect(EntityEffect.WOLF_SMOKE);
+                        entity.playEffect(EntityEffect.WOLF_SMOKE);
                     }
                 }
             }
@@ -145,18 +150,17 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void onInteract(PlayerInteractEvent e) {
-        if (e.getPlayer().getWorld().getName().equals(name)) {
-            Player p = e.getPlayer();
-            ItemStack iih = p.getItemInHand();
-            Material m = iih.getType();
-            if (m == Material.BOW) {
-                if (e.getAction() == Action.RIGHT_CLICK_AIR
-                        || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                    p.getWorld().playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1, 50);
+    public void onInteract(PlayerInteractEvent event) {
+        if (event.getPlayer().getWorld().getName().equals(name)) {
+            Player player = event.getPlayer();
+            ItemStack itemStack = player.getItemInHand();
+            Material material = itemStack.getType();
+            if (material.equals(Material.BOW)) {
+                if (event.getAction().equals(Action.RIGHT_CLICK_AIR)
+                        || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+                    player.getWorld().playEffect(player.getLocation(), Effect.MOBSPAWNER_FLAMES, 1, 50);
                 }
             }
         }
     }
-
 }
