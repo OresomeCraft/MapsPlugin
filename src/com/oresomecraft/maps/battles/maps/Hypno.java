@@ -106,6 +106,7 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
+
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(7, EMERALD);
@@ -126,12 +127,12 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
     public int z2 = -1258;
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void preventblockbreak(BlockBreakEvent event) {
+    public void preventBlockBreak(BlockBreakEvent event) {
         Block block = event.getBlock();
         int material = block.getTypeId();
-        Location loc = block.getLocation();
-        if (loc.getWorld().getName().equals(name)) {
-            if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+        Location location = block.getLocation();
+        if (location.getWorld().getName().equals(name)) {
+            if (contains(location, x1, x2, y1, y2, z1, z2)) {
 
                 if (material == 43 || material == 44 || material == 35 || material == 42
                         || material == 49 || material == 123 || material == 69 || material == 124) {

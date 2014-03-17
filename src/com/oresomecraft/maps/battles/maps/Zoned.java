@@ -131,7 +131,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
         Player player = event.getPlayer();
         Action action = event.getAction();
         if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
-            if (player.getItemInHand().getType() == Material.WATCH) {
+            if (player.getItemInHand().getType().equals(Material.WATCH)) {
                 player.getInventory().remove(player.getItemInHand());
                 player.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
                 player.getInventory().setChestplate(new ItemStack(Material.AIR, 1));

@@ -92,9 +92,9 @@ public class Sandbox extends BattleMap implements IBattleMap, Listener {
         Player player = event.getPlayer();
         ItemStack itemStack = player.getItemInHand();
         Material material = itemStack.getType();
-        Location loc = player.getLocation();
+        Location location = player.getLocation();
 
-        if (loc.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(name)) {
 
             if (material.equals(Material.FISHING_ROD)) {
 

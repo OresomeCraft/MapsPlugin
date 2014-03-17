@@ -145,8 +145,8 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
             if (shooter instanceof Player) {
                 Player player = (Player) shooter;
                 Location location = player.getLocation();
-                ItemStack is = player.getItemInHand();
-                Material material = is.getType();
+                ItemStack itemStack = player.getItemInHand();
+                Material material = itemStack.getType();
 
                 if (material.equals(Material.FISHING_ROD)) {
 

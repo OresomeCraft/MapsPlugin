@@ -1,24 +1,31 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
-
-import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
 public class Perro extends BattleMap implements IBattleMap, Listener {
@@ -217,16 +224,16 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
     public void glassShot(ProjectileHitEvent event) {
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
-        Block b = hit.getBlock();
-        Material mat = b.getType();
+        Block block = hit.getBlock();
+        Material material = block.getType();
 
         if (contains(hit, x1, x2, y1, y2, z1, z2)) {
 
             if (proj instanceof Arrow) {
 
-                if (mat == Material.THIN_GLASS) {
+                if (material.equals(Material.THIN_GLASS)) {
 
-                    b.breakNaturally();
+                    block.breakNaturally();
 
                 }
 
@@ -251,15 +258,15 @@ public class Perro extends BattleMap implements IBattleMap, Listener {
     public int particles;
 
     @EventHandler
-    public void arrowParticles(org.bukkit.event.world.WorldLoadEvent event) {
+    public void arrowParticles(WorldLoadEvent event) {
         if (event.getWorld().getName().equals(name)) {
             particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
                 public void run() {
                     World world = Bukkit.getWorld(name);
                     if (getArena().equals(name)) {
-                        for (org.bukkit.entity.Entity arrow : world.getEntities()) {
+                        for (Entity arrow : world.getEntities()) {
                             if (arrow != null) {
-                                if (arrow instanceof org.bukkit.entity.Arrow) {
+                                if (arrow instanceof Arrow) {
                                     world.playEffect(arrow.getLocation(), org.bukkit.Effect.SMOKE, 10);
                                 }
                             }
