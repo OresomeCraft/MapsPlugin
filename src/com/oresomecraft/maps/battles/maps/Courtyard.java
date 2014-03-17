@@ -144,11 +144,14 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         player.getInventory().setChestplate(new ItemStack(Material.AIR, 0));
         player.getInventory().setLeggings(new ItemStack(Material.AIR, 0));
         player.getInventory().setBoots(new ItemStack(Material.AIR, 0));
+        player.updateInventory();
 
         for (PotionEffect effect : player.getActivePotionEffects()) {
             player.removePotionEffect(effect.getType());
+            player.updateInventory();
         }
         selecting.add(player.getName());
+        player.updateInventory();
 
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
@@ -175,6 +178,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                         player.getInventory().setItem(1, BLAZE_ROD);
                         player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
                         player.getInventory().setItem(9, AMMO);
+                        player.updateInventory();
                         break;
 
                     case SPY:
@@ -205,6 +209,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
 
                         player.getInventory().setItem(0, new ItemStack(Material.IRON_SWORD, 1));
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
+                        player.updateInventory();
                         break;
 
                     case DEMOLITION:
@@ -215,7 +220,8 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
 
                         player.getInventory().setItem(0, new ItemStack(Material.GOLD_SWORD, 1));
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
-                        player.getInventory().setItem(2, new ItemStack(Material.TNT, 32));
+                        player.getInventory().setItem(2, new ItemStack(Material.TNT, 200));
+                        player.updateInventory();
                         break;
 
                     case TANK:
@@ -227,6 +233,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                         player.getInventory().setItem(0, new ItemStack(Material.IRON_SWORD, 1, (short) -200));
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
                         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20000 * 20, 1));
+                        player.updateInventory();
                         break;
 
                     case ARCHER:
@@ -237,6 +244,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                         player.getInventory().setItem(0, BOW);
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
                         player.getInventory().setItem(9, new ItemStack(Material.ARROW, 1));
+                        player.updateInventory();
                         break;
 
                     case MEDIC:
@@ -248,6 +256,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                         player.getInventory().setItem(0, new ItemStack(Material.STONE_SWORD, 1));
                         player.getInventory().setItem(1, new ItemStack(Material.POTION, 48, (short) 16437));
                         player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
+                        player.updateInventory();
                         break;
 
                     case SCOUT:
@@ -258,6 +267,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
 
                         player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 2));
                         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 0));
+                        player.updateInventory();
                         break;
                 }
                 selecting.remove(player.getName());
@@ -342,6 +352,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                 player.getInventory().addItem(new ItemStack(Material.IRON_HELMET));
 
                 player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 15 * 20, 0));
+                player.updateInventory();
             }
         }
     }
