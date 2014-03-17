@@ -1,21 +1,27 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.*;
-
-import com.oresomecraft.OresomeBattles.api.*;
 import org.bukkit.projectiles.ProjectileSource;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @MapConfig
 public class WarTrauma extends BattleMap implements IBattleMap, Listener {

@@ -35,7 +35,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     String name = "wartown";
     String fullName = "Wartown";
     String creators = "reub_youtube";
-    Gamemode[] modes = {Gamemode.TDM};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, 175, 64, -268, 0, 0);
@@ -131,15 +131,18 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void c4(PlayerDropItemEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        if (event.getItemDrop().getItemStack().getType().equals(Material.SULPHUR)) {
-            if (!contains(event.getItemDrop().getLocation(), 186, 162, 63, 86, -257, -278) && !contains(event.getItemDrop().getLocation(), 154, 197, 77, 63, -185, -143)) {
-                event.getPlayer().getWorld().playSound(event.getItemDrop().getLocation(), Sound.FUSE, 1L, 1L);
-                Entity tnt = event.getPlayer().getWorld().spawn(event.getItemDrop().getLocation().subtract(0, 1, 0), TNTPrimed.class);
-                ((TNTPrimed) tnt).setFuseTicks(3 * 20);
-                event.getItemDrop().remove();
-            } else {
-                event.getPlayer().sendMessage(ChatColor.RED + "You can't detonate C4 in a spawn!");
-                event.setCancelled(true);
+        BattlePlayer battlePlayer = (BattlePlayer) event.getPlayer();
+        if (battlePlayer.inBattle()) {
+            if (event.getItemDrop().getItemStack().getType().equals(Material.SULPHUR)) {
+                if (!contains(event.getItemDrop().getLocation(), 186, 162, 63, 86, -257, -278) && !contains(event.getItemDrop().getLocation(), 154, 197, 77, 63, -185, -143)) {
+                    event.getPlayer().getWorld().playSound(event.getItemDrop().getLocation(), Sound.FUSE, 1L, 1L);
+                    Entity tnt = event.getPlayer().getWorld().spawn(event.getItemDrop().getLocation().subtract(0, 1, 0), TNTPrimed.class);
+                    ((TNTPrimed) tnt).setFuseTicks(3 * 20);
+                    event.getItemDrop().remove();
+                } else {
+                    event.getPlayer().sendMessage(ChatColor.RED + "You can't detonate C4 in a spawn!");
+                    event.setCancelled(true);
+                }
             }
         }
     }
@@ -147,45 +150,48 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void gun(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        Player player = event.getPlayer();
-        Location loc = player.getLocation();
-        Action action = event.getAction();
-        ItemStack i = player.getItemInHand();
-        Inventory inv = player.getInventory();
-        Material tool = i.getType();
-        final World world = loc.getWorld();
+        BattlePlayer battlePlayer = (BattlePlayer) event.getPlayer();
+        if (battlePlayer.inBattle()) {
+            Player player = event.getPlayer();
+            Location loc = player.getLocation();
+            Action action = event.getAction();
+            ItemStack i = player.getItemInHand();
+            Inventory inv = player.getInventory();
+            Material tool = i.getType();
+            final World world = loc.getWorld();
 
-        if (tool.equals(Material.BLAZE_ROD)) {
+            if (tool.equals(Material.BLAZE_ROD)) {
 
-            if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
+                if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
 
-                if (inv.contains(Material.FLINT)) {
-                    player.launchProjectile(Arrow.class);
-                    world.playSound(loc, Sound.COW_WALK, 10, 10);
-                    ItemStack AMMO = new ItemStack(Material.FLINT, 1);
-                    inv.removeItem(AMMO);
+                    if (inv.contains(Material.FLINT)) {
+                        player.launchProjectile(Arrow.class);
+                        world.playSound(loc, Sound.COW_WALK, 10, 10);
+                        ItemStack AMMO = new ItemStack(Material.FLINT, 1);
+                        inv.removeItem(AMMO);
 
-                    ItemMeta ammo = AMMO.getItemMeta();
-                    ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
-                    AMMO.setItemMeta(ammo);
-                    inv.removeItem(AMMO);
+                        ItemMeta ammo = AMMO.getItemMeta();
+                        ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
+                        AMMO.setItemMeta(ammo);
+                        inv.removeItem(AMMO);
 
-                    // Make it remove normal flints, too.
-                    player.updateInventory();
-                } else {
-                    world.playSound(loc, Sound.CLICK, 10, 10);
+                        // Make it remove normal flints, too.
+                        player.updateInventory();
+                    } else {
+                        world.playSound(loc, Sound.CLICK, 10, 10);
+                    }
+
                 }
 
             }
 
         }
-
     }
 
     @EventHandler
-    public void hit(ProjectileHitEvent e) {
-        if (!e.getEntity().getWorld().getName().equals(name)) return;
-        for (Entity en : e.getEntity().getNearbyEntities(3, 3, 3)) {
+    public void hit(ProjectileHitEvent event) {
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        for (Entity en : event.getEntity().getNearbyEntities(3, 3, 3)) {
             if (en instanceof TNTPrimed) {
                 TNTPrimed tnt = (TNTPrimed) en;
                 tnt.setFuseTicks(1);

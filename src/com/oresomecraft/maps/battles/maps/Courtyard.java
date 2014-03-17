@@ -7,7 +7,6 @@ import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -262,7 +261,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                     case SCOUT:
                         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
                         player.getInventory().setChestplate(LEATHER_CHESTPLATE);
-                        
+
                         player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
 
                         player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 2));
@@ -272,9 +271,9 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                 }
                 selecting.remove(player.getName());
                 try {
-                    Team t = BattlePlayer.getBattlePlayer(player).getTeamType();
-                    if (t == Team.TDM_RED) player.teleport(new Location(player.getWorld(), 40, 73, -5));
-                    if (t == Team.TDM_BLUE) player.teleport(new Location(player.getWorld(), -19, 73, 0));
+                    Team team = BattlePlayer.getBattlePlayer(player).getTeamType();
+                    if (team.equals(Team.TDM_RED)) player.teleport(new Location(player.getWorld(), 40, 73, -5));
+                    if (team.equals(Team.TDM_BLUE)) player.teleport(new Location(player.getWorld(), -19, 73, 0));
                 } catch (Exception e) {
 
                 }
@@ -285,39 +284,42 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void gun(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        Player player = event.getPlayer();
-        Location loc = player.getLocation();
-        Action action = event.getAction();
-        ItemStack i = player.getItemInHand();
-        Inventory inv = player.getInventory();
-        Material tool = i.getType();
-        final World world = loc.getWorld();
+        BattlePlayer battlePlayer = (BattlePlayer) event.getPlayer();
+        if (battlePlayer.inBattle()) {
+            Player player = event.getPlayer();
+            Location loc = player.getLocation();
+            Action action = event.getAction();
+            ItemStack i = player.getItemInHand();
+            Inventory inv = player.getInventory();
+            Material tool = i.getType();
+            final World world = loc.getWorld();
 
-        if (tool.equals(Material.BLAZE_ROD)) {
+            if (tool.equals(Material.BLAZE_ROD)) {
 
-            if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
+                if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
 
-                if (inv.contains(Material.FLINT)) {
-                    player.launchProjectile(Arrow.class);
-                    world.playSound(loc, Sound.COW_WALK, 10, 10);
-                    ItemStack AMMO = new ItemStack(Material.FLINT, 1);
-                    inv.removeItem(AMMO);
+                    if (inv.contains(Material.FLINT)) {
+                        player.launchProjectile(Arrow.class);
+                        world.playSound(loc, Sound.COW_WALK, 10, 10);
+                        ItemStack AMMO = new ItemStack(Material.FLINT, 1);
+                        inv.removeItem(AMMO);
 
-                    ItemMeta ammo = AMMO.getItemMeta();
-                    ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
-                    AMMO.setItemMeta(ammo);
-                    inv.removeItem(AMMO);
+                        ItemMeta ammo = AMMO.getItemMeta();
+                        ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
+                        AMMO.setItemMeta(ammo);
+                        inv.removeItem(AMMO);
 
-                    // Make it remove normal flints, too.
-                    player.updateInventory();
-                } else {
-                    world.playSound(loc, Sound.CLICK, 10, 10);
+                        // Make it remove normal flints, too.
+                        player.updateInventory();
+                    } else {
+                        world.playSound(loc, Sound.CLICK, 10, 10);
+                    }
+
                 }
 
             }
 
         }
-
     }
 
     @EventHandler
@@ -376,7 +378,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
 
 
     @EventHandler
-    public void PotionsSplash(PotionSplashEvent event) {
+    public void potionSplash(PotionSplashEvent event) {
         if (!event.getPotion().getWorld().getName().equals(name)) return;
         event.setCancelled(true);
         Iterator iterator = event.getAffectedEntities().iterator();
