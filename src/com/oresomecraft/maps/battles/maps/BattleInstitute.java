@@ -95,7 +95,6 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void worldLoad(WorldLoadEvent event) {
-        /*
         if (event.getWorld().getName().equalsIgnoreCase(name)) {
             Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleInstitute] Starting up!");
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
@@ -115,7 +114,6 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
                 }
             }, 80L);
         }
-        */
     }
 
     @EventHandler
@@ -202,11 +200,6 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
             Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] GAME OVER!");
             return;
         }
-        try {
-            checkForNewPlayers();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.getInventory().clear();
             p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
@@ -226,23 +219,6 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
                 newRound();
             }
         }, 40L);
-    }
-
-    private void checkForNewPlayers() throws Exception {
-        for (Player p : Bukkit.getWorld(name).getPlayers()) {
-            if (p.getGameMode().equals(GameMode.SURVIVAL)) {
-                if (!(red.contains(p.getName())) && !(blue.contains(p.getName()))) {
-                    if (BattlePlayer.getBattlePlayer(p).getTeamType().equals(Team.LTS_RED)) {
-                        red.add(p.getName());
-                        Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " was detected as not in the round as was put on red!");
-                    }
-                    if (BattlePlayer.getBattlePlayer(p).getTeamType().equals(Team.LTS_BLUE)) {
-                        blue.add(p.getName());
-                        Bukkit.broadcastMessage(ChatColor.BLUE + p.getName() + " was detected as not in the round as was put on blue!");
-                    }
-                }
-            }
-        }
     }
 
     private void join(String player) {
