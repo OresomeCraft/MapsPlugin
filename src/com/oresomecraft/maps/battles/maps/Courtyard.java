@@ -265,8 +265,8 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
 
                         player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
 
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 2));
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 0));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 1));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 1));
                         player.updateInventory();
                         break;
                 }
