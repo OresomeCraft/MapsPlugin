@@ -133,7 +133,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         BattlePlayer battlePlayer = (BattlePlayer) event.getPlayer();
         if (battlePlayer.inBattle()) {
-            if (event.getItemDrop().getItemStack().getType().equals(Material.SULPHUR)) {
+            if (event.getItemDrop().getItemStack().getType() == Material.SULPHUR) {
                 if (!contains(event.getItemDrop().getLocation(), 186, 162, 63, 86, -257, -278) && !contains(event.getItemDrop().getLocation(), 154, 197, 77, 63, -185, -143)) {
                     event.getPlayer().getWorld().playSound(event.getItemDrop().getLocation(), Sound.FUSE, 1L, 1L);
                     Entity tnt = event.getPlayer().getWorld().spawn(event.getItemDrop().getLocation().subtract(0, 1, 0), TNTPrimed.class);
@@ -153,20 +153,20 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
         BattlePlayer battlePlayer = (BattlePlayer) event.getPlayer();
         if (battlePlayer.inBattle()) {
             Player player = event.getPlayer();
-            Location loc = player.getLocation();
+            Location location = player.getLocation();
             Action action = event.getAction();
             ItemStack itemStack = player.getItemInHand();
             Inventory inventory = player.getInventory();
             Material tool = itemStack.getType();
-            final World world = loc.getWorld();
+            final World world = location.getWorld();
 
-            if (tool.equals(Material.BLAZE_ROD)) {
+            if (tool == Material.BLAZE_ROD) {
 
-                if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
+                if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
 
                     if (inventory.contains(Material.FLINT)) {
                         player.launchProjectile(Arrow.class);
-                        world.playSound(loc, Sound.COW_WALK, 10, 10);
+                        world.playSound(location, Sound.COW_WALK, 10, 10);
                         ItemStack AMMO = new ItemStack(Material.FLINT, 1);
                         inventory.removeItem(AMMO);
 
@@ -178,7 +178,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
                         // Make it remove normal flints, too.
                         player.updateInventory();
                     } else {
-                        world.playSound(loc, Sound.CLICK, 10, 10);
+                        world.playSound(location, Sound.CLICK, 10, 10);
                     }
 
                 }
@@ -241,23 +241,23 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
             if (p instanceof Egg) {
 
-                if (b.getType().equals(Material.AIR))
+                if (b.getType() == Material.AIR)
                     b.setType(Material.FIRE);
-                if (bN.getType().equals(Material.AIR))
+                if (bN.getType() == Material.AIR)
                     bN.setType(Material.FIRE);
-                if (bS.getType().equals(Material.AIR))
+                if (bS.getType() == Material.AIR)
                     bS.setType(Material.FIRE);
-                if (bW.getType().equals(Material.AIR))
+                if (bW.getType() == Material.AIR)
                     bE.setType(Material.FIRE);
-                if (bNW.getType().equals(Material.AIR))
+                if (bNW.getType() == Material.AIR)
                     bW.setType(Material.FIRE);
-                if (bNW.getType().equals(Material.AIR))
+                if (bNW.getType() == Material.AIR)
                     bNW.setType(Material.FIRE);
-                if (bNE.getType().equals(Material.AIR))
+                if (bNE.getType() == Material.AIR)
                     bNE.setType(Material.FIRE);
-                if (bSW.getType().equals(Material.AIR))
+                if (bSW.getType() == Material.AIR)
                     bSW.setType(Material.FIRE);
-                if (bSE.getType().equals(Material.AIR))
+                if (bSE.getType() == Material.AIR)
                     bSE.setType(Material.FIRE);
             }
         }
@@ -277,7 +277,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
                 Arrow arrow = (Arrow) player;
                 arrow.remove();
 
-                if (material.equals(Material.THIN_GLASS)) {
+                if (material == Material.THIN_GLASS) {
                     block.breakNaturally();
                 }
 
@@ -290,9 +290,9 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
 
         Entity entity = event.getEntity();
         Entity proj = event.getDamager();
-        Location loc = entity.getLocation();
+        Location location = entity.getLocation();
 
-        if (loc.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(name)) {
 
             if (proj instanceof Egg) {
 

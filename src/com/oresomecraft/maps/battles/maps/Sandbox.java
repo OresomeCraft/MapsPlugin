@@ -96,9 +96,9 @@ public class Sandbox extends BattleMap implements IBattleMap, Listener {
 
         if (location.getWorld().getName().equals(name)) {
 
-            if (material.equals(Material.FISHING_ROD)) {
+            if (material == Material.FISHING_ROD) {
 
-                if (fishingState.equals(PlayerFishEvent.State.IN_GROUND) || fishingState.equals(PlayerFishEvent.State.FAILED_ATTEMPT)) {
+                if (fishingState == PlayerFishEvent.State.IN_GROUND || fishingState == PlayerFishEvent.State.FAILED_ATTEMPT) {
                     player.launchProjectile(Snowball.class);
 
                 }
@@ -124,7 +124,7 @@ public class Sandbox extends BattleMap implements IBattleMap, Listener {
                     ItemStack itemStack = player.getItemInHand();
                     Material material = itemStack.getType();
 
-                    if (material.equals(Material.FISHING_ROD)) {
+                    if (material == Material.FISHING_ROD) {
 
                         player.setFallDistance(0);
                         player.playSound(location, Sound.ARROW_HIT, 1, 1);

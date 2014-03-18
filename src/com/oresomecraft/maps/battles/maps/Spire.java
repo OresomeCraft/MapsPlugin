@@ -112,6 +112,7 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
+
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, IRON_PICK);
@@ -133,9 +134,9 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
 
         if (contains(location, x1, x2, y1, y2, z1, z2)) {
 
-            if (material.equals(Material.SPONGE) && action.equals(Action.RIGHT_CLICK_AIR)) {
+            if (material == Material.SPONGE && action == Action.RIGHT_CLICK_AIR) {
 
-                if (item.getType().equals(Material.IRON_SWORD)) {
+                if (item.getType() == Material.IRON_SWORD) {
 
                     player.launchProjectile(Snowball.class);
 
@@ -215,7 +216,7 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
                     ItemStack itemStack = player.getItemInHand();
                     Material material2 = itemStack.getType();
 
-                    if (material2.equals(Material.BOW) && material2.equals(Material.SPONGE)) {
+                    if (material2 == Material.BOW && material2 == Material.SPONGE) {
                         w.createExplosion(hit, 2);
                         Bukkit.getWorld(name).playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
 
@@ -253,7 +254,7 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
         Material material = block.getType();
         Location location = block.getLocation();
 
-        if (location.getWorld().getName().equals(name) && material.equals(Material.LAPIS_ORE)) {
+        if (location.getWorld().getName().equals(name) && material == Material.LAPIS_ORE) {
 
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 2400, 1));
             player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 2400, 1));
@@ -273,7 +274,7 @@ public class Spire extends BattleMap implements IBattleMap, Listener {
         Material material = block.getType();
         Location location = block.getLocation();
 
-        if (block.getWorld().getName().equals(name) && material.equals(Material.SPONGE)) block.setType(Material.GOLD_BLOCK);
+        if (block.getWorld().getName().equals(name) && material == Material.SPONGE) block.setType(Material.GOLD_BLOCK);
     }
 
 }

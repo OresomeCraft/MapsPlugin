@@ -85,13 +85,13 @@ public class Alpines extends BattleMap implements IBattleMap, Listener {
         World world = Bukkit.getWorld(name);
 
         if (event.getPlayer().getWorld().getName().equals(name)) {
-            if (material.equals(Material.STONE_HOE)) {
-                if (action.equals(Action.LEFT_CLICK_BLOCK)) {
+            if (material == Material.STONE_HOE) {
+                if (action == Action.LEFT_CLICK_BLOCK) {
                     BlockFace blockFace = event.getBlockFace();
                     Block block = event.getClickedBlock();
                     Material blockMaterial = block.getType();
-                    if (blockMaterial.equals(Material.DIRT) || blockMaterial.equals(Material.GRASS)) {
-                        if (!blockFace.equals(BlockFace.UP) && !blockFace.equals(BlockFace.DOWN)) {
+                    if (blockMaterial.equals(Material.DIRT) || blockMaterial == Material.GRASS) {
+                        if (blockFace != BlockFace.UP && blockFace != BlockFace.DOWN) {
                             player.setVelocity(new Vector(0, 1, 0));
                             player.setFallDistance(0);
                             world.playEffect(block.getLocation(), Effect.STEP_SOUND, 3);

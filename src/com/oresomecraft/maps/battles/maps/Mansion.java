@@ -1,11 +1,11 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
+import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -98,19 +98,18 @@ public class Mansion extends BattleMap implements IBattleMap, Listener {
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
+        MASK.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
 
         p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(MASK);
 
-        p.getInventory().getHelmet().addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
-
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
-        i.setItem(4, EXP);
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
+        i.setItem(4, EXP);
         i.setItem(9, ARROWS);
 
     }

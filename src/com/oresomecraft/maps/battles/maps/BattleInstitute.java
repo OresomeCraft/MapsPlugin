@@ -100,9 +100,9 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
                 public void run() {
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         try {
-                            if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType().equals(Team.LTS_RED)) {
+                            if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_RED) {
                                 red.add(p.getName());
-                            } else if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType().equals(Team.LTS_BLUE)) {
+                            } else if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_BLUE) {
                                 blue.add(p.getName());
                             }
                         } catch (Exception ex) {
@@ -125,10 +125,10 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
                         @Override
                         public void run() {
                             if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
-                                if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType().equals(Team.LTS_RED)) {
+                                if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_RED) {
                                     red.add(event.getPlayer().getName());
                                     Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " joined red!");
-                                } else if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType().equals(Team.LTS_BLUE)) {
+                                } else if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_BLUE) {
                                     blue.add(event.getPlayer().getName());
                                     Bukkit.broadcastMessage(ChatColor.BLUE + event.getPlayer().getName() + " joined blue!");
                                 }
@@ -159,7 +159,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     public void ironBlock(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         try {
-            if (event.getClickedBlock().getType().equals(Material.IRON_BLOCK)) {
+            if (event.getClickedBlock().getType() == Material.IRON_BLOCK) {
                 join(event.getPlayer().getName());
             }
         } catch (NullPointerException ex) {

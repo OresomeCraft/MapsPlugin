@@ -1,20 +1,25 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
-import org.bukkit.block.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.event.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
-
-import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
 public class Arctic extends BattleMap implements IBattleMap, Listener {
@@ -85,6 +90,7 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
@@ -97,12 +103,14 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         stone_hoe.setDisplayName(ChatColor.BLUE + "Ice hook");
         STONE_HOE.setItemMeta(stone_hoe);
 
+        IRON_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 3);
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
-        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
+
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, STONE_HOE);
@@ -111,7 +119,6 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
         i.setItem(4, HEALTH_POTION);
         i.setItem(3, STEAK);
         i.setItem(9, ARROWS);
-        p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 3);
 
 
     }
@@ -139,17 +146,17 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
 
         if (location.getWorld().getName().equals(name)) {
 
-            if (material.equals(Material.STONE_HOE)) {
+            if (material == Material.STONE_HOE) {
 
-                if (action.equals(Action.LEFT_CLICK_BLOCK)) {
+                if (action == Action.LEFT_CLICK_BLOCK) {
 
                     BlockFace blockFace = event.getBlockFace();
                     Block block = event.getClickedBlock();
                     Material blockMaterial = block.getType();
 
-                    if (blockMaterial.equals(Material.STONE) || blockMaterial.equals(Material.ICE)) {
+                    if (blockMaterial == Material.STONE || blockMaterial == Material.ICE) {
 
-                        if (!blockFace.equals(BlockFace.UP) && !blockFace.equals(BlockFace.DOWN)) {
+                        if (blockFace != BlockFace.UP && blockFace != BlockFace.DOWN) {
 
                             player.setVelocity(new Vector(0, 1, 0));
                             player.setFallDistance(0);

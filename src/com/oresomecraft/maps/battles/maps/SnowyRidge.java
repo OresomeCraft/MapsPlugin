@@ -3,7 +3,6 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
-import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
@@ -77,7 +76,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-        p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 3);
+        LEATHER_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 3);
         InvUtils.nameItem(FISHING_ROD, ChatColor.GOLD + "Grappling Hook");
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
 
@@ -118,7 +117,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
 
         if (location.getWorld().getName().equals(name)) {
 
-            if (material.equals(Material.FISHING_ROD)) {
+            if (material == Material.FISHING_ROD) {
 
                 if (event.getHook().getVelocity().getY() < 0.02 && isLocationNearBlock(bobber)) {
                     Snowball snowball = player.launchProjectile(Snowball.class);
@@ -148,7 +147,7 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
                 ItemStack itemStack = player.getItemInHand();
                 Material material = itemStack.getType();
 
-                if (material.equals(Material.FISHING_ROD)) {
+                if (material == Material.FISHING_ROD) {
 
                     player.setFallDistance(0);
                     player.playSound(location, Sound.ARROW_HIT, 1, 1);
@@ -199,12 +198,10 @@ public class SnowyRidge extends BattleMap implements IBattleMap, Listener {
 
         if (player.getLocation().getWorld().getName().equals(name)) {
 
-            if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 Block block = event.getClickedBlock();
-                World world = Bukkit.getWorld(name);
 
-                Team team = BattlePlayer.getBattlePlayer(player).getTeamType();
-                if (block.getType().equals(Material.PISTON_BASE)) {
+                if (block.getType() == Material.PISTON_BASE) {
                     if (block.getLocation().getBlockY() == 54) {
                         player.teleport(new Location(w, -42, 70, -36, -90, 0)); // To Top
                     } else if (block.getLocation().getBlockY() == 71) {

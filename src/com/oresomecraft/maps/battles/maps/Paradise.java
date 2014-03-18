@@ -72,13 +72,13 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROW = new ItemStack(Material.ARROW, 32);
 
-        ItemMeta iMeta = IRON_AXE.getItemMeta();
-        iMeta.setDisplayName(ChatColor.AQUA + "Ground Shaker");
+        ItemMeta axeMeta = IRON_AXE.getItemMeta();
+        axeMeta.setDisplayName(ChatColor.AQUA + "Ground Shaker");
 
         List<String> iLore = new ArrayList<String>();
         iLore.add(ChatColor.AQUA + "Right click with this to make a EarthQuake!");
-        iMeta.setLore(iLore);
-        IRON_AXE.setItemMeta(iMeta);
+        axeMeta.setLore(iLore);
+        IRON_AXE.setItemMeta(axeMeta);
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
@@ -106,8 +106,8 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getPlayer().getWorld().getName().equals(name)) {
-            if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-                if (event.getPlayer().getItemInHand().getType().equals(Material.IRON_AXE)) {
+            if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                if (event.getPlayer().getItemInHand().getType() == Material.IRON_AXE) {
                     for (Entity entity : event.getPlayer().getNearbyEntities(10, 10, 10)) {
                         if (entity instanceof Player) {
                             Player player = (Player) entity;

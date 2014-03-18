@@ -84,7 +84,7 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
         pudding.setDisplayName(ChatColor.RED + "Pudding");
         PUDDING.setItemMeta(pudding);
 
-        if (p.getTeamType().equals(Team.TDM_BLUE) || p.getTeamType().equals(Team.KOTH_BLUE)) {
+        if (p.getTeamType() == Team.TDM_BLUE || p.getTeamType() == Team.KOTH_BLUE) {
 
             LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
             helmetMeta.setColor(Color.NAVY);
@@ -103,7 +103,7 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
             LEATHER_BOOTS.setItemMeta(bootsMeta);
         }
 
-        if (p.getTeamType().equals(Team.TDM_RED) || p.getTeamType().equals(Team.KOTH_RED)) {
+        if (p.getTeamType() == Team.TDM_RED || p.getTeamType() == Team.KOTH_RED) {
 
             LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
             helmetMeta.setColor(Color.FUCHSIA);
@@ -151,14 +151,14 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onConsume(PlayerItemConsumeEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        Player p = event.getPlayer();
-        ItemStack i = event.getItem();
+        Player player = event.getPlayer();
+        ItemStack itemStack = event.getItem();
 
-        if (i.getType().equals(Material.MUSHROOM_SOUP)) {
-            p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 3 * 20, 1));
-            p.getWorld().playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
-            p.sendMessage(ChatColor.RED + "Merry " + ChatColor.GREEN + "Christmas!");
+        if (itemStack.getType() == Material.MUSHROOM_SOUP) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 3 * 20, 1));
+            player.getWorld().playEffect(player.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
+            player.sendMessage(ChatColor.RED + "Merry " + ChatColor.GREEN + "Christmas!");
         }
     }
 
@@ -194,18 +194,18 @@ public class Christmas extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onKill(PlayerDeathEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
-        if (event.getEntity().getKiller().getType().equals(EntityType.PLAYER)) {
+        if (event.getEntity().getKiller().getType() == EntityType.PLAYER) {
             Random random = new Random();
             if (random.nextBoolean()) {
-                Player p = event.getEntity().getKiller();
+                Player player = event.getEntity().getKiller();
                 if (random.nextBoolean()) {
-                    p.awardAchievement(Achievement.OVERKILL);
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 1));
-                    p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
+                    player.awardAchievement(Achievement.OVERKILL);
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 1));
+                    player.getWorld().playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
                 } else {
-                    p.awardAchievement(Achievement.KILL_ENEMY);
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
-                    p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 10, 10);
+                    player.awardAchievement(Achievement.KILL_ENEMY);
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3 * 20, 1));
+                    player.getWorld().playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
                 }
             }
         }

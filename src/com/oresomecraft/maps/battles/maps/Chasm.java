@@ -69,7 +69,6 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
 
         InvUtils.nameItem(STONE_HOE, ChatColor.BLUE + "Ice Hook");
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
-
         LEATHER_HELMET.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 4);
 
         p.getInventory().setBoots(LEATHER_BOOTS);
@@ -95,13 +94,13 @@ public class Chasm extends BattleMap implements IBattleMap, Listener {
         World world = Bukkit.getWorld(name);
 
         if (event.getPlayer().getWorld().getName().equals(name)) {
-            if (material.equals(Material.STONE_HOE)) {
-                if (action.equals(Action.LEFT_CLICK_BLOCK)) {
+            if (material == Material.STONE_HOE) {
+                if (action == Action.LEFT_CLICK_BLOCK) {
                     BlockFace blockFace = event.getBlockFace();
                     Block block = event.getClickedBlock();
                     Material blockMaterial = block.getType();
-                    if (blockMaterial.equals(Material.STONE) || blockMaterial.equals(Material.ICE)) {
-                        if (!blockFace.equals(BlockFace.UP) && !blockFace.equals(BlockFace.DOWN)) {
+                    if (blockMaterial == Material.STONE || blockMaterial == Material.ICE) {
+                        if (blockFace != BlockFace.UP && blockFace != BlockFace.DOWN) {
                             player.setVelocity(new Vector(0, 1, 0));
                             player.setFallDistance(0);
                             world.playEffect(block.getLocation(), Effect.STEP_SOUND, 79);

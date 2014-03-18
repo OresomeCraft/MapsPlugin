@@ -107,7 +107,7 @@ public class TreeOfLife extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         if (event.getPlayer().getWorld().getName().equalsIgnoreCase(name)) {
-            if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+            if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
                 Player player = event.getPlayer();
                 if (player.getItemInHand().getType().equals(Material.STICK)) {
                     ItemStack item = player.getItemInHand();

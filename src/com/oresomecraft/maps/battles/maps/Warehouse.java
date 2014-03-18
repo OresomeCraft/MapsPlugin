@@ -3,14 +3,12 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
-import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -112,12 +110,10 @@ public class Warehouse extends BattleMap implements IBattleMap, Listener {
 
         if (player.getLocation().getWorld().getName().equals(name)) {
 
-            if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+            if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_BLOCK) {
                 Block block = event.getClickedBlock();
-                World world = Bukkit.getWorld(name);
 
-                Team team = BattlePlayer.getBattlePlayer(player).getTeamType();
-                if (block.getType().equals(Material.PISTON_BASE)) {
+                if (block.getType() == Material.PISTON_BASE) {
                     if (block.getLocation().equals(new Location(w, -38, 75, 43))) {
                         player.teleport(new Location(w, -29, 74, 43)); //red
                     } else if (block.getLocation().equals(new Location(w, 74, 75, 43))) {

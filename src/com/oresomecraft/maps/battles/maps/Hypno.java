@@ -94,7 +94,7 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
         egg_hypno.setDisplayName(ChatColor.BLUE + "Flash bang grenade");
 
         List<String> eggLore = new ArrayList<String>();
-        eggLore.add(org.bukkit.ChatColor.BLUE + "Everyone's favourite item!");
+        eggLore.add(ChatColor.BLUE + "Everyone's favourite item!");
         egg_hypno.setLore(eggLore);
         EGG_HYPNO.setItemMeta(egg_hypno);
 
@@ -146,22 +146,22 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void hypnoGem(EntityDamageByEntityEvent event) {
         Entity damager = event.getDamager();
-        Entity e = event.getEntity();
-        Location loc = e.getLocation();
+        Entity entity = event.getEntity();
+        Location location = entity.getLocation();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+        if (contains(location, x1, x2, y1, y2, z1, z2)) {
 
             if (damager instanceof Player) {
 
-                Player damagerP = (Player) damager;
-                ItemStack weapon = damagerP.getItemInHand();
+                Player damagerPlayer = (Player) damager;
+                ItemStack weapon = damagerPlayer.getItemInHand();
                 Material material = weapon.getType();
 
-                if (e instanceof Player) {
+                if (entity instanceof Player) {
 
-                    Player p = (Player) e;
+                    Player p = (Player) entity;
 
-                    if (material.equals(Material.EMERALD)) {
+                    if (material == Material.EMERALD) {
 
                         PotionEffectType confuse = PotionEffectType.CONFUSION;
                         PotionEffect confuseE = new PotionEffect(confuse, 400,
@@ -175,18 +175,18 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void hypnoBangGrenade(ProjectileHitEvent event) {
-        Entity e = event.getEntity();
-        Location loc = e.getLocation();
-        World world = loc.getWorld();
+        Entity entity = event.getEntity();
+        Location location = entity.getLocation();
+        World world = location.getWorld();
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+        if (contains(location, x1, x2, y1, y2, z1, z2)) {
 
-            if (e instanceof Egg) {
+            if (entity instanceof Egg) {
 
-                world.playEffect(loc, Effect.ENDER_SIGNAL, 5);
-                world.playSound(loc, Sound.EXPLODE, 10, 10);
+                world.playEffect(location, Effect.ENDER_SIGNAL, 5);
+                world.playSound(location, Sound.EXPLODE, 10, 10);
 
-                List<Entity> nearby = e.getNearbyEntities(3, 3, 3);
+                List<Entity> nearby = entity.getNearbyEntities(3, 3, 3);
 
                 int amount = nearby.size();
                 int count = 0;

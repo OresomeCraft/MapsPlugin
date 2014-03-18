@@ -69,10 +69,12 @@ public class Terminal extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
+
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, STEAK);

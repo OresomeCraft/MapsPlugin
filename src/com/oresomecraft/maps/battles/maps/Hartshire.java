@@ -122,9 +122,9 @@ public class Hartshire extends BattleMap implements IBattleMap, Listener {
         Inventory inventory = player.getInventory();
         Material tool = itemStack.getType();
         if (player.getWorld().getName().equalsIgnoreCase(name)) {
-            if (tool.equals(Material.INK_SACK)) {
+            if (tool == Material.INK_SACK) {
 
-                if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
+                if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
                     player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 2));
                     player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 200, 2));
                     ItemStack ointment = new ItemStack(player.getItemInHand());

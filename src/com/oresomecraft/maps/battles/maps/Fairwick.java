@@ -108,8 +108,8 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         Player player = event.getPlayer();
         Action action = event.getAction();
-        if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
-            if (player.getItemInHand().getType().equals(Material.WATCH)) {
+        if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
+            if (player.getItemInHand().getType() == Material.WATCH) {
                 player.getInventory().remove(player.getItemInHand());
                 player.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
                 player.getInventory().setChestplate(new ItemStack(Material.AIR, 1));
@@ -137,7 +137,7 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
             if (event.getBlock().getType().getId() != 102 && event.getBlock().getType().getId() != 5) {
                 event.setCancelled(true);
             } else {
-                if (event.getBlock().getType().equals(Material.WOOL)) {
+                if (event.getBlock().getType() == Material.WOOL) {
                     event.getBlock().getDrops().clear();
                 }
             }
@@ -153,8 +153,8 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
     public void onFireworkUse(PlayerInteractEvent event) {
         if (getArena().equals(name)) {
             Player player = event.getPlayer();
-            if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-                if (player.getItemInHand().getType().equals(Material.FIREWORK)) {
+            if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                if (player.getItemInHand().getType() == Material.FIREWORK) {
                     player.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
                     player.setVelocity(new Vector(0, 1.05, 0));
                 }

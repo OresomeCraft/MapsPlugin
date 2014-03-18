@@ -82,7 +82,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
             Player player = event.getPlayer();
             Block block = event.getClickedBlock();
 
-            if (block.getType().equals(Material.SIGN_POST) || block.getType().equals(Material.WALL_SIGN)) {
+            if (block.getType() == Material.SIGN_POST || block.getType() == Material.WALL_SIGN) {
                 if (selecting.contains(player.getName())) {
                     player.sendMessage(ChatColor.RED + "You are already selecting a class, please wait!");
                     return;
@@ -273,9 +273,9 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                 selecting.remove(player.getName());
                 try {
                     Team team = BattlePlayer.getBattlePlayer(player).getTeamType();
-                    if (team.equals(Team.TDM_RED)) player.teleport(new Location(player.getWorld(), 40, 73, -5));
-                    if (team.equals(Team.TDM_BLUE)) player.teleport(new Location(player.getWorld(), -19, 73, 0));
-                } catch (Exception e) {
+                    if (team == Team.TDM_RED) player.teleport(new Location(player.getWorld(), 40, 73, -5));
+                    if (team == Team.TDM_BLUE) player.teleport(new Location(player.getWorld(), -19, 73, 0));
+                } catch (Exception ex) {
 
                 }
             }
@@ -295,9 +295,9 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
             Material tool = i.getType();
             final World world = loc.getWorld();
 
-            if (tool.equals(Material.BLAZE_ROD)) {
+            if (tool == Material.BLAZE_ROD) {
 
-                if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
+                if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
 
                     if (inv.contains(Material.FLINT)) {
                         player.launchProjectile(Arrow.class);
@@ -328,8 +328,8 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         Player player = event.getPlayer();
         Action action = event.getAction();
-        if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
-            if (player.getItemInHand().getType().equals(Material.WATCH)) {
+        if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
+            if (player.getItemInHand().getType() == Material.WATCH) {
 
                 ItemStack SPY_WATCH = new ItemStack(Material.WATCH, 1);
                 ItemMeta spyWatchMeta = SPY_WATCH.getItemMeta();
@@ -399,7 +399,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         if (contains(event.getBlock().getLocation(), 39, 69, 59, 124, 33, -60) || contains(event.getBlock().getLocation(), -19, -40, 50, 101, -45, 42))
             return;
-        if (event.getBlockPlaced().getType().equals(Material.TNT)) {
+        if (event.getBlockPlaced().getType() == Material.TNT) {
             event.getPlayer().getInventory().removeItem(new ItemStack(Material.TNT, 1));
             event.getPlayer().getWorld().spawnEntity(event.getBlockPlaced().getLocation().add(0, 1, 0), EntityType.PRIMED_TNT);
             event.getPlayer().getWorld().playSound(event.getBlockPlaced().getLocation(), Sound.FUSE, 1L, 1L);

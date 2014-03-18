@@ -104,8 +104,8 @@ public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getPlayer().getWorld().getName().equals(name)) {
-            if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-                if (event.getPlayer().getItemInHand().getType().equals(Material.BLAZE_ROD)) {
+            if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                if (event.getPlayer().getItemInHand().getType() == Material.BLAZE_ROD) {
                     ItemStack FIRE = new ItemStack(Material.BLAZE_ROD, 1);
                     ItemMeta fMeta = FIRE.getItemMeta();
                     fMeta.setDisplayName(ChatColor.BLUE + "Levitation Rod");

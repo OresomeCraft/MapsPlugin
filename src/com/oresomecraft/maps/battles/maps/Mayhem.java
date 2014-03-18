@@ -72,8 +72,8 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
         i.setItem(1, BOW);
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
-        i.setItem(28, ARROWS);
         i.setItem(8, EXP);
+        i.setItem(28, ARROWS);
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -122,19 +122,19 @@ public class Mayhem extends BattleMap implements IBattleMap, Listener {
 
         if (compareLocations(powerBlock, event.getBlock().getLocation())) {
 
-            if (!(type.equals(Material.COBBLESTONE))) {
+            if (type != Material.COBBLESTONE) {
 
-                if (type.equals(Material.REDSTONE_ORE) || type.equals(Material.GLOWING_REDSTONE_ORE)) {
+                if (type == Material.REDSTONE_ORE || type == Material.GLOWING_REDSTONE_ORE) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, potionTime, 0));
-                } else if (type.equals(Material.GOLD_ORE)) {
+                } else if (type == Material.GOLD_ORE) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, potionTime, 1));
-                } else if (type.equals(Material.COAL_ORE)) {
+                } else if (type == Material.COAL_ORE) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, potionTime, 0));
-                } else if (type.equals(Material.LAPIS_ORE)) {
+                } else if (type == Material.LAPIS_ORE) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, potionTime, 2));
-                } else if (type.equals(Material.DIAMOND_ORE)) {
+                } else if (type == Material.DIAMOND_ORE) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, potionTime, 1));
-                } else if (type.equals(Material.EMERALD_ORE)) {
+                } else if (type == Material.EMERALD_ORE) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, potionTime, 1));
                 }
 

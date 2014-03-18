@@ -50,31 +50,32 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         Inventory i = p.getInventory();
 
         ItemStack ALLPROTECT = new ItemStack(Material.EMERALD, 1);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
 
-        ItemMeta allprotect = ALLPROTECT.getItemMeta();
-        allprotect.setDisplayName(ChatColor.GREEN + "All Protect Stone");
+        ItemMeta allProtect = ALLPROTECT.getItemMeta();
+        allProtect.setDisplayName(ChatColor.GREEN + "All Protect Stone");
 
         List<String> stoneLore = new ArrayList<String>();
-        stoneLore.add(org.bukkit.ChatColor.BLUE + "Hold this while being attacked to reduce damage");
-        allprotect.setLore(stoneLore);
-        ALLPROTECT.setItemMeta(allprotect);
+        stoneLore.add(ChatColor.BLUE + "Hold this while being attacked to reduce damage");
+        allProtect.setLore(stoneLore);
+        ALLPROTECT.setItemMeta(allProtect);
+
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+
+        p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
+        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+        p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
 
         i.setItem(0, new ItemStack(Material.IRON_SWORD, 1));
         i.setItem(1, new ItemStack(Material.BOW, 1));
         i.setItem(2, new ItemStack(Material.IRON_PICKAXE, 1));
         i.setItem(3, new ItemStack(Material.IRON_AXE, 1));
         i.setItem(4, new ItemStack(Material.BAKED_POTATO, 3));
-        i.setItem(6, new ItemStack(Material.LOG, 64, (short) 1));
         i.setItem(5, new ItemStack(Material.GOLDEN_APPLE, 3));
+        i.setItem(6, new ItemStack(Material.LOG, 64, (short) 1));
         i.setItem(8, ALLPROTECT);
         i.setItem(9, new ItemStack(Material.ARROW, 64));
-
-        p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
-        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
-        p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
 
     }
 
@@ -99,7 +100,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
         if(!event.getEntity().getWorld().getName().equals(name)) return;
         if (event.getEntity() instanceof Player) {
             Player p = (Player) event.getEntity();
-            if (p.getItemInHand().getType().equals(Material.EMERALD)) {
+            if (p.getItemInHand().getType() == Material.EMERALD) {
                 Random random = new Random();
                 if (random.nextBoolean() && random.nextBoolean()) {
                     event.setDamage(event.getDamage() - 3);

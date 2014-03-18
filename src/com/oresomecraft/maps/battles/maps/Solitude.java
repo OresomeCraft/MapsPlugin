@@ -134,7 +134,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
         exp.setDisplayName(ChatColor.GOLD + "Potion of Levelling");
         EXP.setItemMeta(exp);
 
-        if (p.getTeamType().equals(Team.TDM_BLUE)) {
+        if (p.getTeamType() == Team.TDM_BLUE) {
 
             ItemMeta bow = BOW.getItemMeta();
             bow.setDisplayName(ChatColor.GOLD + "Steel Bow");
@@ -161,7 +161,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
 
         }
 
-        if (p.getTeamType().equals(Team.TDM_RED)) {
+        if (p.getTeamType() == Team.TDM_RED) {
 
             // Sets bow name "Imperial Bow"
             ItemMeta bow = BOW.getItemMeta();
@@ -197,11 +197,11 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
+        i.setItem(2, FISHING_ROD);
         i.setItem(3, STEAK);
         i.setItem(4, HEALTH_POTION);
-        i.setItem(9, ARROWS);
         i.setItem(5, EXP);
-        i.setItem(2, FISHING_ROD);
+        i.setItem(9, ARROWS);
 
         p.getInventory().getBoots().addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 9);
     }
@@ -227,7 +227,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
 
         if (location.getWorld().getName().equals(name)) {
 
-            if (material.equals(Material.FISHING_ROD)) {
+            if (material == Material.FISHING_ROD) {
 
                 if (event.getHook().getVelocity().getY() < 0.02 && isLocationNearBlock(bobber)) {
                     player.launchProjectile(Snowball.class);
@@ -254,7 +254,7 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
                 ItemStack itemStack = player.getItemInHand();
                 Material material = itemStack.getType();
 
-                if (material.equals(Material.FISHING_ROD)) {
+                if (material == Material.FISHING_ROD) {
 
                     player.setFallDistance(0);
                     player.playSound(location, Sound.ARROW_HIT, 1, 1);
@@ -307,11 +307,11 @@ public class Solitude extends BattleMap implements IBattleMap, Listener {
             Location location = player.getLocation();
             World world = Bukkit.getWorld(name);
 
-            if (BattlePlayer.getBattlePlayer(player).getTeamType().equals(Team.TDM_RED)) {
+            if (BattlePlayer.getBattlePlayer(player).getTeamType() == Team.TDM_RED) {
                 // Show red particles (small)
                 world.playEffect(location, Effect.STEP_SOUND, 152);
             } else {
-                if (BattlePlayer.getBattlePlayer(player).getTeamType().equals(Team.TDM_BLUE)) {
+                if (BattlePlayer.getBattlePlayer(player).getTeamType() == Team.TDM_BLUE) {
                     // Show blue particles (small)
                     world.playEffect(location, Effect.STEP_SOUND, 22);
                 }

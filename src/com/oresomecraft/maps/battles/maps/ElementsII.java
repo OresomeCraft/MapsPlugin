@@ -74,7 +74,7 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         i.setItem(11, ARROWS);
         i.setItem(4, BREAD);
 
-        if (p.getTeamType().equals(Team.KOTH_RED)) {
+        if (p.getTeamType() == Team.KOTH_RED) {
             p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 120 * 20, 2));
             i.setItem(8, FIRE);
         }
@@ -97,17 +97,17 @@ public class ElementsII extends BattleMap implements IBattleMap, Listener {
         Player p = event.getPlayer();
         if (p.getLocation().getWorld().getName().equals(name)) {
 
-            if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 Block b = event.getClickedBlock();
                 World w = Bukkit.getWorld(name);
 
-                if (BattlePlayer.getBattlePlayer(p).getTeamType().equals(Team.KOTH_RED)) {
-                    if (b.getType().equals(Material.REDSTONE_BLOCK)) {
+                if (BattlePlayer.getBattlePlayer(p).getTeamType() == Team.KOTH_RED) {
+                    if (b.getType() == Material.REDSTONE_BLOCK) {
                         p.teleport(new Location(w, -111, 97, 14, 90, 0));
                     }
                 } else {
-                    if (BattlePlayer.getBattlePlayer(p).getTeamType().equals(Team.KOTH_BLUE)) {
-                        if (b.getType().equals(Material.LAPIS_BLOCK)) {
+                    if (BattlePlayer.getBattlePlayer(p).getTeamType() == Team.KOTH_BLUE) {
+                        if (b.getType() == Material.LAPIS_BLOCK) {
                             p.teleport(new Location(w, -53, 97, -14, -90, 0));
                         }
                     }

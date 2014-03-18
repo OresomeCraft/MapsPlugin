@@ -77,8 +77,8 @@ public class Roseley extends BattleMap implements IBattleMap, Listener {
     public void onBlockPlace(PlayerInteractEvent event) {
         if (getArena().equals(name)) {
             Player player = event.getPlayer();
-            if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-                if (player.getItemInHand().getType().equals(Material.FIREWORK)) {
+            if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                if (player.getItemInHand().getType() == Material.FIREWORK) {
                     player.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
                     player.setVelocity(new Vector(0, 1.5, 0));
                 }

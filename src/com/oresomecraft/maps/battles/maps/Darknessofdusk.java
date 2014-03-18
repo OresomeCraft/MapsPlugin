@@ -61,13 +61,13 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
 
         ItemStack LUCKY_CANE = new ItemStack(Material.SUGAR_CANE, 1);
-        ItemMeta s = LUCKY_CANE.getItemMeta();
-        s.setDisplayName(ChatColor.BLUE + "Lucky Cane");
+        ItemMeta caneMeta = LUCKY_CANE.getItemMeta();
+        caneMeta.setDisplayName(ChatColor.BLUE + "Lucky Cane");
 
-        List<String> sLore = new ArrayList<String>();
-        sLore.add(org.bukkit.ChatColor.BLUE + "What will you get? Who knows!");
-        s.setLore(sLore);
-        LUCKY_CANE.setItemMeta(s);
+        List<String> caneLore = new ArrayList<String>();
+        caneLore.add(org.bukkit.ChatColor.BLUE + "What will you get? Who knows!");
+        caneMeta.setLore(caneLore);
+        LUCKY_CANE.setItemMeta(caneMeta);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
         p.getInventory().setBoots(DIAMOND_BOOTS);
@@ -98,20 +98,20 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         Player player = event.getPlayer();
         Action action = event.getAction();
-        if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
-            if (player.getItemInHand().getType().equals(Material.SUGAR_CANE)) {
+        if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
+            if (player.getItemInHand().getType() == Material.SUGAR_CANE) {
                 ItemStack LUCKY_CANE = new ItemStack(Material.SUGAR_CANE, 3);
                 ItemMeta caneMeta = LUCKY_CANE.getItemMeta();
                 caneMeta.setDisplayName(ChatColor.BLUE + "Lucky Cane");
 
-                List<String> sLore = new ArrayList<String>();
-                sLore.add(org.bukkit.ChatColor.BLUE + "What will you get? Who knows!");
-                caneMeta.setLore(sLore);
+                List<String> caneLore = new ArrayList<String>();
+                caneLore.add(ChatColor.BLUE + "What will you get? Who knows!");
+                caneMeta.setLore(caneLore);
                 LUCKY_CANE.setItemMeta(caneMeta);
                 LUCKY_CANE.setAmount(1);
 
                 player.getInventory().removeItem(LUCKY_CANE);
-                Inventory i = Bukkit.createInventory(null, 18);
+                Inventory inventory = Bukkit.createInventory(null, 18);
                 ItemStack[] items = new ItemStack[]{new ItemStack(Material.EXP_BOTTLE, 3), new ItemStack(Material.SEEDS, 1),
                         new ItemStack(Material.IRON_SWORD, 1), new ItemStack(Material.EGG, 6), new ItemStack(Material.SNOW_BALL, 6),
                         new ItemStack(Material.FEATHER, 1), new ItemStack(Material.POTION, 1, (short) 16428), new ItemStack(Material.WOOD_SWORD, 1),
@@ -119,11 +119,11 @@ public class Darknessofdusk extends BattleMap implements IBattleMap, Listener {
                         new ItemStack(Material.GOLD_RECORD, 1), new ItemStack(Material.CHAINMAIL_HELMET, 1), new ItemStack(Material.FIREWORK, 6),
                         new ItemStack(Material.BAKED_POTATO, 12), new ItemStack(Material.EYE_OF_ENDER, 6), new ItemStack(Material.COOKIE, 32),
                         LUCKY_CANE};
-                for (ItemStack it : items) {
+                for (ItemStack itemStack : items) {
                     boolean success = Math.random() <= 0.2;
-                    if (success) i.addItem(it);
+                    if (success) inventory.addItem(itemStack);
                 }
-                player.openInventory(i);
+                player.openInventory(inventory);
             }
         }
     }

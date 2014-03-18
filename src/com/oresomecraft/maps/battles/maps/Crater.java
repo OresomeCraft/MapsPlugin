@@ -109,9 +109,9 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void blockPlace(BlockPlaceEvent event) {
-        if (getMode().equals(Gamemode.CTF)) return;
+        if (getMode() == Gamemode.CTF) return;
         if (!event.getBlock().getWorld().getName().equals(name)) return;
-        if (!(event.getBlock().getType().equals(Material.TNT))) return;
+        if (!(event.getBlock().getType() == Material.TNT)) return;
         event.getPlayer().getInventory().removeItem(new ItemStack(Material.TNT, 1));
         event.getBlock().getWorld().playSound(event.getBlock().getLocation(), Sound.FUSE, 1, 1);
         event.getBlock().getWorld().spawnEntity(event.getBlock().getLocation(), EntityType.PRIMED_TNT);

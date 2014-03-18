@@ -111,7 +111,7 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
         if (loc.getWorld().getName().equals(name)) {
 
             if (event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 363, 54, -483)) <= 10) {
-                if (getMode().equals(Gamemode.KOTH))
+                if (getMode() == Gamemode.KOTH)
                     event.setCancelled(true);
             }
         }
@@ -123,7 +123,7 @@ public class Suburban extends BattleMap implements IBattleMap, Listener {
         if (loc.getWorld().getName().equals(name)) {
 
             if (event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 363, 54, -483)) <= 10) {
-                if (getMode().equals(Gamemode.KOTH))
+                if (getMode() == Gamemode.KOTH)
                     event.setCancelled(true);
             }
         }

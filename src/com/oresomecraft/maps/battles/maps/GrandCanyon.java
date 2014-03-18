@@ -96,7 +96,7 @@ public class GrandCanyon extends BattleMap implements IBattleMap, Listener {
     public void onFly(PlayerToggleFlightEvent event) {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(name)) {
-            if (!player.getGameMode().equals(GameMode.CREATIVE)) {
+            if (player.getGameMode() != GameMode.CREATIVE) {
                 event.setCancelled(true);
                 player.setAllowFlight(false);
                 player.setFlying(false);

@@ -154,8 +154,8 @@ public class TelluricPathII extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onFireBow(EntityShootBowEvent event) {
         if (getArena().equals(name)) {
-            if (event.getEntityType().equals(EntityType.PLAYER)) {
-                if (event.getEntity().getLocation().subtract(0, 1, 0).getBlock().getType().equals(Material.BEDROCK)) {
+            if (event.getEntityType() == EntityType.PLAYER) {
+                if (event.getEntity().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.BEDROCK) {
 
                     Player player = (Player) event.getEntity();
                     if (player.getInventory().contains(Material.ARROW)) {

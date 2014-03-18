@@ -89,7 +89,7 @@ public class Temple extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void elevator(PlayerMoveEvent event) {
         if (event.getPlayer().getWorld().getName().equals(name)) {
-            if (event.getFrom().getBlock().getType().equals((Material.BEACON)) || event.getTo().getBlock().getType().equals((Material.BEACON))) {
+            if (event.getFrom().getBlock().getType() == Material.BEACON || event.getTo().getBlock().getType() == Material.BEACON) {
                 event.getPlayer().setFallDistance(0);
                 event.getPlayer().setVelocity(new Vector(0, 5, 0));
                 event.getPlayer().setFallDistance(0);

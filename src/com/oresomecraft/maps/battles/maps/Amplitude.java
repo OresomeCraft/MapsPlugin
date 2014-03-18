@@ -33,7 +33,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.KOTH, Gamemode.INFECTION, Gamemode.FFA, Gamemode.TDM, Gamemode.LMS};
 
     @EventHandler
-    public void onload(WorldLoadEvent event) {
+    public void onLoad(WorldLoadEvent event) {
         if (event.getWorld().getName().equalsIgnoreCase(name)) {
             amplitudeTimer();
         }
@@ -68,7 +68,6 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-        InvUtils.nameItem(IRON_SWORD, ChatColor.BLUE + "Aura Sword");
         ItemStack BREAD = new ItemStack(Material.BREAD, 3);
 
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
@@ -76,6 +75,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
 
+        InvUtils.nameItem(IRON_SWORD, ChatColor.BLUE + "Aura Sword");
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
         p.getInventory().setBoots(LEATHER_BOOTS);
@@ -86,8 +86,8 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(3, HEALTH);
-        i.setItem(11, ARROWS);
         i.setItem(4, BREAD);
+        i.setItem(11, ARROWS);
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -101,15 +101,15 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
     public int y2 = 42;
     public int z2 = -72;
 
-    public int a;
+    public int auraBlast;
 
     public void amplitudeTimer() {
-        Bukkit.getServer().getScheduler().cancelTask(a);
+        Bukkit.getServer().getScheduler().cancelTask(auraBlast);
 
-        a = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+        auraBlast = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             public void run() {
                 for (Player p : Bukkit.getOnlinePlayers()) {
-                    if (p.isSneaking() && p.getItemInHand().getType().equals(Material.IRON_SWORD)) {
+                    if (p.isSneaking() && p.getItemInHand().getType() == Material.IRON_SWORD) {
 
                         if (p.getTotalExperience() >= 50) {
                             p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1F, (p.getTotalExperience() / 12));
@@ -162,7 +162,7 @@ public class Amplitude extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void battleEnd(BattleEndEvent event) {
-        Bukkit.getScheduler().cancelTask(a);
+        Bukkit.getScheduler().cancelTask(auraBlast);
     }
 
 

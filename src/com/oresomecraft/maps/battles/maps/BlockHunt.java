@@ -300,16 +300,16 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
         }
 
         try {
-            if (!(event.getAction().equals(Action.RIGHT_CLICK_BLOCK))) return;
-            if (event.getPlayer().getItemInHand().getType().equals(Material.EMERALD)) {
+            if (!(event.getAction() == Action.RIGHT_CLICK_BLOCK)) return;
+            if (event.getPlayer().getItemInHand().getType() == Material.EMERALD) {
                 Player player = event.getPlayer();
                 Block block = event.getClickedBlock();
-                if (block.getType().equals(Material.WOOD) || block.getType().equals(Material.RAILS) || block.getTypeId() == 36 ||
-                        block.getType().equals(Material.LOG) || block.getType().equals(Material.TORCH) || block.getTypeId() == 102 ||
-                        block.getType().equals(Material.LONG_GRASS) || block.getType().equals(Material.RED_ROSE)
-                        || block.getType().equals(Material.YELLOW_FLOWER) || block.getType().equals(Material.LADDER) ||
-                        block.getType().equals(Material.GRASS) || block.getType().equals(Material.LEAVES) || block.getType()
-                        .equals(Material.STATIONARY_WATER) || block.getType().equals(Material.WATER)) {
+                if (block.getType() == Material.WOOD || block.getType() == Material.RAILS || block.getTypeId() == 36 ||
+                        block.getType() == Material.LOG || block.getType() == Material.TORCH || block.getTypeId() == 102 ||
+                        block.getType() == Material.LONG_GRASS || block.getType() == Material.RED_ROSE
+                        || block.getType() == Material.YELLOW_FLOWER || block.getType() == Material.LADDER ||
+                        block.getType() == Material.GRASS || block.getType() == Material.LEAVES || block.getType()
+                         == Material.STATIONARY_WATER || block.getType() == Material.WATER) {
                     player.sendMessage(ChatColor.RED + "That block is not allowed!");
                     return;
                 }

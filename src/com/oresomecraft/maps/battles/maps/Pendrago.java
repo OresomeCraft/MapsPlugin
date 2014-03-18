@@ -82,7 +82,7 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
             }
             Block block = event.getClickedBlock();
 
-            if (block.getType().equals(Material.SIGN_POST) || block.getType().equals(Material.WALL_SIGN)) {
+            if (block.getType() == Material.SIGN_POST || block.getType() == Material.WALL_SIGN) {
                 BlockState state = block.getState();
                 Sign sign = (Sign) state;
                 // Sign options
@@ -361,32 +361,32 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
     public void gun(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         Player player = event.getPlayer();
-        Location loc = player.getLocation();
+        Location location = player.getLocation();
         Action action = event.getAction();
-        ItemStack i = player.getItemInHand();
-        Inventory inv = player.getInventory();
-        Material tool = i.getType();
-        final World world = loc.getWorld();
+        ItemStack itemStack = player.getItemInHand();
+        Inventory inventory = player.getInventory();
+        Material tool = itemStack.getType();
+        final World world = location.getWorld();
 
-        if (tool.equals(Material.BLAZE_ROD)) {
+        if (tool == Material.BLAZE_ROD) {
 
-            if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
+            if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
 
-                if (inv.contains(Material.FLINT)) {
+                if (inventory.contains(Material.FLINT)) {
                     player.launchProjectile(Arrow.class);
-                    world.playSound(loc, Sound.COW_WALK, 10, 10);
+                    world.playSound(location, Sound.COW_WALK, 10, 10);
                     ItemStack AMMO = new ItemStack(Material.FLINT, 1);
-                    inv.removeItem(AMMO);
+                    inventory.removeItem(AMMO);
 
                     ItemMeta ammo = AMMO.getItemMeta();
                     ammo.setDisplayName(ChatColor.BLUE + "Round");
                     AMMO.setItemMeta(ammo);
-                    inv.removeItem(AMMO);
+                    inventory.removeItem(AMMO);
 
                     // Make it remove normal flints, too.
                     player.updateInventory();
                 } else {
-                    world.playSound(loc, Sound.CLICK, 10, 10);
+                    world.playSound(location, Sound.CLICK, 10, 10);
                 }
 
             }
@@ -399,17 +399,17 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         Player player = event.getPlayer();
         Action action = event.getAction();
-        if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
-            if (player.getItemInHand().getType().equals(Material.WATCH)) {
+        if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
+            if (player.getItemInHand().getType() == Material.WATCH) {
 
                 ItemStack SPY_WATCH = new ItemStack(Material.WATCH, 1);
-                ItemMeta spywatchMeta = SPY_WATCH.getItemMeta();
-                spywatchMeta.setDisplayName(ChatColor.BLUE + "Spy Watch");
+                ItemMeta spyWatchMeta = SPY_WATCH.getItemMeta();
+                spyWatchMeta.setDisplayName(ChatColor.BLUE + "Spy Watch");
 
                 List<String> spyLore = new ArrayList<String>();
                 spyLore.add(org.bukkit.ChatColor.BLUE + "Interact with this watch to go temporarily invisible!");
-                spywatchMeta.setLore(spyLore);
-                SPY_WATCH.setItemMeta(spywatchMeta);
+                spyWatchMeta.setLore(spyLore);
+                SPY_WATCH.setItemMeta(spyWatchMeta);
 
                 player.getInventory().removeItem(SPY_WATCH);
                 player.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
@@ -493,11 +493,11 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         try {
             Player p = event.getPlayer();
-            if (p.getItemInHand().getType().equals(Material.GHAST_TEAR) && event.getClickedBlock().getType().equals(Material.GLASS)) {
+            if (p.getItemInHand().getType() == Material.GHAST_TEAR && event.getClickedBlock().getType() == Material.GLASS) {
                 p.sendMessage(ChatColor.RED + "*break*");
                 event.getClickedBlock().setType(Material.AIR);
             }
-            if (p.getItemInHand().getType().equals(Material.GHAST_TEAR) && event.getClickedBlock().getType().equals(Material.TNT)) {
+            if (p.getItemInHand().getType() == Material.GHAST_TEAR && event.getClickedBlock().getType() == Material.TNT) {
                 event.getClickedBlock().setType(Material.AIR);
                 Bukkit.broadcastMessage(ChatColor.RED + "[PENDRAGO] " + p.getDisplayName() + ChatColor.RED + " SUMMONED THE COMET!");
                 Bukkit.broadcastMessage(ChatColor.RED + "YOU HAVE 30 SECONDS TO TAKE COVER!");
@@ -541,13 +541,13 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void rainbow(final PlayerMoveEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        if (event.getPlayer().getItemInHand().getType().equals(Material.NETHER_STAR) && event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
+        if (event.getPlayer().getItemInHand().getType() == Material.NETHER_STAR && event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                 @Override
                 public void run() {
                     if (event.getFrom().distanceSquared(event.getTo()) == 0) return;
-                    Location l = event.getPlayer().getLocation();
-                    l.getWorld().playEffect(l, Effect.STEP_SOUND, colors.get(new Random().nextInt(colors.size())));
+                    Location location = event.getPlayer().getLocation();
+                    location.getWorld().playEffect(location, Effect.STEP_SOUND, colors.get(new Random().nextInt(colors.size())));
                     event.getPlayer().getInventory().setHelmet(colorArmor(event.getPlayer().getInventory().getHelmet(), randomc.get(new Random().nextInt(randomc.size()))));
                     event.getPlayer().getInventory().setChestplate(colorArmor(event.getPlayer().getInventory().getChestplate(), randomc.get(new Random().nextInt(randomc.size()))));
                     event.getPlayer().getInventory().setLeggings(colorArmor(event.getPlayer().getInventory().getLeggings(), randomc.get(new Random().nextInt(randomc.size()))));
@@ -575,15 +575,15 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     protected void comet() {
-        for (Block b : circle(new Location(Bukkit.getWorld("pendrago"), -41, 253, 6), 3, 2, false, true, 0)) {
-            FallingBlock fb = Bukkit.getWorld("pendrago").spawnFallingBlock(b.getLocation(), ORES.get(new Random().nextInt(ORES.size())), (byte) 1);
+        for (Block b : circle(new Location(Bukkit.getWorld(name), -41, 253, 6), 3, 2, false, true, 0)) {
+            FallingBlock fb = Bukkit.getWorld(name).spawnFallingBlock(b.getLocation(), ORES.get(new Random().nextInt(ORES.size())), (byte) 1);
             fb.setDropItem(false);
             fb.setVelocity(new Vector(0, -2.7, 0));
         }
         final BukkitTask effects = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
             @Override
             public void run() {
-                for (FallingBlock fallingBlock : Bukkit.getWorld("pendrago").getEntitiesByClass(FallingBlock.class)) {
+                for (FallingBlock fallingBlock : Bukkit.getWorld(name).getEntitiesByClass(FallingBlock.class)) {
                     Location l1 = fallingBlock.getLocation();
 
                     //Make an entire new object from the original one because it will muck up the current one
@@ -614,15 +614,15 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
                 effects.cancel();
                 int strikes = 20;
                 while (strikes > 0) {
-                    Bukkit.getWorld("pendrago").strikeLightning(new Location(Bukkit.getWorld("pendrago"), -41, 108, 6));
+                    Bukkit.getWorld(name).strikeLightning(new Location(Bukkit.getWorld(name), -41, 108, 6));
                     strikes--;
                 }
 
-                Bukkit.getWorld("pendrago").createExplosion(new Location(Bukkit.getWorld("pendrago"), -41, 108, 6), 90F);
+                Bukkit.getWorld(name).createExplosion(new Location(Bukkit.getWorld(name), -41, 108, 6), 90F);
 
                 for (Player p : Bukkit.getOnlinePlayers()) {
-                    if (p.getWorld().getName().equals("pendrago") && p.getGameMode().equals(GameMode.SURVIVAL)) {
-                        double distance = new Location(Bukkit.getWorld("pendrago"), -41, 108, 6).distance(p.getLocation());
+                    if (p.getWorld().getName().equals(name) && p.getGameMode() == GameMode.SURVIVAL) {
+                        double distance = new Location(Bukkit.getWorld(name), -41, 108, 6).distance(p.getLocation());
                         if (distance <= 15) {
                             p.damage(40);
                         } else if (distance <= 30) {
@@ -632,7 +632,7 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
                         }
                     }
                 }
-                circleSmoke(new Location(Bukkit.getWorld("pendrago"), -41, 108, 6));
+                circleSmoke(new Location(Bukkit.getWorld(name), -41, 108, 6));
             }
         }, 53);
     }

@@ -116,12 +116,12 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onFireBow(org.bukkit.event.entity.EntityShootBowEvent event) {
         if (getArena().equals(name)) {
-            if (event.getEntityType().equals(EntityType.PLAYER)) {
+            if (event.getEntityType() == EntityType.PLAYER) {
                 Player player = (Player) event.getEntity();
                 if (player.getInventory().contains(Material.ARROW)) {
                     event.setCancelled(true);
                     player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
-                    player.launchProjectile(org.bukkit.entity.EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
+                    player.launchProjectile(EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
                 } else {
                     event.setCancelled(true);
                 }
@@ -132,7 +132,7 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onProjectileLand(ProjectileHitEvent event) {
         if (getArena().equals(name)) {
-            if (event.getEntityType().equals(EntityType.ENDER_PEARL)) {
+            if (event.getEntityType() == EntityType.ENDER_PEARL) {
                 World w = Bukkit.getServer().getWorld(name);
                 Projectile proj = event.getEntity();
                 Location projloc = proj.getLocation();
@@ -148,22 +148,22 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
                     int y2 = y += 3;
                     int z2 = z += 3;
 
-                    Location loc = new Location(w, x, y, z);
+                    Location location = new Location(w, x, y, z);
 
                     while (x <= x2 && y <= y2 && z <= z2) {
 
-                        blueWool(loc, w, shooter);
-                        redWool(loc, w, shooter);
+                        blueWool(location, w, shooter);
+                        redWool(location, w, shooter);
 
                         x++;
 
-                        blueWool(loc, w, shooter);
-                        redWool(loc, w, shooter);
+                        blueWool(location, w, shooter);
+                        redWool(location, w, shooter);
 
                         y++;
 
-                        blueWool(loc, w, shooter);
-                        redWool(loc, w, shooter);
+                        blueWool(location, w, shooter);
+                        redWool(location, w, shooter);
 
                         z++;
                     }
@@ -172,21 +172,21 @@ public class Simplex extends BattleMap implements IBattleMap, Listener {
         }
     }
 
-    public void blueWool(Location loc, World w, Player shooter) {
+    public void blueWool(Location location, World world, Player shooter) {
 
-        if (BattlePlayer.getBattlePlayer(shooter).getTeamType().equals(Team.KOTH_RED)) {
-            if (loc.getBlock().getType().equals(Material.WOOL)) {
-                loc.getBlock().setTypeIdAndData(Material.WOOL.getId(), DyeColor.RED.getDyeData(), false);
-                w.playEffect(loc, Effect.STEP_SOUND, 152);
+        if (BattlePlayer.getBattlePlayer(shooter).getTeamType() == Team.KOTH_RED) {
+            if (location.getBlock().getType() == Material.WOOL) {
+                location.getBlock().setTypeIdAndData(Material.WOOL.getId(), DyeColor.RED.getDyeData(), false);
+                world.playEffect(location, Effect.STEP_SOUND, 152);
             }
         }
     }
 
-    public void redWool(Location loc, World w, Player shooter) {
-        if (BattlePlayer.getBattlePlayer(shooter).getTeamType().equals(Team.KOTH_BLUE)) {
-            if (loc.getBlock().getType().equals(Material.WOOL)) {
-                loc.getBlock().setTypeIdAndData(Material.WOOL.getId(), DyeColor.RED.getDyeData(), false);
-                w.playEffect(loc, Effect.STEP_SOUND, 22);
+    public void redWool(Location location, World world, Player shooter) {
+        if (BattlePlayer.getBattlePlayer(shooter).getTeamType() == Team.KOTH_BLUE) {
+            if (location.getBlock().getType() == Material.WOOL) {
+                location.getBlock().setTypeIdAndData(Material.WOOL.getId(), DyeColor.RED.getDyeData(), false);
+                world.playEffect(location, Effect.STEP_SOUND, 22);
             }
         }
     }

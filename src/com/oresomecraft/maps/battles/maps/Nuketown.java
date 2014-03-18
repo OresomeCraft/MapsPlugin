@@ -98,11 +98,12 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
-        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
 
@@ -155,9 +156,9 @@ public class Nuketown extends BattleMap implements IBattleMap, Listener {
             Player player = event.getPlayer();
             ItemStack itemStack = player.getItemInHand();
             Material material = itemStack.getType();
-            if (material.equals(Material.BOW)) {
-                if (event.getAction().equals(Action.RIGHT_CLICK_AIR)
-                        || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            if (material == Material.BOW) {
+                if (event.getAction() == Action.RIGHT_CLICK_AIR
+                        || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                     player.getWorld().playEffect(player.getLocation(), Effect.MOBSPAWNER_FLAMES, 1, 50);
                 }
             }

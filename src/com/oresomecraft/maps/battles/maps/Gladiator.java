@@ -135,16 +135,15 @@ public class Gladiator extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
-        PlayerFishEvent.State state = event.getState();
         Player player = event.getPlayer();
         ItemStack itemStack = player.getItemInHand();
         Material material = itemStack.getType();
-        Location loc = player.getLocation();
+        Location location = player.getLocation();
         Location bobber = event.getHook().getLocation();
 
-        if (loc.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(name)) {
 
-            if (material.equals(Material.FISHING_ROD)) {
+            if (material == Material.FISHING_ROD) {
 
                 if (event.getHook().getVelocity().getY() < 0.02 && isLocationNearBlock(bobber)) {
                     player.launchProjectile(Snowball.class);
@@ -171,7 +170,7 @@ public class Gladiator extends BattleMap implements IBattleMap, Listener {
                 ItemStack itemStack = player.getItemInHand();
                 Material material = itemStack.getType();
 
-                if (material.equals(Material.FISHING_ROD)) {
+                if (material == Material.FISHING_ROD) {
 
                     player.setFallDistance(0);
                     player.playSound(location, Sound.ARROW_HIT, 1, 1);

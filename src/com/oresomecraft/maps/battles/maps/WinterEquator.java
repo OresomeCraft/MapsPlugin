@@ -100,7 +100,7 @@ public class WinterEquator extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
-            if (event.getBlock().getType().equals(Material.WOOL)) {
+            if (event.getBlock().getType() == Material.WOOL) {
                 event.getBlock().getDrops().clear();
             }
         }

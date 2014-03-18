@@ -66,13 +66,13 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack ALLPROTECT = new ItemStack(Material.EMERALD, 1);
 
-        ItemMeta allprotect = ALLPROTECT.getItemMeta();
-        allprotect.setDisplayName(ChatColor.GREEN + "All Protect Stone");
+        ItemMeta allProtect = ALLPROTECT.getItemMeta();
+        allProtect.setDisplayName(ChatColor.GREEN + "All Protect Stone");
 
         List<String> stoneLore = new ArrayList<String>();
-        stoneLore.add(org.bukkit.ChatColor.BLUE + "Hold this while being attacked to reduce damage");
-        allprotect.setLore(stoneLore);
-        ALLPROTECT.setItemMeta(allprotect);
+        stoneLore.add(ChatColor.BLUE + "Hold this while being attacked to reduce damage");
+        allProtect.setLore(stoneLore);
+        ALLPROTECT.setItemMeta(allProtect);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
@@ -81,15 +81,13 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
 
-        i.setItem(0, STONE_SWORD);
-        i.setItem(1, BOW);
         i.setItem(0, AXE);
+        i.setItem(1, BOW);
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH);
         i.setItem(4, LOGS);
         i.setItem(8, ALLPROTECT);
         i.setItem(10, ARROWS);
-
 
     }
 
@@ -124,8 +122,8 @@ public class Mutiny extends BattleMap implements IBattleMap, Listener {
     public void protectStone(EntityDamageEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
             if (event.getEntity() instanceof Player) {
-                Player p = (Player) event.getEntity();
-                if (p.getItemInHand().getType().equals(Material.EMERALD)) {
+                Player player = (Player) event.getEntity();
+                if (player.getItemInHand().getType() == Material.EMERALD) {
                     Random random = new Random();
                     if (random.nextBoolean()) {
                         event.setDamage(event.getDamage() - 5);

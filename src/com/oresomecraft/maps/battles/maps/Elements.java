@@ -124,7 +124,7 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
         if (event.getEntity().getWorld().getName().equals(name)) {
             if (event.getEntity() instanceof Player) {
                 Player p = (Player) event.getEntity();
-                if (p.getItemInHand().getType().equals(Material.EMERALD) && event.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)) {
+                if (p.getItemInHand().getType() == Material.EMERALD && event.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)) {
                     Random random = new Random();
                     if (random.nextBoolean()) {
                         event.setDamage(event.getDamage() - 3);

@@ -73,8 +73,8 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, PUMPKIN_PIE);
         i.setItem(4, APPLE);
 
-        if (p.getTeamType().equals(Team.TDM_RED) || p.getTeamType().equals(Team.LTS_RED)) i.setItem(5, RED_STAINED_CLAY);
-        if (p.getTeamType().equals(Team.TDM_BLUE) || p.getTeamType().equals(Team.LTS_BLUE)) i.setItem(5, BLUE_STAINED_CLAY);
+        if (p.getTeamType() == Team.TDM_RED || p.getTeamType() == Team.LTS_RED) i.setItem(5, RED_STAINED_CLAY);
+        if (p.getTeamType() == Team.TDM_BLUE || p.getTeamType() == Team.LTS_BLUE) i.setItem(5, BLUE_STAINED_CLAY);
 
         i.setItem(6, TORCH);
         i.setItem(27, ARROW);
@@ -107,7 +107,7 @@ public class ClashOfClayII extends BattleMap implements IBattleMap, Listener {
         if (location.getWorld().getName().equals(name)) {
 
             // Method may not work
-            if (event.getBlockPlaced().getType().equals(Material.LAVA)) event.setCancelled(true);
+            if (event.getBlockPlaced().getType() == Material.LAVA) event.setCancelled(true);
 
             if (contains(location, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
             if (contains(location, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);

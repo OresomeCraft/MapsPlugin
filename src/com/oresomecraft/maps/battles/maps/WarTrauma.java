@@ -19,6 +19,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.block.BlockFace;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,29 +104,29 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
 
     // <------- Spire Turrets ------->
     @EventHandler(priority = EventPriority.NORMAL)
-    public void explodingArrow(org.bukkit.event.entity.ProjectileHitEvent event) {
+    public void explodingArrow(ProjectileHitEvent event) {
         org.bukkit.entity.Entity projectile = event.getEntity();
         World w = projectile.getWorld();
         Location hit = projectile.getLocation();
 
         if (hit.getWorld().getName().equals(name)) {
 
-            if (projectile instanceof org.bukkit.entity.Arrow) {
-                org.bukkit.entity.Arrow arrow = (org.bukkit.entity.Arrow) projectile;
+            if (projectile instanceof Arrow) {
+                Arrow arrow = (Arrow) projectile;
                 ProjectileSource shooter = arrow.getShooter();
 
                 if (shooter instanceof Player) {
-                    Player p = (Player) shooter;
-                    Location l = p.getLocation();
-                    Block bl = l.getBlock();
-                    Block b = bl.getRelative(org.bukkit.block.BlockFace.DOWN, 2);
-                    Material mat = b.getType();
-                    ItemStack is = p.getItemInHand();
-                    Material i = is.getType();
+                    Player player = (Player) shooter;
+                    Location location = player.getLocation();
+                    Block block2 = location.getBlock();
+                    Block block = block2.getRelative(BlockFace.DOWN, 2);
+                    Material material = block.getType();
+                    ItemStack itemStack = player.getItemInHand();
+                    Material material2 = itemStack.getType();
 
-                    if (i == Material.BOW && mat == Material.SPONGE) {
+                    if (material2 == Material.BOW && material == Material.SPONGE) {
                         w.createExplosion(hit, 2);
-                        Bukkit.getWorld(name).playEffect(arrow.getLocation(), org.bukkit.Effect.STEP_SOUND, 10);
+                        Bukkit.getWorld(name).playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
 
                     }
                 }
@@ -146,7 +147,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
                 Arrow arrow = (Arrow) player;
                 arrow.remove();
 
-                if (material.equals(Material.THIN_GLASS)) {
+                if (material == Material.THIN_GLASS) {
                     block.breakNaturally();
                 }
 

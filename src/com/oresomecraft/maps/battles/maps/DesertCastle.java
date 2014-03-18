@@ -1,22 +1,29 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.player.*;
-import org.bukkit.event.world.WorldUnloadEvent;
+import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.world.WorldLoadEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.event.world.WorldUnloadEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
-
-import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
 public class DesertCastle extends BattleMap implements IBattleMap, Listener {
@@ -71,10 +78,13 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
         fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
         FISHING_ROD.setItemMeta(fishing_rod);
 
+        IRON_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 4);
+
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
+
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         if (p.getTeamType() == Team.TDM_RED || p.getTeamType() == Team.TDM_BLUE || p.getTeamType() == Team.FFA) {
@@ -84,8 +94,6 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, STEAK);
         i.setItem(4, HEALTH_POTION);
         i.setItem(9, ARROWS);
-        p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
-
 
     }
 
@@ -98,7 +106,6 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
-        PlayerFishEvent.State fishingState = event.getState();
         Player player = event.getPlayer();
         ItemStack itemStack = player.getItemInHand();
         Material material = itemStack.getType();
@@ -107,7 +114,7 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
 
         if (location.getWorld().getName().equals(name)) {
 
-            if (material.equals(Material.FISHING_ROD)) {
+            if (material == Material.FISHING_ROD) {
 
                 if (event.getHook().getVelocity().getY() < 0.02 && isLocationNearBlock(bobber)) {
                     player.launchProjectile(Snowball.class);
@@ -134,7 +141,7 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
                 ItemStack itemStack = player.getItemInHand();
                 Material material = itemStack.getType();
 
-                if (material.equals(Material.FISHING_ROD)) {
+                if (material == Material.FISHING_ROD) {
 
                     player.setFallDistance(0);
                     player.playSound(location, Sound.ARROW_HIT, 1, 1);
@@ -172,7 +179,6 @@ public class DesertCastle extends BattleMap implements IBattleMap, Listener {
                     }
 
                     player.setVelocity(new Vector(co[0], co[1] / 1.25, co[2]));
-
                 }
             }
         }

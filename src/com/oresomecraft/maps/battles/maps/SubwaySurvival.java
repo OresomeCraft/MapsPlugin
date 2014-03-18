@@ -1,16 +1,18 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.inventory.*;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
-
-import com.oresomecraft.OresomeBattles.api.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 @MapConfig
 public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
@@ -68,17 +70,6 @@ public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
         p.setItem(9, Material.ARROW, 64);
     }
 
-    @EventHandler
-    public void arrowBoom(ProjectileHitEvent event) {
-        Entity arrow = event.getEntity();
-        World world = Bukkit.getWorld(name);
-        if (getArena().equals(name)) {
-            if (arrow instanceof Arrow) {
-                world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
-            }
-        }
-    }
-
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
     public int x1 = 142;
@@ -89,5 +80,16 @@ public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
     public int x2 = 31;
     public int y2 = 55;
     public int z2 = 81;
+
+    @EventHandler
+    public void arrowBoom(ProjectileHitEvent event) {
+        Entity arrow = event.getEntity();
+        World world = Bukkit.getWorld(name);
+        if (getArena().equals(name)) {
+            if (arrow instanceof Arrow) {
+                world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
+            }
+        }
+    }
 
 }
