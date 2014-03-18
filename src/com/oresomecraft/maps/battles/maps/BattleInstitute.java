@@ -74,9 +74,11 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void quit(PlayerQuitEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName()))
+        if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
             red.remove(event.getPlayer().getName());
-        blue.remove(event.getPlayer().getName());
+            blue.remove(event.getPlayer().getName());
+            Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleInstitute] " + event.getPlayer().getName() + " quit!");
+        }
         if (currentRed.equals(event.getPlayer().getName()) || currentBlue.equals(event.getPlayer().getName()))
             endRound();
     }
@@ -86,11 +88,8 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         red.remove(event.getEntity().getName());
         blue.remove(event.getEntity().getName());
-        if (red.contains(event.getEntity().getName()) || blue.contains(event.getEntity().getName()))
-            Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] A player has fallen!");
         if (currentRed.equals(event.getEntity().getName()) || currentBlue.equals(event.getEntity().getName()))
             endRound();
-        event.getEntity().setHealth(20);
     }
 
     @EventHandler
