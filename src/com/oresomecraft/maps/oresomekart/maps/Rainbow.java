@@ -17,12 +17,13 @@ public class Rainbow extends OresomeKartMap implements Listener {
         setAllowBuild(false);
         setFinishPoint(new CuboidRegion(new Location(w, -1, 27, -1), new Location(w, 0, 39, 13)));
         setHalfwayCheckPoint(new CuboidRegion(new Location(w, 19, 14, -54), new Location(w, 20, 50, -38)));
-        setLaps(3);
+        setLaps(8);
         setDrivableSurfaces(new Material[]{Material.WOOL, Material.GOLD_BLOCK});
         setBoostSurfaces(new Material[]{Material.SANDSTONE, Material.DIAMOND_BLOCK});
         setJumpSurfaces(new Material[]{Material.DIAMOND_BLOCK});
 
         setFireSpread(false);
+
     }
 
     // Map details
