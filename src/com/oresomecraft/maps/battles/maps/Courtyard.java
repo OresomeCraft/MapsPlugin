@@ -286,8 +286,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void gun(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        BattlePlayer battlePlayer = (BattlePlayer) event.getPlayer();
-        if (battlePlayer.inBattle()) {
+        if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             Player player = event.getPlayer();
             Location loc = player.getLocation();
             Action action = event.getAction();
