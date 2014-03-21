@@ -263,7 +263,8 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
                         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
                         player.getInventory().setChestplate(LEATHER_CHESTPLATE);
 
-                        player.getInventory().setItem(2, new ItemStack(Material.COOKED_BEEF, 3));
+                        player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1));
+                        player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
 
                         player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 1));
                         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 1));
@@ -285,8 +286,7 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void gun(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        BattlePlayer battlePlayer = (BattlePlayer) event.getPlayer();
-        if (battlePlayer.inBattle()) {
+        if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             Player player = event.getPlayer();
             Location loc = player.getLocation();
             Action action = event.getAction();

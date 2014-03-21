@@ -28,7 +28,7 @@ public class Raceway extends OresomeKartMap implements Listener {
     // Map details
     String name = "raceway_kart";
     String fullName = "Raceway";
-    String creators = "Evil_Emo";
+    String creators = "Evil_Emo and Turt1eManLol";
     Gamemode[] modes = {Gamemode.ORESOMEKART};
 
     public void readyFFASpawns() {

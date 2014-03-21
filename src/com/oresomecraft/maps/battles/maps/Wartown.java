@@ -131,8 +131,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void c4(PlayerDropItemEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        BattlePlayer battlePlayer = (BattlePlayer) event.getPlayer();
-        if (battlePlayer.inBattle()) {
+        if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             if (event.getItemDrop().getItemStack().getType() == Material.SULPHUR) {
                 if (!contains(event.getItemDrop().getLocation(), 186, 162, 63, 86, -257, -278) && !contains(event.getItemDrop().getLocation(), 154, 197, 77, 63, -185, -143)) {
                     event.getPlayer().getWorld().playSound(event.getItemDrop().getLocation(), Sound.FUSE, 1L, 1L);
@@ -150,8 +149,7 @@ public class Wartown extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void gun(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        BattlePlayer battlePlayer = (BattlePlayer) event.getPlayer();
-        if (battlePlayer.inBattle()) {
+        if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             Player player = event.getPlayer();
             Location location = player.getLocation();
             Action action = event.getAction();

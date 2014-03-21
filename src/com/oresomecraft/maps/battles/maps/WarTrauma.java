@@ -105,7 +105,7 @@ public class WarTrauma extends BattleMap implements IBattleMap, Listener {
     // <------- Spire Turrets ------->
     @EventHandler(priority = EventPriority.NORMAL)
     public void explodingArrow(ProjectileHitEvent event) {
-        org.bukkit.entity.Entity projectile = event.getEntity();
+        Entity projectile = event.getEntity();
         World w = projectile.getWorld();
         Location hit = projectile.getLocation();
 
