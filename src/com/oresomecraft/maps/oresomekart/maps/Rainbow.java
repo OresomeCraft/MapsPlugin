@@ -15,8 +15,8 @@ public class Rainbow extends OresomeKartMap implements Listener {
     public Rainbow() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        setFinishPoint(new CuboidRegion(new Location(w, -1, 82, -3), new Location(w, 0, 65, 15)));
-        setHalfwayCheckPoint(new CuboidRegion(new Location(w, 20, 65, -37), new Location(w, 19, 45, -54)));
+        setFinishPoint(new CuboidRegion(new Location(w, -1, 27, -1), new Location(w, 0, 39, 13)));
+        setHalfwayCheckPoint(new CuboidRegion(new Location(w, 19, 14, -54), new Location(w, 20, 24, -38)));
         setLaps(3);
         setDrivableSurfaces(new Material[]{Material.WOOL, Material.GOLD_BLOCK});
         setBoostSurfaces(new Material[]{Material.SANDSTONE, Material.DIAMOND_BLOCK});
@@ -32,7 +32,7 @@ public class Rainbow extends OresomeKartMap implements Listener {
     Gamemode[] modes = {Gamemode.ORESOMEKART};
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, -3, 70, 6));
+        FFASpawns.add(new Location(w, -4, 30, 6));
     }
 
     public void applyInventory(final BattlePlayer p) {
