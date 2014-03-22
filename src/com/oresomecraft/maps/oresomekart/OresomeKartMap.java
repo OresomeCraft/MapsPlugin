@@ -2,13 +2,17 @@ package com.oresomecraft.maps.oresomekart;
 
 import com.oresomecraft.OresomeBattles.api.CuboidRegion;
 import com.oresomecraft.maps.Map;
+import org.bukkit.Location;
 import org.bukkit.Material;
+
+import java.util.ArrayList;
 
 public abstract class OresomeKartMap extends Map {
 
     private int laps;
     private CuboidRegion finishPoint, halfwayCheckPoint;
     private Material[] drivableSurfaces, boostSurfaces, jumpSurfaces = {};
+    private ArrayList<TeleportRegion> teleportRegions = new ArrayList<OresomeKartMap.TeleportRegion>();
 
     public void setLaps(int laps) {
         this.laps = laps;
@@ -56,6 +60,32 @@ public abstract class OresomeKartMap extends Map {
 
     public Material[] getJumpSurfaces() {
         return this.jumpSurfaces;
+    }
+
+    public void addTeleportRegion(CuboidRegion region, Location loc) {
+        teleportRegions.add(new TeleportRegion(region, loc));
+    }
+
+    public ArrayList<TeleportRegion> getTeleportRegions() {
+        return this.teleportRegions;
+    }
+
+    public class TeleportRegion {
+        CuboidRegion region;
+        Location teleportTo;
+
+        public TeleportRegion(CuboidRegion region, Location teleportTo) {
+            this.region = region;
+            this.teleportTo = teleportTo;
+        }
+
+        public CuboidRegion getRegion() {
+            return this.region;
+        }
+
+        public Location getTeleportTo() {
+            return this.teleportTo;
+        }
     }
 
 }
