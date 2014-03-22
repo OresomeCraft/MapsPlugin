@@ -573,7 +573,6 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
         ORES.add(Material.STONE);
     }
 
-    @EventHandler
     protected void comet() {
         for (Block b : circle(new Location(Bukkit.getWorld(name), -41, 253, 6), 3, 2, false, true, 0)) {
             FallingBlock fb = Bukkit.getWorld(name).spawnFallingBlock(b.getLocation(), ORES.get(new Random().nextInt(ORES.size())), (byte) 1);
