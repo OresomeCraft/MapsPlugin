@@ -91,7 +91,7 @@ public class Elements extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
 
-        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 1, 15 * 60 * 20));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15 * 60 * 20, 1));
     }
 
     // Region. (Top corner block and bottom corner block.
