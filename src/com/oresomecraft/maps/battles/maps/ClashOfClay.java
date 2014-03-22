@@ -23,7 +23,7 @@ public class ClashOfClay extends BattleMap implements IBattleMap, Listener {
     String name = "clashofclay";
     String fullName = "Clash Of Clay";
     String creators = "_Moist and niceman506";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.LTS};
+    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -22, 81, 8));
