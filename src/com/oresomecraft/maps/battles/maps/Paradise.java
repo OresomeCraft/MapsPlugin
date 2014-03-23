@@ -5,25 +5,11 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @MapConfig
 public class Paradise extends BattleMap implements IBattleMap, Listener {
@@ -39,27 +25,24 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, -102, 108, 103));
+        redSpawns.add(new Location(w, -102, 108, 103, 0, 0));
 
-        blueSpawns.add(new Location(w, -9, 51, 111, -83));
+        blueSpawns.add(new Location(w, -9, 51, 111, -83, 0));
     }
 
     public void readyFFASpawns() {
-                   FFASpawns.add(new Location(w, -114, 108, -89, 54, 0));
-                   FFASpawns.add(new Location(w, -145, 108, -41, 115, 0));
-                   FFASpawns.add(new Location(w, -117, 108, -83, -90, 0));
-                   FFASpawns.add(new Location(w, -102, 108, 103, 0, 0));
-                   FFASpawns.add(new Location(w, -147, 108 -41, -115, 0));
-                   FFASpawns.add(new Location(w, -137, 108, 48, 0, 0));
-                   FFASpawns.add(new Location(w, -48, 106, 107, 90, 0));
-                   FFASpawns.add(new Location(w, 2, 108, 101, 128, 0));
-                   FFASpawns.add(new Location(w, 50, 112, 60, 90, 0));
-                   FFASpawns.add(new Location(w, 57, 109, 26, 176, 0));
-                   FFASpawns.add(new Location(w, 45, 111, -80, 20, 0));
-                   FFASpawns.add(new Location(w, 13, 117, -146, -70, 0));
-
-
-
+        FFASpawns.add(new Location(w, -114, 108, -89, 54, 0));
+        FFASpawns.add(new Location(w, -145, 108, -41, 115, 0));
+        FFASpawns.add(new Location(w, -117, 108, -83, -90, 0));
+        FFASpawns.add(new Location(w, -102, 108, 103, 0, 0));
+        FFASpawns.add(new Location(w, -147, 108, - 41, -115, 0));
+        FFASpawns.add(new Location(w, -137, 108, 48, 0, 0));
+        FFASpawns.add(new Location(w, -48, 106, 107, 90, 0));
+        FFASpawns.add(new Location(w, 2, 108, 101, 128, 0));
+        FFASpawns.add(new Location(w, 50, 112, 60, 90, 0));
+        FFASpawns.add(new Location(w, 57, 109, 26, 176, 0));
+        FFASpawns.add(new Location(w, 45, 111, -80, 20, 0));
+        FFASpawns.add(new Location(w, 13, 117, -146, -70, 0));
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -75,7 +58,6 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
         ItemStack ARROW = new ItemStack(Material.ARROW, 32);
 
 
-
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
@@ -83,7 +65,7 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
-        i.setItem(3, HEALTH_POTION);
+        i.setItem(2, HEALTH_POTION);
         i.setItem(11, ARROW);
     }
 
@@ -97,6 +79,5 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
     public int x2 = -70;
     public int y2 = 30;
     public int z2 = 50;
-
 
 }
