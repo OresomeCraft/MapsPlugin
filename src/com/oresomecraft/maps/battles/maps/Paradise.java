@@ -20,6 +20,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,25 +39,27 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, 0, -102, 108, 103, 0));
+        redSpawns.add(new Location(w, -102, 108, 103));
 
-        blueSpawns.add(new Location(w, -9, 51, 111, -83, 0));
+        blueSpawns.add(new Location(w, -9, 51, 111, -83));
     }
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, 0, -102, 108, 103, 0));
-        FFASpawns.add(new Location(w, -9, 51, 111, -83, 0));
-        FFASpawns.add(new Location(w, 0, -112, -103 ));
-        FFASpawns.add(new Location(w, -1, -123, 106, -111, -0));
-        FFASpawns.add(new Location(w, 0, -62, 106, -92, 0));
-        FFASpawns.add(new Location(w, 0, -105, 107, -84, 0));
-        FFASpawns.add(new Location(w, 0, -120, 108, -52, 0));
-        FFASpawns.add(new Location(w, -125, 108, 1));
-        FFASpawns.add(new Location(w, -122, 107, 67));
-        FFASpawns.add(new Location(w, -90, 105, 94));
-        FFASpawns.add(new Location(w, -47, 77, 41));
-        FFASpawns.add(new Location(w, -25, 80, 5));
-        FFASpawns.add(new Location(w, -27, 76, -54));
+                   FFASpawns.add(new Location(w, -114, 108, -89, 54, 0));
+                   FFASpawns.add(new Location(w, -145, 108, -41, 115, 0));
+                   FFASpawns.add(new Location(w, -117, 108, -83, -90, 0));
+                   FFASpawns.add(new Location(w, -102, 108, 103, 0, 0));
+                   FFASpawns.add(new Location(w, -147, 108 -41, -115, 0));
+                   FFASpawns.add(new Location(w, -137, 108, 48, 0, 0));
+                   FFASpawns.add(new Location(w, -48, 106, 107, 90, 0));
+                   FFASpawns.add(new Location(w, 2, 108, 101, 128, 0));
+                   FFASpawns.add(new Location(w, 50, 112, 60, 90, 0));
+                   FFASpawns.add(new Location(w, 57, 109, 26, 176, 0));
+                   FFASpawns.add(new Location(w, 45, 111, -80, 20, 0));
+                   FFASpawns.add(new Location(w, 13, 117, -146, -70, 0));
+
+
+
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -68,17 +71,10 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-        ItemStack IRON_AXE = new ItemStack(Material.IRON_AXE, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROW = new ItemStack(Material.ARROW, 32);
 
-        ItemMeta axeMeta = IRON_AXE.getItemMeta();
-        axeMeta.setDisplayName(ChatColor.AQUA + "Ground Shaker");
 
-        List<String> iLore = new ArrayList<String>();
-        iLore.add(ChatColor.AQUA + "Right click with this to make a EarthQuake!");
-        axeMeta.setLore(iLore);
-        IRON_AXE.setItemMeta(axeMeta);
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
@@ -87,7 +83,6 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
-        i.setItem(2, IRON_AXE);
         i.setItem(3, HEALTH_POTION);
         i.setItem(11, ARROW);
     }
@@ -103,21 +98,5 @@ public class Paradise extends BattleMap implements IBattleMap, Listener {
     public int y2 = 30;
     public int z2 = 50;
 
-    @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getPlayer().getWorld().getName().equals(name)) {
-            if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                if (event.getPlayer().getItemInHand().getType() == Material.IRON_AXE) {
-                    for (Entity entity : event.getPlayer().getNearbyEntities(10, 10, 10)) {
-                        if (entity instanceof Player) {
-                            Player player = (Player) entity;
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 5 * 20, 1));
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 4 * 20, 1));
-                        }
-                    }
 
-                }
-            }
-        }
-    }
 }
