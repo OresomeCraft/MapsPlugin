@@ -60,6 +60,7 @@ public class WinterEquator extends BattleMap implements IBattleMap, Listener {
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+
         ItemStack SWORD = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 5);
@@ -69,12 +70,12 @@ public class WinterEquator extends BattleMap implements IBattleMap, Listener {
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
 
+        if (p.getTeamType().equals(Team.TDM_RED)) p.getInventory().setHelmet(RED_GLASS);
+        if (p.getTeamType().equals(Team.TDM_BLUE)) p.getInventory().setHelmet(BLUE_GLASS);
+
         p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-
-        if (p.getTeamType().equals(Team.TDM_RED)) p.getInventory().setHelmet(RED_GLASS);
-        if (p.getTeamType().equals(Team.TDM_BLUE)) p.getInventory().setHelmet(BLUE_GLASS);
 
         i.setItem(0, SWORD);
         i.setItem(1, BOW);
@@ -102,6 +103,8 @@ public class WinterEquator extends BattleMap implements IBattleMap, Listener {
         if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
             if (event.getBlock().getType() == Material.WOOL) {
                 event.getBlock().getDrops().clear();
+            } else {
+                event.setCancelled(true);
             }
         }
     }
