@@ -33,25 +33,22 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
         disableDrops(new Material[]{Material.COOKED_BEEF, Material.POTION});
     }
 
-    String name = "battleinstitute";
-    String fullName = "The Battle Institute";
-    String creators = "bishoptaj, microstevey, _Trezo_, __R3 and AnomalousDyna";
-    Gamemode[] modes = {Gamemode.LTS};
+    String name = "battleincentive";
+    String fullName = "The Battle Incentive";
+    String creators = "__R3";
+    Gamemode[] modes = {Gamemode.LMS};
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(Bukkit.getWorld(name), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
-        blueSpawns.add(new Location(Bukkit.getWorld(name), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
     }
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(Bukkit.getWorld(name), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
-        FFASpawns.add(new Location(Bukkit.getWorld(name), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
     }
 
     public void applyInventory(final BattlePlayer p) {
-        p.sendMessage(ChatColor.GOLD + "Wait until you are called and then punch the block!");
+        p.sendMessage(ChatColor.GOLD + "Wait until you are called with your partner and then punch the block!");
     }
 
+    /*
     ArrayList<String> red = new ArrayList<String>();
     ArrayList<String> blue = new ArrayList<String>();
 
@@ -276,5 +273,5 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
     public void worldLoad(FoodLevelChangeEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         event.setFoodLevel(20);
-    }
+    }*/
 }
