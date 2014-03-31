@@ -244,7 +244,7 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
 
                         player.getInventory().setItem(0, new ItemStack(Material.DIAMOND_SWORD, 1));
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20000 * 20, 1));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20000 * 20, 0));
                         break;
 
                     case GREAT_KNIGHT:
@@ -255,7 +255,7 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
 
                         player.getInventory().setItem(0, new ItemStack(Material.IRON_SWORD, 1, (short) -200));
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20000 * 20, 2));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20000 * 20, 1));
                         break;
 
                     case SNIPER:
@@ -282,8 +282,8 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
                         player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1));
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
 
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 2));
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 2));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 1));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 1));
                         break;
 
                     case SCOUT_LEADER:
@@ -293,8 +293,8 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
                         player.getInventory().setItem(0, new ItemStack(Material.STONE_SWORD, 1));
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
 
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 4));
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 3));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20000 * 20, 2));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20000 * 20, 1));
                         break;
 
                     case RAINBOW_DASHER:
