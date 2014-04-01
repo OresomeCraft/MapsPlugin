@@ -3,7 +3,6 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
-import net.minecraft.util.io.netty.handler.codec.spdy.SpdyHeaderBlockRawDecoder;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Creeper;
@@ -130,7 +129,7 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void c(EntityDeathEvent event) {
+    public void onCreeperDeath(EntityDeathEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
             if (event.getEntity() instanceof Creeper) {
                 event.getDrops().clear();
