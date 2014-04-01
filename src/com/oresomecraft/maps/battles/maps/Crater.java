@@ -3,12 +3,14 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
+import net.minecraft.util.io.netty.handler.codec.spdy.SpdyHeaderBlockRawDecoder;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.*;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.*;
@@ -128,7 +130,7 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void pigZombieDeath(EntityDeathEvent event) {
+    public void c(EntityDeathEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
             if (event.getEntity() instanceof Creeper) {
                 event.getDrops().clear();
@@ -144,5 +146,10 @@ public class Crater extends BattleMap implements IBattleMap, Listener {
                 event.getDrops().add(FIRE);
             }
         }
+    }
+
+    @EventHandler
+    public void decayLag(LeavesDecayEvent event) {
+        if (event.getBlock().getWorld().getName().equals(name)) event.setCancelled(true);
     }
 }
