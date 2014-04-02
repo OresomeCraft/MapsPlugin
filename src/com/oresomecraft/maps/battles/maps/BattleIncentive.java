@@ -11,6 +11,8 @@ import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
@@ -35,35 +37,38 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
 
     String name = "battleincentive";
     String fullName = "The Battle Incentive";
-    String creators = "__R3";
-    Gamemode[] modes = {Gamemode.LMS};
+    String creators = "__R3 and AnomalousDyna";
+    Gamemode[] modes = {Gamemode.LTS};
 
     public void readyTDMSpawns() {
+        blueSpawns.add(new Location(w, -21, 72, 150, 359.6F, 8.9F));
+        redSpawns.add(new Location(w, -21, 72, 96, 179.9F, 10.8F));
     }
 
     public void readyFFASpawns() {
+        FFASpawns.add(new Location(w, -21, 72, 150, 359.6F, 8.9F));
+        FFASpawns.add(new Location(w, -21, 72, 96, 179.9F, 10.8F));
     }
 
     public void applyInventory(final BattlePlayer p) {
-        p.sendMessage(ChatColor.GOLD + "Wait until you are called with your partner and then punch the block!");
+        p.sendMessage(ChatColor.GOLD + "Welcome to The Battle Incentive!");
+        p.sendMessage(ChatColor.GOLD + "This is an arena that specialises in " + ChatColor.BOLD + "2v2 tag-team!");
     }
 
-    /*
     ArrayList<String> red = new ArrayList<String>();
     ArrayList<String> blue = new ArrayList<String>();
 
-    String currentRed = "None";
-    String currentBlue = "None";
-
-    boolean blueEnter = false;
-    boolean redEnter = false;
+    String currentRed = "???";
+    String currentRed2 = "???";
+    String currentBlue = "???";
+    String currentBlue2 = "???";
 
     @EventHandler
     public void end(BattleEndEvent event) {
-        blueEnter = false;
-        redEnter = false;
-        currentBlue = "None";
-        currentRed = "None";
+        currentBlue = "???";
+        currentBlue2 = "???";
+        currentRed = "???";
+        currentRed2 = "???";
         red.clear();
         blue.clear();
     }
@@ -74,10 +79,9 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
         if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
             red.remove(event.getPlayer().getName());
             blue.remove(event.getPlayer().getName());
-            Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleInstitute] " + event.getPlayer().getName() + " quit!");
+            Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleIncentive] " + event.getPlayer().getName() + " quit!");
         }
-        if (currentRed.equals(event.getPlayer().getName()) || currentBlue.equals(event.getPlayer().getName()))
-            endRound();
+        endOrSwap(event.getPlayer().getName());
     }
 
     @EventHandler
@@ -85,14 +89,13 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         red.remove(event.getEntity().getName());
         blue.remove(event.getEntity().getName());
-        if (currentRed.equals(event.getEntity().getName()) || currentBlue.equals(event.getEntity().getName()))
-            endRound();
+        endOrSwap(event.getEntity().getName());
     }
 
     @EventHandler
     public void worldLoad(WorldLoadEvent event) {
-        if (event.getWorld().getName().equalsIgnoreCase(name)) {
-            Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleInstitute] Starting up!");
+        if (event.getWorld().getName().equalsIgnoreCase("battleincentive")) {
+            Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleIncentive] Starting up!");
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                 public void run() {
                     for (Player p : Bukkit.getOnlinePlayers()) {
@@ -135,17 +138,16 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
 
                 }
             } catch (Exception exc) {
-                System.out.println(exc.getMessage());
+                //lol I suck
             }
         }
 
-        // This is the blocked stuff
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        // This is the blocked stuff
         if (event.getMessage().toLowerCase().startsWith("/leave") || event.getMessage().toLowerCase().startsWith("/spectate")) {
             if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
-                Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " left the round!!");
-                if (currentRed.equals(event.getPlayer().getName()) || currentBlue.equals(event.getPlayer().getName()))
-                    endRound();
+                Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " left the round!");
+                endOrSwap(event.getPlayer().getName());
                 red.remove(event.getPlayer().getName());
                 blue.remove(event.getPlayer().getName());
             }
@@ -153,11 +155,15 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void ironBlock(PlayerInteractEvent event) {
+    public void click(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         try {
-            if (event.getClickedBlock().getType() == Material.IRON_BLOCK) {
-                join(event.getPlayer().getName());
+            if (event.getClickedBlock().getType() == Material.LAPIS_BLOCK && currentBlue.equals(event.getPlayer().getName())) {
+                swap(event.getPlayer().getName(), true);
+                return;
+            }
+            if (event.getClickedBlock().getType() == Material.REDSTONE_BLOCK && currentRed.equals(event.getPlayer().getName())) {
+                swap(event.getPlayer().getName(), true);
             }
         } catch (NullPointerException ex) {
 
@@ -166,35 +172,160 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
 
     public void newRound() {
         String newRed = red.get(new Random().nextInt(red.size()));
+        String newRed1 = "???";
+
+        //This is ugly, if something goes wrong we're stuck in an infinite loop.
+        while (true) {
+            if (red.size() == 1) break;
+            String temp = red.get(new Random().nextInt(red.size()));
+            if (newRed.equals(temp)) {
+                if (red.size() == 1) break;
+                continue;
+            } else {
+                newRed1 = temp;
+                break;
+            }
+        }
+
         String newBlue = blue.get(new Random().nextInt(blue.size()));
-        redEnter = false;
-        blueEnter = false;
-        Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] The following players have 5 seconds to click the iron block!");
-        Bukkit.broadcastMessage(ChatColor.RED + newRed);
-        Bukkit.broadcastMessage(ChatColor.BLUE + newBlue);
+        String newBlue1 = "???";
+
+        while (true) {
+            if (blue.size() == 1) break;
+            String temp = blue.get(new Random().nextInt(blue.size()));
+            if (newBlue.equals(temp)) {
+                if (blue.size() == 1) break;
+                continue;
+            } else {
+                newBlue1 = temp;
+                break;
+            }
+        }
+
+        Bukkit.broadcastMessage(ChatColor.RED + "[BattleIncentive] The next match has been decided!");
+        Bukkit.broadcastMessage(ChatColor.RED + c(newRed, newRed1));
+        Bukkit.broadcastMessage(ChatColor.GREEN + "VERSUS");
+        Bukkit.broadcastMessage(ChatColor.BLUE + c(newBlue, newBlue1));
         currentBlue = newBlue;
         currentRed = newRed;
+        currentBlue2 = newBlue1;
+        currentRed2 = newRed1;
+        Bukkit.broadcastMessage(ChatColor.RED + "THE MATCH STARTS IN 10 SECONDS!");
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
-                if (!blueEnter) join(currentBlue);
-                if (!redEnter) join(currentRed);
+                join(currentBlue);
+                join(currentBlue2);
+                join(currentRed);
+                join(currentRed2);
+                Bukkit.broadcastMessage(ChatColor.GREEN + "Game on, fellas! FIGHT!");
             }
-        }, 5 * 20L);
+        }, 10 * 20L);
+    }
+
+    //Breaky breaky
+    private void swap(String p, boolean manual) {
+        if (manual) {
+            Player pl = Bukkit.getPlayer(p);
+            if (currentBlue.equals(p)) {
+                if (currentBlue2.equals("???")) {
+                    pl.sendMessage(ChatColor.RED + "You can't swap with no teammate!");
+                    return;
+                } else {
+                    String temp = currentBlue + "";
+                    String temp2 = currentBlue2 + "";
+
+                    //le switcharoo
+                    currentBlue2 = temp;
+                    currentBlue = temp2;
+
+                    Bukkit.getPlayer(currentBlue2).teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 102, 179.6F, -2F));
+                    Bukkit.getPlayer(currentBlue).teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 111, 179.8F, -1.7F));
+
+                    Bukkit.broadcastMessage(ChatColor.RED + "[BattleIncentive] " + ChatColor.BLUE + currentBlue + ChatColor.RED + " tagged " +
+                            ChatColor.BLUE + currentBlue2 + ChatColor.RED + "!");
+                    return;
+                }
+            }
+            if (currentRed.equals(p)) {
+                if (currentRed2.equals("???")) {
+                    pl.sendMessage(ChatColor.RED + "You can't swap with no teammate!");
+                    return;
+                } else {
+                    String temp = currentRed + "";
+                    String temp2 = currentRed2 + "";
+
+                    //le switcharoo
+                    currentRed2 = temp;
+                    currentRed = temp2;
+
+                    Bukkit.getPlayer(currentRed2).teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 144, 359.8F, -3.2F));
+                    Bukkit.getPlayer(currentRed).teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 135, 359.3F, -0.7F));
+
+                    Bukkit.broadcastMessage(ChatColor.RED + "[BattleIncentive] " + currentRed + " tagged " + currentRed2 + "!");
+                    return;
+                }
+            }
+            return;
+        }
+        if (currentBlue2.equals(p)) {
+            currentBlue2 = "???";
+            currentBlue = p;
+            Bukkit.getPlayer(currentBlue).teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 111, 179.8F, -1.7F));
+            Bukkit.broadcastMessage(ChatColor.RED + "[BattleIncentive] " + ChatColor.BLUE + p + " jumps in!");
+            return;
+        }
+        if (currentRed2.equals(p)) {
+            currentRed2 = "???";
+            currentRed = p;
+            Bukkit.getPlayer(currentRed).teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 135, 359.3F, -0.7F));
+            Bukkit.broadcastMessage(ChatColor.RED + "[BattleIncentive] " + p + " jumps in!");
+        }
+    }
+
+    private String c(String s1, String s2) {
+        if (s2.equals("???")) return s1;
+        return s1 + " and " + s2;
+    }
+
+    private void endOrSwap(String whoDied) {
+        if (whoDied.equals(currentRed2)) {
+            //we can ignore this, just set them to nonexistent.
+            currentRed2 = "???";
+        }
+        if (whoDied.equals(currentBlue2)) {
+            //we can ignore this, just set them to nonexistent.
+            currentBlue2 = "???";
+        }
+        if (whoDied.equals(currentRed)) {
+            if (currentRed2.equals("???")) {
+                endRound();
+            } else {
+                swap(currentRed2, false);
+            }
+        }
+        if (whoDied.equals(currentBlue)) {
+            if (currentBlue2.equals("???")) {
+                endRound();
+            } else {
+                swap(currentBlue2, false);
+            }
+        }
     }
 
     private void endRound() {
-        Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] Round over! Picking new players!");
-        try {
-            Bukkit.getPlayer(currentBlue).teleport(new Location(Bukkit.getWorld(name), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
-            Bukkit.getPlayer(currentRed).teleport(new Location(Bukkit.getWorld(name), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
-        } catch (NullPointerException ex) {
-            System.out.println("[MapsPlugin] [ERROR] A NullPointerException occured when trying to teleport players to a floating point location!");
-            System.out.println("[MapsPlugin] [ERROR] battles/maps/BattleInstitute:193");
-        }
         if (red.size() == 0 || blue.size() == 0) {
-            Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] GAME OVER!");
+            Bukkit.broadcastMessage(ChatColor.GOLD + "[BattleIncentive] Game over!");
             return;
+        }
+        Bukkit.broadcastMessage(ChatColor.RED + "[BattleIncentive] Round over!");
+        try {
+            Bukkit.getPlayer(currentBlue).teleport(new Location(w, -21, 72, 150, 359.6F, 8.9F));
+            Bukkit.getPlayer(currentBlue2).teleport(new Location(w, -21, 72, 150, 359.6F, 8.9F));
+            Bukkit.getPlayer(currentRed).teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 96, 179.9F, 10.8F));
+            Bukkit.getPlayer(currentRed2).teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 96, 179.9F, 10.8F));
+        } catch (NullPointerException ex) {
+            //lol i suck, forever unknown
         }
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.getInventory().clear();
@@ -218,11 +349,14 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
     }
 
     private void join(String player) {
-        if (currentBlue.equals(player) && !blueEnter) {
-            Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] " + player + " joins!");
-            blueEnter = true;
-            Player p = Bukkit.getPlayer(currentBlue);
-            p.teleport(new Location(Bukkit.getWorld(name), 0.5, 65, -11.5, 180, (float) -0.108));
+        if (player.equals("???")) return;
+        if (currentBlue.equals(player) || currentBlue2.equals(player)) {
+            Player p = Bukkit.getPlayer(player);
+            if (currentBlue.equals(player)) {
+                p.teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 111, 179.8F, -1.7F));
+            } else if (currentBlue2.equals(player)) {
+                p.teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 102, 179.6F, -2F));
+            }
             for (PotionEffect po : p.getActivePotionEffects()) {
                 p.removePotionEffect(po.getType());
             }
@@ -230,11 +364,13 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
             p.setFoodLevel(20);
             handKit(p);
         }
-        if (currentRed.equals(player) && !redEnter) {
-            Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] " + player + " joins!");
-            redEnter = true;
-            Player p = Bukkit.getPlayer(currentRed);
-            p.teleport(new Location(Bukkit.getWorld(name), 0.5, 65, 7.5, (float) 0.652, (float) -5.384));
+        if (currentRed.equals(player) || currentRed2.equals(player)) {
+            Player p = Bukkit.getPlayer(player);
+            if (currentRed.equals(player)) {
+                p.teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 135, 359.3F, -0.7F));
+            } else if (currentRed2.equals(player)) {
+                p.teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 144, 359.8F, -3.2F));
+            }
             for (PotionEffect po : p.getActivePotionEffects()) {
                 p.removePotionEffect(po.getType());
             }
@@ -247,9 +383,6 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
     private void handKit(Player p) {
         Inventory i = p.getInventory();
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
-        ItemStack BOW = new ItemStack(Material.BOW, 1);
-        ItemStack ARROWS = new ItemStack(Material.ARROW, 12);
         ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
@@ -262,10 +395,7 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
         p.getInventory().setHelmet(IRON_HELMET);
 
         i.setItem(0, IRON_SWORD);
-        i.setItem(1, BOW);
-        i.setItem(2, STEAK);
-        i.setItem(3, HEALTH_POTION);
-        i.setItem(9, ARROWS);
+        i.setItem(1, HEALTH_POTION);
         p.updateInventory();
     }
 
@@ -273,5 +403,31 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
     public void worldLoad(FoodLevelChangeEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         event.setFoodLevel(20);
-    }*/
+    }
+
+    @EventHandler
+    public void idleHeal(EntityRegainHealthEvent event) {
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (event.getEntity() instanceof Player) {
+            Player p = (Player) event.getEntity();
+            if (currentBlue2.equals(p.getName()) || currentRed2.equals(p.getName())) {
+                event.setCancelled(true);
+                if (event.getRegainReason() == EntityRegainHealthEvent.RegainReason.MAGIC_REGEN) {
+                    p.sendMessage(ChatColor.RED + "Nice try. :)");
+                }
+            }
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void damage(EntityDamageByEntityEvent event) {
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
+            Player p = (Player) event.getEntity();
+            if (currentBlue2.equals(p.getName()) || currentRed2.equals(p.getName())) {
+                event.setCancelled(true);
+                ((Player) event.getDamager()).sendMessage(ChatColor.RED + "You cannot damage the waiting enemy!");
+            }
+        }
+    }
 }

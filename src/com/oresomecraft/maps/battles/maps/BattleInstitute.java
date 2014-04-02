@@ -50,6 +50,7 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
 
     public void applyInventory(final BattlePlayer p) {
         p.sendMessage(ChatColor.GOLD + "Wait until you are called and then punch the block!");
+        p.sendMessage(ChatColor.GOLD + "Wait until you are called and then punch the block!");
     }
 
     ArrayList<String> red = new ArrayList<String>();

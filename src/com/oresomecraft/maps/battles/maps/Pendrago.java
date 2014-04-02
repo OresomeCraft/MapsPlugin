@@ -467,18 +467,6 @@ public class Pendrago extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void explode(EntityExplodeEvent event) {
-        if (!event.getLocation().getWorld().getName().equals(name)) return;
-        for (Block block : event.blockList()) {
-            try {
-                event.blockList().remove(block);
-            } catch (Exception ex) {
-                //null
-            }
-        }
-    }
-
-    @EventHandler
     public void arrowAway(org.bukkit.event.entity.ProjectileHitEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         org.bukkit.entity.Entity projectile = event.getEntity();
