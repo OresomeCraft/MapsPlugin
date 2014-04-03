@@ -31,7 +31,7 @@ public class MapsPlugin extends JavaPlugin {
 
     public static final String BATTLE_MAPS_PACKAGE = "com.oresomecraft.maps.battles.maps";
     public static final String ARCADE_MAPS_PACKAGE = "com.oresomecraft.maps.arcade.maps";
-    public static final String TIOT_MAPS_PACKAGE = "com.oresomecraft.maps.tiot";
+    public static final String TIOT_MAPS_PACKAGE = "com.oresomecraft.maps.tiot.maps";
     public static final String ORESOMEKART_MAPS_PACKAGE = "com.oresomecraft.maps.oresomekart.maps";
 
     private static HashMap<String, Map> maps = new HashMap<String, Map>();

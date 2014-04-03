@@ -1,4 +1,4 @@
-package com.oresomecraft.maps.tiot;
+package com.oresomecraft.maps.tiot.maps;
 
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.CuboidRegion;
@@ -6,11 +6,12 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.maps.battles.IBattleMap;
+import com.oresomecraft.maps.tiot.TiOTMap;
 import org.bukkit.Location;
 import org.bukkit.event.Listener;
 
 @MapConfig
-public class Fosscrest extends BattleMap implements IBattleMap, Listener {
+public class Fosscrest extends TiOTMap implements IBattleMap, Listener {
 
     public Fosscrest() {
         super.initiate(this, name, fullName, creators, modes);
