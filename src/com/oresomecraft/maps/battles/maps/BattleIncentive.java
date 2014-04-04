@@ -331,6 +331,12 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
         } catch (NullPointerException ex) {
             System.out.println("[BATTLINCENTIVE] ERROR: ONE OF THE PLAYERS HAS FAILED TO TELEPORT");
         }
+
+        currentBlue = "???";
+        currentBlue2 = "???";
+        currentRed = "???";
+        currentRed2 = "???";
+
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.getInventory().clear();
             p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
