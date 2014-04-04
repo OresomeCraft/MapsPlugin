@@ -59,7 +59,7 @@ public class Spleef_Charlie extends ArcadeMap implements Listener {
 
         ItemMeta diamond_spade = DIAMOND_SPADE.getItemMeta();
         List<String> spade_lore = new ArrayList<String>();
-        spade_lore.add(ChatColor.DARK_PURPLE + "" + ChatColor.ITALIC  + "Right click to shoot snowballs!");
+        spade_lore.add(ChatColor.DARK_PURPLE + "" + ChatColor.ITALIC + "Right click to shoot snowballs!");
         diamond_spade.setLore(spade_lore);
         DIAMOND_SPADE.setItemMeta(diamond_spade);
 

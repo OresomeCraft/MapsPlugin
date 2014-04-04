@@ -144,7 +144,7 @@ public class Zoned extends BattleMap implements IBattleMap, Listener {
                 ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
                 InvUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(player), new ItemStack[]{LEATHER_CHESTPLATE});
                 player.getInventory().remove(LEATHER_CHESTPLATE);
-                
+
                 player.getInventory().addItem(new ItemStack(Material.IRON_BOOTS));
                 player.getInventory().addItem(new ItemStack(Material.IRON_LEGGINGS));
                 player.getInventory().addItem(new ItemStack(Material.IRON_HELMET));

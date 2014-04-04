@@ -116,7 +116,8 @@ public class TropicalPaths extends BattleMap implements IBattleMap, Listener {
         Player player = event.getPlayer();
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Block block = event.getClickedBlock();
-            if (block.getType().equals(Material.GRASS)) block.getLocation().add(0, 1, 0).getBlock().setType(Material.SAPLING);
+            if (block.getType().equals(Material.GRASS))
+                block.getLocation().add(0, 1, 0).getBlock().setType(Material.SAPLING);
         }
     }
 }

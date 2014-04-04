@@ -67,7 +67,7 @@ public class Turmoil extends BattleMap implements IBattleMap, Listener {
         i.setItem(3, HEALTH_POTION);
         p.setItem(28, Material.ARROW, 48);
 
-        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600*20, 1));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600 * 20, 1));
         p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 1));
     }
 

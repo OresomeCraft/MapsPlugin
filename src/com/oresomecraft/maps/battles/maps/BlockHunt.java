@@ -309,7 +309,7 @@ public class BlockHunt extends BattleMap implements IBattleMap, Listener {
                         block.getType() == Material.LONG_GRASS || block.getType() == Material.RED_ROSE
                         || block.getType() == Material.YELLOW_FLOWER || block.getType() == Material.LADDER ||
                         block.getType() == Material.GRASS || block.getType() == Material.LEAVES || block.getType()
-                         == Material.STATIONARY_WATER || block.getType() == Material.WATER) {
+                        == Material.STATIONARY_WATER || block.getType() == Material.WATER) {
                     player.sendMessage(ChatColor.RED + "That block is not allowed!");
                     return;
                 }

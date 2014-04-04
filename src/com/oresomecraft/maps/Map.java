@@ -330,6 +330,7 @@ public abstract class Map implements Listener {
 
     /**
      * Checks if a location is near a block.
+     *
      * @param loc A location
      * @return Returns if it is near it or not
      */

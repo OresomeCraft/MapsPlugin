@@ -97,7 +97,7 @@ public class MutinyII extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void protectStone(EntityDamageEvent event) {
-        if(!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
         if (event.getEntity() instanceof Player) {
             Player p = (Player) event.getEntity();
             if (p.getItemInHand().getType() == Material.EMERALD) {
