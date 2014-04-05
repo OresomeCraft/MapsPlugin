@@ -31,6 +31,7 @@ public class Bridge extends BattleMap implements IBattleMap, Listener {
 
         setKoTHMonument(new Location(w, -15, 67, -105));
         setCTFFlags(name, new Location(w, -16, 57, -52), new Location(w, -15, 67, -158));
+
     }
 
     public void readyFFASpawns() {

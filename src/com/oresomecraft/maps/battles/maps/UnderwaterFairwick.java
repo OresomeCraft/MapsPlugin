@@ -16,6 +16,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -27,16 +28,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MapConfig
-public class Fairwick extends BattleMap implements IBattleMap, Listener {
+public class UnderwaterFairwick extends BattleMap implements IBattleMap, Listener {
 
-    public Fairwick() {
+    public UnderwaterFairwick() {
         disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.WATCH, Material.WOOL});
         super.initiate(this, name, fullName, creators, modes);
     }
 
-    String name = "fairwick";
-    String fullName = "Fairwick Village";
-    String creators = "__R3 ";
+    String name = "underwaterfairwick";
+    String fullName = "Underwater Fairwick Village";
+    String creators = "__R3 and WiiiFreak123";
     Gamemode[] modes = {Gamemode.CTF};
 
     public void readyTDMSpawns() {
@@ -72,7 +73,7 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
         ItemMeta spyWatchMeta = SPY_WATCH.getItemMeta();
         spyWatchMeta.setDisplayName(ChatColor.BLUE + "Spy Watch");
         List<String> spyLore = new ArrayList<String>();
-        spyLore.add(org.bukkit.ChatColor.BLUE + "Interact with this watch to go temporarily invisible!");
+        spyLore.add(ChatColor.BLUE + "Interact with this watch to go temporarily invisible!");
         spyWatchMeta.setLore(spyLore);
         SPY_WATCH.setItemMeta(spyWatchMeta);
 
@@ -160,5 +161,13 @@ public class Fairwick extends BattleMap implements IBattleMap, Listener {
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void move(PlayerMoveEvent e) {
+        if (!e.getPlayer().getWorld().getName().equals(name)) return;
+        Vector velocity = new Vector();
+        velocity = e.getPlayer().getLocation().getDirection().multiply(1.01);
+        e.getPlayer().setVelocity(velocity);
     }
 }
