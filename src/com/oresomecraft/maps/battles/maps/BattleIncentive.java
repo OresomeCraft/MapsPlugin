@@ -41,8 +41,8 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
     Gamemode[] modes = {Gamemode.LTS};
 
     public void readyTDMSpawns() {
-        blueSpawns.add(new Location(w, -21, 72, 150, 359.6F, 8.9F));
-        redSpawns.add(new Location(w, -21, 72, 96, 179.9F, 10.8F));
+        redSpawns.add(new Location(w, -21, 72, 150, 359.6F, 8.9F));
+        blueSpawns.add(new Location(w, -21, 72, 96, 179.9F, 10.8F));
     }
 
     public void readyFFASpawns() {
@@ -223,7 +223,6 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
         }, 10 * 20L);
     }
 
-    //Breaky breaky
     private void swap(String p, boolean manual) {
         if (manual) {
             Player pl = Bukkit.getPlayer(p);
@@ -239,8 +238,8 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
                     currentBlue2 = temp;
                     currentBlue = temp2;
 
-                    Bukkit.getPlayer(currentBlue2).teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 102, 179.6F, -2F));
-                    Bukkit.getPlayer(currentBlue).teleport(new Location(Bukkit.getWorld("battleincentive"), -21, 72, 111, 179.8F, -1.7F));
+                    Bukkit.getPlayer(currentBlue2).teleport(new Location(Bukkit.getWorld(name), -21, 72, 102, 179.6F, -2F));
+                    Bukkit.getPlayer(currentBlue).teleport(new Location(Bukkit.getWorld(name), -21, 72, 111, 179.8F, -1.7F));
 
                     Bukkit.broadcastMessage(ChatColor.RED + "[BattleIncentive] " + ChatColor.BLUE + currentBlue + ChatColor.RED + " tagged " +
                             ChatColor.BLUE + currentBlue2 + ChatColor.RED + "!");
@@ -358,6 +357,7 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
         }, 40L);
     }
 
+    //Checked
     private void join(String player) {
         if (player.equals("???")) return;
         if (currentBlue.equals(player) || currentBlue2.equals(player)) {
@@ -410,7 +410,7 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
     }
 
     @EventHandler
-    public void worldLoad(FoodLevelChangeEvent event) {
+    public void food(FoodLevelChangeEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         event.setFoodLevel(20);
     }
