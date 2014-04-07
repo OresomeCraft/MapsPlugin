@@ -133,7 +133,7 @@ public class Eriden extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void vHit(EntityDamageEvent event) {
-        if(!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
         if (event.getEntity() instanceof Villager) {
             event.setDamage(1000);
         }
@@ -141,7 +141,7 @@ public class Eriden extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void vDeath(EntityDeathEvent event) {
-        if(!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
         if (event.getEntity() instanceof Villager) {
             event.getDrops().clear();
             ItemStack FIRE = new ItemStack(Material.FIREWORK, 1);
@@ -159,7 +159,7 @@ public class Eriden extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void blazeRod(PlayerInteractEvent event) {
-        if(!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (event.getPlayer().getItemInHand().getType() == Material.FIREWORK) {
                 ItemStack FIRE = new ItemStack(Material.FIREWORK, 1);
@@ -175,5 +175,4 @@ public class Eriden extends BattleMap implements IBattleMap, Listener {
             }
         }
     }
-}
 }
