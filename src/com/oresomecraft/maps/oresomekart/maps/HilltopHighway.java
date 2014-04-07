@@ -15,8 +15,8 @@ public class HilltopHighway extends OresomeKartMap implements Listener {
     public HilltopHighway() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        setFinishPoint(new CuboidRegion(new Location(w, -43, 91, 6), new Location(w, -43, 94, -5)));
-        setHalfwayCheckPoint(new CuboidRegion(new Location(w, 1, 98, 114), new Location(w, 1, 102, 126)));
+        setFinishPoint(new CuboidRegion(new Location(w, -44, 91, 6), new Location(w, -41, 94, -5)));
+        setHalfwayCheckPoint(new CuboidRegion(new Location(w, -0, 98, 114), new Location(w, 2, 102, 126)));
         setLaps(3);
         setDrivableSurfaces(new Material[]{Material.SNOW_BLOCK});
         setBoostSurfaces(new Material[]{Material.IRON_BLOCK});
