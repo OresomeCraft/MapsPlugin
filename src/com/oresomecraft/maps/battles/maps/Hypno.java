@@ -248,16 +248,12 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
     }
     
     @EventHandler
-	public void onFall(EntityDamageEvent e)
-	{
-		if(e.getEntity() instanceof Player)
-		{
+	public void onFall(EntityDamageEvent e)	{
+		if(e.getEntity() instanceof Player){
 			Player player = (Player) e.getEntity();
 			
-			if(e.getCause() == DamageCause.FALL)
-			{
-			    if(player.getInventory().getItemInHand().getType() == Material.DIAMOND)
-			    {
+			if(e.getCause() == DamageCause.FALL){
+			    if(player.getInventory().getItemInHand().getType() == Material.DIAMOND){
 				e.setCancelled(true);
 			    }
 			}
