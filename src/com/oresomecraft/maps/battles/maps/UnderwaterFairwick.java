@@ -17,6 +17,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -164,10 +165,18 @@ public class UnderwaterFairwick extends BattleMap implements IBattleMap, Listene
     }
 
     @EventHandler
+    public void stop(PlayerToggleSneakEvent e) {
+        if (!e.getPlayer().getWorld().getName().equals(name)) return;
+        e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(0));
+    }
+
+    @EventHandler
     public void move(PlayerMoveEvent e) {
         if (!e.getPlayer().getWorld().getName().equals(name)) return;
-        Vector velocity = new Vector();
-        velocity = e.getPlayer().getLocation().getDirection().multiply(1.01);
-        e.getPlayer().setVelocity(velocity);
+        if (e.getTo().getBlock().getType() == Material.WATER || e.getTo().getBlock().getType() == Material.STATIONARY_WATER) {
+            Vector velocity = new Vector();
+            velocity = e.getPlayer().getLocation().getDirection().multiply(1.01);
+            e.getPlayer().setVelocity(velocity);
+        }
     }
 }
