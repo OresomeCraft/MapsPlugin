@@ -119,7 +119,7 @@ public class Hypno extends BattleMap implements IBattleMap, Listener {
         i.setItem(4, STEAK);
         i.setItem(5, HEALTH_POTION);
         i.setItem(9, ARROWS);
-        i.setItem(10, DIAMOND);
+        i.setItem(8, DIAMOND);
 
     }
 
