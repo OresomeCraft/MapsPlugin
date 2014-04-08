@@ -408,12 +408,8 @@ public class Courtyard extends BattleMap implements IBattleMap, Listener {
 
     @EventHandler
     public void explode(EntityExplodeEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
-        try {
-            event.blockList().clear();
-        } catch (NullPointerException ex) {
-
-        }
+        if (!event.getLocation().getWorld().getName().equals(name)) return;
+        event.blockList().clear();
     }
 
     @EventHandler
