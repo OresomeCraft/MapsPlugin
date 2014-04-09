@@ -15,8 +15,8 @@ public class FigureEight extends OresomeKartMap implements Listener {
     public FigureEight() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        setFinishPoint(new CuboidRegion(new Location(w, -12, 39, -11), new Location(w, 14, 63, -14)));
-        setHalfwayCheckPoint(new CuboidRegion(new Location(w, -1, 34, -4), new Location(w, 22, 32, 23)));
+        setFinishPoint(new CuboidRegion(new Location(w, 13, 52, -10), new Location(w, -9, 37, -12)));
+        setHalfwayCheckPoint(new CuboidRegion(new Location(w, 11, 35, 9), new Location(w, -3, 29, -3)));
         setLaps(5);
         setDrivableSurfaces(new Material[]{Material.COAL_BLOCK, Material.QUARTZ_BLOCK, Material.STONE});
         setBoostSurfaces(new Material[]{Material.LOG, Material.LOG_2, Material.BRICK});
@@ -31,7 +31,7 @@ public class FigureEight extends OresomeKartMap implements Listener {
     Gamemode[] modes = {Gamemode.ORESOMEKART};
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, 4, 40, -9, 155F, 0F));
+        FFASpawns.add(new Location(w, 4, 42, -9, -30, 0));
     }
 
     public void applyInventory(final BattlePlayer p) {
