@@ -74,11 +74,9 @@ public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void quit(PlayerQuitEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
-            red.remove(event.getPlayer().getName());
-            blue.remove(event.getPlayer().getName());
-            Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleInstitute] " + event.getPlayer().getName() + " quit!");
-        }
+        red.remove(event.getPlayer().getName());
+        blue.remove(event.getPlayer().getName());
+        Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleInstitute] " + event.getPlayer().getName() + " quit!");
         if (currentRed.equals(event.getPlayer().getName()) || currentBlue.equals(event.getPlayer().getName()))
             endRound();
     }

@@ -76,11 +76,9 @@ public class BattleIncentive extends BattleMap implements IBattleMap, Listener {
     @EventHandler
     public void quit(PlayerQuitEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
-            red.remove(event.getPlayer().getName());
-            blue.remove(event.getPlayer().getName());
-            Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleIncentive] " + event.getPlayer().getName() + " quit!");
-        }
+        red.remove(event.getPlayer().getName());
+        blue.remove(event.getPlayer().getName());
+        Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleIncentive] " + event.getPlayer().getName() + " quit!");
         endOrSwap(event.getPlayer().getName());
     }
 
