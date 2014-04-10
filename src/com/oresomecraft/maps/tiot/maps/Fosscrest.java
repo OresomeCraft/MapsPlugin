@@ -31,7 +31,7 @@ public class Fosscrest extends TiOTMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 203, 111, -1269));
         FFASpawns.add(new Location(w, 173, 119, -1268));
 
-        setCriminalTester(new CuboidRegion(new Location(w, 185, 115, -1299), new Location(w, 189, 111, -1302)));
+        setCriminalTester(new CuboidRegion(new Location(w, 185, 108, -1298), new Location(w, 189, 110, -1301)));
     }
 
     public void readyTDMSpawns() {
