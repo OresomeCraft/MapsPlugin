@@ -31,8 +31,8 @@ public class Oasis extends BattleMap implements IBattleMap, Listener {
         setAutoSpawnProtection(10);
     }
 
-    String name = "chasm";
-    String fullName = "The Chasm";
+    String name = "oasis";
+    String fullName = "Oasis";
     String creators = "ep1cn00bt00b and miniwolf35";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH, Gamemode.CTF};
 
