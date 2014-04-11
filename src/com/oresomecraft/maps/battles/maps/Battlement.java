@@ -74,7 +74,7 @@ public class Battlement extends BattleMap implements IBattleMap, Listener {
         Inventory i = p.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 4);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 48);
         ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
