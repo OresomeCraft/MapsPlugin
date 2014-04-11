@@ -19,6 +19,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -76,7 +77,15 @@ public class Oasis extends BattleMap implements IBattleMap, Listener {
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
-        ;
+
+        ItemMeta roseMeta = ROSE.getItemMeta();
+        roseMeta.setDisplayName(ChatColor.AQUA + "Water Walking Rose");
+
+        List<String> roseLore = new ArrayList<String>();
+        roseLore.add(org.bukkit.ChatColor.BLUE + "Hold this frosty rose to walk over water!");
+        roseMeta.setLore(roseLore);
+        ROSE.setItemMeta(roseMeta);
+
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
         p.getInventory().setBoots(LEATHER_BOOTS);
