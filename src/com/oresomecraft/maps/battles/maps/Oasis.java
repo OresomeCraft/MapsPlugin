@@ -44,8 +44,8 @@ public class Oasis extends BattleMap implements IBattleMap, Listener {
 
     public void readyTDMSpawns() {
 
-        Location redSpawn = new Location(w, 6, 87, 76, 358.9F, -0.7F);
-        Location blueSpawn = new Location(w, -6, 87, -151, 178.9F, -1.1F);
+        Location redSpawn = new Location(w, 6, 87, 76, -179, 0);
+        Location blueSpawn = new Location(w, -6, 87, -151, 0, 0);
 
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
@@ -57,8 +57,8 @@ public class Oasis extends BattleMap implements IBattleMap, Listener {
     }
 
     public void readyFFASpawns() {
-        Location redSpawn = new Location(w, 6, 87, 76, 358.9F, -0.7F);
-        Location blueSpawn = new Location(w, -6, 87, -151, 178.9F, -1.1F);
+        Location redSpawn = new Location(w, 6, 87, 76, -179, 0);
+        Location blueSpawn = new Location(w, -6, 87, -151, 0, 0);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
     }
