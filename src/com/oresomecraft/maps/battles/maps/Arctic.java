@@ -32,7 +32,7 @@ public class Arctic extends BattleMap implements IBattleMap, Listener {
     String name = "arctic";
     String fullName = "Arctic";
     String creators = "Dant35tra5t";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.KOTH};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
 
