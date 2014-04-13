@@ -48,8 +48,6 @@ public class ClashOfClay extends BattleMap implements Listener {
         ItemStack DIAMOND_HELMET = new ItemStack(Material.DIAMOND_HELMET, 1);
         ItemStack TORCH = new ItemStack(Material.TORCH, 16);
         ItemStack ARROW = new ItemStack(Material.ARROW, 1);
-        ItemStack S = new ItemStack(Material.STICK, 1);
-        ItemStack I = new ItemStack(Material.IRON_INGOT, 1);
 
         LEATHER_CHESTPLATE.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
@@ -67,8 +65,6 @@ public class ClashOfClay extends BattleMap implements Listener {
         if (p.getTeamType() == Team.TDM_BLUE) i.setItem(5, BLUE_STAINED_CLAY);
 
         i.setItem(6, TORCH);
-        i.setItem(11, S);
-        i.setItem(12, I);
         i.setItem(27, ARROW);
 
     }
