@@ -4,7 +4,6 @@ import com.oresomecraft.OresomeBattles.api.*;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -18,7 +17,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 @MapConfig
-public class Geomancy extends BattleMap implements IBattleMap, Listener {
+public class Geomancy extends BattleMap implements Listener {
 
     public Geomancy() {
         super.initiate(this, name, fullName, creators, modes);

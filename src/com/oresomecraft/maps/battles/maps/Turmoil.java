@@ -10,7 +10,7 @@ import com.oresomecraft.maps.battles.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
-public class Turmoil extends BattleMap implements IBattleMap, Listener {
+public class Turmoil extends BattleMap implements Listener {
 
     public Turmoil() {
         super.initiate(this, name, fullName, creators, modes);

@@ -6,7 +6,6 @@ import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
@@ -25,7 +24,7 @@ import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
 @MapConfig
-public class Solitude extends BattleMap implements IBattleMap, Listener {
+public class Solitude extends BattleMap implements Listener {
 
     public Solitude() {
         super.initiate(this, name, fullName, creators, modes);

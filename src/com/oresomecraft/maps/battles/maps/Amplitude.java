@@ -6,7 +6,6 @@ import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +17,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 @MapConfig
-public class Amplitude extends BattleMap implements IBattleMap, Listener {
+public class Amplitude extends BattleMap implements Listener {
 
     public Amplitude() {
         super.initiate(this, name, fullName, creators, modes);

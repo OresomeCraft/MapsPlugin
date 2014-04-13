@@ -9,7 +9,7 @@ import com.oresomecraft.maps.battles.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
-public class Bridge extends BattleMap implements IBattleMap, Listener {
+public class Bridge extends BattleMap implements Listener {
 
     public Bridge() {
         super.initiate(this, name, fullName, creators, modes);

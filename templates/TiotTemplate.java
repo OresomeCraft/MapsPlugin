@@ -4,8 +4,6 @@ import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.CuboidRegion;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.maps.tiot.TiOTMap;
 import org.bukkit.Location;
 import org.bukkit.event.Listener;

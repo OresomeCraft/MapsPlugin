@@ -2,7 +2,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.*;
@@ -10,7 +9,7 @@ import org.bukkit.inventory.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
-public class Raid extends BattleMap implements IBattleMap, Listener {
+public class Raid extends BattleMap implements Listener {
 
     public Raid() {
         super.initiate(this, name, fullName, creators, modes);

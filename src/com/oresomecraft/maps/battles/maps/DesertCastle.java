@@ -5,7 +5,6 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
@@ -26,7 +25,7 @@ import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
 @MapConfig
-public class DesertCastle extends BattleMap implements IBattleMap, Listener {
+public class DesertCastle extends BattleMap implements Listener {
 
     public DesertCastle() {
         super.initiate(this, name, fullName, creators, modes);

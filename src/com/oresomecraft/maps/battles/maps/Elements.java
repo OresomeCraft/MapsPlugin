@@ -5,7 +5,6 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -27,7 +26,7 @@ import java.util.List;
 import java.util.Random;
 
 @MapConfig
-public class Elements extends BattleMap implements IBattleMap, Listener {
+public class Elements extends BattleMap implements Listener {
 
     public Elements() {
         super.initiate(this, name, fullName, creators, modes);

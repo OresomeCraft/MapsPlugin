@@ -2,7 +2,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.Team;
@@ -16,7 +15,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 @MapConfig
-public class Okzuy extends BattleMap implements IBattleMap, Listener {
+public class Okzuy extends BattleMap implements Listener {
 
     public Okzuy() {
         super.initiate(this, name, fullName, creators, modes);

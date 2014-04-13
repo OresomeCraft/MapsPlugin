@@ -5,7 +5,6 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -22,7 +21,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 @MapConfig
-public class Arctic extends BattleMap implements IBattleMap, Listener {
+public class Arctic extends BattleMap implements Listener {
 
     public Arctic() {
         super.initiate(this, name, fullName, creators, modes);

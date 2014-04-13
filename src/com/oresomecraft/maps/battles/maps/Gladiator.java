@@ -2,7 +2,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -15,7 +14,7 @@ import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
 @MapConfig
-public class Gladiator extends BattleMap implements IBattleMap, Listener {
+public class Gladiator extends BattleMap implements Listener {
 
     public Gladiator() {
         super.initiate(this, name, fullName, creators, modes);

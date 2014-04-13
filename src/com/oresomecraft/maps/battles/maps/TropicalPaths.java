@@ -6,7 +6,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.event.*;
@@ -18,7 +17,7 @@ import org.bukkit.entity.Player;
 import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
-public class TropicalPaths extends BattleMap implements IBattleMap, Listener {
+public class TropicalPaths extends BattleMap implements Listener {
 
     public TropicalPaths() {
         super.initiate(this, name, fullName, creators, modes);

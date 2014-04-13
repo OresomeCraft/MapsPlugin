@@ -6,7 +6,6 @@ import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -36,7 +35,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @MapConfig
-public class Courtyard extends BattleMap implements IBattleMap, Listener {
+public class Courtyard extends BattleMap implements Listener {
 
     public Courtyard() {
         super.initiate(this, name, fullName, creators, modes);

@@ -4,7 +4,6 @@ import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -15,7 +14,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 @MapConfig
-public class SubwaySurvival extends BattleMap implements IBattleMap, Listener {
+public class SubwaySurvival extends BattleMap implements Listener {
 
     public SubwaySurvival() {
         super.initiate(this, name, fullName, creators, modes);

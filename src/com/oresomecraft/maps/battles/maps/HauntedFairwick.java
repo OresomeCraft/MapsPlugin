@@ -2,7 +2,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
@@ -27,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MapConfig
-public class HauntedFairwick extends BattleMap implements IBattleMap, Listener {
+public class HauntedFairwick extends BattleMap implements Listener {
 
     public HauntedFairwick() {
         disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.WATCH, Material.WOOL});

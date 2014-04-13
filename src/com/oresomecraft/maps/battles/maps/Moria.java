@@ -6,7 +6,6 @@ import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -17,7 +16,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 @MapConfig
-public class Moria extends BattleMap implements IBattleMap, Listener {
+public class Moria extends BattleMap implements Listener {
 
     public Moria() {
         super.initiate(this, name, fullName, creators, modes);

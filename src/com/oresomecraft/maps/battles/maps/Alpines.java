@@ -2,7 +2,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.enchantments.Enchantment;
@@ -16,7 +15,7 @@ import org.bukkit.util.Vector;
 import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
-public class Alpines extends BattleMap implements IBattleMap, Listener {
+public class Alpines extends BattleMap implements Listener {
 
     public Alpines() {
         super.initiate(this, name, fullName, creators, modes);

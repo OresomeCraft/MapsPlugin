@@ -2,14 +2,13 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.event.Listener;
 
 import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
-public class PrototypeTown extends BattleMap implements IBattleMap, Listener {
+public class PrototypeTown extends BattleMap implements Listener {
 
     public PrototypeTown() {
         super.initiate(this, name, fullName, creators, modes);

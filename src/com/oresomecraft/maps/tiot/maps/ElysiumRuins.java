@@ -4,14 +4,12 @@ import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.CuboidRegion;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.maps.tiot.TiOTMap;
 import org.bukkit.Location;
 import org.bukkit.event.Listener;
 
 @MapConfig
-public class ElysiumRuins extends TiOTMap implements IBattleMap, Listener {
+public class ElysiumRuins extends TiOTMap implements Listener {
 
     public ElysiumRuins() {
         super.initiate(this, name, fullName, creators, modes);
@@ -53,10 +51,6 @@ public class ElysiumRuins extends TiOTMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, 41, 30, -6, 157, 0));
 
         setCriminalTester(new CuboidRegion(new Location(w, 2, 29, 6), new Location(w, -2, 33, 10)));
-    }
-
-    public void readyTDMSpawns() {
-        // No TDM spawns
     }
 
     public void applyInventory(final BattlePlayer p) {

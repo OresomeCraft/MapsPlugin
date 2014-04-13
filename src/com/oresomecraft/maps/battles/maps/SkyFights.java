@@ -2,7 +2,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -19,7 +18,7 @@ import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
 @MapConfig
-public class SkyFights extends BattleMap implements IBattleMap, Listener {
+public class SkyFights extends BattleMap implements Listener {
 
     public SkyFights() {
         super.initiate(this, name, fullName, creators, modes);

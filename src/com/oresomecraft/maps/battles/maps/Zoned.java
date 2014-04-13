@@ -2,7 +2,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MapConfig
-public class Zoned extends BattleMap implements IBattleMap, Listener {
+public class Zoned extends BattleMap implements Listener {
     public Zoned() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);

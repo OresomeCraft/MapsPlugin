@@ -4,7 +4,6 @@ import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.Listener;
@@ -12,7 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 @MapConfig
-public class Paradise extends BattleMap implements IBattleMap, Listener {
+public class Paradise extends BattleMap implements Listener {
 
     public Paradise() {
         super.initiate(this, name, fullName, creators, modes);

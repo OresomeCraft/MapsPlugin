@@ -2,7 +2,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -16,7 +15,7 @@ import org.bukkit.util.Vector;
 import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
-public class Roseley extends BattleMap implements IBattleMap, Listener {
+public class Roseley extends BattleMap implements Listener {
 
     public Roseley() {
         super.initiate(this, name, fullName, creators, modes);

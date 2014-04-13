@@ -4,14 +4,12 @@ import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.CuboidRegion;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.maps.tiot.TiOTMap;
 import org.bukkit.Location;
 import org.bukkit.event.Listener;
 
 @MapConfig
-public class OresomeTown extends TiOTMap implements IBattleMap, Listener {
+public class OresomeTown extends TiOTMap implements Listener {
 
     public OresomeTown() {
         super.initiate(this, name, fullName, creators, modes);
@@ -52,10 +50,6 @@ public class OresomeTown extends TiOTMap implements IBattleMap, Listener {
         FFASpawns.add(new Location(w, -43, 70, -4));
 
         setCriminalTester(new CuboidRegion(new Location(w, -4, 73, -47), new Location(w, 0, 69, -45)));
-    }
-
-    public void readyTDMSpawns() {
-        // No TDM spawns
     }
 
     public void applyInventory(final BattlePlayer p) {

@@ -4,7 +4,6 @@ import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
@@ -13,7 +12,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 @MapConfig
-public class Biomes extends BattleMap implements IBattleMap, Listener {
+public class Biomes extends BattleMap implements Listener {
 
     public Biomes() {
         super.initiate(this, name, fullName, creators, modes);

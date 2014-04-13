@@ -2,7 +2,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.event.block.Action;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MapConfig
-public class BiomeBattle extends BattleMap implements IBattleMap, Listener {
+public class BiomeBattle extends BattleMap implements Listener {
 
     public BiomeBattle() {
         super.initiate(this, name, fullName, creators, modes);

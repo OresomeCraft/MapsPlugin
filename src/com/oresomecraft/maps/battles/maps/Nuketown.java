@@ -5,7 +5,6 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -21,7 +20,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 @MapConfig
-public class Nuketown extends BattleMap implements IBattleMap, Listener {
+public class Nuketown extends BattleMap implements Listener {
 
     public Nuketown() {
         super.initiate(this, name, fullName, creators, modes);

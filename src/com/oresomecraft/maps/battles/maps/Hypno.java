@@ -2,7 +2,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.*;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MapConfig
-public class Hypno extends BattleMap implements IBattleMap, Listener {
+public class Hypno extends BattleMap implements Listener {
 
     public Hypno() {
         super.initiate(this, name, fullName, creators, modes);

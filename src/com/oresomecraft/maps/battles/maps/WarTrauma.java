@@ -5,7 +5,6 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MapConfig
-public class WarTrauma extends BattleMap implements IBattleMap, Listener {
+public class WarTrauma extends BattleMap implements Listener {
 
     public WarTrauma() {
         super.initiate(this, name, fullName, creators, modes);

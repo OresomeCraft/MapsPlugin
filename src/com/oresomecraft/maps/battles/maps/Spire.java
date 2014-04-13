@@ -2,7 +2,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.entity.*;
@@ -18,7 +17,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 import org.bukkit.projectiles.ProjectileSource;
 
 @MapConfig
-public class Spire extends BattleMap implements IBattleMap, Listener {
+public class Spire extends BattleMap implements Listener {
 
     public Spire() {
         super.initiate(this, name, fullName, creators, modes);

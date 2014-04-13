@@ -6,7 +6,6 @@ import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 @MapConfig
-public class BattleInstitute extends BattleMap implements IBattleMap, Listener {
+public class BattleInstitute extends BattleMap implements Listener {
 
     public BattleInstitute() {
         super.initiate(this, name, fullName, creators, modes);

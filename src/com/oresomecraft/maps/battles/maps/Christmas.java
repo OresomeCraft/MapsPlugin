@@ -8,7 +8,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.maps.battles.IBattleMap;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
@@ -30,7 +29,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 import java.util.Random;
 
 @MapConfig
-public class Christmas extends BattleMap implements IBattleMap, Listener {
+public class Christmas extends BattleMap implements Listener {
 
     public Christmas() {
         super.initiate(this, name, fullName, creators, modes);
