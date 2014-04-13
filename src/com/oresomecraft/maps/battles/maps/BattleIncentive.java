@@ -317,14 +317,14 @@ public class BattleIncentive extends BattleMap implements Listener {
         }
         Bukkit.broadcastMessage(ChatColor.RED + "[BattleIncentive] Round over!");
         try {
-            if (!currentBlue.equals("???"))
-                Bukkit.getPlayer(currentBlue).teleport(new Location(Bukkit.getWorld(name), -21, 72, 150, 359.6F, 8.9F));
-            if (!currentBlue2.equals("???"))
-                Bukkit.getPlayer(currentBlue2).teleport(new Location(Bukkit.getWorld(name), -21, 72, 150, 359.6F, 8.9F));
             if (!currentRed.equals("???"))
-                Bukkit.getPlayer(currentRed).teleport(new Location(Bukkit.getWorld(name), -21, 72, 96, 179.9F, 10.8F));
+                Bukkit.getPlayer(currentRed).teleport(new Location(Bukkit.getWorld(name), -21, 72, 150, 359.6F, 8.9F));
             if (!currentRed2.equals("???"))
-                Bukkit.getPlayer(currentRed2).teleport(new Location(Bukkit.getWorld(name), -21, 72, 96, 179.9F, 10.8F));
+                Bukkit.getPlayer(currentRed2).teleport(new Location(Bukkit.getWorld(name), -21, 72, 150, 359.6F, 8.9F));
+            if (!currentBlue.equals("???"))
+                Bukkit.getPlayer(currentBlue).teleport(new Location(Bukkit.getWorld(name), -21, 72, 96, 179.9F, 10.8F));
+            if (!currentBlue2.equals("???"))
+                Bukkit.getPlayer(currentBlue2).teleport(new Location(Bukkit.getWorld(name), -21, 72, 96, 179.9F, 10.8F));
         } catch (NullPointerException ex) {
             System.out.println("[BATTLINCENTIVE] ERROR: ONE OF THE PLAYERS HAS FAILED TO TELEPORT");
         }
