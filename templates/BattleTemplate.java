@@ -9,9 +9,9 @@ import com.oresomecraft.maps.battles.*;
 import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
-public class Template extends BattleMap implements IBattleMap, Listener {
+public class BattleTemplate extends BattleMap implements Listener {
 
-    public Template() {
+    public BattleTemplate() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
@@ -58,6 +58,8 @@ public class Template extends BattleMap implements IBattleMap, Listener {
         p.setItem(0, IRON_SWORD);
         p.setItem(1, Material.BOW, 1);
         p.setItem(2, Material.COOKED_BEEF, 1);
+
+        // This is the Bukkit way of doing it
         i.setItem(3, HEALTH_POTION);
         p.setItem(8, Material.EXP_BOTTLE, 5);
         p.setItem(9, Material.ARROW, 64);
