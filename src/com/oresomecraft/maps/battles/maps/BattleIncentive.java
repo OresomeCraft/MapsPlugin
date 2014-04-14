@@ -114,40 +114,44 @@ public class BattleIncentive extends BattleMap implements Listener {
 
     @EventHandler
     public void leaveSpec(final PlayerCommandPreprocessEvent event) {
-        if (event.getMessage().toLowerCase().startsWith("/join")) {
-            try {
-                if (!red.contains(event.getPlayer().getName()) && !blue.contains(event.getPlayer().getName()) && Bukkit.getWorld(name).getPlayers().size() != 0) {
-                    if (Bukkit.getWorld(name).getPlayers().size() == 0) return;
-                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                        @Override
-                        public void run() {
-                            if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
-                                if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_RED) {
-                                    red.add(event.getPlayer().getName());
-                                    Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " joined red!");
-                                } else if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_BLUE) {
-                                    blue.add(event.getPlayer().getName());
-                                    Bukkit.broadcastMessage(ChatColor.BLUE + event.getPlayer().getName() + " joined blue!");
+        try {
+            if (event.getMessage().toLowerCase().startsWith("/join")) {
+                try {
+                    if (!red.contains(event.getPlayer().getName()) && !blue.contains(event.getPlayer().getName()) && Bukkit.getWorld(name).getPlayers().size() != 0) {
+                        if (Bukkit.getWorld(name).getPlayers().size() == 0) return;
+                        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                            @Override
+                            public void run() {
+                                if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
+                                    if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_RED) {
+                                        red.add(event.getPlayer().getName());
+                                        Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " joined red!");
+                                    } else if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_BLUE) {
+                                        blue.add(event.getPlayer().getName());
+                                        Bukkit.broadcastMessage(ChatColor.BLUE + event.getPlayer().getName() + " joined blue!");
+                                    }
                                 }
                             }
-                        }
-                    }, 2L);
+                        }, 2L);
 
+                    }
+                } catch (Exception exc) {
+                    //lol I suck
                 }
-            } catch (Exception exc) {
-                //lol I suck
             }
-        }
 
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        // This is the blocked stuff
-        if (event.getMessage().toLowerCase().startsWith("/leave") || event.getMessage().toLowerCase().startsWith("/spectate")) {
-            if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
-                Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " left the round!");
-                endOrSwap(event.getPlayer().getName());
-                red.remove(event.getPlayer().getName());
-                blue.remove(event.getPlayer().getName());
+            if (!event.getPlayer().getWorld().getName().equals(name)) return;
+            // This is the blocked stuff
+            if (event.getMessage().toLowerCase().startsWith("/leave") || event.getMessage().toLowerCase().startsWith("/spectate")) {
+                if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
+                    Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " left the round!");
+                    endOrSwap(event.getPlayer().getName());
+                    red.remove(event.getPlayer().getName());
+                    blue.remove(event.getPlayer().getName());
+                }
             }
+        } catch (Exception e) {
+
         }
     }
 
