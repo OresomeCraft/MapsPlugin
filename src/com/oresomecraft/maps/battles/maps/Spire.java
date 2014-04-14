@@ -21,7 +21,7 @@ public class Spire extends BattleMap implements Listener {
 
     public Spire() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.SAND});
+        disableDrops(new Material[]{Material.SAND, Material.SPONGE});
     }
 
     String name = "spire";
@@ -144,82 +144,47 @@ public class Spire extends BattleMap implements Listener {
         }
     }
 
-    /*
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void snowDamage(EntityDamageByEntityEvent event) {
-        Entity snow = event.getDamager();
-        Entity entity = event.getEntity();
-        Location loc = entity.getLocation();
+    @EventHandler
+    public void sponge(BlockBreakEvent event) {
+        if (!event.getBlock().getWorld().getName().equals(name)) return;
+        if (event.getBlock().getType() == Material.SPONGE) {
+            event.setCancelled(true);
+            event.getBlock().setType(Material.AIR);
+        }
+    }
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2) == true) {
-
-            if (snow instanceof Snowball) {
-                Snowball s = (Snowball) snow;
-                LivingEntity shooter = s.getShooter();
-
-                if (shooter instanceof Player) {
-                    Player sh = (Player) shooter;
-                    String shooterName = sh.getName();
-
-                    if (entity instanceof Player) {
-                        Player p = (Player) entity;
-                        String pName = p.getName();
-
-                        if (Battles.redTeam.containsKey(shooterName)) {
-
-                            if (Battles.blueTeam.containsKey(pName)) {
-                                p.damage(2, sh);
-                                sh.playSound(loc, Sound.PIG_IDLE, 1, 1);
-
-                            } else {
-                                event.setCancelled(true);
-                            }
-
-                        } else if (Battles.blueTeam.containsKey(shooterName)) {
-                            if (Battles.redTeam.containsKey(pName)) {
-
-                                p.damage(2, sh);
-                                sh.playSound(loc, Sound.PIG_IDLE, 1, 1);
-
-                            } else {
-                                event.setCancelled(true);
-                            }
-                        } else {
-                            event.setCancelled(true);
-                        }
-
-                    }
-                }
+    @EventHandler
+    public void explode(EntityExplodeEvent event) {
+        if (!event.getLocation().getWorld().getName().equals(name)) return;
+        for (Block b : event.blockList()) {
+            if (b.getType() == Material.SPONGE) {
+                event.blockList().remove(b);
             }
         }
-    }*/
+    }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void explodingArrow(ProjectileHitEvent event) {
         Entity projectile = event.getEntity();
         World w = projectile.getWorld();
         Location hit = projectile.getLocation();
+        if (!w.getName().equals(name)) return;
 
-        if (contains(hit, x1, x2, y1, y2, z1, z2)) {
+        if (projectile instanceof Arrow) {
+            Arrow arrow = (Arrow) projectile;
+            ProjectileSource shooter = arrow.getShooter();
 
-            if (projectile instanceof Arrow) {
-                Arrow arrow = (Arrow) projectile;
-                ProjectileSource shooter = arrow.getShooter();
+            if (shooter instanceof Player) {
+                Player player = (Player) shooter;
+                Location location = player.getLocation();
+                Block block = location.getBlock();
+                Material material = block.getRelative(BlockFace.DOWN, 2).getType();
+                Material item = player.getItemInHand().getType();
 
-                if (shooter instanceof Player) {
-                    Player player = (Player) shooter;
-                    Location location = player.getLocation();
-                    Block block = location.getBlock();
-                    Block block2 = block.getRelative(BlockFace.DOWN, 2);
-                    Material material = block.getType();
-                    ItemStack itemStack = player.getItemInHand();
-                    Material material2 = itemStack.getType();
+                if (item == Material.BOW && material == Material.SPONGE) {
+                    w.createExplosion(hit, 2);
+                    Bukkit.getWorld(name).playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
 
-                    if (material2 == Material.BOW && material2 == Material.SPONGE) {
-                        w.createExplosion(hit, 2);
-                        Bukkit.getWorld(name).playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
-
-                    }
                 }
             }
         }
@@ -231,8 +196,7 @@ public class Spire extends BattleMap implements Listener {
         World world = egg.getWorld();
         Location location = egg.getLocation();
         // basic start and variables
-
-        if (contains(location, x1, x2, y1, y2, z1, z2)) {
+        if (world.getName().equals(name)) {
             event.setHatching(true);
             world.createExplosion(location, 25);
 
@@ -266,14 +230,4 @@ public class Spire extends BattleMap implements Listener {
 
         }
     }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void spongeGone(BlockBreakEvent event) {
-        Block block = event.getBlock();
-        Material material = block.getType();
-        Location location = block.getLocation();
-
-        if (block.getWorld().getName().equals(name) && material == Material.SPONGE) block.setType(Material.GOLD_BLOCK);
-    }
-
 }
