@@ -48,7 +48,7 @@ public class Electricity extends BattleMap implements Listener {
         Inventory i = p.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
-        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 4);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
 
