@@ -12,6 +12,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -28,7 +30,6 @@ public class Wartown extends BattleMap implements Listener {
 
     public Wartown() {
         super.initiate(this, name, fullName, creators, modes);
-        setAutoSpawnProtection(3);
     }
 
     String name = "wartown";
@@ -295,6 +296,26 @@ public class Wartown extends BattleMap implements Listener {
 
                 entity.setFireTicks(500);
 
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (getMode() != Gamemode.FFA) {
+            if (contains(event.getBlockPlaced().getLocation(), 160, 190, 63, 80, -172, -144) || contains(event.getBlockPlaced().getLocation(), 165, 187, 63, 89, -259, -278)) {
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (getMode() != Gamemode.FFA) {
+            if (contains(event.getBlock().getLocation(), 160, 190, 63, 80, -172, -144) || contains(event.getBlock().getLocation(), 165, 187, 63, 89, -259, -278)) {
+                event.setCancelled(true);
             }
         }
     }
