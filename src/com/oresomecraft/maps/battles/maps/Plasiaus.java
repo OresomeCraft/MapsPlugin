@@ -50,6 +50,7 @@ public class Plasiaus extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -51, 64, -47, 90.7F, 0.7F));
         FFASpawns.add(new Location(w, 71, 64, -47, 269.7F, 0.5F));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -93,14 +94,14 @@ public class Plasiaus extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -15;
-    public int y1 = 75;
-    public int z1 = 231;
+    public int x1 = 75;
+    public int y1 = 97;
+    public int z1 = 5;
 
     //Bottom right corner.
-    public int x2 = 129;
-    public int y2 = 184;
-    public int z2 = -10;
+    public int x2 = -59;
+    public int y2 = 53;
+    public int z2 = -96;
 
     @EventHandler
     public void onSpyWatchInteract(PlayerInteractEvent event) {

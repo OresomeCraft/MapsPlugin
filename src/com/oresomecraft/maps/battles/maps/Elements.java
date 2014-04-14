@@ -48,6 +48,7 @@ public class Elements extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -23, 87, 11));
         FFASpawns.add(new Location(w, -25, 86, 147));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -95,14 +96,14 @@ public class Elements extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -51;
-    public int y1 = 74;
-    public int z1 = 0;
+    public int x1 = -65;
+    public int y1 = 190;
+    public int z1 = 172;
 
     //Bottom right corner.
-    public int x2 = 7;
-    public int y2 = 171;
-    public int z2 = 166;
+    public int x2 = 5;
+    public int y2 = 70;
+    public int z2 = -5;
 
     @EventHandler
     public void noSpawnBreak(BlockBreakEvent event) {

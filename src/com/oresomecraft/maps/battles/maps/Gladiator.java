@@ -94,6 +94,7 @@ public class Gladiator extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 248, 108, -41, 0, 0));
         FFASpawns.add(new Location(w, 265, 110, -30, 90, 0));
         FFASpawns.add(new Location(w, 231, 110, -32, -90, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -123,14 +124,14 @@ public class Gladiator extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -320;
-    public int y1 = 82;
-    public int z1 = 38;
+    public int x1 = 166;
+    public int y1 = 155;
+    public int z1 = -110;
 
     //Bottom right corner.
-    public int x2 = 176;
-    public int y2 = 148;
-    public int z2 = -103;
+    public int x2 = 356;
+    public int y2 = 60;
+    public int z2 = 72;
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {

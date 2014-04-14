@@ -46,6 +46,7 @@ public class Turmoil extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -8, 19, -1878, 1, 0));
         FFASpawns.add(new Location(w, -45, 17, -1910, 3, 0));
         FFASpawns.add(new Location(w, -28, 22, -1896, 0, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

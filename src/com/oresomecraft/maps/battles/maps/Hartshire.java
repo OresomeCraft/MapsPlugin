@@ -67,6 +67,7 @@ public class Hartshire extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 229, 56, -148, -50, 0));
         FFASpawns.add(new Location(w, 116, 41, -46, -50, 0));
         FFASpawns.add(new Location(w, 94, 53, -106, -50, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -104,14 +105,14 @@ public class Hartshire extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -207;
-    public int y1 = 52;
-    public int z1 = -1220;
+    public int x1 = 18;
+    public int y1 = 122;
+    public int z1 = -2;
 
     //Bottom right corner.
-    public int x2 = -38;
-    public int y2 = 112;
-    public int z2 = -1125;
+    public int x2 = 284;
+    public int y2 = 0;
+    public int z2 = -308;
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void ointment(PlayerInteractEvent event) {

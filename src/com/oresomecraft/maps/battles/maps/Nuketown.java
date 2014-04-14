@@ -84,6 +84,7 @@ public class Nuketown extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -2, 11, 156, 179, 0));
         FFASpawns.add(new Location(w, 21, 11, 115, 42, 0));
         FFASpawns.add(new Location(w, 20, 16.5, 138, 119, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

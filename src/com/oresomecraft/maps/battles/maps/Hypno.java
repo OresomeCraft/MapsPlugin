@@ -70,6 +70,7 @@ public class Hypno extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -800, 87, -1384, -103, 0));
         FFASpawns.add(new Location(w, -781, 69, -1424, -18, 0));
         FFASpawns.add(new Location(w, -746, 73, -1358, 123, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -118,12 +119,12 @@ public class Hypno extends BattleMap implements Listener {
 
     }
 
-    public int x1 = -721;
-    public int y1 = 2;
-    public int z1 = -1460;
-    public int x2 = -941;
-    public int y2 = 158;
-    public int z2 = -1258;
+    public int x1 = -716;
+    public int y1 = 5;
+    public int z1 = -1262;
+    public int x2 = -946;
+    public int y2 = 146;
+    public int z2 = -1484;
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void preventBlockBreak(BlockBreakEvent event) {

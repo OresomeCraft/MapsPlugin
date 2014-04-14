@@ -47,6 +47,7 @@ public class Gratianus extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -68.25, 88, 0, -88, 0));
         FFASpawns.add(new Location(w, -60, 58, 0, -90, 0));
         FFASpawns.add(new Location(w, 60, 58, 0, 90, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -80,13 +81,13 @@ public class Gratianus extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -87;
-    public int y1 = 173;
-    public int z1 = 91;
+    public int x1 = -100;
+    public int y1 = 185;
+    public int z1 = -105;
 
     //Bottom right corner.
-    public int x2 = 131;
-    public int y2 = 32;
-    public int z2 = -153;
+    public int x2 = 121;
+    public int y2 = 34;
+    public int z2 = 107;
 
 }

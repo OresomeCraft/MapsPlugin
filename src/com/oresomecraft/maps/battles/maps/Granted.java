@@ -45,6 +45,7 @@ public class Granted extends BattleMap implements Listener {
         FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, 49, 71, 80, 179, 0));
         FFASpawns.add(new Location(w, 15, 71, -102, -1, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -79,13 +80,13 @@ public class Granted extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -25;
-    public int y1 = 154;
-    public int z1 = -153;
+    public int x1 = -12;
+    public int y1 = 126;
+    public int z1 = -148;
 
     //Bottom right corner.
-    public int x2 = 103;
-    public int y2 = 26;
-    public int z2 = 149;
+    public int x2 = 82;
+    public int y2 = 6;
+    public int z2 = 129;
 
 }

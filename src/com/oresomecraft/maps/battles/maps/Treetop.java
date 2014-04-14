@@ -44,6 +44,7 @@ public class Treetop extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 8, 68, 22));
         FFASpawns.add(new Location(w, -21, 103, 41));
         FFASpawns.add(new Location(w, -0, 96, 29));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

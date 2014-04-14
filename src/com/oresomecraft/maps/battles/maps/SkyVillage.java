@@ -61,6 +61,7 @@ public class SkyVillage extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 78, 95, 134, -161, 0));
         FFASpawns.add(new Location(w, 95, 96, 85, 131, 0));
         FFASpawns.add(new Location(w, -1, 93, 185, -110, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

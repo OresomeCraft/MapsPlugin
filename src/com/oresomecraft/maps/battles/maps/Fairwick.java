@@ -50,6 +50,7 @@ public class Fairwick extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 72, 73, 1));
         FFASpawns.add(new Location(w, 72, 73, 133));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -93,14 +94,14 @@ public class Fairwick extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -15;
-    public int y1 = 75;
-    public int z1 = 231;
+    public int x1 = -13;
+    public int y1 = 112;
+    public int z1 = -26;
 
     //Bottom right corner.
-    public int x2 = 129;
-    public int y2 = 184;
-    public int z2 = -10;
+    public int x2 = 159;
+    public int y2 = 57;
+    public int z2 = 152;
 
     @EventHandler
     public void onSpyWatchInteract(PlayerInteractEvent event) {

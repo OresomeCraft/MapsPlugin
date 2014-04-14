@@ -78,6 +78,7 @@ public class Deepcaverns extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -46, 97, 7, 0, 0));
         FFASpawns.add(new Location(w, 26, 105, -13, 0, 0));
         FFASpawns.add(new Location(w, 21, 94, 2, 0, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -109,13 +110,13 @@ public class Deepcaverns extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
+    public int x1 = -168;
+    public int y1 = 236;
+    public int z1 = -144;
 
     //Bottom right corner.
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
+    public int x2 = 151;
+    public int y2 = 1;
+    public int z2 = 184;
 
 }

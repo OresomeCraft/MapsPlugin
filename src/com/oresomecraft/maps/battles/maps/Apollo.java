@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -71,9 +72,10 @@ public class Apollo extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -19, 133, 88, 137, 0));
         FFASpawns.add(new Location(w, -82, 133, 25, -44, 0));
         FFASpawns.add(new Location(w, -57, 109, 72, -2, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
-    public void applyInventory(final BattlePlayer p) {
+    public void applyInventory(BattlePlayer p) {
         Inventory i = p.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
@@ -102,28 +104,26 @@ public class Apollo extends BattleMap implements Listener {
         i.setItem(4, EXP);
         i.setItem(8, ENDER_PEARL);
 
-        Bukkit.getScheduler().runTask(plugin, new Runnable() {
-            public void run() {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 1000 * 20, 2));
-            }
-        });
+        p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 1000 * 20, 2));
 
     }
 
     // Top left corner.
-    public int x1 = -8;
-    public int y1 = 164;
-    public int z1 = 16;
+    public int x1 = -1;
+    public int y1 = 59;
+    public int z1 = 1;
 
     //Bottom right corner.
-    public int x2 = -85;
-    public int y2 = 62;
-    public int z2 = 99;
+    public int x2 = -97;
+    public int y2 = 186;
+    public int z2 = 108;
 
     @EventHandler
-    public void onMove(PlayerMoveEvent event) {
-        if (event.getPlayer().getWorld().getName().equals(name)) {
-            event.getPlayer().setFallDistance(0);
+    public void fall(EntityDamageEvent event) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
+                event.setCancelled(true);
+            }
         }
     }
 

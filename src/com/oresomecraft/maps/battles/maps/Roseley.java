@@ -38,6 +38,7 @@ public class Roseley extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -131, 70, 1));
         FFASpawns.add(new Location(w, -74, 70, 126));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -64,13 +65,13 @@ public class Roseley extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 158;
-    public int y1 = 139;
-    public int z1 = -160;
+    public int x1 = -141;
+    public int y1 = 91;
+    public int z1 = 134;
     //Bottom right corner.
-    public int x2 = -171;
-    public int y2 = 54;
-    public int z2 = 156;
+    public int x2 = -64;
+    public int y2 = 55;
+    public int z2 = -11;
 
     @EventHandler
     public void onBlockPlace(PlayerInteractEvent event) {

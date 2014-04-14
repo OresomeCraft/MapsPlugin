@@ -64,6 +64,7 @@ public class Raid extends BattleMap implements Listener {
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, 5, 68, -5, 1, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

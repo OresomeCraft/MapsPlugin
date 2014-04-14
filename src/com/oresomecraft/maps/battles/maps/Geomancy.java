@@ -40,6 +40,7 @@ public class Geomancy extends BattleMap implements Listener {
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 1, 136, -47, 182.5F, -22.2F));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -78,16 +79,13 @@ public class Geomancy extends BattleMap implements Listener {
         i.setItem(27, ARROW);
     }
 
-    //Unneeded
-    /*
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
+    public int x1 = -97;
+    public int y1 = 204;
+    public int z1 = 103;
 
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
-    */
+    public int x2 = 101;
+    public int y2 = 114;
+    public int z2 = -97;
 
     @EventHandler
     public void breakListener(BlockBreakEvent event) {

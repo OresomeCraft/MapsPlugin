@@ -47,6 +47,7 @@ public class Insanity extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -1441, 99, -619, 0, 0));
         FFASpawns.add(new Location(w, -1455, 99, -614, 0, 0));
         FFASpawns.add(new Location(w, -1425, 99, -599, 2, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -74,14 +75,14 @@ public class Insanity extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -1410;
-    public int y1 = 130;
-    public int z1 = -571;
+    public int x1 = -1413;
+    public int y1 = 143;
+    public int z1 = -638;
 
     // Bottom right corner.
-    public int x2 = -1429;
-    public int y2 = 85;
-    public int z2 = -635;
+    public int x2 = -1465;
+    public int y2 = 63;
+    public int z2 = -572;
 
     @EventHandler
     public void blood(ProjectileHitEvent event) {

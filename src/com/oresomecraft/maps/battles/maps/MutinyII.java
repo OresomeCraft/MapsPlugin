@@ -43,6 +43,7 @@ public class MutinyII extends BattleMap implements Listener {
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 31, 91, -58));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -79,7 +80,7 @@ public class MutinyII extends BattleMap implements Listener {
     }
 
     public int x1 = 52;
-    public int y1 = 54;
+    public int y1 = 0;
     public int z1 = 35;
 
     public int x2 = -48;

@@ -80,6 +80,7 @@ public class Arctic extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 855, 130, -50, 136, 0));
         FFASpawns.add(new Location(w, 798, 148, -74, -134, 0));
         FFASpawns.add(new Location(w, 789, 123, -94, 133, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -122,12 +123,12 @@ public class Arctic extends BattleMap implements Listener {
 
     }
 
-    public int x1 = 715;
-    public int y1 = 107;
-    public int z1 = -179;
-    public int x2 = 903;
-    public int y2 = 203;
-    public int z2 = 10;
+    public int x1 = 894;
+    public int y1 = 219;
+    public int z1 = -3;
+    public int x2 = 724;
+    public int y2 = 101;
+    public int z2 = -170;
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void icePick(PlayerInteractEvent event) {
@@ -137,13 +138,7 @@ public class Arctic extends BattleMap implements Listener {
         Action action = event.getAction();
         Location location = player.getLocation();
 
-        ItemStack STONE_HOE = new ItemStack(Material.STONE_HOE, 1);
-        ItemMeta stone_hoe = STONE_HOE.getItemMeta();
-        stone_hoe.setDisplayName(ChatColor.BLUE + "Ice hook");
-        STONE_HOE.setItemMeta(stone_hoe);
-        World world = Bukkit.getWorld(name);
-
-        if (location.getWorld().getName().equals(name)) {
+        if (player.getWorld().getName().equals(name)) {
 
             if (material == Material.STONE_HOE) {
 
@@ -159,7 +154,7 @@ public class Arctic extends BattleMap implements Listener {
 
                             player.setVelocity(new Vector(0, 1, 0));
                             player.setFallDistance(0);
-                            world.playEffect(block.getLocation(), Effect.STEP_SOUND, 79);
+                            player.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, 79);
 
                         }
 

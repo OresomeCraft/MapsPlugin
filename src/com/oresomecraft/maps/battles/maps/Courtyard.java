@@ -61,11 +61,23 @@ public class Courtyard extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -25.5, 67, -3.5));
         FFASpawns.add(new Location(w, 45.5, 67, -3.5));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
         p.sendMessage(ChatColor.GOLD + "Interact with one of the signs to change class!");
     }
+
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = 61;
+    public int y1 = 107;
+    public int z1 = 59;
+
+    //Bottom right corner.
+    public int x2 = -39;
+    public int y2 = 56;
+    public int z2 = -64;
 
     ArrayList<String> selecting = new ArrayList<String>();
 

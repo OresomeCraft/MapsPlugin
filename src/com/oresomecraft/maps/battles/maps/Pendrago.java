@@ -61,11 +61,20 @@ public class Pendrago extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -84, 129, 6, (float) 90.085, (float) -0.784));
         FFASpawns.add(new Location(w, 2, 129, 6, (float) 267.054, (float) 55.635));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
         p.sendMessage(ChatColor.GOLD + "Interact with one of the signs to change class!");
     }
+
+    public int x1 = -95;
+    public int y1 = 152;
+    public int z1 = -49;
+
+    public int x2 = 10;
+    public int y2 = 102;
+    public int z2 = -49;
 
     ArrayList<String> selecting = new ArrayList<String>();
 

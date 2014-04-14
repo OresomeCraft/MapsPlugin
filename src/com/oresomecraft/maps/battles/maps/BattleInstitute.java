@@ -34,7 +34,7 @@ public class BattleInstitute extends BattleMap implements Listener {
 
     String name = "battleinstitute";
     String fullName = "The Battle Institute";
-    String creators = "bishoptaj, microstevey, _Trezo_, __R3 and AnomalousDyna";
+    String creators = "__R3, AnomalousDyna and bishoptaj";
     Gamemode[] modes = {Gamemode.LTS};
 
     public void readyTDMSpawns() {
@@ -45,11 +45,23 @@ public class BattleInstitute extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(Bukkit.getWorld(name), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
         FFASpawns.add(new Location(Bukkit.getWorld(name), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
         p.sendMessage(ChatColor.GOLD + "Wait until you are called and then punch the block!");
     }
+
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = 23;
+    public int y1 = 89;
+    public int z1 = 21;
+
+    //Bottom right corner.
+    public int x2 = -23;
+    public int y2 = 58;
+    public int z2 = -23;
 
     ArrayList<String> red = new ArrayList<String>();
     ArrayList<String> blue = new ArrayList<String>();

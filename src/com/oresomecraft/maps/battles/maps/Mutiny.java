@@ -47,6 +47,7 @@ public class Mutiny extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -38, 72, -38));
         FFASpawns.add(new Location(w, -36, 70, -18));
         FFASpawns.add(new Location(w, -36, 77, -56));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -92,14 +93,14 @@ public class Mutiny extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -71;
-    public int y1 = 134;
-    public int z1 = -100;
+    public int x1 = 19;
+    public int y1 = 51;
+    public int z1 = 3;
 
     //Bottom right corner.
-    public int x2 = 29;
-    public int y2 = 42;
-    public int z2 = 25;
+    public int x2 = -57;
+    public int y2 = 122;
+    public int z2 = -93;
 
     @EventHandler
     public void preventPlaceOutOfMap(BlockPlaceEvent event) {

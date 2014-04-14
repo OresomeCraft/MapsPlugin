@@ -59,6 +59,7 @@ public class Carnival extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -18, 5, 1831));
         FFASpawns.add(new Location(w, -79, 21, 1831));
         FFASpawns.add(new Location(w, -17, 49, 1831));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -88,13 +89,13 @@ public class Carnival extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -152;
-    public int y1 = 0;
-    public int z1 = 1816;
+    public int x1 = -160;
+    public int y1 = 85;
+    public int z1 = 1857;
 
     //Bottom right corner.
-    public int x2 = 5;
-    public int y2 = 64;
-    public int z2 = 1852;
+    public int x2 = 9;
+    public int y2 = -3;
+    public int z2 = 1811;
 
 }

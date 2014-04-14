@@ -43,6 +43,7 @@ public class Xenon extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 17, 2, 5));
         FFASpawns.add(new Location(w, 53, 3, -36));
         FFASpawns.add(new Location(w, 53, 11, 5));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

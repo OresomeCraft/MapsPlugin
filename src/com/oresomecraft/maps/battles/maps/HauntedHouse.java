@@ -45,6 +45,7 @@ public class HauntedHouse extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -269, 83, 25, -68, 0));
         FFASpawns.add(new Location(w, -214, 83, 92, 150, 0));
         FFASpawns.add(new Location(w, -258, 80, 64, 90, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -76,14 +77,14 @@ public class HauntedHouse extends BattleMap implements Listener {
     }
 
     // Top left corner.
-    public int x1 = -8;
-    public int y1 = 164;
-    public int z1 = 16;
+    public int x1 = -285;
+    public int y1 = 136;
+    public int z1 = 103;
 
     //Bottom right corner.
-    public int x2 = -85;
-    public int y2 = 62;
-    public int z2 = 99;
+    public int x2 = -206;
+    public int y2 = 69;
+    public int z2 = 0;
 
     @EventHandler
     public void preventMoveOutOfMap(PlayerMoveEvent event) {

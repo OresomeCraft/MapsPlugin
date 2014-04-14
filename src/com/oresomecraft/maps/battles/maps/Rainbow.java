@@ -33,6 +33,7 @@ public class Rainbow extends BattleMap implements Listener {
         Location blueSpawn = new Location(w, -28, 73, 77);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -67,4 +68,11 @@ public class Rainbow extends BattleMap implements Listener {
 
     }
 
+    public int x1 = 51;
+    public int y1 = 132;
+    public int z1 = 104;
+
+    public int x2 = -103;
+    public int y2 = 19;
+    public int z2 = -226;
 }

@@ -49,6 +49,7 @@ public class WinterEquator extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 2, 84, -48));
         FFASpawns.add(new Location(w, -3, 84, 58));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

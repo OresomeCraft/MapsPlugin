@@ -55,6 +55,7 @@ public class Towers extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 555, 12, -1175, 66, 0));
         FFASpawns.add(new Location(w, 539, 11, -1231, 12, 0));
         FFASpawns.add(new Location(w, 486, 13, -1188, -54, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

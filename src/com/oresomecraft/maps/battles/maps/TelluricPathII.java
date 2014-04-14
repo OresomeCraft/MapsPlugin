@@ -56,6 +56,7 @@ public class TelluricPathII extends BattleMap implements Listener {
 
         FFASpawns.add(new Location(w, 161, 46, 5));
         FFASpawns.add(new Location(w, 3, 46, 5));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -124,6 +125,7 @@ public class TelluricPathII extends BattleMap implements Listener {
 
     }
 
+    //TODO- needs redefinition
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
     public int x1 = -100;

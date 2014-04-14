@@ -41,6 +41,7 @@ public class Electricity extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 0, 76, -58));
         FFASpawns.add(new Location(w, 59, 76, 0));
         FFASpawns.add(new Location(w, 18, 76, -30));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -70,19 +71,18 @@ public class Electricity extends BattleMap implements Listener {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH);
         i.setItem(15, ARROWS);
-
     }
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 7;
-    public int y1 = 66;
-    public int z1 = 52;
+    public int x1 = -69;
+    public int y1 = 124;
+    public int z1 = 82;
 
     //Bottom right corner.
-    public int x2 = 93;
-    public int y2 = 0;
-    public int z2 = -37;
+    public int x2 = 64;
+    public int y2 = 65;
+    public int z2 = -85;
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void arrowboom(ProjectileHitEvent event) {

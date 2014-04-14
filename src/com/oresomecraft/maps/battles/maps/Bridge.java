@@ -37,6 +37,7 @@ public class Bridge extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -14, 66, -193, 0, 0));
         FFASpawns.add(new Location(w, -17, 66, -2, 180, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -69,15 +70,11 @@ public class Bridge extends BattleMap implements Listener {
         i.setItem(4, EXP_BOTTLE);
     }
 
-    //Unneeded.
-    /*
-    public int x1 = -67;
-    public int y1 = 40;
-    public int z1 = 15;
+    public int x1 = 45;
+    public int y1 = 5;
+    public int z1 = 35;
 
-    // Bottom right corner.
-    public int x2 = 36;
-    public int y2 = 101;
-    public int z2 = -223;
-    */
+    public int x2 = -99;
+    public int y2 = 127;
+    public int z2 = -236;
 }

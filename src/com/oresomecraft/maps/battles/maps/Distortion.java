@@ -59,6 +59,7 @@ public class Distortion extends BattleMap implements Listener {
         Location blueSpawn = new Location(w, 20, 71, 69, -1, 0);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -98,14 +99,14 @@ public class Distortion extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 0;
-    public int y1 = 1;
-    public int z1 = 0;
+    public int x1 = -28;
+    public int y1 = 155;
+    public int z1 = -86;
 
     //Bottom right corner.
-    public int x2 = 128;
-    public int y2 = 255;
-    public int z2 = 128;
+    public int x2 = 69;
+    public int y2 = 36;
+    public int z2 = 75;
 
     int distort;
 

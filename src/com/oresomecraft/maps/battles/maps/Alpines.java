@@ -40,6 +40,7 @@ public class Alpines extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 2, 84, -48, -1, 0));
         FFASpawns.add(new Location(w, -3, 84, 58, -178, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -66,14 +67,14 @@ public class Alpines extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 29;
-    public int y1 = 142;
-    public int z1 = 56;
+    public int x1 = 91;
+    public int y1 = 154;
+    public int z1 = -91;
 
     //Bottom right corner.
-    public int x2 = -203;
-    public int y2 = 42;
-    public int z2 = -72;
+    public int x2 = -94;
+    public int y2 = 43;
+    public int z2 = 95;
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void dirtPick(PlayerInteractEvent event) {

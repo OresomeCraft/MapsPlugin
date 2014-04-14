@@ -54,7 +54,7 @@ public class TreeOfLife extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -0, 77, -32, -101, 0));
         FFASpawns.add(new Location(w, 30, 78, -75, 14, 0));
         FFASpawns.add(new Location(w, 75, 80, -73, 24, 0));
-
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

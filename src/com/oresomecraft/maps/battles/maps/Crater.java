@@ -59,6 +59,7 @@ public class Crater extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -5, 79, 23));
         FFASpawns.add(new Location(w, -60, 79, -16));
         FFASpawns.add(new Location(w, 0, 78, -25));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -98,14 +99,14 @@ public class Crater extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -207;
-    public int y1 = 52;
-    public int z1 = -1220;
+    public int x1 = 20;
+    public int y1 = 112;
+    public int z1 = -72;
 
     //Bottom right corner.
-    public int x2 = -38;
-    public int y2 = 112;
-    public int z2 = -1125;
+    public int x2 = -84;
+    public int y2 = 55;
+    public int z2 = 77;
 
     @EventHandler
     public void blockPlace(BlockPlaceEvent event) {

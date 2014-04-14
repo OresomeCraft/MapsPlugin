@@ -66,7 +66,8 @@ public class BlockHunt extends BattleMap implements Listener {
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 35.5, 68, -11.5));
-        FFASpawns.add(new Location(w, -96.5, 68, -28.));
+        FFASpawns.add(new Location(w, -96.5, 68, -28));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -97,15 +98,13 @@ public class BlockHunt extends BattleMap implements Listener {
     }
 
     // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 29;
-    public int y1 = 142;
-    public int z1 = 56;
+    public int x1 = 90;
+    public int y1 = 122;
+    public int z1 = 91;
 
-    //Bottom right corner.
-    public int x2 = -203;
-    public int y2 = 42;
-    public int z2 = -72;
+    public int x2 = -145;
+    public int y2 = 41;
+    public int z2 = -110;
 
     /**
      * ALL CODE FOR DISGUISE MANAGER GOES BELOW HERE, DON'T TOUCH!

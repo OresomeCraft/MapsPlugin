@@ -12,11 +12,11 @@ import com.oresomecraft.OresomeBattles.api.*;
 @MapConfig
 public class ClashOfClayIII extends BattleMap implements Listener {
 
-    /*public ClashOfClayIII() {
+    public ClashOfClayIII() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
         disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS});
-    }*/
+    }
 
     String name = "clashofclay3";
     String fullName = "Clash Of Clay III";
@@ -35,6 +35,7 @@ public class ClashOfClayIII extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -43, 71, -1));
         FFASpawns.add(new Location(w, -259, 72, -55));
         FFASpawns.add(new Location(w, -16, 70, -28));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -78,13 +79,13 @@ public class ClashOfClayIII extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 52;
-    public int y1 = 127;
-    public int z1 = -110;
+    public int x1 = 24;
+    public int y1 = 128;
+    public int z1 = -103;
 
     //Bottom right corner.
-    public int x2 = -179;
-    public int y2 = -40;
-    public int z2 = 56;
+    public int x2 = -344;
+    public int y2 = 0;
+    public int z2 = 59;
 
 }

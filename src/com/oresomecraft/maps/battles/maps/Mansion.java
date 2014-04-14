@@ -80,6 +80,7 @@ public class Mansion extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 440, 71, -270));
         FFASpawns.add(new Location(w, 465, 74, -274));
         FFASpawns.add(new Location(w, 466, 74, -251));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -113,10 +114,10 @@ public class Mansion extends BattleMap implements Listener {
 
     }
 
-    public int x1 = 410;
-    public int y1 = 59;
-    public int z1 = -329;
-    public int x2 = 473;
-    public int y2 = 101;
-    public int z2 = -228;
+    public int x1 = 477;
+    public int y1 = 47;
+    public int z1 = -333;
+    public int x2 = 400;
+    public int y2 = 106;
+    public int z2 = -226;
 }

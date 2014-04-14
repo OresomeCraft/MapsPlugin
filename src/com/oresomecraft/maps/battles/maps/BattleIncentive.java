@@ -47,12 +47,24 @@ public class BattleIncentive extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -21, 72, 150, 359.6F, 8.9F));
         FFASpawns.add(new Location(w, -21, 72, 96, 179.9F, 10.8F));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
         p.sendMessage(ChatColor.GOLD + "Welcome to The Battle Incentive!");
         p.sendMessage(ChatColor.GOLD + "This is an arena that specialises in " + ChatColor.BOLD + "2v2 tag-team!");
     }
+
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = -59;
+    public int y1 = 65;
+    public int z1 = 92;
+
+    //Bottom right corner.
+    public int x2 = 20;
+    public int y2 = 105;
+    public int z2 = 158;
 
     ArrayList<String> red = new ArrayList<String>();
     ArrayList<String> blue = new ArrayList<String>();

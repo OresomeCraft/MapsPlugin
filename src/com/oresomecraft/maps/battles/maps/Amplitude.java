@@ -58,6 +58,7 @@ public class Amplitude extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 70, 66, 48));
         FFASpawns.add(new Location(w, 56, 66, 39));
         FFASpawns.add(new Location(w, 55, 66, 4));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -91,14 +92,14 @@ public class Amplitude extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 29;
-    public int y1 = 142;
-    public int z1 = 56;
+    public int x1 = -40;
+    public int y1 = 95;
+    public int z1 = -11;
 
     //Bottom right corner.
-    public int x2 = -203;
-    public int y2 = 42;
-    public int z2 = -72;
+    public int x2 = 97;
+    public int y2 = 68;
+    public int z2 = 66;
 
     public int auraBlast;
 

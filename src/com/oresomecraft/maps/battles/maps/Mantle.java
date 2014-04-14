@@ -40,6 +40,7 @@ public class Mantle extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -16, 84, 128));
         FFASpawns.add(new Location(w, -50, 84, 11));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -70,14 +71,14 @@ public class Mantle extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -85;
-    public int y1 = 65;
-    public int z1 = 0;
+    public int x1 = 28;
+    public int y1 = 61;
+    public int z1 = -42;
 
     //Bottom right corner.
-    public int x2 = 15;
-    public int y2 = 108;
-    public int z2 = 138;
+    public int x2 = -86;
+    public int y2 = 117;
+    public int z2 = 185;
 
     @EventHandler(ignoreCancelled = false)
     public void onWoolDrop(BlockBreakEvent event) {

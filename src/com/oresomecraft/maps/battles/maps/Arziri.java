@@ -23,6 +23,7 @@ public class Arziri extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
+        removeArrowsOnLand(true);
     }
 
     String name = "arziri";
@@ -49,6 +50,7 @@ public class Arziri extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 0, 99, 27, 2, 0));
         FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -83,14 +85,14 @@ public class Arziri extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 13;
-    public int y1 = 60;
-    public int z1 = -41;
+    public int x1 = -7;
+    public int y1 = 101;
+    public int z1 = 44;
 
     //Bottom right corner.
-    public int x2 = 113;
-    public int y2 = 40;
-    public int z2 = 48;
+    public int x2 = 116;
+    public int y2 = 30;
+    public int z2 = -46;
 
     @EventHandler
     public void arrowBoom(ProjectileHitEvent event) {
@@ -99,18 +101,6 @@ public class Arziri extends BattleMap implements Listener {
         if (getArena().equals(name)) {
             if (arrow instanceof Arrow) {
                 world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
-            }
-        }
-    }
-
-    @EventHandler
-    public void arrowAway(ProjectileHitEvent event) {
-        Entity projectile = event.getEntity();
-        Location location = projectile.getLocation();
-        if (location.getWorld().getName().equals(name)) {
-            if (projectile instanceof Arrow) {
-                Arrow arrow = (Arrow) projectile;
-                arrow.remove();
             }
         }
     }

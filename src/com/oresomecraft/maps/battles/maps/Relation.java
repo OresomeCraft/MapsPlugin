@@ -50,6 +50,7 @@ public class Relation extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 82, 88, 82, 2, 0));
         FFASpawns.add(new Location(w, 82, 80, 47, 2, 0));
         FFASpawns.add(new Location(w, 47, 80, 82, 2, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

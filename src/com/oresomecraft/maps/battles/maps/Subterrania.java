@@ -51,7 +51,7 @@ public class Subterrania extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -128, 49, 32));
         FFASpawns.add(new Location(w, -70, 49, 50));
         FFASpawns.add(new Location(w, -77, 50, 0));
-
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -86,10 +86,10 @@ public class Subterrania extends BattleMap implements Listener {
         i.setItem(9, ARROWS);
     }
 
-    public int x1 = 410;
-    public int y1 = 59;
-    public int z1 = -329;
-    public int x2 = 473;
-    public int y2 = 101;
-    public int z2 = -228;
+    public int x1 = -163;
+    public int y1 = 95;
+    public int z1 = 143;
+    public int x2 = 58;
+    public int y2 = 2;
+    public int z2 = -27;
 }

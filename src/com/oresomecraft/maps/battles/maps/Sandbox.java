@@ -49,6 +49,7 @@ public class Sandbox extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -17, 65, -2, -90, 0));
         FFASpawns.add(new Location(w, 2.1, 62, 28, 180, 0));
         FFASpawns.add(new Location(w, 50, 67, -10, 180, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -78,12 +79,12 @@ public class Sandbox extends BattleMap implements Listener {
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
     public int x1 = 65;
-    public int y1 = 124;
-    public int z1 = -64;
+    public int y1 = 141;
+    public int z1 = -77;
     //Bottom right corner.
-    public int x2 = -66;
+    public int x2 = -60;
     public int y2 = 35;
-    public int z2 = 58;
+    public int z2 = 62;
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {

@@ -149,7 +149,7 @@ public class Spire extends BattleMap implements Listener {
         if (!event.getBlock().getWorld().getName().equals(name)) return;
         if (event.getBlock().getType() == Material.SPONGE) {
             event.setCancelled(true);
-            event.getBlock().setType(Material.AIR);
+            event.getBlock().setType(Material.GOLD_BLOCK);
         }
     }
 

@@ -30,7 +30,6 @@ public class Stimulation extends BattleMap implements Listener {
     }
 
     public void readyFFASpawns() {
-
         FFASpawns.add(new Location(w, -293, 13, 1207, 2, 0));
         FFASpawns.add(new Location(w, -252, 15, 1207, 1, 0));
         FFASpawns.add(new Location(w, -255, 20, 1207, 1, 0));
@@ -48,6 +47,7 @@ public class Stimulation extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -283, 13, 1227, 1, 0));
         FFASpawns.add(new Location(w, -253, 10, 1199, 0, 0));
         FFASpawns.add(new Location(w, -250, 5, 1211, 2, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

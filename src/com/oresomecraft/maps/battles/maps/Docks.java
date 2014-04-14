@@ -49,6 +49,7 @@ public class Docks extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 1704, 23, 490, -90, 0));
         FFASpawns.add(new Location(w, 1704, 26, 490, -90, 0));
         FFASpawns.add(new Location(w, 1704, 30, 490, -90, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -83,14 +84,14 @@ public class Docks extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 1682;
-    public int y1 = 545;
-    public int z1 = 446;
+    public int x1 = 1674;
+    public int y1 = 61;
+    public int z1 = 439;
 
     //Bottom right corner.
-    public int x2 = 1813;
+    public int x2 = 1822;
     public int y2 = 3;
-    public int z2 = 531;
+    public int z2 = 538;
 
     @EventHandler
     public void arrowBoom(ProjectileHitEvent event) {

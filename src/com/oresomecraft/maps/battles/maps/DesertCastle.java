@@ -56,6 +56,7 @@ public class DesertCastle extends BattleMap implements Listener {
         FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, -37, 78, 30));
         FFASpawns.add(new Location(w, 38, 66, 29));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -96,12 +97,12 @@ public class DesertCastle extends BattleMap implements Listener {
 
     }
 
-    public int x1 = -1451;
-    public int y1 = 63;
-    public int z1 = -2145;
-    public int x2 = -1383;
-    public int y2 = 159;
-    public int z2 = -2066;
+    public int x1 = -80;
+    public int y1 = 133;
+    public int z1 = -29;
+    public int x2 = 64;
+    public int y2 = 59;
+    public int z2 = 73;
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {

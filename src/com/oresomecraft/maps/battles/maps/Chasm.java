@@ -49,6 +49,7 @@ public class Chasm extends BattleMap implements Listener {
         Location blueSpawn = new Location(w, 93, 92, 28);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -83,6 +84,17 @@ public class Chasm extends BattleMap implements Listener {
         i.setItem(10, ARROWS);
 
     }
+
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = -26;
+    public int y1 = 140;
+    public int z1 = 59;
+
+    //Bottom right corner.
+    public int x2 = 119;
+    public int y2 = -8;
+    public int z2 = -181;
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void icePick(PlayerInteractEvent event) {

@@ -52,6 +52,7 @@ public class Terminal extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -77, 71, -1169, -90, 0));
         FFASpawns.add(new Location(w, -58, 71, -1147, 156, 0));
         FFASpawns.add(new Location(w, -91, 71, -1140, 141, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

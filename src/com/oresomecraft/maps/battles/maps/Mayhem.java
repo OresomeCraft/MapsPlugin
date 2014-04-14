@@ -48,6 +48,7 @@ public class Mayhem extends BattleMap implements Listener {
         Location blueSpawn = new Location(w, 23, 112, 63, 3, 0);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -77,14 +78,14 @@ public class Mayhem extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 0;
-    public int y1 = 1;
-    public int z1 = 0;
+    public int x1 = 5;
+    public int y1 = 149;
+    public int z1 = 5;
 
     //Bottom right corner.
-    public int x2 = 128;
-    public int y2 = 255;
-    public int z2 = 128;
+    public int x2 = 122;
+    public int y2 = 65;
+    public int z2 = 126;
 
     int timer;
     int count = 1;

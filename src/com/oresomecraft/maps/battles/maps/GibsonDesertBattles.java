@@ -32,6 +32,7 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -10, 60, 3));
         FFASpawns.add(new Location(w, 226, 60, -100));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -69,14 +70,14 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 41;
-    public int y1 = 87;
-    public int z1 = 29;
+    public int x1 = -55;
+    public int y1 = 113;
+    public int z1 = 52;
 
     //Bottom right corner.
-    public int x2 = 220;
-    public int y2 = 31;
-    public int z2 = -117;
+    public int x2 = 293;
+    public int y2 = 39;
+    public int z2 = -164;
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void blockBreak(BlockBreakEvent event) {

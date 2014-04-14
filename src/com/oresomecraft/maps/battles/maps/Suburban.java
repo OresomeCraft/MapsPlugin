@@ -62,6 +62,7 @@ public class Suburban extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 326, 53, -448));
         FFASpawns.add(new Location(w, 364, 54, -529));
         FFASpawns.add(new Location(w, 437, 58, -482));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

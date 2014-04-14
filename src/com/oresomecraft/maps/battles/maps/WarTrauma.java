@@ -45,6 +45,7 @@ public class WarTrauma extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -35, 70, 8));
         FFASpawns.add(new Location(w, -35, 70, 190));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

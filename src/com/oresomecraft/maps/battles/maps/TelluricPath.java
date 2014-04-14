@@ -120,14 +120,14 @@ public class TelluricPath extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
+    public int x1 = -161;
+    public int y1 = 83;
+    public int z1 = -119;
 
     //Bottom right corner.
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
+    public int x2 = 16;
+    public int y2 = 0;
+    public int z2 = -119;
 
     @EventHandler
     public void endermanHit(EntityDamageEvent event) {

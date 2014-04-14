@@ -23,6 +23,7 @@ public class ClashOfClayII extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
         disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
+        disableBlocks(new Material[]{Material.WORKBENCH, Material.PISTON_MOVING_PIECE});
     }
 
     String name = "clashofclayii";
@@ -42,6 +43,7 @@ public class ClashOfClayII extends BattleMap implements Listener {
         Location blueSpawn = new Location(w, 250, 77, -27);
         FFASpawns.add(blueSpawn);
         FFASpawns.add(redSpawn);
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -81,14 +83,14 @@ public class ClashOfClayII extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
+    public int x1 = 256;
+    public int y1 = 169;
+    public int z1 = -95;
 
     //Bottom right corner.
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
+    public int x2 = -1;
+    public int y2 = 54;
+    public int z2 = 25;
 
     @EventHandler
     public void breakListener(BlockBreakEvent event) {

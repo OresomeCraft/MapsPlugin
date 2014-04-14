@@ -42,7 +42,6 @@ public class TowerHill extends BattleMap implements Listener {
     }
 
     public void readyFFASpawns() {
-
         FFASpawns.add(new Location(w, -31, 71, 13, -34, 0));
         FFASpawns.add(new Location(w, -40, 71, -31, -82, 0));
         FFASpawns.add(new Location(w, -43, 71, 12, -64, 0));
@@ -51,7 +50,7 @@ public class TowerHill extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -12, 75, -7, 89, 0));
         FFASpawns.add(new Location(w, -57, 71, -26, -62, 0));
         FFASpawns.add(new Location(w, -56, 75, -8, -89, 0));
-
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

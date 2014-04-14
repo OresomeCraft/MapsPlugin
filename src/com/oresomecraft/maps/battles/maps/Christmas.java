@@ -60,6 +60,7 @@ public class Christmas extends BattleMap implements Listener {
 
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -138,14 +139,14 @@ public class Christmas extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 10;
-    public int y1 = 87;
-    public int z1 = 13;
+    public int x1 = 0;
+    public int y1 = 91;
+    public int z1 = -73;
 
     //Bottom right corner.
-    public int x2 = -122;
-    public int y2 = 34;
-    public int z2 = -60;
+    public int x2 = -82;
+    public int y2 = 51;
+    public int z2 = 16;
 
     @EventHandler
     public void onConsume(PlayerItemConsumeEvent event) {

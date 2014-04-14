@@ -56,6 +56,7 @@ public class SnowyRidge extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 24, 35, 3, 107, 0));
         FFASpawns.add(new Location(w, 23, 39, -14, 62, 0));
         FFASpawns.add(new Location(w, 21, 54, -48, 38, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

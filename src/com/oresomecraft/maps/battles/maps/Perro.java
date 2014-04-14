@@ -93,6 +93,7 @@ public class Perro extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -1439, 129, -2093, -87, 0));
         FFASpawns.add(new Location(w, -1410, 114, -2081, -178, 0));
         FFASpawns.add(new Location(w, -1416, 98, -2081, -159, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -220,25 +221,18 @@ public class Perro extends BattleMap implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void glassShot(ProjectileHitEvent event) {
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
+
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
         Block block = hit.getBlock();
         Material material = block.getType();
 
-        if (contains(hit, x1, x2, y1, y2, z1, z2)) {
-
-            if (proj instanceof Arrow) {
-
-                if (material == Material.THIN_GLASS) {
-
-                    block.breakNaturally();
-
-                }
-
+        if (proj instanceof Arrow) {
+            if (material == Material.THIN_GLASS) {
+                block.breakNaturally();
             }
-
         }
-
     }
 
     @EventHandler

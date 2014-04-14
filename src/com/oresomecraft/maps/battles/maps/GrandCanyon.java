@@ -42,7 +42,6 @@ public class GrandCanyon extends BattleMap implements Listener {
     }
 
     public void readyFFASpawns() {
-
         FFASpawns.add(new Location(w, -4, 87, -4, -4, 0));
         FFASpawns.add(new Location(w, -45, 102, 113, -160, 0));
         FFASpawns.add(new Location(w, 54, 98, -17, 31, 0));
@@ -50,6 +49,7 @@ public class GrandCanyon extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -54, 92, 15, -90, 0));
         FFASpawns.add(new Location(w, 45, 100, 78, 90, 0));
         FFASpawns.add(new Location(w, 57, 99, 116, 90, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -82,14 +82,14 @@ public class GrandCanyon extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -110;
-    public int y1 = 144;
-    public int z1 = 204;
+    public int x1 = -69;
+    public int y1 = 140;
+    public int z1 = -45;
 
     //Bottom right corner.
-    public int x2 = 119;
-    public int y2 = 21;
-    public int z2 = -102;
+    public int x2 = 70;
+    public int y2 = 26;
+    public int z2 = 163;
 
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onFly(PlayerToggleFlightEvent event) {

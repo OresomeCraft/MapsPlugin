@@ -69,6 +69,7 @@ public class Wartown extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 183, 60, -230, -46, 0));
         FFASpawns.add(new Location(w, 200, 60, -251, 47, 0));
         FFASpawns.add(new Location(w, 174, 69, -234, 41, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

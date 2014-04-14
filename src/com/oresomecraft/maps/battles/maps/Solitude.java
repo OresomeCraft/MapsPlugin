@@ -87,6 +87,7 @@ public class Solitude extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 406, 46, 966));
         FFASpawns.add(new Location(w, 267, 92, 987));
         FFASpawns.add(new Location(w, 296, 60, 951));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

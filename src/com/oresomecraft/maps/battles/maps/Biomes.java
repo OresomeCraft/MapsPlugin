@@ -53,6 +53,7 @@ public class Biomes extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 93, 84, 3, -0, 0));
         FFASpawns.add(new Location(w, 120, 84, 18, -146, 0));
         FFASpawns.add(new Location(w, 123, 84, -11, 113, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -86,12 +87,12 @@ public class Biomes extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 160;
-    public int y1 = 136;
-    public int z1 = 74;
+    public int x1 = -61;
+    public int y1 = 228;
+    public int z1 = 80;
 
-    public int x2 = -66;
-    public int y2 = 57;
-    public int z2 = -144;
+    public int x2 = 171;
+    public int y2 = 53;
+    public int z2 = -149;
 
 }

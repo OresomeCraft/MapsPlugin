@@ -67,6 +67,7 @@ public class Battlement extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -30, 74, 20, 3, 0));
         FFASpawns.add(new Location(w, -30, 78, 20, 3, 0));
         FFASpawns.add(new Location(w, 0, 53, 0, 2, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -99,13 +100,13 @@ public class Battlement extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -80;
-    public int y1 = 180;
-    public int z1 = 80;
+    public int x1 = 91;
+    public int y1 = 149;
+    public int z1 = -92;
 
     // Bottom right corner.
-    public int x2 = 80;
-    public int y2 = 1;
-    public int z2 = -80;
+    public int x2 = -108;
+    public int y2 = -7;
+    public int z2 = 106;
 
 }

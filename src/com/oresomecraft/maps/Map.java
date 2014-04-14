@@ -6,6 +6,8 @@ import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -15,6 +17,7 @@ import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.world.WorldLoadEvent;
@@ -51,15 +54,26 @@ public abstract class Map implements Listener {
     private boolean allowBuild = true;
     private boolean allowPlace = true;
     private Material[] disabledDrops;
+    private Material[] disabledBlocks;
     private boolean pearlDamage = true;
     private Long timeLock;
     private boolean autoSpawnProtection;
     private int spawnProtectionDuration;
     private int blockLimit = 256;
     private boolean fireSpread = true;
+    public boolean arrowOnLand = false;
     protected int tdmTime = 15;
     public Location ctfRedFlag, ctfBlueFlag, kothFlag;
     public CuboidRegion criminalTester;
+
+    //Region attributes
+    public int rx1 = 0;
+    public int ry1 = 0;
+    public int rz1 = 0;
+
+    public int rx2 = 0;
+    public int ry2 = 0;
+    public int rz2 = 0;
 
     public World w; // World variable
 
@@ -173,6 +187,25 @@ public abstract class Map implements Listener {
     }
 
     /**
+     * Define the region box of a map
+     *
+     * @param x1 First X co-ord
+     * @param x2 Second X co-ord
+     * @param y1 First Y co-ord
+     * @param y2 Second Y co-ord
+     * @param z1 First Z co-ord
+     * @param z2 Second Z co-ord
+     */
+    public void defineRegion(int x1, int x2, int y1, int y2, int z1, int z2) {
+        rx1 = x1;
+        rx2 = x2;
+        ry1 = y1;
+        ry2 = y2;
+        rz1 = z1;
+        rz2 = z2;
+    }
+
+    /**
      * Sets whether or not players can place blocks on the map
      *
      * @param allow Whether or not player's can place blocks on the map
@@ -191,12 +224,30 @@ public abstract class Map implements Listener {
     }
 
     /**
+     * Disables certain blocks being broken
+     *
+     * @param blocks A Material array of what blocks to disable
+     */
+    public void disableBlocks(Material[] blocks) {
+        disabledBlocks = blocks;
+    }
+
+    /**
      * Disables fire spread
      *
      * @param allow Whether or not fire spreads and catches
      */
     public void setFireSpread(boolean allow) {
         fireSpread = allow;
+    }
+
+    /**
+     * Removes arrow on collision
+     *
+     * @param allow Whether or not the arrow is removed
+     */
+    public void removeArrowsOnLand(boolean allow) {
+        arrowOnLand = allow;
     }
 
     /**
@@ -275,6 +326,18 @@ public abstract class Map implements Listener {
     }
 
     /**
+     * Removes arrows on collision with an entity is disabled by the map
+     *
+     * @param event an Event called by the server
+     */
+    @EventHandler
+    public void arrowAway(ProjectileHitEvent event) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof Arrow) event.getEntity().remove();
+        }
+    }
+
+    /**
      * Prevents block placing if disabled by the map
      * Also prevents block placing above the height limit
      *
@@ -286,7 +349,8 @@ public abstract class Map implements Listener {
         if (event.getBlock().getWorld().getName().equals(name) && !allowPlace) event.setCancelled(true);
         if (event.getBlock().getWorld().getName().equals(name) && event.getBlock().getY() > blockLimit)
             event.setCancelled(true);
-
+        if (event.getBlock().getWorld().getName().equals(name) && Arrays.asList(disabledBlocks).contains(event.getBlock().getType()))
+            event.setCancelled(true);
     }
 
     /**
@@ -553,8 +617,8 @@ public abstract class Map implements Listener {
         if (t == Team.CTF_RED) return Color.RED;
         if (t == Team.TDM_RED) return Color.RED;
         if (t == Team.LTS_RED) return Color.RED;
-        if (t == Team.FFA) return Color.OLIVE;
-        if (t == Team.HUMANS) return Color.OLIVE;
+        if (t == Team.FFA) return Color.GREEN;
+        if (t == Team.HUMANS) return Color.GREEN;
         if (t == Team.LMS) return Color.BLUE;
         if (t == Team.ZOMBIES) return Color.MAROON;
         return Color.WHITE;

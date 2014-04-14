@@ -49,6 +49,7 @@ public class Equator extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 2, 84, -48));
         FFASpawns.add(new Location(w, -3, 84, 58));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -87,14 +88,14 @@ public class Equator extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 103;
-    public int y1 = 115;
-    public int z1 = 103;
+    public int x1 = -125;
+    public int y1 = 122;
+    public int z1 = -126;
 
     //Bottom right corner.
-    public int x2 = -103;
-    public int y2 = 0;
-    public int z2 = -103;
+    public int x2 = 114;
+    public int y2 = 40;
+    public int z2 = 102;
 
     @EventHandler(ignoreCancelled = false)
     public void onBlockBreak(BlockBreakEvent event) {

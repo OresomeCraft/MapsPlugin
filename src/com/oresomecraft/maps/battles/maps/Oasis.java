@@ -54,6 +54,7 @@ public class Oasis extends BattleMap implements Listener {
         Location blueSpawn = new Location(w, -6, 87, -151, 0, 0);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -95,6 +96,13 @@ public class Oasis extends BattleMap implements Listener {
 
     }
 
+    public int x1 = 80;
+    public int y1 = 62;
+    public int z1 = 90;
+
+    public int x2 = -74;
+    public int y2 = 122;
+    public int z2  = -166;
     public void iceTemp(final Block block, final Player p) {
         block.setType(Material.PACKED_ICE);
         new BukkitRunnable() {

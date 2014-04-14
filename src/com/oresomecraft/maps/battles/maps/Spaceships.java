@@ -40,6 +40,7 @@ public class Spaceships extends BattleMap implements Listener {
         Location redSpawn = new Location(w, 210, 43, -80, 0, 0);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

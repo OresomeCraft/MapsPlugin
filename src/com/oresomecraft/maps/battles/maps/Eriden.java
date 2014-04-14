@@ -60,6 +60,7 @@ public class Eriden extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -29, 75, -77, 212.8F, 11.1F));
         FFASpawns.add(new Location(w, -81, 57, -27, 43.3F, 11.7F));
         FFASpawns.add(new Location(w, 11, 57, -37, 232.2F, -4.3F));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -117,13 +118,14 @@ public class Eriden extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
+    public int x1 = -132;
+    public int y1 = 137;
+    public int z1 = 79;
+
     //Bottom right corner.
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
+    public int x2 = 59;
+    public int y2 = 0;
+    public int z2 = -146;
 
     @EventHandler
     public void vHit(EntityDamageEvent event) {

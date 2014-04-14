@@ -59,6 +59,7 @@ public class TheBowl extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 29, 70, 31, 90, 0));
         FFASpawns.add(new Location(w, -20, 76, 20, -30, 0));
         FFASpawns.add(new Location(w, -7, 68, 16, 90, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

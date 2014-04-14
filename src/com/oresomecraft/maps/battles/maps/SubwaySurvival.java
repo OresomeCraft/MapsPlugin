@@ -46,6 +46,7 @@ public class SubwaySurvival extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 68, 67, 74, -50, 0));
         FFASpawns.add(new Location(w, 120, 70, 74, -50, 0));
         FFASpawns.add(new Location(w, 130, 75, 56, -50, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

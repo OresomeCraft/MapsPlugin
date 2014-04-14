@@ -93,14 +93,14 @@ public class Warehouse extends BattleMap implements Listener {
     }
 
     // Top left corner.
-    public int x1 = -38;
-    public int y1 = 118;
-    public int z1 = 98;
+    public int x1 = -46;
+    public int y1 = 125;
+    public int z1 = -11;
 
     //Bottom right corner.
-    public int x2 = -73;
-    public int y2 = 71;
-    public int z2 = -8;
+    public int x2 = 76;
+    public int y2 = 60;
+    public int z2 = 97;
 
     @EventHandler
     public void onBlockClick(PlayerInteractEvent event) {

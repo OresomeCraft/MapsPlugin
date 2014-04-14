@@ -55,6 +55,7 @@ public class Yuzkave extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 307, 64, -33));
         FFASpawns.add(new Location(w, 285, 65, -9));
         FFASpawns.add(new Location(w, 284, 72, -33));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {

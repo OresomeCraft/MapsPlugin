@@ -9,6 +9,8 @@ import org.bukkit.inventory.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
 
+import java.util.Random;
+
 @MapConfig
 public class BurnFirePort extends BattleMap implements Listener {
 
@@ -54,6 +56,7 @@ public class BurnFirePort extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -11, 33, 62, 45, 0));
         FFASpawns.add(new Location(w, -115, 30, 79, 90, 0));
         FFASpawns.add(new Location(w, -86, 28, 87, 90, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -83,19 +86,19 @@ public class BurnFirePort extends BattleMap implements Listener {
         i.setItem(10, ARROW);
     }
 
-    public int x1 = -212;
-    public int y1 = 77;
-    public int z1 = 15;
-    public int x2 = -2;
+    public int x1 = -199;
+    public int y1 = 93;
+    public int z1 = 197;
+
+    public int x2 = -8;
     public int y2 = 1;
-    public int z2 = 215;
+    public int z2 = 29;
 
     @EventHandler
     public void preventMoveOutOfMap(PlayerMoveEvent event) {
         if (event.getPlayer().getWorld().getName().equals(name)
                 && !contains(event.getTo(), x1, x2, y1, y2, z1, z2)) {
-            event.setCancelled(true);
-            event.getPlayer().sendMessage(ChatColor.RED + "You're not allowed of the map! Get back in!");
+            event.getPlayer().teleport(FFASpawns.get(new Random().nextInt(FFASpawns.size())));
         }
     }
 

@@ -115,14 +115,14 @@ public class Containment extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block.
     // Top left corner.
-    public int x1 = 0;
-    public int y1 = 1;
-    public int z1 = 0;
+    public int x1 = -69;
+    public int y1 = 111;
+    public int z1 = 43;
 
     //Bottom right corner.
-    public int x2 = 128;
-    public int y2 = 255;
-    public int z2 = 128;
+    public int x2 = 95;
+    public int y2 = 0;
+    public int z2 = -89;
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {

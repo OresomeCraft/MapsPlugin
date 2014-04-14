@@ -40,6 +40,7 @@ public class Moria extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -165, 66, 5, -90, 0));
         FFASpawns.add(new Location(w, -39, 104, -5, 0, 0));
         FFASpawns.add(new Location(w, -188, 72, 34, -179, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -56,7 +57,7 @@ public class Moria extends BattleMap implements Listener {
         ItemStack SADDLE = new ItemStack(Material.SADDLE, 1);
         ItemStack NAME_TAG = new ItemStack(Material.NAME_TAG, 1);
         ItemStack CARROT_STICK = new ItemStack(Material.CARROT_STICK, 1);
-        ItemStack SPAWN_PIG = new ItemStack(Material.MONSTER_EGG, 1, (byte)90);
+        ItemStack SPAWN_PIG = new ItemStack(Material.MONSTER_EGG, 1, (byte) 90);
 
         ItemStack DIAMOND_HELMET = new ItemStack(Material.DIAMOND_HELMET, 1);
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
@@ -90,14 +91,14 @@ public class Moria extends BattleMap implements Listener {
 
     // Region. (Top corner block and bottom corner block
     // Top left corner
-    public int x1 = -60;
-    public int y1 = 3;
-    public int z1 = 1;
+    public int x1 = 33;
+    public int y1 = 180;
+    public int z1 = 71;
 
     // Bottom right corner
-    public int x2 = 64;
-    public int y2 = 56;
-    public int z2 = 194;
+    public int x2 = -250;
+    public int y2 = 23;
+    public int z2 = -80;
 
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {

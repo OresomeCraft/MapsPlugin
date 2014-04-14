@@ -62,6 +62,7 @@ public class Skyislands extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 742, 182, -1237, -179, 0));
         FFASpawns.add(new Location(w, 764, 177, -1233, -179, 0));
         FFASpawns.add(new Location(w, 731, 178, -1240, -1, 0));
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
