@@ -114,7 +114,6 @@ public class BattleInstitute extends BattleMap implements Listener {
 
     @EventHandler
     public void leaveSpec(final PlayerCommandPreprocessEvent event) {
-        if (!active) return;
         if (event.getMessage().toLowerCase().startsWith("/join")) {
             try {
                 if (!red.contains(event.getPlayer().getName()) && !blue.contains(event.getPlayer().getName()) && Bukkit.getWorld(name).getPlayers().size() != 0) {
