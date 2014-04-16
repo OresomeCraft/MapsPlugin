@@ -139,9 +139,9 @@ public class Wartown extends BattleMap implements Listener {
                     event.getPlayer().getWorld().playSound(event.getItemDrop().getLocation(), Sound.FUSE, 1L, 1L);
                     TNTPrimed tnt = event.getPlayer().getWorld().spawn(event.getItemDrop().getLocation().subtract(0, 1, 0), TNTPrimed.class);
                     tnt.setFuseTicks(3 * 20);
-                    Vector velocity = new Vector();
-                    velocity = event.getPlayer().getLocation().getDirection().multiply(1.4);
-                    event.getPlayer().setVelocity(velocity);
+                    Vector velocity;
+                    velocity = tnt.getLocation().getDirection().multiply(1.4);
+                    tnt.setVelocity(velocity);
                     event.getItemDrop().remove();
                 } else {
                     event.getPlayer().sendMessage(ChatColor.RED + "You can't detonate C4 in a spawn!");

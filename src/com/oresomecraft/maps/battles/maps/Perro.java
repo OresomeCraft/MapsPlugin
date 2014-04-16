@@ -46,7 +46,7 @@ public class Perro extends BattleMap implements Listener {
         redSpawns.add(redSpawn);
         blueSpawns.add(blueSpawn);
         redSpawns.add(new Location(w, -1421, 139, -2080, 179, 0));
-        blueSpawns.add(new Location(w, -1400, 97, -2081, 116, 0));
+        blueSpawns.add(new Location(w, -1400, 98, -2081, 116, 0));
         redSpawns.add(new Location(w, -1442, 114, -2089, -90, 0));
         blueSpawns.add(new Location(w, -1438, 88, -2093, -90, 0));
         redSpawns.add(new Location(w, -1426, 88, -2107, 93, 0));
