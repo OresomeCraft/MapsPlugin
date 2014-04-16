@@ -21,6 +21,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,12 +137,16 @@ public class Wartown extends BattleMap implements Listener {
             if (event.getItemDrop().getItemStack().getType() == Material.SULPHUR) {
                 if (!contains(event.getItemDrop().getLocation(), 186, 162, 63, 86, -257, -278) && !contains(event.getItemDrop().getLocation(), 154, 197, 77, 63, -185, -143)) {
                     event.getPlayer().getWorld().playSound(event.getItemDrop().getLocation(), Sound.FUSE, 1L, 1L);
-                    Entity tnt = event.getPlayer().getWorld().spawn(event.getItemDrop().getLocation().subtract(0, 1, 0), TNTPrimed.class);
-                    ((TNTPrimed) tnt).setFuseTicks(3 * 20);
+                    TNTPrimed tnt = event.getPlayer().getWorld().spawn(event.getItemDrop().getLocation().subtract(0, 1, 0), TNTPrimed.class);
+                    tnt.setFuseTicks(3 * 20);
+                    Vector velocity = new Vector();
+                    velocity = event.getPlayer().getLocation().getDirection().multiply(1.4);
+                    event.getPlayer().setVelocity(velocity);
                     event.getItemDrop().remove();
                 } else {
                     event.getPlayer().sendMessage(ChatColor.RED + "You can't detonate C4 in a spawn!");
                     event.setCancelled(true);
+                    event.getPlayer().updateInventory();
                 }
             }
         }
