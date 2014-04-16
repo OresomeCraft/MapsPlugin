@@ -3,6 +3,7 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.*;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -74,6 +75,7 @@ public class BiomeBattle extends BattleMap implements Listener {
         fMeta.setLore(fLore);
         BLAZE_ROD.setItemMeta(fMeta);
 
+        BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_CAP, LEATHER_BOOTS});
 
         p.getInventory().setLeggings(LEATHER_PANTS);
