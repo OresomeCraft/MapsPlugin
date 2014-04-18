@@ -78,7 +78,7 @@ public class Arctic extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 790, 128, -78, 177, 0));
         FFASpawns.add(new Location(w, 830, 152, -142, 19, 0));
         FFASpawns.add(new Location(w, 855, 130, -50, 136, 0));
-        FFASpawns.add(new Location(w, 798, 148, -74, -134, 0));
+        FFASpawns.add(new Location(w, 798, 149, -74, -134, 0));
         FFASpawns.add(new Location(w, 789, 123, -94, 133, 0));
         defineRegion(x1, x2, y1, y2, z1, z2);
     }
