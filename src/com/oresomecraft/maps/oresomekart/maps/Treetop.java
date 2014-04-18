@@ -16,9 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 
 @MapConfig
-public class TreeTop extends OresomeKartMap implements Listener {
+public class Treetop extends OresomeKartMap implements Listener {
 
-    public TreeTop() {
+    public Treetop() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         setFinishPoint(new CuboidRegion(new Location(w, -51, 55, 0), new Location(w, -51, 63, -15)));
