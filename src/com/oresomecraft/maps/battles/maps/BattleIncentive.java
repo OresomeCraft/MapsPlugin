@@ -163,7 +163,7 @@ public class BattleIncentive extends BattleMap implements Listener {
                 }
             }
         } catch (Exception e) {
-
+            // TODO: This is inefficient, fix it.
         }
     }
 

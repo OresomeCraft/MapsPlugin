@@ -148,7 +148,7 @@ public class BattleInstitute extends BattleMap implements Listener {
 
                     }
                 } catch (Exception exc) {
-                    System.out.println(exc.getMessage());
+                    // TODO: This is inefficient, fix it.
                 }
             }
 
