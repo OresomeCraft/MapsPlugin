@@ -3,6 +3,7 @@ package com.oresomecraft.maps.arcade;
 import com.oresomecraft.OresomeBattles.api.events.EndBattleEvent;
 import com.oresomecraft.maps.Map;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -18,6 +19,10 @@ public abstract class ArcadeMap extends Map {
     private boolean explosions = true;
     private boolean autoTNT = false;
     private boolean playerDamage = true;
+
+    public Location witherSpawn;
+    public Location witherRegion1;
+    public Location witherRegion2;
 
 
     /**
@@ -57,6 +62,26 @@ public abstract class ArcadeMap extends Map {
 
     public void setAllowPlayerDamage(boolean allow) {
         this.playerDamage = allow;
+    }
+
+    /**
+     * Sets the location for wither skeletons to spawn
+     *
+     * @param spawn The location where withers will spawn
+     */
+    public void setWitherSpawn(Location spawn) {
+        witherSpawn = spawn;
+    }
+
+    /**
+     * Sets the wither island region
+     *
+     * @param l1 The top left corner of the wither island
+     * @param l2 The bottom right corner of the wither island
+     */
+    public void setWitherRegion(Location l1, Location l2) {
+        witherRegion1 = l1;
+        witherRegion2 = l2;
     }
 
     /**
