@@ -136,9 +136,11 @@ public class BattleInstitute extends BattleMap implements Listener {
                             public void run() {
                                 if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
                                     if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_RED) {
+                                        if(!red.contains(event.getPlayer().getName()))
                                         red.add(event.getPlayer().getName());
                                         Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " joined red!");
                                     } else if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_BLUE) {
+                                        if(!blue.contains(event.getPlayer().getName()))
                                         blue.add(event.getPlayer().getName());
                                         Bukkit.broadcastMessage(ChatColor.BLUE + event.getPlayer().getName() + " joined blue!");
                                     }
