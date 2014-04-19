@@ -28,11 +28,11 @@ import java.util.Random;
 @MapConfig
 public class BattleIncentive extends BattleMap implements Listener {
 
-    /*public BattleIncentive() {
+    public BattleIncentive() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.COOKED_BEEF, Material.POTION});
-    }*/
+    }
 
     String name = "battleincentive";
     String fullName = "The Battle Incentive";

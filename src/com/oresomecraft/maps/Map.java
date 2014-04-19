@@ -54,7 +54,7 @@ public abstract class Map implements Listener {
     private boolean allowBuild = true;
     private boolean allowPlace = true;
     private Material[] disabledDrops;
-    private Material[] disabledBlocks;
+    private Material[] disabledBlocks = new Material[]{Material.AIR};
     private boolean pearlDamage = true;
     private Long timeLock;
     private boolean autoSpawnProtection;
