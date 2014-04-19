@@ -68,7 +68,7 @@ public class Moria extends BattleMap implements Listener {
         ItemStack CHAIN_BOOTS = new ItemStack(Material.CHAINMAIL_BOOTS, 1);
 
         InvUtils.nameItem(NAME_TAG, "Trusty Steed");
-        
+
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS});
 
         p.getInventory().setHelmet(DIAMOND_HELMET);

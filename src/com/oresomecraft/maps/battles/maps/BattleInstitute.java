@@ -26,11 +26,11 @@ import java.util.Random;
 @MapConfig
 public class BattleInstitute extends BattleMap implements Listener {
 
-    public BattleInstitute() {
+    /*public BattleInstitute() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.COOKED_BEEF, Material.POTION});
-    }
+    }*/
 
     String name = "battleinstitute";
     String fullName = "The Battle Institute";
