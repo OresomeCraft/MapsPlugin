@@ -21,6 +21,9 @@ public class Moria extends BattleMap implements Listener {
     public Moria() {
         super.initiate(this, name, fullName, creators, modes);
         lockTime("day");
+        disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.IRON_CHESTPLATE, Material.STONE_SWORD, Material.NAME_TAG,
+                Material.CARROT_STICK, Material.NAME_TAG, Material.MONSTER_EGG, Material.DIAMOND_PICKAXE, Material.CHAINMAIL_BOOTS,
+                Material.LEATHER_LEGGINGS});
     }
 
     String name = "moria";
