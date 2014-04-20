@@ -23,7 +23,7 @@ public class Suburban extends BattleMap implements Listener {
     String name = "suburban";
     String fullName = "Suburban Complex";
     String creators = "__R3, _Moist and kalikakitty";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
         blueSpawns.add(new Location(w, 360, 40, -482));
@@ -47,8 +47,6 @@ public class Suburban extends BattleMap implements Listener {
         redSpawns.add(new Location(w, 326, 53, -448));
         redSpawns.add(new Location(w, 364, 54, -529));
         redSpawns.add(new Location(w, 437, 58, -482));
-
-        setKoTHMonument(new Location(w, 363, 54, -483));
     }
 
     public void readyFFASpawns() {
