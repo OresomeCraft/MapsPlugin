@@ -379,7 +379,8 @@ public abstract class Map implements Listener {
         TeleportCause cause = event.getCause();
         Location destination = event.getTo();
 
-        if (!BattlePlayer.getBattlePlayer(player).isSpectator()) {
+        if (BattlePlayer.getBattlePlayer(player) != null &&
+                !BattlePlayer.getBattlePlayer(player).isSpectator()) {
             if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
                 if (pearlDamage) {
                     if (cause == TeleportCause.ENDER_PEARL) {
