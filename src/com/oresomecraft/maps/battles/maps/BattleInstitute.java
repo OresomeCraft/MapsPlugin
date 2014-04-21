@@ -136,12 +136,12 @@ public class BattleInstitute extends BattleMap implements Listener {
                             public void run() {
                                 if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
                                     if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_RED) {
-                                        if(!red.contains(event.getPlayer().getName()))
-                                        red.add(event.getPlayer().getName());
+                                        if (!red.contains(event.getPlayer().getName()))
+                                            red.add(event.getPlayer().getName());
                                         Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " joined red!");
                                     } else if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_BLUE) {
-                                        if(!blue.contains(event.getPlayer().getName()))
-                                        blue.add(event.getPlayer().getName());
+                                        if (!blue.contains(event.getPlayer().getName()))
+                                            blue.add(event.getPlayer().getName());
                                         Bukkit.broadcastMessage(ChatColor.BLUE + event.getPlayer().getName() + " joined blue!");
                                     }
                                 }
@@ -215,17 +215,19 @@ public class BattleInstitute extends BattleMap implements Listener {
             return;
         }
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.getInventory().clear();
-            p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
-            p.getInventory().setChestplate(new ItemStack(Material.AIR, 1));
-            p.getInventory().setBoots(new ItemStack(Material.AIR, 1));
-            p.getInventory().setLeggings(new ItemStack(Material.AIR, 1));
-            for (PotionEffect po : p.getActivePotionEffects()) {
-                p.removePotionEffect(po.getType());
+            if (BattlePlayer.getBattlePlayer(p).inBattle() && !BattlePlayer.getBattlePlayer(p).isSpectator()) {
+                p.getInventory().clear();
+                p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
+                p.getInventory().setChestplate(new ItemStack(Material.AIR, 1));
+                p.getInventory().setBoots(new ItemStack(Material.AIR, 1));
+                p.getInventory().setLeggings(new ItemStack(Material.AIR, 1));
+                for (PotionEffect po : p.getActivePotionEffects()) {
+                    p.removePotionEffect(po.getType());
+                }
+                p.setHealth(20);
+                p.setFoodLevel(20);
+                p.updateInventory();
             }
-            p.setHealth(20);
-            p.setFoodLevel(20);
-            p.updateInventory();
         }
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override

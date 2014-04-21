@@ -350,17 +350,19 @@ public class BattleIncentive extends BattleMap implements Listener {
         currentRed2 = "???";
 
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.getInventory().clear();
-            p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
-            p.getInventory().setChestplate(new ItemStack(Material.AIR, 1));
-            p.getInventory().setBoots(new ItemStack(Material.AIR, 1));
-            p.getInventory().setLeggings(new ItemStack(Material.AIR, 1));
-            for (PotionEffect po : p.getActivePotionEffects()) {
-                p.removePotionEffect(po.getType());
+            if (BattlePlayer.getBattlePlayer(p).inBattle() && !BattlePlayer.getBattlePlayer(p).isSpectator()) {
+                p.getInventory().clear();
+                p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
+                p.getInventory().setChestplate(new ItemStack(Material.AIR, 1));
+                p.getInventory().setBoots(new ItemStack(Material.AIR, 1));
+                p.getInventory().setLeggings(new ItemStack(Material.AIR, 1));
+                for (PotionEffect po : p.getActivePotionEffects()) {
+                    p.removePotionEffect(po.getType());
+                }
+                p.setHealth(20);
+                p.setFoodLevel(20);
+                p.updateInventory();
             }
-            p.setHealth(20);
-            p.setFoodLevel(20);
-            p.updateInventory();
         }
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
