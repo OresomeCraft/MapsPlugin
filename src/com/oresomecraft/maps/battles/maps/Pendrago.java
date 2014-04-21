@@ -16,6 +16,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntityTameEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -482,6 +484,13 @@ public class Pendrago extends BattleMap implements Listener {
             arrow.remove();
         }
     }
+
+    @EventHandler
+    public void explode(EntityExplodeEvent event) {
+        if (!event.getLocation().getWorld().getName().equals(name)) return;
+        event.blockList().clear();
+    }
+
 
     @EventHandler
     public void ignite(PlayerInteractEvent event) {
