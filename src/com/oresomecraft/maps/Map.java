@@ -323,6 +323,8 @@ public abstract class Map implements Listener {
         if (event.getBlock().getWorld().getName().equals(name) && !allowBuild) event.setCancelled(true);
         if (event.getBlock().getWorld().getName().equals(name) && event.getBlock().getY() > blockLimit)
             event.setCancelled(true);
+        if (event.getBlock().getWorld().getName().equals(name) && Arrays.asList(disabledBlocks).contains(event.getBlock().getType()))
+            event.setCancelled(true);
     }
 
     /**
