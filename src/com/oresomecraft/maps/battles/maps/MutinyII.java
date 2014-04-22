@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -107,5 +108,11 @@ public class MutinyII extends BattleMap implements Listener {
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void tnt(EntityExplodeEvent event) {
+        if (!event.getLocation().getWorld().getName().equals(name)) return;
+        event.setYield(10L);
     }
 }
