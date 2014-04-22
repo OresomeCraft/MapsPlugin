@@ -25,6 +25,7 @@ import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @MapConfig
 public class Eriden extends BattleMap implements Listener {
@@ -140,7 +141,7 @@ public class Eriden extends BattleMap implements Listener {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         if (event.getEntity() instanceof Villager) {
             event.getDrops().clear();
-            ItemStack FIRE = new ItemStack(Material.FIREWORK, 1);
+            ItemStack FIRE = new ItemStack(Material.FIREWORK, new Random().nextInt(3));
             ItemMeta fMeta = FIRE.getItemMeta();
             fMeta.setDisplayName(ChatColor.BLUE + "Jumpwork");
 
