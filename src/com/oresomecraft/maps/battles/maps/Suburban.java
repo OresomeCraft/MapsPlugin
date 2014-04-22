@@ -23,7 +23,7 @@ public class Suburban extends BattleMap implements Listener {
     String name = "suburban";
     String fullName = "Suburban Complex";
     String creators = "__R3, _Moist and kalikakitty";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.LMS, Gamemode.LTS};
 
     public void readyTDMSpawns() {
         blueSpawns.add(new Location(w, 360, 40, -482));

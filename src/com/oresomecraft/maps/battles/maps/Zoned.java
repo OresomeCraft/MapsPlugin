@@ -31,7 +31,7 @@ public class Zoned extends BattleMap implements Listener {
     String name = "zoned";
     String fullName = "Zoned";
     String creators = "__R3, MiCkEyMiCE and _Moist";
-    Gamemode[] modes = {Gamemode.INFECTION, Gamemode.KOTH};
+    Gamemode[] modes = {Gamemode.INFECTION, Gamemode.KOTH, Gamemode.LTS};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -2, 88, 49));

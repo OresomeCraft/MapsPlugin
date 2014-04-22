@@ -36,7 +36,7 @@ public class BattleIncentive extends BattleMap implements Listener {
 
     String name = "battleincentive";
     String fullName = "The Battle Incentive";
-    String creators = "__R3 and AnomalousDyna";
+    String creators = "__R3 ";
     Gamemode[] modes = {Gamemode.LTS};
 
     public void readyTDMSpawns() {
