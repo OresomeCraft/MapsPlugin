@@ -2,6 +2,7 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
@@ -169,7 +170,7 @@ public class Courtyard extends BattleMap implements Listener {
             public void run() {
                 switch (group) {
                     case FIREARMS:
-                        ItemStack AMMO = new ItemStack(Material.FLINT, 32);
+                        ItemStack AMMO = new ItemStack(Material.FLINT, 46);
                         ItemStack BLAZE_ROD = new ItemStack(Material.BLAZE_ROD, 1);
 
                         ItemMeta blaze_rod = BLAZE_ROD.getItemMeta();
@@ -231,7 +232,7 @@ public class Courtyard extends BattleMap implements Listener {
 
                         player.getInventory().setItem(0, new ItemStack(Material.GOLD_SWORD, 1));
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
-                        player.getInventory().setItem(2, new ItemStack(Material.TNT, 200));
+                        player.getInventory().setItem(2, new ItemStack(Material.TNT, 32));
                         player.updateInventory();
                         break;
 
@@ -272,6 +273,7 @@ public class Courtyard extends BattleMap implements Listener {
 
                     case SCOUT:
                         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+                        InvUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(player), new ItemStack[]{LEATHER_CHESTPLATE});
                         player.getInventory().setChestplate(LEATHER_CHESTPLATE);
 
                         player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1));
@@ -285,8 +287,8 @@ public class Courtyard extends BattleMap implements Listener {
                 selecting.remove(player.getName());
                 try {
                     Team team = BattlePlayer.getBattlePlayer(player).getTeamType();
-                    if (team == Team.TDM_RED) player.teleport(new Location(player.getWorld(), 40, 73, -5));
-                    if (team == Team.TDM_BLUE) player.teleport(new Location(player.getWorld(), -19, 73, 0));
+                    if (team == Team.TDM_RED) player.teleport(new Location(player.getWorld(), 46, 73, -5));
+                    if (team == Team.TDM_BLUE) player.teleport(new Location(player.getWorld(), -25, 73, 0));
                 } catch (Exception ex) {
 
                 }
