@@ -52,7 +52,7 @@ public class Pendrago extends BattleMap implements Listener {
 
     String name = "pendrago";
     String fullName = "Pendrago Square";
-    String creators = "kytron, 123Oblivious, reggie449, Fliine, bishoptaj, SecretSeriousity, __R3, AnomalousDyna, ep1cn00bt00b and Mr_Jaskirat";
+    String creators = "__R3 and 123Oblivious";
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
