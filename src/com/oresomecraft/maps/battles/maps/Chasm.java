@@ -27,8 +27,8 @@ public class Chasm extends BattleMap implements Listener {
 
     String name = "chasm";
     String fullName = "The Chasm";
-    String creators = "__R3, danielschroeder, Spantezian and AnomalousDyna";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH};
+    String creators = "__R3, danielschroeder, Krontezian and AnomalousDyna";
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
 
     public void readyTDMSpawns() {
 

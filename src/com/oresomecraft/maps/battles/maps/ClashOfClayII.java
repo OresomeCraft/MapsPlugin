@@ -51,9 +51,9 @@ public class ClashOfClayII extends BattleMap implements Listener {
 
         ItemStack WOODEN_SWORD = new ItemStack(Material.WOOD_SWORD, 1, (short) -16373);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
-        ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1, (short) -1400);
+        ItemStack IRON_PICKAXE = new ItemStack(Material.STONE_PICKAXE, 1, (short) -1400);
         ItemStack PUMPKIN_PIE = new ItemStack(Material.PUMPKIN_PIE, 5);
-        ItemStack APPLE = new ItemStack(Material.GOLDEN_APPLE, 2);
+        ItemStack APPLE = new ItemStack(Material.GOLDEN_APPLE, 1);
         ItemStack BLUE_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 11);
         ItemStack RED_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 14);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
@@ -67,6 +67,7 @@ public class ClashOfClayII extends BattleMap implements Listener {
         p.getInventory().setHelmet(DIAMOND_HELMET);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+        WOODEN_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 100);
 
         i.setItem(0, WOODEN_SWORD);
         i.setItem(1, BOW);
