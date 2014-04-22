@@ -34,7 +34,7 @@ public class BattleInstitute extends BattleMap implements Listener {
 
     String name = "battleinstitute";
     String fullName = "The Battle Institute";
-    String creators = "__R3, AnomalousDyna and bishoptaj";
+    String creators = "__R3 ";
     Gamemode[] modes = {Gamemode.LTS};
 
     public void readyTDMSpawns() {
@@ -270,10 +270,10 @@ public class BattleInstitute extends BattleMap implements Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 12);
-        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_HELMET = new ItemStack(Material.CHAINMAIL_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.GOLD_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
         p.getInventory().setBoots(IRON_BOOTS);
