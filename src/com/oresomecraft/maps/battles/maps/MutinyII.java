@@ -113,6 +113,7 @@ public class MutinyII extends BattleMap implements Listener {
     @EventHandler
     public void tnt(EntityExplodeEvent event) {
         if (!event.getLocation().getWorld().getName().equals(name)) return;
-        event.setYield(10L);
+        if (Math.random() > 0.9)
+            event.setYield(15L);
     }
 }

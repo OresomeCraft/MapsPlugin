@@ -25,7 +25,7 @@ public class Roseley extends BattleMap implements Listener {
 
     String name = "roseley";
     String fullName = "Roseley";
-    String creators = "simonwilson123, AnomalousDyna, meganlovesmusic, MintyPvP, callumary, PKBeam and __R3";
+    String creators = "__R3 ";
     Gamemode[] modes = {Gamemode.KOTH, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
@@ -80,7 +80,7 @@ public class Roseley extends BattleMap implements Listener {
             if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 if (player.getItemInHand().getType() == Material.FIREWORK) {
                     player.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
-                    player.setVelocity(new Vector(0, 1.5, 0));
+                    player.setVelocity(new Vector(0, 1, 0));
                 }
             }
         }

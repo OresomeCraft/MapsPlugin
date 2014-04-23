@@ -44,7 +44,7 @@ public class HazyPass extends BattleMap implements Listener {
     // Map details
     String name = "hazypass";
     String fullName = "Hazy Pass";
-    String creators = "AnomalousRei and __R3";
+    String creators = "AnomalousRei, __R3 and DanShrdr";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM, Gamemode.LTS};
 
     public void readyTDMSpawns() {

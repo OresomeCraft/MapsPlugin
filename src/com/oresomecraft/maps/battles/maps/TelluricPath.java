@@ -31,13 +31,14 @@ public class TelluricPath extends BattleMap implements Listener {
         setAllowBuild(false);
         disablePearlDamage(true);
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
-                Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE, Material.IRON_PICKAXE});
-        setAutoSpawnProtection(2);
+                Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE, Material.IRON_PICKAXE,
+                Material.ENDER_PEARL});
+        setAutoSpawnProtection(3);
     }
 
     String name = "telluricpath";
     String fullName = "Telluric Path";
-    String creators = "__R3 ";
+    String creators = "__R3 and DanShrdr ";
     Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     public void readyTDMSpawns() {
@@ -141,6 +142,6 @@ public class TelluricPath extends BattleMap implements Listener {
     public void death(EntityDeathEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         event.getDrops().clear();
-        if (Math.random() >= 0.5) event.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
+        if (Math.random() >= 0.6) event.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
     }
 }
