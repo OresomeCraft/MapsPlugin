@@ -22,7 +22,7 @@ public class SunsetBay extends BattleMap implements Listener {
     String name = "sunsetbay";
     String fullName = "Sunset Bay";
     String creators = "SuperDuckFace ";
-    Gamemode[] modes = {Gamemode.FFA, Gamemode.LMS};
+    Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -38, 85, 21, -66, 0));
