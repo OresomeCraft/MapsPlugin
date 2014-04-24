@@ -11,6 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -130,6 +131,17 @@ public class TroubledHalls extends BattleMap implements Listener {
             }
         } catch (Exception e) {
             //lol fix getTeamType @Zachoz.
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void blockBreak(BlockBreakEvent event) {
+        if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
+            if (event.getBlock().getType() == Material.DIAMOND_BLOCK) {
+                event.setCancelled(true);
+                event.getBlock().setType(Material.DIRT);
+                event.getPlayer().sendMessage(ChatColor.RED + "Diamond Blocks are disabled on this map!");
+            }
         }
     }
 }
