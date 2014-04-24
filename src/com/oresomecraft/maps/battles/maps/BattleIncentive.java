@@ -154,6 +154,7 @@ public class BattleIncentive extends BattleMap implements Listener {
 
             if (!event.getPlayer().getWorld().getName().equals(name)) return;
             // This is the blocked stuff
+            if (event.getMessage().toLowerCase().startsWith("/potion")) event.setCancelled(true);
             if (event.getMessage().toLowerCase().startsWith("/leave") || event.getMessage().toLowerCase().startsWith("/spectate")) {
                 if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
                     Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " left the round!");
