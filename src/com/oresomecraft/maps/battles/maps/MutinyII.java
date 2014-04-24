@@ -103,7 +103,7 @@ public class MutinyII extends BattleMap implements Listener {
             Player p = (Player) event.getEntity();
             if (p.getItemInHand().getType() == Material.EMERALD) {
                 Random random = new Random();
-                if (random.nextBoolean() && random.nextBoolean()) {
+                if (random.nextBoolean() && true) {
                     event.setDamage(event.getDamage() - 3);
                 }
             }
