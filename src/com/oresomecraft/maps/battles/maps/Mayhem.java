@@ -29,7 +29,7 @@ public class Mayhem extends BattleMap implements Listener {
     String name = "mayhem";
     String fullName = "Mayhem";
     String creators = "ShaunDepro97, meganlovesmusic and Kytria";
-    Gamemode[] modes = {Gamemode.TDM};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.LTS};
 
     @EventHandler
     public void onload(WorldLoadEvent event) { // Register power block
