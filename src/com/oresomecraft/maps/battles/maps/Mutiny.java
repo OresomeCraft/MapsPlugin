@@ -120,14 +120,13 @@ public class Mutiny extends BattleMap implements Listener {
 
     @EventHandler
     public void protectStone(EntityDamageEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name)) {
-            if (event.getEntity() instanceof Player) {
-                Player player = (Player) event.getEntity();
-                if (player.getItemInHand().getType() == Material.EMERALD) {
-                    Random random = new Random();
-                    if (random.nextBoolean()) {
-                        event.setDamage(event.getDamage() - 5);
-                    }
+        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (event.getEntity() instanceof Player) {
+            Player p = (Player) event.getEntity();
+            if (p.getItemInHand().getType() == Material.EMERALD) {
+                Random random = new Random();
+                if (random.nextBoolean() && true) {
+                    event.setDamage(event.getDamage() - 3);
                 }
             }
         }
