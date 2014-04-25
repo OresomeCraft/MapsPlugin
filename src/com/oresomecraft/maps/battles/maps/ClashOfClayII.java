@@ -51,7 +51,7 @@ public class ClashOfClayII extends BattleMap implements Listener {
 
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1, (short) -16373);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
-        ItemStack IRON_PICKAXE = new ItemStack(Material.STONE_PICKAXE, 1, (short) -1400);
+        ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1, (short) -1400);
         ItemStack PUMPKIN_PIE = new ItemStack(Material.PUMPKIN_PIE, 5);
         ItemStack APPLE = new ItemStack(Material.GOLDEN_APPLE, 1);
         ItemStack BLUE_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 11);
