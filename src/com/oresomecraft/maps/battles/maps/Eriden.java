@@ -79,6 +79,7 @@ public class Eriden extends BattleMap implements Listener {
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+        LEATHER_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 4);
 
         LeatherArmorMeta helmet = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
         helmet.setColor(Color.ORANGE);
@@ -168,7 +169,7 @@ public class Eriden extends BattleMap implements Listener {
                 fMeta.setLore(fLore);
                 FIRE.setItemMeta(fMeta);
                 event.getPlayer().getInventory().removeItem(FIRE);
-                event.getPlayer().setVelocity(new Vector(0, 2, 0));
+                event.getPlayer().setVelocity(new Vector(0, 1.5, 0));
             }
         }
     }
