@@ -24,6 +24,7 @@ public class ClashOfClayII extends BattleMap implements Listener {
         setTDMTime(15);
         disableDrops(new Material[]{Material.STONE_PICKAXE, Material.STONE_SWORD});
         disableBlocks(new Material[]{Material.WORKBENCH, Material.PISTON_MOVING_PIECE});
+        setAutoSpawnProtection(10);
     }
 
     String name = "clashofclayii";
