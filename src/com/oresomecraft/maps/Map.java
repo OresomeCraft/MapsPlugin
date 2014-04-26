@@ -7,7 +7,6 @@ import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -61,6 +60,7 @@ public abstract class Map implements Listener {
     private int spawnProtectionDuration;
     private int blockLimit = 256;
     private boolean fireSpread = true;
+    private Long timeLoad;
     public boolean arrowOnLand = false;
     protected int tdmTime = 15;
     public Location ctfRedFlag, ctfBlueFlag, kothFlag;
@@ -296,6 +296,29 @@ public abstract class Map implements Listener {
     }
 
     /**
+     * Sets a time to be set when the map loads
+     *
+     * @param time The time to lock the map to. ("day", "dawn", "night")
+     */
+    public void setTimeUponLoad(String time) {
+        if (time.equalsIgnoreCase("day")) timeLoad = 0L;
+        else if (time.equalsIgnoreCase("dawn")) timeLoad = 23000L;
+        else if (time.equalsIgnoreCase("night")) timeLoad = 14000L;
+        else if (time.equalsIgnoreCase("dusk")) timeLoad = 13000L;
+        else if (time.equalsIgnoreCase("midday")) timeLoad = 5000L;
+        else if (time.equalsIgnoreCase("midnight")) timeLoad = 18000L;
+    }
+
+    /**
+     * Sets a time to be set when the map loads
+     *
+     * @param time The time in ticks
+     */
+    public void setTimeUponLoad(long time) {
+        this.timeLoad = time;
+    }
+
+    /**
      * Sets FFA and Infection spawn points (also used for spectators)
      */
     public abstract void readyFFASpawns();
@@ -517,6 +540,14 @@ public abstract class Map implements Listener {
                 }
             }
         }, 100L, 100L);
+    }
+
+    @EventHandler
+    public void setLoadTime(WorldLoadEvent event) {
+        if (!event.getWorld().getName().equals(name)) return;
+        if (timeLoad != null) {
+            event.getWorld().setTime(timeLoad);
+        }
     }
 
     /**
