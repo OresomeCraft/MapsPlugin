@@ -15,7 +15,7 @@ public class Bridge extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         setTDMTime(15);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.BOW});
+        disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_CHESTPLATE, Material.LEATHER_HELMET, Material.BOW});
         setAutoSpawnProtection(15);
     }
 

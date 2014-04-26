@@ -21,7 +21,7 @@ public class Spire extends BattleMap implements Listener {
 
     public Spire() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.SAND, Material.SPONGE});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_PICKAXE, Material.STONE_SPADE, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.SAND, Material.SPONGE});
     }
 
     String name = "spire";

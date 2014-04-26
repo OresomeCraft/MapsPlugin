@@ -39,7 +39,7 @@ public class RedlandReaches extends BattleMap implements Listener {
     public RedlandReaches() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(18);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
                 Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE});
         setAllowBuild(false);
         setAutoSpawnProtection(2);

@@ -26,7 +26,7 @@ public class Hartshire extends BattleMap implements Listener {
     public Hartshire() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.STONE_SWORD, Material.LEATHER_HELMET, Material.GOLDEN_APPLE});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STONE_SWORD, Material.LEATHER_HELMET, Material.GOLDEN_APPLE});
     }
 
     String name = "hartshire";

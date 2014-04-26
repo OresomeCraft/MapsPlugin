@@ -33,7 +33,7 @@ public class Eriden extends BattleMap implements Listener {
     public Eriden() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
                 Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE});
         setAutoSpawnProtection(5);
         setAllowBuild(false);

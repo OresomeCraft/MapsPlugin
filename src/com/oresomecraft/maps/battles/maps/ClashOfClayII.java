@@ -22,7 +22,7 @@ public class ClashOfClayII extends BattleMap implements Listener {
     public ClashOfClayII() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
-        disableDrops(new Material[]{Material.STONE_PICKAXE, Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.STONE_PICKAXE, Material.STONE_SWORD});
         disableBlocks(new Material[]{Material.WORKBENCH, Material.PISTON_MOVING_PIECE});
         setAutoSpawnProtection(10);
     }

@@ -22,7 +22,7 @@ public class Arziri extends BattleMap implements Listener {
     public Arziri() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.LEATHER_HELMET, Material.STONE_SWORD});
         removeArrowsOnLand(true);
     }
 

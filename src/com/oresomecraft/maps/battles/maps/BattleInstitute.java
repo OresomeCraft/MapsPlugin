@@ -29,7 +29,7 @@ public class BattleInstitute extends BattleMap implements Listener {
     public BattleInstitute() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.COOKED_BEEF, Material.POTION});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.COOKED_BEEF, Material.POTION});
     }
 
     String name = "battleinstitute";

@@ -22,7 +22,7 @@ public class Mutiny extends BattleMap implements Listener {
 
     public Mutiny() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.IRON_AXE, Material.DIAMOND_BOOTS, Material.GOLD_LEGGINGS, Material.IRON_CHESTPLATE, Material.LEATHER_HELMET});
+        disableDrops(new Material[]{Material.EMERALD, Material.ARROW, Material.BOW, Material.IRON_AXE, Material.DIAMOND_BOOTS, Material.GOLD_LEGGINGS, Material.IRON_CHESTPLATE, Material.LEATHER_HELMET});
         setAutoSpawnProtection(2);
     }
 

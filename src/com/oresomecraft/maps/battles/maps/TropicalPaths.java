@@ -21,7 +21,7 @@ public class TropicalPaths extends BattleMap implements Listener {
 
     public TropicalPaths() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS});
+        disableDrops(new Material[]{Material.ARROW, Material.BOW, Material.IRON_SWORD, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS});
         setAutoSpawnProtection(5);
     }
 

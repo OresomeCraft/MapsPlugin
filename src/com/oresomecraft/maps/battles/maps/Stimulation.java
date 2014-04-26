@@ -13,7 +13,7 @@ public class Stimulation extends BattleMap implements Listener {
 
     public Stimulation() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.IRON_CHESTPLATE, Material.CHAINMAIL_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.BOW});
+        disableDrops(new Material[]{Material.ARROW, Material.LEATHER_HELMET, Material.IRON_CHESTPLATE, Material.CHAINMAIL_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.BOW});
     }
 
     // Map details

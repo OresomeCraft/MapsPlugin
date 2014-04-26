@@ -28,7 +28,7 @@ public class WarTrauma extends BattleMap implements Listener {
 
     public WarTrauma() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.IRON_SWORD, Material.LEATHER_HELMET});
+        disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET});
         setAutoSpawnProtection(5);
     }
 
