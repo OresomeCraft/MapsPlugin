@@ -67,6 +67,7 @@ public class Spaceships extends BattleMap implements Listener {
         i.setItem(3, new ItemStack(Material.COOKED_BEEF, 3));
         i.setItem(4, new ItemStack(Material.GOLDEN_APPLE, 2));
         i.setItem(5, new ItemStack(Material.LOG, 64));
+        i.setItem(8, new ItemStack(Material.ENDER_PEARL, 1));
         i.setItem(9, new ItemStack(Material.ARROW, 64));
     }
 
