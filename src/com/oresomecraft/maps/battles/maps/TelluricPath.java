@@ -10,8 +10,11 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Enderman;
+import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.Inventory;
@@ -33,7 +36,7 @@ public class TelluricPath extends BattleMap implements Listener {
         disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
                 Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE, Material.IRON_PICKAXE,
                 Material.ENDER_PEARL});
-        setAutoSpawnProtection(3);
+        setAutoSpawnProtection(10);
     }
 
     String name = "telluricpath";
@@ -135,6 +138,15 @@ public class TelluricPath extends BattleMap implements Listener {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         if (event.getEntity() instanceof Enderman) {
             event.setDamage(1000);
+        }
+    }
+
+    @EventHandler
+    public void enderHit(EntityDamageByEntityEvent event) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof Player && event.getDamager() instanceof Enderman) {
+                event.setDamage(0);
+            }
         }
     }
 
