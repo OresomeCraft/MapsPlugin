@@ -15,7 +15,7 @@ public class TowerHill extends BattleMap implements Listener {
 
     public TowerHill() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.GOLD_BOOTS, Material.GOLD_CHESTPLATE, Material.GOLD_LEGGINGS, Material.GOLD_HELMET, Material.IRON_SWORD, Material.BOW});
+        disableDrops(new Material[]{Material.ARROW, Material.GOLD_BOOTS, Material.GOLD_CHESTPLATE, Material.GOLD_LEGGINGS, Material.GOLD_HELMET, Material.IRON_SWORD, Material.BOW});
         setAllowBuild(false);
     }
 

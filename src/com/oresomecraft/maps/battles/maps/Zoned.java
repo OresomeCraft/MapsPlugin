@@ -25,7 +25,7 @@ public class Zoned extends BattleMap implements Listener {
     public Zoned() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.STONE_SWORD, Material.LEATHER_HELMET, Material.WATCH});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.STONE_SWORD, Material.LEATHER_HELMET, Material.WATCH});
     }
 
     String name = "zoned";

@@ -25,7 +25,7 @@ public class Oasis extends BattleMap implements Listener {
     public Oasis() {
         setAllowBuild(false);
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.LEATHER_HELMET, Material.STONE_SWORD, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS});
         lockTime("day");
         setAutoSpawnProtection(10);
     }

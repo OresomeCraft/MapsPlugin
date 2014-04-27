@@ -16,7 +16,7 @@ public class Electricity extends BattleMap implements Listener {
     public Electricity() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.GOLD_LEGGINGS, Material.GOLD_CHESTPLATE, Material.GOLD_HELMET, Material.GOLD_BOOTS, Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.ARROW, Material.BOW, Material.GOLD_LEGGINGS, Material.GOLD_CHESTPLATE, Material.GOLD_HELMET, Material.GOLD_BOOTS, Material.STONE_SWORD});
     }
 
     String name = "electricity";

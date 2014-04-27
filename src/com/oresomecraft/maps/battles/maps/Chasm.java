@@ -20,7 +20,7 @@ public class Chasm extends BattleMap implements Listener {
     public Chasm() {
         setAllowBuild(false);
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.STONE_HOE, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.LEATHER_HELMET, Material.STONE_SWORD});
         lockTime("day");
         setAutoSpawnProtection(10);
     }

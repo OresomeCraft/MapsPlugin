@@ -27,7 +27,7 @@ public class Warehouse extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.WOOL});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET, Material.WOOL});
     }
 
     // Map details

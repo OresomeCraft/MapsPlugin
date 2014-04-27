@@ -24,7 +24,7 @@ public class GrandCanyon extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         setAutoSpawnProtection(5);
-        disableDrops(new Material[]{Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LEATHER_BOOTS, Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.ARROW, Material.BOW, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LEATHER_BOOTS, Material.STONE_SWORD});
     }
 
     String name = "grandcanyon";

@@ -13,7 +13,7 @@ public class SunsetBay extends BattleMap implements Listener {
 
     public SunsetBay() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_HELMET});
+        disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET});
         setAllowBuild(false);
         lockTime(13116);
     }

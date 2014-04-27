@@ -19,7 +19,7 @@ public class Mantle extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         setAutoSpawnProtection(3);
-        disableDrops(new Material[]{Material.WOOL});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.WOOL});
     }
 
     String name = "mantle";

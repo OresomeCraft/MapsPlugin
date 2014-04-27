@@ -31,7 +31,7 @@ public class BattleIncentive extends BattleMap implements Listener {
     public BattleIncentive() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.COOKED_BEEF, Material.POTION});
+        disableDrops(new Material[]{Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_SWORD, Material.IRON_BOOTS, Material.COOKED_BEEF, Material.POTION});
     }
 
     String name = "battleincentive";

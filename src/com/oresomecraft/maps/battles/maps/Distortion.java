@@ -29,7 +29,7 @@ public class Distortion extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(10);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.FISHING_ROD, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
                 Material.LEATHER_CHESTPLATE, Material.IRON_HELMET, Material.FISHING_ROD, Material.DIAMOND_PICKAXE, Material.ARROW, Material.DIAMOND});
         setAutoSpawnProtection(2);
     }

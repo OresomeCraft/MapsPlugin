@@ -34,7 +34,7 @@ public class TroubledHalls extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(20);
         setBuildLimit(161);
-        disableDrops(new Material[]{Material.IRON_PICKAXE, Material.FISHING_ROD, Material.BAKED_POTATO, Material.LEAVES,
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.FISHING_ROD, Material.IRON_PICKAXE, Material.FISHING_ROD, Material.BAKED_POTATO, Material.LEAVES,
                 Material.ARROW, Material.LOG});
         setAutoSpawnProtection(2);
     }

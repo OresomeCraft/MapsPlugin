@@ -20,7 +20,7 @@ public class Subterrania extends BattleMap implements Listener {
     public Subterrania() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.STONE_SWORD, Material.RAILS});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STONE_SWORD, Material.RAILS});
         setFireSpread(false);
     }
 

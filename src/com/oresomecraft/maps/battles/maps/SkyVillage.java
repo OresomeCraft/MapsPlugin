@@ -21,7 +21,7 @@ public class SkyVillage extends BattleMap implements Listener {
     public SkyVillage() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.IRON_HELMET});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.IRON_HELMET});
         setFireSpread(false);
     }
 

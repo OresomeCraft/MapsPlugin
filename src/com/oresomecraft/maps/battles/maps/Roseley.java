@@ -20,7 +20,7 @@ public class Roseley extends BattleMap implements Listener {
     public Roseley() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.STONE_SWORD, Material.LEATHER_HELMET});
+        disableDrops(new Material[]{Material.ARROW, Material.BOW, Material.STONE_SWORD, Material.LEATHER_HELMET});
     }
 
     String name = "roseley";

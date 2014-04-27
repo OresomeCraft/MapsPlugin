@@ -23,7 +23,7 @@ public class Spaceships extends BattleMap implements Listener {
         setTDMTime(15);
         setBuildLimit(72);
         setAutoSpawnProtection(5);
-        disableDrops(new Material[]{Material.DIAMOND_SWORD, Material.DIAMOND_AXE, Material.DIAMOND_PICKAXE, Material.LAVA_BUCKET});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.DIAMOND_SWORD, Material.DIAMOND_AXE, Material.DIAMOND_PICKAXE, Material.LAVA_BUCKET});
     }
 
     String name = "spaceships";
