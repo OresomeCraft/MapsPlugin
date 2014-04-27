@@ -90,6 +90,7 @@ public class SkyVillage extends BattleMap implements Listener {
         i.setItem(3, COOKED_FISH);
         i.setItem(4, CARROT);
         i.setItem(35, ARROWS);
+        i.setItem(8, new ItemStack(Material.ENDER_PEARL, 1));
 
     }
 
