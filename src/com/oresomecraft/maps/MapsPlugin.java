@@ -28,6 +28,8 @@ public class MapsPlugin extends JavaPlugin {
 
     protected boolean battleMapsLoaded = false;
     protected boolean arcadeMapsLoaded = false;
+    protected boolean tiotMapsLoaded = false;
+    protected boolean kartMapsLoaded = false;
 
     public static final String BATTLE_MAPS_PACKAGE = "com.oresomecraft.maps.battles.maps";
     public static final String ARCADE_MAPS_PACKAGE = "com.oresomecraft.maps.arcade.maps";
@@ -39,14 +41,17 @@ public class MapsPlugin extends JavaPlugin {
     public void onEnable() {
         oresomebattlesConfig = YamlConfiguration.loadConfiguration(new File("plugins/OresomeBattles/config.yml"));
 
-        if (oresomebattlesConfig.getBoolean("arcade_mode")) { // Is Arcade server?
+        if (oresomebattlesConfig.getBoolean("arcade_mode")) { // Arcade
             loadMaps(ARCADE_MAPS_PACKAGE);
-            loadMaps(ORESOMEKART_MAPS_PACKAGE);
             arcadeMapsLoaded = true;
-        } else {
-            loadMaps(BATTLE_MAPS_PACKAGE);
+        } else if (oresomebattlesConfig.getBoolean("oresomekart_mode")) { // OresomeKart
+            loadMaps(ORESOMEKART_MAPS_PACKAGE);
+            kartMapsLoaded = true;
+        } else if (oresomebattlesConfig.getBoolean("tiot_mode")) { // TiOT
             loadMaps(TIOT_MAPS_PACKAGE);
-
+            tiotMapsLoaded = true;
+        } else { // Battles
+            loadMaps(BATTLE_MAPS_PACKAGE);
             battleMapsLoaded = false;
         }
     }
@@ -118,6 +123,27 @@ public class MapsPlugin extends JavaPlugin {
                     sender.sendMessage(ChatColor.RED + "Arcade maps already loaded!");
                 }
             }
+
+            if (type.equalsIgnoreCase("tiot")) {
+                if (!arcadeMapsLoaded) {
+                    loadMaps(TIOT_MAPS_PACKAGE);
+                    sender.sendMessage(ChatColor.DARK_AQUA + "Loaded TiOT maps!");
+                    tiotMapsLoaded = true;
+                } else {
+                    sender.sendMessage(ChatColor.RED + "TiOT maps already loaded!");
+                }
+            }
+
+            if (type.equalsIgnoreCase("oresomekart")) {
+                if (!arcadeMapsLoaded) {
+                    loadMaps(ORESOMEKART_MAPS_PACKAGE);
+                    sender.sendMessage(ChatColor.DARK_AQUA + "Loaded OresomeKart maps!");
+                    kartMapsLoaded = true;
+                } else {
+                    sender.sendMessage(ChatColor.RED + "OresomeKart maps already loaded!");
+                }
+            }
+
         }
         return true;
     }
