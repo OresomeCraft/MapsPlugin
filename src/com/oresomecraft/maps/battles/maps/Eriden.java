@@ -82,15 +82,15 @@ public class Eriden extends BattleMap implements Listener {
         LEATHER_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 4);
 
         LeatherArmorMeta helmet = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
-        helmet.setColor(Color.ORANGE);
+        helmet.setColor(Color.GREEN);
         LEATHER_HELMET.setItemMeta(helmet);
 
         LeatherArmorMeta leggings = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
-        leggings.setColor(Color.ORANGE);
+        leggings.setColor(Color.GREEN);
         LEATHER_PANTS.setItemMeta(leggings);
 
         LeatherArmorMeta boots = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
-        boots.setColor(Color.ORANGE);
+        boots.setColor(Color.GREEN);
         LEATHER_BOOTS.setItemMeta(boots);
 
         ItemMeta fMeta = SLOW.getItemMeta();
