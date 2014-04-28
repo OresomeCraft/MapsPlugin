@@ -30,7 +30,7 @@ public class TelluricPath extends BattleMap implements Listener {
 
     public TelluricPath() {
         super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(20);
+        setTDMTime(11);
         setAllowBuild(false);
         disablePearlDamage(true);
         disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,

@@ -688,7 +688,7 @@ public abstract class Map implements Listener {
     }
 
     /**
-     * Checks if a Location's coordinates is in between the region
+     * Checks if a Location's coordinates is in between the regionw
      *
      * @return Whether or not the coordinates of 'loc' are inside the region
      */
