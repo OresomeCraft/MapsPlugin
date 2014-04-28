@@ -687,4 +687,26 @@ public abstract class Map implements Listener {
         return false;
     }
 
+    /**
+     * Checks if a Location's coordinates is in between the region
+     *
+     * @return Whether or not the coordinates of 'loc' are inside the region
+     */
+    public boolean isInsideRegion(Location loc) {
+        int bottomCornerX = rx1 < rx2 ? rx1 : rx2;
+        int bottomCornerZ = rz1 < rz2 ? rz1 : rz2;
+        int topCornerX = rx1 > rx2 ? rx1 : rx2;
+        int topCornerZ = rz1 > rz2 ? rz1 : rz2;
+        int bottomCornerY = ry1 < ry2 ? ry1 : ry2;
+        int topCornerY = ry1 > ry2 ? ry1 : ry2;
+        if (loc.getX() >= bottomCornerX && loc.getX() <= topCornerX) {
+            if (loc.getZ() >= bottomCornerZ && loc.getZ() <= topCornerZ) {
+                if (loc.getY() >= bottomCornerY && loc.getY() <= topCornerY) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
