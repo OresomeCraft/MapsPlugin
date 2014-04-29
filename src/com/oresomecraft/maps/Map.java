@@ -17,6 +17,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.world.WorldLoadEvent;
@@ -60,6 +61,7 @@ public abstract class Map implements Listener {
     private int spawnProtectionDuration;
     private int blockLimit = 256;
     private boolean fireSpread = true;
+    private boolean toolMerge = false;
     private Long timeLoad;
     public boolean arrowOnLand = false;
     protected int tdmTime = 15;
@@ -260,6 +262,16 @@ public abstract class Map implements Listener {
     }
 
     /**
+     * Enables tool merging
+     *
+     * @param allow Whether tool merging is allowed or not
+     */
+    @Deprecated
+    public void setToolMerge(boolean allow) {
+        toolMerge = allow;
+    }
+
+    /**
      * Prevents damage when moving using enderpearls
      *
      * @param allow Whether damage from enderpearls should be disabled or not
@@ -348,6 +360,42 @@ public abstract class Map implements Listener {
             event.setCancelled(true);
         if (event.getBlock().getWorld().getName().equals(name) && Arrays.asList(disabledBlocks).contains(event.getBlock().getType()))
             event.setCancelled(true);
+    }
+
+    HashMap<Material, Short> max = new HashMap<Material, Short>();
+
+    {
+        for (Material m : Material.values()) {
+            if (m.getMaxDurability() > 0) max.put(m, m.getMaxDurability());
+        }
+    }
+
+    /**
+     * Automatically merges a picked up item's durability to your current tool if picked up
+     *
+     * @param event an Event called by the server
+     */
+    @EventHandler
+    public void pickup(PlayerPickupItemEvent event) {
+        if(!event.getPlayer().getWorld().getName().equals(name) || !toolMerge) return;
+        ItemStack it = event.getItem().getItemStack();
+        if(!event.getPlayer().getInventory().contains(it.getType())) return;
+        if (max.get(it.getType()) == 0) return;
+        for (Material m : max.keySet()) {
+            if (m == it.getType()) {
+                for (ItemStack is : event.getPlayer().getInventory()) {
+                    if (is.getType() == it.getType()) {
+                        short total = (short) (is.getDurability() - (max.get(m) - it.getDurability()));
+                        if (total <= 0) total = (short) 0;
+                        is.setDurability(total);
+                        event.setCancelled(true);
+                        event.getItem().remove();
+                        event.getPlayer().getWorld().playSound(event.getPlayer().getLocation(), Sound.ITEM_PICKUP, 2L, 2L);
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     /**
