@@ -18,6 +18,7 @@ public class Suburban extends BattleMap implements Listener {
 
     public Suburban() {
         super.initiate(this, name, fullName, creators, modes);
+        setToolMerge(true);
     }
 
     String name = "suburban";
