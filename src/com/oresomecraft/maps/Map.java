@@ -405,7 +405,7 @@ public abstract class Map implements Listener {
      */
     @EventHandler
     public void arrowAway(ProjectileHitEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name)) {
+        if (event.getEntity().getWorld().getName().equals(name) && arrowOnLand) {
             if (event.getEntity() instanceof Arrow) event.getEntity().remove();
         }
     }
