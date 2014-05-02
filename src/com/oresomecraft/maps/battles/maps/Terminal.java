@@ -13,6 +13,7 @@ public class Terminal extends BattleMap implements Listener {
 
     public Terminal() {
         super.initiate(this, name, fullName, creators, modes);
+        setToolMerge(true);
         setAllowBuild(false);
         setAutoSpawnProtection(10);
     }
