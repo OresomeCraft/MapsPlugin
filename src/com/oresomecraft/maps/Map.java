@@ -434,9 +434,12 @@ public abstract class Map implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
-            for (ItemStack item : event.getDrops())
+            for (ItemStack item : event.getDrops()){
                 if (disabledDrops != null && Arrays.asList(disabledDrops).contains(item.getType()))
                     item.setType(Material.AIR);
+                if(toolMerge && item.getType() == Material.ARROW)
+                    item.setType(Material.AIR);
+            }
         }
 
     }
