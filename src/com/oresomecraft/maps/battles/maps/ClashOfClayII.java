@@ -100,6 +100,8 @@ public class ClashOfClayII extends BattleMap implements Listener {
 
             if (contains(location, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
             if (contains(location, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
+
+            if (event.getBlock().getType() == Material.IRON_BLOCK) event.setCancelled(true);
         }
     }
 

@@ -83,7 +83,7 @@ public class SunsetBay extends BattleMap implements Listener {
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
-        ItemStack PEARL = new ItemStack(Material.ENDER_PEARL, 2);
+        ItemStack PEARL = new ItemStack(Material.ENDER_PEARL, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 5);
         ItemStack ARROW = new ItemStack(Material.ARROW, 64);
 
