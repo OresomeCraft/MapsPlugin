@@ -120,6 +120,7 @@ public class BattleReverie extends BattleMap implements Listener {
     public void leaveSpec(final PlayerCommandPreprocessEvent event) {
         // This is the blocked stuff
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (event.getMessage().toLowerCase().startsWith("/potion")) event.setCancelled(true);
         if (event.getMessage().toLowerCase().startsWith("/leave") || event.getMessage().toLowerCase().startsWith("/spectate")) {
             if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
                 Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " left the round!!");
