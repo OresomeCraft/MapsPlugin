@@ -23,6 +23,7 @@ public class Apollo extends BattleMap implements Listener {
     public Apollo() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
     }
 
     // Map details
@@ -89,7 +90,6 @@ public class Apollo extends BattleMap implements Listener {
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
         ItemStack ENDER_PEARL = new ItemStack(Material.ENDER_PEARL, 3);
-        IRON_BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 4);
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);

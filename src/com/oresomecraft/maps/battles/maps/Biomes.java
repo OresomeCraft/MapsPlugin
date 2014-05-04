@@ -17,6 +17,7 @@ public class Biomes extends BattleMap implements Listener {
     public Biomes() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.LEATHER_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.LEATHER_BOOTS, Material.IRON_SWORD});
     }
 
     String name = "biom";

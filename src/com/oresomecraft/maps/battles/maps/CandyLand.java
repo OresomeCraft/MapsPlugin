@@ -6,6 +6,7 @@ import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -17,6 +18,7 @@ public class CandyLand extends BattleMap implements Listener {
     public CandyLand() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.WOOD_SWORD});
         lockTime("day");
     }
 
@@ -54,6 +56,7 @@ public class CandyLand extends BattleMap implements Listener {
         LeatherArmorMeta helmetMeta = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
         helmetMeta.setColor(Color.WHITE);
         LEATHER_HELMET.setItemMeta(helmetMeta);
+        WOODEN_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 32767);
 
         p.getInventory().setHelmet(LEATHER_HELMET);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);

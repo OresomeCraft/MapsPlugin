@@ -34,6 +34,7 @@ public class Christmas extends BattleMap implements Listener {
     public Christmas() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.STONE_SWORD});
     }
 
     String name = "christmas";

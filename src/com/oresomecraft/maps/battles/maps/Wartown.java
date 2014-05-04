@@ -31,6 +31,7 @@ public class Wartown extends BattleMap implements Listener {
 
     public Wartown() {
         super.initiate(this, name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.BLAZE_ROD});
     }
 
     String name = "wartown";
