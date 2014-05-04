@@ -29,6 +29,7 @@ public class DesertCastle extends BattleMap implements Listener {
 
     public DesertCastle() {
         super.initiate(this, name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.FISHING_ROD});
         setTDMTime(15);
         setAllowBuild(false);
     }

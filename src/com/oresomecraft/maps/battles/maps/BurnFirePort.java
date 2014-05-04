@@ -17,6 +17,7 @@ public class BurnFirePort extends BattleMap implements Listener {
     public BurnFirePort() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
     }
 
     String name = "burnfireport";

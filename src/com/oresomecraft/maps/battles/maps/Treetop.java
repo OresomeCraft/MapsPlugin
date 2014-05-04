@@ -13,6 +13,7 @@ public class Treetop extends BattleMap implements Listener {
 
     public Treetop() {
         super.initiate(this, name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
         setTDMTime(10);
         setAllowBuild(false);
         lockTime("night");

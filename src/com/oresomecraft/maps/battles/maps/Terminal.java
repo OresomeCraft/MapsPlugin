@@ -13,6 +13,7 @@ public class Terminal extends BattleMap implements Listener {
 
     public Terminal() {
         super.initiate(this, name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
         setToolMerge(true);
         setAllowBuild(false);
         setAutoSpawnProtection(10);
