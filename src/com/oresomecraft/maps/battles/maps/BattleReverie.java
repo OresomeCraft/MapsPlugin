@@ -51,6 +51,7 @@ public class BattleReverie extends BattleMap implements Listener {
         np2 = "???";
         np3 = "???";
         np4 = "???";
+        ac = false;
     }
 
     public void readyTDMSpawns() {
@@ -77,6 +78,8 @@ public class BattleReverie extends BattleMap implements Listener {
     public int x2 = 0;
     public int y2 = 0;
     public int z2 = 0;
+    
+    public boolean ac = false;
 
     String p1 = "???";
     String p2 = "???";
@@ -107,6 +110,7 @@ public class BattleReverie extends BattleMap implements Listener {
     @EventHandler
     public void worldLoad(WorldLoadEvent event) {
         if (event.getWorld().getName().equalsIgnoreCase(name)) {
+            ac = true;
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] Starting up!");
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                 public void run() {
@@ -147,6 +151,7 @@ public class BattleReverie extends BattleMap implements Listener {
             plugin.getServer().getPluginManager().callEvent(new EndBattleEvent(Gamemode.FFA));
             return;
         }
+        if (!ac) return;
         Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] " + ChatColor.GOLD + "The following players have been chosen!");
         if (!np1.equals("???")) Bukkit.broadcastMessage(ChatColor.RED + np1);
         if (!np2.equals("???")) Bukkit.broadcastMessage(ChatColor.BLUE + np2);
@@ -159,6 +164,7 @@ public class BattleReverie extends BattleMap implements Listener {
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
+                if (!ac) return;
                 if (!p1.equals("???")) join(p1);
                 if (!p2.equals("???")) join(p2);
                 if (!p3.equals("???")) join(p3);
