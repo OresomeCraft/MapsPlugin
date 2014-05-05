@@ -18,7 +18,6 @@ public class Suburban extends BattleMap implements Listener {
 
     public Suburban() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.IRON_PICKAXE});
         setToolMerge(true);
     }
 
