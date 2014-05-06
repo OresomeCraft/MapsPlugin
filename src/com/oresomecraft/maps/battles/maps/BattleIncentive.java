@@ -87,8 +87,8 @@ public class BattleIncentive extends BattleMap implements Listener {
     @EventHandler
     public void quit(PlayerQuitEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        red.remove(event.getPlayer().getName());
-        blue.remove(event.getPlayer().getName());
+        removeRed(event.getPlayer().getName());
+        removeBlue(event.getPlayer().getName());
         Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleIncentive] " + event.getPlayer().getName() + " quit!");
         endOrSwap(event.getPlayer().getName());
     }
@@ -96,8 +96,8 @@ public class BattleIncentive extends BattleMap implements Listener {
     @EventHandler
     public void death(PlayerDeathEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
-        red.remove(event.getEntity().getName());
-        blue.remove(event.getEntity().getName());
+        removeRed(event.getEntity().getName());
+        removeBlue(event.getEntity().getName());
         endOrSwap(event.getEntity().getName());
     }
 
@@ -110,9 +110,9 @@ public class BattleIncentive extends BattleMap implements Listener {
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         try {
                             if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_RED) {
-                                red.add(p.getName());
+                                addRed(p.getName());
                             } else if (BattlePlayer.getBattlePlayer(p.getName()).getTeamType() == Team.LTS_BLUE) {
-                                blue.add(p.getName());
+                                addBlue(p.getName());
                             }
                         } catch (Exception ex) {
                             // Really bad ugly and inefficient temp fix
@@ -136,10 +136,10 @@ public class BattleIncentive extends BattleMap implements Listener {
                             public void run() {
                                 if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
                                     if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_RED) {
-                                        red.add(event.getPlayer().getName());
+                                        addBlue(event.getPlayer().getName());
                                         Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " joined red!");
                                     } else if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_BLUE) {
-                                        blue.add(event.getPlayer().getName());
+                                        addBlue(event.getPlayer().getName());
                                         Bukkit.broadcastMessage(ChatColor.BLUE + event.getPlayer().getName() + " joined blue!");
                                     }
                                 }
@@ -159,8 +159,8 @@ public class BattleIncentive extends BattleMap implements Listener {
                 if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
                     Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " left the round!");
                     endOrSwap(event.getPlayer().getName());
-                    red.remove(event.getPlayer().getName());
-                    blue.remove(event.getPlayer().getName());
+                    removeRed(event.getPlayer().getName());
+                    removeBlue(event.getPlayer().getName());
                 }
             }
         } catch (Exception e) {
@@ -171,6 +171,7 @@ public class BattleIncentive extends BattleMap implements Listener {
     @EventHandler
     public void click(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!safe) return;
         try {
             if (event.getClickedBlock().getType() == Material.LAPIS_BLOCK && currentBlue.equals(event.getPlayer().getName())) {
                 swap(event.getPlayer().getName(), true);
@@ -183,6 +184,8 @@ public class BattleIncentive extends BattleMap implements Listener {
 
         }
     }
+
+    boolean safe = false;
 
     public void newRound() {
         String newRed = red.get(new Random().nextInt(red.size()));
@@ -225,6 +228,7 @@ public class BattleIncentive extends BattleMap implements Listener {
         currentBlue2 = newBlue1;
         currentRed2 = newRed1;
         Bukkit.broadcastMessage(ChatColor.RED + "THE MATCH STARTS IN 10 SECONDS!");
+        safe = true;
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
@@ -233,6 +237,7 @@ public class BattleIncentive extends BattleMap implements Listener {
                 join(currentRed);
                 join(currentRed2);
                 Bukkit.broadcastMessage(ChatColor.GREEN + "Game on, fellas! FIGHT!");
+                safe = false;
             }
         }, 10 * 20L);
     }
@@ -454,6 +459,34 @@ public class BattleIncentive extends BattleMap implements Listener {
                 event.setCancelled(true);
                 ((Player) event.getDamager()).sendMessage(ChatColor.RED + "You cannot damage the waiting enemy!");
             }
+        }
+    }
+
+    public void addRed(String name) {
+        if (red.contains(name)) return;
+        red.add(name);
+    }
+
+    public void addBlue(String name) {
+        if (blue.contains(name)) return;
+        blue.add(name);
+    }
+
+    public void removeRed(String name) {
+        int attempts = 20;
+        while (attempts > 0) {
+            if (!red.contains(name)) break;
+            if (red.contains(name)) attempts--;
+            red.remove(name);
+        }
+    }
+
+    public void removeBlue(String name) {
+        int attempts = 20;
+        while (attempts > 0) {
+            if (!blue.contains(name)) break;
+            if (blue.contains(name)) attempts--;
+            blue.remove(name);
         }
     }
 }
