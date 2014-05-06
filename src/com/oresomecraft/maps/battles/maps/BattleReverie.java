@@ -78,7 +78,7 @@ public class BattleReverie extends BattleMap implements Listener {
     public int x2 = 0;
     public int y2 = 0;
     public int z2 = 0;
-    
+
     public boolean ac = false;
 
     String p1 = "???";
@@ -124,7 +124,8 @@ public class BattleReverie extends BattleMap implements Listener {
     public void leaveSpec(final PlayerCommandPreprocessEvent event) {
         // This is the blocked stuff
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        if (event.getMessage().toLowerCase().startsWith("/potion") || event.getMessage().toLowerCase().startsWith("/dog")) event.setCancelled(true);
+        if (event.getMessage().toLowerCase().startsWith("/potion") || event.getMessage().toLowerCase().startsWith("/dog"))
+            event.setCancelled(true);
         if (event.getMessage().toLowerCase().startsWith("/leave") || event.getMessage().toLowerCase().startsWith("/spectate")) {
             if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
                 Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " left the round!!");
