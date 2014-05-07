@@ -52,6 +52,7 @@ public class BattleReverie extends BattleMap implements Listener {
         np3 = "???";
         np4 = "???";
         ac = false;
+        acc = true;
     }
 
     public void readyTDMSpawns() {
@@ -80,6 +81,7 @@ public class BattleReverie extends BattleMap implements Listener {
     public int z2 = 0;
 
     public boolean ac = false;
+    public boolean acc = false;
 
     String p1 = "???";
     String p2 = "???";
@@ -136,6 +138,7 @@ public class BattleReverie extends BattleMap implements Listener {
     }
 
     public void newRound() {
+        acc = true;
         np1 = "???";
         np2 = "???";
         np3 = "???";
@@ -170,6 +173,7 @@ public class BattleReverie extends BattleMap implements Listener {
                 if (!p2.equals("???")) join(p2);
                 if (!p3.equals("???")) join(p3);
                 if (!p4.equals("???")) join(p4);
+                acc = false;
             }
         }, 5 * 20L);
     }
@@ -360,7 +364,10 @@ public class BattleReverie extends BattleMap implements Listener {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         if (event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
             Player p = (Player) event.getEntity();
-            if (!p1.equals(p.getName()) && p2.equals(p.getName()) && p3.equals(p.getName()) && p4.equals(p.getName())) {
+            if (!p1.equals(p.getName()) && !p2.equals(p.getName()) && !p3.equals(p.getName()) && !p4.equals(p.getName())) {
+                event.setCancelled(true);
+                ((Player) event.getDamager()).sendMessage(ChatColor.RED + "Please wait until you are selected before fighting!");
+            } else if (acc) {
                 event.setCancelled(true);
                 ((Player) event.getDamager()).sendMessage(ChatColor.RED + "Please wait until you are selected before fighting!");
             }
