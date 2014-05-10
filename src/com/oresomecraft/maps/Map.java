@@ -375,11 +375,11 @@ public abstract class Map implements Listener {
      *
      * @param event an Event called by the server
      */
-    @EventHandler
+    //@EventHandler
     public void pickup(PlayerPickupItemEvent event) {
-        if(!event.getPlayer().getWorld().getName().equals(name) || !toolMerge) return;
+        if (!event.getPlayer().getWorld().getName().equals(name) || !toolMerge) return;
         ItemStack it = event.getItem().getItemStack();
-        if(!event.getPlayer().getInventory().contains(it.getType())) return;
+        if (!event.getPlayer().getInventory().contains(it.getType())) return;
         if (max.get(it.getType()) == 0) return;
         for (Material m : max.keySet()) {
             if (m == it.getType()) {
@@ -434,10 +434,10 @@ public abstract class Map implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
-            for (ItemStack item : event.getDrops()){
+            for (ItemStack item : event.getDrops()) {
                 if (disabledDrops != null && Arrays.asList(disabledDrops).contains(item.getType()))
                     item.setType(Material.AIR);
-                if(toolMerge && item.getType() == Material.ARROW)
+                if (toolMerge && item.getType() == Material.ARROW)
                     item.setType(Material.AIR);
             }
         }
