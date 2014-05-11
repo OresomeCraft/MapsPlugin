@@ -68,6 +68,7 @@ public class Paradise extends BattleMap implements Listener {
         i.setItem(1, BOW);
         i.setItem(2, HEALTH_POTION);
         i.setItem(11, ARROW);
+        i.setItem(4, STEAK);
     }
 
     // Region. (Top corner block and bottom corner block.
