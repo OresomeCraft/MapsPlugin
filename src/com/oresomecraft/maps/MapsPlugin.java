@@ -53,6 +53,10 @@ public class MapsPlugin extends JavaPlugin {
         } else { // Battles
             loadMaps(BATTLE_MAPS_PACKAGE);
             battleMapsLoaded = false;
+
+            // Temp hacky trial
+            loadMaps(ARCADE_MAPS_PACKAGE);
+            arcadeMapsLoaded = true;
         }
     }
 
