@@ -108,8 +108,10 @@ public class Oasis extends BattleMap implements Listener {
         block.setType(Material.PACKED_ICE);
         new BukkitRunnable() {
             public void run() {
-                block.setType(Material.STATIONARY_WATER);
-                if (block.getLocation().distanceSquared(p.getLocation()) <= 3) iceTemp(block, p);
+                if (Bukkit.getWorld(name) != null) {
+                    block.setType(Material.STATIONARY_WATER);
+                    if (block.getLocation().distanceSquared(p.getLocation()) <= 3) iceTemp(block, p);
+                }
             }
         }.runTaskLater(plugin, 3 * 20L);
     }
