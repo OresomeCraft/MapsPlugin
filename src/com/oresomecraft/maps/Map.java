@@ -60,6 +60,7 @@ public abstract class Map implements Listener {
     private boolean autoSpawnProtection;
     private int spawnProtectionDuration;
     private int blockLimit = 256;
+    private int requiredFFAScore = 20;
     private boolean fireSpread = true;
     private boolean toolMerge = false;
     private Long timeLoad;
@@ -615,6 +616,15 @@ public abstract class Map implements Listener {
     public void setCTFFlags(String name, Location redFlag, Location blueFlag) {
         this.ctfRedFlag = redFlag;
         this.ctfBlueFlag = blueFlag;
+    }
+
+    public void setRequiredFFAScore(int score) {
+        if (score < 31) // Max allowed FFA score is 30
+            this.requiredFFAScore = score;
+    }
+
+    public int getRequiredFFAScore() {
+        return this.requiredFFAScore;
     }
 
     /**
