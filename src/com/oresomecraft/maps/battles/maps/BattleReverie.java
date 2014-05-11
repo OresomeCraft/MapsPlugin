@@ -34,6 +34,7 @@ public class BattleReverie extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(Material.values());
+        setRequiredFFAScore(5);
     }
 
     String name = "battlereverie";
