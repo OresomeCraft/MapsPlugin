@@ -90,7 +90,7 @@ public class Apollo extends BattleMap implements Listener {
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
         ItemStack ENDER_PEARL = new ItemStack(Material.ENDER_PEARL, 3);
-        
+
         IRON_BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 4);
 
         p.getInventory().setBoots(IRON_BOOTS);

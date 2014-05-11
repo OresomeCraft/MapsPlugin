@@ -27,7 +27,7 @@ public class Sandbox extends BattleMap implements Listener {
     public Sandbox() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.ARROW, Material.FISHING_ROD, Material.BOW, Material.IRON_BOOTS, });
+        disableDrops(new Material[]{Material.ARROW, Material.FISHING_ROD, Material.BOW, Material.IRON_BOOTS,});
     }
 
     String name = "sandbox";

@@ -102,7 +102,8 @@ public class Oasis extends BattleMap implements Listener {
 
     public int x2 = -74;
     public int y2 = 122;
-    public int z2  = -166;
+    public int z2 = -166;
+
     public void iceTemp(final Block block, final Player p) {
         block.setType(Material.PACKED_ICE);
         new BukkitRunnable() {
