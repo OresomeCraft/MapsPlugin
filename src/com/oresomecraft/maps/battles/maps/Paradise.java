@@ -25,9 +25,8 @@ public class Paradise extends BattleMap implements Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, -102, 108, 103, 0, 0));
-
-        blueSpawns.add(new Location(w, -9, 51, 111, -83, 0));
+        redSpawns.add(new Location(w, -102, 108, 103));
+        blueSpawns.add(new Location(w, 51, 111, -83));
     }
 
     public void readyFFASpawns() {
@@ -57,7 +56,7 @@ public class Paradise extends BattleMap implements Listener {
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROW = new ItemStack(Material.ARROW, 32);
-
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 2);
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
@@ -67,6 +66,7 @@ public class Paradise extends BattleMap implements Listener {
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, HEALTH_POTION);
+        i.setItem(3, STEAK);
         i.setItem(11, ARROW);
     }
 
