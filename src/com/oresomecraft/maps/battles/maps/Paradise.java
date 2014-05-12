@@ -12,6 +12,11 @@ import org.bukkit.inventory.ItemStack;
 
 @MapConfig
 public class Paradise extends BattleMap implements Listener {
+    
+           public BattleTemplate() {
+        super.initiate(this, name, fullName, creators, modes);
+        setAllowBuild(false);
+    }
 
     public Paradise() {
         super.initiate(this, name, fullName, creators, modes);
@@ -68,7 +73,6 @@ public class Paradise extends BattleMap implements Listener {
         i.setItem(1, BOW);
         i.setItem(2, HEALTH_POTION);
         i.setItem(3, STEAK);
-        i.setItem(8, PEARL);
         i.setItem(11, ARROW);
     }
 
