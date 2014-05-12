@@ -16,6 +16,7 @@ public class Paradise extends BattleMap implements Listener {
     public Paradise() {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
+        setAllowBuild(false);
     }
 
     // Map details
@@ -68,7 +69,6 @@ public class Paradise extends BattleMap implements Listener {
         i.setItem(1, BOW);
         i.setItem(2, HEALTH_POTION);
         i.setItem(3, STEAK);
-        i.setItem(8, PEARL);
         i.setItem(11, ARROW);
     }
 
