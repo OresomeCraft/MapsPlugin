@@ -56,7 +56,8 @@ public class Paradise extends BattleMap implements Listener {
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROW = new ItemStack(Material.ARROW, 32);
-        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 2);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 4);
+        ItemStack PEARL = new ItemStack(Material.ENDER_PEARL, 2);
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
@@ -67,6 +68,7 @@ public class Paradise extends BattleMap implements Listener {
         i.setItem(1, BOW);
         i.setItem(2, HEALTH_POTION);
         i.setItem(3, STEAK);
+        i.setItem(8, PEARL);
         i.setItem(11, ARROW);
     }
 
