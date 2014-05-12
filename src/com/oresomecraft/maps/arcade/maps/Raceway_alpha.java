@@ -20,9 +20,9 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 
 @MapConfig
-public class Raceway_alpha extends RacewayMap implements Listener {
+public class Raceway_Alpha extends RacewayMap implements Listener {
 
-    public Raceway_alpha() {
+    public Raceway_Alpha() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowPhysicalDamage(false);
         setAllowBuild(false);
