@@ -35,10 +35,6 @@ public abstract class Map implements Listener {
     public MapsPlugin plugin = MapsPlugin.getInstance();
     public Map config;
 
-    public Map() {
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
-    }
-
     /**
      * ***************************************************************
      * Map configuration variables and methods                       *
@@ -108,13 +104,7 @@ public abstract class Map implements Listener {
         return FFASpawns.get(index);
     }
 
-    /**
-     * Sets the spawn points for a map once it's world has loaded
-     *
-     * @param event A WorldLoadEvent called by the server
-     */
-    @EventHandler // Set the spawns
-    public void setSpawns(WorldLoadEvent event) { // Internal - Do not change
+    public void load(WorldLoadEvent event) { // Internal - Do not change
         if (event.getWorld().getName().equals(name)) {
             this.w = event.getWorld();
             if (this.config instanceof BattleMap) {

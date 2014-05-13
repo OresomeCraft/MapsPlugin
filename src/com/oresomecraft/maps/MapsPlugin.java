@@ -39,6 +39,7 @@ public class MapsPlugin extends JavaPlugin {
     private static HashMap<String, Map> maps = new HashMap<String, Map>();
 
     public void onEnable() {
+        new InternalListener(); // Register internal listener
         oresomebattlesConfig = YamlConfiguration.loadConfiguration(new File("plugins/OresomeBattles/config.yml"));
 
         if (oresomebattlesConfig.getBoolean("arcade_mode")) { // Arcade
