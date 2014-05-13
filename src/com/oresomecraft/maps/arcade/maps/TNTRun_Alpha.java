@@ -24,7 +24,7 @@ public class TNTRun_Alpha extends TNTRunMap implements Listener {
     // Map details
     String name = "tntrun_alpha";
     String fullName = "TNTRun (Alpha)";
-    String creators = "SuperDuckFace ";
+    String[] creators = {"SuperDuckFace"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

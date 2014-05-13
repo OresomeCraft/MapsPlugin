@@ -24,7 +24,7 @@ public class Mansion extends BattleMap implements Listener {
 
     String name = "mansion";
     String fullName = "The Haunted Mansion";
-    String creators = "pegabeavercorn, Hourani95 and kevlar_miner";
+    String[] creators = {"pegabeavercorn", "Hourani95", "kevlar_miner"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

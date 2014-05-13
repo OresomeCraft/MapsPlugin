@@ -28,7 +28,7 @@ public class HilltopHighway extends OresomeKartMap implements Listener {
     // Map details
     String name = "hilltophighway";
     String fullName = "Hilltop Highway";
-    String creators = "SuperDuckFace, ep1cn00bt00b, Afridge1O1, jslsa";
+    String[] creators = {"SuperDuckFace", "ep1cn00bt00b", "Afridge1O1", "jslsa"};
     Gamemode[] modes = {Gamemode.ORESOMEKART};
 
     public void readyFFASpawns() {

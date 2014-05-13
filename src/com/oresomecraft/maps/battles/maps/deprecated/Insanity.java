@@ -21,7 +21,7 @@ public class Insanity extends BattleMap implements Listener {
 
     String name = "insanity";
     String fullName = "Insanity";
-    String creators = "ShaunDepro97 and darkrai202";
+    String[] creators = {"ShaunDepro97", "darkrai202"};
     Gamemode[] modes = {Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

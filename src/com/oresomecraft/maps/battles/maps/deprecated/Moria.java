@@ -28,7 +28,7 @@ public class Moria extends BattleMap implements Listener {
 
     String name = "moria";
     String fullName = "Mines of Moria";
-    String creators = "miniwolf35 and ep1cn00bt00b";
+    String[] creators = {"miniwolf35", "ep1cn00bt00b"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

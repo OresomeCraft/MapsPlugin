@@ -27,7 +27,7 @@ public class FigureEight extends OresomeKartMap implements Listener {
     // Map details
     String name = "figureeight";
     String fullName = "Figure Eight Circuit";
-    String creators = "__R3, reggie449, miniwolf35, TiniDaDominator";
+    String[] creators = {"__R3", "reggie449", "miniwolf35", "TiniDaDominator"};
     Gamemode[] modes = {Gamemode.ORESOMEKART};
 
     public void readyFFASpawns() {

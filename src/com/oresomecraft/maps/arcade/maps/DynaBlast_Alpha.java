@@ -20,7 +20,7 @@ public class DynaBlast_Alpha extends DynaBlastMap implements Listener {
     // Map details
     String name = "dynablast_alpha";
     String fullName = "DynaBlast (Alpha)";
-    String creators = "Htgan ";
+    String[] creators = {"Htgan"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

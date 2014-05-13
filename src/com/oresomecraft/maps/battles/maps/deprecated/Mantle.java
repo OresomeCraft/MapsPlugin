@@ -24,7 +24,7 @@ public class Mantle extends BattleMap implements Listener {
 
     String name = "mantle";
     String fullName = "The Mantle";
-    String creators = "__R3, eli12310987, chillhill3, MiCkEyMiCE and FaazM";
+    String[] creators = {"__R3"};
     Gamemode[] modes = {Gamemode.CTF};
 
     public void readyTDMSpawns() {

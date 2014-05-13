@@ -79,7 +79,7 @@ public abstract class Map implements Listener {
     // Map details
     public String name;
     private String fullName;
-    private String creators;
+    private String[] creators;
     private Gamemode[] modes;
 
     public String getName() {
@@ -90,7 +90,7 @@ public abstract class Map implements Listener {
         return this.fullName;
     }
 
-    public String getCreators() {
+    public String[] getCreators() {
         return this.creators;
     }
 
@@ -132,7 +132,7 @@ public abstract class Map implements Listener {
      * @param creators Creators of the map
      * @param modes    Gamemodes supported by the map
      */
-    protected final void initiate(Map config, String name, String fullName, String creators, Gamemode[] modes) {
+    protected final void initiate(Map config, String name, String fullName, String creators[], Gamemode[] modes) {
         this.config = config;
         this.name = name;
         this.fullName = fullName;

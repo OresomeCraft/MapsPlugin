@@ -27,7 +27,7 @@ public class Equator extends BattleMap implements Listener {
 
     String name = "equator";
     String fullName = "Equator";
-    String creators = "Afridge1O1, SuperDuckFace, Numinex, XUHAVON, beadycottonwood and ViolentShadow";
+    String[] creators = {"Afridge1O1", "SuperDuckFace", "Numinex", "XUHAVON", "beadycottonwood", "ViolentShadow"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
 
     public void readyTDMSpawns() {

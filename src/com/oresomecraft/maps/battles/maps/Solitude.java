@@ -34,7 +34,7 @@ public class Solitude extends BattleMap implements Listener {
 
     String name = "solitude";
     String fullName = "Solitude";
-    String creators = "AnomalousRei, dutchy336, tarko2411 and PMC";
+    String[] creators = {"AnomalousRei", "dutchy336", "tarko2411", "PMC"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {

@@ -26,7 +26,7 @@ public class TheBowl extends BattleMap implements Listener {
     // Map details
     String name = "bowl";
     String fullName = "The Bowl";
-    String creators = "_Moist, psgs, niceman506 and broddikill";
+    String[] creators = {"_Moist", "psgs", "niceman506", "broddikill"};
     Gamemode[] modes = {Gamemode.INFECTION, Gamemode.KOTH};
 
     public void readyTDMSpawns() {

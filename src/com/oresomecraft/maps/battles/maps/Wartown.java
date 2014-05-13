@@ -36,7 +36,7 @@ public class Wartown extends BattleMap implements Listener {
 
     String name = "wartown";
     String fullName = "Wartown";
-    String creators = "reub_youtube";
+    String[] creators = {"reub_youtube"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {

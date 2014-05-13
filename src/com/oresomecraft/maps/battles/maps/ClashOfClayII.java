@@ -29,7 +29,7 @@ public class ClashOfClayII extends BattleMap implements Listener {
 
     String name = "clashofclayii";
     String fullName = "Clash Of Clay II";
-    String creators = "_Moist and __R3";
+    String[] creators = {"_Moist", "__R3"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

@@ -25,7 +25,7 @@ public class Roseley extends BattleMap implements Listener {
 
     String name = "roseley";
     String fullName = "Roseley";
-    String creators = "__R3 ";
+    String[] creators = {" __R3"};
     Gamemode[] modes = {Gamemode.KOTH, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

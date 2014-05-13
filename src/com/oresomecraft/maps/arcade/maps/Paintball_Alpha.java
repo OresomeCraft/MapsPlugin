@@ -23,7 +23,7 @@ public class Paintball_Alpha extends PaintBallMap implements Listener {
     // Map details
     String name = "paintball_alpha";
     String fullName = "Paintball (Alpha)";
-    String creators = "Afridge1O1 and SuperDuckFace";
+    String[] creators = {"Afridge1O1", "SuperDuckFace"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

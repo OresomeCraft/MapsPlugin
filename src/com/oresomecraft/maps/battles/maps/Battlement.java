@@ -19,7 +19,7 @@ public class Battlement extends BattleMap implements Listener {
 
     String name = "battlement";
     String fullName = "Battlement";
-    String creators = "ShaunDepro97 ";
+    String[] creators = {"ShaunDepro97"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {

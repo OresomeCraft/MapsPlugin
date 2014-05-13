@@ -29,7 +29,7 @@ public class Apollo extends BattleMap implements Listener {
     // Map details
     String name = "apollo";
     String fullName = "Apollo";
-    String creators = "RokMelon and Invinsible_Jelly";
+    String[] creators = {"RokMelon", "Invinsible_Jelly"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

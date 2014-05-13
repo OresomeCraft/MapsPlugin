@@ -34,7 +34,7 @@ public class BattleInstitute extends BattleMap implements Listener {
 
     String name = "battleinstitute";
     String fullName = "The Battle Institute";
-    String creators = "__R3 ";
+    String[] creators = {"__R3"};
     Gamemode[] modes = {Gamemode.LTS};
 
     public void readyTDMSpawns() {
@@ -132,7 +132,6 @@ public class BattleInstitute extends BattleMap implements Listener {
                     if (!red.contains(event.getPlayer().getName()) && !blue.contains(event.getPlayer().getName()) && Bukkit.getWorld(name).getPlayers().size() != 0) {
                         if (Bukkit.getWorld(name).getPlayers().size() == 0) return;
                         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                            @Override
                             public void run() {
                                 if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
                                     if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_RED) {
@@ -194,7 +193,6 @@ public class BattleInstitute extends BattleMap implements Listener {
         currentBlue = newBlue;
         currentRed = newRed;
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
             public void run() {
                 if (!blueEnter) join(currentBlue);
                 if (!redEnter) join(currentRed);
@@ -231,7 +229,6 @@ public class BattleInstitute extends BattleMap implements Listener {
             }
         }
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
             public void run() {
                 newRound();
             }

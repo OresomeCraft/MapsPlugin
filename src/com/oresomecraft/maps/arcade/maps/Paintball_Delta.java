@@ -30,7 +30,7 @@ public class Paintball_Delta extends TeamPaintBallMap implements Listener {
     // Map details
     String name = "snowyridge";
     String fullName = "Paintball (Delta aka. Snowy Ridge)";
-    String creators = "meganlovesmusic, SuperDuckFace and ninsai";
+    String[] creators = {"meganlovesmusic", "Ninsai", "SuperDuckFace"};
     Gamemode[] modes = {Gamemode.LTS};
 
     @Override

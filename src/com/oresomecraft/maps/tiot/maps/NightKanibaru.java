@@ -26,7 +26,7 @@ public class NightKanibaru extends TiOTMap implements Listener {
     // Map details
     String name = "themepark";
     String fullName = "Night Kanibaru";
-    String creators = "huxtech, shavahn2003, xblazingxirex1, kytron, SereneMango and xZizle123";
+    String[] creators = {"huxtech", "shavahn2003", "xblazingxirex1", "kytron", "SereneMango", "xZizle123"};
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {

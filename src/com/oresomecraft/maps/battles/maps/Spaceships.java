@@ -28,7 +28,7 @@ public class Spaceships extends BattleMap implements Listener {
 
     String name = "spaceships";
     String fullName = "SpaceShips";
-    String creators = "sampighere, zachoz and __R3";
+    String[] creators = {"sampighere", "zachoz", "__R3"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

@@ -22,7 +22,7 @@ public class Biomes extends BattleMap implements Listener {
 
     String name = "biom";
     String fullName = "Biomes";
-    String creators = "SereneMango and miniwolf35";
+    String[] creators = {"SereneMango", "miniwolf35"};
     Gamemode[] modes = {Gamemode.LMS, Gamemode.FFA};
 
     public void readyTDMSpawns() {

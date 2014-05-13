@@ -36,7 +36,7 @@ public class SnowyRidge extends BattleMap implements Listener {
 
     String name = "snowyridge";
     String fullName = "Snowy Ridge";
-    String creators = "meganlovesmusic, ninsai and SuperDuckFace ";
+    String[] creators = {"meganlovesmusic", "ninsai", "SuperDuckFace"};
     Gamemode[] modes = {Gamemode.FFA, Gamemode.TDM};
 
     public void readyTDMSpawns() {

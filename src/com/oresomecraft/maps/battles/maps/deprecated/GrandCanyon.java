@@ -29,7 +29,7 @@ public class GrandCanyon extends BattleMap implements Listener {
 
     String name = "grandcanyon";
     String fullName = "Grand Canyon";
-    String creators = "jslsa and Corrigan1998";
+    String[] creators = {"jslsa", "Corrigan1998"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

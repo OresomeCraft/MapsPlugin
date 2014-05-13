@@ -28,7 +28,7 @@ public class Geomancy extends BattleMap implements Listener {
 
     String name = "geomancy";
     String fullName = "Geomancy";
-    String creators = "__R3 and ep1cn00bt00b";
+    String[] creators = {" __R3", " ep1cn00bt00b"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

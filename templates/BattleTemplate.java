@@ -19,7 +19,7 @@ public class BattleTemplate extends BattleMap implements Listener {
     // Map details
     String name = "template";
     String fullName = "Template";
-    String creators = "Contributor1, Contributor2 and Contributor3";
+    String[] creators = {"Contributor1, Contributor2 and Contributor3";
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.CTF, Gamemode.KOTH};
 
     public void readyTDMSpawns() {

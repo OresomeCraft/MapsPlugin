@@ -22,7 +22,7 @@ public class TNTDM_Beta extends ArcadeMap implements Listener {
     // Map details
     String name = "tntdm_beta";
     String fullName = "TNTDM (Beta)";
-    String creators = "zachoz ";
+    String[] creators = {"zachoz"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

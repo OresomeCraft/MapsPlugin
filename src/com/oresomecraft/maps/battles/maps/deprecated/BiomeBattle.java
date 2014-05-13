@@ -28,7 +28,7 @@ public class BiomeBattle extends BattleMap implements Listener {
     // Map details
     String name = "biomebattle";
     String fullName = "BiomeBattle";
-    String creators = "SuperDuckFace and Evil_Emo";
+    String[] creators = {"SuperDuckFace", "Evil_Emo"};
     Gamemode[] modes = {Gamemode.FFA, Gamemode.KOTH};
 
     public void readyTDMSpawns() {

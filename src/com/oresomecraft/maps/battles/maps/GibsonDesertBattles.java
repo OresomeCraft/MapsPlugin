@@ -21,7 +21,7 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
 
     String name = "desert";
     String fullName = "Gibson Desert Battles";
-    String creators = "_Moist and niceman506";
+    String[] creators = {"_Moist", "niceman506"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

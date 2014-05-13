@@ -26,7 +26,7 @@ public class Hypno extends BattleMap implements Listener {
 
     String name = "hypno";
     String fullName = "Hypnosis";
-    String creators = "zachoz, pegabeavercorn, DragonDrew and kevlar_miner";
+    String[] creators = {"zachoz", "pegabeavercorn", "DragonDrew", "kevlar_miner"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {

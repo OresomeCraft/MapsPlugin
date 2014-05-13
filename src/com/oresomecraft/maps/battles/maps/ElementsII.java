@@ -25,7 +25,7 @@ public class ElementsII extends BattleMap implements Listener {
 
     String name = "elements2";
     String fullName = "Elements II";
-    String creators = "_Moist, psgs and broddikill";
+    String[] creators = {"_Moist", "psgs", "broddikill"};
     Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {

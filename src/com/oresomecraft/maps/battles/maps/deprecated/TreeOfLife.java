@@ -30,7 +30,7 @@ public class TreeOfLife extends BattleMap implements Listener {
 
     String name = "treeoflife";
     String fullName = "Tree of Life";
-    String creators = "Corrigan1998 ";
+    String[] creators = {"Corrigan1998"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

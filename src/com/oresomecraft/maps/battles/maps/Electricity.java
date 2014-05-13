@@ -21,7 +21,7 @@ public class Electricity extends BattleMap implements Listener {
 
     String name = "electricity";
     String fullName = "Electricity";
-    String creators = "kingfisher83, danielschroeder, __R3 and _Moist";
+    String[] creators = {"kingfisher83", "danielschroeder", " __R3", "_Moist"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

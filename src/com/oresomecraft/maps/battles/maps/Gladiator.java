@@ -26,7 +26,7 @@ public class Gladiator extends BattleMap implements Listener {
     // Map details
     String name = "gladiator";
     String fullName = "Gladiator";
-    String creators = "eddie017 ";
+    String[] creators = {"eddie017"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH};
 
     public void readyTDMSpawns() {

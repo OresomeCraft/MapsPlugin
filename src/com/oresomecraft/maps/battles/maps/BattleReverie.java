@@ -39,7 +39,7 @@ public class BattleReverie extends BattleMap implements Listener {
 
     String name = "battlereverie";
     String fullName = "The Battle Reverie";
-    String creators = "__R3 ";
+    String[] creators = {"__R3"};
     Gamemode[] modes = {Gamemode.FFA};
 
     @EventHandler

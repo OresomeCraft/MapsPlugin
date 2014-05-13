@@ -26,7 +26,7 @@ public class ElysiumRuins extends TiOTMap implements Listener {
     // Map details
     String name = "elysiumruins";
     String fullName = "Elysium Ruins";
-    String creators = "meganlovesmusic ";
+    String[] creators = {"meganlovesmusic"};
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {

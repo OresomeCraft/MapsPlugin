@@ -51,7 +51,7 @@ public class Courtyard extends BattleMap implements Listener {
 
     String name = "courtyard";
     String fullName = "Wolfston Courtyard";
-    String creators = "__R3, reggie449, _Arch_Rider, Boomyay and 123Oblivious";
+    String[] creators = {" __R3", "reggie449", "_Arch_Rider", "Boomyay", "123Oblivious"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
@@ -166,7 +166,6 @@ public class Courtyard extends BattleMap implements Listener {
         player.updateInventory();
 
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
             public void run() {
                 switch (group) {
                     case FIREARMS:

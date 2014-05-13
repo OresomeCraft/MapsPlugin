@@ -22,7 +22,7 @@ public class ClashOfClay extends BattleMap implements Listener {
 
     String name = "clashofclay";
     String fullName = "Clash Of Clay";
-    String creators = "_Moist and niceman506";
+    String[] creators = {"_Moist", "niceman506"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

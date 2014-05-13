@@ -19,7 +19,7 @@ public class TiotTemplate extends TiOTMap implements Listener {
     // Map details
     String name = "template";
     String fullName = "template";
-    String creators = "creator1, creator2 and creator3 ";
+    String[] creators = {"creator1, creator2 and creator3 ";
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {

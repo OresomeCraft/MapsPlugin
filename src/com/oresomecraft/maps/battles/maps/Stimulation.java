@@ -19,7 +19,7 @@ public class Stimulation extends BattleMap implements Listener {
     // Map details
     String name = "stimulation";
     String fullName = "Stimulation";
-    String creators = "ShaunDepro97";
+    String[] creators = {"ShaunDepro97"};
     Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {

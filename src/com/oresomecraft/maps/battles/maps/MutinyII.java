@@ -30,7 +30,7 @@ public class MutinyII extends BattleMap implements Listener {
 
     String name = "mutinyii";
     String fullName = "Mutiny II";
-    String creators = "__R3, Buster1824 and MiCkEyMiCE";
+    String[] creators = {" __R3", "Buster1824", "MiCkEyMiCE"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

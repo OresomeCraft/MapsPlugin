@@ -21,7 +21,7 @@ public class Turmoil extends BattleMap implements Listener {
     // Map details
     String name = "turmoil";
     String fullName = "Turmoil";
-    String creators = "ShaunDepro97";
+    String[] creators = {"ShaunDepro97"};
     Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {

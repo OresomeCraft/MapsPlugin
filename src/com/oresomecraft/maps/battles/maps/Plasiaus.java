@@ -35,7 +35,7 @@ public class Plasiaus extends BattleMap implements Listener {
 
     String name = "plasiaus";
     String fullName = "Plasiaus Village";
-    String creators = "__R3, kytron and DanShrdr";
+    String[] creators = {"__R3", "kytron", "DanShrdr"};
     Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

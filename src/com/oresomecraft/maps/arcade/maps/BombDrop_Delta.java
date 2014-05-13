@@ -25,7 +25,7 @@ public class BombDrop_Delta extends BombDropMap implements Listener {
     // Map details
     String name = "bombdrop_delta";
     String fullName = "BombDrop (Delta)";
-    String creators = "ScruffyRules and ViolentShadow";
+    String[] creators = {"ViolentShadow", "ScruffyRules"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

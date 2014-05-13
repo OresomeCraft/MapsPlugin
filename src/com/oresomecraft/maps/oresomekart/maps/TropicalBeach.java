@@ -34,7 +34,7 @@ public class TropicalBeach extends OresomeKartMap implements Listener {
     // Map details
     String name = "tropicalbeach";
     String fullName = "Tropical Beach";
-    String creators = "SereneMango and ScruffyRules";
+    String[] creators = {"SereneMango", "ScruffyRules"};
     Gamemode[] modes = {Gamemode.ORESOMEKART};
 
     public void readyFFASpawns() {

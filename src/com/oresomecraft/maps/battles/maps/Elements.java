@@ -37,7 +37,7 @@ public class Elements extends BattleMap implements Listener {
 
     String name = "elements";
     String fullName = "Elements";
-    String creators = "broddikill, koolguydude4 and MiCkEyMiCE";
+    String[] creators = {"broddikill", "koolguydude4", "MiCkEyMiCE"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

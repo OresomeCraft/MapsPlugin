@@ -22,7 +22,7 @@ public class TowerHill extends BattleMap implements Listener {
     // Map details
     String name = "towerhill";
     String fullName = "Tower Hill";
-    String creators = "Hourani95";
+    String[] creators = {"Hourani95"};
     Gamemode[] modes = {Gamemode.INFECTION, Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {

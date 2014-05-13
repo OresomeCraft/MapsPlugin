@@ -26,7 +26,7 @@ public class Spleef_Alpha extends ArcadeMap implements Listener {
     // Map details
     String name = "spleef_alpha";
     String fullName = "Spleef (Alpha)";
-    String creators = "zachoz ";
+    String[] creators = {"zachoz"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

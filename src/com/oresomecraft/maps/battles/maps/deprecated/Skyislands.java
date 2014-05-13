@@ -19,7 +19,7 @@ public class Skyislands extends BattleMap implements Listener {
 
     String name = "skyislands";
     String fullName = "Sky Islands";
-    String creators = "tarko2411 and dutchy336";
+    String[] creators = {"tarko2411", "dutchy336"};
     Gamemode[] modes = {Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

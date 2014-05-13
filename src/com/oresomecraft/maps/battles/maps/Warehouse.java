@@ -33,7 +33,7 @@ public class Warehouse extends BattleMap implements Listener {
     // Map details
     String name = "warehouse";
     String fullName = "Warehouse";
-    String creators = "SuperDuckFace, meganlovesmusic and _Husky_";
+    String[] creators = {"SuperDuckFace", " meganlovesmusic", "_Husky_"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF, Gamemode.LTS};
 
     public void readyTDMSpawns() {

@@ -32,7 +32,7 @@ public class Oasis extends BattleMap implements Listener {
 
     String name = "oasis";
     String fullName = "Oasis";
-    String creators = "ep1cn00bt00b and miniwolf35";
+    String[] creators = {"ep1cn00bt00b", "miniwolf35"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH, Gamemode.CTF};
 
     public void readyTDMSpawns() {

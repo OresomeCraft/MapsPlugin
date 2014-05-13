@@ -21,7 +21,7 @@ public class SunsetBay extends BattleMap implements Listener {
     // Map details
     String name = "sunsetbay";
     String fullName = "Sunset Bay";
-    String creators = "SuperDuckFace ";
+    String[] creators = {"SuperDuckFace"};
     Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {

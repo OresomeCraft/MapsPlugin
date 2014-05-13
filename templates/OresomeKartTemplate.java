@@ -27,7 +27,7 @@ public class OresomeKartTemplate extends OresomeKartMap implements Listener {
     // Map details
     String name = "kart";
     String fullName = "Kart";
-    String creators = "zachoz, kevlar_miner and pegabeavercorn";
+    String[] creators = {"zachoz, kevlar_miner and pegabeavercorn";
     Gamemode[] modes = {Gamemode.ORESOMEKART};
 
     public void readyFFASpawns() {

@@ -41,7 +41,7 @@ public class TroubledHalls extends BattleMap implements Listener {
 
     String name = "halls";
     String fullName = "Troubled Halls";
-    String creators = "__R3, nitro20021 and Elite_Killer1";
+    String[] creators = {"__R3", "nitro20021", "Elite_Killer1"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

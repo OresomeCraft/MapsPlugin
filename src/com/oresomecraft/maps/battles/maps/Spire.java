@@ -26,7 +26,7 @@ public class Spire extends BattleMap implements Listener {
 
     String name = "spire";
     String fullName = "Spire";
-    String creators = "zachoz and pegabeavercorn";
+    String[] creators = {"zachoz", "pegabeavercorn"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public int x1 = -1661;

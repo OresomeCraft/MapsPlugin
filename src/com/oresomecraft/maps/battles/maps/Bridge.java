@@ -22,7 +22,7 @@ public class Bridge extends BattleMap implements Listener {
     // Map details
     String name = "bridge";
     String fullName = "Bridge";
-    String creators = "fkBear and ep1cn00bt00b";
+    String[] creators = {"fkBear", "ep1cn00bt00b"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH, Gamemode.CTF};
 
     public void readyTDMSpawns() {

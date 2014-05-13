@@ -20,7 +20,7 @@ public class TNTRun_Beta extends TNTRunMap implements Listener {
     // Map details
     String name = "tntrun_beta";
     String fullName = "TNTRun (Beta)";
-    String creators = "SuperDuckFace and ScruffyRules ";
+    String[] creators = {"SuperDuckFace", "ScruffyRules"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

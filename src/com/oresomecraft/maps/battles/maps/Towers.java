@@ -20,7 +20,7 @@ public class Towers extends BattleMap implements Listener {
 
     String name = "towers";
     String fullName = "Towers";
-    String creators = "bruuceey and Lyssieloo";
+    String[] creators = {"bruuceey", "Lyssieloo"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {

@@ -22,7 +22,7 @@ public class Docks extends BattleMap implements Listener {
 
     String name = "docks";
     String fullName = "The Docks";
-    String creators = "RhinoViru5, tomfoowe1 and yozy3";
+    String[] creators = {"RhinoViru5", "tomfoowe1", "yozy3"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

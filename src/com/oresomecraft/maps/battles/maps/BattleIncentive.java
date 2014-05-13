@@ -36,7 +36,7 @@ public class BattleIncentive extends BattleMap implements Listener {
 
     String name = "battleincentive";
     String fullName = "The Battle Incentive";
-    String creators = "__R3 ";
+    String[] creators = {"__R3"};
     Gamemode[] modes = {Gamemode.LTS};
 
     public void readyTDMSpawns() {
@@ -132,7 +132,6 @@ public class BattleIncentive extends BattleMap implements Listener {
                     if (!red.contains(event.getPlayer().getName()) && !blue.contains(event.getPlayer().getName()) && Bukkit.getWorld(name).getPlayers().size() != 0) {
                         if (Bukkit.getWorld(name).getPlayers().size() == 0) return;
                         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                            @Override
                             public void run() {
                                 if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
                                     if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_RED) {
@@ -230,7 +229,6 @@ public class BattleIncentive extends BattleMap implements Listener {
         Bukkit.broadcastMessage(ChatColor.RED + "THE MATCH STARTS IN 10 SECONDS!");
         safe = true;
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
             public void run() {
                 join(currentBlue);
                 join(currentBlue2);
@@ -371,7 +369,6 @@ public class BattleIncentive extends BattleMap implements Listener {
             }
         }
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
             public void run() {
                 newRound();
             }

@@ -32,7 +32,7 @@ public class Sandbox extends BattleMap implements Listener {
 
     String name = "sandbox";
     String fullName = "Sandbox";
-    String creators = "_Moist, Stewpetasuarus, 123Oblivious and WiiiFreak123 ";
+    String[] creators = {"_Moist", "Stewpetasuarus", "123Oblivious", "WiiiFreak123"};
     Gamemode[] modes = {Gamemode.INFECTION, Gamemode.LMS};
 
     public void readyTDMSpawns() {

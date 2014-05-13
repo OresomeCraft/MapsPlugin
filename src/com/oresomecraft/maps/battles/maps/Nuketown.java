@@ -30,7 +30,7 @@ public class Nuketown extends BattleMap implements Listener {
 
     String name = "nuketown";
     String fullName = "NukeTown";
-    String creators = "Htgan, proportion and reub_youtube";
+    String[] creators = {"Htban", "proportion", "reub_youtube"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

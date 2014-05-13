@@ -22,7 +22,7 @@ public class Xenon extends BattleMap implements Listener {
 
     String name = "xenon";
     String fullName = "Xenon";
-    String creators = "kalikakitty";
+    String[] creators = {"kalikakitty"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

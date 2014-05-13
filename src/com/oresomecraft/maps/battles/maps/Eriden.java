@@ -42,7 +42,7 @@ public class Eriden extends BattleMap implements Listener {
     // Map details
     String name = "eriden";
     String fullName = "Eriden Falls";
-    String creators = "__R3 and DanShrdr";
+    String[] creators = {"__R3", "DanShrdr"};
     Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     public void readyTDMSpawns() {

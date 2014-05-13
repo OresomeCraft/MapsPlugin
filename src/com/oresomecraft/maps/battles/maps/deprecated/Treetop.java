@@ -22,7 +22,7 @@ public class Treetop extends BattleMap implements Listener {
 
     String name = "treetop";
     String fullName = "Treetop Warfare";
-    String creators = "meganlovesmusic and _Husky_";
+    String[] creators = {"meganlovesmusic", "_Husky_"};
     Gamemode[] modes = {Gamemode.KOTH, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

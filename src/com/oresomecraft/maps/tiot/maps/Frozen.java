@@ -25,7 +25,7 @@ public class Frozen extends TiOTMap implements Listener {
     // Map details
     String name = "frozenspikes";
     String fullName = "Frozen Spikes";
-    String creators = "SuperDuckFace and meganlovesmusic";
+    String[] creators = {"SuperDuckFace", "meganlovesmusic"};
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {

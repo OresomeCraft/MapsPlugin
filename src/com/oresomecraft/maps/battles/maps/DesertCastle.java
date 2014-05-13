@@ -36,7 +36,7 @@ public class DesertCastle extends BattleMap implements Listener {
 
     String name = "desertcastle";
     String fullName = "Desert Castle";
-    String creators = "Hourani95";
+    String[] creators = {"Hourani95"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

@@ -31,7 +31,7 @@ public class Arctic extends BattleMap implements Listener {
 
     String name = "arctic";
     String fullName = "Arctic";
-    String creators = "Dant35tra5t";
+    String[] creators = {"Dant35tra5t"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH};
 
     public void readyTDMSpawns() {

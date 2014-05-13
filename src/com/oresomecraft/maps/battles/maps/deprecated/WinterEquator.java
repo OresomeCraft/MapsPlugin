@@ -27,7 +27,7 @@ public class WinterEquator extends BattleMap implements Listener {
 
     String name = "winterequator";
     String fullName = "Winter Equator";
-    String creators = "Afridge1O1, SuperDuckFace, Numinex, XUHAVON, beadycottonwood, ViolentShadow and meganlovesmusic";
+    String[] creators = {"Afridge1O1", "SerperDerkFerc", "Numinex", "XUHAVON", "beadycottonwood", "ViolentShadow", "meganlovesmusic"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
 
     public void readyTDMSpawns() {

@@ -25,7 +25,7 @@ public class BombDrop_Alpha extends BombDropMap implements Listener {
     // Map details
     String name = "bombdrop_alpha";
     String fullName = "BombDrop (Alpha)";
-    String creators = "kevlar_miner ";
+    String[] creators = {"kevlar_miner"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

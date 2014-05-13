@@ -33,7 +33,7 @@ public class TNTBOWSPLEEF_Alpha extends ArcadeMap implements Listener {
     // Map details
     String name = "tntbowspleef_alpha";
     String fullName = "TnT Bow Spleef (Alpha)";
-    String creators = "Rynocraft and BlueVortexed ";
+    String[] creators = {"Rynocraft", "BlueVortexed"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

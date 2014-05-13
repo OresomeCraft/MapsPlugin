@@ -22,7 +22,7 @@ public class BombDrop_Beta extends BombDropMap implements Listener {
     // Map details
     String name = "bombdrop_beta";
     String fullName = "BombDrop (Beta)";
-    String creators = "ViolentShadow and ScruffyRules";
+    String[] creators = {"ViolentShadow", "ScruffyRules"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

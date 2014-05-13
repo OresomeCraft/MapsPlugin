@@ -24,7 +24,7 @@ public class Viscosity extends TNTRunMap implements Listener {
     // Map details
     String name = "viscosity";
     String fullName = "Viscosity Speed Run";
-    String creators = "Rynocraft, BlueVortexed and AnomalousRei ";
+    String[] creators = {"Rynocraft", "BlueVortexed", "AnomalousRei"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

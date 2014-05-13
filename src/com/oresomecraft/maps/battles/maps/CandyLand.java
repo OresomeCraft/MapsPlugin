@@ -24,7 +24,7 @@ public class CandyLand extends BattleMap implements Listener {
 
     String name = "candyland";
     String fullName = "Candy Land";
-    String creators = "iVelocityGaming and BlueVortexed";
+    String[] creators = {"iVelocityGaming", "BlueVortexed"};
     Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {

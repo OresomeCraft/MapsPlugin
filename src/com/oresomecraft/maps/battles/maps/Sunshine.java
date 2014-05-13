@@ -21,7 +21,7 @@ public class Sunshine extends BattleMap implements Listener {
 
     String name = "sunshine";
     String fullName = "Sunshine";
-    String creators = "R3creat3, am51407 and _Moist";
+    String[] creators = {"__R3", "am51407", "_Moist"};
     Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {

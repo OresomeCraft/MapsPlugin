@@ -31,7 +31,7 @@ public class Hartshire extends BattleMap implements Listener {
 
     String name = "hartshire";
     String fullName = "Hartshire";
-    String creators = "__R3, kalikakitty and xannallax33";
+    String[] creators = {" __R3", " kalikakitty", " xannallax33"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

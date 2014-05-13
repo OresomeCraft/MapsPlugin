@@ -25,7 +25,7 @@ public class OrgeIsland extends TiOTMap implements Listener {
     // Map details
     String name = "orgeisland";
     String fullName = "Orge Island";
-    String creators = "miniwolf35 and SereneMango ";
+    String[] creators = {"miniwolf35", "SereneMango"};
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {

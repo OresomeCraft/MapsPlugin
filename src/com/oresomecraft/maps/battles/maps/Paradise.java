@@ -22,7 +22,7 @@ public class Paradise extends BattleMap implements Listener {
     // Map details
     String name = "modern";
     String fullName = "Paradise";
-    String creators = "SuperDuckFace, meganlovesmusic and ninsai";
+    String[] creators = {"SuperDuckFace", "meganlovesmusic", "ninsai"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {

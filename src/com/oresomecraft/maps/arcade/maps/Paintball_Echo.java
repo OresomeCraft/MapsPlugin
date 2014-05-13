@@ -27,7 +27,7 @@ public class Paintball_Echo extends TeamPaintBallMap implements Listener {
     // Map details
     String name = "paintball_echo";
     String fullName = "Paintball (Echo)";
-    String creators = "meganlovesmusic and SuperDuckFace";
+    String[] creators = {"meganlovesmusic", "SuperDuckFace"};
     Gamemode[] modes = {Gamemode.LMS};
 
     @Override

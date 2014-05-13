@@ -31,7 +31,7 @@ public class Raceway_Alpha extends RacewayMap implements Listener {
     // Map details
     String name = "raceway_alpha";
     String fullName = "Raceway (Alpha)";
-    String creators = "Evil_Emo and Turt1eManLol";
+    String[] creators = {"Evil_Emo", "Turt1eManLol"};
     Gamemode[] modes = {Gamemode.LMS};
     boolean hasPassedGrace = false;
 

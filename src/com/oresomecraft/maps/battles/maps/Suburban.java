@@ -23,7 +23,7 @@ public class Suburban extends BattleMap implements Listener {
 
     String name = "suburban";
     String fullName = "Suburban Complex";
-    String creators = "__R3, DanShrdr and kalikakitty";
+    String[] creators = {" __R3", "DanShrdr", "kalikakitty"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {

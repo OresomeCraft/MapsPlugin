@@ -23,7 +23,7 @@ public class HauntedHouse extends BattleMap implements Listener {
     // Map details
     String name = "hauntedhouse";
     String fullName = "Haunted House";
-    String creators = "bumsonfire ";
+    String[] creators = {"bumsonfire"};
     Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {

@@ -19,7 +19,7 @@ public class Relation extends BattleMap implements Listener {
 
     String name = "relation";
     String fullName = "Relation";
-    String creators = "ShaunDepro97";
+    String[] creators = {"ShaunDepro97"};
     Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
