@@ -21,7 +21,7 @@ public class Granted extends BattleMap implements Listener {
 
     String name = "raidii";
     String fullName = "Granted";
-    String creators = "FaazM and Turt1eManLol";
+    String[] creators = {"FaazM, Turt1eManLol"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
