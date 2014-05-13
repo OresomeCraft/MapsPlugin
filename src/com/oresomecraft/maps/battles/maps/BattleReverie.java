@@ -144,6 +144,11 @@ public class BattleReverie extends BattleMap implements Listener {
         np2 = "???";
         np3 = "???";
         np4 = "???";
+        if (Bukkit.getOnlinePlayers().length <= 3) {
+            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] Not enough players! :(");
+            plugin.getServer().getPluginManager().callEvent(new EndBattleEvent(Gamemode.FFA));
+            return;
+        }
         if (Bukkit.getOnlinePlayers().length > 0)
             np1 = getRandom(1);
         if (Bukkit.getOnlinePlayers().length > 1)
@@ -152,10 +157,6 @@ public class BattleReverie extends BattleMap implements Listener {
             np3 = getRandom(3);
         if (Bukkit.getOnlinePlayers().length > 3)
             np4 = getRandom(4);
-        if (Bukkit.getOnlinePlayers().length <= 1) {
-            plugin.getServer().getPluginManager().callEvent(new EndBattleEvent(Gamemode.FFA));
-            return;
-        }
         if (!ac) return;
         Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] " + ChatColor.GOLD + "The following players have been chosen!");
         if (!np1.equals("???")) Bukkit.broadcastMessage(ChatColor.RED + np1);
@@ -167,7 +168,6 @@ public class BattleReverie extends BattleMap implements Listener {
         p3 = np3;
         p4 = np4;
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
             public void run() {
                 if (!ac) return;
                 if (!p1.equals("???")) join(p1);
@@ -210,7 +210,6 @@ public class BattleReverie extends BattleMap implements Listener {
             p.updateInventory();
         }
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
             public void run() {
                 newRound();
             }
