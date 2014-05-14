@@ -27,7 +27,7 @@ public class Dusk extends BattleMap implements Listener {
 
     String name = "dusk";
     String fullName = "Darkness of Dusk";
-    String[] creators = {"xannallax33", "dinner1111", "pepsidawg00", " __R3"};
+    String[] creators = {"xannallax33", "dinner1111", "pepsidawg00", "__R3"};
     Gamemode[] modes = {Gamemode.INFECTION};
 
     //Tdm isn't enabled on this, don't need to do spawns.
