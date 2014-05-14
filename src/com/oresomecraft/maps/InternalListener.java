@@ -21,6 +21,7 @@ public class InternalListener implements Listener {
             Map map = MapsPlugin.getMaps().get(event.getWorld().getName());
             Bukkit.getPluginManager().registerEvents(map, MapsPlugin.getInstance());
             map.load(event);
+            Bukkit.getPluginManager().callEvent(new MapLoadEvent(event.getWorld().getName(), event.getWorld()));
         }
     }
 

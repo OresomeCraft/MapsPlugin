@@ -2,6 +2,7 @@ package com.oresomecraft.maps.arcade.games;
 
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.MapsPlugin;
 import com.oresomecraft.maps.arcade.ArcadeMap;
 import org.bukkit.*;
@@ -14,7 +15,7 @@ public abstract class TNTRunMap extends ArcadeMap {
     boolean hasPassedGrace = false;
 
     @EventHandler
-    public void onLoad(WorldLoadEvent event) {
+    public void onLoad(MapLoadEvent event) {
         if (event.getWorld().getName().equals(name)) {
             Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                 public void run() {
