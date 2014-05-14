@@ -4,6 +4,7 @@ import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.arcade.games.RacewayMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -13,7 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.world.WorldLoadEvent;
+
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -48,7 +49,7 @@ public class Raceway_Alpha extends RacewayMap implements Listener {
     }
 
     @EventHandler
-    public void onLoad(WorldLoadEvent event) {
+    public void onLoad(MapLoadEvent event) {
         if (event.getWorld().getName().equals("raceway_alpha")) {
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                 public void run() {

@@ -4,7 +4,7 @@ import com.oresomecraft.maps.arcade.games.TNTRunMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.world.WorldLoadEvent;
+
 import org.bukkit.inventory.*;
 import com.oresomecraft.OresomeBattles.api.*;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;

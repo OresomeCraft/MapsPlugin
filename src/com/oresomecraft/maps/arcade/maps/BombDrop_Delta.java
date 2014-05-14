@@ -3,12 +3,13 @@ package com.oresomecraft.maps.arcade.maps;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.arcade.games.BombDropMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.world.WorldLoadEvent;
+
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -39,7 +40,7 @@ public class BombDrop_Delta extends BombDropMap implements Listener {
     }
 
     @EventHandler
-    public void onWorld(WorldLoadEvent event) {
+    public void onWorld(MapLoadEvent event) {
         if (event.getWorld().getName().equals(name)) {
             loc1 = new Location(event.getWorld(), -24, 254, -24);
             loc2 = new Location(event.getWorld(), 24, 254, 24);

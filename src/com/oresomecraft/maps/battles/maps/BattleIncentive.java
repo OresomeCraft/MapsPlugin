@@ -5,6 +5,7 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -17,7 +18,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.world.WorldLoadEvent;
+
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -102,7 +103,7 @@ public class BattleIncentive extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void worldLoad(WorldLoadEvent event) {
+    public void worldLoad(MapLoadEvent event) {
         if (event.getWorld().getName().equalsIgnoreCase("battleincentive")) {
             Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleIncentive] Starting up!");
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {

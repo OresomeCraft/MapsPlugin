@@ -3,7 +3,7 @@ package com.oresomecraft.maps.arcade.maps;
 import com.oresomecraft.maps.arcade.games.BombDropMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
-import org.bukkit.event.world.WorldLoadEvent;
+
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
@@ -36,7 +36,7 @@ public class BombDrop_Beta extends BombDropMap implements Listener {
     }
 
     @EventHandler
-    public void onWorld(WorldLoadEvent event) {
+    public void onWorld(MapLoadEvent event) {
         if (event.getWorld().getName().equals(name)) {
             loc1 = new Location(event.getWorld(), -22, 254, -22);
             loc2 = new Location(event.getWorld(), 22, 254, 22);

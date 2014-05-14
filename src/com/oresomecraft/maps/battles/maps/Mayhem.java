@@ -1,13 +1,14 @@
 package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.world.WorldLoadEvent;
+
 import org.bukkit.inventory.*;
 import org.bukkit.potion.*;
 
@@ -32,7 +33,7 @@ public class Mayhem extends BattleMap implements Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.LTS};
 
     @EventHandler
-    public void onload(WorldLoadEvent event) { // Register power block
+    public void onload(MapLoadEvent event) { // Register power block
         if (event.getWorld().getName().equals(name)) cyclePowerBlock();
     }
 
