@@ -28,11 +28,13 @@ public class SkyVillage extends BattleMap implements Listener {
     String name = "skyvillage";
     String fullName = "Sky Village";
     String[] creators = {"SuperDuckFace", "ninsai", "ep1cn00bt00b"};
-    Gamemode[] modes = {Gamemode.FFA};
+    Gamemode[] modes = {Gamemode.FFA, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, 15, 148, 133, 104, 0));
-        blueSpawns.add(new Location(w, 15, 148, 133, 104, 0));
+        redSpawns.add(new Location(w, -91, 84, 75));
+        blueSpawns.add(new Location(w, 88, 94, 84));
+
+        setKoTHMonument(new Location(w, 9, 145, 108));
     }
 
     public void readyFFASpawns() {
