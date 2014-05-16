@@ -104,7 +104,7 @@ public abstract class Map implements Listener {
         return FFASpawns.get(index);
     }
 
-    public void load(WorldLoadEvent event) { // Internal - Do not change
+    public void load(MapLoadEvent event) { // Internal - Do not change
         if (event.getWorld().getName().equals(name)) {
             this.w = event.getWorld();
             if (this.config instanceof BattleMap) {
