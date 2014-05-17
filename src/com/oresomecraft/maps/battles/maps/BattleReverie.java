@@ -145,18 +145,18 @@ public class BattleReverie extends BattleMap implements Listener {
         np2 = "???";
         np3 = "???";
         np4 = "???";
-        if (Bukkit.getOnlinePlayers().length <= 3) {
+        if (getInGame().size() <= 3) {
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] Not enough players! :(");
             plugin.getServer().getPluginManager().callEvent(new EndBattleEvent(Gamemode.FFA));
             return;
         }
-        if (Bukkit.getOnlinePlayers().length > 0)
+        if (getInGame().size() > 0)
             np1 = getRandom(1);
-        if (Bukkit.getOnlinePlayers().length > 1)
+        if (getInGame().size() > 1)
             np2 = getRandom(2);
-        if (Bukkit.getOnlinePlayers().length > 2)
+        if (getInGame().size()  > 2)
             np3 = getRandom(3);
-        if (Bukkit.getOnlinePlayers().length > 3)
+        if (getInGame().size()  > 3)
             np4 = getRandom(4);
         if (!ac) return;
         Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] " + ChatColor.GOLD + "The following players have been chosen!");
