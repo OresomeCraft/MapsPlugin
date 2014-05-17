@@ -14,13 +14,14 @@ public class Turmoil extends BattleMap implements Listener {
 
     public Turmoil() {
         super.initiate(this, name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
         setAllowBuild(false);
     }
 
     // Map details
     String name = "turmoil";
     String fullName = "Turmoil";
-    String creators = "ShaunDepro97";
+    String[] creators = {"ShaunDepro97"};
     Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {

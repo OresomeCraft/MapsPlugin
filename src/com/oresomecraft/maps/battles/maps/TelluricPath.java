@@ -10,8 +10,11 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Enderman;
+import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.Inventory;
@@ -27,18 +30,19 @@ public class TelluricPath extends BattleMap implements Listener {
 
     public TelluricPath() {
         super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(20);
+        setTDMTime(11);
         setAllowBuild(false);
         disablePearlDamage(true);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
-                Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE, Material.IRON_PICKAXE});
-        setAutoSpawnProtection(2);
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
+                Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE, Material.IRON_PICKAXE,
+                Material.ENDER_PEARL});
+        setAutoSpawnProtection(10);
     }
 
     String name = "telluricpath";
     String fullName = "Telluric Path";
-    String creators = "__R3 ";
-    Gamemode[] modes = {Gamemode.CTF};
+    String[] creators = {"__R3"};
+    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     public void readyTDMSpawns() {
 
@@ -138,9 +142,18 @@ public class TelluricPath extends BattleMap implements Listener {
     }
 
     @EventHandler
+    public void enderHit(EntityDamageByEntityEvent event) {
+        if (event.getEntity().getWorld().getName().equals(name)) {
+            if (event.getEntity() instanceof Player && event.getDamager() instanceof Enderman) {
+                event.setDamage(0);
+            }
+        }
+    }
+
+    @EventHandler
     public void death(EntityDeathEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         event.getDrops().clear();
-        if (Math.random() >= 0.5) event.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
+        if (Math.random() >= 0.6) event.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
     }
 }

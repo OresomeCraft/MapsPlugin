@@ -29,7 +29,7 @@ public class Rainbow extends OresomeKartMap implements Listener {
     // Map details
     String name = "rainbow_ok";
     String fullName = "Rainbow Road Power Build";
-    String creators = "__R3, reggie449 and WiiiFreak123";
+    String[] creators = {"__R3", "reggie449", "WiiiFreak123"};
     Gamemode[] modes = {Gamemode.ORESOMEKART};
 
     public void readyFFASpawns() {

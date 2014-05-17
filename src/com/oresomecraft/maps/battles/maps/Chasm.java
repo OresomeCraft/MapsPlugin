@@ -20,15 +20,15 @@ public class Chasm extends BattleMap implements Listener {
     public Chasm() {
         setAllowBuild(false);
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.STONE_HOE, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.LEATHER_HELMET, Material.STONE_SWORD});
         lockTime("day");
         setAutoSpawnProtection(10);
     }
 
     String name = "chasm";
     String fullName = "The Chasm";
-    String creators = "__R3, danielschroeder, Spantezian and AnomalousDyna";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH};
+    String[] creators = {"__R3, danielschroder", "Krontezian", "AnomalousDyna"};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
 
     public void readyTDMSpawns() {
 

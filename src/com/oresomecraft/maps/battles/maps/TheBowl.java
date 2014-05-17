@@ -20,13 +20,13 @@ public class TheBowl extends BattleMap implements Listener {
 
     public TheBowl() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.WOOL});
+        disableDrops(new Material[]{Material.ARROW, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.WOOL});
     }
 
     // Map details
     String name = "bowl";
     String fullName = "The Bowl";
-    String creators = "_Moist, psgs, niceman506 and broddikill";
+    String[] creators = {"_Moist", "psgs", "niceman506", "broddikill"};
     Gamemode[] modes = {Gamemode.INFECTION, Gamemode.KOTH};
 
     public void readyTDMSpawns() {

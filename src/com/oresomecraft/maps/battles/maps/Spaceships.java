@@ -7,7 +7,9 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -20,12 +22,13 @@ public class Spaceships extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
         setBuildLimit(72);
-        disableDrops(new Material[]{Material.DIAMOND_SWORD, Material.DIAMOND_AXE, Material.DIAMOND_PICKAXE, Material.LAVA_BUCKET, Material.TNT});
+        setAutoSpawnProtection(5);
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.DIAMOND_SWORD, Material.DIAMOND_AXE, Material.DIAMOND_PICKAXE, Material.LAVA_BUCKET});
     }
 
     String name = "spaceships";
     String fullName = "SpaceShips";
-    String creators = "sampighere, zachoz and __R3";
+    String[] creators = {"sampighere", "zachoz", "__R3"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
@@ -66,10 +69,6 @@ public class Spaceships extends BattleMap implements Listener {
         i.setItem(5, new ItemStack(Material.LOG, 64));
         i.setItem(8, new ItemStack(Material.ENDER_PEARL, 1));
         i.setItem(9, new ItemStack(Material.ARROW, 64));
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10 * 20, 1));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 10, 1));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40 * 200000, 1));
     }
 
     // Region. (Top corner block and bottom corner block.
@@ -82,4 +81,11 @@ public class Spaceships extends BattleMap implements Listener {
     public int x2 = 246;
     public int y2 = 0;
     public int z2 = -191;
+
+    @EventHandler
+    public void explode(EntityExplodeEvent event) {
+        if (!event.getLocation().getWorld().getName().equals(name)) {
+            event.setYield(event.getYield() * 2);
+        }
+    }
 }

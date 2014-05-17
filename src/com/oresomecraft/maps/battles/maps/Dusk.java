@@ -22,12 +22,12 @@ public class Dusk extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         lockTime("night");
-        disableDrops(new Material[]{Material.STONE_SWORD, Material.GOLD_LEGGINGS, Material.DIAMOND_BOOTS, Material.LEATHER_HELMET});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.STONE_SWORD, Material.GOLD_LEGGINGS, Material.DIAMOND_BOOTS, Material.LEATHER_HELMET});
     }
 
     String name = "dusk";
     String fullName = "Darkness of Dusk";
-    String creators = "xannallax33, dinner1111, pepsidawg00 and AnomalousRei";
+    String[] creators = {"xannallax33", "dinner1111", "pepsidawg00", "__R3"};
     Gamemode[] modes = {Gamemode.INFECTION};
 
     //Tdm isn't enabled on this, don't need to do spawns.

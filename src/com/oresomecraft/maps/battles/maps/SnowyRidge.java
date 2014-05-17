@@ -30,13 +30,13 @@ public class SnowyRidge extends BattleMap implements Listener {
     public SnowyRidge() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.SNOW_BALL});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.FISHING_ROD, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET, Material.SNOW_BALL});
         setFireSpread(false);
     }
 
     String name = "snowyridge";
     String fullName = "Snowy Ridge";
-    String creators = "meganlovesmusic, ninsai and SuperDuckFace ";
+    String[] creators = {"meganlovesmusic", "ninsai", "SuperDuckFace"};
     Gamemode[] modes = {Gamemode.FFA, Gamemode.TDM};
 
     public void readyTDMSpawns() {

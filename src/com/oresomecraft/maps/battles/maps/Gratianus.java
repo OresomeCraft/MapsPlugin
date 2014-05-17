@@ -23,7 +23,7 @@ public class Gratianus extends BattleMap implements Listener {
 
     String name = "gratianus";
     String fullName = "Gratianus";
-    String creators = "BlueVortexed";
+    String[] creators = {"BlueVortexed"};
     Gamemode[] modes = {Gamemode.FFA, Gamemode.KOTH, Gamemode.INFECTION, Gamemode.LMS, Gamemode.LTS};
 
     public void readyTDMSpawns() {

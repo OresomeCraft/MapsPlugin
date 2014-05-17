@@ -22,13 +22,13 @@ public class Geomancy extends BattleMap implements Listener {
     public Geomancy() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(10);
-        disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_PICKAXE, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.DIAMOND_HELMET, Material.WOOD_SWORD});
         setBuildLimit(173);
     }
 
     String name = "geomancy";
     String fullName = "Geomancy";
-    String creators = "__R3 and ep1cn00bt00b";
+    String[] creators = {" __R3", " ep1cn00bt00b"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

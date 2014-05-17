@@ -13,7 +13,7 @@ public class SunsetBay extends BattleMap implements Listener {
 
     public SunsetBay() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_HELMET});
+        disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET});
         setAllowBuild(false);
         lockTime(13116);
     }
@@ -21,8 +21,8 @@ public class SunsetBay extends BattleMap implements Listener {
     // Map details
     String name = "sunsetbay";
     String fullName = "Sunset Bay";
-    String creators = "SuperDuckFace ";
-    Gamemode[] modes = {Gamemode.FFA, Gamemode.LMS};
+    String[] creators = {"SuperDuckFace"};
+    Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -38, 85, 21, -66, 0));
@@ -82,8 +82,9 @@ public class SunsetBay extends BattleMap implements Listener {
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-        ItemStack BOW = new ItemStack(Material.BOW, 32);
-        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack PEARL = new ItemStack(Material.ENDER_PEARL, 1);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 5);
         ItemStack ARROW = new ItemStack(Material.ARROW, 64);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_CAP, LEATHER_BOOTS});
@@ -97,7 +98,8 @@ public class SunsetBay extends BattleMap implements Listener {
         i.setItem(1, BOW);
         i.setItem(2, HEALTH_POTION);
         i.setItem(3, STEAK);
-        i.setItem(8, ARROW);
+        i.setItem(8, PEARL);
+        i.setItem(9, ARROW);
 
     }
 

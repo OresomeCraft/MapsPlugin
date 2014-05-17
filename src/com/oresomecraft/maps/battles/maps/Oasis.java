@@ -25,14 +25,14 @@ public class Oasis extends BattleMap implements Listener {
     public Oasis() {
         setAllowBuild(false);
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.STONE_SWORD, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.LEATHER_HELMET, Material.STONE_SWORD, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS});
         lockTime("day");
         setAutoSpawnProtection(10);
     }
 
     String name = "oasis";
     String fullName = "Oasis";
-    String creators = "ep1cn00bt00b and miniwolf35";
+    String[] creators = {"ep1cn00bt00b", "miniwolf35"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH, Gamemode.CTF};
 
     public void readyTDMSpawns() {
@@ -102,13 +102,16 @@ public class Oasis extends BattleMap implements Listener {
 
     public int x2 = -74;
     public int y2 = 122;
-    public int z2  = -166;
+    public int z2 = -166;
+
     public void iceTemp(final Block block, final Player p) {
         block.setType(Material.PACKED_ICE);
         new BukkitRunnable() {
             public void run() {
-                block.setType(Material.STATIONARY_WATER);
-                if (block.getLocation().distanceSquared(p.getLocation()) <= 3) iceTemp(block, p);
+                if (Bukkit.getWorld(name) != null) {
+                    block.setType(Material.STATIONARY_WATER);
+                    if (block.getLocation().distanceSquared(p.getLocation()) <= 3) iceTemp(block, p);
+                }
             }
         }.runTaskLater(plugin, 3 * 20L);
     }

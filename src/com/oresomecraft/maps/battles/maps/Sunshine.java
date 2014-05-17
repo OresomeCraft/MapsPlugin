@@ -14,14 +14,14 @@ public class Sunshine extends BattleMap implements Listener {
     public Sunshine() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.BOW, Material.LEATHER_HELMET,
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.BOW, Material.LEATHER_HELMET,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.WOOD_SWORD});
         lockTime("day");
     }
 
     String name = "sunshine";
     String fullName = "Sunshine";
-    String creators = "R3creat3, am51407 and _Moist";
+    String[] creators = {"__R3", "am51407", "_Moist"};
     Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {

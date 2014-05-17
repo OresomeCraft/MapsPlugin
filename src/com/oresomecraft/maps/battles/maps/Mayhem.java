@@ -1,13 +1,14 @@
 package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.world.WorldLoadEvent;
+
 import org.bukkit.inventory.*;
 import org.bukkit.potion.*;
 
@@ -21,18 +22,18 @@ public class Mayhem extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(10);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
+        disableDrops(new Material[]{Material.EMERALD, Material.ARROW, Material.FISHING_ROD, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
                 Material.IRON_CHESTPLATE, Material.FISHING_ROD, Material.DIAMOND_PICKAXE, Material.ARROW});
         setAutoSpawnProtection(2);
     }
 
     String name = "mayhem";
     String fullName = "Mayhem";
-    String creators = "ShaunDepro97, meganlovesmusic and Kytria";
-    Gamemode[] modes = {Gamemode.TDM};
+    String[] creators = {"ShaunDepro97", "meganlovesmusic", "Kytria"};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.LTS};
 
     @EventHandler
-    public void onload(WorldLoadEvent event) { // Register power block
+    public void onload(MapLoadEvent event) { // Register power block
         if (event.getWorld().getName().equals(name)) cyclePowerBlock();
     }
 

@@ -7,7 +7,6 @@ import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -18,6 +17,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.world.WorldLoadEvent;
@@ -35,10 +35,6 @@ public abstract class Map implements Listener {
     public MapsPlugin plugin = MapsPlugin.getInstance();
     public Map config;
 
-    public Map() {
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
-    }
-
     /**
      * ***************************************************************
      * Map configuration variables and methods                       *
@@ -54,13 +50,16 @@ public abstract class Map implements Listener {
     private boolean allowBuild = true;
     private boolean allowPlace = true;
     private Material[] disabledDrops;
-    private Material[] disabledBlocks;
+    private Material[] disabledBlocks = new Material[]{Material.AIR};
     private boolean pearlDamage = true;
     private Long timeLock;
     private boolean autoSpawnProtection;
     private int spawnProtectionDuration;
     private int blockLimit = 256;
+    private int requiredFFAScore = 20;
     private boolean fireSpread = true;
+    private boolean toolMerge = false;
+    private Long timeLoad;
     public boolean arrowOnLand = false;
     protected int tdmTime = 15;
     public Location ctfRedFlag, ctfBlueFlag, kothFlag;
@@ -80,7 +79,7 @@ public abstract class Map implements Listener {
     // Map details
     public String name;
     private String fullName;
-    private String creators;
+    private String[] creators;
     private Gamemode[] modes;
 
     public String getName() {
@@ -91,7 +90,7 @@ public abstract class Map implements Listener {
         return this.fullName;
     }
 
-    public String getCreators() {
+    public String[] getCreators() {
         return this.creators;
     }
 
@@ -105,13 +104,7 @@ public abstract class Map implements Listener {
         return FFASpawns.get(index);
     }
 
-    /**
-     * Sets the spawn points for a map once it's world has loaded
-     *
-     * @param event A WorldLoadEvent called by the server
-     */
-    @EventHandler // Set the spawns
-    public void setSpawns(WorldLoadEvent event) { // Internal - Do not change
+    public void load(MapLoadEvent event) { // Internal - Do not change
         if (event.getWorld().getName().equals(name)) {
             this.w = event.getWorld();
             if (this.config instanceof BattleMap) {
@@ -139,7 +132,7 @@ public abstract class Map implements Listener {
      * @param creators Creators of the map
      * @param modes    Gamemodes supported by the map
      */
-    protected final void initiate(Map config, String name, String fullName, String creators, Gamemode[] modes) {
+    protected final void initiate(Map config, String name, String fullName, String creators[], Gamemode[] modes) {
         this.config = config;
         this.name = name;
         this.fullName = fullName;
@@ -260,6 +253,16 @@ public abstract class Map implements Listener {
     }
 
     /**
+     * Enables tool merging
+     *
+     * @param allow Whether tool merging is allowed or not
+     */
+    @Deprecated
+    public void setToolMerge(boolean allow) {
+        toolMerge = allow;
+    }
+
+    /**
      * Prevents damage when moving using enderpearls
      *
      * @param allow Whether damage from enderpearls should be disabled or not
@@ -296,6 +299,29 @@ public abstract class Map implements Listener {
     }
 
     /**
+     * Sets a time to be set when the map loads
+     *
+     * @param time The time to lock the map to. ("day", "dawn", "night")
+     */
+    public void setTimeUponLoad(String time) {
+        if (time.equalsIgnoreCase("day")) timeLoad = 0L;
+        else if (time.equalsIgnoreCase("dawn")) timeLoad = 23000L;
+        else if (time.equalsIgnoreCase("night")) timeLoad = 14000L;
+        else if (time.equalsIgnoreCase("dusk")) timeLoad = 13000L;
+        else if (time.equalsIgnoreCase("midday")) timeLoad = 5000L;
+        else if (time.equalsIgnoreCase("midnight")) timeLoad = 18000L;
+    }
+
+    /**
+     * Sets a time to be set when the map loads
+     *
+     * @param time The time in ticks
+     */
+    public void setTimeUponLoad(long time) {
+        this.timeLoad = time;
+    }
+
+    /**
      * Sets FFA and Infection spawn points (also used for spectators)
      */
     public abstract void readyFFASpawns();
@@ -323,6 +349,44 @@ public abstract class Map implements Listener {
         if (event.getBlock().getWorld().getName().equals(name) && !allowBuild) event.setCancelled(true);
         if (event.getBlock().getWorld().getName().equals(name) && event.getBlock().getY() > blockLimit)
             event.setCancelled(true);
+        if (event.getBlock().getWorld().getName().equals(name) && Arrays.asList(disabledBlocks).contains(event.getBlock().getType()))
+            event.setCancelled(true);
+    }
+
+    HashMap<Material, Short> max = new HashMap<Material, Short>();
+
+    {
+        for (Material m : Material.values()) {
+            if (m.getMaxDurability() > 0) max.put(m, m.getMaxDurability());
+        }
+    }
+
+    /**
+     * Automatically merges a picked up item's durability to your current tool if picked up
+     *
+     * @param event an Event called by the server
+     */
+    //@EventHandler
+    public void pickup(PlayerPickupItemEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(name) || !toolMerge) return;
+        ItemStack it = event.getItem().getItemStack();
+        if (!event.getPlayer().getInventory().contains(it.getType())) return;
+        if (max.get(it.getType()) == 0) return;
+        for (Material m : max.keySet()) {
+            if (m == it.getType()) {
+                for (ItemStack is : event.getPlayer().getInventory()) {
+                    if (is.getType() == it.getType()) {
+                        short total = (short) (is.getDurability() - (max.get(m) - it.getDurability()));
+                        if (total <= 0) total = (short) 0;
+                        is.setDurability(total);
+                        event.setCancelled(true);
+                        event.getItem().remove();
+                        event.getPlayer().getWorld().playSound(event.getPlayer().getLocation(), Sound.ITEM_PICKUP, 2L, 2L);
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -332,7 +396,7 @@ public abstract class Map implements Listener {
      */
     @EventHandler
     public void arrowAway(ProjectileHitEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name)) {
+        if (event.getEntity().getWorld().getName().equals(name) && arrowOnLand) {
             if (event.getEntity() instanceof Arrow) event.getEntity().remove();
         }
     }
@@ -361,9 +425,12 @@ public abstract class Map implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         if (event.getEntity().getWorld().getName().equals(name)) {
-            for (ItemStack item : event.getDrops())
+            for (ItemStack item : event.getDrops()) {
                 if (disabledDrops != null && Arrays.asList(disabledDrops).contains(item.getType()))
                     item.setType(Material.AIR);
+                if (toolMerge && item.getType() == Material.ARROW)
+                    item.setType(Material.AIR);
+            }
         }
 
     }
@@ -379,7 +446,8 @@ public abstract class Map implements Listener {
         TeleportCause cause = event.getCause();
         Location destination = event.getTo();
 
-        if (!BattlePlayer.getBattlePlayer(player).isSpectator()) {
+        if (BattlePlayer.getBattlePlayer(player) != null &&
+                !BattlePlayer.getBattlePlayer(player).isSpectator()) {
             if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
                 if (pearlDamage) {
                     if (cause == TeleportCause.ENDER_PEARL) {
@@ -516,6 +584,14 @@ public abstract class Map implements Listener {
         }, 100L, 100L);
     }
 
+    @EventHandler
+    public void setLoadTime(WorldLoadEvent event) {
+        if (!event.getWorld().getName().equals(name)) return;
+        if (timeLoad != null) {
+            event.getWorld().setTime(timeLoad);
+        }
+    }
+
     /**
      * ***************************************************************
      * Methods to interact with OresomeBattles                       *
@@ -530,6 +606,19 @@ public abstract class Map implements Listener {
     public void setCTFFlags(String name, Location redFlag, Location blueFlag) {
         this.ctfRedFlag = redFlag;
         this.ctfBlueFlag = blueFlag;
+    }
+
+    public void setRequiredFFAScore(int score) {
+        if (score < 31) // Max allowed FFA score is 30
+            this.requiredFFAScore = score;
+    }
+
+    public void setMapSpecificRules(String[] rules) {
+        //Does nothing yet.
+    }
+
+    public int getRequiredFFAScore() {
+        return this.requiredFFAScore;
     }
 
     /**
@@ -643,6 +732,28 @@ public abstract class Map implements Listener {
         int topCornerZ = z1 > z2 ? z1 : z2;
         int bottomCornerY = y1 < y2 ? y1 : y2;
         int topCornerY = y1 > y2 ? y1 : y2;
+        if (loc.getX() >= bottomCornerX && loc.getX() <= topCornerX) {
+            if (loc.getZ() >= bottomCornerZ && loc.getZ() <= topCornerZ) {
+                if (loc.getY() >= bottomCornerY && loc.getY() <= topCornerY) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if a Location's coordinates is in between the region
+     *
+     * @return Whether or not the coordinates of 'loc' are inside the region
+     */
+    public boolean isInsideRegion(Location loc) {
+        int bottomCornerX = rx1 < rx2 ? rx1 : rx2;
+        int bottomCornerZ = rz1 < rz2 ? rz1 : rz2;
+        int topCornerX = rx1 > rx2 ? rx1 : rx2;
+        int topCornerZ = rz1 > rz2 ? rz1 : rz2;
+        int bottomCornerY = ry1 < ry2 ? ry1 : ry2;
+        int topCornerY = ry1 > ry2 ? ry1 : ry2;
         if (loc.getX() >= bottomCornerX && loc.getX() <= topCornerX) {
             if (loc.getZ() >= bottomCornerZ && loc.getZ() <= topCornerZ) {
                 if (loc.getY() >= bottomCornerY && loc.getY() <= topCornerY) {

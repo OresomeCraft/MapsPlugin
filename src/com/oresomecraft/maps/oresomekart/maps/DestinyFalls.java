@@ -28,7 +28,7 @@ public class DestinyFalls extends OresomeKartMap implements Listener {
     // Map details
     String name = "pillars";
     String fullName = "Destiny Falls";
-    String creators = "SuperDuckFace, ep1cn00bt00b, ninsai and miniwolf35";
+    String[] creators = {"SuperDuckFace", "ep1cn00bt00b", "ninsai", "miniwolf35"};
     Gamemode[] modes = {Gamemode.ORESOMEKART};
 
     public void readyFFASpawns() {

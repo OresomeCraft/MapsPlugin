@@ -25,11 +25,12 @@ public class Nuketown extends BattleMap implements Listener {
     public Nuketown() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.LEATHER_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
     }
 
     String name = "nuketown";
     String fullName = "NukeTown";
-    String creators = "Htgan, proportion and reub_youtube";
+    String[] creators = {"Htban", "proportion", "reub_youtube"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

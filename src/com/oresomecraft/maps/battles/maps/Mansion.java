@@ -18,13 +18,13 @@ public class Mansion extends BattleMap implements Listener {
     public Mansion() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.SKULL_ITEM, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STONE_SWORD});
         setFireSpread(false);
     }
 
     String name = "mansion";
     String fullName = "The Haunted Mansion";
-    String creators = "pegabeavercorn, Hourani95 and kevlar_miner";
+    String[] creators = {"pegabeavercorn", "Hourani95", "kevlar_miner"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

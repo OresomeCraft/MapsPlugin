@@ -1,6 +1,7 @@
 package com.oresomecraft.maps.arcade.games;
 
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.MapsPlugin;
 import com.oresomecraft.maps.arcade.ArcadeMap;
 import org.bukkit.Bukkit;
@@ -17,8 +18,8 @@ public abstract class PaintBallMap extends ArcadeMap {
     boolean hasPassedGrace = false;
 
     @EventHandler
-    public void onLoad(WorldLoadEvent event) {
-        if (event.getWorld().getName().equals(name)) {
+    public void onLoad(MapLoadEvent event) {
+        if (event.getMap().equals(name)) {
             Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                 public void run() {
                     hasPassedGrace = true;

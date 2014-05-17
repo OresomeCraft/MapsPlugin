@@ -16,12 +16,12 @@ public class Electricity extends BattleMap implements Listener {
     public Electricity() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.GOLD_LEGGINGS, Material.GOLD_CHESTPLATE, Material.GOLD_HELMET, Material.GOLD_BOOTS, Material.STONE_SWORD});
+        disableDrops(new Material[]{Material.ARROW, Material.BOW, Material.GOLD_LEGGINGS, Material.GOLD_CHESTPLATE, Material.GOLD_HELMET, Material.GOLD_BOOTS, Material.STONE_SWORD});
     }
 
     String name = "electricity";
     String fullName = "Electricity";
-    String creators = "kingfisher83, danielschroeder, __R3 and _Moist";
+    String[] creators = {"kingfisher83", "danielschroeder", " __R3", "_Moist"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

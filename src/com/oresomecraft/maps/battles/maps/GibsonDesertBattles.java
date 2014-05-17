@@ -14,14 +14,14 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
 
     public GibsonDesertBattles() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS,
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LAVA_BUCKET, Material.IRON_AXE});
         setAutoSpawnProtection(5);
     }
 
     String name = "desert";
     String fullName = "Gibson Desert Battles";
-    String creators = "_Moist and niceman506";
+    String[] creators = {"_Moist", "niceman506"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

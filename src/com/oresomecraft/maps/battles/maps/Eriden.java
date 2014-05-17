@@ -25,6 +25,7 @@ import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @MapConfig
 public class Eriden extends BattleMap implements Listener {
@@ -32,7 +33,7 @@ public class Eriden extends BattleMap implements Listener {
     public Eriden() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
-        disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
                 Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE});
         setAutoSpawnProtection(5);
         setAllowBuild(false);
@@ -41,7 +42,7 @@ public class Eriden extends BattleMap implements Listener {
     // Map details
     String name = "eriden";
     String fullName = "Eriden Falls";
-    String creators = "__R3 and DanShrdr";
+    String[] creators = {"__R3", "DanShrdr"};
     Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     public void readyTDMSpawns() {
@@ -78,17 +79,18 @@ public class Eriden extends BattleMap implements Listener {
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+        LEATHER_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 4);
 
         LeatherArmorMeta helmet = (LeatherArmorMeta) LEATHER_HELMET.getItemMeta();
-        helmet.setColor(Color.ORANGE);
+        helmet.setColor(Color.GREEN);
         LEATHER_HELMET.setItemMeta(helmet);
 
         LeatherArmorMeta leggings = (LeatherArmorMeta) LEATHER_PANTS.getItemMeta();
-        leggings.setColor(Color.ORANGE);
+        leggings.setColor(Color.GREEN);
         LEATHER_PANTS.setItemMeta(leggings);
 
         LeatherArmorMeta boots = (LeatherArmorMeta) LEATHER_BOOTS.getItemMeta();
-        boots.setColor(Color.ORANGE);
+        boots.setColor(Color.GREEN);
         LEATHER_BOOTS.setItemMeta(boots);
 
         ItemMeta fMeta = SLOW.getItemMeta();
@@ -140,7 +142,7 @@ public class Eriden extends BattleMap implements Listener {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         if (event.getEntity() instanceof Villager) {
             event.getDrops().clear();
-            ItemStack FIRE = new ItemStack(Material.FIREWORK, 1);
+            ItemStack FIRE = new ItemStack(Material.FIREWORK, new Random().nextInt(3));
             ItemMeta fMeta = FIRE.getItemMeta();
             fMeta.setDisplayName(ChatColor.BLUE + "Jumpwork");
 
@@ -167,7 +169,7 @@ public class Eriden extends BattleMap implements Listener {
                 fMeta.setLore(fLore);
                 FIRE.setItemMeta(fMeta);
                 event.getPlayer().getInventory().removeItem(FIRE);
-                event.getPlayer().setVelocity(new Vector(0, 2, 0));
+                event.getPlayer().setVelocity(new Vector(0, 1.5, 0));
             }
         }
     }

@@ -22,7 +22,7 @@ public class Spleef extends ArcadeMap implements Listener {
     // Map details
     String name = "spleef";
     String fullName = "Spleef";
-    String creators = "zachoz ";
+    String[] creators = {"zachoz"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

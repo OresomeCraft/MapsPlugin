@@ -25,7 +25,7 @@ public class Lockdown extends TiOTMap implements Listener {
     // Map details
     String name = "Lockdown";
     String fullName = "Lockdown";
-    String creators = "ShaunDepro97 ";
+    String[] creators = {"ShaunDepro97"};
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {

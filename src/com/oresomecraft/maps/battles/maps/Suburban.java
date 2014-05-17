@@ -18,37 +18,25 @@ public class Suburban extends BattleMap implements Listener {
 
     public Suburban() {
         super.initiate(this, name, fullName, creators, modes);
+        setToolMerge(true);
     }
 
     String name = "suburban";
     String fullName = "Suburban Complex";
-    String creators = "__R3, _Moist and kalikakitty";
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH};
+    String[] creators = {" __R3", "DanShrdr", "kalikakitty"};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
         blueSpawns.add(new Location(w, 360, 40, -482));
-        blueSpawns.add(new Location(w, 361, 52, -482));
         blueSpawns.add(new Location(w, 364, 41, -579));
-        blueSpawns.add(new Location(w, 310, 47, -539));
         blueSpawns.add(new Location(w, 266, 41, -487));
-        blueSpawns.add(new Location(w, 366, 41, -387));
         blueSpawns.add(new Location(w, 337, 47, -410));
-        blueSpawns.add(new Location(w, 326, 53, -448));
         blueSpawns.add(new Location(w, 364, 54, -529));
-        blueSpawns.add(new Location(w, 437, 58, -482));
 
-        redSpawns.add(new Location(w, 360, 40, -482));
-        redSpawns.add(new Location(w, 361, 52, -482));
         redSpawns.add(new Location(w, 364, 41, -579));
-        redSpawns.add(new Location(w, 310, 47, -539));
         redSpawns.add(new Location(w, 266, 41, -487));
-        redSpawns.add(new Location(w, 366, 41, -387));
         redSpawns.add(new Location(w, 337, 47, -410));
-        redSpawns.add(new Location(w, 326, 53, -448));
-        redSpawns.add(new Location(w, 364, 54, -529));
         redSpawns.add(new Location(w, 437, 58, -482));
-
-        setKoTHMonument(new Location(w, 363, 54, -483));
     }
 
     public void readyFFASpawns() {
@@ -69,7 +57,7 @@ public class Suburban extends BattleMap implements Listener {
         Inventory i = p.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack PICK = new ItemStack(Material.IRON_PICKAXE, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);

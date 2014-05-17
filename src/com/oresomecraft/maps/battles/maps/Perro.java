@@ -3,6 +3,7 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -18,7 +19,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerFishEvent;
-import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -31,12 +31,13 @@ public class Perro extends BattleMap implements Listener {
 
     public Perro() {
         super.initiate(this, name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.FISHING_ROD});
         setTDMTime(15);
     }
 
     String name = "perro";
     String fullName = "Casa de Perro";
-    String creators = "zachoz, pegabeavercorn and Dogmode555";
+    String[] creators = {"zachoz", "pegabeavercorn", "Dogmode555"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
@@ -250,7 +251,7 @@ public class Perro extends BattleMap implements Listener {
     public int particles;
 
     @EventHandler
-    public void arrowParticles(WorldLoadEvent event) {
+    public void arrowParticles(MapLoadEvent event) {
         if (event.getWorld().getName().equals(name)) {
             particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
                 public void run() {

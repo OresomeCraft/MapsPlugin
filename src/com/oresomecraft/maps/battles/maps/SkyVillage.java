@@ -21,18 +21,20 @@ public class SkyVillage extends BattleMap implements Listener {
     public SkyVillage() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.IRON_HELMET});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.IRON_HELMET});
         setFireSpread(false);
     }
 
     String name = "skyvillage";
     String fullName = "Sky Village";
-    String creators = "SuperDuckFace, ninsai and ep1cn00bt00b";
+    String[] creators = {"SuperDuckFace", "ninsai", "ep1cn00bt00b"};
     Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, 15, 148, 133, 104, 0));
-        blueSpawns.add(new Location(w, 15, 148, 133, 104, 0));
+        redSpawns.add(new Location(w, -91, 84, 75));
+        blueSpawns.add(new Location(w, 88, 94, 84));
+
+        setKoTHMonument(new Location(w, 9, 145, 108));
     }
 
     public void readyFFASpawns() {
@@ -90,6 +92,7 @@ public class SkyVillage extends BattleMap implements Listener {
         i.setItem(3, COOKED_FISH);
         i.setItem(4, CARROT);
         i.setItem(35, ARROWS);
+        i.setItem(8, new ItemStack(Material.ENDER_PEARL, 1));
 
     }
 

@@ -29,14 +29,14 @@ import java.util.List;
 public class Plasiaus extends BattleMap implements Listener {
 
     public Plasiaus() {
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.WATCH, Material.WOOL});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.LEATHER_CHESTPLATE, Material.WATCH, Material.WOOL});
         super.initiate(this, name, fullName, creators, modes);
     }
 
     String name = "plasiaus";
     String fullName = "Plasiaus Village";
-    String creators = "__R3, DanShrdr, kytron and _Arch_Rider ";
-    Gamemode[] modes = {Gamemode.CTF};
+    String[] creators = {"__R3", "kytron", "DanShrdr"};
+    Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -51, 64, -47, 90.7F, 0.7F));

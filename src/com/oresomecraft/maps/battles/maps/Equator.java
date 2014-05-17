@@ -21,13 +21,13 @@ public class Equator extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.STAINED_GLASS, Material.LEATHER_HELMET, Material.STONE_SWORD, Material.WOOL});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STAINED_GLASS, Material.LEATHER_HELMET, Material.STONE_SWORD, Material.WOOL});
         setAutoSpawnProtection(4);
     }
 
     String name = "equator";
     String fullName = "Equator";
-    String creators = "Afridge1O1, SuperDuckFace, Numinex, XUHAVON, beadycottonwood and ViolentShadow";
+    String[] creators = {"Afridge1O1", "SuperDuckFace", "Numinex", "XUHAVON", "beadycottonwood", "ViolentShadow"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
 
     public void readyTDMSpawns() {

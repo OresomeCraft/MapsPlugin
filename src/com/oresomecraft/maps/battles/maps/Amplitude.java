@@ -5,6 +5,7 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.InvUtils;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -12,7 +13,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
-import org.bukkit.event.world.WorldLoadEvent;
+
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -23,16 +24,16 @@ public class Amplitude extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAutoSpawnProtection(4);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
     }
 
     String name = "amplitude";
     String fullName = "Amplitude";
-    String creators = "xXxTakumaxXx, __R3 and Fliine";
+    String[] creators = {"xXxTakumaxXx", "__R3", "Fliine"};
     Gamemode[] modes = {Gamemode.KOTH, Gamemode.INFECTION, Gamemode.FFA, Gamemode.TDM, Gamemode.LMS};
 
     @EventHandler
-    public void onLoad(WorldLoadEvent event) {
+    public void onLoad(MapLoadEvent event) {
         if (event.getWorld().getName().equalsIgnoreCase(name)) {
             amplitudeTimer();
         }

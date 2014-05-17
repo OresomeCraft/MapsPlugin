@@ -18,7 +18,7 @@ public class Gladiator extends BattleMap implements Listener {
 
     public Gladiator() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.WOOL});
+        disableDrops(new Material[]{Material.ARROW, Material.FISHING_ROD, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.WOOL});
         setAllowBuild(false);
         lockTime("day");
     }
@@ -26,7 +26,7 @@ public class Gladiator extends BattleMap implements Listener {
     // Map details
     String name = "gladiator";
     String fullName = "Gladiator";
-    String creators = "eddie017 ";
+    String[] creators = {"eddie017"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH};
 
     public void readyTDMSpawns() {

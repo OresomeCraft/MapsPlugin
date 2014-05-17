@@ -23,7 +23,7 @@ public class Displacement extends PaintBallMap implements Listener {
     // Map details
     String name = "displacement";
     String fullName = "Displacement";
-    String creators = "BlueVortexed, Rynocraft and niceman506";
+    String[] creators = {"BlueVortexed", "BlueVortexed", "niceman506"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

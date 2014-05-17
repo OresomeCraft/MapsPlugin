@@ -25,7 +25,7 @@ public class Kpetewoma extends TiOTMap implements Listener {
     // Map details
     String name = "swamp";
     String fullName = "Kpetewoma";
-    String creators = "jslsa ";
+    String[] creators = {"jslsa"};
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {

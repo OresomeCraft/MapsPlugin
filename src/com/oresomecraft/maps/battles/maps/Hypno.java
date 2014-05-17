@@ -21,11 +21,12 @@ public class Hypno extends BattleMap implements Listener {
 
     public Hypno() {
         super.initiate(this, name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.STONE_SPADE, Material.IRON_PICKAXE, Material.EMERALD});
     }
 
     String name = "hypno";
     String fullName = "Hypnosis";
-    String creators = "zachoz, pegabeavercorn, DragonDrew and kevlar_miner";
+    String[] creators = {"zachoz", "pegabeavercorn", "DragonDrew", "kevlar_miner"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {

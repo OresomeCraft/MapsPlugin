@@ -23,7 +23,7 @@ public class TNTDM_Charlie extends ArcadeMap implements Listener {
     // Map details
     String name = "tntdm_charlie";
     String fullName = "TNTDM (Charlie)";
-    String creators = "SuperDuckFace and ninsai ";
+    String[] creators = {"SuperDuckFace", "ninsai"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

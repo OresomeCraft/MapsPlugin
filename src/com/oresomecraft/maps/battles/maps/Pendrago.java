@@ -16,6 +16,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntityTameEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -40,7 +42,7 @@ public class Pendrago extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         setTDMTime(20);
-        disableDrops(new Material[]{Material.FLINT, Material.BOW, Material.STONE_SWORD, Material.BLAZE_ROD, Material.WATCH,
+        disableDrops(new Material[]{Material.EMERALD, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.BLAZE_ROD, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.FLINT, Material.BOW, Material.STONE_SWORD, Material.BLAZE_ROD, Material.WATCH,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_HELMET, Material.DIAMOND_HELMET,
                 Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS, Material.GOLD_HELMET, Material.GOLD_CHESTPLATE,
                 Material.GOLD_LEGGINGS, Material.GOLD_BOOTS, Material.STONE_SWORD, Material.WOOD_SWORD, Material.DIAMOND_SWORD, Material.GOLDEN_APPLE,
@@ -50,7 +52,7 @@ public class Pendrago extends BattleMap implements Listener {
 
     String name = "pendrago";
     String fullName = "Pendrago Square";
-    String creators = "kytron, 123Oblivious, reggie449, Fliine, bishoptaj, SecretSeriousity, __R3, AnomalousDyna, ep1cn00bt00b and Mr_Jaskirat";
+    String[] creators = {"__R3", "kytron", "123Oblivious"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
@@ -179,7 +181,6 @@ public class Pendrago extends BattleMap implements Listener {
         }
 
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
             public void run() {
                 switch (group) {
 
@@ -484,6 +485,13 @@ public class Pendrago extends BattleMap implements Listener {
     }
 
     @EventHandler
+    public void explode(EntityExplodeEvent event) {
+        if (!event.getLocation().getWorld().getName().equals(name)) return;
+        event.blockList().clear();
+    }
+
+
+    @EventHandler
     public void ignite(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         try {
@@ -497,7 +505,6 @@ public class Pendrago extends BattleMap implements Listener {
                 Bukkit.broadcastMessage(ChatColor.RED + "[PENDRAGO] " + p.getDisplayName() + ChatColor.RED + " SUMMONED THE COMET!");
                 Bukkit.broadcastMessage(ChatColor.RED + "YOU HAVE 30 SECONDS TO TAKE COVER!");
                 Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                    @Override
                     public void run() {
                         Bukkit.broadcastMessage(ChatColor.RED + "THE COMET HAS BEEN SUMMONED!");
                         comet();
@@ -538,7 +545,6 @@ public class Pendrago extends BattleMap implements Listener {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
         if (event.getPlayer().getItemInHand().getType() == Material.NETHER_STAR && event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                @Override
                 public void run() {
                     if (event.getFrom().distanceSquared(event.getTo()) == 0) return;
                     Location location = event.getPlayer().getLocation();
@@ -575,7 +581,6 @@ public class Pendrago extends BattleMap implements Listener {
             fb.setVelocity(new Vector(0, -2.7, 0));
         }
         final BukkitTask effects = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
-            @Override
             public void run() {
                 for (FallingBlock fallingBlock : Bukkit.getWorld(name).getEntitiesByClass(FallingBlock.class)) {
                     Location l1 = fallingBlock.getLocation();
@@ -603,7 +608,6 @@ public class Pendrago extends BattleMap implements Listener {
             }
         }, 2L, 2L);
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
             public void run() {
                 effects.cancel();
                 int strikes = 20;

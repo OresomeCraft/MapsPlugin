@@ -29,12 +29,12 @@ public class Solitude extends BattleMap implements Listener {
     public Solitude() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
+        disableDrops(new Material[]{Material.ARROW, Material.FISHING_ROD, Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
     }
 
     String name = "solitude";
     String fullName = "Solitude";
-    String creators = "AnomalousRei, dutchy336, tarko2411 and PMC";
+    String[] creators = {"AnomalousRei", "dutchy336", "tarko2411", "PMC"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
@@ -99,7 +99,6 @@ public class Solitude extends BattleMap implements Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
-        ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 3);
         ItemStack FISHING_ROD = new ItemStack(Material.FISHING_ROD, 1);
 
         // Armor
@@ -129,10 +128,6 @@ public class Solitude extends BattleMap implements Listener {
         ItemMeta iron_sword = IRON_SWORD.getItemMeta();
         iron_sword.setDisplayName(ChatColor.GOLD + "Steel Sword");
         IRON_SWORD.setItemMeta(iron_sword);
-
-        ItemMeta exp = EXP.getItemMeta();
-        exp.setDisplayName(ChatColor.GOLD + "Potion of Levelling");
-        EXP.setItemMeta(exp);
 
         if (p.getTeamType() == Team.TDM_BLUE) {
 
@@ -200,7 +195,6 @@ public class Solitude extends BattleMap implements Listener {
         i.setItem(2, FISHING_ROD);
         i.setItem(3, STEAK);
         i.setItem(4, HEALTH_POTION);
-        i.setItem(5, EXP);
         i.setItem(9, ARROWS);
 
         p.getInventory().getBoots().addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 9);

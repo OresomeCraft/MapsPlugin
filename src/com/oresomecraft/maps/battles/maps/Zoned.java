@@ -25,13 +25,13 @@ public class Zoned extends BattleMap implements Listener {
     public Zoned() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.STONE_SWORD, Material.LEATHER_HELMET, Material.WATCH});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.STONE_SWORD, Material.LEATHER_HELMET, Material.WATCH});
     }
 
     String name = "zoned";
     String fullName = "Zoned";
-    String creators = "__R3, MiCkEyMiCE and _Moist";
-    Gamemode[] modes = {Gamemode.INFECTION, Gamemode.KOTH};
+    String[] creators = {" __R3", "MiCkEyMiCE", "_Moist"};
+    Gamemode[] modes = {Gamemode.INFECTION, Gamemode.KOTH, Gamemode.LTS};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -2, 88, 49));

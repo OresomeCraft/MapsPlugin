@@ -34,7 +34,7 @@ public class Treetop extends OresomeKartMap implements Listener {
     // Map details
     String name = "racing";
     String fullName = "Tree Top";
-    String creators = "shavahn2003 and Yuzko";
+    String[] creators = {"shavahn2003", "Yuzko"};
     Gamemode[] modes = {Gamemode.ORESOMEKART};
 
     public void readyFFASpawns() {

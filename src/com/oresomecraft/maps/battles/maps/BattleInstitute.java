@@ -5,6 +5,7 @@ import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -15,7 +16,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.world.WorldLoadEvent;
+
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -29,12 +30,12 @@ public class BattleInstitute extends BattleMap implements Listener {
     public BattleInstitute() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.COOKED_BEEF, Material.POTION});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.COOKED_BEEF, Material.POTION});
     }
 
     String name = "battleinstitute";
     String fullName = "The Battle Institute";
-    String creators = "__R3, AnomalousDyna and bishoptaj";
+    String[] creators = {"__R3"};
     Gamemode[] modes = {Gamemode.LTS};
 
     public void readyTDMSpawns() {
@@ -102,7 +103,7 @@ public class BattleInstitute extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void worldLoad(WorldLoadEvent event) {
+    public void worldLoad(MapLoadEvent event) {
         if (event.getWorld().getName().equalsIgnoreCase(name)) {
             Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleInstitute] Starting up!");
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
@@ -132,14 +133,15 @@ public class BattleInstitute extends BattleMap implements Listener {
                     if (!red.contains(event.getPlayer().getName()) && !blue.contains(event.getPlayer().getName()) && Bukkit.getWorld(name).getPlayers().size() != 0) {
                         if (Bukkit.getWorld(name).getPlayers().size() == 0) return;
                         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                            @Override
                             public void run() {
                                 if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
                                     if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_RED) {
-                                        red.add(event.getPlayer().getName());
+                                        if (!red.contains(event.getPlayer().getName()))
+                                            red.add(event.getPlayer().getName());
                                         Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " joined red!");
                                     } else if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_BLUE) {
-                                        blue.add(event.getPlayer().getName());
+                                        if (!blue.contains(event.getPlayer().getName()))
+                                            blue.add(event.getPlayer().getName());
                                         Bukkit.broadcastMessage(ChatColor.BLUE + event.getPlayer().getName() + " joined blue!");
                                     }
                                 }
@@ -154,6 +156,7 @@ public class BattleInstitute extends BattleMap implements Listener {
 
             // This is the blocked stuff
             if (!event.getPlayer().getWorld().getName().equals(name)) return;
+            if (event.getMessage().toLowerCase().startsWith("/potion")) event.setCancelled(true);
             if (event.getMessage().toLowerCase().startsWith("/leave") || event.getMessage().toLowerCase().startsWith("/spectate")) {
                 if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
                     Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " left the round!!");
@@ -191,7 +194,6 @@ public class BattleInstitute extends BattleMap implements Listener {
         currentBlue = newBlue;
         currentRed = newRed;
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
             public void run() {
                 if (!blueEnter) join(currentBlue);
                 if (!redEnter) join(currentRed);
@@ -213,20 +215,21 @@ public class BattleInstitute extends BattleMap implements Listener {
             return;
         }
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.getInventory().clear();
-            p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
-            p.getInventory().setChestplate(new ItemStack(Material.AIR, 1));
-            p.getInventory().setBoots(new ItemStack(Material.AIR, 1));
-            p.getInventory().setLeggings(new ItemStack(Material.AIR, 1));
-            for (PotionEffect po : p.getActivePotionEffects()) {
-                p.removePotionEffect(po.getType());
+            if (BattlePlayer.getBattlePlayer(p).inBattle() && !BattlePlayer.getBattlePlayer(p).isSpectator()) {
+                p.getInventory().clear();
+                p.getInventory().setHelmet(new ItemStack(Material.AIR, 1));
+                p.getInventory().setChestplate(new ItemStack(Material.AIR, 1));
+                p.getInventory().setBoots(new ItemStack(Material.AIR, 1));
+                p.getInventory().setLeggings(new ItemStack(Material.AIR, 1));
+                for (PotionEffect po : p.getActivePotionEffects()) {
+                    p.removePotionEffect(po.getType());
+                }
+                p.setHealth(20);
+                p.setFoodLevel(20);
+                p.updateInventory();
             }
-            p.setHealth(20);
-            p.setFoodLevel(20);
-            p.updateInventory();
         }
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
             public void run() {
                 newRound();
             }
@@ -266,10 +269,10 @@ public class BattleInstitute extends BattleMap implements Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 12);
-        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
-        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_HELMET = new ItemStack(Material.CHAINMAIL_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.GOLD_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
-        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.DIAMOND_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
         p.getInventory().setBoots(IRON_BOOTS);

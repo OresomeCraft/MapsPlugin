@@ -13,13 +13,15 @@ public class Terminal extends BattleMap implements Listener {
 
     public Terminal() {
         super.initiate(this, name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
+        setToolMerge(true);
         setAllowBuild(false);
         setAutoSpawnProtection(10);
     }
 
     String name = "terminal";
     String fullName = "Terminal";
-    String creators = "zachoz, XxXShadowSoul and Slider302";
+    String[] creators = {"zachoz", "XxXShadowSoul", "slider302"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {

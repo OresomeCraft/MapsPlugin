@@ -4,6 +4,7 @@ import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Arrow;
@@ -13,7 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.world.WorldLoadEvent;
+
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -29,19 +30,19 @@ public class Distortion extends BattleMap implements Listener {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(10);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.FISHING_ROD, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
                 Material.LEATHER_CHESTPLATE, Material.IRON_HELMET, Material.FISHING_ROD, Material.DIAMOND_PICKAXE, Material.ARROW, Material.DIAMOND});
         setAutoSpawnProtection(2);
     }
 
     String name = "gravity";
     String fullName = "Distortion";
-    String creators = "__R3, _Moist, Turt1eManLol, _Arch_Rider, AnomalousDyna, meganlovesmusic and LanderA";
+    String[] creators = {"__R3"};
     Gamemode[] modes = {Gamemode.TDM};
     protected boolean manipulation = false;
 
     @EventHandler
-    public void onload(WorldLoadEvent event) {
+    public void onload(MapLoadEvent event) {
         if (event.getWorld().getName().equalsIgnoreCase("gravity")) {
             gravityArrows();
         }

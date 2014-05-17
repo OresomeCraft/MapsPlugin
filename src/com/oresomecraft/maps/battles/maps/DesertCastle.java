@@ -4,6 +4,7 @@ import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
 import com.oresomecraft.OresomeBattles.api.Team;
 import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
@@ -16,7 +17,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerFishEvent;
-import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -29,13 +29,14 @@ public class DesertCastle extends BattleMap implements Listener {
 
     public DesertCastle() {
         super.initiate(this, name, fullName, creators, modes);
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.FISHING_ROD});
         setTDMTime(15);
         setAllowBuild(false);
     }
 
     String name = "desertcastle";
     String fullName = "Desert Castle";
-    String creators = "Hourani95";
+    String[] creators = {"Hourani95"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
@@ -199,7 +200,7 @@ public class DesertCastle extends BattleMap implements Listener {
     public int particles;
 
     @EventHandler
-    public void arrowParticles(WorldLoadEvent event) {
+    public void arrowParticles(MapLoadEvent event) {
         if (event.getWorld().getName().equals(name)) {
             particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
                 public void run() {

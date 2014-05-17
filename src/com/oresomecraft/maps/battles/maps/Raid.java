@@ -13,14 +13,14 @@ public class Raid extends BattleMap implements Listener {
 
     public Raid() {
         super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.IRON_SWORD, Material.BOW, Material.GOLD_BOOTS, Material.CHAINMAIL_LEGGINGS,
+        disableDrops(new Material[]{Material.ARROW, Material.FISHING_ROD, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.IRON_SWORD, Material.BOW, Material.GOLD_BOOTS, Material.CHAINMAIL_LEGGINGS,
                 Material.IRON_CHESTPLATE, Material.LEATHER_HELMET, Material.ARROW, Material.FISHING_ROD, Material.ENDER_PEARL, Material.WOOL});
         disablePearlDamage(true);
     }
 
     String name = "raid";
     String fullName = "Raid";
-    String creators = "ShaunDepro97 ";
+    String[] creators = {"ShaunDepro97"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

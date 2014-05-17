@@ -16,13 +16,13 @@ public class ClashOfClay extends BattleMap implements Listener {
     public ClashOfClay() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
-        disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.DIAMOND_HELMET, Material.WOOD_SWORD});
         disableBlocks(new Material[]{Material.WORKBENCH});
     }
 
     String name = "clashofclay";
     String fullName = "Clash Of Clay";
-    String creators = "_Moist and niceman506";
+    String[] creators = {"_Moist", "niceman506"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {

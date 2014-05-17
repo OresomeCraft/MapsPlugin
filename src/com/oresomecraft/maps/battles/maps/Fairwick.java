@@ -29,13 +29,13 @@ import java.util.List;
 public class Fairwick extends BattleMap implements Listener {
 
     public Fairwick() {
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.WATCH, Material.WOOL});
+        disableDrops(new Material[]{Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.LEATHER_CHESTPLATE, Material.WATCH, Material.WOOL});
         super.initiate(this, name, fullName, creators, modes);
     }
 
     String name = "fairwick";
     String fullName = "Fairwick Village";
-    String creators = "__R3 ";
+    String[] creators = {" __R3"};
     Gamemode[] modes = {Gamemode.CTF};
 
     public void readyTDMSpawns() {

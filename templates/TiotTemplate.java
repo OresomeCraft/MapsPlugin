@@ -11,7 +11,7 @@ import org.bukkit.event.Listener;
 @MapConfig
 public class TiotTemplate extends TiOTMap implements Listener {
 
-    public Fosscrest() {
+    public TiotTemplate() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
     }
@@ -19,7 +19,7 @@ public class TiotTemplate extends TiOTMap implements Listener {
     // Map details
     String name = "template";
     String fullName = "template";
-    String creators = "__R3, danielschroeder and xXJazzerXx";
+    String[] creators = {"creator1", "creator2", "creator3"};
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {

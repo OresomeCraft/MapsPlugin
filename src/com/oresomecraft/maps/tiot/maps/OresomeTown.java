@@ -25,7 +25,7 @@ public class OresomeTown extends TiOTMap implements Listener {
     // Map details
     String name = "oresometowntiot";
     String fullName = "OresomeTown";
-    String creators = "ninsai, beadycottonwood, XUHAVON, meganlovesmusic, SuperDuckFace and _Husky_";
+    String[] creators = {"ninsai", "beadycottonwood", "XUHAVON", "meganlovesmusic", "SuperDuckFace", "_Husky_"};
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {

@@ -19,7 +19,7 @@ public class Fosscrest extends TiOTMap implements Listener {
     // Map details
     String name = "fosscrest";
     String fullName = "Fosscrest Village";
-    String creators = "__R3, danielschroeder and xXJazzerXx";
+    String[] creators = {"__R3", "danielschroeder", "xXJazzerXx"};
     Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {

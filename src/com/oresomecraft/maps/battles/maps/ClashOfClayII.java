@@ -22,13 +22,14 @@ public class ClashOfClayII extends BattleMap implements Listener {
     public ClashOfClayII() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
-        disableDrops(new Material[]{Material.DIAMOND_HELMET, Material.WOOD_SWORD});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.STONE_PICKAXE, Material.STONE_SWORD});
         disableBlocks(new Material[]{Material.WORKBENCH, Material.PISTON_MOVING_PIECE});
+        setAutoSpawnProtection(10);
     }
 
     String name = "clashofclayii";
     String fullName = "Clash Of Clay II";
-    String creators = "_Moist and __R3";
+    String[] creators = {"_Moist", "__R3"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
@@ -49,26 +50,26 @@ public class ClashOfClayII extends BattleMap implements Listener {
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
 
-        ItemStack WOODEN_SWORD = new ItemStack(Material.WOOD_SWORD, 1, (short) -16373);
+        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1, (short) -16373);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1, (short) -1400);
         ItemStack PUMPKIN_PIE = new ItemStack(Material.PUMPKIN_PIE, 5);
-        ItemStack APPLE = new ItemStack(Material.GOLDEN_APPLE, 2);
+        ItemStack APPLE = new ItemStack(Material.GOLDEN_APPLE, 1);
         ItemStack BLUE_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 11);
         ItemStack RED_STAINED_CLAY = new ItemStack(Material.STAINED_CLAY, 48, (short) 14);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         LEATHER_CHESTPLATE.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-        ItemStack DIAMOND_HELMET = new ItemStack(Material.DIAMOND_HELMET, 1);
+        LEATHER_CHESTPLATE.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 10);
         ItemStack TORCH = new ItemStack(Material.TORCH, 16);
         ItemStack ARROW = new ItemStack(Material.ARROW, 1);
 
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
-        p.getInventory().setHelmet(DIAMOND_HELMET);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+        STONE_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 100);
 
-        i.setItem(0, WOODEN_SWORD);
+        i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, IRON_PICKAXE);
         i.setItem(3, PUMPKIN_PIE);
@@ -99,6 +100,8 @@ public class ClashOfClayII extends BattleMap implements Listener {
 
             if (contains(location, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
             if (contains(location, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
+
+            if (event.getBlock().getType() == Material.IRON_BLOCK) event.setCancelled(true);
         }
     }
 

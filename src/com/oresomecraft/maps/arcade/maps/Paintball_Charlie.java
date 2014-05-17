@@ -33,7 +33,7 @@ public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
     // Map details
     String name = "warehouse";
     String fullName = "Paintball (Charlie)";
-    String creators = "meganlovesmusic, SuperDuckFace and _Husky_";
+    String[] creators = {"meganlovesmusic", "_Husky_", "SuperDuckFace"};
     Gamemode[] modes = {Gamemode.LTS};
 
     @Override

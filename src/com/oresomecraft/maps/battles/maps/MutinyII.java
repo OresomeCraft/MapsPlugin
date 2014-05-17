@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -23,13 +24,13 @@ public class MutinyII extends BattleMap implements Listener {
     public MutinyII() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(15);
-        disableDrops(new Material[]{Material.IRON_AXE});
+        disableDrops(new Material[]{Material.EMERALD, Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.IRON_AXE});
         setAutoSpawnProtection(2);
     }
 
     String name = "mutinyii";
     String fullName = "Mutiny II";
-    String creators = "__R3, Buster1824 and MiCkEyMiCE";
+    String[] creators = {" __R3", "Buster1824", "MiCkEyMiCE"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
@@ -101,11 +102,17 @@ public class MutinyII extends BattleMap implements Listener {
         if (event.getEntity() instanceof Player) {
             Player p = (Player) event.getEntity();
             if (p.getItemInHand().getType() == Material.EMERALD) {
-                Random random = new Random();
-                if (random.nextBoolean() && random.nextBoolean()) {
+                if (Math.random() > 0.5) {
                     event.setDamage(event.getDamage() - 3);
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void tnt(EntityExplodeEvent event) {
+        if (!event.getLocation().getWorld().getName().equals(name)) return;
+        if (Math.random() > 0.9)
+            event.setYield(15L);
     }
 }

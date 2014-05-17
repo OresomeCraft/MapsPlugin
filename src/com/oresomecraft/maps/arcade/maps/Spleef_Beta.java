@@ -26,7 +26,7 @@ public class Spleef_Beta extends ArcadeMap implements Listener {
     // Map details
     String name = "spleef_beta";
     String fullName = "Spleef (Beta)";
-    String creators = "zachoz ";
+    String[] creators = {"zachoz"};
     Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {

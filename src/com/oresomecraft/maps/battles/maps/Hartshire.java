@@ -26,12 +26,12 @@ public class Hartshire extends BattleMap implements Listener {
     public Hartshire() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
-        disableDrops(new Material[]{Material.STONE_SWORD, Material.LEATHER_HELMET, Material.GOLDEN_APPLE});
+        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STONE_SWORD, Material.LEATHER_HELMET, Material.GOLDEN_APPLE});
     }
 
     String name = "hartshire";
     String fullName = "Hartshire";
-    String creators = "__R3, kalikakitty and xannallax33";
+    String[] creators = {" __R3", " kalikakitty", " xannallax33"};
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
