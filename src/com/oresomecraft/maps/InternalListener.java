@@ -19,7 +19,6 @@ public class InternalListener implements Listener {
         if (MapsPlugin.getMaps().containsKey(event.getWorld().getName())) {
             Map map = MapsPlugin.getMaps().get(event.getWorld().getName());
             Bukkit.getPluginManager().registerEvents(map, MapsPlugin.getInstance());
-            map.load(event);
         }
     }
 
