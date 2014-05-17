@@ -1,12 +1,11 @@
 package com.oresomecraft.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlesAccess;
-import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.event.world.WorldUnloadEvent;
 
 public class InternalListener implements Listener {
 
@@ -23,8 +22,8 @@ public class InternalListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onBattleEnd(BattleEndEvent event) {
-        HandlerList.unregisterAll(MapsPlugin.getMaps().get(BattlesAccess.getArena()));
+    public void onBattleEnd(WorldUnloadEvent event) {
+        HandlerList.unregisterAll(MapsPlugin.getMaps().get(event.getWorld().getName()));
     }
 
 }
