@@ -28,7 +28,7 @@ public class SkyVillage extends BattleMap implements Listener {
     String name = "skyvillage";
     String fullName = "Sky Village";
     String[] creators = {"SuperDuckFace", "ninsai", "ep1cn00bt00b"};
-    Gamemode[] modes = {Gamemode.FFA, Gamemode.KOTH};
+    Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -91, 84, 75));
