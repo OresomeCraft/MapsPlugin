@@ -143,10 +143,8 @@ public abstract class Map implements Listener {
     /**
      * Clears spawns for a map
      *
-     * @param event Event called by the server
      */
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void clearSpawns(ClearSpawnsEvent event) {
+    public void clearSpawns() {
         redSpawns.clear();
         blueSpawns.clear();
         FFASpawns.clear();
