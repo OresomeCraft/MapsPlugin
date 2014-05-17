@@ -613,6 +613,10 @@ public abstract class Map implements Listener {
             this.requiredFFAScore = score;
     }
 
+    public void setMapSpecificRules(String[] rules) {
+        //Does nothing yet.
+    }
+
     public int getRequiredFFAScore() {
         return this.requiredFFAScore;
     }

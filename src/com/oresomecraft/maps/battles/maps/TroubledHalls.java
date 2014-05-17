@@ -37,11 +37,13 @@ public class TroubledHalls extends BattleMap implements Listener {
         disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.FISHING_ROD, Material.IRON_PICKAXE, Material.FISHING_ROD, Material.BAKED_POTATO, Material.LEAVES,
                 Material.ARROW, Material.LOG});
         setAutoSpawnProtection(2);
+        setMapSpecificRules(specificRules);
     }
 
     String name = "halls";
     String fullName = "Troubled Halls";
     String[] creators = {"__R3", "nitro20021", "Elite_Killer1"};
+    String[] specificRules = {"Do not enter the enemy hall!", "Do not shoot into the enemy hall!"};
     Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
