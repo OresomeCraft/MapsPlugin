@@ -41,6 +41,8 @@ public class DemonSewers extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 19, 49, -18, 0, 0));
         FFASpawns.add(new Location(w, 46, 49, 8, 1, 0));
         FFASpawns.add(new Location(w, 41, 42, -38, 3, 0));
+        
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
