@@ -37,6 +37,8 @@ public class BattleTemplate extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 0, 99, 27, 2, 0));
         FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
+        
+        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
