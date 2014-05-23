@@ -82,11 +82,11 @@ public class Omoshiro extends BattleMap implements Listener {
         InvUtils.nameItem(STONE_SWORD, ChatColor.RED + "Samurai Sword Of Fury");
         InvUtils.nameItem(STONE_SWORD, ChatColor.BLUE + "Simple Sword");
  
-        ItemMeta ironSwordMeta = STONE_SWORD.getItemMeta();
-        List<String> ironSwordLore = new ArrayList<String>();
-        ironSwordLore.add(org.bukkit.ChatColor.RED + "Forged from the loot of your enemies!");
-        ironSwordMeta.setLore(ironSwordLore);
-        STONE_SWORD.setItemMeta(ironSwordMeta);
+        ItemMeta stoneSwordMeta = STONE_SWORD.getItemMeta();
+        List<String> stoneSwordLore = new ArrayList<String>();
+        stoneSwordLore.add(org.bukkit.ChatColor.RED + "Forged from the loot of your enemies!");
+        stoneSwordMeta.setLore(stoneSwordLore);
+        STONE_SWORD.setItemMeta(stoneSwordMeta);
  
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
