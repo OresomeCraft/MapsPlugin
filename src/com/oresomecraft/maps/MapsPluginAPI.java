@@ -11,10 +11,10 @@ public class MapsPluginAPI {
      * Registers a Map's full name and short name into a HashMap.
      *
      * @param shortName The short name to add.
-     * @param fullName The full name to be identified at a later time.
+     * @param fullName  The full name to be identified at a later time.
      */
-    public static void putFullName(String shortName, String fullName){
-        if(!nameToFull.containsValue(fullName)) return;
+    public static void putFullName(String shortName, String fullName) {
+        if (!nameToFull.containsValue(fullName)) return;
         nameToFull.put(shortName, fullName);
     }
 
@@ -22,10 +22,10 @@ public class MapsPluginAPI {
      * Registers a Map's creator list into a HashMap.
      *
      * @param shortName The short name to add.
-     * @param creators The creator list to be identified at a later time.
+     * @param creators  The creator list to be identified at a later time.
      */
-    public static void putCreators(String shortName, String[] creators){
-        if(!nameToCreators.containsValue(creators)) return;
+    public static void putCreators(String shortName, String[] creators) {
+        if (!nameToCreators.containsValue(creators)) return;
         nameToCreators.put(shortName, creators);
     }
 
