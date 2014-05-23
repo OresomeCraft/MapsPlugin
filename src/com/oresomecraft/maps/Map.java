@@ -1,7 +1,6 @@
 package com.oresomecraft.maps;
 
 import com.oresomecraft.OresomeBattles.api.*;
-import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
 import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
@@ -132,17 +131,18 @@ public abstract class Map implements Listener {
      * @param creators Creators of the map
      * @param modes    Gamemodes supported by the map
      */
-    protected final void initiate(Map config, String name, String fullName, String creators[], Gamemode[] modes) {
+    protected final void initiate(Map config, String name, String fullName, String[] creators, Gamemode[] modes) {
         this.config = config;
         this.name = name;
         this.fullName = fullName;
         this.creators = creators;
         this.modes = modes;
+        MapsPluginAPI.putCreators(name, creators);
+        MapsPluginAPI.putFullName(name, fullName);
     }
 
     /**
      * Clears spawns for a map
-     *
      */
     public void clearSpawns() {
         redSpawns.clear();
