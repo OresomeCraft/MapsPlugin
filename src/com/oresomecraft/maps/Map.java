@@ -137,8 +137,6 @@ public abstract class Map implements Listener {
         this.fullName = fullName;
         this.creators = creators;
         this.modes = modes;
-        MapsPluginAPI.putCreators(name, creators);
-        MapsPluginAPI.putFullName(name, fullName);
     }
 
     /**
