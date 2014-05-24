@@ -72,6 +72,7 @@ public class Omoshiro extends BattleMap implements Listener {
         ItemStack COOKED_BEEF = new ItemStack(Material.COOKED_BEEF, 5);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ENCHANTMENT_BOTTLE = new ItemStack(Material.EXP_BOTTLE, 5);
+        ItemStack STICK = new ItemStack(Material.STICK, 1);
  
         p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_PANTS);
@@ -79,7 +80,6 @@ public class Omoshiro extends BattleMap implements Listener {
         p.getInventory().setHelmet(LEATHER_HELMET);
  
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS, LEATHER_HELMET});
-        InvUtils.nameItem(STONE_SWORD, ChatColor.RED + "Samurai Sword Of Fury");
         InvUtils.nameItem(STONE_SWORD, ChatColor.BLUE + "Simple Sword");
  
         ItemMeta stoneSwordMeta = STONE_SWORD.getItemMeta();
@@ -93,7 +93,8 @@ public class Omoshiro extends BattleMap implements Listener {
         i.setItem(2, COOKED_BEEF);
         i.setItem(3, HEALTH_POTION);
         i.setItem(4, ENCHANTMENT_BOTTLE);
-        i.setItem(7, IRON_INGOT);
+        i.setItem(5, STICK);
+        i.setItem(6, IRON_INGOT);
         i.setItem(10, ARROW);
     }
  
