@@ -4,11 +4,16 @@ import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.event.*;
 import org.bukkit.event.block.*;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.OresomeBattles.api.*;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 @MapConfig
 public class ClashOfClay extends BattleMap implements Listener {
@@ -18,7 +23,28 @@ public class ClashOfClay extends BattleMap implements Listener {
         setTDMTime(15);
         disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.DIAMOND_HELMET, Material.WOOD_SWORD});
         disableBlocks(new Material[]{Material.WORKBENCH});
+
+        try {
+            Field field = Enchantment.class.getDeclaredField("acceptingNew");
+            field.setAccessible(true);
+            field.setBoolean(CLAY, true);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        if (Enchantment.getById(CLAY.getId()) == null) {
+            Enchantment.registerEnchantment(CLAY);
+            customEnchants.add(CLAY.getId());
+        }
     }
+
+    private transient Enchantment CLAY = new Clay(666);
+    private static List<Integer> customEnchants = new ArrayList<Integer>();
 
     String name = "clashofclay";
     String fullName = "Clash Of Clay";
@@ -54,6 +80,7 @@ public class ClashOfClay extends BattleMap implements Listener {
         LEATHER_CHESTPLATE.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+        BOW.addEnchantment(CLAY, 1);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(DIAMOND_HELMET);
 
@@ -97,6 +124,36 @@ public class ClashOfClay extends BattleMap implements Listener {
         if (location.getWorld().getName().equals(name)) {
             if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
             if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
+        }
+    }
+
+    public class Clay extends Enchantment {
+        public Clay(int id) {
+            super(id);
+        }
+
+        public boolean canEnchantItem(ItemStack item) {
+            return true;
+        }
+
+        public boolean conflictsWith(Enchantment other) {
+            return false;
+        }
+
+        public EnchantmentTarget getItemTarget() {
+            return EnchantmentTarget.WEAPON;
+        }
+
+        public int getMaxLevel() {
+            return 1;
+        }
+
+        public String getName() {
+            return "Clay";
+        }
+
+        public int getStartLevel() {
+            return 1;
         }
     }
 }
