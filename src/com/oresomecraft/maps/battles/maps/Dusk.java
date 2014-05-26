@@ -13,6 +13,7 @@ import com.oresomecraft.OresomeBattles.api.*;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @MapConfig
@@ -93,6 +94,14 @@ public class Dusk extends BattleMap implements Listener {
     public int y2 = -7;
     public int z2 = 199;
 
+    ItemStack[] items = new ItemStack[]{new ItemStack(Material.EXP_BOTTLE, 3), new ItemStack(Material.SEEDS, 1),
+            new ItemStack(Material.IRON_SWORD, 1), new ItemStack(Material.EGG, 6), new ItemStack(Material.SNOW_BALL, 6),
+            new ItemStack(Material.FEATHER, 1), new ItemStack(Material.POTION, 1, (short) 16428), new ItemStack(Material.WOOD_SWORD, 1),
+            new ItemStack(Material.DIAMOND_AXE, 1), new ItemStack(Material.BOAT, 6), new ItemStack(Material.GOLDEN_APPLE, 3),
+            new ItemStack(Material.GOLD_RECORD, 1), new ItemStack(Material.CHAINMAIL_HELMET, 1), new ItemStack(Material.FIREWORK, 6),
+            new ItemStack(Material.BAKED_POTATO, 12), new ItemStack(Material.EYE_OF_ENDER, 6), new ItemStack(Material.COOKIE, 32),
+            new ItemStack(Material.SKULL), new ItemStack(Material.RECORD_3), new ItemStack(Material.CAKE, 1), new ItemStack(Material.BOOK_AND_QUILL)};
+
     @EventHandler
     public void onVirtualLuck(PlayerInteractEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(name)) return;
@@ -109,16 +118,10 @@ public class Dusk extends BattleMap implements Listener {
                 caneMeta.setLore(caneLore);
                 LUCKY_CANE.setItemMeta(caneMeta);
                 LUCKY_CANE.setAmount(1);
-
+                if (!Arrays.asList(items).contains(LUCKY_CANE))
+                    items[items.length + 1] = LUCKY_CANE;
                 player.getInventory().removeItem(LUCKY_CANE);
                 Inventory inventory = Bukkit.createInventory(null, 18);
-                ItemStack[] items = new ItemStack[]{new ItemStack(Material.EXP_BOTTLE, 3), new ItemStack(Material.SEEDS, 1),
-                        new ItemStack(Material.IRON_SWORD, 1), new ItemStack(Material.EGG, 6), new ItemStack(Material.SNOW_BALL, 6),
-                        new ItemStack(Material.FEATHER, 1), new ItemStack(Material.POTION, 1, (short) 16428), new ItemStack(Material.WOOD_SWORD, 1),
-                        new ItemStack(Material.DIAMOND_AXE, 1), new ItemStack(Material.BOAT, 6), new ItemStack(Material.GOLDEN_APPLE, 3),
-                        new ItemStack(Material.GOLD_RECORD, 1), new ItemStack(Material.CHAINMAIL_HELMET, 1), new ItemStack(Material.FIREWORK, 6),
-                        new ItemStack(Material.BAKED_POTATO, 12), new ItemStack(Material.EYE_OF_ENDER, 6), new ItemStack(Material.COOKIE, 32),
-                        LUCKY_CANE};
                 for (ItemStack itemStack : items) {
                     boolean success = Math.random() <= 0.2;
                     if (success) inventory.addItem(itemStack);
