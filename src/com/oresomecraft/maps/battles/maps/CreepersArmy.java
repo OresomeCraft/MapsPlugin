@@ -15,6 +15,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -107,5 +109,17 @@ public class CreepersArmy extends BattleMap implements Listener {
     public void onDamage(EntityDamageByEntityEvent event) {
         if (!event.getEntity().getWorld().getName().equals(name)) return;
         if (event.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void place(BlockPlaceEvent event) {
+        if (!event.getBlockPlaced().getWorld().getName().equals(name)) return;
+        if (!isInsideRegion(event.getBlock().getLocation())) event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void bBreak(BlockBreakEvent event) {
+        if (!event.getBlock().getWorld().getName().equals(name)) return;
+        if (!isInsideRegion(event.getBlock().getLocation())) event.setCancelled(true);
     }
 }
