@@ -33,7 +33,7 @@ public class Sandbox extends BattleMap implements Listener {
     String name = "sandbox";
     String fullName = "Sandbox";
     String[] creators = {"_Moist", "Stewpetasuarus", "123Oblivious", "WiiiFreak123"};
-    Gamemode[] modes = {Gamemode.INFECTION, Gamemode.LMS};
+    Gamemode[] modes = {Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 50, 75, -23, 128, 0));
