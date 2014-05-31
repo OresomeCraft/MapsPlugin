@@ -1,4 +1,4 @@
-package com.oresomecraft.maps.battles.maps;
+package com.oresomecraft.maps.battles.maps.deprecated;
 
 import com.oresomecraft.OresomeBattles.api.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.Gamemode;
