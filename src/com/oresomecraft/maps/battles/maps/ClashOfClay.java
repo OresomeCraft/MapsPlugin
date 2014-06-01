@@ -1,5 +1,7 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.teams.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
@@ -9,7 +11,8 @@ import org.bukkit.event.*;
 import org.bukkit.event.block.*;
 import org.bukkit.inventory.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -78,7 +81,7 @@ public class ClashOfClay extends BattleMap implements Listener {
         ItemStack ARROW = new ItemStack(Material.ARROW, 1);
 
         LEATHER_CHESTPLATE.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
         BOW.addEnchantment(CLAY, 1);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);

@@ -1,5 +1,6 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
@@ -7,7 +8,8 @@ import org.bukkit.event.*;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 @MapConfig
 public class GibsonDesertBattles extends BattleMap implements Listener {
@@ -52,7 +54,7 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
         // Armor
         ItemStack C = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack B = new ItemStack(Material.LEATHER_BOOTS, 1);
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{C, B});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{C, B});
 
         p.getInventory().setBoots(B);
         p.getInventory().setChestplate(C);

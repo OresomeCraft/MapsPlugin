@@ -1,8 +1,9 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.InvUtils;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.ChatColor;
@@ -76,7 +77,7 @@ public class Fairwick extends BattleMap implements Listener {
         spyWatchMeta.setLore(spyLore);
         SPY_WATCH.setItemMeta(spyWatchMeta);
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
@@ -119,7 +120,7 @@ public class Fairwick extends BattleMap implements Listener {
                 player.getInventory().remove(new ItemStack(Material.IRON_LEGGINGS));
                 player.getInventory().remove(new ItemStack(Material.IRON_HELMET));
                 ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-                InvUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(player), new ItemStack[]{LEATHER_CHESTPLATE});
+                ArmourUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(player), new ItemStack[]{LEATHER_CHESTPLATE});
                 player.getInventory().remove(LEATHER_CHESTPLATE);
                 player.getInventory().addItem(new ItemStack(Material.IRON_BOOTS));
                 player.getInventory().addItem(new ItemStack(Material.IRON_LEGGINGS));

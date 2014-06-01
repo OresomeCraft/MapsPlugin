@@ -1,12 +1,15 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.teams.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 @MapConfig
 public class Raid extends BattleMap implements Listener {
@@ -80,7 +83,7 @@ public class Raid extends BattleMap implements Listener {
         ItemStack GOLD_BOOTS = new ItemStack(Material.GOLD_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
         p.getInventory().setBoots(GOLD_BOOTS);
         p.getInventory().setLeggings(CHAINMAIL_PANTS);

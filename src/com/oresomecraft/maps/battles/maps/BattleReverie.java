@@ -1,10 +1,10 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.Team;
-import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
-import com.oresomecraft.OresomeBattles.api.events.EndBattleEvent;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.teams.Team;
+import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
+import com.oresomecraft.OresomeBattles.events.EndBattleEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.battles.BattleMap;

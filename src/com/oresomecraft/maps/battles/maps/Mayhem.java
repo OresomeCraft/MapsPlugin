@@ -12,8 +12,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.potion.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
-import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
 
 @MapConfig
 public class Mayhem extends BattleMap implements Listener {

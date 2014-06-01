@@ -1,6 +1,6 @@
 package com.oresomecraft.maps.arcade.games;
 
-import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
 import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.MapsPlugin;
 import com.oresomecraft.maps.arcade.ArcadeMap;
@@ -11,7 +11,6 @@ import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
-import org.bukkit.event.world.WorldLoadEvent;
 
 public abstract class PaintBallMap extends ArcadeMap {
 

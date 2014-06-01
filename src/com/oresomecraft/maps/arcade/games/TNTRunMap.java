@@ -1,14 +1,13 @@
 package com.oresomecraft.maps.arcade.games;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
 import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.MapsPlugin;
 import com.oresomecraft.maps.arcade.ArcadeMap;
 import org.bukkit.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.world.WorldLoadEvent;
 
 public abstract class TNTRunMap extends ArcadeMap {
 

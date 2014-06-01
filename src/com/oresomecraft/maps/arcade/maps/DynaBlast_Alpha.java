@@ -1,7 +1,8 @@
 package com.oresomecraft.maps.arcade.maps;
 
 import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.maps.arcade.games.DynaBlastMap;
 import org.bukkit.Location;
 import org.bukkit.Material;

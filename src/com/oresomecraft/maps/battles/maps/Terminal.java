@@ -6,7 +6,8 @@ import org.bukkit.*;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 @MapConfig
 public class Terminal extends BattleMap implements Listener {

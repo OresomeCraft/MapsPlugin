@@ -8,7 +8,8 @@ import org.bukkit.event.*;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 @MapConfig
 public class Xenon extends BattleMap implements Listener {

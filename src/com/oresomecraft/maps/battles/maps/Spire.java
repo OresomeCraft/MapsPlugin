@@ -13,7 +13,8 @@ import org.bukkit.event.player.*;
 import org.bukkit.inventory.*;
 import org.bukkit.potion.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import org.bukkit.projectiles.ProjectileSource;
 
 @MapConfig

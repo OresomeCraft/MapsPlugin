@@ -1,8 +1,6 @@
 package com.oresomecraft.maps.battles;
 
 import com.oresomecraft.maps.Map;
-import com.oresomecraft.OresomeBattles.api.BattlesAccess;
-import com.oresomecraft.OresomeBattles.api.Monument;
 import org.bukkit.Location;
 
 public abstract class BattleMap extends Map {

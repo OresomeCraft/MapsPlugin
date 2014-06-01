@@ -1,8 +1,8 @@
 package com.oresomecraft.maps.arcade.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.InvUtils;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.arcade.ArcadeMap;
 import org.bukkit.ChatColor;
@@ -40,7 +40,7 @@ public class Spleef_Beta extends ArcadeMap implements Listener {
         ItemStack SNOW_BALL = new ItemStack(Material.SNOW_BALL, 16);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
 
-        InvUtils.nameItem(DIAMOND_SPADE, ChatColor.BLUE + "Spleefer's Shovel");
+        ItemUtils.nameItem(DIAMOND_SPADE, ChatColor.BLUE + "Spleefer's Shovel");
 
         i.setItem(0, DIAMOND_SPADE);
         i.setItem(1, SNOW_BALL);
