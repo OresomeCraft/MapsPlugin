@@ -130,7 +130,7 @@ public class MapsPlugin extends JavaPlugin {
             }
 
             if (type.equalsIgnoreCase("tiot")) {
-                if (!arcadeMapsLoaded) {
+                if (!tiotMapsLoaded) {
                     loadMaps(TIOT_MAPS_PACKAGE);
                     sender.sendMessage(ChatColor.DARK_AQUA + "Loaded TiOT maps!");
                     tiotMapsLoaded = true;
@@ -140,7 +140,7 @@ public class MapsPlugin extends JavaPlugin {
             }
 
             if (type.equalsIgnoreCase("oresomekart")) {
-                if (!arcadeMapsLoaded) {
+                if (!kartMapsLoaded) {
                     loadMaps(ORESOMEKART_MAPS_PACKAGE);
                     sender.sendMessage(ChatColor.DARK_AQUA + "Loaded OresomeKart maps!");
                     kartMapsLoaded = true;
