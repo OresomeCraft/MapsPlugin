@@ -1,8 +1,8 @@
 package com.oresomecraft.maps.arcade.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.InvUtils;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.arcade.ArcadeMap;
 import org.bukkit.ChatColor;
@@ -16,7 +16,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import javax.xml.stream.events.EntityDeclaration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class TNTBOWSPLEEF_Alpha extends ArcadeMap implements Listener {
         bowMeta.setLore(bowLore);
         BOW.setItemMeta(bowMeta);
 
-        InvUtils.nameItem(BOW, ChatColor.BLUE + "Spleefer's Bow");
+        ItemUtils.nameItem(BOW, ChatColor.BLUE + "Spleefer's Bow");
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
         BOW.addEnchantment(Enchantment.ARROW_FIRE, 1);
 

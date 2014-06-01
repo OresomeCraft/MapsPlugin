@@ -9,7 +9,8 @@ import org.bukkit.entity.Arrow;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.entity.Entity;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 @MapConfig
 public class Docks extends BattleMap implements Listener {

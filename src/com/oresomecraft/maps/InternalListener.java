@@ -1,8 +1,8 @@
 package com.oresomecraft.maps;
 
 import com.oresomecraft.OresomeBattles.api.BattlesAccess;
-import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
-import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
+import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
+import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

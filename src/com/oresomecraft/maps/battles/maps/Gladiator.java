@@ -9,7 +9,8 @@ import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.entity.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 

@@ -1,6 +1,6 @@
 package com.oresomecraft.maps.arcade;
 
-import com.oresomecraft.OresomeBattles.api.events.EndBattleEvent;
+import com.oresomecraft.OresomeBattles.events.EndBattleEvent;
 import com.oresomecraft.maps.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

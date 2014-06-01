@@ -8,7 +8,8 @@ import org.bukkit.event.*;
 import org.bukkit.inventory.*;
 import org.bukkit.potion.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 @MapConfig
 public class TowerHill extends BattleMap implements Listener {

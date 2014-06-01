@@ -1,12 +1,14 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 @MapConfig
 public class SunsetBay extends BattleMap implements Listener {
@@ -87,7 +89,7 @@ public class SunsetBay extends BattleMap implements Listener {
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 5);
         ItemStack ARROW = new ItemStack(Material.ARROW, 64);
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_CAP, LEATHER_BOOTS});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_CAP, LEATHER_BOOTS});
 
         p.getInventory().setLeggings(LEATHER_PANTS);
         p.getInventory().setBoots(LEATHER_BOOTS);

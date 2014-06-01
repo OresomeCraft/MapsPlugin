@@ -6,7 +6,9 @@ import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 
 @MapConfig
 public class Spleef extends ArcadeMap implements Listener {
@@ -40,7 +42,7 @@ public class Spleef extends ArcadeMap implements Listener {
         ItemStack SNOW_BALL = new ItemStack(Material.SNOW_BALL, 16);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
 
-        InvUtils.nameItem(DIAMOND_SPADE, ChatColor.BLUE + "Spleefer's Shovel");
+        ItemUtils.nameItem(DIAMOND_SPADE, ChatColor.BLUE + "Spleefer's Shovel");
 
         i.setItem(0, DIAMOND_SPADE);
         i.setItem(1, SNOW_BALL);

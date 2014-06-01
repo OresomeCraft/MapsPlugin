@@ -1,8 +1,9 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.InvUtils;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.Location;
@@ -97,7 +98,7 @@ public class Mansion extends BattleMap implements Listener {
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
         MASK.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
 
         p.getInventory().setBoots(LEATHER_BOOTS);

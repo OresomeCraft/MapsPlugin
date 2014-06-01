@@ -4,7 +4,8 @@ import com.oresomecraft.maps.arcade.games.TNTRunMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.maps.*;
 
 @MapConfig

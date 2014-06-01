@@ -1,8 +1,8 @@
 package com.oresomecraft.maps.arcade.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.InvUtils;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.arcade.ArcadeMap;
 import org.bukkit.ChatColor;
@@ -55,7 +55,7 @@ public class Spleef_Charlie extends ArcadeMap implements Listener {
         ItemStack DIAMOND_SPADE = new ItemStack(Material.DIAMOND_SPADE, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
 
-        InvUtils.nameItem(DIAMOND_SPADE, ChatColor.BLUE + "Advanced Spleefer's Shovel");
+        ItemUtils.nameItem(DIAMOND_SPADE, ChatColor.BLUE + "Advanced Spleefer's Shovel");
 
         ItemMeta diamond_spade = DIAMOND_SPADE.getItemMeta();
         List<String> spade_lore = new ArrayList<String>();

@@ -7,7 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.reflections.Reflections;
-import com.oresomecraft.OresomeBattles.api.events.ClearSpawnsEvent;
+import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 
 import java.io.File;
 import java.util.ArrayList;

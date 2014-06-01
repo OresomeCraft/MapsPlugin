@@ -1,8 +1,8 @@
 package com.oresomecraft.maps.tiot.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.CuboidRegion;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.region.CuboidRegion;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.tiot.TiOTMap;
 import org.bukkit.Location;

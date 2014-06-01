@@ -1,5 +1,6 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
@@ -12,11 +13,11 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @MapConfig
 public class MutinyII extends BattleMap implements Listener {
@@ -61,7 +62,7 @@ public class MutinyII extends BattleMap implements Listener {
         allProtect.setLore(stoneLore);
         ALLPROTECT.setItemMeta(allProtect);
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
         p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);

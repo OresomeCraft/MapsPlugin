@@ -1,8 +1,9 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.InvUtils;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
@@ -105,7 +106,7 @@ public class Arctic extends BattleMap implements Listener {
         STONE_HOE.setItemMeta(stone_hoe);
 
         IRON_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 3);
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);

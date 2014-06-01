@@ -1,6 +1,6 @@
 package com.oresomecraft.maps.oresomekart;
 
-import com.oresomecraft.OresomeBattles.api.CuboidRegion;
+import com.oresomecraft.OresomeBattles.region.CuboidRegion;
 import com.oresomecraft.maps.Map;
 import org.bukkit.Location;
 import org.bukkit.Material;

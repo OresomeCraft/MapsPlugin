@@ -1,12 +1,14 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
 
 import com.oresomecraft.maps.*;
 import com.oresomecraft.maps.battles.*;
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 @MapConfig
 public class Bridge extends BattleMap implements Listener {
@@ -54,7 +56,7 @@ public class Bridge extends BattleMap implements Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 16);
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_LEGGINGS, LEATHER_BOOTS});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_LEGGINGS, LEATHER_BOOTS});
 
         p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_LEGGINGS);

@@ -1,5 +1,6 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
@@ -9,7 +10,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
@@ -69,7 +71,7 @@ public class Dusk extends BattleMap implements Listener {
         caneLore.add(org.bukkit.ChatColor.BLUE + "What will you get? Who knows!");
         caneMeta.setLore(caneLore);
         LUCKY_CANE.setItemMeta(caneMeta);
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
         p.getInventory().setBoots(DIAMOND_BOOTS);
         p.getInventory().setLeggings(GOLD_PANTS);

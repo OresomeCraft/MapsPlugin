@@ -1,9 +1,10 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.InvUtils;
-import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
+import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.MapLoadEvent;
 import com.oresomecraft.maps.battles.BattleMap;
@@ -76,8 +77,8 @@ public class Amplitude extends BattleMap implements Listener {
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
 
-        InvUtils.nameItem(IRON_SWORD, ChatColor.BLUE + "Aura Sword");
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
+        ItemUtils.nameItem(IRON_SWORD, ChatColor.BLUE + "Aura Sword");
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
         p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_PANTS);

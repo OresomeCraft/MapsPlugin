@@ -7,7 +7,8 @@ import org.bukkit.potion.*;
 
 import com.oresomecraft.maps.*;
 import com.oresomecraft.maps.battles.*;
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 @MapConfig
 public class Turmoil extends BattleMap implements Listener {

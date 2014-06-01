@@ -1,9 +1,10 @@
 package com.oresomecraft.maps.battles.maps;
  
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.InvUtils;
-import com.oresomecraft.OresomeBattles.api.events.BattleEndEvent;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
+import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
@@ -75,14 +76,14 @@ public class Omoshiro extends BattleMap implements Listener {
         ItemStack ENCHANTMENT_BOTTLE = new ItemStack(Material.EXP_BOTTLE, 5);
         ItemStack STICK = new ItemStack(Material.STICK, 1);
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS, LEATHER_HELMET});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS, LEATHER_HELMET});
  
         p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
 
-        InvUtils.nameItem(STONE_SWORD, ChatColor.BLUE + "Simple Sword");
+        ItemUtils.nameItem(STONE_SWORD, ChatColor.BLUE + "Simple Sword");
  
         ItemMeta stoneSwordMeta = STONE_SWORD.getItemMeta();
         List<String> stoneSwordLore = new ArrayList<String>();

@@ -1,5 +1,6 @@
 package com.oresomecraft.maps.battles.maps.deprecated;
 
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
@@ -9,7 +10,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
@@ -76,7 +78,7 @@ public class BiomeBattle extends BattleMap implements Listener {
         BLAZE_ROD.setItemMeta(fMeta);
 
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_CAP, LEATHER_BOOTS});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_CAP, LEATHER_BOOTS});
 
         p.getInventory().setLeggings(LEATHER_PANTS);
         p.getInventory().setBoots(LEATHER_BOOTS);

@@ -1,9 +1,10 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.InvUtils;
-import com.oresomecraft.OresomeBattles.api.Team;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
+import com.oresomecraft.OresomeBattles.teams.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
@@ -111,7 +112,7 @@ public class Solitude extends BattleMap implements Listener {
         fishing_rod.setDisplayName(ChatColor.GOLD + "Grappling Hook");
         FISHING_ROD.setItemMeta(fishing_rod);
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET, LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
 
         ItemMeta cooked_beef = STEAK.getItemMeta();
         cooked_beef.setDisplayName(ChatColor.GOLD + "Roast Beef");

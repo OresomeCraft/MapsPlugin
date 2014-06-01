@@ -1,5 +1,7 @@
 package com.oresomecraft.maps.battles.maps.deprecated;
 
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
@@ -12,7 +14,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.util.Vector;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 @MapConfig
 public class Chasm extends BattleMap implements Listener {
@@ -67,8 +70,8 @@ public class Chasm extends BattleMap implements Listener {
         ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
 
-        InvUtils.nameItem(STONE_HOE, ChatColor.BLUE + "Ice Hook");
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
+        ItemUtils.nameItem(STONE_HOE, ChatColor.BLUE + "Ice Hook");
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
         LEATHER_HELMET.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 4);
 
         p.getInventory().setBoots(LEATHER_BOOTS);

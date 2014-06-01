@@ -1,7 +1,11 @@
 package com.oresomecraft.maps;
 
+import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.api.*;
-import com.oresomecraft.OresomeBattles.api.events.InventoryEvent;
+import com.oresomecraft.OresomeBattles.events.InventoryEvent;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.region.CuboidRegion;
+import com.oresomecraft.OresomeBattles.teams.Team;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.block.BlockFace;

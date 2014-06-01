@@ -1,8 +1,8 @@
 package com.oresomecraft.maps.arcade.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.OresomeBattles.api.Team;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.teams.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.arcade.games.TeamPaintBallMap;
 import org.bukkit.*;

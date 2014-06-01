@@ -8,7 +8,8 @@ import org.bukkit.inventory.*;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.entity.*;
 
-import com.oresomecraft.OresomeBattles.api.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 @MapConfig
 public class Insanity extends BattleMap implements Listener {
