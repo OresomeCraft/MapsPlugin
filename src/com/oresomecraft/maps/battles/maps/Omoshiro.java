@@ -28,6 +28,7 @@ public class Omoshiro extends BattleMap implements Listener {
         setAllowBuild(false);
         setTDMTime(12);
         lockTime("night");
+        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.STONE_SWORD, Material.COOKED_BEEF, Material.POTION});
     }
  
     // Map details
@@ -73,13 +74,14 @@ public class Omoshiro extends BattleMap implements Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ENCHANTMENT_BOTTLE = new ItemStack(Material.EXP_BOTTLE, 5);
         ItemStack STICK = new ItemStack(Material.STICK, 1);
+
+        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS, LEATHER_HELMET});
  
         p.getInventory().setBoots(LEATHER_BOOTS);
         p.getInventory().setLeggings(LEATHER_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
- 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS, LEATHER_HELMET});
+
         InvUtils.nameItem(STONE_SWORD, ChatColor.BLUE + "Simple Sword");
  
         ItemMeta stoneSwordMeta = STONE_SWORD.getItemMeta();
