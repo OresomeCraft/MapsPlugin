@@ -7,7 +7,6 @@ import org.bukkit.event.*;
 import org.bukkit.inventory.*;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.*;
 
 @MapConfig
 public class TNTRun_Alpha extends TNTRunMap implements Listener {

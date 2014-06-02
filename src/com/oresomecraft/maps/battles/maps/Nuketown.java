@@ -3,7 +3,6 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;

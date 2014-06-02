@@ -3,11 +3,6 @@ package com.oresomecraft.maps.oresomekart.maps;
 import com.oresomecraft.maps.oresomekart.OresomeKartMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
-import org.bukkit.inventory.*;
-
-import com.oresomecraft.maps.*;
-import com.oresomecraft.maps.battles.*;
-import com.oresomecraft.OresomeBattles.api.*;
 
 @MapConfig
 public class OresomeKartTemplate extends OresomeKartMap implements Listener {

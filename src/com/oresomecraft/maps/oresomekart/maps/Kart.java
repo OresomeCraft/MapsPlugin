@@ -4,7 +4,6 @@ import com.oresomecraft.maps.oresomekart.OresomeKartMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
 
-import com.oresomecraft.maps.*;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.region.CuboidRegion;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;

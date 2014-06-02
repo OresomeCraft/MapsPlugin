@@ -8,7 +8,6 @@ import org.bukkit.inventory.*;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.*;
 
 @MapConfig
 public class BombDrop_Beta extends BombDropMap implements Listener {

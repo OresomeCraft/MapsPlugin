@@ -2,8 +2,6 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
 import com.oresomecraft.OresomeBattles.events.EndBattleEvent;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.MapLoadEvent;
@@ -13,11 +11,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import org.bukkit.inventory.Inventory;
@@ -25,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 @MapConfig

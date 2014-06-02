@@ -10,7 +10,6 @@ import org.reflections.Reflections;
 import com.oresomecraft.OresomeBattles.events.ClearSpawnsEvent;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.logging.Logger;

@@ -2,7 +2,6 @@ package com.oresomecraft.maps.arcade.games;
 
 import com.oresomecraft.maps.MapLoadEvent;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.world.WorldLoadEvent;
 
 public abstract class TeamPaintBallMap extends PaintBallMap {
 
