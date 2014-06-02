@@ -3,8 +3,10 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -25,20 +27,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@MapConfig
+@MapConfig(
+        name = "elements",
+        fullName = "Elements",
+        creators = {"broddikill", "koolguydude4", "MiCkEyMiCE"},
+        gamemodes = {Gamemode.TDM}
+)
+@Region(
+        x1 = -65,
+        y1 = 190,
+        z1 = 172,
+        x2 = 5,
+        y2 = 70,
+        z2 = -5
+)
+@Attributes(
+        tdmTime = 12,
+        allowBuild = false,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.EMERALD, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.STONE_SWORD, Material.STONE_PICKAXE, Material.LEATHER_HELMET, Material.DIAMOND_SWORD}
+)
 public class Elements extends BattleMap implements Listener {
 
     public Elements() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.EMERALD, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.STONE_SWORD, Material.STONE_PICKAXE, Material.LEATHER_HELMET, Material.DIAMOND_SWORD});
-        setTDMTime(12);
-        setAutoSpawnProtection(15);
+        super.initiate(this);
     }
-
-    String name = "elements";
-    String fullName = "Elements";
-    String[] creators = {"broddikill", "koolguydude4", "MiCkEyMiCE"};
-    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -23, 87, 11));
@@ -48,7 +61,6 @@ public class Elements extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -23, 87, 11));
         FFASpawns.add(new Location(w, -25, 86, 147));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -94,17 +106,6 @@ public class Elements extends BattleMap implements Listener {
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15 * 60 * 20, 1));
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -65;
-    public int y1 = 190;
-    public int z1 = 172;
-
-    //Bottom right corner.
-    public int x2 = 5;
-    public int y2 = 70;
-    public int z2 = -5;
-
     @EventHandler
     public void noSpawnBreak(BlockBreakEvent event) {
         Location loc = event.getBlock().getLocation();
@@ -121,7 +122,7 @@ public class Elements extends BattleMap implements Listener {
 
     @EventHandler
     public void filiShield(EntityDamageByEntityEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name)) {
+        if (event.getEntity().getWorld().getName().equals(getName())) {
             if (event.getEntity() instanceof Player) {
                 Player p = (Player) event.getEntity();
                 if (p.getItemInHand().getType() == Material.EMERALD && event.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)) {

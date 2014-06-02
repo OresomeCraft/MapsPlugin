@@ -1,10 +1,12 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,19 +22,29 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-@MapConfig
+@MapConfig(
+        name = "hartshire",
+        fullName = "Hartshire",
+        creators = {" __R3", " kalikakitty", " xannallax33"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION}
+)
+@Region(
+        x1 = 18,
+        y1 = 122,
+        z1 = -2,
+        x2 = 284,
+        y2 = 0,
+        z2 = -308
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STONE_SWORD, Material.LEATHER_HELMET, Material.GOLDEN_APPLE}
+)
 public class Hartshire extends BattleMap implements Listener {
 
     public Hartshire() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STONE_SWORD, Material.LEATHER_HELMET, Material.GOLDEN_APPLE});
+        super.initiate(this);
     }
-
-    String name = "hartshire";
-    String fullName = "Hartshire";
-    String[] creators = {" __R3", " kalikakitty", " xannallax33"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, 93, 39, -126, -1, 0);
@@ -52,7 +64,7 @@ public class Hartshire extends BattleMap implements Listener {
 
     public void readyFFASpawns() {
 
-        World w = Bukkit.getServer().getWorld(name);
+        World w = Bukkit.getServer().getWorld(getName());
 
         Location redSpawn = new Location(w, 93, 39, -126, -1, 0);
         Location blueSpawn = new Location(w, 188, 45, -130, -178, 0);
@@ -67,7 +79,6 @@ public class Hartshire extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 229, 56, -148, -50, 0));
         FFASpawns.add(new Location(w, 116, 41, -46, -50, 0));
         FFASpawns.add(new Location(w, 94, 53, -106, -50, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -103,17 +114,6 @@ public class Hartshire extends BattleMap implements Listener {
         i.setItem(4, EXP);
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 18;
-    public int y1 = 122;
-    public int z1 = -2;
-
-    //Bottom right corner.
-    public int x2 = 284;
-    public int y2 = 0;
-    public int z2 = -308;
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void ointment(PlayerInteractEvent event) {
         Player player = event.getPlayer();
@@ -121,7 +121,7 @@ public class Hartshire extends BattleMap implements Listener {
         ItemStack itemStack = player.getItemInHand();
         Inventory inventory = player.getInventory();
         Material tool = itemStack.getType();
-        if (player.getWorld().getName().equalsIgnoreCase(name)) {
+        if (player.getWorld().getName().equalsIgnoreCase(getName())) {
             if (tool == Material.INK_SACK) {
 
                 if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {

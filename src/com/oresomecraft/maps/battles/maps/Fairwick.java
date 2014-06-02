@@ -3,8 +3,10 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -25,18 +27,29 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "fairwick",
+        fullName = "Fairwick Village",
+        creators = {" __R3"},
+        gamemodes = {Gamemode.CTF}
+)
+@Region(
+        x1 = -13,
+        y1 = 112,
+        z1 = -26,
+        x2 = 159,
+        y2 = 57,
+        z2 = 152
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.LEATHER_CHESTPLATE, Material.WATCH, Material.WOOL}
+)
 public class Fairwick extends BattleMap implements Listener {
 
     public Fairwick() {
-        disableDrops(new Material[]{Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.LEATHER_CHESTPLATE, Material.WATCH, Material.WOOL});
-        super.initiate(this, name, fullName, creators, modes);
+        super.initiate(this);
     }
-
-    String name = "fairwick";
-    String fullName = "Fairwick Village";
-    String[] creators = {" __R3"};
-    Gamemode[] modes = {Gamemode.CTF};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 72, 73, 1));
@@ -44,13 +57,12 @@ public class Fairwick extends BattleMap implements Listener {
 
         Location redFlag = new Location(w, 72, 74, -2);
         Location blueFlag = new Location(w, 72, 74, 136);
-        setCTFFlags(name, redFlag, blueFlag);
+        setCTFFlags(getName(), redFlag, blueFlag);
     }
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 72, 73, 1));
         FFASpawns.add(new Location(w, 72, 73, 133));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -92,20 +104,9 @@ public class Fairwick extends BattleMap implements Listener {
         i.setItem(8, JUMP);
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -13;
-    public int y1 = 112;
-    public int z1 = -26;
-
-    //Bottom right corner.
-    public int x2 = 159;
-    public int y2 = 57;
-    public int z2 = 152;
-
     @EventHandler
     public void onSpyWatchInteract(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         Player player = event.getPlayer();
         Action action = event.getAction();
         if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
@@ -133,7 +134,7 @@ public class Fairwick extends BattleMap implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
+        if (event.getBlock().getLocation().getWorld().getName().equals(getName())) {
             if (event.getBlock().getType().getId() != 102 && event.getBlock().getType().getId() != 5) {
                 event.setCancelled(true);
             } else {
@@ -146,12 +147,12 @@ public class Fairwick extends BattleMap implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        if (event.getBlock().getLocation().getWorld().getName().equals(name)) event.setCancelled(true);
+        if (event.getBlock().getLocation().getWorld().getName().equals(getName())) event.setCancelled(true);
     }
 
     @EventHandler
     public void onFireworkUse(PlayerInteractEvent event) {
-        if (getArena().equals(name)) {
+        if (getArena().equals(getName())) {
             Player player = event.getPlayer();
             if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 if (player.getItemInHand().getType() == Material.FIREWORK) {

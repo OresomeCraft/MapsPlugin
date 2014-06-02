@@ -3,9 +3,15 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.ChatColor;
+import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
@@ -17,22 +23,31 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
-@MapConfig
+@MapConfig(
+        name = "arctic",
+        fullName = "Arctic",
+        creators = {"Dant35tra5t"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH}
+)
+@Region(
+        x1 = 894,
+        y1 = 219,
+        z1 = -3,
+        x2 = 724,
+        y2 = 101,
+        z2 = 170
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.LEATHER_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.STONE_HOE}
+)
 public class Arctic extends BattleMap implements Listener {
 
     public Arctic() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.LEATHER_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.STONE_HOE});
+        super.initiate(this);
     }
-
-    String name = "arctic";
-    String fullName = "Arctic";
-    String[] creators = {"Dant35tra5t"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
 
@@ -81,7 +96,6 @@ public class Arctic extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 855, 130, -50, 136, 0));
         FFASpawns.add(new Location(w, 798, 149, -74, -134, 0));
         FFASpawns.add(new Location(w, 789, 123, -94, 133, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -100,12 +114,9 @@ public class Arctic extends BattleMap implements Listener {
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
 
-        ItemMeta stone_hoe = STONE_HOE.getItemMeta();
-        stone_hoe.setDisplayName(ChatColor.BLUE + "Ice hook");
-        STONE_HOE.setItemMeta(stone_hoe);
-
         IRON_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 3);
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+        ItemUtils.nameItem(STONE_HOE, ChatColor.BLUE + "Ice hook");
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
@@ -124,22 +135,14 @@ public class Arctic extends BattleMap implements Listener {
 
     }
 
-    public int x1 = 894;
-    public int y1 = 219;
-    public int z1 = -3;
-    public int x2 = 724;
-    public int y2 = 101;
-    public int z2 = -170;
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void icePick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         ItemStack itemStack = player.getItemInHand();
         Material material = itemStack.getType();
         Action action = event.getAction();
-        Location location = player.getLocation();
 
-        if (player.getWorld().getName().equals(name)) {
+        if (player.getWorld().getName().equals(getName())) {
 
             if (material == Material.STONE_HOE) {
 

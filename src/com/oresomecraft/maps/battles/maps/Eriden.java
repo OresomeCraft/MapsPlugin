@@ -3,8 +3,10 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -27,23 +29,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@MapConfig
+@MapConfig(
+        name = "eriden",
+        fullName = "Eriden Falls",
+        creators = {"__R3", "DanShrdr"},
+        gamemodes = {Gamemode.CTF, Gamemode.TDM}
+)
+@Region(
+        x1 = -132,
+        y1 = 137,
+        z1 = 79,
+        x2 = 59,
+        y2 = 0,
+        z2 = -146
+)
+@Attributes(
+        allowBuild = false,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
+                Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE}
+)
 public class Eriden extends BattleMap implements Listener {
 
     public Eriden() {
-        super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(15);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
-                Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE});
-        setAutoSpawnProtection(5);
-        setAllowBuild(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "eriden";
-    String fullName = "Eriden Falls";
-    String[] creators = {"__R3", "DanShrdr"};
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -39, 75, 15, 21.8F, 11.1F));
@@ -53,7 +63,7 @@ public class Eriden extends BattleMap implements Listener {
 
         Location redFlag = new Location(w, -56, 60, -9);
         Location blueFlag = new Location(w, -13, 60, -55);
-        setCTFFlags(name, redFlag, blueFlag);
+        setCTFFlags(getName(), redFlag, blueFlag);
     }
 
     public void readyFFASpawns() {
@@ -61,7 +71,6 @@ public class Eriden extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -29, 75, -77, 212.8F, 11.1F));
         FFASpawns.add(new Location(w, -81, 57, -27, 43.3F, 11.7F));
         FFASpawns.add(new Location(w, 11, 57, -37, 232.2F, -4.3F));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -118,20 +127,9 @@ public class Eriden extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -132;
-    public int y1 = 137;
-    public int z1 = 79;
-
-    //Bottom right corner.
-    public int x2 = 59;
-    public int y2 = 0;
-    public int z2 = -146;
-
     @EventHandler
     public void vHit(EntityDamageEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         if (event.getEntity() instanceof Villager) {
             event.setDamage(1000);
         }
@@ -139,7 +137,7 @@ public class Eriden extends BattleMap implements Listener {
 
     @EventHandler
     public void vDeath(EntityDeathEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         if (event.getEntity() instanceof Villager) {
             event.getDrops().clear();
             ItemStack FIRE = new ItemStack(Material.FIREWORK, new Random().nextInt(3));
@@ -157,7 +155,7 @@ public class Eriden extends BattleMap implements Listener {
 
     @EventHandler
     public void blazeRod(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (event.getPlayer().getItemInHand().getType() == Material.FIREWORK) {
                 ItemStack FIRE = new ItemStack(Material.FIREWORK, 1);

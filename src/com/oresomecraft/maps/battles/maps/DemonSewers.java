@@ -2,27 +2,39 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "demonsewers",
+        fullName = "Demon Sewers",
+        creators = {"Zdav2002", "xBlazingxFirex1", "shavahn2003"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA}
+)
+@Region(
+        x1 = -19,
+        y1 = 58,
+        z1 = 33,
+        x2 = 177,
+        y2 = 27,
+        z2 = -79
+)
+@Attributes(
+        allowBuild = false,
+        //TODO We need to fix. :)
+)
 public class DemonSewers extends BattleMap implements Listener {
 
     public DemonSewers() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "demonsewers";
-    String fullName = "Demon Sewers";
-    String creators[] = {"Zdav2002", "xBlazingxFirex1", "shavahn2003"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 139, 38, -31, 1, 0));
@@ -41,8 +53,6 @@ public class DemonSewers extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 19, 49, -18, 0, 0));
         FFASpawns.add(new Location(w, 46, 49, 8, 1, 0));
         FFASpawns.add(new Location(w, 41, 42, -38, 3, 0));
-        
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -64,16 +74,5 @@ public class DemonSewers extends BattleMap implements Listener {
         p.setItem(2, Material.BREAD, 5);
         p.setItem(9, Material.ARROW, 5);
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -19;
-    public int y1 = 58;
-    public int z1 = 33;
-
-    // Bottom right corner.
-    public int x2 = 177;
-    public int y2 = 27;
-    public int z2 = -79;
 
 }

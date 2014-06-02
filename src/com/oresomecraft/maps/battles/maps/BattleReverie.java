@@ -1,11 +1,12 @@
 package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.events.EndBattleEvent;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.MapLoadEvent;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,7 +16,6 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -23,20 +23,22 @@ import org.bukkit.potion.PotionEffect;
 import java.util.ArrayList;
 import java.util.Random;
 
-@MapConfig
+@MapConfig(
+        name = "battlereverie",
+        fullName = "The Battle Reverie",
+        creators = {"__R3"},
+        gamemodes = {Gamemode.FFA}
+)
+@Attributes(
+        allowBuild = false,
+        requiredFFAScore = 13,
+        disabledDrops = {Material.POTION, Material.COOKED_BEEF, Material.BOW, Material.ARROW, Material.CHAINMAIL_HELMET, Material.GOLD_CHESTPLATE, Material.IRON_LEGGINGS, Material.DIAMOND_BOOTS, Material.IRON_SWORD}
+)
 public class BattleReverie extends BattleMap implements Listener {
 
     public BattleReverie() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(Material.values());
-        setRequiredFFAScore(13);
+        super.initiate(this);
     }
-
-    String name = "battlereverie";
-    String fullName = "The Battle Reverie";
-    String[] creators = {"__R3"};
-    Gamemode[] modes = {Gamemode.FFA};
 
     @EventHandler
     public void end(EndBattleEvent event) {
@@ -58,24 +60,12 @@ public class BattleReverie extends BattleMap implements Listener {
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 0, 87, 0, 87.998F, 7.1F));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
         p.sendMessage(ChatColor.GOLD + "Welcome to The Battle Reverie!");
         p.sendMessage(ChatColor.GOLD + "This is an arena that specialises in " + ChatColor.BOLD + "quadruple brawling!");
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 0;
-    public int y1 = 0;
-    public int z1 = 0;
-
-    //Bottom right corner.
-    public int x2 = 0;
-    public int y2 = 0;
-    public int z2 = 0;
 
     public boolean ac = false;
     public boolean acc = false;
@@ -92,7 +82,7 @@ public class BattleReverie extends BattleMap implements Listener {
 
     @EventHandler
     public void quit(PlayerQuitEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (isChosen(event.getPlayer().getName())) {
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] " + event.getPlayer().getName() + " quit!");
             endOrGo(event.getPlayer().getName());
@@ -101,14 +91,14 @@ public class BattleReverie extends BattleMap implements Listener {
 
     @EventHandler
     public void death(PlayerDeathEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         if (isChosen(event.getEntity().getName()))
             endOrGo(event.getEntity().getName());
     }
 
     @EventHandler
     public void worldLoad(MapLoadEvent event) {
-        if (event.getWorld().getName().equalsIgnoreCase(name)) {
+        if (event.getWorld().getName().equalsIgnoreCase(getName())) {
             ac = true;
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] Starting up!");
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
@@ -122,7 +112,7 @@ public class BattleReverie extends BattleMap implements Listener {
     @EventHandler
     public void leaveSpec(final PlayerCommandPreprocessEvent event) {
         // This is the blocked stuff
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (event.getMessage().toLowerCase().startsWith("/potion") || event.getMessage().toLowerCase().startsWith("/dog"))
             event.setCancelled(true);
         if (event.getMessage().toLowerCase().startsWith("/leave") || event.getMessage().toLowerCase().startsWith("/spectate")) {
@@ -179,13 +169,13 @@ public class BattleReverie extends BattleMap implements Listener {
         Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] " + ChatColor.GOLD + "Round over!");
         try {
             if (!p1.equals("???"))
-                Bukkit.getPlayer(p1).teleport(new Location(Bukkit.getWorld(name), 0, 87, 0, 87.998F, 7.1F));
+                Bukkit.getPlayer(p1).teleport(new Location(Bukkit.getWorld(getName()), 0, 87, 0, 87.998F, 7.1F));
             if (!p2.equals("???"))
-                Bukkit.getPlayer(p2).teleport(new Location(Bukkit.getWorld(name), 0, 87, 0, 87.998F, 7.1F));
+                Bukkit.getPlayer(p2).teleport(new Location(Bukkit.getWorld(getName()), 0, 87, 0, 87.998F, 7.1F));
             if (!p3.equals("???"))
-                Bukkit.getPlayer(p3).teleport(new Location(Bukkit.getWorld(name), 0, 87, 0, 87.998F, 7.1F));
+                Bukkit.getPlayer(p3).teleport(new Location(Bukkit.getWorld(getName()), 0, 87, 0, 87.998F, 7.1F));
             if (!p4.equals("???"))
-                Bukkit.getPlayer(p4).teleport(new Location(Bukkit.getWorld(name), 0, 87, 0, 87.998F, 7.1F));
+                Bukkit.getPlayer(p4).teleport(new Location(Bukkit.getWorld(getName()), 0, 87, 0, 87.998F, 7.1F));
         } catch (NullPointerException ex) {
         }
         p1 = "???";
@@ -225,7 +215,7 @@ public class BattleReverie extends BattleMap implements Listener {
         if (getPeopleIn() <= 1) endRound();
         try {
             Bukkit.getPlayer(whoDied).setHealth(20);
-            Bukkit.getPlayer(whoDied).teleport(new Location(Bukkit.getWorld(name), 0, 87, 0, 87.998F, 7.1F));
+            Bukkit.getPlayer(whoDied).teleport(new Location(Bukkit.getWorld(getName()), 0, 87, 0, 87.998F, 7.1F));
         } catch (Exception ex) {
 
         }
@@ -235,7 +225,7 @@ public class BattleReverie extends BattleMap implements Listener {
         if (p1.equals(player)) {
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] " + ChatColor.GOLD + player + " joins!");
             Player p = Bukkit.getPlayer(p1);
-            p.teleport(new Location(Bukkit.getWorld(name), 14, 72, 0, 269.9F, 0.8F));
+            p.teleport(new Location(Bukkit.getWorld(getName()), 14, 72, 0, 269.9F, 0.8F));
             for (PotionEffect po : p.getActivePotionEffects()) {
                 p.removePotionEffect(po.getType());
             }
@@ -245,7 +235,7 @@ public class BattleReverie extends BattleMap implements Listener {
         } else if (p2.equals(player)) {
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] " + ChatColor.GOLD + player + " joins!");
             Player p = Bukkit.getPlayer(p2);
-            p.teleport(new Location(Bukkit.getWorld(name), 0, 72, 14, 0.7F, 0.1F));
+            p.teleport(new Location(Bukkit.getWorld(getName()), 0, 72, 14, 0.7F, 0.1F));
             for (PotionEffect po : p.getActivePotionEffects()) {
                 p.removePotionEffect(po.getType());
             }
@@ -255,7 +245,7 @@ public class BattleReverie extends BattleMap implements Listener {
         } else if (p3.equals(player)) {
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] " + ChatColor.GOLD + player + " joins!");
             Player p = Bukkit.getPlayer(p3);
-            p.teleport(new Location(Bukkit.getWorld(name), -14, 72, 0, 89.7F, 0.1F));
+            p.teleport(new Location(Bukkit.getWorld(getName()), -14, 72, 0, 89.7F, 0.1F));
             for (PotionEffect po : p.getActivePotionEffects()) {
                 p.removePotionEffect(po.getType());
             }
@@ -265,7 +255,7 @@ public class BattleReverie extends BattleMap implements Listener {
         } else if (p4.equals(player)) {
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] " + ChatColor.GOLD + player + " joins!");
             Player p = Bukkit.getPlayer(p4);
-            p.teleport(new Location(Bukkit.getWorld(name), 0, 72, -14, 178.6F, 2.3F));
+            p.teleport(new Location(Bukkit.getWorld(getName()), 0, 72, -14, 178.6F, 2.3F));
             for (PotionEffect po : p.getActivePotionEffects()) {
                 p.removePotionEffect(po.getType());
             }
@@ -302,7 +292,7 @@ public class BattleReverie extends BattleMap implements Listener {
 
     @EventHandler
     public void foodChange(FoodLevelChangeEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         event.setFoodLevel(20);
     }
 
@@ -357,7 +347,7 @@ public class BattleReverie extends BattleMap implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void damage(EntityDamageByEntityEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         if (event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
             Player p = (Player) event.getEntity();
             if (!p1.equals(p.getName()) && !p2.equals(p.getName()) && !p3.equals(p.getName()) && !p4.equals(p.getName())) {

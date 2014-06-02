@@ -1,12 +1,14 @@
 package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -35,24 +37,34 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@MapConfig
-public class Courtyard extends BattleMap implements Listener {
-
-    public Courtyard() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        setTDMTime(15);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.BLAZE_ROD, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.FLINT, Material.BOW, Material.STONE_SWORD, Material.BLAZE_ROD, Material.WATCH,
+@MapConfig(
+        name = "courtyard",
+        fullName = "Wolfston Courtyard",
+        creators = {" __R3", "reggie449", "_Arch_Rider", "Boomyay", "123Oblivious"},
+        gamemodes = {Gamemode.TDM}
+)
+@Region(
+        x1 = 61,
+        y1 = 107,
+        z1 = 59,
+        x2 = -39,
+        y2 = 56,
+        z2 = -64
+)
+@Attributes(
+        allowBuild = false,
+        tdmTime = 15,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.BLAZE_ROD, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.FLINT, Material.BOW, Material.STONE_SWORD, Material.BLAZE_ROD, Material.WATCH,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_HELMET, Material.DIAMOND_HELMET,
                 Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS, Material.GOLD_HELMET, Material.GOLD_CHESTPLATE,
                 Material.GOLD_LEGGINGS, Material.GOLD_BOOTS, Material.STONE_SWORD, Material.WOOD_SWORD, Material.DIAMOND_SWORD, Material.GOLDEN_APPLE,
-                Material.POTION, Material.TNT, Material.GOLD_SWORD});
-    }
+                Material.POTION, Material.TNT, Material.GOLD_SWORD}
+)
+public class Courtyard extends BattleMap implements Listener {
 
-    String name = "courtyard";
-    String fullName = "Wolfston Courtyard";
-    String[] creators = {" __R3", "reggie449", "_Arch_Rider", "Boomyay", "123Oblivious"};
-    Gamemode[] modes = {Gamemode.TDM};
+    public Courtyard() {
+        super.initiate(this);
+    }
 
     public void readyTDMSpawns() {
         blueSpawns.add(new Location(w, -25.5, 67, -3.5));
@@ -62,23 +74,11 @@ public class Courtyard extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -25.5, 67, -3.5));
         FFASpawns.add(new Location(w, 45.5, 67, -3.5));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
         p.sendMessage(ChatColor.GOLD + "Interact with one of the signs to change class!");
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 61;
-    public int y1 = 107;
-    public int z1 = 59;
-
-    //Bottom right corner.
-    public int x2 = -39;
-    public int y2 = 56;
-    public int z2 = -64;
 
     ArrayList<String> selecting = new ArrayList<String>();
 
@@ -89,7 +89,7 @@ public class Courtyard extends BattleMap implements Listener {
 
     @EventHandler
     public void interact(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         try {
             Player player = event.getPlayer();
             Block block = event.getClickedBlock();
@@ -297,7 +297,7 @@ public class Courtyard extends BattleMap implements Listener {
 
     @EventHandler
     public void gun(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             Player player = event.getPlayer();
             Location loc = player.getLocation();
@@ -337,7 +337,7 @@ public class Courtyard extends BattleMap implements Listener {
 
     @EventHandler
     public void onSpyWatchInteract(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         Player player = event.getPlayer();
         Action action = event.getAction();
         if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
@@ -385,14 +385,14 @@ public class Courtyard extends BattleMap implements Listener {
 
     @EventHandler
     public void drop(PlayerDropItemEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         event.setCancelled(true);
     }
 
 
     @EventHandler
     public void potionSplash(PotionSplashEvent event) {
-        if (!event.getPotion().getWorld().getName().equals(name)) return;
+        if (!event.getPotion().getWorld().getName().equals(getName())) return;
         event.setCancelled(true);
         Iterator iterator = event.getAffectedEntities().iterator();
         while (iterator.hasNext()) {
@@ -408,7 +408,7 @@ public class Courtyard extends BattleMap implements Listener {
 
     @EventHandler
     public void placeTnt(BlockPlaceEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (contains(event.getBlock().getLocation(), 39, 69, 59, 124, 33, -60) || contains(event.getBlock().getLocation(), -19, -40, 50, 101, -45, 42))
             return;
         if (event.getBlockPlaced().getType() == Material.TNT) {
@@ -420,7 +420,7 @@ public class Courtyard extends BattleMap implements Listener {
 
     @EventHandler
     public void explode(EntityExplodeEvent event) {
-        if (!event.getLocation().getWorld().getName().equals(name)) return;
+        if (!event.getLocation().getWorld().getName().equals(getName())) return;
         event.blockList().clear();
     }
 
@@ -428,7 +428,7 @@ public class Courtyard extends BattleMap implements Listener {
     public void arrowAway(ProjectileHitEvent event) {
         org.bukkit.entity.Entity projectile = event.getEntity();
         Location location = projectile.getLocation();
-        if (location.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(getName())) {
             if (projectile instanceof Arrow) {
                 Arrow arrow = (Arrow) projectile;
                 arrow.remove();

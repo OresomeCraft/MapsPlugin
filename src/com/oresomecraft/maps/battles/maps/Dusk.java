@@ -1,37 +1,54 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.entity.Player;
-import org.bukkit.event.*;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "dusk",
+        fullName = "Darkness of Dusk",
+        creators = {"xannallax33", "dinner1111", "pepsidawg00", "__R3"},
+        gamemodes = {Gamemode.INFECTION}
+)
+@Region(
+        x1 = -103,
+        y1 = 52,
+        z1 = -22,
+        x2 = 101,
+        y2 = -7,
+        z2 = 199
+)
+@Attributes(
+        allowBuild = false,
+        timeLock = Map.Time.NIGHT,
+        disabledDrops = {Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.STONE_SWORD, Material.GOLD_LEGGINGS, Material.DIAMOND_BOOTS, Material.LEATHER_HELMET}
+)
 public class Dusk extends BattleMap implements Listener {
 
     public Dusk() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        lockTime("night");
-        disableDrops(new Material[]{Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.STONE_SWORD, Material.GOLD_LEGGINGS, Material.DIAMOND_BOOTS, Material.LEATHER_HELMET});
+        super.initiate(this);
     }
-
-    String name = "dusk";
-    String fullName = "Darkness of Dusk";
-    String[] creators = {"xannallax33", "dinner1111", "pepsidawg00", "__R3"};
-    Gamemode[] modes = {Gamemode.INFECTION};
 
     //Tdm isn't enabled on this, don't need to do spawns.
     public void readyTDMSpawns() {
@@ -47,7 +64,6 @@ public class Dusk extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 62, 6, 149));
         FFASpawns.add(new Location(w, -46, 6, 147));
         FFASpawns.add(new Location(w, -48, 6, 44));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -86,16 +102,6 @@ public class Dusk extends BattleMap implements Listener {
         i.setItem(9, ARROWS);
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -103;
-    public int y1 = 52;
-    public int z1 = -22;
-    //Bottom right corner.
-    public int x2 = 101;
-    public int y2 = -7;
-    public int z2 = 199;
-
     ItemStack[] items = new ItemStack[]{new ItemStack(Material.EXP_BOTTLE, 3), new ItemStack(Material.SEEDS, 1),
             new ItemStack(Material.IRON_SWORD, 1), new ItemStack(Material.EGG, 6), new ItemStack(Material.SNOW_BALL, 6),
             new ItemStack(Material.FEATHER, 1), new ItemStack(Material.POTION, 1, (short) 16428), new ItemStack(Material.WOOD_SWORD, 1),
@@ -106,7 +112,7 @@ public class Dusk extends BattleMap implements Listener {
 
     @EventHandler
     public void onVirtualLuck(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         Player player = event.getPlayer();
         Action action = event.getAction();
         if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {

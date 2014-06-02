@@ -3,8 +3,10 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -30,22 +32,30 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "hazypass",
+        fullName = "Hazy Pass",
+        creators = {"AnomalousRei", "__R3", "DanShrdr"},
+        gamemodes = {Gamemode.CTF, Gamemode.TDM, Gamemode.LTS}
+)
+@Region(
+        x1 = -42,
+        y1 = 170,
+        z1 = 97,
+        x2 = 192,
+        y2 = 51,
+        z2 = -93
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.BLAZE_ROD, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
+                Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE}
+)
 public class HazyPass extends BattleMap implements Listener {
 
     public HazyPass() {
-        super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(20);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.BLAZE_ROD, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
-                Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE});
-        setAutoSpawnProtection(2);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "hazypass";
-    String fullName = "Hazy Pass";
-    String[] creators = {"AnomalousRei", "__R3", "DanShrdr"};
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM, Gamemode.LTS};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 9, 100, -2));
@@ -63,7 +73,7 @@ public class HazyPass extends BattleMap implements Listener {
 
         Location redFlag = new Location(w, 1, 110, 8);
         Location blueFlag = new Location(w, 155, 110, -22);
-        setCTFFlags(name, redFlag, blueFlag);
+        setCTFFlags(getName(), redFlag, blueFlag);
     }
 
     public void readyFFASpawns() {
@@ -79,7 +89,6 @@ public class HazyPass extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 131, 82, 5));
         FFASpawns.add(new Location(w, 42, 82, 23));
         FFASpawns.add(new Location(w, 112, 82, -40));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -137,19 +146,9 @@ public class HazyPass extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -42;
-    public int y1 = 170;
-    public int z1 = 97;
-    //Bottom right corner.
-    public int x2 = 192;
-    public int y2 = 51;
-    public int z2 = -93;
-
     @EventHandler
     public void blazeRod(PlayerInteractEvent event) {
-        if (event.getPlayer().getWorld().getName().equals(name)) {
+        if (event.getPlayer().getWorld().getName().equals(getName())) {
             if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 if (event.getPlayer().getItemInHand().getType() == Material.BLAZE_ROD) {
                     ItemStack FIRE = new ItemStack(Material.BLAZE_ROD, 1);
@@ -169,7 +168,7 @@ public class HazyPass extends BattleMap implements Listener {
 
     @EventHandler
     public void pigZombieHit(EntityDamageEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name)) {
+        if (event.getEntity().getWorld().getName().equals(getName())) {
             if (event.getEntity() instanceof PigZombie) {
                 event.setDamage(1000);
             }
@@ -178,7 +177,7 @@ public class HazyPass extends BattleMap implements Listener {
 
     @EventHandler
     public void pigZombieHit(EntityDamageByEntityEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name)) {
+        if (event.getEntity().getWorld().getName().equals(getName())) {
             if (event.getEntity() instanceof Player && event.getDamager() instanceof PigZombie) {
                 event.setDamage(0);
             }
@@ -187,7 +186,7 @@ public class HazyPass extends BattleMap implements Listener {
 
     @EventHandler
     public void pigZombieDeath(EntityDeathEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name)) {
+        if (event.getEntity().getWorld().getName().equals(getName())) {
             if (event.getEntity() instanceof PigZombie) {
                 event.getDrops().clear();
                 ItemStack FIRE = new ItemStack(Material.BLAZE_ROD, 1);
@@ -206,7 +205,7 @@ public class HazyPass extends BattleMap implements Listener {
 
     @EventHandler
     public void blockStuff(BlockPlaceEvent event) {
-        if (event.getPlayer().getWorld().getName().equals(name)) {
+        if (event.getPlayer().getWorld().getName().equals(getName())) {
             if (getMode() == Gamemode.INFECTION) {
                 event.setCancelled(true);
                 event.getPlayer().sendMessage(ChatColor.RED + "Your power to build was suppressed!");
@@ -224,7 +223,7 @@ public class HazyPass extends BattleMap implements Listener {
 
     @EventHandler
     public void blockStuff(BlockBreakEvent event) {
-        if (event.getPlayer().getWorld().getName().equals(name)) {
+        if (event.getPlayer().getWorld().getName().equals(getName())) {
             if (getMode() == Gamemode.INFECTION) {
                 event.setCancelled(true);
                 event.getPlayer().sendMessage(ChatColor.RED + "Your power to build was suppressed!");

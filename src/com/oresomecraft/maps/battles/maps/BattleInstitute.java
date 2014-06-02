@@ -1,12 +1,15 @@
 package com.oresomecraft.maps.battles.maps;
 
+
 import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.OresomeBattles.teams.Team;
 import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.MapLoadEvent;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import com.oresomecraft.OresomeBattles.teams.Team;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,7 +19,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -24,45 +26,43 @@ import org.bukkit.potion.PotionEffect;
 import java.util.ArrayList;
 import java.util.Random;
 
-@MapConfig
+@MapConfig(
+        name = "battleinstitute",
+        fullName = "The Battle Institute",
+        creators = {"__R3"},
+        gamemodes = {Gamemode.LTS}
+)
+@Region(
+        x1 = 23,
+        y1 = 89,
+        z1 = 21,
+        x2 = -23,
+        y2 = 58,
+        z2 = -23
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.COOKED_BEEF, Material.POTION}
+)
 public class BattleInstitute extends BattleMap implements Listener {
 
     public BattleInstitute() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.COOKED_BEEF, Material.POTION});
+        super.initiate(this);
     }
 
-    String name = "battleinstitute";
-    String fullName = "The Battle Institute";
-    String[] creators = {"__R3"};
-    Gamemode[] modes = {Gamemode.LTS};
-
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(Bukkit.getWorld(name), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
-        blueSpawns.add(new Location(Bukkit.getWorld(name), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
+        redSpawns.add(new Location(Bukkit.getWorld(getName()), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
+        blueSpawns.add(new Location(Bukkit.getWorld(getName()), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
     }
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(Bukkit.getWorld(name), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
-        FFASpawns.add(new Location(Bukkit.getWorld(name), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
-        defineRegion(x1, x2, y1, y2, z1, z2);
+        FFASpawns.add(new Location(Bukkit.getWorld(getName()), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
+        FFASpawns.add(new Location(Bukkit.getWorld(getName()), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
     }
 
     public void applyInventory(final BattlePlayer p) {
         p.sendMessage(ChatColor.GOLD + "Wait until you are called and then punch the block!");
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 23;
-    public int y1 = 89;
-    public int z1 = 21;
-
-    //Bottom right corner.
-    public int x2 = -23;
-    public int y2 = 58;
-    public int z2 = -23;
 
     ArrayList<String> red = new ArrayList<String>();
     ArrayList<String> blue = new ArrayList<String>();
@@ -85,7 +85,7 @@ public class BattleInstitute extends BattleMap implements Listener {
 
     @EventHandler
     public void quit(PlayerQuitEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         red.remove(event.getPlayer().getName());
         blue.remove(event.getPlayer().getName());
         Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleInstitute] " + event.getPlayer().getName() + " quit!");
@@ -95,7 +95,7 @@ public class BattleInstitute extends BattleMap implements Listener {
 
     @EventHandler
     public void death(PlayerDeathEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         red.remove(event.getEntity().getName());
         blue.remove(event.getEntity().getName());
         if (currentRed.equals(event.getEntity().getName()) || currentBlue.equals(event.getEntity().getName()))
@@ -104,7 +104,7 @@ public class BattleInstitute extends BattleMap implements Listener {
 
     @EventHandler
     public void worldLoad(MapLoadEvent event) {
-        if (event.getWorld().getName().equalsIgnoreCase(name)) {
+        if (event.getWorld().getName().equalsIgnoreCase(getName())) {
             Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleInstitute] Starting up!");
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                 public void run() {
@@ -130,8 +130,8 @@ public class BattleInstitute extends BattleMap implements Listener {
         try {
             if (event.getMessage().toLowerCase().startsWith("/join")) {
                 try {
-                    if (!red.contains(event.getPlayer().getName()) && !blue.contains(event.getPlayer().getName()) && Bukkit.getWorld(name).getPlayers().size() != 0) {
-                        if (Bukkit.getWorld(name).getPlayers().size() == 0) return;
+                    if (!red.contains(event.getPlayer().getName()) && !blue.contains(event.getPlayer().getName()) && Bukkit.getWorld(getName()).getPlayers().size() != 0) {
+                        if (Bukkit.getWorld(getName()).getPlayers().size() == 0) return;
                         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                             public void run() {
                                 if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
@@ -155,7 +155,7 @@ public class BattleInstitute extends BattleMap implements Listener {
             }
 
             // This is the blocked stuff
-            if (!event.getPlayer().getWorld().getName().equals(name)) return;
+            if (!event.getPlayer().getWorld().getName().equals(getName())) return;
             if (event.getMessage().toLowerCase().startsWith("/potion")) event.setCancelled(true);
             if (event.getMessage().toLowerCase().startsWith("/leave") || event.getMessage().toLowerCase().startsWith("/spectate")) {
                 if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
@@ -173,7 +173,7 @@ public class BattleInstitute extends BattleMap implements Listener {
 
     @EventHandler
     public void ironBlock(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         try {
             if (event.getClickedBlock().getType() == Material.IRON_BLOCK) {
                 join(event.getPlayer().getName());
@@ -204,8 +204,8 @@ public class BattleInstitute extends BattleMap implements Listener {
     private void endRound() {
         Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] Round over! Picking new players!");
         try {
-            Bukkit.getPlayer(currentBlue).teleport(new Location(Bukkit.getWorld(name), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
-            Bukkit.getPlayer(currentRed).teleport(new Location(Bukkit.getWorld(name), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
+            Bukkit.getPlayer(currentBlue).teleport(new Location(Bukkit.getWorld(getName()), 0.5, 65, -17.5, (float) 180.056, (float) 2.057));
+            Bukkit.getPlayer(currentRed).teleport(new Location(Bukkit.getWorld(getName()), 0.5, 65, 13.5, (float) 359.434, (float) 0.027));
         } catch (NullPointerException ex) {
             System.out.println("[MapsPlugin] [ERROR] A NullPointerException occured when trying to teleport players to a floating point location!");
             System.out.println("[MapsPlugin] [ERROR] battles/maps/BattleInstitute:193");
@@ -241,7 +241,7 @@ public class BattleInstitute extends BattleMap implements Listener {
             Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] " + player + " joins!");
             blueEnter = true;
             Player p = Bukkit.getPlayer(currentBlue);
-            p.teleport(new Location(Bukkit.getWorld(name), 0.5, 65, -11.5, 180, (float) -0.108));
+            p.teleport(new Location(Bukkit.getWorld(getName()), 0.5, 65, -11.5, 180, (float) -0.108));
             for (PotionEffect po : p.getActivePotionEffects()) {
                 p.removePotionEffect(po.getType());
             }
@@ -253,7 +253,7 @@ public class BattleInstitute extends BattleMap implements Listener {
             Bukkit.broadcastMessage(ChatColor.RED + "[BattleInstitute] " + player + " joins!");
             redEnter = true;
             Player p = Bukkit.getPlayer(currentRed);
-            p.teleport(new Location(Bukkit.getWorld(name), 0.5, 65, 7.5, (float) 0.652, (float) -5.384));
+            p.teleport(new Location(Bukkit.getWorld(getName()), 0.5, 65, 7.5, (float) 0.652, (float) -5.384));
             for (PotionEffect po : p.getActivePotionEffects()) {
                 p.removePotionEffect(po.getType());
             }
@@ -290,7 +290,7 @@ public class BattleInstitute extends BattleMap implements Listener {
 
     @EventHandler
     public void worldLoad(FoodLevelChangeEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         event.setFoodLevel(20);
     }
 }

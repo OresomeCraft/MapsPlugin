@@ -3,9 +3,11 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -16,21 +18,31 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "clashofclayii",
+        fullName = "Clash Of Clay II",
+        creators = {"_Moist", "__R3"},
+        gamemodes = {Gamemode.TDM}
+)
+@Region(
+        x1 = 256,
+        y1 = 169,
+        z1 = -95,
+        x2 = -1,
+        y2 = 54,
+        z2 = 25
+)
+@Attributes(
+        tdmTime = 15,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.STONE_PICKAXE, Material.STONE_SWORD},
+        disabledBlocks = {Material.WORKBENCH, Material.PISTON_MOVING_PIECE}
+)
 public class ClashOfClayII extends BattleMap implements Listener {
 
     public ClashOfClayII() {
-        super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(15);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.STONE_PICKAXE, Material.STONE_SWORD});
-        disableBlocks(new Material[]{Material.WORKBENCH, Material.PISTON_MOVING_PIECE});
-        setAutoSpawnProtection(10);
+        super.initiate(this);
     }
-
-    String name = "clashofclayii";
-    String fullName = "Clash Of Clay II";
-    String[] creators = {"_Moist", "__R3"};
-    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
         Location blueSpawn = new Location(w, 20, 77, -25);
@@ -44,7 +56,6 @@ public class ClashOfClayII extends BattleMap implements Listener {
         Location blueSpawn = new Location(w, 250, 77, -27);
         FFASpawns.add(blueSpawn);
         FFASpawns.add(redSpawn);
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -82,21 +93,10 @@ public class ClashOfClayII extends BattleMap implements Listener {
         i.setItem(27, ARROW);
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 256;
-    public int y1 = 169;
-    public int z1 = -95;
-
-    //Bottom right corner.
-    public int x2 = -1;
-    public int y2 = 54;
-    public int z2 = 25;
-
     @EventHandler
     public void breakListener(BlockBreakEvent event) {
         Location location = event.getBlock().getLocation();
-        if (location.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(getName())) {
 
             if (contains(location, 255, 246, 69, 88, -33, -19)) event.setCancelled(true);
             if (contains(location, 15, 23, 70, 88, -17, -30)) event.setCancelled(true);
@@ -108,7 +108,7 @@ public class ClashOfClayII extends BattleMap implements Listener {
     @EventHandler
     public void placeListener(BlockPlaceEvent event) {
         Location location = event.getBlock().getLocation();
-        if (location.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(getName())) {
 
             // Method may not work
             if (event.getBlockPlaced().getType() == Material.LAVA) event.setCancelled(true);

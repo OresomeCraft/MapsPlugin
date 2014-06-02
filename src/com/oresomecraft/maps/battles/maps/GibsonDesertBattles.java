@@ -1,30 +1,47 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.inventory.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "desert",
+        fullName = "Gibson Desert Battles",
+        creators = {"_Moist", "niceman506"},
+        gamemodes = {Gamemode.TDM}
+)
+@Region(
+        x1 = -55,
+        y1 = 113,
+        z1 = 52,
+        x2 = 293,
+        y2 = 39,
+        z2 = -164
+)
+@Attributes(
+        allowBuild = false,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS,
+                Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LAVA_BUCKET, Material.IRON_AXE}
+)
 public class GibsonDesertBattles extends BattleMap implements Listener {
 
     public GibsonDesertBattles() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS,
-                Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LAVA_BUCKET, Material.IRON_AXE});
-        setAutoSpawnProtection(5);
+        super.initiate(this);
     }
-
-    String name = "desert";
-    String fullName = "Gibson Desert Battles";
-    String[] creators = {"_Moist", "niceman506"};
-    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
         blueSpawns.add(new Location(w, -10, 60, 3));
@@ -34,13 +51,11 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -10, 60, 3));
         FFASpawns.add(new Location(w, 226, 60, -100));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
 
-        //Items
         ItemStack IRON_AXE = new ItemStack(Material.IRON_AXE, 1);
         ItemStack BREAD = new ItemStack(Material.BREAD, 8);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -51,7 +66,6 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
         ItemStack OAK_LOG = new ItemStack(Material.LOG, 32);
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
 
-        // Armor
         ItemStack C = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack B = new ItemStack(Material.LEATHER_BOOTS, 1);
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{C, B});
@@ -70,20 +84,9 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
         i.setItem(27, ARROW);
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -55;
-    public int y1 = 113;
-    public int z1 = 52;
-
-    //Bottom right corner.
-    public int x2 = 293;
-    public int y2 = 39;
-    public int z2 = -164;
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void blockBreak(BlockBreakEvent event) {
-        if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
+        if (event.getBlock().getLocation().getWorld().getName().equals(getName())) {
             if (event.getBlock().getType() == Material.DIAMOND_BLOCK) {
                 event.setCancelled(true);
                 event.getBlock().setType(Material.DIRT);

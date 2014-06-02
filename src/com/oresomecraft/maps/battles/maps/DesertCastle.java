@@ -2,10 +2,12 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.MapLoadEvent;
-import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
@@ -24,20 +26,30 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
-@MapConfig
+@MapConfig(
+        name = "desertcastle",
+        fullName = "Desert Castle",
+        creators = {"Hourani95"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION}
+)
+@Region(
+        x1 = -80,
+        y1 = 133,
+        z1 = -29,
+        x2 = 64,
+        y2 = 59,
+        z2 = 73
+)
+@Attributes(
+        tdmTime = 15,
+        allowBuild = false,
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.FISHING_ROD}
+)
 public class DesertCastle extends BattleMap implements Listener {
 
     public DesertCastle() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.FISHING_ROD});
-        setTDMTime(15);
-        setAllowBuild(false);
+        super.initiate(this);
     }
-
-    String name = "desertcastle";
-    String fullName = "Desert Castle";
-    String[] creators = {"Hourani95"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, -37, 66, 30);
@@ -57,7 +69,6 @@ public class DesertCastle extends BattleMap implements Listener {
         FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, -37, 78, 30));
         FFASpawns.add(new Location(w, 38, 66, 29));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -98,13 +109,6 @@ public class DesertCastle extends BattleMap implements Listener {
 
     }
 
-    public int x1 = -80;
-    public int y1 = 133;
-    public int z1 = -29;
-    public int x2 = 64;
-    public int y2 = 59;
-    public int z2 = 73;
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
         Player player = event.getPlayer();
@@ -113,7 +117,7 @@ public class DesertCastle extends BattleMap implements Listener {
         Location location = player.getLocation();
         Location bobber = event.getHook().getLocation();
 
-        if (location.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(getName())) {
 
             if (material == Material.FISHING_ROD) {
 
@@ -130,7 +134,7 @@ public class DesertCastle extends BattleMap implements Listener {
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
 
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
 
         if (proj instanceof Snowball) {
             Snowball fish = (Snowball) proj;
@@ -188,8 +192,8 @@ public class DesertCastle extends BattleMap implements Listener {
     @EventHandler
     public void arrowBoom(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
-        World world = Bukkit.getWorld(name);
-        if (getArena().equals(name)) {
+        World world = Bukkit.getWorld(getName());
+        if (getArena().equals(getName())) {
             if (arrow instanceof Arrow) {
                 world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
             }
@@ -201,11 +205,11 @@ public class DesertCastle extends BattleMap implements Listener {
 
     @EventHandler
     public void arrowParticles(MapLoadEvent event) {
-        if (event.getWorld().getName().equals(name)) {
+        if (event.getWorld().getName().equals(getName())) {
             particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
                 public void run() {
-                    World world = Bukkit.getWorld(name);
-                    if (getArena().equals(name)) {
+                    World world = Bukkit.getWorld(getName());
+                    if (getArena().equals(getName())) {
                         for (Entity arrow : world.getEntities()) {
                             if (arrow != null) {
                                 if (arrow instanceof Arrow) {

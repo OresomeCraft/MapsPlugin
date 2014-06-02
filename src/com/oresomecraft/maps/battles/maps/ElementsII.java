@@ -1,35 +1,52 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.*;
-import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import com.oresomecraft.OresomeBattles.teams.Team;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
-@MapConfig
+@MapConfig(
+        name = "elements2",
+        fullName = "Elements II",
+        creators = {"_Moist", "psgs", "broddikill"},
+        gamemodes = {Gamemode.KOTH}
+)
+@Region(
+        x1 = -169,
+        y1 = 52,
+        z1 = -37,
+        x2 = -169,
+        y2 = 124,
+        z2 = -32
+)
+@Attributes(
+        allowBuild = false,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.ARROW, Material.BOW, Material.STONE_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET}
+)
 public class ElementsII extends BattleMap implements Listener {
 
     public ElementsII() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        setAutoSpawnProtection(2);
-        disableDrops(new Material[]{Material.ARROW, Material.BOW, Material.STONE_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
+        super.initiate(this);
     }
-
-    String name = "elements2";
-    String fullName = "Elements II";
-    String[] creators = {"_Moist", "psgs", "broddikill"};
-    Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -160, 70, -1, 90, 0));
@@ -46,7 +63,6 @@ public class ElementsII extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -160, 70, -12, 90, 0));
         FFASpawns.add(new Location(w, -3, 70, 0, -90, 0));
         FFASpawns.add(new Location(w, -3, 70, 12, -90, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -84,25 +100,14 @@ public class ElementsII extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -169;
-    public int y1 = 52;
-    public int z1 = -37;
-
-    //Bottom right corner.
-    public int x2 = -169;
-    public int y2 = 124;
-    public int z2 = -32;
-
     @EventHandler
     public void onBlockClick(PlayerInteractEvent event) {
         Player p = event.getPlayer();
-        if (p.getLocation().getWorld().getName().equals(name)) {
+        if (p.getLocation().getWorld().getName().equals(getName())) {
 
             if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 Block b = event.getClickedBlock();
-                World w = Bukkit.getWorld(name);
+                World w = Bukkit.getWorld(getName());
 
                 if (BattlePlayer.getBattlePlayer(p).getTeamType() == Team.KOTH_RED) {
                     if (b.getType() == Material.REDSTONE_BLOCK) {
