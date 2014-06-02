@@ -1,11 +1,12 @@
 package com.oresomecraft.maps.tiot.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.types.TiOTMap;
 import com.oresomecraft.OresomeBattles.region.CuboidRegion;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.tiot.TiOTMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -14,19 +15,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-@MapConfig
-public class OresomeTownOffices extends TiOTMap implements Listener {
+@MapConfig(
+        name = "oresometownoffices",
+        fullName = "OresomeTown Offices",
+        creators = {"meganlovesmusic", "SuperDuckFace", "ninsai", "psgs"},
+        gamemodes = {Gamemode.TIOT}
+)
+@Attributes(
+        allowBuild = false
+)
+public class OresomeTownOffices extends TiOTMap {
 
     public OresomeTownOffices() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "oresometownoffices";
-    String fullName = "OresomeTown Offices";
-    String[] creators = {"meganlovesmusic", "SuperDuckFace", "ninsai", "psgs"};
-    Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -47, 80, 0, -90, 0));

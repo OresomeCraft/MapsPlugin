@@ -1,11 +1,13 @@
 package com.oresomecraft.maps.tiot.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.types.TiOTMap;
 import com.oresomecraft.OresomeBattles.region.CuboidRegion;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.tiot.TiOTMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -14,20 +16,21 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-@MapConfig
-public class NightKanibaru extends TiOTMap implements Listener {
+@MapConfig(
+        name = "themepark",
+        fullName = "Night Kanibaru",
+        creators = {"huxtech", "shavahn2003", "xblazingxirex1", "kytron", "SereneMango", "xZizle123"},
+        gamemodes = {Gamemode.TIOT}
+)
+@Attributes(
+        allowBuild = false,
+        timeLock = Map.Time.NIGHT
+)
+public class NightKanibaru extends TiOTMap {
 
     public NightKanibaru() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        lockTime("night");
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "themepark";
-    String fullName = "Night Kanibaru";
-    String[] creators = {"huxtech", "shavahn2003", "xblazingxirex1", "kytron", "SereneMango", "xZizle123"};
-    Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -43, 67, 2, -90, 0));
