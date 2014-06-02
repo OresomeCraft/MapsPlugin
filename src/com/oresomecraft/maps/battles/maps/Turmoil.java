@@ -1,27 +1,42 @@
 package com.oresomecraft.maps.battles.maps;
 
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
-@MapConfig
+@MapConfig(
+        name = "turmoil",
+        fullName = "Turmoil",
+        creators = {"ShaunDepro97"},
+        gamemodes = {Gamemode.FFA}
+)
+@Region(
+        x1 = 0,
+        y1 = 76,
+        z1 = -1952,
+        x2 = -76,
+        y2 = 0,
+        z2 = -1857
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD}
+)
 public class Turmoil extends BattleMap implements Listener {
 
     public Turmoil() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
-        setAllowBuild(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "turmoil";
-    String fullName = "Turmoil";
-    String[] creators = {"ShaunDepro97"};
-    Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -45, 32, -1892, 2, 0));
@@ -46,7 +61,6 @@ public class Turmoil extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -8, 19, -1878, 1, 0));
         FFASpawns.add(new Location(w, -45, 17, -1910, 3, 0));
         FFASpawns.add(new Location(w, -28, 22, -1896, 0, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -71,16 +85,5 @@ public class Turmoil extends BattleMap implements Listener {
         p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600 * 20, 1));
         p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 1));
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 0;
-    public int y1 = 76;
-    public int z1 = -1952;
-
-    // Bottom right corner.
-    public int x2 = -76;
-    public int y2 = 0;
-    public int z2 = -1857;
 
 }

@@ -1,30 +1,43 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.event.Listener;
-import org.bukkit.inventory.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import com.oresomecraft.OresomeBattles.teams.Team;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "raid",
+        fullName = "Raid",
+        creators = {"ShaunDepro97"},
+        gamemodes = {Gamemode.TDM}
+)
+@Region(
+        x1 = -128,
+        y1 = 1,
+        z1 = -128,
+        x2 = 128,
+        y2 = 256,
+        z2 = 128
+)
+@Attributes(
+        pearlDamage = false,
+        disabledDrops = {Material.ARROW, Material.FISHING_ROD, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.IRON_SWORD, Material.BOW, Material.GOLD_BOOTS, Material.CHAINMAIL_LEGGINGS,
+                Material.IRON_CHESTPLATE, Material.LEATHER_HELMET, Material.ARROW, Material.FISHING_ROD, Material.ENDER_PEARL, Material.WOOL}
+)
 public class Raid extends BattleMap implements Listener {
 
     public Raid() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.ARROW, Material.FISHING_ROD, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.IRON_SWORD, Material.BOW, Material.GOLD_BOOTS, Material.CHAINMAIL_LEGGINGS,
-                Material.IRON_CHESTPLATE, Material.LEATHER_HELMET, Material.ARROW, Material.FISHING_ROD, Material.ENDER_PEARL, Material.WOOL});
-        disablePearlDamage(true);
+        super.initiate(this);
     }
-
-    String name = "raid";
-    String fullName = "Raid";
-    String[] creators = {"ShaunDepro97"};
-    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
 
@@ -67,7 +80,6 @@ public class Raid extends BattleMap implements Listener {
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, 5, 68, -5, 1, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -99,16 +111,5 @@ public class Raid extends BattleMap implements Listener {
         if (p.getTeamType() == Team.TDM_BLUE) p.setItem(5, Material.ENDER_PEARL, 2);
 
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -128;
-    public int y1 = 1;
-    public int z1 = -128;
-
-    //Bottom right corner.
-    public int x2 = 128;
-    public int y2 = 256;
-    public int z2 = 128;
 
 }

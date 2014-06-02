@@ -2,9 +2,11 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.MapLoadEvent;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
@@ -26,19 +28,34 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
-@MapConfig
+@MapConfig(
+        name = "perro",
+        fullName = "Casa de Perro",
+        creators = {"zachoz", "pegabeavercorn", "Dogmode555"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION}
+)
+//    public int x1 = -1451;
+//    public int y1 = 63;
+//    public int z1 = -2145;
+//    public int x2 = -1383;
+//    public int y2 = 159;
+//    public int z2 = -2066;
+@Region(
+        x1 = -1451,
+        y1 = 63,
+        z1 = -2145,
+        x2 = -1383,
+        y2 = 159,
+        z2 = -2066
+)
+@Attributes(
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.FISHING_ROD}
+)
 public class Perro extends BattleMap implements Listener {
 
     public Perro() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.FISHING_ROD});
-        setTDMTime(15);
+        super.initiate(this);
     }
-
-    String name = "perro";
-    String fullName = "Casa de Perro";
-    String[] creators = {"zachoz", "pegabeavercorn", "Dogmode555"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, -1397, 130, -2080, 138, 0);
@@ -94,7 +111,6 @@ public class Perro extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -1439, 129, -2093, -87, 0));
         FFASpawns.add(new Location(w, -1410, 114, -2081, -178, 0));
         FFASpawns.add(new Location(w, -1416, 98, -2081, -159, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -133,13 +149,6 @@ public class Perro extends BattleMap implements Listener {
 
     }
 
-    public int x1 = -1451;
-    public int y1 = 63;
-    public int z1 = -2145;
-    public int x2 = -1383;
-    public int y2 = 159;
-    public int z2 = -2066;
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
         Player player = event.getPlayer();
@@ -148,7 +157,7 @@ public class Perro extends BattleMap implements Listener {
         Location location = player.getLocation();
         Location bobber = event.getHook().getLocation();
 
-        if (location.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(getName())) {
 
             if (material == Material.FISHING_ROD) {
 
@@ -165,7 +174,7 @@ public class Perro extends BattleMap implements Listener {
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
 
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
 
         if (proj instanceof Snowball) {
             Snowball fish = (Snowball) proj;
@@ -222,7 +231,7 @@ public class Perro extends BattleMap implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void glassShot(ProjectileHitEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
 
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
@@ -239,8 +248,8 @@ public class Perro extends BattleMap implements Listener {
     @EventHandler
     public void arrowBoom(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
-        World world = Bukkit.getWorld(name);
-        if (getArena().equals(name)) {
+        World world = Bukkit.getWorld(getName());
+        if (getArena().equals(getName())) {
             if (arrow instanceof Arrow) {
                 world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
             }
@@ -252,11 +261,11 @@ public class Perro extends BattleMap implements Listener {
 
     @EventHandler
     public void arrowParticles(MapLoadEvent event) {
-        if (event.getWorld().getName().equals(name)) {
+        if (event.getWorld().getName().equals(getName())) {
             particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
                 public void run() {
-                    World world = Bukkit.getWorld(name);
-                    if (getArena().equals(name)) {
+                    World world = Bukkit.getWorld(getName());
+                    if (getArena().equals(getName())) {
                         for (Entity arrow : world.getEntities()) {
                             if (arrow != null) {
                                 if (arrow instanceof Arrow) {
@@ -277,12 +286,12 @@ public class Perro extends BattleMap implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if (event.getBlock().getLocation().getWorld().getName().equals(name) && event.getBlock().getType().getId() != 102)
+        if (event.getBlock().getLocation().getWorld().getName().equals(getName()) && event.getBlock().getType().getId() != 102)
             event.setCancelled(true);
     }
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        if (event.getBlock().getLocation().getWorld().getName().equals(name)) event.setCancelled(true);
+        if (event.getBlock().getLocation().getWorld().getName().equals(getName())) event.setCancelled(true);
     }
 }

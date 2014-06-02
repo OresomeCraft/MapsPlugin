@@ -2,8 +2,10 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -26,18 +28,28 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "wartown",
+        fullName = "Wartown",
+        creators = {"reub_youtube"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA}
+)
+@Region(
+        x1 = 128,
+        y1 = 54,
+        z1 = -278,
+        x2 = 225,
+        y2 = 91,
+        z2 = -145
+)
+@Attributes(
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.BLAZE_ROD}
+)
 public class Wartown extends BattleMap implements Listener {
 
     public Wartown() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.BLAZE_ROD});
+        super.initiate(this);
     }
-
-    String name = "wartown";
-    String fullName = "Wartown";
-    String[] creators = {"reub_youtube"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, 175, 64, -268, 0, 0);
@@ -72,7 +84,6 @@ public class Wartown extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 183, 60, -230, -46, 0));
         FFASpawns.add(new Location(w, 200, 60, -251, 47, 0));
         FFASpawns.add(new Location(w, 174, 69, -234, 41, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -124,16 +135,9 @@ public class Wartown extends BattleMap implements Listener {
         i.setItem(9, AMMO);
     }
 
-    public int x1 = 128;
-    public int y1 = 54;
-    public int z1 = -278;
-    public int x2 = 225;
-    public int y2 = 91;
-    public int z2 = -145;
-
     @EventHandler
     public void c4(PlayerDropItemEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             if (event.getItemDrop().getItemStack().getType() == Material.SULPHUR) {
                 if (!contains(event.getItemDrop().getLocation(), 186, 162, 63, 86, -257, -278) && !contains(event.getItemDrop().getLocation(), 154, 197, 77, 63, -185, -143)) {
@@ -195,7 +199,7 @@ public class Wartown extends BattleMap implements Listener {
 
     @EventHandler
     public void hit(ProjectileHitEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         for (Entity entity : event.getEntity().getNearbyEntities(3, 3, 3)) {
             if (entity instanceof TNTPrimed) {
                 TNTPrimed tnt = (TNTPrimed) entity;
@@ -212,8 +216,8 @@ public class Wartown extends BattleMap implements Listener {
         particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 
             public void run() {
-                World world = Bukkit.getWorld(name);
-                if (getArena().equals(name)) {
+                World world = Bukkit.getWorld(getName());
+                if (getArena().equals(getName())) {
                     if (!(world.getEntities() == null)) {
                         for (Entity arrow : world.getEntities()) {
                             if (arrow instanceof Arrow) {
@@ -242,7 +246,7 @@ public class Wartown extends BattleMap implements Listener {
         Block bSE = b.getRelative(BlockFace.SOUTH_EAST);
         Block bSW = b.getRelative(BlockFace.SOUTH_WEST);
 
-        if (contains(loc, x1, x2, y1, y2, z1, z2)) {
+        if (isInsideRegion(loc)) {
 
             if (p instanceof Egg) {
 
@@ -276,7 +280,7 @@ public class Wartown extends BattleMap implements Listener {
         Block block = location.getBlock();
         Material material = block.getType();
 
-        if (contains(location, x1, x2, y1, y2, z1, z2)) {
+        if (isInsideRegion(location)) {
 
             if (player instanceof Arrow) {
                 Arrow arrow = (Arrow) player;
@@ -297,7 +301,7 @@ public class Wartown extends BattleMap implements Listener {
         Entity proj = event.getDamager();
         Location location = entity.getLocation();
 
-        if (location.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(getName())) {
 
             if (proj instanceof Egg) {
 
@@ -309,7 +313,7 @@ public class Wartown extends BattleMap implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (getMode() != Gamemode.FFA) {
             if (contains(event.getBlockPlaced().getLocation(), 160, 190, 63, 80, -172, -144) || contains(event.getBlockPlaced().getLocation(), 165, 187, 63, 89, -259, -278)) {
                 event.setCancelled(true);
@@ -319,7 +323,7 @@ public class Wartown extends BattleMap implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (getMode() != Gamemode.FFA) {
             if (contains(event.getBlock().getLocation(), 160, 190, 63, 80, -172, -144) || contains(event.getBlock().getLocation(), 165, 187, 63, 89, -259, -278)) {
                 event.setCancelled(true);

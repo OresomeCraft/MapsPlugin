@@ -2,28 +2,39 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "modern",
+        fullName = "Paradise",
+        creators = {"SuperDuckFace", "meganlovesmusic", "ninsai"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA}
+)
+@Region(
+        x1 = -186,
+        y1 = 189,
+        z1 = -163,
+        x2 = 156,
+        y2 = 38,
+        z2 = 151
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD}
+)
 public class Paradise extends BattleMap implements Listener {
 
     public Paradise() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
-        setAllowBuild(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "modern";
-    String fullName = "Paradise";
-    String[] creators = {"SuperDuckFace", "meganlovesmusic", "ninsai"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -102, 108, 103));
@@ -43,7 +54,6 @@ public class Paradise extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 57, 109, 26, 176, 0));
         FFASpawns.add(new Location(w, 45, 111, -80, 20, 0));
         FFASpawns.add(new Location(w, 13, 117, -146, -70, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -58,7 +68,6 @@ public class Paradise extends BattleMap implements Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROW = new ItemStack(Material.ARROW, 32);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 4);
-        ItemStack PEARL = new ItemStack(Material.ENDER_PEARL, 2);
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
@@ -71,16 +80,5 @@ public class Paradise extends BattleMap implements Listener {
         i.setItem(3, STEAK);
         i.setItem(11, ARROW);
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -186;
-    public int y1 = 189;
-    public int z1 = -163;
-
-    // Bottom right corner.
-    public int x2 = 156;
-    public int y2 = 38;
-    public int z2 = 151;
 
 }

@@ -1,34 +1,55 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Egg;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.*;
-import org.bukkit.inventory.*;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.*;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "hypno",
+        fullName = "Hypnosis",
+        creators = {"zachoz", "pegabeavercorn", "DragonDrew", "kevlar_miner"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA}
+)
+@Region(
+        x1 = -716,
+        y1 = 5,
+        z1 = -1262,
+        x2 = -946,
+        y2 = 146,
+        z2 = -1484
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.STONE_SPADE, Material.IRON_PICKAXE, Material.EMERALD}
+)
 public class Hypno extends BattleMap implements Listener {
 
     public Hypno() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.STONE_SPADE, Material.IRON_PICKAXE, Material.EMERALD});
+        super.initiate(this);
     }
-
-    String name = "hypno";
-    String fullName = "Hypnosis";
-    String[] creators = {"zachoz", "pegabeavercorn", "DragonDrew", "kevlar_miner"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -773, 102, -1338, 134, 0));
@@ -72,7 +93,6 @@ public class Hypno extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -800, 87, -1384, -103, 0));
         FFASpawns.add(new Location(w, -781, 69, -1424, -18, 0));
         FFASpawns.add(new Location(w, -746, 73, -1358, 123, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -121,20 +141,13 @@ public class Hypno extends BattleMap implements Listener {
 
     }
 
-    public int x1 = -716;
-    public int y1 = 5;
-    public int z1 = -1262;
-    public int x2 = -946;
-    public int y2 = 146;
-    public int z2 = -1484;
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void preventBlockBreak(BlockBreakEvent event) {
         Block block = event.getBlock();
         int material = block.getTypeId();
         Location location = block.getLocation();
-        if (location.getWorld().getName().equals(name)) {
-            if (contains(location, x1, x2, y1, y2, z1, z2)) {
+        if (location.getWorld().getName().equals(getName())) {
+            if (isInsideRegion(location)) {
 
                 if (material == 43 || material == 44 || material == 35 || material == 42
                         || material == 49 || material == 123 || material == 69 || material == 124) {
@@ -151,7 +164,7 @@ public class Hypno extends BattleMap implements Listener {
         Entity entity = event.getEntity();
         Location location = entity.getLocation();
 
-        if (contains(location, x1, x2, y1, y2, z1, z2)) {
+        if (isInsideRegion(location)) {
 
             if (damager instanceof Player) {
 
@@ -181,7 +194,7 @@ public class Hypno extends BattleMap implements Listener {
         Location location = entity.getLocation();
         World world = location.getWorld();
 
-        if (contains(location, x1, x2, y1, y2, z1, z2)) {
+        if (isInsideRegion(location)) {
 
             if (entity instanceof Egg) {
 
@@ -237,8 +250,8 @@ public class Hypno extends BattleMap implements Listener {
     @EventHandler
     public void arrowTrail(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
-        World world = Bukkit.getWorld(name);
-        if (getArena().equals(name)) {
+        World world = Bukkit.getWorld(getName());
+        if (getArena().equals(getName())) {
             if (arrow instanceof Arrow) {
                 world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 8);
             }

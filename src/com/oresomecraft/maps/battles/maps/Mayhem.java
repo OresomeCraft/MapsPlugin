@@ -1,41 +1,53 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.MapLoadEvent;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
-import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
-
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
-
-@MapConfig
+@MapConfig(
+        name = "mayhem",
+        fullName = "Mayhem",
+        creators = {"ShaunDepro97", "meganlovesmusic", "Kytria"},
+        gamemodes = {Gamemode.TDM, Gamemode.LTS}
+)
+@Region(
+        x1 = 5,
+        y1 = 149,
+        z1 = 5,
+        x2 = 122,
+        y2 = 65,
+        z2 = 126
+)
+@Attributes(
+        tdmTime = 10,
+        allowBuild = false,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.EMERALD, Material.ARROW, Material.FISHING_ROD, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
+                Material.IRON_CHESTPLATE, Material.FISHING_ROD, Material.DIAMOND_PICKAXE, Material.ARROW}
+)
 public class Mayhem extends BattleMap implements Listener {
 
     public Mayhem() {
-        super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(10);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.EMERALD, Material.ARROW, Material.FISHING_ROD, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
-                Material.IRON_CHESTPLATE, Material.FISHING_ROD, Material.DIAMOND_PICKAXE, Material.ARROW});
-        setAutoSpawnProtection(2);
+        super.initiate(this);
     }
-
-    String name = "mayhem";
-    String fullName = "Mayhem";
-    String[] creators = {"ShaunDepro97", "meganlovesmusic", "Kytria"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.LTS};
 
     @EventHandler
     public void onload(MapLoadEvent event) { // Register power block
-        if (event.getWorld().getName().equals(name)) cyclePowerBlock();
+        if (event.getWorld().getName().equals(getName())) cyclePowerBlock();
     }
 
     public void readyTDMSpawns() {
@@ -50,7 +62,6 @@ public class Mayhem extends BattleMap implements Listener {
         Location blueSpawn = new Location(w, 23, 112, 63, 3, 0);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -78,20 +89,9 @@ public class Mayhem extends BattleMap implements Listener {
         i.setItem(28, ARROWS);
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 5;
-    public int y1 = 149;
-    public int z1 = 5;
-
-    //Bottom right corner.
-    public int x2 = 122;
-    public int y2 = 65;
-    public int z2 = 126;
-
     int timer;
     int count = 1;
-    Location powerBlock = new Location(Bukkit.getWorld(name), 64, 110, 64);
+    Location powerBlock = new Location(Bukkit.getWorld(getName()), 64, 110, 64);
 
     private void cyclePowerBlock() {
 
@@ -101,7 +101,7 @@ public class Mayhem extends BattleMap implements Listener {
                         Material.EMERALD_ORE, Material.LAPIS_ORE, Material.DIAMOND_ORE};
                 int max = blocks.length;
 
-                World world = Bukkit.getWorld(name);
+                World world = Bukkit.getWorld(getName());
                 world.getBlockAt(powerBlock).setType(blocks[(count - 1)]);
 
                 count = count >= max ? count = 1 : (count + 1);

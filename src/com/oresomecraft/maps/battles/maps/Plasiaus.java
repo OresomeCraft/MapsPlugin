@@ -3,8 +3,10 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -25,18 +27,29 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "plasiaus",
+        fullName = "Plasiaus Village",
+        creators = {"__R3", "kytron", "DanShrdr"},
+        gamemodes = {Gamemode.CTF, Gamemode.INFECTION}
+)
+@Region(
+        x1 = 75,
+        y1 = 97,
+        z1 = 5,
+        x2 = -59,
+        y2 = 53,
+        z2 = -96
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.LEATHER_CHESTPLATE, Material.WATCH, Material.WOOL}
+)
 public class Plasiaus extends BattleMap implements Listener {
 
     public Plasiaus() {
-        disableDrops(new Material[]{Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.LEATHER_CHESTPLATE, Material.WATCH, Material.WOOL});
-        super.initiate(this, name, fullName, creators, modes);
+        super.initiate(this);
     }
-
-    String name = "plasiaus";
-    String fullName = "Plasiaus Village";
-    String[] creators = {"__R3", "kytron", "DanShrdr"};
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -51, 64, -47, 90.7F, 0.7F));
@@ -44,13 +57,12 @@ public class Plasiaus extends BattleMap implements Listener {
 
         Location redFlag = new Location(w, -43, 65, -47);
         Location blueFlag = new Location(w, 63, 65, -47);
-        setCTFFlags(name, redFlag, blueFlag);
+        setCTFFlags(getName(), redFlag, blueFlag);
     }
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -51, 64, -47, 90.7F, 0.7F));
         FFASpawns.add(new Location(w, 71, 64, -47, 269.7F, 0.5F));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -92,20 +104,9 @@ public class Plasiaus extends BattleMap implements Listener {
         i.setItem(8, JUMP);
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 75;
-    public int y1 = 97;
-    public int z1 = 5;
-
-    //Bottom right corner.
-    public int x2 = -59;
-    public int y2 = 53;
-    public int z2 = -96;
-
     @EventHandler
     public void onSpyWatchInteract(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         Player player = event.getPlayer();
         Action action = event.getAction();
         if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
@@ -133,7 +134,7 @@ public class Plasiaus extends BattleMap implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
+        if (event.getBlock().getLocation().getWorld().getName().equals(getName())) {
             if (event.getBlock().getType().getId() != 160 && event.getBlock().getType().getId() != 5) {
                 event.setCancelled(true);
             } else {
@@ -146,12 +147,12 @@ public class Plasiaus extends BattleMap implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        if (event.getBlock().getLocation().getWorld().getName().equals(name)) event.setCancelled(true);
+        if (event.getBlock().getLocation().getWorld().getName().equals(getName())) event.setCancelled(true);
     }
 
     @EventHandler
     public void onFireworkUse(PlayerInteractEvent event) {
-        if (getArena().equals(name)) {
+        if (getArena().equals(getName())) {
             Player player = event.getPlayer();
             if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 if (player.getItemInHand().getType() == Material.FIREWORK) {

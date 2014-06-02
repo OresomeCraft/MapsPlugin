@@ -1,41 +1,52 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.block.*;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.*;
-import org.bukkit.event.player.*;
-import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.entity.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerEggThrowEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 
-@MapConfig
+@MapConfig(
+        name = "spire",
+        fullName = "Spire",
+        creators = {"zachoz", "pegabeavercorn"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA}
+)
+@Region(
+        x1 = -1661,
+        y1 = 67,
+        z1 = -2392,
+        x2 = -1499,
+        y2 = 169,
+        z2 = -2230
+)
+@Attributes(
+        disabledDrops = {Material.ARROW, Material.IRON_PICKAXE, Material.STONE_SPADE, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.SAND, Material.SPONGE}
+)
 public class Spire extends BattleMap implements Listener {
 
     public Spire() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.ARROW, Material.IRON_PICKAXE, Material.STONE_SPADE, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.SAND, Material.SPONGE});
+        super.initiate(this);
     }
-
-    String name = "spire";
-    String fullName = "Spire";
-    String[] creators = {"zachoz", "pegabeavercorn"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
-
-    public int x1 = -1661;
-    public int y1 = 67;
-    public int z1 = -2392;
-    public int x2 = -1499;
-    public int y2 = 169;
-    public int z2 = -2230;
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, -1509, 75, -2310);
@@ -132,7 +143,7 @@ public class Spire extends BattleMap implements Listener {
         Block block2 = block.getRelative(BlockFace.DOWN, 2);
         Material material = block.getType();
 
-        if (contains(location, x1, x2, y1, y2, z1, z2)) {
+        if (isInsideRegion(location)) {
 
             if (material == Material.SPONGE && action == Action.RIGHT_CLICK_AIR) {
 
@@ -147,7 +158,7 @@ public class Spire extends BattleMap implements Listener {
 
     @EventHandler
     public void sponge(BlockBreakEvent event) {
-        if (!event.getBlock().getWorld().getName().equals(name)) return;
+        if (!event.getBlock().getWorld().getName().equals(getName())) return;
         if (event.getBlock().getType() == Material.SPONGE) {
             event.setCancelled(true);
             event.getBlock().setType(Material.GOLD_BLOCK);
@@ -156,7 +167,7 @@ public class Spire extends BattleMap implements Listener {
 
     @EventHandler
     public void explode(EntityExplodeEvent event) {
-        if (!event.getLocation().getWorld().getName().equals(name)) return;
+        if (!event.getLocation().getWorld().getName().equals(getName())) return;
         for (Block b : event.blockList()) {
             if (b.getType() == Material.SPONGE) {
                 event.blockList().remove(b);
@@ -169,7 +180,7 @@ public class Spire extends BattleMap implements Listener {
         Entity projectile = event.getEntity();
         World w = projectile.getWorld();
         Location hit = projectile.getLocation();
-        if (!w.getName().equals(name)) return;
+        if (!w.getName().equals(getName())) return;
 
         if (projectile instanceof Arrow) {
             Arrow arrow = (Arrow) projectile;
@@ -184,7 +195,7 @@ public class Spire extends BattleMap implements Listener {
 
                 if (item == Material.BOW && material == Material.SPONGE) {
                     w.createExplosion(hit, 2);
-                    Bukkit.getWorld(name).playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
+                    Bukkit.getWorld(getName()).playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
 
                 }
             }
@@ -197,7 +208,7 @@ public class Spire extends BattleMap implements Listener {
         World world = egg.getWorld();
         Location location = egg.getLocation();
         // basic start and variables
-        if (world.getName().equals(name)) {
+        if (world.getName().equals(getName())) {
             event.setHatching(true);
             world.createExplosion(location, 25);
 
@@ -218,7 +229,7 @@ public class Spire extends BattleMap implements Listener {
         Material material = block.getType();
         Location location = block.getLocation();
 
-        if (location.getWorld().getName().equals(name) && material == Material.LAPIS_ORE) {
+        if (location.getWorld().getName().equals(getName()) && material == Material.LAPIS_ORE) {
 
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 2400, 1));
             player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 2400, 1));

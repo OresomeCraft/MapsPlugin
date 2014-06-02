@@ -2,8 +2,10 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -15,20 +17,30 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "skyvillage",
+        fullName = "Sky Village",
+        creators = {"SuperDuckFace", "ninsai", "ep1cn00bt00b"},
+        gamemodes = {Gamemode.FFA}
+)
+@Region(
+        x1 = 120,
+        y1 = 204,
+        z1 = -22,
+        x2 = -109,
+        y2 = 50,
+        z2 = 248
+)
+@Attributes(
+        allowBuild = false,
+        fireSpread = false,
+        disabledDrops = {Material.ARROW, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.IRON_HELMET}
+)
 public class SkyVillage extends BattleMap implements Listener {
 
     public SkyVillage() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.ARROW, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.IRON_HELMET});
-        setFireSpread(false);
+        super.initiate(this);
     }
-
-    String name = "skyvillage";
-    String fullName = "Sky Village";
-    String[] creators = {"SuperDuckFace", "ninsai", "ep1cn00bt00b"};
-    Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -91, 84, 75));
@@ -63,7 +75,6 @@ public class SkyVillage extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 78, 95, 134, -161, 0));
         FFASpawns.add(new Location(w, 95, 96, 85, 131, 0));
         FFASpawns.add(new Location(w, -1, 93, 185, -110, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -96,21 +107,10 @@ public class SkyVillage extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 120;
-    public int y1 = 204;
-    public int z1 = -22;
-
-    //Bottom right corner.
-    public int x2 = -109;
-    public int y2 = 50;
-    public int z2 = 248;
-
     @EventHandler
     public void onBlockClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if (player.getLocation().getWorld().getName().equals(name)) {
+        if (player.getLocation().getWorld().getName().equals(getName())) {
             if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 Block block = event.getClickedBlock();
                 if (block.getType() == Material.PISTON_BASE) {

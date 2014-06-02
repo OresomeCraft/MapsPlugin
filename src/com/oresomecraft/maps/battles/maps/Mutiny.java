@@ -1,36 +1,51 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryInteractEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "mutiny",
+        fullName = "Mutiny",
+        creators = {"AnomalousDyna", "JacquiRose"},
+        gamemodes = {Gamemode.TDM}
+)
+@Region(
+        x1 = 19,
+        y1 = 51,
+        z1 = 3,
+        x2 = -57,
+        y2 = 122,
+        z2 = -93
+)
+@Attributes(
+        autoSpawnProtection = true,
+        disabledDrops = {Material.EMERALD, Material.ARROW, Material.BOW, Material.IRON_AXE, Material.DIAMOND_BOOTS, Material.GOLD_LEGGINGS, Material.IRON_CHESTPLATE, Material.LEATHER_HELMET}
+)
 public class Mutiny extends BattleMap implements Listener {
 
     public Mutiny() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.EMERALD, Material.ARROW, Material.BOW, Material.IRON_AXE, Material.DIAMOND_BOOTS, Material.GOLD_LEGGINGS, Material.IRON_CHESTPLATE, Material.LEATHER_HELMET});
-        setAutoSpawnProtection(2);
+        super.initiate(this);
     }
-
-    String name = "mutiny";
-    String fullName = "Mutiny";
-    String[] creators = {"AnomalousDyna", "JacquiRose"};
-    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 3, 72, -38));
@@ -48,7 +63,6 @@ public class Mutiny extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -38, 72, -38));
         FFASpawns.add(new Location(w, -36, 70, -18));
         FFASpawns.add(new Location(w, -36, 77, -56));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -92,21 +106,10 @@ public class Mutiny extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 19;
-    public int y1 = 51;
-    public int z1 = 3;
-
-    //Bottom right corner.
-    public int x2 = -57;
-    public int y2 = 122;
-    public int z2 = -93;
-
     @EventHandler
     public void preventPlaceOutOfMap(BlockPlaceEvent event) {
-        if (event.getBlock().getWorld().getName().equals(name)) {
-            if (!contains(event.getBlock().getLocation(), x1, x2, y1, y2, z1, z2)) {
+        if (event.getBlock().getWorld().getName().equals(getName())) {
+            if (!isInsideRegion(event.getBlock().getLocation())) {
                 event.setCancelled(true);
             }
         }
@@ -121,7 +124,7 @@ public class Mutiny extends BattleMap implements Listener {
 
     @EventHandler
     public void protectStone(EntityDamageEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         if (event.getEntity() instanceof Player) {
             Player p = (Player) event.getEntity();
             if (p.getItemInHand().getType() == Material.EMERALD) {

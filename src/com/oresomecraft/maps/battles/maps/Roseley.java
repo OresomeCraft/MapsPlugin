@@ -1,33 +1,46 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-
-@MapConfig
+@MapConfig(
+        name = "roseley",
+        fullName = "Roseley",
+        creators = {" __R3"},
+        gamemodes = {Gamemode.KOTH, Gamemode.INFECTION}
+)
+@Region(
+        x1 = -141,
+        y1 = 91,
+        z1 = 134,
+        x2 = -64,
+        y2 = 55,
+        z2 = -11
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.ARROW, Material.BOW, Material.STONE_SWORD, Material.LEATHER_HELMET}
+)
 public class Roseley extends BattleMap implements Listener {
 
     public Roseley() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.ARROW, Material.BOW, Material.STONE_SWORD, Material.LEATHER_HELMET});
+        super.initiate(this);
     }
-
-    String name = "roseley";
-    String fullName = "Roseley";
-    String[] creators = {" __R3"};
-    Gamemode[] modes = {Gamemode.KOTH, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -131, 70, 1));
@@ -39,7 +52,6 @@ public class Roseley extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -131, 70, 1));
         FFASpawns.add(new Location(w, -74, 70, 126));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -64,19 +76,9 @@ public class Roseley extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -141;
-    public int y1 = 91;
-    public int z1 = 134;
-    //Bottom right corner.
-    public int x2 = -64;
-    public int y2 = 55;
-    public int z2 = -11;
-
     @EventHandler
     public void onBlockPlace(PlayerInteractEvent event) {
-        if (getArena().equals(name)) {
+        if (getArena().equals(getName())) {
             Player player = event.getPlayer();
             if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 if (player.getItemInHand().getType() == Material.FIREWORK) {

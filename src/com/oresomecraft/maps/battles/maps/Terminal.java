@@ -1,29 +1,42 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.event.Listener;
-import org.bukkit.inventory.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "terminal",
+        fullName = "Terminal",
+        creators = {"zachoz", "XxXShadowSoul", "slider302"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION}
+)
+@Region(
+        x1 = -207,
+        y1 = 52,
+        z1 = -1220,
+        x2 = -38,
+        y2 = 112,
+        z2 = -1125
+)
+@Attributes(
+        allowBuild = false,
+        mergeTools = true,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD}
+)
 public class Terminal extends BattleMap implements Listener {
 
     public Terminal() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
-        setToolMerge(true);
-        setAllowBuild(false);
-        setAutoSpawnProtection(10);
+        super.initiate(this);
     }
-
-    String name = "terminal";
-    String fullName = "Terminal";
-    String[] creators = {"zachoz", "XxXShadowSoul", "slider302"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         blueSpawns.add(new Location(w, -116, 66, -1140, -178, 0));
@@ -55,7 +68,6 @@ public class Terminal extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -77, 71, -1169, -90, 0));
         FFASpawns.add(new Location(w, -58, 71, -1147, 156, 0));
         FFASpawns.add(new Location(w, -91, 71, -1140, 141, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -82,16 +94,5 @@ public class Terminal extends BattleMap implements Listener {
         i.setItem(3, HEALTH_POTION);
         i.setItem(9, ARROWS);
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -207;
-    public int y1 = 52;
-    public int z1 = -1220;
-
-    //Bottom right corner.
-    public int x2 = -38;
-    public int y2 = 112;
-    public int z2 = -1125;
 
 }

@@ -1,28 +1,40 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.inventory.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "stimulation",
+        fullName = "Stimulation",
+        creators = {"ShaunDepro97"},
+        gamemodes = {Gamemode.FFA}
+)
+@Region(
+        x1 = -228,
+        y1 = 200,
+        z1 = 1180,
+        x2 = -303,
+        y2 = 1,
+        z2 = 1239
+)
+@Attributes(
+        disabledDrops = {Material.ARROW, Material.LEATHER_HELMET, Material.IRON_CHESTPLATE, Material.CHAINMAIL_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.BOW}
+)
 public class Stimulation extends BattleMap implements Listener {
 
     public Stimulation() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.ARROW, Material.LEATHER_HELMET, Material.IRON_CHESTPLATE, Material.CHAINMAIL_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.BOW});
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "stimulation";
-    String fullName = "Stimulation";
-    String[] creators = {"ShaunDepro97"};
-    Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
 
@@ -49,7 +61,6 @@ public class Stimulation extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -283, 13, 1227, 1, 0));
         FFASpawns.add(new Location(w, -253, 10, 1199, 0, 0));
         FFASpawns.add(new Location(w, -250, 5, 1211, 2, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -79,16 +90,5 @@ public class Stimulation extends BattleMap implements Listener {
         i.setItem(4, HEALTH_POTION);
         i.setItem(28, ARROWS);
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -228;
-    public int y1 = 200;
-    public int z1 = 1180;
-
-    //Bottom right corner.
-    public int x2 = -303;
-    public int y2 = 1;
-    public int z2 = 1239;
 
 }

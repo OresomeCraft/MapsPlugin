@@ -3,8 +3,10 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -19,19 +21,29 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "nuketown",
+        fullName = "NukeTown",
+        creators = {"Htban", "proportion", "reub_youtube"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION}
+)
+@Region(
+        x1 = -60,
+        y1 = 3,
+        z1 = 1,
+        x2 = 64,
+        y2 = 56,
+        z2 = 194
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.LEATHER_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD}
+)
 public class Nuketown extends BattleMap implements Listener {
 
     public Nuketown() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.LEATHER_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
+        super.initiate(this);
     }
-
-    String name = "nuketown";
-    String fullName = "NukeTown";
-    String[] creators = {"Htban", "proportion", "reub_youtube"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, 1, 7, 41, 0, 0);
@@ -85,7 +97,6 @@ public class Nuketown extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -2, 11, 156, 179, 0));
         FFASpawns.add(new Location(w, 21, 11, 115, 42, 0));
         FFASpawns.add(new Location(w, 20, 16.5, 138, 119, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -116,27 +127,18 @@ public class Nuketown extends BattleMap implements Listener {
 
     }
 
-    public int x1 = -60;
-    public int y1 = 3;
-    public int z1 = 1;
-    public int x2 = 64;
-    public int y2 = 56;
-    public int z2 = 194;
-
     @EventHandler
     public void arrowTrail(ProjectileHitEvent event) {
         Entity arrow = event.getEntity();
-        World world = Bukkit.getWorld(name);
-        if (getArena().equals(name)) {
-            if (arrow instanceof Arrow) {
-                world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
-            }
+        World world = Bukkit.getWorld(getName());
+        if (getArena().equals(getName())) if (arrow instanceof Arrow) {
+            world.playEffect(arrow.getLocation(), Effect.STEP_SOUND, 10);
         }
     }
 
     @EventHandler
     public void arrowCollide(ProjectileHitEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name)) {
+        if (event.getEntity().getWorld().getName().equals(getName())) {
             if (event.getEntity() instanceof Arrow) {
                 Arrow arrow = (Arrow) event.getEntity();
                 //Location loc1 = a.getLocation();
@@ -153,7 +155,7 @@ public class Nuketown extends BattleMap implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
-        if (event.getPlayer().getWorld().getName().equals(name)) {
+        if (event.getPlayer().getWorld().getName().equals(getName())) {
             Player player = event.getPlayer();
             ItemStack itemStack = player.getItemInHand();
             Material material = itemStack.getType();
