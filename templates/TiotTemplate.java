@@ -1,26 +1,36 @@
 package com.oresomecraft.maps.tiot.maps;
 
-import com.oresomecraft.OresomeBattles.api.BattlePlayer;
+import org.bukkit.*;
+import org.bukkit.inventory.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.*;
+import com.oresomecraft.OresomeBattles.map.types.TiOTMap;
 import com.oresomecraft.OresomeBattles.region.CuboidRegion;
-import com.oresomecraft.OresomeBattles.api.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.tiot.TiOTMap;
-import org.bukkit.Location;
-import org.bukkit.event.Listener;
 
-@MapConfig
-public class TiotTemplate extends TiOTMap implements Listener {
+@MapConfig(
+        name = "template",
+        fullName = "Template",
+        creators = {"zachoz", "ScruffyRules"},
+        gamemodes = {Gamemode.TIOT}
+)
+@Region(
+        x1 = 0,
+        y1 = 0,
+        z1 = 0,
+        x2 = 0,
+        y2 = 0,
+        z2 = 0
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.BOW, Material.IRON_SWORD}
+)
+public class TiotTemplate extends TiOTMap {
 
     public TiotTemplate() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "template";
-    String fullName = "template";
-    String[] creators = {"creator1", "creator2", "creator3"};
-    Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 231, 103, -1292));

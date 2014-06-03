@@ -1,22 +1,37 @@
 package com.oresomecraft.maps.battles.maps;
 
 import org.bukkit.*;
-import org.bukkit.event.*;
 import org.bukkit.inventory.*;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.*;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 
-@MapConfig
-public class BattleTemplate extends BattleMap implements Listener {
+@MapConfig(
+        name = "template",
+        fullName = "Template",
+        creators = {"zachoz", "ScruffyRules"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.CTF, Gamemode.KOTH, Gamemode.LTS, Gamemode.LMS}
+)
+@Region(
+        x1 = 0,
+        y1 = 0,
+        z1 = 0,
+        x2 = 0,
+        y2 = 0,
+        z2 = 0
+)
+@Attributes(
+        allowBuild = false,
+        fireSpread = false,
+        tdmTime = 10,
+        disabledDrops = {Material.BOW, Material.IRON_SWORD}
+)
+public class BattleTemplate extends BattleMap {
 
     public BattleTemplate() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "template";
-    String fullName = "Template";
-    String[] creators = {"Contributor1", "Contributor2", "Contributor3"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION, Gamemode.CTF, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 0, 99, 27, 2, 0));
@@ -33,8 +48,6 @@ public class BattleTemplate extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 0, 99, 27, 2, 0));
         FFASpawns.add(new Location(w, -9, 110, -20, 0, 0));
-        
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -62,16 +75,5 @@ public class BattleTemplate extends BattleMap implements Listener {
         p.setItem(8, Material.EXP_BOTTLE, 5);
         p.setItem(9, Material.ARROW, 64);
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -100;
-    public int y1 = 160;
-    public int z1 = -70;
-
-    // Bottom right corner.
-    public int x2 = -70;
-    public int y2 = 30;
-    public int z2 = 50;
 
 }
