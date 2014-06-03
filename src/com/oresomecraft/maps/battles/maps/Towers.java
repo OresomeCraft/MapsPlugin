@@ -25,15 +25,18 @@ public class Towers extends BattleMap implements Listener {
     Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, 523, 11, -1095, -137, 0));
-        blueSpawns.add(new Location(w, 523, 11, -1225, 51, 0));
+        Location redSpawn = new Location(w, 523, 11, -1095, -137, 0);
+        Location blueSpawn = new Location(w, 523, 11, -1225, 51, 0);
+        redSpawns.add(redSpawn);
+        blueSpawns.add(blueSpawn);
     }
 
     public void readyFFASpawns() {
+        Location redSpawn = new Location(w, 845, 130, -113, -137, 0);
         Location blueSpawn = new Location(w, 523, 11, -1225, 51, 0);
 
-        FFASpawns.add(new Location(w, 523, 11, -1095, -137, 0));
-        FFASpawns.add(new Location(w, 523, 11, -1225, 51, 0));
+        FFASpawns.add(redSpawn);
+        FFASpawns.add(blueSpawn);
         FFASpawns.add(new Location(w, 504, 10, -1142, -135, 0));
         FFASpawns.add(new Location(w, 542, 10, -1142, 134, 0));
         FFASpawns.add(new Location(w, 542, 10, -1180, 44, 0));
