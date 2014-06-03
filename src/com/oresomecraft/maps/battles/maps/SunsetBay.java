@@ -30,7 +30,7 @@ import org.bukkit.inventory.ItemStack;
 )
 @Attributes(
         allowBuild = false,
-        timeLock = Map.NIGHT,
+        timeLock = Map.Time.NIGHT,
         disabledDrops = {Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET}
 )
 public class SunsetBay extends BattleMap implements Listener {

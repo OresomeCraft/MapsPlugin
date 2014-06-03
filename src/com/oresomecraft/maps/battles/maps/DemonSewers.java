@@ -27,8 +27,8 @@ import org.bukkit.inventory.ItemStack;
         z2 = -79
 )
 @Attributes(
-        allowBuild = false,
-        //TODO We need to fix. :)
+        allowBuild = false
+        // TODO: fix disabling all item dropiing
 )
 public class DemonSewers extends BattleMap implements Listener {
 

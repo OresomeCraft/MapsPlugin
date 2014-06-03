@@ -59,7 +59,7 @@ public class Raceway_Alpha extends RacewayMap implements Listener {
                         p.teleport(new Location(Bukkit.getWorld(getName()), -18, 65, -7));
                     }
                     Bukkit.broadcastMessage(ChatColor.RED + "Race is starting! Don't leave the start area!");
-                    Bukkit.getScheduler().runTaskLater(plugin.getInstance(), new Runnable() {
+                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                         public void run() {
                             hasPassedGrace = true;
                             Bukkit.broadcastMessage(ChatColor.RED + "GO!");
@@ -97,7 +97,7 @@ public class Raceway_Alpha extends RacewayMap implements Listener {
             if (!checker.contains(p.getName())) {
                 p.sendMessage(ChatColor.RED + "You have 1 second to get back on the road..");
                 checker.add(p.getName());
-                Bukkit.getScheduler().runTaskLater(plugin.getInstance(), new Runnable() {
+                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                     public void run() {
                         if (event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.COAL_BLOCK ||
                                 event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.QUARTZ_BLOCK ||

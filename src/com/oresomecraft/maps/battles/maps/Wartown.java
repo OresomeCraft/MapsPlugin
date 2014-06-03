@@ -159,7 +159,7 @@ public class Wartown extends BattleMap implements Listener {
 
     @EventHandler
     public void gun(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             Player player = event.getPlayer();
             Location location = player.getLocation();
