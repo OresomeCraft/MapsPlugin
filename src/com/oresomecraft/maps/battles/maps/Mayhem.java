@@ -91,9 +91,9 @@ public class Mayhem extends BattleMap implements Listener {
 
     int timer;
     int count = 1;
-    Location powerBlock = new Location(Bukkit.getWorld(getName()), 64, 110, 64);
 
     private void cyclePowerBlock() {
+        final Location powerBlock = new Location(Bukkit.getWorld(getName()), 64, 110, 64);
 
         timer = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             public void run() {
@@ -122,7 +122,7 @@ public class Mayhem extends BattleMap implements Listener {
         Material type = event.getBlock().getType();
         int potionTime = 45 * 20;
 
-        if (compareLocations(powerBlock, event.getBlock().getLocation())) {
+        if (compareLocations(new Location(Bukkit.getWorld(getName()), 64, 110, 64), event.getBlock().getLocation())) {
 
             if (type != Material.COBBLESTONE) {
 

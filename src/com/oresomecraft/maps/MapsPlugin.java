@@ -51,4 +51,8 @@ public class MapsPlugin extends JavaPlugin implements MapProvider {
         return plugin;
     }
 
+    public ClassLoader getProvidingClassLoader() {
+        return this.getClassLoader();
+    }
+
 }
