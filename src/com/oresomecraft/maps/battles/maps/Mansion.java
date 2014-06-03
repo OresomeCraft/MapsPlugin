@@ -3,9 +3,10 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -13,20 +14,30 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "mansion",
+        fullName = "The Haunted Mansion",
+        creators = {"pegabeavercorn", "Hourani95", "kevlar_miner"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION}
+)
+@Region(
+        x1 = 477,
+        y1 = 47,
+        z1 = -333,
+        x2 = 400,
+        y2 = 106,
+        z2 = -226
+)
+@Attributes(
+        allowBuild = false,
+        fireSpread = false,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.SKULL_ITEM, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STONE_SWORD}
+)
 public class Mansion extends BattleMap implements Listener {
 
     public Mansion() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.SKULL_ITEM, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STONE_SWORD});
-        setFireSpread(false);
+        super.initiate(this);
     }
-
-    String name = "mansion";
-    String fullName = "The Haunted Mansion";
-    String[] creators = {"pegabeavercorn", "Hourani95", "kevlar_miner"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, 442, 64, -324);
@@ -81,7 +92,6 @@ public class Mansion extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 440, 71, -270));
         FFASpawns.add(new Location(w, 465, 74, -274));
         FFASpawns.add(new Location(w, 466, 74, -251));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -115,10 +125,4 @@ public class Mansion extends BattleMap implements Listener {
 
     }
 
-    public int x1 = 477;
-    public int y1 = 47;
-    public int z1 = -333;
-    public int x2 = 400;
-    public int y2 = 106;
-    public int z2 = -226;
 }

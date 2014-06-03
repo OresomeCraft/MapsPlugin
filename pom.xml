@@ -39,28 +39,6 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <!-- Shade plugin: Used to include sk89q's command framework into the jar -->
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <artifactSet>
-                                <includes>
-                                    <include>org.reflections:reflections</include>
-                                    <include>javassist:javassist</include>
-                                </includes>
-                            </artifactSet>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
@@ -79,7 +57,7 @@
         <dependency>
             <groupId>com.oresomecraft</groupId>
             <artifactId>OresomeBattlesAPI</artifactId>
-            <version>3.1</version>
+            <version>4.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
@@ -92,17 +70,6 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>0.9.9-RC1</version>
-        </dependency>
-        <dependency>
-            <groupId>javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.3</version>
-        </dependency>
-
     </dependencies>
 
     <scm>
@@ -111,7 +78,6 @@
         <url>https://github.com/OresomeCraft/OresomeBattles</url>
         <developerConnection>scm:git:ssh://git@github.com:OresomeCraft/MapsPlugin.git</developerConnection>
     </scm>
-
 
     <organization>
         <name>OresomeCraft</name>

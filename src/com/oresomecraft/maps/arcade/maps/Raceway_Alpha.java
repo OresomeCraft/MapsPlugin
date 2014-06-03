@@ -3,8 +3,9 @@ package com.oresomecraft.maps.arcade.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.MapLoadEvent;
+import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.maps.arcade.games.RacewayMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,20 +21,21 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
-@MapConfig
+@MapConfig(
+        name = "raceway_alpha",
+        fullName = "Raceway (Alpha)",
+        creators = {"Evil_Emo", "Turt1eManLol"},
+        gamemodes = {Gamemode.LMS}
+)
+@Attributes(
+        allowBuild = false
+)
 public class Raceway_Alpha extends RacewayMap implements Listener {
 
     public Raceway_Alpha() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowPhysicalDamage(false);
-        setAllowBuild(false);
+        super.initiate(this);
     }
 
-    // Map details
-    String name = "raceway_alpha";
-    String fullName = "Raceway (Alpha)";
-    String[] creators = {"Evil_Emo", "Turt1eManLol"};
-    Gamemode[] modes = {Gamemode.LMS};
     boolean hasPassedGrace = false;
 
     public void readyFFASpawns() {
@@ -50,14 +52,14 @@ public class Raceway_Alpha extends RacewayMap implements Listener {
 
     @EventHandler
     public void onLoad(MapLoadEvent event) {
-        if (event.getWorld().getName().equals("raceway_alpha")) {
+        if (event.getWorld().getName().equals(getName())) {
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                 public void run() {
                     for (Player p : Bukkit.getOnlinePlayers()) {
-                        p.teleport(new Location(Bukkit.getWorld("raceway_alpha"), -18, 65, -7));
+                        p.teleport(new Location(Bukkit.getWorld(getName()), -18, 65, -7));
                     }
                     Bukkit.broadcastMessage(ChatColor.RED + "Race is starting! Don't leave the start area!");
-                    Bukkit.getScheduler().runTaskLater(plugin.getInstance(), new Runnable() {
+                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                         public void run() {
                             hasPassedGrace = true;
                             Bukkit.broadcastMessage(ChatColor.RED + "GO!");
@@ -74,14 +76,14 @@ public class Raceway_Alpha extends RacewayMap implements Listener {
     @EventHandler
     public void moveChecker(final PlayerMoveEvent event) {
         final Player p = event.getPlayer();
-        if (!p.getWorld().getName().equals("raceway_alpha")) return;
+        if (!p.getWorld().getName().equals(getName())) return;
         if (contains(p.getLocation(), -17, -15, 81, 59, -27, 5)) {
             p.sendMessage(ChatColor.RED + "You can't go here!!");
-            p.teleport(new Location(Bukkit.getWorld("raceway_alpha"), -18, 65, -7));
+            p.teleport(new Location(Bukkit.getWorld(getName()), -18, 65, -7));
         }
         if (!hasPassedGrace && !contains(p.getLocation(), -17, -24, 85, 54, -21, 8)) {
             p.sendMessage(ChatColor.RED + "You cannot leave this area yet!");
-            p.teleport(new Location(Bukkit.getWorld("raceway_alpha"), -18, 65, -7));
+            p.teleport(new Location(Bukkit.getWorld(getName()), -18, 65, -7));
         }
         if (hasPassedGrace && contains(p.getLocation(), -12, -15, 72, 64, 1, -15)) {
             Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " has won the race!");
@@ -95,7 +97,7 @@ public class Raceway_Alpha extends RacewayMap implements Listener {
             if (!checker.contains(p.getName())) {
                 p.sendMessage(ChatColor.RED + "You have 1 second to get back on the road..");
                 checker.add(p.getName());
-                Bukkit.getScheduler().runTaskLater(plugin.getInstance(), new Runnable() {
+                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                     public void run() {
                         if (event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.COAL_BLOCK ||
                                 event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.QUARTZ_BLOCK ||

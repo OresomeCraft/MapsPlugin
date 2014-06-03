@@ -1,8 +1,10 @@
 package com.oresomecraft.maps.arcade.maps;
 
-import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.maps.arcade.games.DynaBlastMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -10,19 +12,28 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "dynablast_alpha",
+        fullName = "DynaBlast (Alpha)",
+        creators = {"Htgan"},
+        gamemodes = {Gamemode.LMS}
+)
+@Region(
+        x1 = -27,
+        y1 = 73,
+        z1 = 15,
+        x2 = 15,
+        y2 = 60,
+        z2 = -27
+)
+@Attributes(
+        allowBuild = false
+)
 public class DynaBlast_Alpha extends DynaBlastMap implements Listener {
 
     public DynaBlast_Alpha() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowPhysicalDamage(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "dynablast_alpha";
-    String fullName = "DynaBlast (Alpha)";
-    String[] creators = {"Htgan"};
-    Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -28.50, 65.00, -28.50, 0, 0));
@@ -44,16 +55,5 @@ public class DynaBlast_Alpha extends DynaBlastMap implements Listener {
         i.setItem(0, TNT);
         i.setItem(1, STEAK);
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -27;
-    public int y1 = 73;
-    public int z1 = 15;
-
-    // Bottom right corner.
-    public int x2 = 15;
-    public int y2 = 60;
-    public int z2 = -27;
 
 }

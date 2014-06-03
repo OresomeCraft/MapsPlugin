@@ -2,35 +2,45 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.Bukkit;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-@MapConfig
+@MapConfig(
+        name = "apollo",
+        fullName = "Apollo",
+        creators = {"RokMelon", "Invinsible_Jelly"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION}
+)
+@Region(
+        x1 = -1,
+        y1 = 59,
+        z1 = 1,
+        x2 = -97,
+        y2 = 186,
+        z2 = 108
+)
+@Attributes(
+        allowBuild = false,
+        tdmTime = 10,
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD}
+)
 public class Apollo extends BattleMap implements Listener {
 
     public Apollo() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "apollo";
-    String fullName = "Apollo";
-    String[] creators = {"RokMelon", "Invinsible_Jelly"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
 
@@ -73,7 +83,6 @@ public class Apollo extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -19, 133, 88, 137, 0));
         FFASpawns.add(new Location(w, -82, 133, 25, -44, 0));
         FFASpawns.add(new Location(w, -57, 109, 72, -2, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(BattlePlayer p) {
@@ -110,19 +119,9 @@ public class Apollo extends BattleMap implements Listener {
 
     }
 
-    // Top left corner.
-    public int x1 = -1;
-    public int y1 = 59;
-    public int z1 = 1;
-
-    //Bottom right corner.
-    public int x2 = -97;
-    public int y2 = 186;
-    public int z2 = 108;
-
     @EventHandler
-    public void fall(EntityDamageEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name)) {
+    public void noFall(EntityDamageEvent event) {
+        if (event.getEntity().getWorld().getName().equals(getName())) {
             if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
                 event.setCancelled(true);
             }

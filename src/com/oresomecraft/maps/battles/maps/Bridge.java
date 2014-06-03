@@ -1,45 +1,56 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.inventory.*;
-
-import com.oresomecraft.maps.*;
-import com.oresomecraft.maps.battles.*;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "bridge",
+        fullName = "Bridge",
+        creators = {"fkBear", "ep1cn00bt00b"},
+        gamemodes = {Gamemode.TDM, Gamemode.KOTH, Gamemode.CTF}
+)
+@Region(
+        x1 = 45,
+        y1 = 5,
+        z1 = 35,
+        x2 = -99,
+        y2 = 127,
+        z2 = -236
+)
+@Attributes(
+        allowBuild = false,
+        tdmTime = 15,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_CHESTPLATE, Material.LEATHER_HELMET, Material.BOW}
+)
 public class Bridge extends BattleMap implements Listener {
 
     public Bridge() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        setTDMTime(15);
-        disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_CHESTPLATE, Material.LEATHER_HELMET, Material.BOW});
-        setAutoSpawnProtection(15);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "bridge";
-    String fullName = "Bridge";
-    String[] creators = {"fkBear", "ep1cn00bt00b"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH, Gamemode.CTF};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -4, 64, 8, 317.4F, 14F));
         blueSpawns.add(new Location(w, -27, 64, -218, 144.2F, 1.1F));
 
         setKoTHMonument(new Location(w, -15, 67, -105));
-        setCTFFlags(name, new Location(w, -16, 57, -52), new Location(w, -15, 67, -158));
+        setCTFFlags(getName(), new Location(w, -16, 57, -52), new Location(w, -15, 67, -158));
 
     }
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -14, 66, -193, 0, 0));
         FFASpawns.add(new Location(w, -17, 66, -2, 180, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -63,7 +74,6 @@ public class Bridge extends BattleMap implements Listener {
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
 
-        // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
         i.setItem(0, STONE_SWORD);
         i.setItem(2, GOLDEN_APPLE);
         i.setItem(1, BOW);
@@ -72,11 +82,4 @@ public class Bridge extends BattleMap implements Listener {
         i.setItem(4, EXP_BOTTLE);
     }
 
-    public int x1 = 45;
-    public int y1 = 5;
-    public int z1 = 35;
-
-    public int x2 = -99;
-    public int y2 = 127;
-    public int z2 = -236;
 }

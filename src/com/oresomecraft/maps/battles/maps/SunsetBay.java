@@ -1,30 +1,43 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.inventory.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "sunsetbay",
+        fullName = "Sunset Bay",
+        creators = {"SuperDuckFace"},
+        gamemodes = {Gamemode.FFA}
+)
+@Region(
+        x1 = -143,
+        y1 = 174,
+        z1 = -42,
+        x2 = 107,
+        y2 = 59,
+        z2 = 192
+)
+@Attributes(
+        allowBuild = false,
+        timeLock = Map.Time.NIGHT,
+        disabledDrops = {Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET}
+)
 public class SunsetBay extends BattleMap implements Listener {
 
     public SunsetBay() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET});
-        setAllowBuild(false);
-        lockTime(13116);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "sunsetbay";
-    String fullName = "Sunset Bay";
-    String[] creators = {"SuperDuckFace"};
-    Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -38, 85, 21, -66, 0));
@@ -72,7 +85,6 @@ public class SunsetBay extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 63, 81, 52, 107, 0));
         FFASpawns.add(new Location(w, 54, 80, 43, 155, 0));
         FFASpawns.add(new Location(w, 50, 80, 31, 30, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -104,16 +116,5 @@ public class SunsetBay extends BattleMap implements Listener {
         i.setItem(9, ARROW);
 
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -143;
-    public int y1 = 174;
-    public int z1 = -41;
-
-    //Bottom right corner.
-    public int x2 = 107;
-    public int y2 = 59;
-    public int z2 = 192;
 
 }

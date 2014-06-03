@@ -1,11 +1,12 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -13,24 +14,31 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
-@MapConfig
+@MapConfig(
+        name = "spaceships",
+        fullName = "SpaceShips",
+        creators = {"sampighere", "zachoz", "__R3"},
+        gamemodes = {Gamemode.TDM}
+)
+@Region(
+        x1 = 106,
+        y1 = 110,
+        z1 = 34,
+        x2 = 246,
+        y2 = 0,
+        z2 = -191
+)
+@Attributes(
+        blockBuildLimit = 72,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.DIAMOND_SWORD, Material.DIAMOND_AXE, Material.DIAMOND_PICKAXE, Material.LAVA_BUCKET}
+)
 public class Spaceships extends BattleMap implements Listener {
 
     public Spaceships() {
-        super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(15);
-        setBuildLimit(72);
-        setAutoSpawnProtection(5);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.DIAMOND_SWORD, Material.DIAMOND_AXE, Material.DIAMOND_PICKAXE, Material.LAVA_BUCKET});
+        super.initiate(this);
     }
-
-    String name = "spaceships";
-    String fullName = "SpaceShips";
-    String[] creators = {"sampighere", "zachoz", "__R3"};
-    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
         Location blueSpawn = new Location(w, 142, 43, -80, 0, 0);
@@ -44,7 +52,6 @@ public class Spaceships extends BattleMap implements Listener {
         Location redSpawn = new Location(w, 210, 43, -80, 0, 0);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -72,20 +79,9 @@ public class Spaceships extends BattleMap implements Listener {
         i.setItem(9, new ItemStack(Material.ARROW, 64));
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 106;
-    public int y1 = 110;
-    public int z1 = 34;
-
-    //Bottom right corner.
-    public int x2 = 246;
-    public int y2 = 0;
-    public int z2 = -191;
-
     @EventHandler
     public void explode(EntityExplodeEvent event) {
-        if (!event.getLocation().getWorld().getName().equals(name)) {
+        if (!event.getLocation().getWorld().getName().equals(getName())) {
             event.setYield(event.getYield() * 2);
         }
     }

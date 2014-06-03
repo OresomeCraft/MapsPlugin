@@ -2,22 +2,40 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-@MapConfig
+@MapConfig(
+        name = "biom",
+        fullName = "Biomes",
+        creators = {"SereneMango", "miniwolf35"},
+        gamemodes = {Gamemode.LMS, Gamemode.FFA}
+)
+@Region(
+        x1 = -61,
+        y1 = 228,
+        z1 = 80,
+        x2 = 171,
+        y2 = 53,
+        z2 = -149
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.BOW, Material.ARROW, Material.LEATHER_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.LEATHER_BOOTS, Material.IRON_SWORD}
+)
 public class Biomes extends BattleMap implements Listener {
 
     public Biomes() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.LEATHER_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.LEATHER_BOOTS, Material.IRON_SWORD});
+        super.initiate(this);
     }
 
     String name = "biom";
@@ -54,7 +72,6 @@ public class Biomes extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 93, 84, 3, -0, 0));
         FFASpawns.add(new Location(w, 120, 84, 18, -146, 0));
         FFASpawns.add(new Location(w, 123, 84, -11, 113, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -85,15 +102,5 @@ public class Biomes extends BattleMap implements Listener {
         i.setItem(9, ARROWS);
 
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -61;
-    public int y1 = 228;
-    public int z1 = 80;
-
-    public int x2 = 171;
-    public int y2 = 53;
-    public int z2 = -149;
 
 }

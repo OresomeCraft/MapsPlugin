@@ -1,11 +1,13 @@
 package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.MapLoadEvent;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -14,7 +16,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -23,27 +24,38 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "gravity",
+        fullName = "Distortion",
+        creators = {"__R3"},
+        gamemodes = {Gamemode.TDM}
+)
+@Region(
+        x1 = -28,
+        y1 = 155,
+        z1 = -86,
+        x2 = 69,
+        y2 = 36,
+        z2 = 75
+)
+@Attributes(
+        tdmTime = 10,
+        allowBuild = false,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.ARROW, Material.FISHING_ROD, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
+                Material.LEATHER_CHESTPLATE, Material.IRON_HELMET, Material.FISHING_ROD, Material.DIAMOND_PICKAXE, Material.ARROW, Material.DIAMOND}
+)
 public class Distortion extends BattleMap implements Listener {
 
     public Distortion() {
-        super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(10);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.FISHING_ROD, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_BOOTS, Material.BOW, Material.IRON_BOOTS, Material.IRON_LEGGINGS,
-                Material.LEATHER_CHESTPLATE, Material.IRON_HELMET, Material.FISHING_ROD, Material.DIAMOND_PICKAXE, Material.ARROW, Material.DIAMOND});
-        setAutoSpawnProtection(2);
+        super.initiate(this);
     }
 
-    String name = "gravity";
-    String fullName = "Distortion";
-    String[] creators = {"__R3"};
-    Gamemode[] modes = {Gamemode.TDM};
     protected boolean manipulation = false;
 
     @EventHandler
     public void onload(MapLoadEvent event) {
-        if (event.getWorld().getName().equalsIgnoreCase("gravity")) {
+        if (event.getWorld().getName().equalsIgnoreCase(getName())) {
             gravityArrows();
         }
     }
@@ -60,7 +72,6 @@ public class Distortion extends BattleMap implements Listener {
         Location blueSpawn = new Location(w, 20, 71, 69, -1, 0);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -98,17 +109,6 @@ public class Distortion extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -28;
-    public int y1 = 155;
-    public int z1 = -86;
-
-    //Bottom right corner.
-    public int x2 = 69;
-    public int y2 = 36;
-    public int z2 = 75;
-
     int distort;
 
     public void gravityArrows() {
@@ -117,8 +117,8 @@ public class Distortion extends BattleMap implements Listener {
 
             public void run() {
                 if (!manipulation) return;
-                if (getArena().equals(name)) {
-                    World world = Bukkit.getWorld(name);
+                if (getArena().equals(getName())) {
+                    World world = Bukkit.getWorld(getName());
                     if (!(world.getEntities() == null)) {
                         for (Entity arrow : world.getEntities()) {
                             if (arrow instanceof Arrow) {
@@ -139,7 +139,7 @@ public class Distortion extends BattleMap implements Listener {
 
     @EventHandler
     public void manipulator(BlockBreakEvent event) {
-        if (event.getBlock().getWorld().getName().equalsIgnoreCase(name)) {
+        if (event.getBlock().getWorld().getName().equalsIgnoreCase(getName())) {
             if (event.getBlock().getType() == Material.OBSIDIAN && manipulation) {
                 manipulation = false;
                 Bukkit.broadcastMessage(ChatColor.AQUA + "The Gravity Manipulator was turned off! Gravity returned to normal!");
@@ -154,7 +154,7 @@ public class Distortion extends BattleMap implements Listener {
 
     @EventHandler
     public void manipulatorEffect(PlayerMoveEvent event) {
-        if (event.getPlayer().getWorld().getName().equalsIgnoreCase(name)) {
+        if (event.getPlayer().getWorld().getName().equalsIgnoreCase(getName())) {
             Player p = event.getPlayer();
             if (!BattlePlayer.getBattlePlayer(p).isSpectator() && manipulation) {
                 if (!p.getItemInHand().getType().equals(Material.DIAMOND)) {

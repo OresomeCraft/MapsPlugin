@@ -2,15 +2,16 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Enderman;
-import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,24 +26,34 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "telluricpath",
+        fullName = "Telluric Path",
+        creators = {"__R3"},
+        gamemodes = {Gamemode.CTF, Gamemode.TDM}
+)
+@Region(
+        x1 = -161,
+        y1 = 83,
+        z1 = -119,
+        x2 = 16,
+        y2 = 0,
+        z2 = -119
+)
+@Attributes(
+        tdmTime = 11,
+        allowBuild = false,
+        pearlDamage = false,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
+        Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE, Material.IRON_PICKAXE,
+        Material.ENDER_PEARL}
+)
 public class TelluricPath extends BattleMap implements Listener {
 
     public TelluricPath() {
-        super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(11);
-        setAllowBuild(false);
-        disablePearlDamage(true);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
-                Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE, Material.IRON_PICKAXE,
-                Material.ENDER_PEARL});
-        setAutoSpawnProtection(10);
+        super.initiate(this);
     }
-
-    String name = "telluricpath";
-    String fullName = "Telluric Path";
-    String[] creators = {"__R3"};
-    Gamemode[] modes = {Gamemode.CTF, Gamemode.TDM};
 
     public void readyTDMSpawns() {
 
@@ -53,7 +64,7 @@ public class TelluricPath extends BattleMap implements Listener {
 
         Location redFlag = new Location(w, -125, 27, -9);
         Location blueFlag = new Location(w, -12, 27, 6);
-        setCTFFlags(name, redFlag, blueFlag);
+        setCTFFlags(getName(), redFlag, blueFlag);
     }
 
     public void readyFFASpawns() {
@@ -122,20 +133,9 @@ public class TelluricPath extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -161;
-    public int y1 = 83;
-    public int z1 = -119;
-
-    //Bottom right corner.
-    public int x2 = 16;
-    public int y2 = 0;
-    public int z2 = -119;
-
     @EventHandler
     public void endermanHit(EntityDamageEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         if (event.getEntity() instanceof Enderman) {
             event.setDamage(1000);
         }
@@ -143,7 +143,7 @@ public class TelluricPath extends BattleMap implements Listener {
 
     @EventHandler
     public void enderHit(EntityDamageByEntityEvent event) {
-        if (event.getEntity().getWorld().getName().equals(name)) {
+        if (event.getEntity().getWorld().getName().equals(getName())) {
             if (event.getEntity() instanceof Player && event.getDamager() instanceof Enderman) {
                 event.setDamage(0);
             }
@@ -152,7 +152,7 @@ public class TelluricPath extends BattleMap implements Listener {
 
     @EventHandler
     public void death(EntityDeathEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         event.getDrops().clear();
         if (Math.random() >= 0.6) event.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
     }

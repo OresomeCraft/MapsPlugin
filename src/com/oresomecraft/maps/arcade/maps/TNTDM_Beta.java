@@ -2,28 +2,29 @@ package com.oresomecraft.maps.arcade.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.arcade.ArcadeMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.types.ArcadeMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "tntdm_beta",
+        fullName = "TNTDM (Beta)",
+        creators = {"zachoz"},
+        gamemodes = {Gamemode.LMS}
+)
+@Attributes(
+        disabledDrops = {Material.COOKED_BEEF}
+)
 public class TNTDM_Beta extends ArcadeMap implements Listener {
 
     public TNTDM_Beta() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.COOKED_BEEF});
-        setAllowPhysicalDamage(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "tntdm_beta";
-    String fullName = "TNTDM (Beta)";
-    String[] creators = {"zachoz"};
-    Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 0, 61, 0));

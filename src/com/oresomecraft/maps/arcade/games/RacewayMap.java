@@ -1,11 +1,11 @@
 package com.oresomecraft.maps.arcade.games;
 
 import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
-import com.oresomecraft.maps.MapLoadEvent;
-import com.oresomecraft.maps.arcade.ArcadeMap;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-public abstract class RacewayMap extends ArcadeMap {
+public abstract class RacewayMap extends Map {
 
     boolean hasPassedGrace = false;
 

@@ -1,31 +1,51 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.enchantments.EnchantmentTarget;
-import org.bukkit.event.*;
-import org.bukkit.event.block.*;
-import org.bukkit.inventory.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import com.oresomecraft.OresomeBattles.teams.Team;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.enchantments.EnchantmentTarget;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "clashofclay",
+        fullName = "Clash Of Clay",
+        creators = {"_Moist", "niceman506"},
+        gamemodes = {Gamemode.TDM}
+)
+@Region(
+        x1 = 15,
+        y1 = 126,
+        z1 = -15,
+        x2 = -58,
+        y2 = 51,
+        z2 = 181
+)
+@Attributes(
+        tdmTime = 15,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.DIAMOND_HELMET, Material.WOOD_SWORD},
+        disabledBlocks = {Material.WORKBENCH}
+)
 public class ClashOfClay extends BattleMap implements Listener {
 
     public ClashOfClay() {
-        super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(15);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.DIAMOND_HELMET, Material.WOOD_SWORD});
-        disableBlocks(new Material[]{Material.WORKBENCH});
+        super.initiate(this);
 
         try {
             Field field = Enchantment.class.getDeclaredField("acceptingNew");
@@ -49,11 +69,6 @@ public class ClashOfClay extends BattleMap implements Listener {
     private transient Enchantment CLAY = new Clay(666);
     private static List<Integer> customEnchants = new ArrayList<Integer>();
 
-    String name = "clashofclay";
-    String fullName = "Clash Of Clay";
-    String[] creators = {"_Moist", "niceman506"};
-    Gamemode[] modes = {Gamemode.TDM};
-
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -22, 81, 8));
         blueSpawns.add(new Location(w, -23, 81, 164));
@@ -62,7 +77,6 @@ public class ClashOfClay extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -22, 81, 8));
         FFASpawns.add(new Location(w, -23, 81, 164));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -101,21 +115,10 @@ public class ClashOfClay extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 15;
-    public int y1 = 126;
-    public int z1 = -15;
-
-    //Bottom right corner.
-    public int x2 = -58;
-    public int y2 = 51;
-    public int z2 = 181;
-
     @EventHandler
     public void blockPlace(BlockPlaceEvent event) {
         Location location = event.getBlock().getLocation();
-        if (location.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(getName())) {
             if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
             if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
         }
@@ -124,7 +127,7 @@ public class ClashOfClay extends BattleMap implements Listener {
     @EventHandler
     public void blockBreak(BlockBreakEvent event) {
         Location location = event.getBlock().getLocation();
-        if (location.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(getName())) {
             if (contains(event.getBlock().getLocation(), -24, -21, 79, 84, 165, 162)) event.setCancelled(true);
             if (contains(event.getBlock().getLocation(), -21, -24, 79, 86, 7, 10)) event.setCancelled(true);
         }

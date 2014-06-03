@@ -3,10 +3,15 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,21 +25,31 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "oasis",
+        fullName = "Oasis",
+        creators = {"ep1cn00bt00b", "miniwolf35"},
+        gamemodes = {Gamemode.TDM, Gamemode.KOTH, Gamemode.CTF}
+)
+@Region(
+        x1 = 80,
+        y1 = 62,
+        z1 = 90,
+        x2 = -74,
+        y2 = 122,
+        z2 = 166
+)
+@Attributes(
+        allowBuild = false,
+        timeLock = Map.Time.DAY,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.LEATHER_HELMET, Material.STONE_SWORD, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS}
+)
 public class Oasis extends BattleMap implements Listener {
 
     public Oasis() {
-        setAllowBuild(false);
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.LEATHER_HELMET, Material.STONE_SWORD, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS});
-        lockTime("day");
-        setAutoSpawnProtection(10);
+        super.initiate(this);
     }
-
-    String name = "oasis";
-    String fullName = "Oasis";
-    String[] creators = {"ep1cn00bt00b", "miniwolf35"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH, Gamemode.CTF};
 
     public void readyTDMSpawns() {
 
@@ -46,7 +61,7 @@ public class Oasis extends BattleMap implements Listener {
 
         Location redFlag = new Location(w, 6, 82, 56);
         Location blueFlag = new Location(w, -6, 82, -130);
-        setCTFFlags(name, redFlag, blueFlag);
+        setCTFFlags(getName(), redFlag, blueFlag);
         setKoTHMonument(new Location(w, 0, 87, -37));
     }
 
@@ -55,7 +70,6 @@ public class Oasis extends BattleMap implements Listener {
         Location blueSpawn = new Location(w, -6, 87, -151, 0, 0);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -97,19 +111,11 @@ public class Oasis extends BattleMap implements Listener {
 
     }
 
-    public int x1 = 80;
-    public int y1 = 62;
-    public int z1 = 90;
-
-    public int x2 = -74;
-    public int y2 = 122;
-    public int z2 = -166;
-
     public void iceTemp(final Block block, final Player p) {
         block.setType(Material.PACKED_ICE);
         new BukkitRunnable() {
             public void run() {
-                if (Bukkit.getWorld(name) != null) {
+                if (Bukkit.getWorld(getName()) != null) {
                     block.setType(Material.STATIONARY_WATER);
                     if (block.getLocation().distanceSquared(p.getLocation()) <= 3) iceTemp(block, p);
                 }
@@ -119,7 +125,7 @@ public class Oasis extends BattleMap implements Listener {
 
     @EventHandler
     public void move(PlayerMoveEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (!(event.getPlayer().getItemInHand().getType() == Material.RED_ROSE)) return;
         for (Block block : circle(event.getPlayer().getLocation(), 3, 3, false, true, 0)) {
             if (block.getType() == Material.WATER || block.getType() == Material.STATIONARY_WATER) {

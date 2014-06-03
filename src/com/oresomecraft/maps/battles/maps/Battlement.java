@@ -1,75 +1,51 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.inventory.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.*;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.*;
+import org.bukkit.inventory.*;
 
-@MapConfig
-public class Battlement extends BattleMap implements Listener {
+@MapConfig(
+        name = "battlement",
+        fullName = "Battlement",
+        creators = {"ShaunDepro97"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA}
+)
+@Region(
+        x1 = 91,
+        y1 = 149,
+        z1 = -92,
+        x2 = -108,
+        y2 = -7,
+        z2 = 106
+)
+@Attributes(
+        allowBuild = false,
+        fireSpread = false,
+        tdmTime = 10,
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD}
+)
+public class Battlement extends BattleMap {
 
     public Battlement() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
+        super.initiate(this);
     }
 
-    String name = "battlement";
-    String fullName = "Battlement";
-    String[] creators = {"ShaunDepro97"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
-
     public void readyTDMSpawns() {
-
-        Location redSpawn = new Location(w, 19, 74, -20, 1, 0);
-        Location blueSpawn = new Location(w, -22, 74, -12, 3, 0);
-
-        redSpawns.add(redSpawn);
         redSpawns.add(new Location(w, 23, 78, -24, 1, 0));
         redSpawns.add(new Location(w, 11, 70, -12, 1, 0));
-        redSpawns.add(new Location(w, 15, 65, -16, 3, 0));
-        redSpawns.add(new Location(w, 27, 66, -28, 1, 0));
-        redSpawns.add(new Location(w, 27, 70, -28, 1, 0));
-        redSpawns.add(new Location(w, 27, 74, -28, 1, 0));
-        redSpawns.add(new Location(w, 27, 78, -28, 1, 0));
 
-        blueSpawns.add(blueSpawn);
         blueSpawns.add(new Location(w, -26, 78, 16, 3, 0));
         blueSpawns.add(new Location(w, -14, 70, 4, 3, 0));
-        blueSpawns.add(new Location(w, -18, 65, 8, 1, 0));
-        blueSpawns.add(new Location(w, -30, 66, 20, 3, 0));
-        blueSpawns.add(new Location(w, -30, 70, 20, 3, 0));
-        blueSpawns.add(new Location(w, -30, 74, 20, 3, 0));
-        blueSpawns.add(new Location(w, -30, 78, 20, 3, 0));
     }
 
     public void readyFFASpawns() {
-
-        Location redSpawn = new Location(w, 19, 74, -20, 1, 0);
-        Location blueSpawn = new Location(w, -22, 74, -12, 3, 0);
-
-        FFASpawns.add(redSpawn);
-        FFASpawns.add(blueSpawn);
-        FFASpawns.add(new Location(w, 23, 78, -24, 1, 0));
-        FFASpawns.add(new Location(w, 11, 70, -12, 1, 0));
-        FFASpawns.add(new Location(w, 15, 65, -16, 3, 0));
-        FFASpawns.add(new Location(w, 27, 66, -28, 1, 0));
-        FFASpawns.add(new Location(w, 27, 70, -28, 1, 0));
-        FFASpawns.add(new Location(w, 27, 74, -28, 1, 0));
-        FFASpawns.add(new Location(w, 27, 78, -28, 1, 0));
-        FFASpawns.add(new Location(w, -26, 78, 16, 3, 0));
-        FFASpawns.add(new Location(w, -14, 70, 4, 3, 0));
-        FFASpawns.add(new Location(w, -18, 65, 8, 1, 0));
-        FFASpawns.add(new Location(w, -30, 66, 20, 3, 0));
         FFASpawns.add(new Location(w, -30, 70, 20, 3, 0));
         FFASpawns.add(new Location(w, -30, 74, 20, 3, 0));
         FFASpawns.add(new Location(w, -30, 78, 20, 3, 0));
         FFASpawns.add(new Location(w, 0, 53, 0, 2, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -99,16 +75,5 @@ public class Battlement extends BattleMap implements Listener {
         i.setItem(4, EXP);
 
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 91;
-    public int y1 = 149;
-    public int z1 = -92;
-
-    // Bottom right corner.
-    public int x2 = -108;
-    public int y2 = -7;
-    public int z2 = 106;
 
 }

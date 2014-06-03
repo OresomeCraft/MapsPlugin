@@ -1,41 +1,52 @@
 package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
 import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
-import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.MapLoadEvent;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
-
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "amplitude",
+        fullName = "Amplitude",
+        creators = {"xXxTakumaxXx", "__R3", "Fliine"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA}
+)
+@Region(
+        x1 = -40,
+        y1 = 95,
+        z1 = -11,
+        x2 = -97,
+        y2 = 68,
+        z2 = 66
+)
+@Attributes(
+        allowBuild = false,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET}
+)
 public class Amplitude extends BattleMap implements Listener {
 
     public Amplitude() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAutoSpawnProtection(4);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
+        super.initiate(this);
     }
-
-    String name = "amplitude";
-    String fullName = "Amplitude";
-    String[] creators = {"xXxTakumaxXx", "__R3", "Fliine"};
-    Gamemode[] modes = {Gamemode.KOTH, Gamemode.INFECTION, Gamemode.FFA, Gamemode.TDM, Gamemode.LMS};
 
     @EventHandler
     public void onLoad(MapLoadEvent event) {
-        if (event.getWorld().getName().equalsIgnoreCase(name)) {
+        if (event.getWorld().getName().equalsIgnoreCase(getName())) {
             amplitudeTimer();
         }
     }
@@ -60,7 +71,6 @@ public class Amplitude extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 70, 66, 48));
         FFASpawns.add(new Location(w, 56, 66, 39));
         FFASpawns.add(new Location(w, 55, 66, 4));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -92,17 +102,6 @@ public class Amplitude extends BattleMap implements Listener {
         i.setItem(11, ARROWS);
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -40;
-    public int y1 = 95;
-    public int z1 = -11;
-
-    //Bottom right corner.
-    public int x2 = 97;
-    public int y2 = 68;
-    public int z2 = 66;
-
     public int auraBlast;
 
     public void amplitudeTimer() {
@@ -133,7 +132,7 @@ public class Amplitude extends BattleMap implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         Player p = (Player) event.getDamager();
 
         if (p.getTotalExperience() >= 50) {
@@ -170,7 +169,7 @@ public class Amplitude extends BattleMap implements Listener {
 
     @EventHandler
     public void onExplode(EntityExplodeEvent event) {
-        if (!event.getLocation().getWorld().getName().equals(name)) return;
+        if (!event.getLocation().getWorld().getName().equals(getName())) return;
         event.blockList().clear();
     }
 }

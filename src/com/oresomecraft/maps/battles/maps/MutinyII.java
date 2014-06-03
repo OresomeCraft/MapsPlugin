@@ -1,38 +1,57 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "mutinyii",
+        fullName = "Mutiny II",
+        creators = {" __R3", "Buster1824", "MiCkEyMiCE"},
+        gamemodes = {Gamemode.TDM}
+)
+//    public int x1 = 52;
+//    public int y1 = 0;
+//    public int z1 = 35;
+//    public int x2 = -48;
+//    public int y2 = 156;
+//    public int z2 = -75;
+@Region(
+        x1 = 52,
+        y1 = 0,
+        z1 = 35,
+        x2 = -48,
+        y2 = 156,
+        z2 = -75
+)
+@Attributes(
+        autoSpawnProtection = true,
+        disabledDrops = {Material.EMERALD, Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.IRON_AXE}
+)
 public class MutinyII extends BattleMap implements Listener {
 
     public MutinyII() {
-        super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(15);
-        disableDrops(new Material[]{Material.EMERALD, Material.LEATHER_CHESTPLATE, Material.ARROW, Material.IRON_PICKAXE, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.IRON_AXE});
-        setAutoSpawnProtection(2);
+        super.initiate(this);
     }
-
-    String name = "mutinyii";
-    String fullName = "Mutiny II";
-    String[] creators = {" __R3", "Buster1824", "MiCkEyMiCE"};
-    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 32, 94, 12));
@@ -45,7 +64,6 @@ public class MutinyII extends BattleMap implements Listener {
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 31, 91, -58));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -81,25 +99,17 @@ public class MutinyII extends BattleMap implements Listener {
 
     }
 
-    public int x1 = 52;
-    public int y1 = 0;
-    public int z1 = 35;
-
-    public int x2 = -48;
-    public int y2 = 156;
-    public int z2 = -75;
-
     @EventHandler
     public void preventPlaceOutOfMap(BlockPlaceEvent event) {
-        if (event.getBlock().getWorld().getName().equals(name)
-                && !contains(event.getBlock().getLocation(), x1, x2, y1, y2, z1, z2)) {
+        if (event.getBlock().getWorld().getName().equals(getName())
+                && !isInsideRegion(event.getBlock().getLocation())) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void protectStone(EntityDamageEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         if (event.getEntity() instanceof Player) {
             Player p = (Player) event.getEntity();
             if (p.getItemInHand().getType() == Material.EMERALD) {
@@ -112,7 +122,7 @@ public class MutinyII extends BattleMap implements Listener {
 
     @EventHandler
     public void tnt(EntityExplodeEvent event) {
-        if (!event.getLocation().getWorld().getName().equals(name)) return;
+        if (!event.getLocation().getWorld().getName().equals(getName())) return;
         if (Math.random() > 0.9)
             event.setYield(15L);
     }

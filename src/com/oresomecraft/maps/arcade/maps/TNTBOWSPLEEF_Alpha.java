@@ -3,8 +3,9 @@ package com.oresomecraft.maps.arcade.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.arcade.ArcadeMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.types.ArcadeMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -19,21 +20,21 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
+@MapConfig(
+        name = "tntbowspleef_alpha",
+        fullName = "TnT Bow Spleef (Alpha)",
+        creators = {"Rynocraft", "BlueVortexed"},
+        gamemodes = {Gamemode.LMS}
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.BOW, Material.COOKED_BEEF}
+)
 public class TNTBOWSPLEEF_Alpha extends ArcadeMap implements Listener {
 
     public TNTBOWSPLEEF_Alpha() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.BOW, Material.COOKED_BEEF});
-        setAllowPhysicalDamage(false);
-        setAllowBuild(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "tntbowspleef_alpha";
-    String fullName = "TnT Bow Spleef (Alpha)";
-    String[] creators = {"Rynocraft", "BlueVortexed"};
-    Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 1, 57, -22, -0, 0));
@@ -70,7 +71,7 @@ public class TNTBOWSPLEEF_Alpha extends ArcadeMap implements Listener {
 
     @EventHandler
     public void arrow(EntityDamageEvent e) {
-        if (!e.getEntity().getWorld().getName().equals(name)) return;
+        if (!e.getEntity().getWorld().getName().equals(getName())) return;
         if (e.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)) e.setCancelled(true);
         if (e.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) e.setCancelled(true);
 

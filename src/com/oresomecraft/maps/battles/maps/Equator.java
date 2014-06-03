@@ -3,10 +3,11 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -15,21 +16,30 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "equator",
+        fullName = "Equator",
+        creators = {"Afridge1O1", "SuperDuckFace", "Numinex", "XUHAVON", "beadycottonwood", "ViolentShadow"},
+        gamemodes = {Gamemode.TDM, Gamemode.CTF}
+)
+@Region(
+        x1 = -125,
+        y1 = 122,
+        z1 = -126,
+        x2 = 114,
+        y2 = 40,
+        z2 = 102
+)
+@Attributes(
+        allowBuild = false,
+        autoSpawnProtection = true,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STAINED_GLASS, Material.LEATHER_HELMET, Material.STONE_SWORD, Material.WOOL}
+)
 public class Equator extends BattleMap implements Listener {
 
     public Equator() {
-        super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(15);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STAINED_GLASS, Material.LEATHER_HELMET, Material.STONE_SWORD, Material.WOOL});
-        setAutoSpawnProtection(4);
+        super.initiate(this);
     }
-
-    String name = "equator";
-    String fullName = "Equator";
-    String[] creators = {"Afridge1O1", "SuperDuckFace", "Numinex", "XUHAVON", "beadycottonwood", "ViolentShadow"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 53, 75, -24));
@@ -42,7 +52,7 @@ public class Equator extends BattleMap implements Listener {
 
         Location redFlag = new Location(w, 75, 76, -4);
         Location blueFlag = new Location(w, -75, 76, 4);
-        setCTFFlags(name, redFlag, blueFlag);
+        setCTFFlags(getName(), redFlag, blueFlag);
 
         setKoTHMonument(new Location(w, 0, 69, 0));
     }
@@ -50,7 +60,6 @@ public class Equator extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 2, 84, -48));
         FFASpawns.add(new Location(w, -3, 84, 58));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -86,21 +95,9 @@ public class Equator extends BattleMap implements Listener {
 
     }
 
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -125;
-    public int y1 = 122;
-    public int z1 = -126;
-
-    //Bottom right corner.
-    public int x2 = 114;
-    public int y2 = 40;
-    public int z2 = 102;
-
     @EventHandler(ignoreCancelled = false)
     public void onBlockBreak(BlockBreakEvent event) {
-        if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
+        if (event.getBlock().getLocation().getWorld().getName().equals(getName())) {
             event.setCancelled(true);
             if (event.getBlock().getType() == Material.WOOL) {
                 event.getBlock().getDrops().clear();

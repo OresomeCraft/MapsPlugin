@@ -1,30 +1,44 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.inventory.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
 
-@MapConfig
+@MapConfig(
+        name = "burnfireport",
+        fullName = "Burnfire Port",
+        creators = {"bumsonfire"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA}
+)
+@Region(
+        x1 = -199,
+        y1 = 93,
+        z1 = 197,
+        x2 = -8,
+        y2 = 1,
+        z2 = 29
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD}
+)
 public class BurnFirePort extends BattleMap implements Listener {
 
     public BurnFirePort() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
+        super.initiate(this);
     }
-
-    String name = "burnfireport";
-    String fullName = "Burnfire Port";
-    String[] creators = {"bumsonfire"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, -130, 29, 152, 176, 0);
@@ -58,7 +72,6 @@ public class BurnFirePort extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -11, 33, 62, 45, 0));
         FFASpawns.add(new Location(w, -115, 30, 79, 90, 0));
         FFASpawns.add(new Location(w, -86, 28, 87, 90, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -88,18 +101,10 @@ public class BurnFirePort extends BattleMap implements Listener {
         i.setItem(10, ARROW);
     }
 
-    public int x1 = -199;
-    public int y1 = 93;
-    public int z1 = 197;
-
-    public int x2 = -8;
-    public int y2 = 1;
-    public int z2 = 29;
-
     @EventHandler
     public void preventMoveOutOfMap(PlayerMoveEvent event) {
-        if (event.getPlayer().getWorld().getName().equals(name)
-                && !contains(event.getTo(), x1, x2, y1, y2, z1, z2)) {
+        if (event.getPlayer().getWorld().getName().equals(getName())
+                && !isInsideRegion(event.getTo())) {
             event.getPlayer().teleport(FFASpawns.get(new Random().nextInt(FFASpawns.size())));
         }
     }

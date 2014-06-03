@@ -2,8 +2,9 @@ package com.oresomecraft.maps.arcade.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.arcade.games.TeamPaintBallMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -16,24 +17,23 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "snowyridge",
+        fullName = "Paintball (Delta aka. Snowy Ridge)",
+        creators = {"meganlovesmusic", "ninsai", "SuperDuckFace"},
+        gamemodes = {Gamemode.LTS}
+)
+@Attributes(
+        allowBuild = false,
+        fireSpread = false,
+        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL}
+)
 public class Paintball_Delta extends TeamPaintBallMap implements Listener {
 
     public Paintball_Delta() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.COOKED_BEEF, Material.SNOW_BALL});
-        setAllowPhysicalDamage(false);
-        setAllowBuild(false);
-        setFireSpread(false);
+        super.initiate(this);
     }
 
-    // Map details
-    String name = "snowyridge";
-    String fullName = "Paintball (Delta aka. Snowy Ridge)";
-    String[] creators = {"meganlovesmusic", "Ninsai", "SuperDuckFace"};
-    Gamemode[] modes = {Gamemode.LTS};
-
-    @Override
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -42, 70, -36, -90, 0));
         FFASpawns.add(new Location(w, -42, 53, -36, -90, 0));
@@ -48,7 +48,7 @@ public class Paintball_Delta extends TeamPaintBallMap implements Listener {
     }
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
+        World w = Bukkit.getServer().getWorld(getName());
         redSpawns.add(new Location(w, -65, 62, -3, -88, 0));
         blueSpawns.add(new Location(w, 40, 62, 35, 137, 0));
     }
@@ -69,11 +69,11 @@ public class Paintball_Delta extends TeamPaintBallMap implements Listener {
 
         Player p = event.getPlayer();
 
-        if (p.getLocation().getWorld().getName().equals(name)) {
+        if (p.getLocation().getWorld().getName().equals(getName())) {
 
             if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                 Block b = event.getClickedBlock();
-                World w = Bukkit.getWorld(name);
+                World w = Bukkit.getWorld(getName());
 
                 Team team = BattlePlayer.getBattlePlayer(p).getTeamType();
                 if (b.getType().equals(Material.PISTON_BASE)) {
@@ -89,7 +89,7 @@ public class Paintball_Delta extends TeamPaintBallMap implements Listener {
 
     @EventHandler
     public void onTeleport(PlayerTeleportEvent event) {
-        if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
+        if (event.getPlayer().getLocation().getWorld().getName().equals(getName())) {
             if (event.getTo().equals(new Location(w, -17, 59, -54, -0, 0))) {
                 event.getPlayer().sendMessage(ChatColor.BOLD + "CONGRATS! You spawned in Zachoz's house!");
             }

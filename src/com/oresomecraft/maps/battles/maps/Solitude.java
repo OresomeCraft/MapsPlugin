@@ -3,10 +3,11 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
@@ -24,19 +25,35 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
-@MapConfig
+@MapConfig(
+        name = "solitude",
+        fullName = "Solitude",
+        creators = {"AnomalousRei", "dutchy336", "tarko2411", "PMC"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA}
+)
+//    public int x1 = 525;
+//    public int y1 = 0;
+//    public int z1 = 578;
+//    public int x2 = -44;
+//    public int y2 = 232;
+//    public int z2 = 1136;
+@Region(
+        x1 = 525,
+        y1 = 0,
+        z1 = 578,
+        x2 = -44,
+        y2 = 232,
+        z2 = 1136
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.ARROW, Material.FISHING_ROD, Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET}
+)
 public class Solitude extends BattleMap implements Listener {
 
     public Solitude() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.ARROW, Material.FISHING_ROD, Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET});
+        super.initiate(this);
     }
-
-    String name = "solitude";
-    String fullName = "Solitude";
-    String[] creators = {"AnomalousRei", "dutchy336", "tarko2411", "PMC"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 380, 52, 960));
@@ -88,7 +105,6 @@ public class Solitude extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 406, 46, 966));
         FFASpawns.add(new Location(w, 267, 92, 987));
         FFASpawns.add(new Location(w, 296, 60, 951));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -201,17 +217,6 @@ public class Solitude extends BattleMap implements Listener {
         p.getInventory().getBoots().addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 9);
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 525;
-    public int y1 = 0;
-    public int z1 = 578;
-
-    // Bottom right corner.
-    public int x2 = -44;
-    public int y2 = 232;
-    public int z2 = 1136;
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
         Player player = event.getPlayer();
@@ -220,7 +225,7 @@ public class Solitude extends BattleMap implements Listener {
         Location location = player.getLocation();
         Location bobber = event.getHook().getLocation();
 
-        if (location.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(getName())) {
 
             if (material == Material.FISHING_ROD) {
 
@@ -237,7 +242,7 @@ public class Solitude extends BattleMap implements Listener {
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
 
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
 
         if (proj instanceof Snowball) {
             Snowball fish = (Snowball) proj;
@@ -296,20 +301,18 @@ public class Solitude extends BattleMap implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void teamDeath(PlayerDeathEvent event) {
 
-        if (getArena().equals(name)) {
+        if (getArena().equals(getName())) {
 
             Player player = event.getEntity();
             Location location = player.getLocation();
-            World world = Bukkit.getWorld(name);
+            World world = Bukkit.getWorld(getName());
 
             if (BattlePlayer.getBattlePlayer(player).getTeamType() == Team.TDM_RED) {
                 // Show red particles (small)
                 world.playEffect(location, Effect.STEP_SOUND, 152);
-            } else {
-                if (BattlePlayer.getBattlePlayer(player).getTeamType() == Team.TDM_BLUE) {
-                    // Show blue particles (small)
-                    world.playEffect(location, Effect.STEP_SOUND, 22);
-                }
+            } else if (BattlePlayer.getBattlePlayer(player).getTeamType() == Team.TDM_BLUE) {
+                // Show blue particles (small)
+                world.playEffect(location, Effect.STEP_SOUND, 22);
             }
         }
     }

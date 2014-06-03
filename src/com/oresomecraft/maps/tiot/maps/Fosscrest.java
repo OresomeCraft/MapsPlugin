@@ -1,26 +1,29 @@
 package com.oresomecraft.maps.tiot.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.types.TiOTMap;
 import com.oresomecraft.OresomeBattles.region.CuboidRegion;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.tiot.TiOTMap;
 import org.bukkit.Location;
 import org.bukkit.event.Listener;
 
-@MapConfig
-public class Fosscrest extends TiOTMap implements Listener {
+@MapConfig(
+        name = "fosscrest",
+        fullName = "Fosscrest Village",
+        creators = {"__R3", "danielschroeder", "xXJazzerXx"},
+        gamemodes = {Gamemode.TIOT}
+)
+@Attributes(
+        allowBuild = false
+)
+public class Fosscrest extends TiOTMap {
 
     public Fosscrest() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "fosscrest";
-    String fullName = "Fosscrest Village";
-    String[] creators = {"__R3", "danielschroeder", "xXJazzerXx"};
-    Gamemode[] modes = {Gamemode.TIOT};
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 231, 103, -1292));

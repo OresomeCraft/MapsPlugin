@@ -1,11 +1,14 @@
 package com.oresomecraft.maps.battles.maps;
 
+
 import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -18,20 +21,31 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "geomancy",
+        fullName = "Geomancy",
+        creators = {" __R3", " ep1cn00bt00b"},
+        gamemodes = {Gamemode.TDM}
+)
+@Region(
+        x1 = -97,
+        y1 = 204,
+        z1 = 103,
+        x2 = 101,
+        y2 = 114,
+        z2 = -97
+)
+@Attributes(
+        tdmTime = 10,
+        allowBuild = false,
+        blockBuildLimit = 173,
+        disabledDrops = {Material.ARROW, Material.IRON_PICKAXE, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.DIAMOND_HELMET, Material.WOOD_SWORD}
+)
 public class Geomancy extends BattleMap implements Listener {
 
     public Geomancy() {
-        super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(10);
-        disableDrops(new Material[]{Material.ARROW, Material.IRON_PICKAXE, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.DIAMOND_HELMET, Material.WOOD_SWORD});
-        setBuildLimit(173);
+        super.initiate(this);
     }
-
-    String name = "geomancy";
-    String fullName = "Geomancy";
-    String[] creators = {" __R3", " ep1cn00bt00b"};
-    Gamemode[] modes = {Gamemode.TDM};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 74, 126, 0., 275.6F, 18.1F));
@@ -42,7 +56,6 @@ public class Geomancy extends BattleMap implements Listener {
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 1, 136, -47, 182.5F, -22.2F));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -81,18 +94,10 @@ public class Geomancy extends BattleMap implements Listener {
         i.setItem(27, ARROW);
     }
 
-    public int x1 = -97;
-    public int y1 = 204;
-    public int z1 = 103;
-
-    public int x2 = 101;
-    public int y2 = 114;
-    public int z2 = -97;
-
     @EventHandler
     public void breakListener(BlockBreakEvent event) {
         Location loc = event.getBlock().getLocation();
-        if (loc.getWorld().getName().equals(name)) {
+        if (loc.getWorld().getName().equals(getName())) {
             Material m = event.getBlock().getType();
             if (m != Material.GRASS && m != Material.DIRT && m != Material.OBSIDIAN && m != Material.STEP && m != Material.FENCE) {
                 event.setCancelled(true);
@@ -116,7 +121,7 @@ public class Geomancy extends BattleMap implements Listener {
     @EventHandler
     public void placeListener(BlockPlaceEvent event) {
         Location loc = event.getBlock().getLocation();
-        if (loc.getWorld().getName().equals(name)) {
+        if (loc.getWorld().getName().equals(getName())) {
             Material m = event.getBlock().getType();
             if (m == Material.STEP || m == Material.OBSIDIAN || m == Material.FENCE) {
                 event.setCancelled(true);

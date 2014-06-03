@@ -4,8 +4,10 @@ import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
 import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
@@ -25,25 +27,35 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
-@MapConfig
+@MapConfig(
+        name = "snowyridge",
+        fullName = "Snowy Ridge",
+        creators = {"meganlovesmusic", "ninsai", "SuperDuckFace"},
+        gamemodes = {Gamemode.FFA, Gamemode.TDM}
+)
+@Region(
+        x1 = 106,
+        y1 = 93,
+        z1 = 98,
+        x2 = -113,
+        y2 = 25,
+        z2 = -103
+)
+@Attributes(
+        allowBuild = false,
+        fireSpread = false,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.FISHING_ROD, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET, Material.SNOW_BALL}
+)
 public class SnowyRidge extends BattleMap implements Listener {
 
     public SnowyRidge() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.FISHING_ROD, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET, Material.SNOW_BALL});
-        setFireSpread(false);
+        super.initiate(this);
     }
-
-    String name = "snowyridge";
-    String fullName = "Snowy Ridge";
-    String[] creators = {"meganlovesmusic", "ninsai", "SuperDuckFace"};
-    Gamemode[] modes = {Gamemode.FFA, Gamemode.TDM};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -65, 62, -3, -88, 0));
         blueSpawns.add(new Location(w, 40, 62, 35, 137, 0));
-        Bukkit.getWorld(name).setTime(12000);
+        Bukkit.getWorld(getName()).setTime(12000);
     }
 
     public void readyFFASpawns() {
@@ -57,7 +69,6 @@ public class SnowyRidge extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 24, 35, 3, 107, 0));
         FFASpawns.add(new Location(w, 23, 39, -14, 62, 0));
         FFASpawns.add(new Location(w, 21, 54, -48, 38, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -97,17 +108,6 @@ public class SnowyRidge extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 106;
-    public int y1 = 93;
-    public int z1 = 98;
-
-    //Bottom right corner.
-    public int x2 = -113;
-    public int y2 = 25;
-    public int z2 = -103;
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
         Player player = event.getPlayer();
@@ -116,7 +116,7 @@ public class SnowyRidge extends BattleMap implements Listener {
         Location location = player.getLocation();
         Location bobber = event.getHook().getLocation();
 
-        if (location.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(getName())) {
 
             if (material == Material.FISHING_ROD) {
 
@@ -134,7 +134,7 @@ public class SnowyRidge extends BattleMap implements Listener {
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
 
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
 
         if (proj instanceof Snowball) {
             Snowball fish = (Snowball) proj;
@@ -197,7 +197,7 @@ public class SnowyRidge extends BattleMap implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.getLocation().getWorld().getName().equals(name)) {
+        if (player.getLocation().getWorld().getName().equals(getName())) {
 
             if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 Block block = event.getClickedBlock();
@@ -215,7 +215,7 @@ public class SnowyRidge extends BattleMap implements Listener {
 
     @EventHandler
     public void onTeleport(PlayerTeleportEvent event) {
-        if (event.getPlayer().getLocation().getWorld().getName().equals(name)) {
+        if (event.getPlayer().getLocation().getWorld().getName().equals(getName())) {
             if (event.getTo().equals(new Location(w, -17, 59, -54, -0, 0))) {
                 event.getPlayer().sendMessage(ChatColor.BOLD + "CONGRATS! You spawned in Zachoz's house!");
             }

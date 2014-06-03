@@ -1,34 +1,52 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.player.PlayerFishEvent;
-import org.bukkit.inventory.*;
-import org.bukkit.entity.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
-@MapConfig
+@MapConfig(
+        name = "gladiator",
+        fullName = "Gladiator",
+        creators = {"eddie017"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH}
+)
+@Region(
+        x1 = 166,
+        y1 = 155,
+        z1 = -110,
+        x2 = 356,
+        y2 = 60,
+        z2 = 72
+)
+@Attributes(
+        allowBuild = false,
+        timeLock = Map.Time.DAY,
+        disabledDrops = {Material.ARROW, Material.FISHING_ROD, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.WOOL}
+)
 public class Gladiator extends BattleMap implements Listener {
 
     public Gladiator() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.ARROW, Material.FISHING_ROD, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.WOOL});
-        setAllowBuild(false);
-        lockTime("day");
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "gladiator";
-    String fullName = "Gladiator";
-    String[] creators = {"eddie017"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, 207, 101, -31, -90, 0);
@@ -95,7 +113,6 @@ public class Gladiator extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 248, 108, -41, 0, 0));
         FFASpawns.add(new Location(w, 265, 110, -30, 90, 0));
         FFASpawns.add(new Location(w, 231, 110, -32, -90, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -123,17 +140,6 @@ public class Gladiator extends BattleMap implements Listener {
         i.setItem(4, ARROWS);
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 166;
-    public int y1 = 155;
-    public int z1 = -110;
-
-    //Bottom right corner.
-    public int x2 = 356;
-    public int y2 = 60;
-    public int z2 = 72;
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {
         Player player = event.getPlayer();
@@ -142,7 +148,7 @@ public class Gladiator extends BattleMap implements Listener {
         Location location = player.getLocation();
         Location bobber = event.getHook().getLocation();
 
-        if (location.getWorld().getName().equals(name)) {
+        if (location.getWorld().getName().equals(getName())) {
 
             if (material == Material.FISHING_ROD) {
 
@@ -159,7 +165,7 @@ public class Gladiator extends BattleMap implements Listener {
         Entity proj = event.getEntity();
         Location hit = proj.getLocation();
 
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
 
         if (proj instanceof Snowball) {
             Snowball fish = (Snowball) proj;

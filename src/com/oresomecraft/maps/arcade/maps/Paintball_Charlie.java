@@ -2,8 +2,9 @@ package com.oresomecraft.maps.arcade.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.teams.Team;
-import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.arcade.games.TeamPaintBallMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -20,30 +21,29 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-@MapConfig
+@MapConfig(
+        name = "warehouse",
+        fullName = "Paintball (Charlie)",
+        creators = {"meganlovesmusic", "_Husky_", "SuperDuckFace"},
+        gamemodes = {Gamemode.LTS}
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL}
+)
 public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
 
     public Paintball_Charlie() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.COOKED_BEEF, Material.SNOW_BALL});
-        setAllowPhysicalDamage(false);
-        setAllowBuild(false);
+        super.initiate(this);
     }
 
-    // Map details
-    String name = "warehouse";
-    String fullName = "Paintball (Charlie)";
-    String[] creators = {"meganlovesmusic", "_Husky_", "SuperDuckFace"};
-    Gamemode[] modes = {Gamemode.LTS};
-
-    @Override
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -34, 74, 43));
         FFASpawns.add(new Location(w, 71, 74, 43));
     }
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
+        World w = Bukkit.getServer().getWorld(getName());
 
         redSpawns.add(new Location(w, -34, 74, 43));
 
@@ -71,11 +71,11 @@ public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
 
         Player p = event.getPlayer();
 
-        if (p.getLocation().getWorld().getName().equals(name)) {
+        if (p.getLocation().getWorld().getName().equals(getName())) {
 
             if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                 Block b = event.getClickedBlock();
-                World w = Bukkit.getWorld(name);
+                World w = Bukkit.getWorld(getName());
 
                 Team team = BattlePlayer.getBattlePlayer(p).getTeamType();
                 if (b.getType().equals(Material.PISTON_BASE)) {

@@ -2,7 +2,9 @@ package com.oresomecraft.maps.arcade.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.maps.arcade.games.TeamPaintBallMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -12,23 +14,23 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "paintball_echo",
+        fullName = "Paintball (Echo)",
+        creators = {"meganlovesmusic", "SuperDuckFace"},
+        gamemodes = {Gamemode.LTS}
+)
+@Attributes(
+        allowBuild = false,
+        fireSpread = false,
+        timeLock = Map.Time.NIGHT,
+        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL}
+)
 public class Paintball_Echo extends TeamPaintBallMap implements Listener {
 
     public Paintball_Echo() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.COOKED_BEEF, Material.SNOW_BALL});
-        setAllowPhysicalDamage(false);
-        setAllowBuild(false);
-        setFireSpread(false);
-        lockTime("night");
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "paintball_echo";
-    String fullName = "Paintball (Echo)";
-    String[] creators = {"meganlovesmusic", "SuperDuckFace"};
-    Gamemode[] modes = {Gamemode.LMS};
 
     @Override
     public void readyFFASpawns() {
@@ -42,7 +44,7 @@ public class Paintball_Echo extends TeamPaintBallMap implements Listener {
     }
 
     public void readyTDMSpawns() {
-        World w = Bukkit.getServer().getWorld(name);
+        World w = Bukkit.getServer().getWorld(getName());
         redSpawns.add(new Location(w, 38, 67, -15, 62, 0));
         blueSpawns.add(new Location(w, -16, 67, 42, -100, 0));
     }

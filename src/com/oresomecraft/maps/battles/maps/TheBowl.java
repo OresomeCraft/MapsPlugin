@@ -3,8 +3,10 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -15,19 +17,28 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "bowl",
+        fullName = "The Bowl",
+        creators = {"_Moist", "psgs", "niceman506", "broddikill"},
+        gamemodes = {Gamemode.INFECTION, Gamemode.KOTH}
+)
+@Region(
+        x1 = -8,
+        y1 = 164,
+        z1 = 16,
+        x2 = -85,
+        y2 = 62,
+        z2 = 99
+)
+@Attributes(
+        disabledDrops = {Material.ARROW, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.WOOL}
+)
 public class TheBowl extends BattleMap implements Listener {
 
     public TheBowl() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.ARROW, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.WOOL});
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "bowl";
-    String fullName = "The Bowl";
-    String[] creators = {"_Moist", "psgs", "niceman506", "broddikill"};
-    Gamemode[] modes = {Gamemode.INFECTION, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, 10, 82, -36, 0, 0);
@@ -59,7 +70,6 @@ public class TheBowl extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 29, 70, 31, 90, 0));
         FFASpawns.add(new Location(w, -20, 76, 20, -30, 0));
         FFASpawns.add(new Location(w, -7, 68, 16, 90, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -91,27 +101,17 @@ public class TheBowl extends BattleMap implements Listener {
 
     }
 
-    // Top left corner.
-    public int x1 = -8;
-    public int y1 = 164;
-    public int z1 = 16;
-
-    //Bottom right corner.
-    public int x2 = -85;
-    public int y2 = 62;
-    public int z2 = 99;
-
     @EventHandler
     public void onBreak(BlockBreakEvent event) {
         Player p = event.getPlayer();
-        if (p.getLocation().getWorld().getName().equals(name) && getMode() == Gamemode.INFECTION)
+        if (p.getLocation().getWorld().getName().equals(getName()) && getMode() == Gamemode.INFECTION)
             event.setCancelled(true);
     }
 
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
         Player p = event.getPlayer();
-        if (p.getLocation().getWorld().getName().equals(name) && getMode() == Gamemode.INFECTION)
+        if (p.getLocation().getWorld().getName().equals(getName()) && getMode() == Gamemode.INFECTION)
             event.setCancelled(true);
     }
 }

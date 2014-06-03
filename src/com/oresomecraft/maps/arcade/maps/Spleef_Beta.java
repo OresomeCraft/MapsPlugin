@@ -3,8 +3,9 @@ package com.oresomecraft.maps.arcade.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.arcade.ArcadeMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.types.ArcadeMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -12,15 +13,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "spleef_beta",
+        fullName = "Spleef (Beta)",
+        creators = {"zachoz"},
+        gamemodes = {Gamemode.LMS}
+)
+@Attributes(
+        blockBuildLimit = 64,
+        disabledDrops = {Material.DIAMOND_SPADE, Material.COOKED_BEEF}
+)
 public class Spleef_Beta extends ArcadeMap implements Listener {
 
     public Spleef_Beta() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.DIAMOND_SPADE, Material.COOKED_BEEF});
-        setAllowPhysicalDamage(false);
-        setBuildLimit(64);
-        setAllowPlace(false);
+        super.initiate(this);
     }
 
     // Map details

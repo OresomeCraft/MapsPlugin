@@ -3,8 +3,10 @@ package com.oresomecraft.maps.battles.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,21 +22,29 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-@MapConfig
+@MapConfig(
+        name = "warehouse",
+        fullName = "Warehouse",
+        creators = {"SuperDuckFace", " meganlovesmusic", "_Husky_"},
+        gamemodes = {Gamemode.TDM, Gamemode.CTF, Gamemode.LTS}
+)
+@Region(
+        x1 = -46,
+        y1 = 125,
+        z1 = -11,
+        x2 = 76,
+        y2 = 60,
+        z2 = 97
+)
+@Attributes(
+        allowBuild = false,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET, Material.WOOL}
+)
 public class Warehouse extends BattleMap implements Listener {
 
     public Warehouse() {
-        super.initiate(this, name, fullName, creators, modes);
-        setTDMTime(15);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.IRON_SWORD, Material.LEATHER_HELMET, Material.WOOL});
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "warehouse";
-    String fullName = "Warehouse";
-    String[] creators = {"SuperDuckFace", " meganlovesmusic", "_Husky_"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF, Gamemode.LTS};
 
     public void readyTDMSpawns() {
 
@@ -49,7 +59,7 @@ public class Warehouse extends BattleMap implements Listener {
             blueSpawns.add(new Location(w, 66, 75, 43));
         }
 
-        setCTFFlags(name, redFlag, blueFlag);
+        setCTFFlags(getName(), redFlag, blueFlag);
 
     }
 
@@ -92,22 +102,12 @@ public class Warehouse extends BattleMap implements Listener {
 
     }
 
-    // Top left corner.
-    public int x1 = -46;
-    public int y1 = 125;
-    public int z1 = -11;
-
-    //Bottom right corner.
-    public int x2 = 76;
-    public int y2 = 60;
-    public int z2 = 97;
-
     @EventHandler
     public void onBlockClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (BattlePlayer.getBattlePlayer(player).isSpectator()) return;
 
-        if (player.getLocation().getWorld().getName().equals(name)) {
+        if (player.getLocation().getWorld().getName().equals(getName())) {
 
             if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_BLOCK) {
                 Block block = event.getClickedBlock();
@@ -125,7 +125,7 @@ public class Warehouse extends BattleMap implements Listener {
 
     @EventHandler
     public void onPlayerSpectate(PlayerDeathEvent event) {
-        if (event.getEntity().getLocation().getWorld().getName().equals(name)) {
+        if (event.getEntity().getLocation().getWorld().getName().equals(getName())) {
             if (BattlePlayer.getBattlePlayer(event.getEntity()).isSpectator()) {
                 event.getEntity().addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000 * 20, 2));
             }

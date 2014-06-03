@@ -2,8 +2,10 @@ package com.oresomecraft.maps.arcade.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.MapLoadEvent;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.maps.arcade.games.BombDropMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -12,21 +14,21 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "bombdrop_alpha",
+        fullName = "BombDrop (Alpha)",
+        creators = {"kevlar_miner"},
+        gamemodes = {Gamemode.LMS}
+)
+@Attributes(
+        allowBuild = false,
+        timeLock = Map.Time.DAY
+)
 public class BombDrop_Alpha extends BombDropMap implements Listener {
 
     public BombDrop_Alpha() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowPhysicalDamage(false);
-        setAllowBuild(false);
-        lockTime("day");
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "bombdrop_alpha";
-    String fullName = "BombDrop (Alpha)";
-    String[] creators = {"kevlar_miner"};
-    Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 0, 208, 0));
@@ -40,7 +42,7 @@ public class BombDrop_Alpha extends BombDropMap implements Listener {
 
     @EventHandler
     public void onWorld(MapLoadEvent event) {
-        if (event.getWorld().getName().equals(name)) {
+        if (event.getWorld().getName().equals(getName())) {
             loc1 = new Location(event.getWorld(), -18, 252, 18);
             loc2 = new Location(event.getWorld(), 18, 252, -18);
 

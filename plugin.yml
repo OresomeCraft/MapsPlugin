@@ -1,7 +1,7 @@
 name: MapsPlugin
 main: com.oresomecraft.maps.MapsPlugin
 version: 1.0
-softdepend: [OresomeBattles]
+depend: [OresomeBattles]
 commands:
    enablemaps:
       description: Loads maps of a specific type

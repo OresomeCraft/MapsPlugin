@@ -1,8 +1,7 @@
 package com.oresomecraft.maps.arcade.games;
 
-import com.oresomecraft.maps.MapLoadEvent;
+import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.world.WorldLoadEvent;
 
 public abstract class TeamPaintBallMap extends PaintBallMap {
 
@@ -10,9 +9,9 @@ public abstract class TeamPaintBallMap extends PaintBallMap {
 
     @EventHandler // Set the spawns
     public void spawns(MapLoadEvent event) { // Internal - Do not change
-        if (event.getWorld().getName().equals(name)) {
+        if (event.getWorld().getName().equals(getName())) {
             this.w = event.getWorld();
-            if (w.getName().equals(name)) {
+            if (w.getName().equals(getName())) {
                 readyTDMSpawns();
             }
         }
