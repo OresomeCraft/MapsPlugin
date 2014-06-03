@@ -9,6 +9,7 @@ import com.oresomecraft.maps.*;
 import com.oresomecraft.maps.battles.*;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import org.bukkit.scheduler.BukkitRunnable;
 
 @MapConfig
 public class Turmoil extends BattleMap implements Listener {
@@ -70,8 +71,13 @@ public class Turmoil extends BattleMap implements Listener {
         i.setItem(3, HEALTH_POTION);
         p.setItem(28, Material.ARROW, 48);
 
-        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600 * 20, 1));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 1));
+        new BukkitRunnable() {
+            public void run() {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600 * 20, 1));
+                p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 1));
+            }
+        }.runTaskLater(plugin, 5L);
+
     }
 
     // Region. (Top corner block and bottom corner block.
