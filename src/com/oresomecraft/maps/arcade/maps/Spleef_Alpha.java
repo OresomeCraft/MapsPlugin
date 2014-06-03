@@ -3,8 +3,9 @@ package com.oresomecraft.maps.arcade.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.arcade.ArcadeMap;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -12,22 +13,21 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
-public class Spleef_Alpha extends ArcadeMap implements Listener {
+@MapConfig(
+        name = "spleef_alpha",
+        fullName = "Spleef (Alpha)",
+        creators = {"zachoz"},
+        gamemodes = {Gamemode.LMS}
+)
+@Attributes(
+        blockBuildLimit = 105,
+        disabledDrops = {Material.DIAMOND_SPADE, Material.COOKED_BEEF}
+)
+public class Spleef_Alpha extends Map implements Listener {
 
     public Spleef_Alpha() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.DIAMOND_SPADE, Material.COOKED_BEEF});
-        setAllowPhysicalDamage(false);
-        setBuildLimit(105);
-        setAllowPlace(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "spleef_alpha";
-    String fullName = "Spleef (Alpha)";
-    String[] creators = {"zachoz"};
-    Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 2, 105, 14));

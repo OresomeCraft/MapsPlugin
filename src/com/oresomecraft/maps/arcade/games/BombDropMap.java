@@ -1,14 +1,17 @@
 package com.oresomecraft.maps.arcade.games;
 
 import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
+import com.oresomecraft.OresomeBattles.map.Map;
 import com.oresomecraft.maps.MapsPlugin;
-import com.oresomecraft.maps.arcade.ArcadeMap;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.potion.*;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -16,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class BombDropMap extends ArcadeMap {
+public abstract class BombDropMap extends Map {
 
     public Location loc1;
     public Location loc2;
@@ -32,7 +35,7 @@ public abstract class BombDropMap extends ArcadeMap {
         new BukkitRunnable() {
             public void run() {
 
-                if (!getArena().equals(name)) {
+                if (!getArena().equals(getName())) {
                     bombs.clear();
                     this.cancel();
                     return;
@@ -76,7 +79,7 @@ public abstract class BombDropMap extends ArcadeMap {
 
     @EventHandler
     public void onDrop(EntityDamageEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         if (event.getEntity() instanceof Player) return;
 
         final Entity e = event.getEntity();

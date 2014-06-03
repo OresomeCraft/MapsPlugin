@@ -2,29 +2,29 @@ package com.oresomecraft.maps.arcade.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.arcade.ArcadeMap;
-
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
-public class TNTDM_Charlie extends ArcadeMap implements Listener {
+@MapConfig(
+        name = "tntdm_charlie",
+        fullName = "TNTDM (Charlie)",
+        creators = {"SuperDuckFace", "ninsai"},
+        gamemodes = {Gamemode.LMS}
+)
+@Attributes(
+        disabledDrops = {Material.COOKED_BEEF}
+)
+public class TNTDM_Charlie extends Map implements Listener {
 
     public TNTDM_Charlie() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.COOKED_BEEF});
-        setAllowPhysicalDamage(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "tntdm_charlie";
-    String fullName = "TNTDM (Charlie)";
-    String[] creators = {"SuperDuckFace", "ninsai"};
-    Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 39, 52, 0, 90, 0));

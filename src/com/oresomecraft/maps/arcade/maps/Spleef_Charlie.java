@@ -3,8 +3,9 @@ package com.oresomecraft.maps.arcade.maps;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.arcade.ArcadeMap;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,21 +22,21 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-@MapConfig
-public class Spleef_Charlie extends ArcadeMap implements Listener {
+@MapConfig(
+        name = "spleef_charlie",
+        fullName = "Spleef (Charlie)",
+        creators = {"zachoz", "ScruffyRules"},
+        gamemodes = {Gamemode.LMS}
+)
+@Attributes(
+        blockBuildLimit = 66,
+        disabledDrops = {Material.DIAMOND_SPADE, Material.COOKED_BEEF}
+)
+public class Spleef_Charlie extends Map implements Listener {
 
     public Spleef_Charlie() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.DIAMOND_SPADE, Material.COOKED_BEEF});
-        setAllowPhysicalDamage(false);
-        setAllowPlace(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "spleef_charlie";
-    String fullName = "Spleef (Charlie)";
-    String[] creators = {"zachoz"};
-    Gamemode[] modes = {Gamemode.LMS};
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 0, 66, -22));
@@ -69,12 +70,14 @@ public class Spleef_Charlie extends ArcadeMap implements Listener {
 
     @EventHandler
     public void onSpadeInteract(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
-        Player p = event.getPlayer();
-        Action a = event.getAction();
-        if (a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) {
-            if (p.getItemInHand().getType() == Material.DIAMOND_SPADE) {
-                p.launchProjectile(Snowball.class);
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
+
+        Player player = event.getPlayer();
+        Action action = event.getAction();
+        
+        if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
+            if (player.getItemInHand().getType() == Material.DIAMOND_SPADE) {
+                player.launchProjectile(Snowball.class);
             }
         }
     }
