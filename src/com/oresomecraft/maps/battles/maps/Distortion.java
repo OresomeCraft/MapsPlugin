@@ -78,7 +78,7 @@ public class Distortion extends BattleMap implements Listener {
         Inventory i = p.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
+        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 8);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 48);
         ItemStack DIAMOND_PICKAXE = new ItemStack(Material.DIAMOND_PICKAXE, 1);
