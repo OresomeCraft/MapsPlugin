@@ -34,7 +34,7 @@ import org.bukkit.inventory.ItemStack;
 @Attributes(
         allowBuild = false,
         fireSpread = false,
-        disabledDrops = {Material.ARROW, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.IRON_HELMET}
+        disabledDrops = {Material.CARROT_ITEM, Material.COOKED_FISH, Material.ARROW, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.IRON_HELMET}
 )
 public class SkyVillage extends BattleMap implements Listener {
 
@@ -84,8 +84,8 @@ public class SkyVillage extends BattleMap implements Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-        ItemStack COOKED_FISH = new ItemStack(Material.COOKED_FISH, 2);
-        ItemStack CARROT = new ItemStack(Material.CARROT_ITEM, 3);
+        ItemStack COOKED_FISH = new ItemStack(Material.COOKED_FISH, 64);
+        ItemStack CARROT = new ItemStack(Material.CARROT_ITEM, 64);
 
         ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
