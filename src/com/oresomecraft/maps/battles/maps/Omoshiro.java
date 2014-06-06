@@ -52,13 +52,9 @@ public class Omoshiro extends BattleMap implements Listener {
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 180, 21, 1450, -19, 0));
-        redSpawns.add(new Location(w, 206, 26, 1562, -177, 0));
         redSpawns.add(new Location(w, 233, 21, 1506, 85, 0));
-        redSpawns.add(new Location(w, 173, 20, 1506, -104, 0));
 
-        blueSpawns.add(new Location(w, 180, 21, 1450, -19, 0));
         blueSpawns.add(new Location(w, 206, 26, 1562, -177, 0));
-        blueSpawns.add(new Location(w, 233, 21, 1506, 85, 0));
         blueSpawns.add(new Location(w, 173, 20, 1506, -104, 0));
     }
 
