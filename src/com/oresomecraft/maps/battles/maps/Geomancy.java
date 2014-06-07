@@ -37,7 +37,6 @@ import org.bukkit.inventory.ItemStack;
 )
 @Attributes(
         tdmTime = 10,
-        allowBuild = false,
         blockBuildLimit = 173,
         disabledDrops = {Material.ARROW, Material.IRON_PICKAXE, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.DIAMOND_HELMET, Material.WOOD_SWORD}
 )

@@ -32,7 +32,6 @@ import org.bukkit.inventory.ItemStack;
         z2 = -164
 )
 @Attributes(
-        allowBuild = false,
         autoSpawnProtection = true,
         disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LAVA_BUCKET, Material.IRON_AXE}

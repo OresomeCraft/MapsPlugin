@@ -42,7 +42,6 @@ import java.util.List;
         z2 = 152
 )
 @Attributes(
-        allowBuild = false,
         disabledDrops = {Material.ARROW, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.LEATHER_CHESTPLATE, Material.WATCH, Material.WOOL}
 )
 public class Fairwick extends BattleMap implements Listener {

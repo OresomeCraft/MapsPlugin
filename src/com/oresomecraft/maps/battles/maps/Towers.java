@@ -30,7 +30,6 @@ import org.bukkit.inventory.ItemStack;
         z2 = -1125
 )
 @Attributes(
-        allowBuild = false,
         disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD}
 )
 public class Towers extends BattleMap implements Listener {

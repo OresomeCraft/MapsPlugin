@@ -4,7 +4,6 @@ import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
-import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
@@ -36,9 +35,6 @@ import org.bukkit.scheduler.BukkitRunnable;
         x2 = 0,
         y2 = 93,
         z2 = -63
-)
-@Attributes(
-        allowBuild = false
 )
 public class CreepersArmy extends BattleMap implements Listener {
 

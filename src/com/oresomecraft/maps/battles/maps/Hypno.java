@@ -42,7 +42,6 @@ import java.util.List;
         z2 = -1484
 )
 @Attributes(
-        allowBuild = false,
         disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD, Material.STONE_SPADE, Material.IRON_PICKAXE, Material.EMERALD}
 )
 public class Hypno extends BattleMap implements Listener {
