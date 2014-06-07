@@ -42,7 +42,7 @@ import java.util.List;
         tdmTime = 12,
         allowBuild = false,
         timeLock = Map.Time.NIGHT,
-        disabledDrops = {Material.BOW, Material.ARROW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.STONE_SWORD, Material.COOKED_BEEF, Material.POTION}
+        disabledDrops = {Material.BOW, Material.ARROW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.STONE_SWORD}
 )
 public class Omoshiro extends BattleMap implements Listener {
 
@@ -51,18 +51,26 @@ public class Omoshiro extends BattleMap implements Listener {
     }
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, 180, 21, 1450, -19, 0));
-        redSpawns.add(new Location(w, 233, 21, 1506, 85, 0));
-
-        blueSpawns.add(new Location(w, 206, 26, 1562, -177, 0));
-        blueSpawns.add(new Location(w, 173, 20, 1506, -104, 0));
+        redSpawns.add(new Location(w, 180, 21, 1451, -21, 0));
+        redSpawns.add(new Location(w, 218, 19, 1478, -3, 0));
+        redSpawns.add(new Location(w, 175, 18, 1483, -7, 0));
+        redSpawns.add(new Location(w, 215, 22, 1492, -9, 0));
+        
+        blueSpawns.add(new Location(w, 181, 21, 1529, -179, 0));
+        blueSpawns.add(new Location(w, 210, 22, 1542, 155, 0));
+        blueSpawns.add(new Location(w, 236, 21, 1516, 174, 0));
+        blueSpawns.add(new Location(w, 213, 26, 1513, 90, 0));
     }
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, 180, 21, 1450, -19, 0));
-        FFASpawns.add(new Location(w, 206, 26, 1562, -177, 0));
-        FFASpawns.add(new Location(w, 233, 21, 1506, 85, 0));
-        FFASpawns.add(new Location(w, 173, 20, 1506, -104, 0));
+        FFASpawns.add(new Location(w, 180, 21, 1451, -21, 0));
+        FFASpawns.add(new Location(w, 218, 19, 1478, -3, 0));
+        FFASpawns.add(new Location(w, 175, 18, 1483, -7, 0));
+        FFASpawns.add(new Location(w, 215, 22, 1492, -9, 0));
+        FFASpawns.add(new Location(w, 181, 21, 1529, -179, 0));
+        FFASpawns.add(new Location(w, 210, 22, 1542, 155, 0));
+        FFASpawns.add(new Location(w, 236, 21, 1516, 174, 0));
+        FFASpawns.add(new Location(w, 213, 26, 1513, 90, 0));
     }
 
     public void applyInventory(final BattlePlayer p) {
