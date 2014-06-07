@@ -43,7 +43,6 @@ import java.util.Random;
 )
 @Attributes(
         tdmTime = 12,
-        allowBuild = false,
         autoSpawnProtection = true,
         disabledDrops = {Material.EMERALD, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.STONE_SWORD, Material.STONE_PICKAXE, Material.LEATHER_HELMET, Material.DIAMOND_SWORD}
 )
