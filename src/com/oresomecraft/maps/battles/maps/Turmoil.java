@@ -1,18 +1,25 @@
 package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
 import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
 @MapConfig(
         name = "turmoil",
@@ -36,6 +43,17 @@ public class Turmoil extends BattleMap implements Listener {
 
     public Turmoil() {
         super.initiate(this);
+    }
+
+    @EventHandler
+    public void end(BattleEndEvent event) {
+        run.cancel();
+        run = null;
+    }
+
+    @EventHandler
+    public void load(MapLoadEvent event) {
+        if (event.getMap().equals(getName())) startPotTimer();
     }
 
     public void readyTDMSpawns() {
@@ -81,9 +99,21 @@ public class Turmoil extends BattleMap implements Listener {
         p.setItem(2, Material.COOKED_BEEF, 2);
         i.setItem(3, HEALTH_POTION);
         p.setItem(28, Material.ARROW, 48);
-
-        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600 * 20, 1));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 1));
     }
 
+    BukkitTask run = null;
+
+    public void startPotTimer() {
+        if (run != null) return;
+        run = new BukkitRunnable() {
+            public void run() {
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    if (BattlePlayer.getBattlePlayer(p).getTeam() != null) {
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600 * 20, 1));
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 1));
+                    }
+                }
+            }
+        }.runTaskTimer(plugin, 0L, 20L);
+    }
 }
