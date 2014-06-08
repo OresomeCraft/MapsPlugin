@@ -27,7 +27,7 @@ import java.util.List;
 @MapConfig(
         name = "omoshiro",
         fullName = "Omoshiro",
-        creators = {"Mr_Jaskirat"},
+        creators = {"Mr_Jaskirat", "SereneMango"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA}
 )
 @Region(
@@ -101,7 +101,7 @@ public class Omoshiro extends BattleMap implements Listener {
 
         ItemMeta stoneSwordMeta = STONE_SWORD.getItemMeta();
         List<String> stoneSwordLore = new ArrayList<String>();
-        stoneSwordLore.add(org.bukkit.ChatColor.RED + "Forged from the loot of your enemies!");
+        stoneSwordLore.add(org.bukkit.ChatColor.RED + "A simple sword forged from the stone of Mount Kharumoro.");
         stoneSwordMeta.setLore(stoneSwordLore);
         STONE_SWORD.setItemMeta(stoneSwordMeta);
  
