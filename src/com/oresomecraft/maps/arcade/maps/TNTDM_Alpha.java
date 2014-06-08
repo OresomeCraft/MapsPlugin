@@ -18,7 +18,8 @@ import org.bukkit.inventory.ItemStack;
         gamemodes = {Gamemode.LMS}
 )
 @Attributes(
-        disabledDrops = {Material.COOKED_BEEF}
+        disabledDrops = {Material.COOKED_BEEF},
+        allowPhysicalDamage = true
 )
 public class TNTDM_Alpha extends ArcadeMap implements Listener {
 

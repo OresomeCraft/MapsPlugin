@@ -19,7 +19,8 @@ import org.bukkit.inventory.ItemStack;
 )
 @Attributes(
         allowBuild = false,
-        disabledDrops = {Material.DIAMOND_SPADE, Material.COOKED_BEEF, Material.SNOW_BALL}
+        disabledDrops = {Material.DIAMOND_SPADE, Material.COOKED_BEEF, Material.SNOW_BALL},
+        allowPhysicalDamage = true
 )
 public class Displacement extends PaintBallMap implements Listener {
 

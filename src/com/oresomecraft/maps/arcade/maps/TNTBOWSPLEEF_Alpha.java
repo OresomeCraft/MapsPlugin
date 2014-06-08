@@ -28,7 +28,8 @@ import java.util.List;
 )
 @Attributes(
         allowBuild = false,
-        disabledDrops = {Material.BOW, Material.COOKED_BEEF}
+        disabledDrops = {Material.BOW, Material.COOKED_BEEF},
+        allowPhysicalDamage = true
 )
 public class TNTBOWSPLEEF_Alpha extends ArcadeMap implements Listener {
 

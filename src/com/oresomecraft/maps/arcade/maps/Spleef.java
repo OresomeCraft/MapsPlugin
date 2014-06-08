@@ -21,7 +21,8 @@ import org.bukkit.inventory.ItemStack;
 )
 @Attributes(
         blockBuildLimit = 66,
-        disabledDrops = {Material.DIAMOND_SPADE}
+        disabledDrops = {Material.DIAMOND_SPADE},
+        allowPhysicalDamage = true
 )
 public class Spleef extends ArcadeMap implements Listener {
 

@@ -28,7 +28,8 @@ import java.util.ArrayList;
         gamemodes = {Gamemode.LMS}
 )
 @Attributes(
-        allowBuild = false
+        allowBuild = false,
+        allowPhysicalDamage = true
 )
 public class Raceway_Alpha extends RacewayMap implements Listener {
 

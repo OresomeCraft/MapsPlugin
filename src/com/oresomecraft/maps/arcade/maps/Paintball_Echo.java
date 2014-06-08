@@ -24,7 +24,8 @@ import org.bukkit.inventory.ItemStack;
         allowBuild = false,
         fireSpread = false,
         timeLock = Map.Time.NIGHT,
-        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL}
+        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL},
+        allowPhysicalDamage = true
 )
 public class Paintball_Echo extends TeamPaintBallMap implements Listener {
 

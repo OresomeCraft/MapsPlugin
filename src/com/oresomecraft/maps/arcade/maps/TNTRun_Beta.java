@@ -20,7 +20,8 @@ import org.bukkit.inventory.ItemStack;
 )
 @Attributes(
         allowBuild = false,
-        disabledDrops = {Material.COOKED_BEEF}
+        disabledDrops = {Material.COOKED_BEEF},
+        allowPhysicalDamage = true
 )
 public class TNTRun_Beta extends TNTRunMap implements Listener {
 

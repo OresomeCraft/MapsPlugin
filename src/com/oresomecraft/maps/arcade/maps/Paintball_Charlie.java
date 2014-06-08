@@ -29,7 +29,8 @@ import org.bukkit.potion.PotionEffectType;
 )
 @Attributes(
         allowBuild = false,
-        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL}
+        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL},
+        allowPhysicalDamage = true
 )
 public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
 

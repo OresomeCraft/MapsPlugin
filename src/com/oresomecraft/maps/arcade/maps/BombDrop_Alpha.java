@@ -22,7 +22,8 @@ import org.bukkit.inventory.ItemStack;
 )
 @Attributes(
         allowBuild = false,
-        timeLock = Map.Time.DAY
+        timeLock = Map.Time.DAY,
+        allowPhysicalDamage = false
 )
 public class BombDrop_Alpha extends BombDropMap implements Listener {
 

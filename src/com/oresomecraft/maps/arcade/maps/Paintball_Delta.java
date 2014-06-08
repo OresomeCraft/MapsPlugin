@@ -26,7 +26,8 @@ import org.bukkit.inventory.ItemStack;
 @Attributes(
         allowBuild = false,
         fireSpread = false,
-        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL}
+        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL},
+        allowPhysicalDamage = true
 )
 public class Paintball_Delta extends TeamPaintBallMap implements Listener {
 
