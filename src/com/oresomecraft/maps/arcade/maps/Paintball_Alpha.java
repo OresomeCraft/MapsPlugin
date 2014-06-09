@@ -20,7 +20,8 @@ import org.bukkit.inventory.ItemStack;
 @Attributes(
         allowBuild = false,
         disabledDrops = {Material.DIAMOND_SPADE, Material.COOKED_BEEF, Material.SNOW_BALL},
-        allowPhysicalDamage = true
+        allowPhysicalDamage = true,
+        lives = 2
 )
 public class Paintball_Alpha extends PaintBallMap implements Listener {
 
