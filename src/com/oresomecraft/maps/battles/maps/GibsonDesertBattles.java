@@ -59,10 +59,10 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
         ItemStack BREAD = new ItemStack(Material.BREAD, 8);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack ARROW = new ItemStack(Material.ARROW, 64);
-        ItemStack LADDER = new ItemStack(Material.LADDER, 8);
+        ItemStack LADDER = new ItemStack(Material.LADDER, 4);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack IRON_PICKAXE = new ItemStack(Material.IRON_PICKAXE, 1);
-        ItemStack OAK_LOG = new ItemStack(Material.LOG, 32);
+        ItemStack OAK_LOG = new ItemStack(Material.LOG, 16);
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
 
         ItemStack C = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
@@ -78,7 +78,7 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
         i.setItem(3, IRON_AXE);
         i.setItem(4, BREAD);
         i.setItem(5, HEALTH);
-        i.setItem(6, OAK_LOG);
+        i.setItem(7, OAK_LOG);
         i.setItem(8, LADDER);
         i.setItem(27, ARROW);
     }
@@ -88,7 +88,7 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
         if (event.getBlock().getLocation().getWorld().getName().equals(getName())) {
             if (event.getBlock().getType() == Material.DIAMOND_BLOCK) {
                 event.setCancelled(true);
-                event.getBlock().setType(Material.DIRT);
+                event.getBlock().setType(Material.GOLD_BLOCK);
                 event.getPlayer().sendMessage(ChatColor.RED + "Diamond Blocks are disabled on this map!");
             }
         }
