@@ -82,8 +82,8 @@ public class Omoshiro extends BattleMap implements Listener {
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
-        ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
-        ItemStack IRON_INGOT = new ItemStack(Material.IRON_INGOT, 1);
+        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack IRON_INGOT = new ItemStack(Material.GOLD_INGOT, 1);
         ItemStack ARROW = new ItemStack(Material.ARROW, 64);
         ItemStack COOKED_BEEF = new ItemStack(Material.COOKED_BEEF, 5);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -97,21 +97,21 @@ public class Omoshiro extends BattleMap implements Listener {
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
 
-        ItemUtils.nameItem(STONE_SWORD, ChatColor.BLUE + "Simple Sword");
+        ItemUtils.nameItem(IRON_SWORD, ChatColor.RED + "Ancient Samurai Sword");
 
-        ItemMeta stoneSwordMeta = STONE_SWORD.getItemMeta();
-        List<String> stoneSwordLore = new ArrayList<String>();
-        stoneSwordLore.add(org.bukkit.ChatColor.RED + "A simple sword forged from the stone of Mount Kharumoro.");
-        stoneSwordMeta.setLore(stoneSwordLore);
-        STONE_SWORD.setItemMeta(stoneSwordMeta);
+        ItemMeta ironSwordMeta = IRON_SWORD.getItemMeta();
+        List<String> ironSwordLore = new ArrayList<String>();
+        ironSwordLore.add(org.bukkit.ChatColor.GOLD + "A deadly blade capable of pulverising your opponents to a PULP!");
+        ironSwordMeta.setLore(ironSwordLore);
+        IRON_SWORD.setItemMeta(ironSwordMeta);
  
-        i.setItem(0, STONE_SWORD);
+        i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, COOKED_BEEF);
         i.setItem(3, HEALTH_POTION);
         i.setItem(4, ENCHANTMENT_BOTTLE);
         i.setItem(5, STICK);
-        i.setItem(6, IRON_INGOT);
+        i.setItem(6, GOLD_INGOT);
         i.setItem(10, ARROW);
     }
 
