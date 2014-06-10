@@ -27,7 +27,7 @@ import java.util.List;
 @MapConfig(
         name = "omoshiro",
         fullName = "Omoshiro",
-        creators = {"Mr_Jaskirat", "SereneMango"},
+        creators = {"Mr_Jaskirat", "SereneMango", "#LividiusBuilds"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA}
 )
 @Region(
