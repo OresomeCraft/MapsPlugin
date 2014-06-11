@@ -44,7 +44,7 @@ public abstract class PaintBallMap extends Map {
     }
 
     @EventHandler
-    public void onDamage(final EntityDamageByEntityEvent event) {
+    public void onEntityDamage(final EntityDamageByEntityEvent event) {
         if (event.getEntity().getWorld().getName().equals(getName())) {
             if (event.getDamager() instanceof Snowball && event.getEntity() instanceof Player) {
                 Bukkit.getScheduler().scheduleSyncDelayedTask(MapsPlugin.getInstance(), new Runnable() {

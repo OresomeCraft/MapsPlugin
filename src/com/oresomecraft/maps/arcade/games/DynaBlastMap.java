@@ -21,7 +21,7 @@ public abstract class DynaBlastMap extends Map {
     }
 
     @EventHandler
-    public void onExplode(EntityExplodeEvent event) {
+    public void explode(EntityExplodeEvent event) {
         if (event.getLocation().getWorld().getName().equals(getName())) event.setYield(0);
     }
 

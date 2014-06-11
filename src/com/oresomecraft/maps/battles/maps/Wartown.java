@@ -312,7 +312,7 @@ public class Wartown extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void onBlockPlace(BlockPlaceEvent event) {
+    public void blockPlace(BlockPlaceEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (getMode() != Gamemode.FFA) {
             if (contains(event.getBlockPlaced().getLocation(), 160, 190, 63, 80, -172, -144) || contains(event.getBlockPlaced().getLocation(), 165, 187, 63, 89, -259, -278)) {
@@ -322,7 +322,7 @@ public class Wartown extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void onBlockBreak(BlockBreakEvent event) {
+    public void blockBreak(BlockBreakEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (getMode() != Gamemode.FFA) {
             if (contains(event.getBlock().getLocation(), 160, 190, 63, 80, -172, -144) || contains(event.getBlock().getLocation(), 165, 187, 63, 89, -259, -278)) {

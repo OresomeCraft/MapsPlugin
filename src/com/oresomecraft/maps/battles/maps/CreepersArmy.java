@@ -42,7 +42,7 @@ public class CreepersArmy extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void load(MapLoadEvent event) {
+    public void start(MapLoadEvent event) {
         active = true;
         pass = false;
         Bukkit.broadcastMessage(ChatColor.RED + "INVINCIBILITY WEARS OFF IN 30 SECONDS!");
@@ -100,7 +100,7 @@ public class CreepersArmy extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void onDamage(EntityDamageByEntityEvent event) {
+    public void onEntityDamage(EntityDamageByEntityEvent event) {
         if (!event.getEntity().getWorld().getName().equals(getName())) return;
         if (event.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) event.setCancelled(true);
     }

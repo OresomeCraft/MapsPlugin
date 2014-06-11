@@ -131,7 +131,7 @@ public class Amplitude extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void onDamage(EntityDamageByEntityEvent event) {
+    public void onEntityDamage(EntityDamageByEntityEvent event) {
         if (!event.getEntity().getWorld().getName().equals(getName())) return;
         Player p = (Player) event.getDamager();
 
@@ -168,7 +168,7 @@ public class Amplitude extends BattleMap implements Listener {
 
 
     @EventHandler
-    public void onExplode(EntityExplodeEvent event) {
+    public void explode(EntityExplodeEvent event) {
         if (!event.getLocation().getWorld().getName().equals(getName())) return;
         event.blockList().clear();
     }

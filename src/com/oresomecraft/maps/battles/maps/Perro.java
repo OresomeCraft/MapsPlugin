@@ -285,13 +285,13 @@ public class Perro extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void onBlockBreak(BlockBreakEvent event) {
+    public void blockBreak(BlockBreakEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(getName()) && event.getBlock().getType().getId() != 102)
             event.setCancelled(true);
     }
 
     @EventHandler
-    public void onBlockPlace(BlockPlaceEvent event) {
+    public void blockPlace(BlockPlaceEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(getName())) event.setCancelled(true);
     }
 }

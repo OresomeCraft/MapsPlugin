@@ -425,7 +425,7 @@ public class Courtyard extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void arrowAway(ProjectileHitEvent event) {
+    public void onProjectileHit(ProjectileHitEvent event) {
         org.bukkit.entity.Entity projectile = event.getEntity();
         Location location = projectile.getLocation();
         if (location.getWorld().getName().equals(getName())) {

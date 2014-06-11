@@ -116,7 +116,7 @@ public class Omoshiro extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void arrowAway(ProjectileHitEvent event) {
+    public void onProjectileHit(ProjectileHitEvent event) {
         Entity projectile = event.getEntity();
         Location loc = projectile.getLocation();
         if (loc.getWorld().getName().equals(getName())) {

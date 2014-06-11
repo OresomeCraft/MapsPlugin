@@ -132,7 +132,7 @@ public class Fairwick extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void onBlockBreak(BlockBreakEvent event) {
+    public void blockBreak(BlockBreakEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(getName())) {
             if (event.getBlock().getType().getId() != 102 && event.getBlock().getType().getId() != 5) {
                 event.setCancelled(true);
@@ -145,7 +145,7 @@ public class Fairwick extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void onBlockPlace(BlockPlaceEvent event) {
+    public void blockPlace(BlockPlaceEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(getName())) event.setCancelled(true);
     }
 
