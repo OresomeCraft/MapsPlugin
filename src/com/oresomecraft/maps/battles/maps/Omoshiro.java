@@ -83,7 +83,7 @@ public class Omoshiro extends BattleMap implements Listener {
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-        ItemStack IRON_INGOT = new ItemStack(Material.GOLD_INGOT, 1);
+        ItemStack GOLD_INGOT = new ItemStack(Material.GOLD_INGOT, 1);
         ItemStack ARROW = new ItemStack(Material.ARROW, 64);
         ItemStack COOKED_BEEF = new ItemStack(Material.COOKED_BEEF, 5);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
