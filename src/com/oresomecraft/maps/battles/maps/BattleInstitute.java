@@ -166,8 +166,7 @@ public class BattleInstitute extends BattleMap implements Listener {
                     blue.remove(event.getPlayer().getName());
                 }
             }
-        } catch (Exception e) {
-
+        } catch (Exception ignored) {
         }
     }
 
@@ -178,8 +177,7 @@ public class BattleInstitute extends BattleMap implements Listener {
             if (event.getClickedBlock().getType() == Material.IRON_BLOCK) {
                 join(event.getPlayer().getName());
             }
-        } catch (NullPointerException ex) {
-
+        } catch (NullPointerException ignored) {
         }
     }
 
