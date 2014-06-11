@@ -20,7 +20,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 
 @MapConfig(
         name = "creepers",
@@ -47,13 +46,13 @@ public class CreepersArmy extends BattleMap implements Listener {
         active = true;
         pass = false;
         Bukkit.broadcastMessage(ChatColor.RED + "INVINCIBILITY WEARS OFF IN 30 SECONDS!");
-        new BukkitRunnable() {
+        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             public void run() {
                 if (!active) return;
                 pass = true;
                 Bukkit.broadcastMessage(ChatColor.RED + "Invincibility has worn off, run into humans to infect them!");
             }
-        }.runTaskLater(plugin, 30 * 20L);
+        }, 30 * 20L);
     }
 
     @EventHandler
@@ -69,9 +68,11 @@ public class CreepersArmy extends BattleMap implements Listener {
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 26, 64, -25, 353, -2));
+        FFASpawns.add(new Location(w, 26, 64, -25, 353, -2));
+        FFASpawns.add(new Location(w, 26, 64, -25, 353, -2));
     }
 
-    public void applyInventory(final BattlePlayer p) {
+    public void applyInventory(BattlePlayer p) {
         p.sendMessage(ChatColor.GOLD + "Welcome to Creeper's Army!");
         p.sendMessage(ChatColor.GOLD + "This is a map that specialises in " + ChatColor.BOLD + "OresomeInfected classic-style infection!");
         p.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "RUN INTO PEOPLE TO INFECT THEM!");
@@ -95,7 +96,6 @@ public class CreepersArmy extends BattleMap implements Listener {
                 }
             }
         } catch (Exception ignored) {
-            //Lol getTeam is a fail.
         }
     }
 
