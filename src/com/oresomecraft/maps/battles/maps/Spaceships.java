@@ -11,6 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -83,6 +84,14 @@ public class Spaceships extends BattleMap implements Listener {
     public void explode(EntityExplodeEvent event) {
         if (!event.getLocation().getWorld().getName().equals(getName())) {
             event.setYield(event.getYield() * 2);
+        }
+    }
+
+    @EventHandler
+    public void damage(EntityDamageEvent event) {
+        if (!event.getEntity().getLocation().getWorld().getName().equals(getName())) {
+            if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION || event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION)
+                event.setCancelled(true);
         }
     }
 }
