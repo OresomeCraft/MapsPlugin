@@ -84,19 +84,17 @@ public class CreepersArmy extends BattleMap implements Listener {
     @EventHandler
     public void move(PlayerMoveEvent event) {
         if (!event.getTo().getWorld().getName().equals(getName()) || !active || !pass) return;
-        try {
-            if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.ZOMBIES) {
-                for (Entity entity : event.getPlayer().getNearbyEntities(0.7, 0.7, 0.7)) {
-                    if (entity instanceof Player) {
-                        if (BattlePlayer.getBattlePlayer(((Player) entity)).getTeamType() == Team.HUMANS) {
-                            ((Player) entity).damage(200);
-                            Bukkit.broadcastMessage(event.getPlayer().getDisplayName() + ChatColor.YELLOW + " infected " + ((Player) entity).getDisplayName() + ChatColor.YELLOW + "!");
-                        }
+        if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.ZOMBIES) {
+            for (Entity entity : event.getPlayer().getNearbyEntities(0.7, 0.7, 0.7)) {
+                if (entity instanceof Player) {
+                    if (BattlePlayer.getBattlePlayer(((Player) entity)).getTeamType() == Team.HUMANS) {
+                        ((Player) entity).damage(200);
+                        Bukkit.broadcastMessage(event.getPlayer().getDisplayName() + ChatColor.YELLOW + " infected " + ((Player) entity).getDisplayName() + ChatColor.YELLOW + "!");
                     }
                 }
             }
-        } catch (Exception ignored) {
         }
+
     }
 
     @EventHandler
