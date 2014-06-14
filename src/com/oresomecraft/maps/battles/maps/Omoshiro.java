@@ -42,7 +42,7 @@ import java.util.List;
         tdmTime = 12,
         allowBuild = false,
         timeLock = Map.Time.NIGHT,
-        disabledDrops = {Material.BOW, Material.ARROW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.IRON_SWORD}
+        disabledDrops = {Material.BOW, Material.ARROW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.STONE_SWORD}
 )
 public class Omoshiro extends BattleMap implements Listener {
 
