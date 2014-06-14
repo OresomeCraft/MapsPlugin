@@ -157,7 +157,7 @@ public class Hypno extends BattleMap implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    //@EventHandler(priority = EventPriority.NORMAL)
     public void hypnoGem(EntityDamageByEntityEvent event) {
         Entity damager = event.getDamager();
         Entity entity = event.getEntity();
@@ -187,7 +187,7 @@ public class Hypno extends BattleMap implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    //@EventHandler(priority = EventPriority.NORMAL)
     public void hypnoBangGrenade(ProjectileHitEvent event) {
         Entity entity = event.getEntity();
         Location location = entity.getLocation();
