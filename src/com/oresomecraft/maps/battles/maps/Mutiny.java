@@ -48,7 +48,6 @@ public class Mutiny extends BattleMap implements Listener {
     }
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, 3, 72, -38));
         redSpawns.add(new Location(w, 1, 77, -19));
         redSpawns.add(new Location(w, 1, 70, -60));
         blueSpawns.add(new Location(w, -38, 72, -38));
@@ -57,7 +56,6 @@ public class Mutiny extends BattleMap implements Listener {
     }
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, 3, 72, -38));
         FFASpawns.add(new Location(w, 1, 77, -19));
         FFASpawns.add(new Location(w, 1, 70, -60));
         FFASpawns.add(new Location(w, -38, 72, -38));
