@@ -60,7 +60,6 @@ public class Mansion extends BattleMap implements Listener {
         redSpawns.add(new Location(w, 446, 74, -271));
         blueSpawns.add(new Location(w, 467, 74, -309));
         redSpawns.add(new Location(w, 416, 74, -305));
-        blueSpawns.add(new Location(w, 454, 72, -267));
         redSpawns.add(new Location(w, 467, 64, -264));
         blueSpawns.add(new Location(w, 440, 71, -270));
         redSpawns.add(new Location(w, 465, 74, -274));
@@ -87,7 +86,6 @@ public class Mansion extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 446, 74, -271));
         FFASpawns.add(new Location(w, 467, 74, -310));
         FFASpawns.add(new Location(w, 416, 74, -305));
-        FFASpawns.add(new Location(w, 454, 72, -267));
         FFASpawns.add(new Location(w, 467, 64, -264));
         FFASpawns.add(new Location(w, 440, 71, -270));
         FFASpawns.add(new Location(w, 465, 74, -274));
