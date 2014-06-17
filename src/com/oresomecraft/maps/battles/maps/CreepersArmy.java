@@ -68,8 +68,6 @@ public class CreepersArmy extends BattleMap implements Listener {
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, 26, 64, -25, 353, -2));
-        FFASpawns.add(new Location(w, 26, 64, -25, 353, -2));
-        FFASpawns.add(new Location(w, 26, 64, -25, 353, -2));
     }
 
     public void applyInventory(BattlePlayer p) {
