@@ -36,7 +36,7 @@ import java.util.List;
         name = "hazypass",
         fullName = "Hazy Pass",
         creators = {"AnomalousRei", "__R3", "DanShrdr"},
-        gamemodes = {Gamemode.CTF, Gamemode.TDM, Gamemode.LTS}
+        gamemodes = {Gamemode.CTF, Gamemode.TDM}
 )
 @Region(
         x1 = -42,
