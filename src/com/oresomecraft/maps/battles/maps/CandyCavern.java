@@ -1,5 +1,7 @@
 package com.oresomecraft.maps.battles.maps;
 
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 import org.bukkit.*;
 import org.bukkit.inventory.*;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
@@ -56,34 +58,33 @@ public class CandyCavern extends BattleMap {
         Inventory i = p.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
+        ItemStack BEEF = new ItemStack(Material.COOKED_BEEF, 4);
         ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack ARROW = new ItemStack(Material.ARROW, 64);
 
-        InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
 
-        InvUtils.nameItem(IRON_SWORD, ChatColor.WHITE + "Candy Cruncher");
-        InvUtils.nameItem(Material.BOW, ChatColor.WHITE + "Lolly Lasher");
-        InvUtils.nameItem(Material.COOKED_BEEF, ChatColor.WHITE + "Licorice");
-        InvUtils.nameItem(HEALTH_POTION, ChatColor.WHITE + "Soda");
-        InvUtils.nameItem(Material.ARROW, ChatColor.WHITE + "Gobstopper");
-        
-        // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
-        p.setItem(0, IRON_SWORD);
-        p.setItem(1, Material.BOW, 1);
-        p.setItem(2, Material.COOKED_BEEF, 1);
+        ItemUtils.nameItem(IRON_SWORD, ChatColor.WHITE + "Candy Cruncher");
+        ItemUtils.nameItem(BOW, ChatColor.WHITE + "Lolly Lasher");
+        ItemUtils.nameItem(BEEF, ChatColor.WHITE + "Licorice");
+        ItemUtils.nameItem(HEALTH_POTION, ChatColor.WHITE + "Soda");
+        ItemUtils.nameItem(ARROW, ChatColor.WHITE + "Gobstopper");
 
-        // This is the Bukkit way of doing it
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, BEEF);
         i.setItem(3, HEALTH_POTION);
-        p.setItem(9, Material.ARROW, 64);
+        i.setItem(9, ARROW);
     }
 
 }
