@@ -28,9 +28,9 @@ import com.oresomecraft.OresomeBattles.map.types.BattleMap;
         tdmTime = 10,
         disabledDrops = {Material.BOW, Material.IRON_SWORD, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.LEATHER_CHESTPLATE}
 )
-public class BattleTemplate extends BattleMap {
+public class CandyCavern extends BattleMap {
 
-    public BattleTemplate() {
+    public CandyCavern() {
         super.initiate(this);
     }
 
