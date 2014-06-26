@@ -28,16 +28,16 @@ import com.oresomecraft.OresomeBattles.map.types.BattleMap;
         tdmTime = 10,
         disabledDrops = {Material.BOW, Material.IRON_SWORD, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.LEATHER_CHESTPLATE}
 )
-public class CandyCavern extends BattleMap {
+public class Arcturus extends BattleMap {
 
-    public CandyCavern() {
+    public Arcturus() {
         super.initiate(this);
     }
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, -854, 156, 78, 1, 0));
+        redSpawns.add(new Location(w, 262, 18, 566, 1, 0));
 
-        blueSpawns.add(new Location(w, -825, 150, 128, 179, 0));
+        blueSpawns.add(new Location(w, 261, 18, 743, 179, 0));
         
     }
 
