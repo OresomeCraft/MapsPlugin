@@ -39,6 +39,11 @@ public class Arcturus extends BattleMap {
 
         blueSpawns.add(new Location(w, 261, 18, 743, 179, 0));
         
+        Location redFlag = new Location(w, 261, 39, 601);
+        Location blueFlag = new Location(w, 259, 39, 708);
+        setCTFFlags(name, redFlag, blueFlag);
+        
+        setKoTHMonument(new Location(w, 261, 55, 653));
     }
 
     public void readyFFASpawns() {
