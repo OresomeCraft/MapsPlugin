@@ -26,7 +26,7 @@ import com.oresomecraft.OresomeBattles.map.types.BattleMap;
         allowBuild = false,
         fireSpread = false,
         tdmTime = 10,
-        disabledDrops = {Material.BOW, Material.IRON_SWORD, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.LEATHER_CHESTPLATE}
+        disabledDrops = {Material.BOW, Material.IRON_SWORD, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.LEATHER_CHESTPLATE, Material.DIAMOND_HOE}
 )
 public class Arcturus extends BattleMap {
 
@@ -87,9 +87,35 @@ public class Arcturus extends BattleMap {
         i.setItem(1, BOW);
         i.setItem(2, DIAMOND_HOE);
         i.setItem(3, BOAT);
-        i.setItem(4, STEAK);
-        i.setItem(5, HEALTH_POTION);
+        i.setItem(4, ENDER_PEARL);
+        i.setItem(5, STEAK);
+        i.setItem(6, HEALTH_POTION);
         i.setItem(9, ARROWS);
     }
+        @EventHandler(priority = EventPriority.NORMAL)
+        public void sandstonePick(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        ItemStack itemStack = player.getItemInHand();
+        Material material = itemStack.getType();
+        Action action = event.getAction();
+
+        if (player.getWorld().getName().equals(getName())) {
+
+            if (material == Material.DIAMOND_HOE) {
+
+                if (action == Action.LEFT_CLICK_BLOCK) {
+
+                    BlockFace blockFace = event.getBlockFace();
+                    Block block = event.getClickedBlock();
+                    Material blockMaterial = block.getType();
+
+                    if (blockMaterial == Material.DIAMOND || blockMaterial == Material.SANDSTONE) {
+
+                        if (blockFace != BlockFace.UP && blockFace != BlockFace.DOWN) {
+
+                            player.setVelocity(new Vector(0, 1, 0));
+                            player.setFallDistance(0);
+                            player.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, 79);
+                            
 
 }
