@@ -68,29 +68,28 @@ public class Arcturus extends BattleMap {
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-        ItemStack BOW = new ItemStack(Material.BOW, 1);
+        ItemStack BOW = new ItemStack(Material.BOW, 1);\
+        ItemStack ARROW = new ItemStack(Material.ARROW, 64);
+        ItemStack BOAT = new ItemStack(Material.BOAT, 1);]
+        ItemStack DIAMOND_HOE = new ItemStack(Material.DIAMOND_HOE, 1);
+        ItemStack ENDER_PEARL = new ItemStack(Material.ENDER_PEARL, 1);
 
+        IRON_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 3);
         InvUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
+        ItemUtils.nameItem(DIAMOND_HOE, ChatColor.YELLOW + "Sandstone Hook");
 
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
 
-        InvUtils.nameItem(IRON_SWORD, ChatColor.WHITE + "Candy Cruncher");
-        InvUtils.nameItem(Material.BOW, ChatColor.WHITE + "Lolly Lasher");
-        InvUtils.nameItem(Material.COOKED_BEEF, ChatColor.WHITE + "Licorice");
-        InvUtils.nameItem(HEALTH_POTION, ChatColor.WHITE + "Soda");
-        InvUtils.nameItem(Material.ARROW, ChatColor.WHITE + "Gobstopper");
-        
-        // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
-        p.setItem(0, IRON_SWORD);
-        p.setItem(1, Material.BOW, 1);
-        p.setItem(2, Material.COOKED_BEEF, 1);
-
-        // This is the Bukkit way of doing it
-        i.setItem(3, HEALTH_POTION);
-        p.setItem(9, Material.ARROW, 64);
+        i.setItem(0, IRON_SWORD);
+        i.setItem(1, BOW);
+        i.setItem(2, DIAMOND_HOE);
+        i.setItem(3, BOAT);
+        i.setItem(4, STEAK);
+        i.setItem(5, HEALTH_POTION);
+        i.setItem(9, ARROWS);
     }
 
 }
