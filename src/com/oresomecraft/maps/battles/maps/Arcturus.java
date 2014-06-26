@@ -42,14 +42,16 @@ public class Arcturus extends BattleMap {
     }
 
     public void readyFFASpawns() {
-        FFASpawns.add(new Location(w, -854, 156, 78, 1, 0));
-        FFASpawns.add(new Location(w, -825, 150, 128, 179, 0));
-        FFASpawns.add(new Location(w, -838, 139, 130, 179, 0));
-        FFASpawns.add(new Location(w, -835, 140, 122, 90, 0));
-        FFASpawns.add(new Location(w, -838, 142, 84, 1, 0));
-        FFASpawns.add(new Location(w, -842, 139, 76, 1, 0));
-        FFASpawns.add(new Location(w, -872, 135, 100, -90, 0));
-        FFASpawns.add(new Location(w, -810, 137, 95, 90, 0));
+        FFASpawns.add(new Location(w, 238, 56, 721, -135, 0));
+        FFASpawns.add(new Location(w, 290, 24, 687, 135, 0));
+        FFASpawns.add(new Location(w, 289, 66, 629, 45, 0));
+        FFASpawns.add(new Location(w, 329, 63, 626, 90, 0));
+        FFASpawns.add(new Location(w, 282, 45, 577, 45, 0));
+        FFASpawns.add(new Location(w, 247, 55, 617, -45, 0));
+        FFASpawns.add(new Location(w, 216, 24, 618, -45, 0));
+        FFASpawns.add(new Location(w, 190, 72, 653, -90, 0));
+        FFASpawns.add(new Location(w, 207, 27, 653, -90, 0));
+        FFASpawns.add(new Location(w, 224, 90, 685, -35, 0));
     }
 
     public void applyInventory(final BattlePlayer p) {
