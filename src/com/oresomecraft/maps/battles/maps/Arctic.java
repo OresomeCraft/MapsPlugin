@@ -28,7 +28,7 @@ import org.bukkit.util.Vector;
 @MapConfig(
         name = "arctic",
         fullName = "Arctic",
-        creators = {"Dant35tra5t"},
+        creators = {"Dant35tra5t", "CyclonicCJ"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.KOTH}
 )
 @Region(
