@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "equator",
         fullName = "Equator",
-        creators = {"Afridge1O1", "SuperDuckFace", "Numinex", "XUHAVON", "beadycottonwood", "ViolentShadow"},
+        creators = {"Afridge1O1", "SuperDuckFace", "Kazat", "XUHAVON", "beadycottonwood", "ViolentShadow"},
         gamemodes = {Gamemode.TDM, Gamemode.CTF}
 )
 @Region(
@@ -33,7 +33,7 @@ import org.bukkit.inventory.ItemStack;
 @Attributes(
         allowBuild = false,
         autoSpawnProtection = true,
-        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STAINED_GLASS, Material.LEATHER_HELMET, Material.STONE_SWORD, Material.WOOL}
+        disabledDrops = {Material.IRON_CHESTPLATE, Material.IRON_BOOTS, Material.IRON_LEGGINGS, Material.ARROW, Material.BOW, Material.IRON_HELMET, Material.STONE_SWORD, Material.WOOL}
 )
 public class Equator extends BattleMap implements Listener {
 
@@ -65,11 +65,10 @@ public class Equator extends BattleMap implements Listener {
     public void applyInventory(final BattlePlayer p) {
         Inventory i = p.getInventory();
 
-        ItemStack BLUE_GLASS = new ItemStack(Material.STAINED_GLASS, 1, (short) 11);
-        ItemStack RED_GLASS = new ItemStack(Material.STAINED_GLASS, 1, (short) 14);
-        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-        ItemStack LEATHER_PANTS = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-        ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
+        ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack SWORD = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 5);
@@ -77,14 +76,10 @@ public class Equator extends BattleMap implements Listener {
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 3);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 64);
 
-        ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
-
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-
-        if (p.getTeamType() == Team.TDM_RED) p.getInventory().setHelmet(RED_GLASS);
-        if (p.getTeamType() == Team.TDM_BLUE) p.getInventory().setHelmet(BLUE_GLASS);
+        p.getInventory().setBoots(IRON_BOOTS);
+        p.getInventory().setLeggings(IRON_PANTS);
+        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        p.getInventory().setHelmet(IRON_HELMET);
 
         i.setItem(0, SWORD);
         i.setItem(1, BOW);
