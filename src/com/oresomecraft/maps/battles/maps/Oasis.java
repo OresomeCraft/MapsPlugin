@@ -126,6 +126,7 @@ public class Oasis extends BattleMap implements Listener {
     @EventHandler
     public void move(PlayerMoveEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(getName())) return;
+        if (BattlePlayer.getBattlePlayer(event.getPlayer()).isSpectator()) return;
         if (!(event.getPlayer().getItemInHand().getType() == Material.RED_ROSE)) return;
         for (Block block : circle(event.getPlayer().getLocation(), 3, 3, false, true, 0)) {
             if (block.getType() == Material.WATER || block.getType() == Material.STATIONARY_WATER) {
