@@ -19,7 +19,6 @@ Users with push and pull access to this repo are:
 
 * [Zachoz](https://github.com/Zachoz)
 * [pegabeavercorn](https://github.com/pegabeavercorn)
-* [__R3/AnomalousRei](https://github.com/AnomalousRei)
 * [Huskehhh](https://github.com/Huskehhh)
 * [psgs](https://github.com/psgs)
 * [ScruffyRules](https://github.com/ScruffyRules)
