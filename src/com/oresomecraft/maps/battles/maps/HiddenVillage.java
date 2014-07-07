@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
         name = "hiddenvillage",
         fullName = "Hidden Village",
         creators = {"SuperDuckFace"},
-        gamemodes = {Gamemode.LMS/*, Gamemode.OITC*/}
+        gamemodes = {Gamemode.LMS, Gamemode.OITC}
 )
 @Region(
         x1 = -100,
