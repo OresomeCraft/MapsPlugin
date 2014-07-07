@@ -74,8 +74,8 @@ public class HiddenVillage extends BattleMap implements Listener {
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
-        i.setItem(3, GOLDEN_CARRETS);
-        i.setItem(4, HEALTH);
-        i.setItem(10, ARROWS);
+        i.setItem(2, GOLDEN_CARRETS);
+        i.setItem(3, HEALTH);
+        i.setItem(9, ARROWS);
     }
 }
