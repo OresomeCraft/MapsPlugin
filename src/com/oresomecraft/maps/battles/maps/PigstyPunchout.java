@@ -10,11 +10,11 @@ import org.bukkit.util.Vector;
 import org.bukkit.enchantments.Enchantment;
 
 @MapConfig(
-        name = "punchout",
-        fullName = "Pig Punchout",
+        name = "pigsty",
+        fullName = "Pigsty Punchout",
         creators = {"PyroPolar"},
         gamemodes = {Gamemode.KOTH}
-        //https://www.dropbox.com/home/Bacon%20Battle%20Brawl
+        //https://www.dropbox.com/home/Pigsty%20Punchout
 )
 @Region(
         x1 = -88,
@@ -30,9 +30,9 @@ import org.bukkit.enchantments.Enchantment;
         tdmTime = 10,
         disabledDrops = {Material.BOW, Material.WOOD_SWORD, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.Pork}
 )
-public class PigPunchhout extends BattleMap {
+public class PigstyPunchhout extends BattleMap {
 
-    public PigPunchout() {
+    public PigstyPunchout() {
         super.initiate(this);
     }
 
@@ -64,7 +64,7 @@ public class PigPunchhout extends BattleMap {
         ItemStack GRILLED_PORK = new ItemStack(Material.GRILLED_PORK, 5);
         ItemStack ARROW = new ItemStack(Material.ARROW, 64);
         
-        STONE_SWORD.addUnsafeEnchantment(Enchantment.KNOCKBACK, 5);
+        WOOD_SWORD.addUnsafeEnchantment(Enchantment.KNOCKBACK, 5);
        
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
