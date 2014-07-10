@@ -6,6 +6,8 @@ import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.map.annotations.*;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.util.Vector;
+import org.bukkit.enchantments.Enchantment;
 
 @MapConfig(
         name = "punchout",
@@ -40,6 +42,8 @@ public class PigPunchhout extends BattleMap {
         blueSpawns.add(new Location(w, -137, 53, 1023, -90, 0));
         blueSpawns.add(new Location(w, -116, 53, 1023, 90, 0));
         
+        setKoTHMonument(new Location(w, -126, 58, 989));
+        
     }
 
     public void readyFFASpawns() {
@@ -55,22 +59,54 @@ public class PigPunchhout extends BattleMap {
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
-        ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
-
+        ItemStack IRON_SWORD = new ItemStack(Material.WOOD_SWORD, 1);
+        ItemStack GRILLED_PORK = new ItemStack(Material.GRILLED_PORK, 5);
+        ItemStack ARROW = new ItemStack(Material.ARROW, 64);
+        
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
         p.getInventory().setHelmet(IRON_HELMET);
 
         // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
-        p.setItem(0, IRON_SWORD);
+        p.setItem(0, WOOD_SWORD);
         p.setItem(1, Material.BOW, 1);
-        p.setItem(2, Material.COOKED_BEEF, 1);
+        p.setItem(2, Material.COOKED_PORK, 1);
 
         // This is the Bukkit way of doing it
         i.setItem(3, HEALTH_POTION);
-        p.setItem(8, Material.EXP_BOTTLE, 5);
         p.setItem(9, Material.ARROW, 64);
     }
 
+@EventHandler
+    public void vDeath(EntityDeathEvent event) {
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
+        if (event.getEntity() instanceof Pig) {
+            event.getDrops().clear();
+            ItemStack FIRE = new ItemStack(Material.FIREWORK, new Random().nextInt(3));
+            ItemMeta fMeta = FIRE.getItemMeta();
+            fMeta.setDisplayName(ChatColor.PINK + "Jumppork");
+
+            List<String> fLore = new ArrayList<String>();
+            fLore.add(org.bukkit.ChatColor.BLUE + "Jump high like the pig you just murdered!");
+            fMeta.setLore(fLore);
+            FIRE.setItemMeta(fMeta);
+
+            event.getDrops().add(FIRE);
+        }
+    }
+
+ @EventHandler
+    public void onFireworkUse(PlayerInteractEvent event) {
+        if (getArena().equals(getName())) {
+            Player player = event.getPlayer();
+            if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                if (player.getItemInHand().getType() == Material.FIREWORK) {
+                    player.getInventory().removeItem(new ItemStack(Material.FIREWORK, 1));
+                    player.setVelocity(new Vector(0, 1.05, 0));
+                }
+            }
+        }
+    }
 }
+
