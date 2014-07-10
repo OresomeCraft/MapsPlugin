@@ -14,6 +14,7 @@ import org.bukkit.enchantments.Enchantment;
         fullName = "Pig Punchout",
         creators = {"PyroPolar"},
         gamemodes = {Gamemode.KOTH}
+        //https://www.dropbox.com/home/Bacon%20Battle%20Brawl
 )
 @Region(
         x1 = -88,
@@ -27,7 +28,7 @@ import org.bukkit.enchantments.Enchantment;
         allowBuild = false,
         fireSpread = false,
         tdmTime = 10,
-        disabledDrops = {Material.BOW, Material.IRON_SWORD, Material}
+        disabledDrops = {Material.BOW, Material.WOOD_SWORD, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.Pork}
 )
 public class PigPunchhout extends BattleMap {
 
@@ -63,6 +64,8 @@ public class PigPunchhout extends BattleMap {
         ItemStack GRILLED_PORK = new ItemStack(Material.GRILLED_PORK, 5);
         ItemStack ARROW = new ItemStack(Material.ARROW, 64);
         
+        STONE_SWORD.addUnsafeEnchantment(Enchantment.KNOCKBACK, 5);
+       
         p.getInventory().setBoots(IRON_BOOTS);
         p.getInventory().setLeggings(IRON_PANTS);
         p.getInventory().setChestplate(IRON_CHESTPLATE);
