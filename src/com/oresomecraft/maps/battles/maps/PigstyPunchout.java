@@ -30,7 +30,7 @@ import org.bukkit.enchantments.Enchantment;
         tdmTime = 10,
         disabledDrops = {Material.BOW, Material.WOOD_SWORD, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.Pork}
 )
-public class PigstyPunchhout extends BattleMap {
+public class PigstyPunchout extends BattleMap {
 
     public PigstyPunchout() {
         super.initiate(this);
