@@ -62,6 +62,8 @@ public class HiddenVillage extends BattleMap implements Listener {
         ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack ARROWS = new ItemStack(Material.ARROW, 32);
 
+        if (getMode() == Gamemode.OITC) ARROWS = new ItemStack(Material.ARROW, 1);
+
         ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
