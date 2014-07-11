@@ -1,27 +1,40 @@
-package com.oresomecraft.maps.battles.maps.deprecated;
-
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.inventory.*;
+package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+		name = "skyislands",
+		fullName = "Sky Islands",
+		creators = {"tarko2411", "dutchy336"},
+		gamemodes = {Gamemode.FFA, Gamemode.INFECTION}
+)
+@Region(
+		x1 = 694,
+		y1 = 170,
+		z1 = -1185,
+		x2 = -786,
+		y2 = 170,
+		z2 = -1283
+)
+@Attributes(
+		allowBuild = false,
+		disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD}
+)
 public class Skyislands extends BattleMap implements Listener {
 
     public Skyislands() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
-        setAllowBuild(false);
+        super.initiate(this);
     }
-
-    String name = "skyislands";
-    String fullName = "Sky Islands";
-    String[] creators = {"tarko2411", "dutchy336"};
-    Gamemode[] modes = {Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, 738, 170, -1203, 179, 0);
@@ -64,7 +77,6 @@ public class Skyislands extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 742, 182, -1237, -179, 0));
         FFASpawns.add(new Location(w, 764, 177, -1233, -179, 0));
         FFASpawns.add(new Location(w, 731, 178, -1240, -1, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -95,16 +107,5 @@ public class Skyislands extends BattleMap implements Listener {
 
 
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 694;
-    public int y1 = 170;
-    public int z1 = -1185;
-
-    //Bottom right corner.
-    public int x2 = 786;
-    public int y2 = 170;
-    public int z2 = -1283;
 
 }
