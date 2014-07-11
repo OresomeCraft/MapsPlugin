@@ -31,7 +31,7 @@ import java.util.List;
 @Attributes(
         blockBuildLimit = 66,
         disabledDrops = {Material.DIAMOND_SPADE, Material.COOKED_BEEF},
-        allowPhysicalDamage = true
+        allowPhysicalPlayerDamage = false
 )
 public class Spleef_Charlie extends ArcadeMap implements Listener {
 

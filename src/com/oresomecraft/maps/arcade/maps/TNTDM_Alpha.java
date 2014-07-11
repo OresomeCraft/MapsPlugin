@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 )
 @Attributes(
         disabledDrops = {Material.COOKED_BEEF},
-        allowPhysicalDamage = true
+        allowPhysicalPlayerDamage = false
 )
 public class TNTDM_Alpha extends ArcadeMap implements Listener {
 

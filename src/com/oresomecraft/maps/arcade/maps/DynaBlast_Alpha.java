@@ -27,8 +27,7 @@ import org.bukkit.inventory.ItemStack;
         z2 = -27
 )
 @Attributes(
-        allowBuild = false,
-        allowPhysicalDamage = true
+        allowPhysicalPlayerDamage = false
 )
 public class DynaBlast_Alpha extends DynaBlastMap implements Listener {
 

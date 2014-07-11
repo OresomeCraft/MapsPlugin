@@ -29,7 +29,7 @@ import java.util.ArrayList;
 )
 @Attributes(
         allowBuild = false,
-        allowPhysicalDamage = true
+        allowPhysicalPlayerDamage = false
 )
 public class Raceway_Alpha extends RacewayMap implements Listener {
 
