@@ -13,22 +13,22 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 @MapConfig(
-		name = "skyislands",
-		fullName = "Sky Islands",
-		creators = {"tarko2411", "dutchy336"},
-		gamemodes = {Gamemode.FFA, Gamemode.INFECTION}
+        name = "skyislands",
+        fullName = "Sky Islands",
+        creators = {"tarko2411", "dutchy336"},
+        gamemodes = {Gamemode.FFA, Gamemode.INFECTION}
 )
 @Region(
-		x1 = 694,
-		y1 = 170,
-		z1 = -1185,
-		x2 = -786,
-		y2 = 170,
-		z2 = -1283
+        x1 = 694,
+        y1 = 170,
+        z1 = -1185,
+        x2 = -786,
+        y2 = 170,
+        z2 = -1283
 )
 @Attributes(
-		allowBuild = false,
-		disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD}
+        allowBuild = false,
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD}
 )
 public class Skyislands extends BattleMap implements Listener {
 
