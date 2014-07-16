@@ -46,28 +46,7 @@ public class ClashOfClay extends BattleMap implements Listener {
 
     public ClashOfClay() {
         super.initiate(this);
-
-        try {
-            Field field = Enchantment.class.getDeclaredField("acceptingNew");
-            field.setAccessible(true);
-            field.setBoolean(CLAY, true);
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        if (Enchantment.getById(CLAY.getId()) == null) {
-            Enchantment.registerEnchantment(CLAY);
-            customEnchants.add(CLAY.getId());
-        }
     }
-
-    private transient Enchantment CLAY = new Clay(666);
-    private static List<Integer> customEnchants = new ArrayList<Integer>();
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -22, 81, 8));
@@ -97,7 +76,6 @@ public class ClashOfClay extends BattleMap implements Listener {
         LEATHER_CHESTPLATE.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-        BOW.addEnchantment(CLAY, 1);
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(DIAMOND_HELMET);
 
@@ -133,33 +111,4 @@ public class ClashOfClay extends BattleMap implements Listener {
         }
     }
 
-    public class Clay extends Enchantment {
-        public Clay(int id) {
-            super(id);
-        }
-
-        public boolean canEnchantItem(ItemStack item) {
-            return true;
-        }
-
-        public boolean conflictsWith(Enchantment other) {
-            return false;
-        }
-
-        public EnchantmentTarget getItemTarget() {
-            return EnchantmentTarget.WEAPON;
-        }
-
-        public int getMaxLevel() {
-            return 1;
-        }
-
-        public String getName() {
-            return "Clay";
-        }
-
-        public int getStartLevel() {
-            return 1;
-        }
-    }
 }
