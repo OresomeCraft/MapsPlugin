@@ -127,7 +127,7 @@ public class Dusk extends BattleMap implements Listener {
                 LUCKY_CANE.setItemMeta(caneMeta);
                 LUCKY_CANE.setAmount(1);
                 if (!Arrays.asList(items).contains(LUCKY_CANE))
-                    items[items.length + 1] = LUCKY_CANE;
+                    items[items.length - 1] = LUCKY_CANE;
                 player.getInventory().removeItem(LUCKY_CANE);
                 Inventory inventory = Bukkit.createInventory(null, 18);
                 for (ItemStack itemStack : items) {
