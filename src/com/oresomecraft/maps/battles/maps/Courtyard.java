@@ -40,7 +40,7 @@ import java.util.List;
 @MapConfig(
         name = "courtyard",
         fullName = "Wolfston Courtyard",
-        creators = {" __R3", "reggie449", "_Arch_Rider", "Boomyay", "123Oblivious"},
+        creators = {"__R3", "reggie449", "_Arch_Rider", "Boomyay", "123Oblivious"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(

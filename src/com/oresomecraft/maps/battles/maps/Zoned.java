@@ -29,7 +29,7 @@ import java.util.List;
 @MapConfig(
         name = "zoned",
         fullName = "Zoned",
-        creators = {" __R3", "MiCkEyMiCE", "_Moist"},
+        creators = {"__R3", "MiCkEyMiCE", "_Moist"},
         gamemodes = {Gamemode.INFECTION, Gamemode.KOTH, Gamemode.LTS}
 )
 @Region(

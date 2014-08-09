@@ -24,7 +24,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "geomancy",
         fullName = "Geomancy",
-        creators = {" __R3", " ep1cn00bt00b"},
+        creators = {"__R3", " ep1cn00bt00b"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(

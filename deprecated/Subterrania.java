@@ -26,7 +26,7 @@ public class Subterrania extends BattleMap implements Listener {
 
     String name = "subterrania";
     String fullName = "Subterrania";
-    String[] creators = {" __R3", "_Moist"};
+    String[] creators = {"__R3", "_Moist"};
     Gamemode[] modes = {Gamemode.FFA, Gamemode.TDM};
 
     public void readyTDMSpawns() {

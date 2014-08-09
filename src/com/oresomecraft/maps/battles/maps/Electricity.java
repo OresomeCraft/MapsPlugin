@@ -20,7 +20,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "electricity",
         fullName = "Electricity",
-        creators = {"kingfisher83", "danielschroeder", " __R3", "_Moist"},
+        creators = {"kingfisher83", "danielschroeder", "__R3", "_Moist"},
         gamemodes = {Gamemode.TDM, Gamemode.INFECTION}
 )
 @Region(
