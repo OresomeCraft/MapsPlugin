@@ -34,7 +34,8 @@ import org.bukkit.util.Vector;
 )
 @Attributes(
         allowBuild = false,
-        disabledDrops = {Material.ARROW, Material.BOW, Material.STONE_SWORD, Material.LEATHER_HELMET}
+        disabledDrops = {Material.ARROW, Material.BOW, Material.STONE_SWORD,
+                Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS}
 )
 public class Roseley extends BattleMap implements Listener {
 

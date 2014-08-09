@@ -40,8 +40,8 @@ public class TaleOfTwo extends BattleMap implements Listener {
     }
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, 0.5, 58.5, 1.5, 0, 2));
-        blueSpawns.add(new Location(w, 0.5, 58.5, -49.5, 0, 0));
+        blueSpawns.add(new Location(w, 0.5, 58.5, 1.5, 0, 0));
+        redSpawns.add(new Location(w, 0.5, 58.5, -49.5, 0, 2));
     }
 
     public void readyFFASpawns() {

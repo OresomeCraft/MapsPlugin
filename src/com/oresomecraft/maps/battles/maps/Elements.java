@@ -22,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,7 +103,11 @@ public class Elements extends BattleMap implements Listener {
         p.getInventory().setChestplate(LEATHER_CHESTPLATE);
         p.getInventory().setHelmet(LEATHER_HELMET);
 
-        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15 * 60 * 20, 1));
+        new BukkitRunnable() {
+            public void run() {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15 * 60 * 20, 1));
+            }
+        }.runTaskLater(plugin, 10L);
     }
 
     @EventHandler
