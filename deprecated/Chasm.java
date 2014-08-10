@@ -1,4 +1,4 @@
-package com.oresomecraft.maps.battles.maps.deprecated;
+package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
 import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
