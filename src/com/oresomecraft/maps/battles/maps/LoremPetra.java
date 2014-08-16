@@ -8,9 +8,9 @@ import com.oresomecraft.OresomeBattles.map.annotations.*;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 
 @MapConfig(
-        name = “LoremPetra”,
-        fullName = “Lorem “Petra,
-        creators = {“SuperDuck”Face and Ninsai”},
+        name = "LoremPetra",
+        fullName = "Lorem Petra",
+        creators = {"SuperDuckFace", "ninsai"},
         gamemodes = {Gamemode.TDM, Gamemode.LTS}
 )
 @Region(
@@ -27,9 +27,9 @@ import com.oresomecraft.OresomeBattles.map.types.BattleMap;
         tdmTime = 8,
         disabledDrops = {Material.BOW, Material.IRON_SWORD}
 )
-public class BattleTemplate extends BattleMap {
+public class LoremPetra extends BattleMap {
 
-    public BattleTemplate() {
+    public LoremPetra() {
         super.initiate(this);
     }
 
