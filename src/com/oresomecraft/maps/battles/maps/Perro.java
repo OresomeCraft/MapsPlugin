@@ -34,12 +34,6 @@ import org.bukkit.util.Vector;
         creators = {"zachoz", "pegabeavercorn", "Dogmode555"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION}
 )
-//    public int x1 = -1451;
-//    public int y1 = 63;
-//    public int z1 = -2145;
-//    public int x2 = -1383;
-//    public int y2 = 159;
-//    public int z2 = -2066;
 @Region(
         x1 = -1451,
         y1 = 63,
@@ -269,7 +263,7 @@ public class Perro extends BattleMap implements Listener {
                         for (Entity arrow : world.getEntities()) {
                             if (arrow != null) {
                                 if (arrow instanceof Arrow) {
-                                    world.playEffect(arrow.getLocation(), Effect.SMOKE, 10);
+                                    world.playEffect(arrow.getLocation(), Effect.SMOKE, 4);
                                 }
                             }
                         }
