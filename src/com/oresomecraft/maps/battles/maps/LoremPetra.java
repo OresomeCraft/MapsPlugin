@@ -8,7 +8,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.*;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 
 @MapConfig(
-        name = "LoremPetra",
+        name = "lorempetra",
         fullName = "Lorem Petra",
         creators = {"SuperDuckFace", "ninsai"},
         gamemodes = {Gamemode.TDM, Gamemode.LTS}
