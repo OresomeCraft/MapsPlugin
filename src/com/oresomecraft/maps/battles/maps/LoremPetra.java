@@ -35,9 +35,6 @@ public class LoremPetra extends BattleMap {
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 1, 41, 81, 14, 99));
-}
-
-
         blueSpawns.add(new Location(w, -29, 82, -7, 3,-780));
     }
 
@@ -61,7 +58,7 @@ public class LoremPetra extends BattleMap {
         p.getInventory().setHelmet(IRON_HELMET);
 
         // setItem() is a BattlePlayer method. Makes giving items a bit quicker.
-        p.setItem(0, IRON_SWORD);
+        p.setItem(0, Material.IRON_SWORD, 1);
         p.setItem(1, Material.BOW, 1);
         p.setItem(2, Material.COOKED_BEEF, 5);
 
