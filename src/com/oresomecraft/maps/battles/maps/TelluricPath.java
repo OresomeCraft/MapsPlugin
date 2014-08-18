@@ -153,7 +153,9 @@ public class TelluricPath extends BattleMap implements Listener {
     @EventHandler
     public void death(EntityDeathEvent event) {
         if (!event.getEntity().getWorld().getName().equals(getName())) return;
-        event.getDrops().clear();
-        if (Math.random() >= 0.6) event.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
+        if (event.getEntity() instanceof Enderman) {
+            event.getDrops().clear();
+            if (Math.random() >= 0.6) event.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
+        }
     }
 }
