@@ -34,7 +34,7 @@ public class LoremPetra extends BattleMap {
     }
 
     public void readyTDMSpawns() {
-        redSpawns.add(new Location(w, 1, 41, 81, 14, 99));
+        redSpawns.add(new Location(w, 41, 81, 14, 99));
         blueSpawns.add(new Location(w, -29, 82, -7, 3,-780));
     }
 
