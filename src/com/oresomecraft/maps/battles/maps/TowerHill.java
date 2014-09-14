@@ -1,30 +1,40 @@
-package com.oresomecraft.maps.battles.maps.deprecated;
+package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
 import org.bukkit.potion.*;
 
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-
-@MapConfig
+@MapConfig(
+        name = "towerhill",
+        fullName = "Tower Hill",
+        creators =  {"Hourani95"},
+        gamemodes = {Gamemode.INFECTION, Gamemode.TDM, Gamemode.FFA}
+)
+@Region(
+        x1 = -84,
+        y1 = 153,
+        z1 = 43,
+        x2 = 22,
+        y2 = 23,
+        z2 = -67
+)
+@Attributes(
+        allowBuild = true,
+        disabledDrops = {Material.ARROW, Material.GOLD_BOOTS, Material.GOLD_CHESTPLATE, Material.GOLD_LEGGINGS, Material.GOLD_HELMET, Material.IRON_SWORD, Material.BOW}
+)
 public class TowerHill extends BattleMap implements Listener {
 
     public TowerHill() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.ARROW, Material.GOLD_BOOTS, Material.GOLD_CHESTPLATE, Material.GOLD_LEGGINGS, Material.GOLD_HELMET, Material.IRON_SWORD, Material.BOW});
-        setAllowBuild(false);
+        super.initiate(this);
     }
-
-    // Map details
-    String name = "towerhill";
-    String fullName = "Tower Hill";
-    String[] creators = {"Hourani95"};
-    Gamemode[] modes = {Gamemode.INFECTION, Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
 
@@ -51,7 +61,6 @@ public class TowerHill extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, -12, 75, -7, 89, 0));
         FFASpawns.add(new Location(w, -57, 71, -26, -62, 0));
         FFASpawns.add(new Location(w, -56, 75, -8, -89, 0));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -83,15 +92,5 @@ public class TowerHill extends BattleMap implements Listener {
         p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
 
     }
-
-    // Top left corner.
-    public int x1 = -84;
-    public int y1 = 153;
-    public int z1 = 43;
-
-    //Bottom right corner.
-    public int x2 = 22;
-    public int y2 = 23;
-    public int z2 = -67;
 
 }

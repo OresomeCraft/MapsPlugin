@@ -1,29 +1,41 @@
-package com.oresomecraft.maps.battles.maps.deprecated;
+package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.event.*;
 import org.bukkit.inventory.*;
 
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-
-@MapConfig
+@MapConfig(
+        name = "sunshine",
+        fullName = "Sunshine",
+        creators =  {"__R3", "am51407", "_Moist"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA}
+)
+@Region(
+        x1 = -58,
+        y1 = 160,
+        z1 = -51,
+        x2 = 56,
+        y2 = 68,
+        z2 = 58
+)
+@Attributes(
+        allowBuild = true,
+        disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.BOW, Material.LEATHER_HELMET,
+                Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.WOOD_SWORD},
+        timeLock = Map.Time.DAY
+)
 public class Sunshine extends BattleMap implements Listener {
 
     public Sunshine() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.BOW, Material.LEATHER_HELMET,
-                Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.WOOD_SWORD});
-        lockTime("day");
+        super.initiate(this);
     }
-
-    String name = "sunshine";
-    String fullName = "Sunshine";
-    String[] creators = {"__R3", "am51407", "_Moist"};
-    Gamemode[] modes = {Gamemode.KOTH};
 
     public void readyTDMSpawns() {
         blueSpawns.add(new Location(w, -37, 89, 2));
@@ -59,14 +71,4 @@ public class Sunshine extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -58;
-    public int y1 = 160;
-    public int z1 = -51;
-
-    //Bottom right corner.
-    public int x2 = 56;
-    public int y2 = 68;
-    public int z2 = 58;
 }

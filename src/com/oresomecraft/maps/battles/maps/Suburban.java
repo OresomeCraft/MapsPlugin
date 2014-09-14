@@ -1,9 +1,11 @@
-package com.oresomecraft.maps.battles.maps.deprecated;
+package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -13,18 +15,28 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "suburban",
+        fullName = "Suburban Complex",
+        creators = {"__R3", "DanShrdr", "kalikakitty"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA}
+)
+@Region(
+        x1 = 525,
+        y1 = 0,
+        z1 = 578,
+        x2 = -44,
+        y2 = 232,
+        z2 = 1136
+)
+@Attributes(
+        mergeTools = true
+)
 public class Suburban extends BattleMap implements Listener {
 
     public Suburban() {
-        super.initiate(this, name, fullName, creators, modes);
-        setToolMerge(true);
+        super.initiate(this);
     }
-
-    String name = "suburban";
-    String fullName = "Suburban Complex";
-    String[] creators = {"__R3", "DanShrdr", "kalikakitty"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA};
 
     public void readyTDMSpawns() {
         blueSpawns.add(new Location(w, 360, 40, -482));
@@ -50,7 +62,6 @@ public class Suburban extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 326, 53, -448));
         FFASpawns.add(new Location(w, 364, 54, -529));
         FFASpawns.add(new Location(w, 437, 58, -482));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -82,21 +93,10 @@ public class Suburban extends BattleMap implements Listener {
         i.setItem(8, STONE);
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 525;
-    public int y1 = 0;
-    public int z1 = 578;
-
-    //Bottom right corner.
-    public int x2 = -44;
-    public int y2 = 232;
-    public int z2 = 1136;
-
     @EventHandler
     public void breakListener(BlockBreakEvent event) {
         Location loc = event.getBlock().getLocation();
-        if (loc.getWorld().getName().equals(name)) {
+        if (loc.getWorld().getName().equals(getName())) {
 
             if (event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 363, 54, -483)) <= 10) {
                 if (getMode() == Gamemode.KOTH)
@@ -108,7 +108,7 @@ public class Suburban extends BattleMap implements Listener {
     @EventHandler
     public void placeListener(BlockPlaceEvent event) {
         Location loc = event.getBlock().getLocation();
-        if (loc.getWorld().getName().equals(name)) {
+        if (loc.getWorld().getName().equals(getName())) {
 
             if (event.getBlock().getLocation().distance(new Location(event.getBlock().getWorld(), 363, 54, -483)) <= 10) {
                 if (getMode() == Gamemode.KOTH)

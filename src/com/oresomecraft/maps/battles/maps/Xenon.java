@@ -1,30 +1,41 @@
-package com.oresomecraft.maps.battles.maps.deprecated;
+package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.*;
 
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-
-@MapConfig
+@MapConfig(
+        name = "xenon",
+        fullName = "Xenon",
+        creators = {"kalikakitty"},
+        gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION}
+)
+@Region(
+        x1 = 7,
+        y1 = 66,
+        z1 = 52,
+        x2 = 93,
+        y2 = 0,
+        z2 = -37
+)
+@Attributes(
+        disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD},
+        allowBuild = false,
+        pearlDamage = false
+)
 public class Xenon extends BattleMap implements Listener {
 
     public Xenon() {
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
-        setAllowBuild(false);
-        disablePearlDamage(true);
+        super.initiate(this);
     }
-
-    String name = "xenon";
-    String fullName = "Xenon";
-    String[] creators = {"kalikakitty"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, 33, 2, 25);
@@ -45,7 +56,6 @@ public class Xenon extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 17, 2, 5));
         FFASpawns.add(new Location(w, 53, 3, -36));
         FFASpawns.add(new Location(w, 53, 11, 5));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
@@ -75,20 +85,9 @@ public class Xenon extends BattleMap implements Listener {
         i.setItem(9, ARROWS);
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 7;
-    public int y1 = 66;
-    public int z1 = 52;
-
-    //Bottom right corner.
-    public int x2 = 93;
-    public int y2 = 0;
-    public int z2 = -37;
-
     @EventHandler
     public void onFireBow(EntityShootBowEvent event) {
-        if (getArena().equals(name)) {
+        if (getArena().equals(getName())) {
             if (event.getEntityType() == EntityType.PLAYER) {
 
                 Player player = (Player) event.getEntity();
