@@ -8,8 +8,8 @@ import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 @MapConfig(
         name = "laststand",
@@ -50,7 +50,7 @@ public class LastStand extends BattleMap {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        PlayerInventory i = p.getInventory();
 
         ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
