@@ -1,16 +1,12 @@
 package com.oresomecraft.maps.battles.maps;
 
 import org.bukkit.*;
-import org.bukkit.inventory.*;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.map.annotations.*;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.Location;
-import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -36,16 +32,6 @@ import org.bukkit.inventory.ItemStack;
 		Material.CHAINMAIL_LEGGINGS, Material.CHAINMAIL_CHESTPLATE, 
 		Material.IRON_HELMET, Material.COOKED_BEEF}
 )
-@EventHandler
-    public void protection(org.bukkit.event.block.BlockBreakEvent event) {
-        org.bukkit.block.Block b = event.getBlock();
-        int mat = b.getTypeId();
-        if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
-            if (mat != 102) { //Make glass pane breakable
-                event.setCancelled(true);
-            }
-        }
-    }
 public class Arsvilla extends BattleMap {
 
     public Arsvilla() {
@@ -106,6 +92,17 @@ public class Arsvilla extends BattleMap {
         i.setItem(2, STEAK);
         i.setItem(3, HEALTH_POTION);
         i.setItem(9, ARROWS);
+    }
+
+    @EventHandler
+    public void protection(org.bukkit.event.block.BlockBreakEvent event) {
+        org.bukkit.block.Block b = event.getBlock();
+        int mat = b.getTypeId();
+        if (event.getBlock().getLocation().getWorld().getName().equals(getName())) {
+            if (mat != 102) { //Make glass pane breakable
+                event.setCancelled(true);
+            }
+        }
     }
 
 }
