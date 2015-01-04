@@ -50,13 +50,4 @@ public class TropicalBeach extends OresomeKartMap implements Listener {
         // No items needed
     }
 
-    @EventHandler
-    public void onKartMove(PlayerMoveEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
-        List<Material> allowedSurfaces = new ArrayList<Material>(Arrays.asList(Material.COAL_BLOCK, Material.QUARTZ_BLOCK, Material.GOLD_BLOCK));
-        if (!allowedSurfaces.contains(event.getTo().getBlock().getType())) {
-            event.getPlayer().setHealth(event.getPlayer().getHealth() - 0.3);
-        }
-    }
-
 }
