@@ -134,6 +134,9 @@ public class Amplitude extends BattleMap implements Listener {
     public void onEntityDamage(EntityDamageByEntityEvent event) {
         if (!event.getEntity().getWorld().getName().equals(getName())) return;
         Player p = (Player) event.getDamager();
+        Player dm = (Player) event.getEntity();
+
+        dm.setTotalExperience(0);
 
         if (p.getTotalExperience() >= 50) {
             int strikes = 20;

@@ -180,10 +180,12 @@ public class Courtyard extends BattleMap implements Listener {
                         ammo.setDisplayName(ChatColor.BLUE + "Ammunition");
                         AMMO.setItemMeta(ammo);
 
-                        player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET, 1));
-                        player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE, 1));
-                        player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
-                        player.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS, 1));
+                        player.getInventory().setHelmet(new ItemStack(Material.CHAINMAIL_HELMET, 1));
+                        ItemStack LEATHER_CHESTPLATE2 = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+                        ArmourUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(player), new ItemStack[]{LEATHER_CHESTPLATE2});
+                        player.getInventory().setChestplate(LEATHER_CHESTPLATE2);
+                        player.getInventory().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS, 1));
+                        player.getInventory().setBoots(new ItemStack(Material.GOLD_BOOTS, 1));
 
                         player.getInventory().setItem(0, new ItemStack(Material.STONE_SWORD, 1));
                         player.getInventory().setItem(1, BLAZE_ROD);
@@ -218,7 +220,7 @@ public class Courtyard extends BattleMap implements Listener {
                         player.getInventory().setLeggings(new ItemStack(Material.GOLD_LEGGINGS, 1));
                         player.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
 
-                        player.getInventory().setItem(0, new ItemStack(Material.IRON_SWORD, 1));
+                        player.getInventory().setItem(0, new ItemStack(Material.DIAMOND_SWORD, 1));
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
                         player.updateInventory();
                         break;
@@ -271,9 +273,9 @@ public class Courtyard extends BattleMap implements Listener {
                         break;
 
                     case SCOUT:
-                        ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-                        ArmourUtils.colourArmourAccordingToTeam(BattlePlayer.getBattlePlayer(player), new ItemStack[]{LEATHER_CHESTPLATE});
-                        player.getInventory().setChestplate(LEATHER_CHESTPLATE);
+                        ItemStack CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
+                        player.getInventory().setChestplate(CHESTPLATE);
+                        player.getInventory().setBoots(new ItemStack(Material.GOLD_BOOTS));
 
                         player.getInventory().setItem(0, new ItemStack(Material.WOOD_SWORD, 1));
                         player.getInventory().setItem(1, new ItemStack(Material.COOKED_BEEF, 3));
