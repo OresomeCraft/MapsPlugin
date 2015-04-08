@@ -24,7 +24,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 @MapConfig(
         name = "creepers",
         fullName = "[Classic] Creeper's Army",
-        creators = {"__R3"},
+        creators = {"iR3"},
         gamemodes = {Gamemode.INFECTION}
 )
 @Region(

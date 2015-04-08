@@ -26,7 +26,7 @@ import java.util.Random;
 @MapConfig(
         name = "battlereverie",
         fullName = "The Battle Reverie",
-        creators = {"__R3"},
+        creators = {"iR3"},
         gamemodes = {Gamemode.FFA}
 )
 @Attributes(

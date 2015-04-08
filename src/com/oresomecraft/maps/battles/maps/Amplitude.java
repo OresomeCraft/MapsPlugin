@@ -22,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "amplitude",
         fullName = "Amplitude",
-        creators = {"xXxTakumaxXx", "__R3", "Fliine"},
+        creators = {"xXxTakumaxXx", "iR3", "Fliine"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA}
 )
 @Region(
@@ -134,6 +134,9 @@ public class Amplitude extends BattleMap implements Listener {
     public void onEntityDamage(EntityDamageByEntityEvent event) {
         if (!event.getEntity().getWorld().getName().equals(getName())) return;
         Player p = (Player) event.getDamager();
+        Player dm = (Player) event.getEntity();
+
+        dm.setTotalExperience(0);
 
         if (p.getTotalExperience() >= 50) {
             int strikes = 20;

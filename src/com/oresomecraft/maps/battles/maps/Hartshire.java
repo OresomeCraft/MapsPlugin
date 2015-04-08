@@ -25,7 +25,7 @@ import org.bukkit.potion.PotionEffectType;
 @MapConfig(
         name = "hartshire",
         fullName = "Hartshire",
-        creators = {"__R3", " kalikakitty", " xannallax33"},
+        creators = {"iR3", " kalikakitty", " xannallax33"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION}
 )
 @Region(

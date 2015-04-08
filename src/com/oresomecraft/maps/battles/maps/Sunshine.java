@@ -14,7 +14,7 @@ import org.bukkit.inventory.*;
 @MapConfig(
         name = "sunshine",
         fullName = "Sunshine",
-        creators =  {"__R3", "am51407", "_Moist"},
+        creators =  {"iR3", "am51407", "_Moist"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA}
 )
 @Region(

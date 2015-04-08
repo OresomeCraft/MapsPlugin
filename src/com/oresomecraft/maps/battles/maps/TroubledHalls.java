@@ -26,7 +26,7 @@ import java.util.Arrays;
 @MapConfig(
         name = "halls",
         fullName = "Troubled Halls",
-        creators = {"__R3", "nitro20021", "Elite_Killer1"},
+        creators = {"iR3", "nitro20021", "Elite_Killer1"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(

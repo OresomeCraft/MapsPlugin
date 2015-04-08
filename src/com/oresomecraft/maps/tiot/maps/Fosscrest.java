@@ -13,7 +13,7 @@ import org.bukkit.event.Listener;
 @MapConfig(
         name = "fosscrest",
         fullName = "Fosscrest Village",
-        creators = {"__R3", "danielschroeder", "xXJazzerXx"},
+        creators = {"iR3", "danielschroeder", "xXJazzerXx"},
         gamemodes = {Gamemode.TIOT}
 )
 @Attributes(

@@ -18,7 +18,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "suburban",
         fullName = "Suburban Complex",
-        creators = {"__R3", "DanShrdr", "kalikakitty"},
+        creators = {"iR3", "DanShrdr", "kalikakitty"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA}
 )
 @Region(

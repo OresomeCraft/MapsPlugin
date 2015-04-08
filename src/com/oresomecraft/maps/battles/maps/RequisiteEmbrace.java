@@ -22,7 +22,7 @@ import org.bukkit.util.Vector;
 @MapConfig(
         name = "requisiteembrace",
         fullName = "Requisite Embrace",
-        creators = {"__R3"},
+        creators = {"iR3"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(

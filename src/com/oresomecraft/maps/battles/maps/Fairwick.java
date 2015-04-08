@@ -30,7 +30,7 @@ import java.util.List;
 @MapConfig(
         name = "fairwick",
         fullName = "Fairwick Village",
-        creators = {"__R3"},
+        creators = {"iR3"},
         gamemodes = {Gamemode.CTF}
 )
 @Region(

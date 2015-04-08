@@ -27,7 +27,7 @@ import java.util.List;
 @MapConfig(
         name = "gravity",
         fullName = "Distortion",
-        creators = {"__R3"},
+        creators = {"iR3"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(
