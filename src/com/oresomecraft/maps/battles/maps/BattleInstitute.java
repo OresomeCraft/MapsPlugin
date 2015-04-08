@@ -29,7 +29,7 @@ import java.util.Random;
 @MapConfig(
         name = "battleinstitute",
         fullName = "The Battle Institute",
-        creators = {"__R3"},
+        creators = {"iR3"},
         gamemodes = {Gamemode.LTS}
 )
 @Region(

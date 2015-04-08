@@ -32,7 +32,7 @@ import java.util.Random;
 @MapConfig(
         name = "eriden",
         fullName = "Eriden Falls",
-        creators = {"__R3", "DanShrdr"},
+        creators = {"iR3", "DanShrdr"},
         gamemodes = {Gamemode.CTF, Gamemode.TDM}
 )
 @Region(

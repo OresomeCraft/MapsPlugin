@@ -30,7 +30,7 @@ import java.util.List;
 @MapConfig(
         name = "plasiaus",
         fullName = "Plasiaus Village",
-        creators = {"__R3", "kytron", "DanShrdr"},
+        creators = {"iR3", "kytron", "DanShrdr"},
         gamemodes = {Gamemode.CTF, Gamemode.INFECTION}
 )
 @Region(

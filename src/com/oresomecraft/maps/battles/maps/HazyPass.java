@@ -35,7 +35,7 @@ import java.util.List;
 @MapConfig(
         name = "hazypass",
         fullName = "Hazy Pass",
-        creators = {"AnomalousRei", "__R3", "DanShrdr"},
+        creators = {"AnomalousRei", "iR3", "DanShrdr"},
         gamemodes = {Gamemode.CTF, Gamemode.TDM}
 )
 @Region(

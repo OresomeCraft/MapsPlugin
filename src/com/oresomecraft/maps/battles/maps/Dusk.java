@@ -28,7 +28,7 @@ import java.util.List;
 @MapConfig(
         name = "dusk",
         fullName = "Darkness of Dusk",
-        creators = {"xannallax33", "dinner1111", "pepsidawg00", "__R3"},
+        creators = {"xannallax33", "dinner1111", "pepsidawg00", "iR3"},
         gamemodes = {Gamemode.INFECTION}
 )
 @Region(

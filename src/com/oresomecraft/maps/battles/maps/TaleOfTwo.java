@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "taleoftwo",
         fullName = "Tale of Two",
-        creators = {"__R3", "AnomalousDyna"},
+        creators = {"iR3", "AnomalousDyna"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(

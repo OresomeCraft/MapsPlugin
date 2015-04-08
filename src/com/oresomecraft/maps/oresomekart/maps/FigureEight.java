@@ -13,7 +13,7 @@ import org.bukkit.event.Listener;
 @MapConfig(
         name = "figureeight",
         fullName = "Figure Eight Circuit",
-        creators = {"__R3", "reggie449", "miniwolf35", "TiniDaDominator"},
+        creators = {"iR3", "reggie449", "miniwolf35", "TiniDaDominator"},
         gamemodes = {Gamemode.ORESOMEKART}
 )
 @Attributes(

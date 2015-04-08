@@ -22,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "amplitude",
         fullName = "Amplitude",
-        creators = {"xXxTakumaxXx", "__R3", "Fliine"},
+        creators = {"xXxTakumaxXx", "iR3", "Fliine"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA}
 )
 @Region(

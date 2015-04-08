@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "spaceships",
         fullName = "SpaceShips",
-        creators = {"sampighere", "zachoz", "__R3"},
+        creators = {"sampighere", "zachoz", "iR3"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(

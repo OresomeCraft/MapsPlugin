@@ -21,7 +21,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "clashofclayii",
         fullName = "Clash Of Clay II",
-        creators = {"_Moist", "__R3"},
+        creators = {"_Moist", "iR3"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(

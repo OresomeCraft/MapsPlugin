@@ -29,7 +29,7 @@ import java.util.List;
 @MapConfig(
         name = "telluricpath",
         fullName = "Telluric Path",
-        creators = {"__R3"},
+        creators = {"iR3"},
         gamemodes = {Gamemode.CTF, Gamemode.TDM}
 )
 @Region(

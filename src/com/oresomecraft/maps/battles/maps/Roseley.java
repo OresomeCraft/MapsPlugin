@@ -21,7 +21,7 @@ import org.bukkit.util.Vector;
 @MapConfig(
         name = "roseley",
         fullName = "Roseley",
-        creators = {"__R3"},
+        creators = {"iR3"},
         gamemodes = {Gamemode.KOTH, Gamemode.INFECTION}
 )
 @Region(

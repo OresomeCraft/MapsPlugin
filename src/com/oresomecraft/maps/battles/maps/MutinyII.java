@@ -26,7 +26,7 @@ import java.util.List;
 @MapConfig(
         name = "mutinyii",
         fullName = "Mutiny II",
-        creators = {"__R3", "Buster1824", "MiCkEyMiCE"},
+        creators = {"iR3", "Buster1824", "MiCkEyMiCE"},
         gamemodes = {Gamemode.TDM}
 )
 //    public int x1 = 52;

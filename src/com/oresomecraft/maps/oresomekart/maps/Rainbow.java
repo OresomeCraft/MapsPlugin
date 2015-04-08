@@ -13,7 +13,7 @@ import org.bukkit.event.Listener;
 @MapConfig(
         name = "rainbow_ok",
         fullName = "Rainbow Road Power Build",
-        creators = {"__R3", "reggie449", "WiiiFreak123"},
+        creators = {"iR3", "reggie449", "WiiiFreak123"},
         gamemodes = {Gamemode.ORESOMEKART}
 )
 @Attributes(
