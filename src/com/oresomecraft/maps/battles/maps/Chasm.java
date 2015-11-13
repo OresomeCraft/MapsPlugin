@@ -1,37 +1,53 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.block.*;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
-import org.bukkit.event.*;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.*;
-import org.bukkit.util.Vector;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
+import com.oresomecraft.OresomeBattles.map.Map;
+import com.oresomecraft.OresomeBattles.map.annotations.*;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
-@MapConfig
+@MapConfig(
+        name = "chasm",
+        fullName = "The Chasm",
+        creators = {"Heartist", "danshrdr", "Krontezian", "Trilexium"},
+        gamemodes = {Gamemode.TDM, Gamemode.CTF}
+)
+@Region(
+        x1 = -26,
+        y1 = 140,
+        z1 = 59,
+        x2 = 119,
+        y2 = -8,
+        z2 = -181
+)
+@Attributes(
+        allowBuild = false,
+        fireSpread = false,
+        autoSpawnProtection = true,
+        timeLock = Map.Time.DAY,
+        tdmTime = 10,
+        disabledDrops = {Material.STONE_HOE, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.LEATHER_HELMET, Material.STONE_SWORD}
+)
 public class Chasm extends BattleMap implements Listener {
 
     public Chasm() {
-        setAllowBuild(false);
-        super.initiate(this, name, fullName, creators, modes);
-        disableDrops(new Material[]{Material.STONE_HOE, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.LEATHER_HELMET, Material.STONE_SWORD});
-        lockTime("day");
-        setAutoSpawnProtection(10);
+        super.initiate(this);
     }
-
-    String name = "chasm";
-    String fullName = "The Chasm";
-    String[] creators = {"__R3, danielschroder", "Krontezian", "AnomalousDyna"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
 
     public void readyTDMSpawns() {
 
@@ -43,7 +59,7 @@ public class Chasm extends BattleMap implements Listener {
 
         Location redFlag = new Location(w, 48, 88, -132);
         Location blueFlag = new Location(w, 54, 88, 4);
-        setCTFFlags(name, redFlag, blueFlag);
+        setCTFFlags(null, redFlag, blueFlag);
         setKoTHMonument(new Location(w, 51, 92, -64));
     }
 
@@ -52,11 +68,11 @@ public class Chasm extends BattleMap implements Listener {
         Location blueSpawn = new Location(w, 93, 92, 28);
         FFASpawns.add(redSpawn);
         FFASpawns.add(blueSpawn);
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
@@ -74,10 +90,10 @@ public class Chasm extends BattleMap implements Listener {
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
         LEATHER_HELMET.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 4);
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setBoots(LEATHER_BOOTS);
+        pl.getInventory().setLeggings(LEATHER_PANTS);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
@@ -88,26 +104,15 @@ public class Chasm extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -26;
-    public int y1 = 140;
-    public int z1 = 59;
-
-    //Bottom right corner.
-    public int x2 = 119;
-    public int y2 = -8;
-    public int z2 = -181;
-
     @EventHandler(priority = EventPriority.NORMAL)
     public void icePick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         ItemStack itemStack = player.getItemInHand();
         Material material = itemStack.getType();
         Action action = event.getAction();
-        World world = Bukkit.getWorld(name);
+        World world = Bukkit.getWorld(getName());
 
-        if (event.getPlayer().getWorld().getName().equals(name)) {
+        if (event.getPlayer().getWorld().getName().equals(getName())) {
             if (material == Material.STONE_HOE) {
                 if (action == Action.LEFT_CLICK_BLOCK) {
                     BlockFace blockFace = event.getBlockFace();

@@ -7,6 +7,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -26,7 +27,7 @@ import java.util.List;
 @MapConfig(
         name = "mutiny",
         fullName = "Mutiny",
-        creators = {"AnomalousDyna", "JacquiRose"},
+        creators = {"Trilexium", "JacquiRose", "Heartist"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(
@@ -64,7 +65,8 @@ public class Mutiny extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
@@ -89,10 +91,10 @@ public class Mutiny extends BattleMap implements Listener {
 
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
-        p.getInventory().setBoots(DIAMOND_BOOTS);
-        p.getInventory().setLeggings(GOLD_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setBoots(DIAMOND_BOOTS);
+        pl.getInventory().setLeggings(GOLD_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, AXE);
         i.setItem(1, BOW);

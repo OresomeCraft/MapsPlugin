@@ -6,8 +6,10 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -54,7 +56,8 @@ public class HiddenVillage extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -69,10 +72,10 @@ public class HiddenVillage extends BattleMap implements Listener {
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 
-        p.getInventory().setHelmet(IRON_HELMET);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setHelmet(IRON_HELMET);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setBoots(IRON_BOOTS);
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);

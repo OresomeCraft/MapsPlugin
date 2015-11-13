@@ -7,11 +7,12 @@ import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
 import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.maps.arcade.games.BombDropMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -37,7 +38,8 @@ public class BombDrop_Delta extends BombDropMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         i.setItem(0, STEAK);
     }

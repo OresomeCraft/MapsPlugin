@@ -7,9 +7,11 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -20,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "desert",
         fullName = "Gibson Desert Battles",
-        creators = {"_Moist", "niceman506"},
+        creators = {"huego", "niceman506"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(
@@ -53,7 +55,8 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack IRON_AXE = new ItemStack(Material.IRON_AXE, 1);
         ItemStack BREAD = new ItemStack(Material.BREAD, 8);
@@ -69,8 +72,8 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
         ItemStack B = new ItemStack(Material.LEATHER_BOOTS, 1);
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{C, B});
 
-        p.getInventory().setBoots(B);
-        p.getInventory().setChestplate(C);
+        pl.getInventory().setBoots(B);
+        pl.getInventory().setChestplate(C);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);

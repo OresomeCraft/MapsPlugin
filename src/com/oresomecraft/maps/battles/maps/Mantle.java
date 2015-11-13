@@ -1,31 +1,48 @@
-package com.oresomecraft.maps.battles.maps.deprecated;
+package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-@MapConfig
+@MapConfig(
+        name = "mantle",
+        fullName = "The Mantle",
+        creators = {"Heartist"},
+        gamemodes = {Gamemode.CTF}
+)
+@Region(
+        x1 = 28,
+        y1 = 61,
+        z1 = -42,
+        x2 = -86,
+        y2 = 117,
+        z2 = 185
+)
+@Attributes(
+        allowBuild = false,
+        fireSpread = false,
+        tdmTime = 10,
+        autoSpawnProtection = true,
+        spawnProtectionDuration = 3,
+        disabledDrops = {Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.WOOL}
+)
 public class Mantle extends BattleMap implements Listener {
 
     public Mantle() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        setAutoSpawnProtection(3);
-        disableDrops(new Material[]{Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.WOOL});
+        super.initiate(this);
     }
-
-    String name = "mantle";
-    String fullName = "The Mantle";
-    String[] creators = {"__R3"};
-    Gamemode[] modes = {Gamemode.CTF};
 
     public void readyTDMSpawns() {
 
@@ -34,17 +51,17 @@ public class Mantle extends BattleMap implements Listener {
 
         Location redFlag = new Location(w, -35, 86, 121);
         Location blueFlag = new Location(w, -35, 86, 17);
-        setCTFFlags(name, redFlag, blueFlag);
+        setCTFFlags(getName(), redFlag, blueFlag);
     }
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -16, 84, 128));
         FFASpawns.add(new Location(w, -50, 84, 11));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.GOLDEN_APPLE, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
@@ -56,10 +73,10 @@ public class Mantle extends BattleMap implements Listener {
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(IRON_HELMET);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setHelmet(IRON_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -69,20 +86,9 @@ public class Mantle extends BattleMap implements Listener {
 
     }
 
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 28;
-    public int y1 = 61;
-    public int z1 = -42;
-
-    //Bottom right corner.
-    public int x2 = -86;
-    public int y2 = 117;
-    public int z2 = 185;
-
     @EventHandler(ignoreCancelled = false)
     public void onWoolDrop(BlockBreakEvent event) {
-        if (event.getBlock().getLocation().getWorld().getName().equals(name)) {
+        if (event.getBlock().getLocation().getWorld().getName().equals(getName())) {
             event.setCancelled(true);
             if (event.getBlock().getType() == Material.WOOL) {
                 event.getBlock().getDrops().clear();

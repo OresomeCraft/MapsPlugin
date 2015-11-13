@@ -29,7 +29,7 @@ import java.util.Random;
 @MapConfig(
         name = "battleinstitute",
         fullName = "The Battle Institute",
-        creators = {"__R3"},
+        creators = {"Heartist"},
         gamemodes = {Gamemode.LTS}
 )
 @Region(
@@ -46,6 +46,13 @@ import java.util.Random;
 )
 public class BattleInstitute extends BattleMap implements Listener {
 
+    ArrayList<String> red = new ArrayList<String>();
+    ArrayList<String> blue = new ArrayList<String>();
+    String currentRed = "None";
+    String currentBlue = "None";
+    boolean blueEnter = false;
+    boolean redEnter = false;
+
     public BattleInstitute() {
         super.initiate(this);
     }
@@ -61,17 +68,9 @@ public class BattleInstitute extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
+        Player pl = Bukkit.getPlayer(p.getName());
         p.sendMessage(ChatColor.GOLD + "Wait until you are called and then punch the block!");
     }
-
-    ArrayList<String> red = new ArrayList<String>();
-    ArrayList<String> blue = new ArrayList<String>();
-
-    String currentRed = "None";
-    String currentBlue = "None";
-
-    boolean blueEnter = false;
-    boolean redEnter = false;
 
     @EventHandler
     public void end(BattleEndEvent event) {
@@ -156,7 +155,8 @@ public class BattleInstitute extends BattleMap implements Listener {
 
             // This is the blocked stuff
             if (!event.getPlayer().getWorld().getName().equals(getName())) return;
-            if (event.getMessage().toLowerCase().startsWith("/potion") || event.getMessage().toLowerCase().startsWith("/dog")) event.setCancelled(true);
+            if (event.getMessage().toLowerCase().startsWith("/potion") || event.getMessage().toLowerCase().startsWith("/dog"))
+                event.setCancelled(true);
             if (event.getMessage().toLowerCase().startsWith("/leave") || event.getMessage().toLowerCase().startsWith("/spectate")) {
                 if (red.contains(event.getPlayer().getName()) || blue.contains(event.getPlayer().getName())) {
                     Bukkit.broadcastMessage(ChatColor.RED + event.getPlayer().getName() + " left the round!!");

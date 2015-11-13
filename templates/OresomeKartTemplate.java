@@ -1,11 +1,10 @@
 package com.oresomecraft.maps.oresomekart.maps;
 
-import org.bukkit.*;
-import org.bukkit.inventory.*;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.OresomeBattles.map.annotations.*;
 import com.oresomecraft.OresomeBattles.map.types.OresomeKartMap;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 @MapConfig(
         name = "kart",
@@ -46,6 +45,7 @@ public class OresomeKartTemplate extends OresomeKartMap {
     }
 
     public void applyInventory(final BattlePlayer p) {
+        Player pl = Bukkit.getPlayer(p.getName());
         // No items needed
     }
 

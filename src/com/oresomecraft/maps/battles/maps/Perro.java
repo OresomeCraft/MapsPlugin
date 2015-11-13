@@ -47,6 +47,8 @@ import org.bukkit.util.Vector;
 )
 public class Perro extends BattleMap implements Listener {
 
+    public int particles;
+
     public Perro() {
         super.initiate(this);
     }
@@ -108,7 +110,8 @@ public class Perro extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
@@ -126,10 +129,10 @@ public class Perro extends BattleMap implements Listener {
         fishing_rod.setDisplayName(ChatColor.BLUE + "Grappling hook");
         FISHING_ROD.setItemMeta(fishing_rod);
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(IRON_HELMET);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setHelmet(IRON_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -138,7 +141,7 @@ public class Perro extends BattleMap implements Listener {
         i.setItem(3, STEAK);
         i.setItem(4, HEALTH_POTION);
         i.setItem(9, ARROWS);
-        p.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
+        pl.getInventory().getBoots().addEnchantment(Enchantment.PROTECTION_FALL, 4);
 
 
     }
@@ -250,8 +253,6 @@ public class Perro extends BattleMap implements Listener {
         }
 
     }
-
-    public int particles;
 
     @EventHandler
     public void arrowParticles(MapLoadEvent event) {

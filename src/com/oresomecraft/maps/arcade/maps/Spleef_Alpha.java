@@ -6,9 +6,11 @@ import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.types.ArcadeMap;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -22,7 +24,7 @@ import org.bukkit.inventory.ItemStack;
 @Attributes(
         blockBuildLimit = 105,
         disabledDrops = {Material.DIAMOND_SPADE, Material.COOKED_BEEF},
-		allowPhysicalPlayerDamage = false
+        allowPhysicalPlayerDamage = false
 )
 public class Spleef_Alpha extends ArcadeMap implements Listener {
 
@@ -39,7 +41,8 @@ public class Spleef_Alpha extends ArcadeMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack DIAMOND_SPADE = new ItemStack(Material.DIAMOND_SPADE, 1);
         ItemStack SNOW_BALL = new ItemStack(Material.SNOW_BALL, 16);

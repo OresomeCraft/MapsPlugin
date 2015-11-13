@@ -8,9 +8,11 @@ import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import com.oresomecraft.OresomeBattles.teams.Team;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -21,7 +23,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "clashofclayii",
         fullName = "Clash Of Clay II",
-        creators = {"_Moist", "__R3"},
+        creators = {"huego", "Heartist"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(
@@ -59,7 +61,8 @@ public class ClashOfClayII extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1, (short) -16373);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -76,7 +79,7 @@ public class ClashOfClayII extends BattleMap implements Listener {
 
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
         STONE_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 100);
 

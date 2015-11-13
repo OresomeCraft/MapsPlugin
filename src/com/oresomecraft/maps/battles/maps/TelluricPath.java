@@ -6,10 +6,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
-import org.bukkit.ChatColor;
-import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Player;
@@ -29,7 +26,7 @@ import java.util.List;
 @MapConfig(
         name = "telluricpath",
         fullName = "Telluric Path",
-        creators = {"__R3"},
+        creators = {"Heartist"},
         gamemodes = {Gamemode.CTF, Gamemode.TDM}
 )
 @Region(
@@ -46,8 +43,8 @@ import java.util.List;
         pearlDamage = false,
         autoSpawnProtection = true,
         disabledDrops = {Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.IRON_PICKAXE, Material.BOW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS,
-        Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE, Material.IRON_PICKAXE,
-        Material.ENDER_PEARL}
+                Material.LEATHER_LEGGINGS, Material.STONE_SWORD, Material.FERMENTED_SPIDER_EYE, Material.IRON_PICKAXE,
+                Material.ENDER_PEARL}
 )
 public class TelluricPath extends BattleMap implements Listener {
 
@@ -76,7 +73,8 @@ public class TelluricPath extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1, (short) -16373);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -118,10 +116,10 @@ public class TelluricPath extends BattleMap implements Listener {
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
         POISON.addUnsafeEnchantment(Enchantment.DAMAGE_ARTHROPODS, 1);
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setBoots(LEATHER_BOOTS);
+        pl.getInventory().setLeggings(LEATHER_PANTS);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);

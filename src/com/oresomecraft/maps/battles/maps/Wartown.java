@@ -46,6 +46,8 @@ import java.util.List;
 )
 public class Wartown extends BattleMap implements Listener {
 
+    public int particles;
+
     public Wartown() {
         super.initiate(this);
     }
@@ -86,7 +88,8 @@ public class Wartown extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);
@@ -120,10 +123,10 @@ public class Wartown extends BattleMap implements Listener {
         gun_powder.setLore(gunPowderLore);
         GUN_POWDER.setItemMeta(gun_powder);
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(IRON_HELMET);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setHelmet(IRON_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BLAZE_ROD);
@@ -203,8 +206,6 @@ public class Wartown extends BattleMap implements Listener {
             }
         }
     }
-
-    public int particles;
 
     public void arrowParticles() {
 

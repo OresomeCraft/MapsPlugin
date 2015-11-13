@@ -22,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "amplitude",
         fullName = "Amplitude",
-        creators = {"xXxTakumaxXx", "__R3", "Fliine"},
+        creators = {"Heartist"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA}
 )
 @Region(
@@ -39,6 +39,8 @@ import org.bukkit.inventory.ItemStack;
         disabledDrops = {Material.ARROW, Material.IRON_CHESTPLATE, Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET}
 )
 public class Amplitude extends BattleMap implements Listener {
+
+    public int auraBlast;
 
     public Amplitude() {
         super.initiate(this);
@@ -74,7 +76,8 @@ public class Amplitude extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -90,10 +93,10 @@ public class Amplitude extends BattleMap implements Listener {
         ItemUtils.nameItem(IRON_SWORD, ChatColor.BLUE + "Aura Sword");
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setBoots(LEATHER_BOOTS);
+        pl.getInventory().setLeggings(LEATHER_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -101,8 +104,6 @@ public class Amplitude extends BattleMap implements Listener {
         i.setItem(4, BREAD);
         i.setItem(11, ARROWS);
     }
-
-    public int auraBlast;
 
     public void amplitudeTimer() {
         Bukkit.getServer().getScheduler().cancelTask(auraBlast);

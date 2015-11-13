@@ -24,7 +24,7 @@ import java.util.List;
 @MapConfig(
         name = "nuketown",
         fullName = "NukeTown",
-        creators = {"Htban", "proportion", "reub_youtube"},
+        creators = {"Htgitbannedgan", "proportion", "reub_youtube"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION}
 )
 @Region(
@@ -100,7 +100,8 @@ public class Nuketown extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
@@ -114,10 +115,10 @@ public class Nuketown extends BattleMap implements Listener {
 
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(IRON_HELMET);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setHelmet(IRON_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);

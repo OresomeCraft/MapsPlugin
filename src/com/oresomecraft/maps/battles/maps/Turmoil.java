@@ -6,8 +6,10 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -18,7 +20,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 @MapConfig(
         name = "turmoil",
         fullName = "Turmoil",
-        creators = {"ShaunDepro97"},
+        creators = {"Synxi"},
         gamemodes = {Gamemode.FFA}
 )
 @Region(
@@ -65,7 +67,8 @@ public class Turmoil extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        final Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack IRON_CHESTPLATE = new ItemStack(Material.IRON_CHESTPLATE, 1);
@@ -73,9 +76,9 @@ public class Turmoil extends BattleMap implements Listener {
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
 
         i.setItem(0, IRON_SWORD);
         p.setItem(1, Material.BOW, 1);
@@ -85,8 +88,8 @@ public class Turmoil extends BattleMap implements Listener {
 
         new BukkitRunnable() {
             public void run() {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600 * 20, 1));
-                p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 1));
+                pl.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600 * 20, 1));
+                pl.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 1));
             }
         }.runTaskLater(plugin, 10L);
     }

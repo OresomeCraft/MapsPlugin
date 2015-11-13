@@ -1,12 +1,11 @@
 package com.oresomecraft.maps.tiot.maps;
 
-import org.bukkit.*;
-import org.bukkit.inventory.*;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.OresomeBattles.map.annotations.*;
 import com.oresomecraft.OresomeBattles.map.types.TiOTMap;
 import com.oresomecraft.OresomeBattles.region.CuboidRegion;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 @MapConfig(
         name = "template",
@@ -43,6 +42,7 @@ public class TiotTemplate extends TiOTMap {
     }
 
     public void applyInventory(final BattlePlayer p) {
+        Player pl = Bukkit.getPlayer(p.getName());
         // No predefined inventory
     }
 

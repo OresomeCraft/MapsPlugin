@@ -1,27 +1,35 @@
 package com.oresomecraft.maps.battles.maps.deprecated;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.event.Listener;
-import org.bukkit.inventory.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.battles.BattleMap;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 
 @MapConfig
 public class Relation extends BattleMap implements Listener {
+
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = 92;
+    public int y1 = 256;
+    public int z1 = 92;
+    //Bottom right corner.
+    public int x2 = 38;
+    public int y2 = 1;
+    public int z2 = 38;
+    String name = "relation";
+    String fullName = "Relation";
+    String[] creators = {"ShaunDepro97"};
+    Gamemode[] modes = {Gamemode.FFA};
 
     public Relation() {
         super.initiate(this, name, fullName, creators, modes);
         disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
         setAllowBuild(false);
     }
-
-    String name = "relation";
-    String fullName = "Relation";
-    String[] creators = {"ShaunDepro97"};
-    Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, 64, 76, 64, 2, 0);
@@ -56,7 +64,8 @@ public class Relation extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
@@ -67,9 +76,9 @@ public class Relation extends BattleMap implements Listener {
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -78,16 +87,5 @@ public class Relation extends BattleMap implements Listener {
         i.setItem(9, ARROWS);
 
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 92;
-    public int y1 = 256;
-    public int z1 = 92;
-
-    //Bottom right corner.
-    public int x2 = 38;
-    public int y2 = 1;
-    public int z2 = 38;
 
 }

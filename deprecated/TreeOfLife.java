@@ -1,26 +1,36 @@
 package com.oresomecraft.maps.battles.maps.deprecated;
 
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.*;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 import java.util.Random;
 
 @MapConfig
 public class TreeOfLife extends BattleMap implements Listener {
+
+    // Top Left
+    public int x1 = 181;
+    public int y1 = 224;
+    public int z1 = -138;
+    // Bottom Right
+    public int x2 = -40;
+    public int y2 = 25;
+    public int z2 = 111;
+    String name = "treeoflife";
+    String fullName = "Tree of Life";
+    String[] creators = {"Corrigan1998"};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public TreeOfLife() {
         super.initiate(this, name, fullName, creators, modes);
@@ -28,11 +38,6 @@ public class TreeOfLife extends BattleMap implements Listener {
         setAllowBuild(false);
         setAutoSpawnProtection(2);
     }
-
-    String name = "treeoflife";
-    String fullName = "Tree of Life";
-    String[] creators = {"Corrigan1998"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
 
@@ -60,7 +65,8 @@ public class TreeOfLife extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -82,10 +88,10 @@ public class TreeOfLife extends BattleMap implements Listener {
         potion.setDisplayName(ChatColor.GREEN + "Potion of Life");
         HEALTH_POTION.setItemMeta(potion);
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(IRON_HELMET);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setHelmet(IRON_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -95,15 +101,6 @@ public class TreeOfLife extends BattleMap implements Listener {
         i.setItem(14, ARROWS);
 
     }
-
-    // Top Left
-    public int x1 = 181;
-    public int y1 = 224;
-    public int z1 = -138;
-    // Bottom Right
-    public int x2 = -40;
-    public int y2 = 25;
-    public int z2 = 111;
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {

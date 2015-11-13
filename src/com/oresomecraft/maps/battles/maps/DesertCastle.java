@@ -47,6 +47,8 @@ import org.bukkit.util.Vector;
 )
 public class DesertCastle extends BattleMap implements Listener {
 
+    public int particles;
+
     public DesertCastle() {
         super.initiate(this);
     }
@@ -72,7 +74,8 @@ public class DesertCastle extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
@@ -92,10 +95,10 @@ public class DesertCastle extends BattleMap implements Listener {
 
         IRON_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 4);
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(IRON_HELMET);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setHelmet(IRON_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -200,8 +203,6 @@ public class DesertCastle extends BattleMap implements Listener {
         }
 
     }
-
-    public int particles;
 
     @EventHandler
     public void arrowParticles(MapLoadEvent event) {

@@ -6,6 +6,7 @@ import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.types.ArcadeMap;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -52,7 +53,8 @@ public class Spleef_Charlie extends ArcadeMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack DIAMOND_SPADE = new ItemStack(Material.DIAMOND_SPADE, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
@@ -75,7 +77,7 @@ public class Spleef_Charlie extends ArcadeMap implements Listener {
 
         Player player = event.getPlayer();
         Action action = event.getAction();
-        
+
         if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
             if (player.getItemInHand().getType() == Material.DIAMOND_SPADE) {
                 player.launchProjectile(Snowball.class);

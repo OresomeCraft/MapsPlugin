@@ -6,16 +6,21 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.event.*;
-import org.bukkit.inventory.*;
-import org.bukkit.potion.*;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 @MapConfig(
         name = "towerhill",
         fullName = "Tower Hill",
-        creators =  {"Hourani95"},
+        creators = {"Hourani95"},
         gamemodes = {Gamemode.INFECTION, Gamemode.TDM, Gamemode.FFA}
 )
 @Region(
@@ -64,7 +69,8 @@ public class TowerHill extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
@@ -78,10 +84,10 @@ public class TowerHill extends BattleMap implements Listener {
 
         GOLD_BOOTS.addEnchantment(Enchantment.PROTECTION_FALL, 2);
 
-        p.getInventory().setBoots(GOLD_BOOTS);
-        p.getInventory().setLeggings(GOLD_PANTS);
-        p.getInventory().setChestplate(GOLD_CHESTPLATE);
-        p.getInventory().setHelmet(GOLD_HELMET);
+        pl.getInventory().setBoots(GOLD_BOOTS);
+        pl.getInventory().setLeggings(GOLD_PANTS);
+        pl.getInventory().setChestplate(GOLD_CHESTPLATE);
+        pl.getInventory().setHelmet(GOLD_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -89,7 +95,7 @@ public class TowerHill extends BattleMap implements Listener {
         i.setItem(3, HEALTH_POTION);
         i.setItem(35, ARROWS);
 
-        p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
+        pl.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5 * 20, 2));
 
     }
 

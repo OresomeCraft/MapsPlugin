@@ -26,7 +26,7 @@ import java.util.Random;
 @MapConfig(
         name = "battlereverie",
         fullName = "The Battle Reverie",
-        creators = {"__R3"},
+        creators = {"Heartist"},
         gamemodes = {Gamemode.FFA}
 )
 @Attributes(
@@ -35,6 +35,17 @@ import java.util.Random;
         disabledDrops = {Material.POTION, Material.COOKED_BEEF, Material.BOW, Material.ARROW, Material.CHAINMAIL_HELMET, Material.GOLD_CHESTPLATE, Material.IRON_LEGGINGS, Material.DIAMOND_BOOTS, Material.IRON_SWORD}
 )
 public class BattleReverie extends BattleMap implements Listener {
+
+    public boolean ac = false;
+    public boolean acc = false;
+    String p1 = "???";
+    String p2 = "???";
+    String p3 = "???";
+    String p4 = "???";
+    String np1 = "???";
+    String np2 = "???";
+    String np3 = "???";
+    String np4 = "???";
 
     public BattleReverie() {
         super.initiate(this);
@@ -63,22 +74,10 @@ public class BattleReverie extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
+        Player pl = Bukkit.getPlayer(p.getName());
         p.sendMessage(ChatColor.GOLD + "Welcome to The Battle Reverie!");
         p.sendMessage(ChatColor.GOLD + "This is an arena that specialises in " + ChatColor.BOLD + "quadruple brawling!");
     }
-
-    public boolean ac = false;
-    public boolean acc = false;
-
-    String p1 = "???";
-    String p2 = "???";
-    String p3 = "???";
-    String p4 = "???";
-
-    String np1 = "???";
-    String np2 = "???";
-    String np3 = "???";
-    String np4 = "???";
 
     @EventHandler
     public void quit(PlayerQuitEvent event) {
@@ -139,9 +138,9 @@ public class BattleReverie extends BattleMap implements Listener {
             np1 = getRandom(1);
         if (getInGame().size() > 1)
             np2 = getRandom(2);
-        if (getInGame().size()  > 2)
+        if (getInGame().size() > 2)
             np3 = getRandom(3);
-        if (getInGame().size()  > 3)
+        if (getInGame().size() > 3)
             np4 = getRandom(4);
         if (!ac) return;
         Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] " + ChatColor.GOLD + "The following players have been chosen!");

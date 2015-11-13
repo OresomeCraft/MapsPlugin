@@ -31,12 +31,6 @@ import org.bukkit.util.Vector;
         creators = {"AnomalousRei", "dutchy336", "tarko2411", "PMC"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA}
 )
-//    public int x1 = 525;
-//    public int y1 = 0;
-//    public int z1 = 578;
-//    public int x2 = -44;
-//    public int y2 = 232;
-//    public int z2 = 1136;
 @Region(
         x1 = 525,
         y1 = 0,
@@ -108,7 +102,8 @@ public class Solitude extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         // Items
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
@@ -202,10 +197,10 @@ public class Solitude extends BattleMap implements Listener {
 
         }
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setBoots(LEATHER_BOOTS);
+        pl.getInventory().setLeggings(LEATHER_PANTS);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -214,7 +209,7 @@ public class Solitude extends BattleMap implements Listener {
         i.setItem(4, HEALTH_POTION);
         i.setItem(9, ARROWS);
 
-        p.getInventory().getBoots().addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 9);
+        pl.getInventory().getBoots().addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 9);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)

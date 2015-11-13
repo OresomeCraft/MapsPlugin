@@ -13,6 +13,7 @@ import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -46,6 +47,8 @@ import java.util.List;
 )
 public class Omoshiro extends BattleMap implements Listener {
 
+    public int particles;
+
     public Omoshiro() {
         super.initiate(this);
     }
@@ -55,7 +58,7 @@ public class Omoshiro extends BattleMap implements Listener {
         redSpawns.add(new Location(w, 218, 19, 1478, -3, 0));
         redSpawns.add(new Location(w, 175, 18, 1483, -7, 0));
         redSpawns.add(new Location(w, 215, 22, 1492, -9, 0));
-        
+
         blueSpawns.add(new Location(w, 181, 21, 1529, -179, 0));
         blueSpawns.add(new Location(w, 210, 22, 1542, 155, 0));
         blueSpawns.add(new Location(w, 236, 21, 1516, 174, 0));
@@ -74,7 +77,8 @@ public class Omoshiro extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
@@ -92,10 +96,10 @@ public class Omoshiro extends BattleMap implements Listener {
 
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS, LEATHER_HELMET});
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setBoots(LEATHER_BOOTS);
+        pl.getInventory().setLeggings(LEATHER_PANTS);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
 
         ItemUtils.nameItem(IRON_SWORD, ChatColor.RED + "Ancient Samurai Sword");
 
@@ -104,7 +108,7 @@ public class Omoshiro extends BattleMap implements Listener {
         ironSwordLore.add(org.bukkit.ChatColor.GOLD + "A deadly blade capable of pulverising your opponents to a PULP!");
         ironSwordMeta.setLore(ironSwordLore);
         IRON_SWORD.setItemMeta(ironSwordMeta);
- 
+
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
         i.setItem(2, COOKED_BEEF);
@@ -126,8 +130,6 @@ public class Omoshiro extends BattleMap implements Listener {
             }
         }
     }
-
-    public int particles;
 
     @EventHandler
     public void arrowParticles(WorldLoadEvent event) {

@@ -1,14 +1,10 @@
 package com.oresomecraft.maps.battles.maps.deprecated;
 
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -20,17 +16,26 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig
 public class GrandCanyon extends BattleMap implements Listener {
 
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = -69;
+    public int y1 = 140;
+    public int z1 = -45;
+    //Bottom right corner.
+    public int x2 = 70;
+    public int y2 = 26;
+    public int z2 = 163;
+    String name = "grandcanyon";
+    String fullName = "Grand Canyon";
+    String[] creators = {"jslsa", "Corrigan1998"};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
+
     public GrandCanyon() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         setAutoSpawnProtection(5);
         disableDrops(new Material[]{Material.ARROW, Material.BOW, Material.LEATHER_LEGGINGS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LEATHER_BOOTS, Material.STONE_SWORD});
     }
-
-    String name = "grandcanyon";
-    String fullName = "Grand Canyon";
-    String[] creators = {"jslsa", "Corrigan1998"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
 
@@ -53,7 +58,8 @@ public class GrandCanyon extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
@@ -67,10 +73,10 @@ public class GrandCanyon extends BattleMap implements Listener {
 
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setBoots(LEATHER_BOOTS);
+        pl.getInventory().setLeggings(LEATHER_PANTS);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
@@ -79,17 +85,6 @@ public class GrandCanyon extends BattleMap implements Listener {
         i.setItem(15, ARROWS);
 
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -69;
-    public int y1 = 140;
-    public int z1 = -45;
-
-    //Bottom right corner.
-    public int x2 = 70;
-    public int y2 = 26;
-    public int z2 = 163;
 
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onFly(PlayerToggleFlightEvent event) {

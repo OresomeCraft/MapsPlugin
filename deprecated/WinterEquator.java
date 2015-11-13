@@ -6,8 +6,10 @@ import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
 import com.oresomecraft.OresomeBattles.teams.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -17,6 +19,20 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig
 public class WinterEquator extends BattleMap implements Listener {
 
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = 103;
+    public int y1 = 115;
+    public int z1 = 103;
+    //Bottom right corner.
+    public int x2 = -103;
+    public int y2 = 0;
+    public int z2 = -103;
+    String name = "winterequator";
+    String fullName = "Winter Equator";
+    String[] creators = {"Afridge1O1", "SerperDerkFerc", "Numinex", "XUHAVON", "beadycottonwood", "ViolentShadow", "meganlovesmusic"};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
+
     public WinterEquator() {
         super.initiate(this, name, fullName, creators, modes);
         setTDMTime(8);
@@ -24,11 +40,6 @@ public class WinterEquator extends BattleMap implements Listener {
         disableDrops(new Material[]{Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.ARROW, Material.BOW, Material.STAINED_GLASS, Material.LEATHER_HELMET, Material.STONE_SWORD, Material.WOOL});
         setAutoSpawnProtection(4);
     }
-
-    String name = "winterequator";
-    String fullName = "Winter Equator";
-    String[] creators = {"Afridge1O1", "SerperDerkFerc", "Numinex", "XUHAVON", "beadycottonwood", "ViolentShadow", "meganlovesmusic"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.CTF};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 53, 75, -24));
@@ -53,7 +64,8 @@ public class WinterEquator extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack BLUE_GLASS = new ItemStack(Material.STAINED_GLASS, 1, (short) 11);
         ItemStack RED_GLASS = new ItemStack(Material.STAINED_GLASS, 1, (short) 14);
@@ -70,12 +82,12 @@ public class WinterEquator extends BattleMap implements Listener {
 
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_BOOTS});
 
-        if (p.getTeamType().equals(Team.TDM_RED)) p.getInventory().setHelmet(RED_GLASS);
-        if (p.getTeamType().equals(Team.TDM_BLUE)) p.getInventory().setHelmet(BLUE_GLASS);
+        if (p.getTeamType().equals(Team.TDM_RED)) pl.getInventory().setHelmet(RED_GLASS);
+        if (p.getTeamType().equals(Team.TDM_BLUE)) pl.getInventory().setHelmet(BLUE_GLASS);
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setBoots(LEATHER_BOOTS);
+        pl.getInventory().setLeggings(LEATHER_PANTS);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
 
         i.setItem(0, SWORD);
         i.setItem(1, BOW);
@@ -85,18 +97,6 @@ public class WinterEquator extends BattleMap implements Listener {
         i.setItem(10, ARROWS);
 
     }
-
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 103;
-    public int y1 = 115;
-    public int z1 = 103;
-
-    //Bottom right corner.
-    public int x2 = -103;
-    public int y2 = 0;
-    public int z2 = -103;
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {

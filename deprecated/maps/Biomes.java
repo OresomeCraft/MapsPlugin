@@ -6,8 +6,10 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -34,14 +36,14 @@ import org.bukkit.potion.PotionEffectType;
 )
 public class Biomes extends BattleMap implements Listener {
 
-    public Biomes() {
-        super.initiate(this);
-    }
-
     String name = "biom";
     String fullName = "Biomes";
     String[] creators = {"SereneMango", "miniwolf35"};
     Gamemode[] modes = {Gamemode.LMS, Gamemode.FFA};
+
+    public Biomes() {
+        super.initiate(this);
+    }
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 117, 84, -94, 0, 0));
@@ -75,7 +77,8 @@ public class Biomes extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 32);
@@ -88,12 +91,12 @@ public class Biomes extends BattleMap implements Listener {
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
 
-        p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1, 9999 * 9999));
+        pl.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1, 9999 * 9999));
 
-        p.getInventory().setHelmet(LEATHER_HELMET);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setBoots(LEATHER_BOOTS);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setBoots(LEATHER_BOOTS);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);

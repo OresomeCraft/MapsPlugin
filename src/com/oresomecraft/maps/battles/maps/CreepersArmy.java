@@ -19,12 +19,13 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 @MapConfig(
         name = "creepers",
         fullName = "[Classic] Creeper's Army",
-        creators = {"__R3"},
+        creators = {"Heartist"},
         gamemodes = {Gamemode.INFECTION}
 )
 @Region(
@@ -36,6 +37,9 @@ import org.bukkit.event.player.PlayerMoveEvent;
         z2 = -63
 )
 public class CreepersArmy extends BattleMap implements Listener {
+
+    public boolean active = false;
+    public boolean pass = false;
 
     public CreepersArmy() {
         super.initiate(this);
@@ -61,7 +65,6 @@ public class CreepersArmy extends BattleMap implements Listener {
         pass = false;
     }
 
-
     public void readyTDMSpawns() {
         //null
     }
@@ -75,9 +78,6 @@ public class CreepersArmy extends BattleMap implements Listener {
         p.sendMessage(ChatColor.GOLD + "This is a map that specialises in " + ChatColor.BOLD + "OresomeInfected classic-style infection!");
         p.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "RUN INTO PEOPLE TO INFECT THEM!");
     }
-
-    public boolean active = false;
-    public boolean pass = false;
 
     @EventHandler
     public void move(PlayerMoveEvent event) {
@@ -93,6 +93,13 @@ public class CreepersArmy extends BattleMap implements Listener {
             }
         }
 
+    }
+
+    @EventHandler
+    public void food(FoodLevelChangeEvent event) {
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
+        event.setFoodLevel(20);
+        event.setCancelled(true);
     }
 
     @EventHandler

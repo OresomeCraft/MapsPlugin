@@ -4,6 +4,7 @@ import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -24,16 +25,25 @@ import org.bukkit.util.Vector;
 @MapConfig
 public class Sandbox extends BattleMap implements Listener {
 
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = 65;
+    public int y1 = 141;
+    public int z1 = -77;
+    //Bottom right corner.
+    public int x2 = -60;
+    public int y2 = 35;
+    public int z2 = 62;
+    String name = "sandbox";
+    String fullName = "Sandbox";
+    String[] creators = {"_Moist", "Stewpetasuarus", "123Oblivious", "WiiiFreak123"};
+    Gamemode[] modes = {Gamemode.INFECTION};
+
     public Sandbox() {
         super.initiate(this, name, fullName, creators, modes);
         setAllowBuild(false);
         disableDrops(new Material[]{Material.ARROW, Material.FISHING_ROD, Material.BOW, Material.IRON_BOOTS,});
     }
-
-    String name = "sandbox";
-    String fullName = "Sandbox";
-    String[] creators = {"_Moist", "Stewpetasuarus", "123Oblivious", "WiiiFreak123"};
-    Gamemode[] modes = {Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 50, 75, -23, 128, 0));
@@ -53,7 +63,8 @@ public class Sandbox extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
         ItemStack CARROT = new ItemStack(Material.CARROT_ITEM, 3);
@@ -66,7 +77,7 @@ public class Sandbox extends BattleMap implements Listener {
         IRON_BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 2);
         WOODEN_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 5);
 
-        p.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setBoots(IRON_BOOTS);
 
         i.setItem(0, WOODEN_SWORD);
         i.setItem(1, BOW);
@@ -75,16 +86,6 @@ public class Sandbox extends BattleMap implements Listener {
         i.setItem(4, HEALTH);
         i.setItem(17, ARROWS);
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 65;
-    public int y1 = 141;
-    public int z1 = -77;
-    //Bottom right corner.
-    public int x2 = -60;
-    public int y2 = 35;
-    public int z2 = 62;
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void fishing(PlayerFishEvent event) {

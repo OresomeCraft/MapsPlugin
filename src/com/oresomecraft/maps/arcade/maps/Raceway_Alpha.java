@@ -1,8 +1,8 @@
 package com.oresomecraft.maps.arcade.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
 import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
@@ -15,7 +15,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -33,18 +32,20 @@ import java.util.ArrayList;
 )
 public class Raceway_Alpha extends RacewayMap implements Listener {
 
+    boolean hasPassedGrace = false;
+    ArrayList<String> checker = new ArrayList<String>();
+
     public Raceway_Alpha() {
         super.initiate(this);
     }
-
-    boolean hasPassedGrace = false;
 
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -18, 65, -7));
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
 
@@ -71,8 +72,6 @@ public class Raceway_Alpha extends RacewayMap implements Listener {
         }
 
     }
-
-    ArrayList<String> checker = new ArrayList<String>();
 
     @EventHandler
     public void moveChecker(final PlayerMoveEvent event) {

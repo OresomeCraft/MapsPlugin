@@ -8,8 +8,10 @@ import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import com.oresomecraft.OresomeBattles.teams.Team;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -17,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "raid",
         fullName = "Raid",
-        creators = {"ShaunDepro97"},
+        creators = {"Synxi"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(
@@ -83,7 +85,8 @@ public class Raid extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack COOKED_FISH = new ItemStack(Material.COOKED_FISH, 2);
@@ -97,10 +100,10 @@ public class Raid extends BattleMap implements Listener {
 
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_HELMET});
 
-        p.getInventory().setBoots(GOLD_BOOTS);
-        p.getInventory().setLeggings(CHAINMAIL_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setBoots(GOLD_BOOTS);
+        pl.getInventory().setLeggings(CHAINMAIL_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);

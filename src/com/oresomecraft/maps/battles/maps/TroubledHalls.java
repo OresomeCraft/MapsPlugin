@@ -8,9 +8,11 @@ import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import com.oresomecraft.OresomeBattles.teams.Team;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -26,7 +28,7 @@ import java.util.Arrays;
 @MapConfig(
         name = "halls",
         fullName = "Troubled Halls",
-        creators = {"__R3", "nitro20021", "Elite_Killer1"},
+        creators = {"Heartist"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(
@@ -45,12 +47,13 @@ import java.util.Arrays;
 )
 public class TroubledHalls extends BattleMap implements Listener {
 
+    String[] specificRules = {"Do not enter the enemy hall!", "Do not shoot into the enemy hall!"};
+    Material[] allowedInHall = new Material[]{Material.GOLD_BLOCK, Material.BEACON, Material.FENCE, Material.GLOWSTONE};
+
     public TroubledHalls() {
         super.initiate(this);
         setMapSpecificRules(specificRules);
     }
-
-    String[] specificRules = {"Do not enter the enemy hall!", "Do not shoot into the enemy hall!"};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, 55, 155, 46, 180, 0));
@@ -62,13 +65,13 @@ public class TroubledHalls extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
 
     }
-
 
     @EventHandler
     public void preventPlaceOutOfMap(BlockPlaceEvent event) {
@@ -77,8 +80,6 @@ public class TroubledHalls extends BattleMap implements Listener {
             event.setCancelled(true);
         }
     }
-
-    Material[] allowedInHall = new Material[]{Material.GOLD_BLOCK, Material.BEACON, Material.FENCE, Material.GLOWSTONE};
 
     @EventHandler
     public void lBreak(BlockBreakEvent event) {

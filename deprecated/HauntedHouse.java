@@ -1,18 +1,31 @@
 package com.oresomecraft.maps.battles.maps.deprecated;
 
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.inventory.*;
-
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 
 @MapConfig
 public class HauntedHouse extends BattleMap implements Listener {
+
+    // Top left corner.
+    public int x1 = -285;
+    public int y1 = 136;
+    public int z1 = 103;
+    //Bottom right corner.
+    public int x2 = -206;
+    public int y2 = 69;
+    public int z2 = 0;
+    // Map details
+    String name = "hauntedhouse";
+    String fullName = "Haunted House";
+    String[] creators = {"bumsonfire"};
+    Gamemode[] modes = {Gamemode.FFA};
 
     public HauntedHouse() {
         super.initiate(this, name, fullName, creators, modes);
@@ -20,12 +33,6 @@ public class HauntedHouse extends BattleMap implements Listener {
         disableDrops(new Material[]{Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD});
         setTDMTime(5);
     }
-
-    // Map details
-    String name = "hauntedhouse";
-    String fullName = "Haunted House";
-    String[] creators = {"bumsonfire"};
-    Gamemode[] modes = {Gamemode.FFA};
 
     public void readyTDMSpawns() {
         Location redSpawn = new Location(w, -230, 78, 17, 0, 0);
@@ -51,7 +58,8 @@ public class HauntedHouse extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
@@ -64,10 +72,10 @@ public class HauntedHouse extends BattleMap implements Listener {
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 5);
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(IRON_HELMET);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setHelmet(IRON_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -77,16 +85,6 @@ public class HauntedHouse extends BattleMap implements Listener {
         i.setItem(4, EXP);
 
     }
-
-    // Top left corner.
-    public int x1 = -285;
-    public int y1 = 136;
-    public int z1 = 103;
-
-    //Bottom right corner.
-    public int x2 = -206;
-    public int y2 = 69;
-    public int z2 = 0;
 
     @EventHandler
     public void preventMoveOutOfMap(PlayerMoveEvent event) {

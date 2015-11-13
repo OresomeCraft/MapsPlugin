@@ -7,14 +7,18 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.inventory.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 @MapConfig(
         name = "sunshine",
         fullName = "Sunshine",
-        creators =  {"__R3", "am51407", "_Moist"},
+        creators = {"Heartist", "am51407", "huego"},
         gamemodes = {Gamemode.TDM, Gamemode.FFA}
 )
 @Region(
@@ -50,7 +54,8 @@ public class Sunshine extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         //Items
         ItemStack IRON_AXE = new ItemStack(Material.WOOD_SWORD, 1);

@@ -7,6 +7,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -26,15 +27,9 @@ import java.util.List;
 @MapConfig(
         name = "mutinyii",
         fullName = "Mutiny II",
-        creators = {"__R3", "Buster1824", "MiCkEyMiCE"},
+        creators = {"Heartist"},
         gamemodes = {Gamemode.TDM}
 )
-//    public int x1 = 52;
-//    public int y1 = 0;
-//    public int z1 = 35;
-//    public int x2 = -48;
-//    public int y2 = 156;
-//    public int z2 = -75;
 @Region(
         x1 = 52,
         y1 = 0,
@@ -67,7 +62,8 @@ public class MutinyII extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack ALLPROTECT = new ItemStack(Material.EMERALD, 1);
         ItemStack LEATHER_CHESTPLATE = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
@@ -82,10 +78,10 @@ public class MutinyII extends BattleMap implements Listener {
 
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
-        p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
-        p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
+        pl.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+        pl.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
 
         i.setItem(0, new ItemStack(Material.IRON_SWORD, 1));
         i.setItem(1, new ItemStack(Material.BOW, 1));

@@ -40,7 +40,7 @@ import java.util.List;
 @MapConfig(
         name = "courtyard",
         fullName = "Wolfston Courtyard",
-        creators = {"__R3", "reggie449", "_Arch_Rider", "Boomyay", "123Oblivious"},
+        creators = {"Heartist", "reggie449"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(
@@ -62,6 +62,8 @@ import java.util.List;
 )
 public class Courtyard extends BattleMap implements Listener {
 
+    ArrayList<String> selecting = new ArrayList<String>();
+
     public Courtyard() {
         super.initiate(this);
     }
@@ -77,10 +79,9 @@ public class Courtyard extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
+        Player pl = Bukkit.getPlayer(p.getName());
         p.sendMessage(ChatColor.GOLD + "Interact with one of the signs to change class!");
     }
-
-    ArrayList<String> selecting = new ArrayList<String>();
 
     @EventHandler
     public void end(BattleEndEvent event) {
@@ -372,23 +373,11 @@ public class Courtyard extends BattleMap implements Listener {
         }
     }
 
-    public enum Group {
-        FIREARMS,
-        SPY,
-        KNIGHT,
-        TANK,
-        ARCHER,
-        MEDIC,
-        DEMOLITION,
-        SCOUT
-    }
-
     @EventHandler
     public void drop(PlayerDropItemEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         event.setCancelled(true);
     }
-
 
     @EventHandler
     public void potionSplash(PotionSplashEvent event) {
@@ -435,5 +424,16 @@ public class Courtyard extends BattleMap implements Listener {
             }
         }
 
+    }
+
+    public enum Group {
+        FIREARMS,
+        SPY,
+        KNIGHT,
+        TANK,
+        ARCHER,
+        MEDIC,
+        DEMOLITION,
+        SCOUT
     }
 }

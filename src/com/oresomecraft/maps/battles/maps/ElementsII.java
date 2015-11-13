@@ -26,7 +26,7 @@ import org.bukkit.potion.PotionEffectType;
 @MapConfig(
         name = "elements2",
         fullName = "Elements II",
-        creators = {"_Moist", "psgs", "broddikill"},
+        creators = {"huego", "psgs", "broddikill"},
         gamemodes = {Gamemode.KOTH}
 )
 @Region(
@@ -66,7 +66,8 @@ public class ElementsII extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack FIRE = new ItemStack(Material.POTION, 1, (short) 8227); // Keep this here even if it's not used plz
@@ -82,10 +83,10 @@ public class ElementsII extends BattleMap implements Listener {
 
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setBoots(LEATHER_BOOTS);
+        pl.getInventory().setLeggings(LEATHER_PANTS);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
@@ -94,7 +95,7 @@ public class ElementsII extends BattleMap implements Listener {
         i.setItem(4, BREAD);
 
         if (p.getTeamType() == Team.KOTH_RED) {
-            p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 120 * 20, 2));
+            pl.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 120 * 20, 2));
             i.setItem(8, FIRE);
         }
 

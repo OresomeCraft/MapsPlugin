@@ -52,7 +52,8 @@ public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        final Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack SNOW_BALL = new ItemStack(Material.SNOW_BALL, 200);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 10);
@@ -62,7 +63,7 @@ public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
 
         Bukkit.getScheduler().runTask(plugin, new Runnable() {
             public void run() {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000 * 20, 2));
+                pl.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000 * 20, 2));
             }
         });
     }

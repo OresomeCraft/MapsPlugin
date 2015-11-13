@@ -6,10 +6,12 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -20,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig(
         name = "electricity",
         fullName = "Electricity",
-        creators = {"kingfisher83", "danielschroeder", "__R3", "_Moist"},
+        creators = {"kingfisher83", "danshrdr", "Heartist", "huego"},
         gamemodes = {Gamemode.TDM, Gamemode.INFECTION}
 )
 @Region(
@@ -61,7 +63,8 @@ public class Electricity extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 4);
@@ -76,10 +79,10 @@ public class Electricity extends BattleMap implements Listener {
 
         BOW.getItemMeta().setDisplayName(ChatColor.YELLOW + "Lightning Bow");
 
-        p.getInventory().setBoots(GOLD_BOOTS);
-        p.getInventory().setLeggings(GOLD_PANTS);
-        p.getInventory().setChestplate(GOLD_CHESTPLATE);
-        p.getInventory().setHelmet(GOLD_HELMET);
+        pl.getInventory().setBoots(GOLD_BOOTS);
+        pl.getInventory().setLeggings(GOLD_PANTS);
+        pl.getInventory().setChestplate(GOLD_CHESTPLATE);
+        pl.getInventory().setHelmet(GOLD_HELMET);
 
 
         i.setItem(0, STONE_SWORD);

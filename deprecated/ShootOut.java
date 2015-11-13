@@ -6,21 +6,17 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.*;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.util.Vector;
 
 @MapConfig(
         name = "shootout",
@@ -67,7 +63,8 @@ public class ShootOut extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
 
@@ -77,7 +74,7 @@ public class ShootOut extends BattleMap implements Listener {
         ItemStack BOW = new ItemStack(Material.BOW, 1);
         ItemStack WOOD_SWORD = new ItemStack(Material.WOOD_SWORD, 1);
 
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
         setColouredArmorAccordingToTeam(p);
 
         i.setItem(0, WOOD_SWORD);

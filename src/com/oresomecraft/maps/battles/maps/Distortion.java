@@ -27,7 +27,7 @@ import java.util.List;
 @MapConfig(
         name = "gravity",
         fullName = "Distortion",
-        creators = {"__R3"},
+        creators = {"Heartist"},
         gamemodes = {Gamemode.TDM}
 )
 @Region(
@@ -47,11 +47,12 @@ import java.util.List;
 )
 public class Distortion extends BattleMap implements Listener {
 
+    protected boolean manipulation = false;
+    int distort;
+
     public Distortion() {
         super.initiate(this);
     }
-
-    protected boolean manipulation = false;
 
     @EventHandler
     public void onload(MapLoadEvent event) {
@@ -75,7 +76,8 @@ public class Distortion extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 8);
@@ -96,9 +98,9 @@ public class Distortion extends BattleMap implements Listener {
         gravityMeta.setLore(gravityLore);
         ANTIGRAVITY.setItemMeta(gravityMeta);
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
 
         i.setItem(0, DIAMOND_PICKAXE);
         i.setItem(1, BOW);
@@ -108,8 +110,6 @@ public class Distortion extends BattleMap implements Listener {
         i.setItem(28, ARROWS);
 
     }
-
-    int distort;
 
     public void gravityArrows() {
         Bukkit.getServer().getScheduler().cancelTask(distort);

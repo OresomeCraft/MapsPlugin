@@ -1,20 +1,16 @@
 package com.oresomecraft.maps.oresomekart.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.types.OresomeKartMap;
 import com.oresomecraft.OresomeBattles.region.CuboidRegion;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.event.EventHandler;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerMoveEvent;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @MapConfig(
         name = "racing",
@@ -49,6 +45,7 @@ public class Treetop extends OresomeKartMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
+        Player pl = Bukkit.getPlayer(p.getName());
         // No items needed
     }
 

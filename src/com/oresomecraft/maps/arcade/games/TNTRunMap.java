@@ -5,7 +5,9 @@ import com.oresomecraft.OresomeBattles.events.BattleEndEvent;
 import com.oresomecraft.OresomeBattles.map.Map;
 import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
 import com.oresomecraft.maps.MapsPlugin;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
 

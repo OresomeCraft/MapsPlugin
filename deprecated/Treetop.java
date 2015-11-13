@@ -1,16 +1,28 @@
 package com.oresomecraft.maps.battles.maps.deprecated;
 
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.inventory.*;
-
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import com.oresomecraft.maps.MapConfig;
+import com.oresomecraft.maps.battles.BattleMap;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 @MapConfig
 public class Treetop extends BattleMap implements Listener {
+
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = 672;
+    public int y1 = 4;
+    public int z1 = 464;
+    //Bottom right corner.
+    public int x2 = 756;
+    public int y2 = 4;
+    public int z2 = 551;
+    String name = "treetop";
+    String fullName = "Treetop Warfare";
+    String[] creators = {"meganlovesmusic", "_Husky_"};
+    Gamemode[] modes = {Gamemode.KOTH, Gamemode.FFA, Gamemode.INFECTION};
 
     public Treetop() {
         super.initiate(this, name, fullName, creators, modes);
@@ -20,11 +32,6 @@ public class Treetop extends BattleMap implements Listener {
         lockTime("night");
         setAutoSpawnProtection(2);
     }
-
-    String name = "treetop";
-    String fullName = "Treetop Warfare";
-    String[] creators = {"meganlovesmusic", "_Husky_"};
-    Gamemode[] modes = {Gamemode.KOTH, Gamemode.FFA, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -20, 71, 33));
@@ -50,7 +57,8 @@ public class Treetop extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -62,10 +70,10 @@ public class Treetop extends BattleMap implements Listener {
         ItemStack IRON_PANTS = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack IRON_BOOTS = new ItemStack(Material.IRON_BOOTS, 1);
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(IRON_HELMET);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setHelmet(IRON_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -74,16 +82,5 @@ public class Treetop extends BattleMap implements Listener {
         i.setItem(2, BREAD);
 
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = 672;
-    public int y1 = 4;
-    public int z1 = 464;
-
-    //Bottom right corner.
-    public int x2 = 756;
-    public int y2 = 4;
-    public int z2 = 551;
 
 }

@@ -1,20 +1,26 @@
 package com.oresomecraft.maps.battles.maps;
 
-import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
-import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
-import org.bukkit.*;
-import org.bukkit.inventory.*;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.OresomeBattles.map.annotations.*;
+import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
+import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 @MapConfig(
         name = "candycavern",
         fullName = "Candy Cavern",
         creators = {"PyroPolar"},
         gamemodes = {Gamemode.INFECTION, Gamemode.FFA, Gamemode.LTS, Gamemode.LMS}
-        //http://www.mediafire.com/download/ods1iuoh78bb2ng/Candy_Cavern.zip
 )
 @Region(
         x1 = -301,
@@ -40,7 +46,7 @@ public class CandyCavern extends BattleMap {
         redSpawns.add(new Location(w, -854, 156, 78, 1, 0));
 
         blueSpawns.add(new Location(w, -825, 150, 128, 179, 0));
-        
+
     }
 
     public void readyFFASpawns() {
@@ -55,7 +61,8 @@ public class CandyCavern extends BattleMap {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack BEEF = new ItemStack(Material.COOKED_BEEF, 4);
@@ -69,10 +76,10 @@ public class CandyCavern extends BattleMap {
 
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE});
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(IRON_HELMET);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setHelmet(IRON_HELMET);
 
         ItemUtils.nameItem(IRON_SWORD, ChatColor.WHITE + "Candy Cruncher");
         ItemUtils.nameItem(BOW, ChatColor.WHITE + "Lolly Lasher");

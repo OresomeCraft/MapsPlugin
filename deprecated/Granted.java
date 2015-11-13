@@ -1,18 +1,30 @@
 package com.oresomecraft.maps.battles.maps.deprecated;
 
+import com.oresomecraft.OresomeBattles.BattlePlayer;
+import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.inventories.ArmourUtils;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.event.*;
-import org.bukkit.inventory.*;
-
-import com.oresomecraft.OresomeBattles.BattlePlayer;
-import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
+import org.bukkit.entity.Player;
 
 @MapConfig
 public class Granted extends BattleMap implements Listener {
+
+    // Region. (Top corner block and bottom corner block.
+    // Top left corner.
+    public int x1 = -12;
+    public int y1 = 126;
+    public int z1 = -148;
+    //Bottom right corner.
+    public int x2 = 82;
+    public int y2 = 6;
+    public int z2 = 129;
+    String name = "raidii";
+    String fullName = "Granted";
+    String[] creators = {"FaazM, Turt1eManLol"};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH};
 
     public Granted() {
         super.initiate(this, name, fullName, creators, modes);
@@ -20,11 +32,6 @@ public class Granted extends BattleMap implements Listener {
         disableDrops(new Material[]{Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.IRON_SWORD, Material.BOW, Material.ARROW});
         lockTime("day");
     }
-
-    String name = "raidii";
-    String fullName = "Granted";
-    String[] creators = {"FaazM, Turt1eManLol"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH};
 
     public void readyTDMSpawns() {
 
@@ -51,7 +58,8 @@ public class Granted extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 5);
@@ -67,10 +75,10 @@ public class Granted extends BattleMap implements Listener {
         BOW.addEnchantment(Enchantment.ARROW_INFINITE, 1);
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_CHESTPLATE, LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setBoots(LEATHER_BOOTS);
+        pl.getInventory().setLeggings(LEATHER_PANTS);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -79,16 +87,5 @@ public class Granted extends BattleMap implements Listener {
         i.setItem(10, ARROWS);
 
     }
-
-    // Region. (Top corner block and bottom corner block.
-    // Top left corner.
-    public int x1 = -12;
-    public int y1 = 126;
-    public int z1 = -148;
-
-    //Bottom right corner.
-    public int x2 = 82;
-    public int y2 = 6;
-    public int z2 = 129;
 
 }

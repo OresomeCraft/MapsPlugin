@@ -6,9 +6,11 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -86,7 +88,8 @@ public class Apollo extends BattleMap implements Listener {
     }
 
     public void applyInventory(BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 1);
@@ -102,10 +105,10 @@ public class Apollo extends BattleMap implements Listener {
 
         IRON_BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 4);
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(IRON_HELMET);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setHelmet(IRON_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);
@@ -115,7 +118,7 @@ public class Apollo extends BattleMap implements Listener {
         i.setItem(4, EXP);
         i.setItem(8, ENDER_PEARL);
 
-        p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 1000 * 20, 2));
+        pl.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 1000 * 20, 2));
 
     }
 

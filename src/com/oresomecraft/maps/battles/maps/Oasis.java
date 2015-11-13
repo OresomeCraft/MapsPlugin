@@ -51,6 +51,27 @@ public class Oasis extends BattleMap implements Listener {
         super.initiate(this);
     }
 
+    protected static List<Block> circle(Location loc, int radius, int height, boolean hollow, boolean sphere, int plusY) {
+        List<Block> circleblocks = new ArrayList<Block>();
+        int cx = loc.getBlockX();
+        int cy = loc.getBlockY();
+        int cz = loc.getBlockZ();
+
+        for (int x = cx - radius; x <= cx + radius; x++) {
+            for (int z = cz - radius; z <= cz + radius; z++) {
+                for (int y = (sphere ? cy - radius : cy); y < (sphere ? cy + radius : cy + height); y++) {
+                    double dist = (cx - x) * (cx - x) + (cz - z) * (cz - z) + (sphere ? (cy - y) * (cy - y) : 0);
+                    if (dist < radius * radius && !(hollow && dist < (radius - 1) * (radius - 1))) {
+                        Location l = new Location(loc.getWorld(), x, y + plusY, z);
+                        circleblocks.add(l.getBlock());
+                    }
+                }
+            }
+        }
+
+        return circleblocks;
+    }
+
     public void readyTDMSpawns() {
 
         Location redSpawn = new Location(w, 6, 87, 76, -179, 0);
@@ -73,7 +94,8 @@ public class Oasis extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 1);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
@@ -97,10 +119,10 @@ public class Oasis extends BattleMap implements Listener {
 
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS, LEATHER_HELMET, LEATHER_BOOTS});
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setBoots(LEATHER_BOOTS);
+        pl.getInventory().setLeggings(LEATHER_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
@@ -134,26 +156,5 @@ public class Oasis extends BattleMap implements Listener {
                 iceTemp(block, event.getPlayer());
             }
         }
-    }
-
-    protected static List<Block> circle(Location loc, int radius, int height, boolean hollow, boolean sphere, int plusY) {
-        List<Block> circleblocks = new ArrayList<Block>();
-        int cx = loc.getBlockX();
-        int cy = loc.getBlockY();
-        int cz = loc.getBlockZ();
-
-        for (int x = cx - radius; x <= cx + radius; x++) {
-            for (int z = cz - radius; z <= cz + radius; z++) {
-                for (int y = (sphere ? cy - radius : cy); y < (sphere ? cy + radius : cy + height); y++) {
-                    double dist = (cx - x) * (cx - x) + (cz - z) * (cz - z) + (sphere ? (cy - y) * (cy - y) : 0);
-                    if (dist < radius * radius && !(hollow && dist < (radius - 1) * (radius - 1))) {
-                        Location l = new Location(loc.getWorld(), x, y + plusY, z);
-                        circleblocks.add(l.getBlock());
-                    }
-                }
-            }
-        }
-
-        return circleblocks;
     }
 }

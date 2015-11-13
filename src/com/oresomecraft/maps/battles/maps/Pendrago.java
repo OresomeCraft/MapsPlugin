@@ -2,8 +2,8 @@ package com.oresomecraft.maps.battles.maps;
 
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.maps.MapConfig;
-import com.oresomecraft.maps.battles.BattleMap;
+import com.oresomecraft.OresomeBattles.map.annotations.*;
+import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -18,6 +18,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -34,25 +35,96 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@MapConfig
-public class Pendrago extends BattleMap implements Listener {
-
-    public Pendrago() {
-        super.initiate(this, name, fullName, creators, modes);
-        setAllowBuild(false);
-        setTDMTime(20);
-        disableDrops(new Material[]{Material.EMERALD, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.BLAZE_ROD, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.FLINT, Material.BOW, Material.STONE_SWORD, Material.BLAZE_ROD, Material.WATCH,
+@MapConfig(
+        name = "pendrago",
+        fullName = "Pendrago Square",
+        creators = {"Heartist", "kytron"},
+        gamemodes = {Gamemode.TDM}
+)
+@Region(
+        x1 = -95,
+        y1 = 152,
+        z1 = -49,
+        x2 = 10,
+        y2 = 102,
+        z2 = -49
+)
+@Attributes(
+        allowBuild = false,
+        fireSpread = false,
+        tdmTime = 20,
+        disabledDrops = {Material.EMERALD, Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.BLAZE_ROD, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.FLINT, Material.BOW, Material.STONE_SWORD, Material.BLAZE_ROD, Material.WATCH,
                 Material.LEATHER_CHESTPLATE, Material.LEATHER_BOOTS, Material.LEATHER_LEGGINGS, Material.LEATHER_HELMET, Material.DIAMOND_HELMET,
                 Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS, Material.GOLD_HELMET, Material.GOLD_CHESTPLATE,
                 Material.GOLD_LEGGINGS, Material.GOLD_BOOTS, Material.STONE_SWORD, Material.WOOD_SWORD, Material.DIAMOND_SWORD, Material.GOLDEN_APPLE,
                 Material.POTION, Material.TNT, Material.GOLD_SWORD, Material.NETHER_STAR, Material.CHAINMAIL_CHESTPLATE, Material.CHAINMAIL_BOOTS,
-                Material.CHAINMAIL_LEGGINGS, Material.CHAINMAIL_HELMET, Material.GHAST_TEAR});
+                Material.CHAINMAIL_LEGGINGS, Material.CHAINMAIL_HELMET, Material.GHAST_TEAR}
+)
+public class Pendrago extends BattleMap implements Listener {
+    ArrayList<String> selecting = new ArrayList<String>();
+    ArrayList<Material> colors = new ArrayList<Material>();
+    ArrayList<Color> randomc = new ArrayList<Color>();
+    ArrayList<Material> ORES = new ArrayList<Material>();
+
+    {
+        colors.add(Material.GOLD_BLOCK);
+        colors.add(Material.REDSTONE_BLOCK);
+        colors.add(Material.EMERALD_BLOCK);
+        colors.add(Material.PORTAL);
+        colors.add(Material.LAPIS_BLOCK);
+        colors.add(Material.DIAMOND_BLOCK);
+        colors.add(Material.ICE);
     }
 
-    String name = "pendrago";
-    String fullName = "Pendrago Square";
-    String[] creators = {"__R3", "kytron", "123Oblivious"};
-    Gamemode[] modes = {Gamemode.TDM};
+    {
+        randomc.add(Color.GREEN);
+        randomc.add(Color.BLUE);
+        randomc.add(Color.YELLOW);
+        randomc.add(Color.RED);
+        randomc.add(Color.ORANGE);
+        randomc.add(Color.PURPLE);
+        randomc.add(Color.FUCHSIA);
+    }
+
+    {
+        ORES.add(Material.DIAMOND_ORE);
+        ORES.add(Material.GOLD_ORE);
+        ORES.add(Material.EMERALD_ORE);
+        ORES.add(Material.COAL_ORE);
+        ORES.add(Material.REDSTONE_ORE);
+        ORES.add(Material.EMERALD_ORE);
+        ORES.add(Material.LAPIS_ORE);
+        ORES.add(Material.IRON_ORE);
+        ORES.add(Material.STONE);
+        ORES.add(Material.STONE);
+        ORES.add(Material.STONE);
+    }
+
+    public Pendrago() {
+        super.initiate(this);
+    }
+
+    protected static List<Block> circle(Location loc, int radius, int height, boolean hollow, boolean sphere, int plusY) {
+        List<Block> circleblocks = new ArrayList<Block>();
+        int cx = loc.getBlockX();
+        int cy = loc.getBlockY();
+        int cz = loc.getBlockZ();
+
+        for (int x = cx - radius; x <= cx + radius; x++) {
+            for (int z = cz - radius; z <= cz + radius; z++) {
+                for (int y = (sphere ? cy - radius : cy); y < (sphere ? cy + radius : cy + height); y++) {
+                    double dist = (cx - x) * (cx - x) + (cz - z) * (cz - z) + (sphere ? (cy - y) * (cy - y) : 0);
+
+                    if (dist < radius * radius && !(hollow && dist < (radius - 1) * (radius - 1))) {
+                        Location l = new Location(loc.getWorld(), x, y + plusY, z);
+                        circleblocks.add(l.getBlock());
+                    }
+                }
+            }
+        }
+
+        return circleblocks;
+    }
 
     public void readyTDMSpawns() {
         blueSpawns.add(new Location(w, -84, 129, 6, (float) 90.085, (float) -0.784));
@@ -62,26 +134,16 @@ public class Pendrago extends BattleMap implements Listener {
     public void readyFFASpawns() {
         FFASpawns.add(new Location(w, -84, 129, 6, (float) 90.085, (float) -0.784));
         FFASpawns.add(new Location(w, 2, 129, 6, (float) 267.054, (float) 55.635));
-        defineRegion(x1, x2, y1, y2, z1, z2);
     }
 
     public void applyInventory(final BattlePlayer p) {
+        Player pl = Bukkit.getPlayer(p.getName());
         p.sendMessage(ChatColor.GOLD + "Interact with one of the signs to change class!");
     }
 
-    public int x1 = -95;
-    public int y1 = 152;
-    public int z1 = -49;
-
-    public int x2 = 10;
-    public int y2 = 102;
-    public int z2 = -49;
-
-    ArrayList<String> selecting = new ArrayList<String>();
-
     @EventHandler
     public void interact(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         try {
             Player player = event.getPlayer();
             if (selecting.contains(player.getName())) {
@@ -366,7 +428,7 @@ public class Pendrago extends BattleMap implements Listener {
 
     @EventHandler
     public void gun(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         Player player = event.getPlayer();
         Location location = player.getLocation();
         Action action = event.getAction();
@@ -403,7 +465,7 @@ public class Pendrago extends BattleMap implements Listener {
 
     @EventHandler
     public void onSpyWatchInteract(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         Player player = event.getPlayer();
         Action action = event.getAction();
         if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
@@ -438,25 +500,9 @@ public class Pendrago extends BattleMap implements Listener {
         }
     }
 
-    public enum Group {
-        GREAT_KNIGHT,
-        CLERIC,
-        CAPTAIN,
-        SNIPER,
-        SPY,
-        MUSKETEER,
-        MERCENARY,
-        THIEF,
-        SCOUT_LEADER,
-        RAINBOW_DASHER,
-        ENGINEER,
-        POTION_MASTER
-    }
-
-
     @EventHandler
     public void PotionsSplash(PotionSplashEvent event) {
-        if (!event.getPotion().getWorld().getName().equals(name)) return;
+        if (!event.getPotion().getWorld().getName().equals(getName())) return;
         event.setCancelled(true);
         for (LivingEntity target : event.getAffectedEntities()) {
             ArrayList<PotionEffect> effects = new ArrayList<PotionEffect>(event.getPotion().getEffects());
@@ -474,8 +520,8 @@ public class Pendrago extends BattleMap implements Listener {
     }
 
     @EventHandler
-    public void arrowAway(org.bukkit.event.entity.ProjectileHitEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(name)) return;
+    public void aA(ProjectileHitEvent event) {
+        if (!event.getEntity().getWorld().getName().equals(getName())) return;
         org.bukkit.entity.Entity projectile = event.getEntity();
         if (projectile instanceof Arrow) {
             Arrow arrow = (Arrow) projectile;
@@ -485,14 +531,13 @@ public class Pendrago extends BattleMap implements Listener {
 
     @EventHandler
     public void explode(EntityExplodeEvent event) {
-        if (!event.getLocation().getWorld().getName().equals(name)) return;
+        if (!event.getLocation().getWorld().getName().equals(getName())) return;
         event.blockList().clear();
     }
 
-
     @EventHandler
     public void ignite(PlayerInteractEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         try {
             Player p = event.getPlayer();
             if (p.getItemInHand().getType() == Material.GHAST_TEAR && event.getClickedBlock().getType() == Material.GLASS) {
@@ -515,33 +560,9 @@ public class Pendrago extends BattleMap implements Listener {
         }
     }
 
-    ArrayList<Material> colors = new ArrayList<Material>();
-
-    {
-        colors.add(Material.GOLD_BLOCK);
-        colors.add(Material.REDSTONE_BLOCK);
-        colors.add(Material.EMERALD_BLOCK);
-        colors.add(Material.PORTAL);
-        colors.add(Material.LAPIS_BLOCK);
-        colors.add(Material.DIAMOND_BLOCK);
-        colors.add(Material.ICE);
-    }
-
-    ArrayList<Color> randomc = new ArrayList<Color>();
-
-    {
-        randomc.add(Color.GREEN);
-        randomc.add(Color.BLUE);
-        randomc.add(Color.YELLOW);
-        randomc.add(Color.RED);
-        randomc.add(Color.ORANGE);
-        randomc.add(Color.PURPLE);
-        randomc.add(Color.FUCHSIA);
-    }
-
     @EventHandler
     public void rainbow(final PlayerMoveEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (event.getPlayer().getItemInHand().getType() == Material.NETHER_STAR && event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                 public void run() {
@@ -557,31 +578,15 @@ public class Pendrago extends BattleMap implements Listener {
         }
     }
 
-    ArrayList<Material> ORES = new ArrayList<Material>();
-
-    {
-        ORES.add(Material.DIAMOND_ORE);
-        ORES.add(Material.GOLD_ORE);
-        ORES.add(Material.EMERALD_ORE);
-        ORES.add(Material.COAL_ORE);
-        ORES.add(Material.REDSTONE_ORE);
-        ORES.add(Material.EMERALD_ORE);
-        ORES.add(Material.LAPIS_ORE);
-        ORES.add(Material.IRON_ORE);
-        ORES.add(Material.STONE);
-        ORES.add(Material.STONE);
-        ORES.add(Material.STONE);
-    }
-
     protected void comet() {
-        for (Block b : circle(new Location(Bukkit.getWorld(name), -41, 253, 6), 3, 2, false, true, 0)) {
-            FallingBlock fb = Bukkit.getWorld(name).spawnFallingBlock(b.getLocation(), ORES.get(new Random().nextInt(ORES.size())), (byte) 1);
+        for (Block b : circle(new Location(Bukkit.getWorld(getName()), -41, 253, 6), 3, 2, false, true, 0)) {
+            FallingBlock fb = Bukkit.getWorld(getName()).spawnFallingBlock(b.getLocation(), ORES.get(new Random().nextInt(ORES.size())), (byte) 1);
             fb.setDropItem(false);
             fb.setVelocity(new Vector(0, -2.7, 0));
         }
         final BukkitTask effects = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
             public void run() {
-                for (FallingBlock fallingBlock : Bukkit.getWorld(name).getEntitiesByClass(FallingBlock.class)) {
+                for (FallingBlock fallingBlock : Bukkit.getWorld(getName()).getEntitiesByClass(FallingBlock.class)) {
                     Location l1 = fallingBlock.getLocation();
 
                     //Make an entire new object from the original one because it will muck up the current one
@@ -611,15 +616,15 @@ public class Pendrago extends BattleMap implements Listener {
                 effects.cancel();
                 int strikes = 20;
                 while (strikes > 0) {
-                    Bukkit.getWorld(name).strikeLightning(new Location(Bukkit.getWorld(name), -41, 108, 6));
+                    Bukkit.getWorld(getName()).strikeLightning(new Location(Bukkit.getWorld(getName()), -41, 108, 6));
                     strikes--;
                 }
 
-                Bukkit.getWorld(name).createExplosion(new Location(Bukkit.getWorld(name), -41, 108, 6), 90F);
+                Bukkit.getWorld(getName()).createExplosion(new Location(Bukkit.getWorld(getName()), -41, 108, 6), 90F);
 
                 for (Player p : Bukkit.getOnlinePlayers()) {
-                    if (p.getWorld().getName().equals(name) && p.getGameMode() == GameMode.SURVIVAL) {
-                        double distance = new Location(Bukkit.getWorld(name), -41, 108, 6).distance(p.getLocation());
+                    if (p.getWorld().getName().equals(getName()) && p.getGameMode() == GameMode.SURVIVAL) {
+                        double distance = new Location(Bukkit.getWorld(getName()), -41, 108, 6).distance(p.getLocation());
                         if (distance <= 15) {
                             p.damage(40);
                         } else if (distance <= 30) {
@@ -629,31 +634,9 @@ public class Pendrago extends BattleMap implements Listener {
                         }
                     }
                 }
-                circleSmoke(new Location(Bukkit.getWorld(name), -41, 108, 6));
+                circleSmoke(new Location(Bukkit.getWorld(getName()), -41, 108, 6));
             }
         }, 53);
-    }
-
-    protected static List<Block> circle(Location loc, int radius, int height, boolean hollow, boolean sphere, int plusY) {
-        List<Block> circleblocks = new ArrayList<Block>();
-        int cx = loc.getBlockX();
-        int cy = loc.getBlockY();
-        int cz = loc.getBlockZ();
-
-        for (int x = cx - radius; x <= cx + radius; x++) {
-            for (int z = cz - radius; z <= cz + radius; z++) {
-                for (int y = (sphere ? cy - radius : cy); y < (sphere ? cy + radius : cy + height); y++) {
-                    double dist = (cx - x) * (cx - x) + (cz - z) * (cz - z) + (sphere ? (cy - y) * (cy - y) : 0);
-
-                    if (dist < radius * radius && !(hollow && dist < (radius - 1) * (radius - 1))) {
-                        Location l = new Location(loc.getWorld(), x, y + plusY, z);
-                        circleblocks.add(l.getBlock());
-                    }
-                }
-            }
-        }
-
-        return circleblocks;
     }
 
     private void circleSmoke(Location loc) {
@@ -690,7 +673,22 @@ public class Pendrago extends BattleMap implements Listener {
 
     @EventHandler
     public void drop(PlayerDropItemEvent event) {
-        if (!event.getPlayer().getWorld().getName().equals(name)) return;
+        if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         event.setCancelled(true);
+    }
+
+    public enum Group {
+        GREAT_KNIGHT,
+        CLERIC,
+        CAPTAIN,
+        SNIPER,
+        SPY,
+        MUSKETEER,
+        MERCENARY,
+        THIEF,
+        SCOUT_LEADER,
+        RAINBOW_DASHER,
+        ENGINEER,
+        POTION_MASTER
     }
 }

@@ -8,22 +8,16 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
-
-
-//    public int x1 = 40;
-//    public int y1 = 97;
-//    public int z1 = -45;
-//    public int x2 = -36;
-//    public int y2 = 9;
-//    public int z2 = 49;
 
 @MapConfig(
         name = "candyland",
@@ -63,7 +57,8 @@ public class CandyLand extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack WOODEN_SWORD = new ItemStack(Material.WOOD_SWORD, 1);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -80,8 +75,8 @@ public class CandyLand extends BattleMap implements Listener {
         LEATHER_HELMET.setItemMeta(helmetMeta);
         WOODEN_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 32767);
 
-        p.getInventory().setHelmet(LEATHER_HELMET);
-        p.getInventory().setChestplate(LEATHER_CHESTPLATE);
+        pl.getInventory().setHelmet(LEATHER_HELMET);
+        pl.getInventory().setChestplate(LEATHER_CHESTPLATE);
 
         i.setItem(0, WOODEN_SWORD);
         i.setItem(1, BOW);

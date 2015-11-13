@@ -1,11 +1,15 @@
 package com.oresomecraft.maps.battles.maps;
 
-import org.bukkit.*;
 import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
-import com.oresomecraft.OresomeBattles.map.annotations.*;
+import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
+import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -27,10 +31,10 @@ import org.bukkit.inventory.ItemStack;
 @Attributes(
         allowBuild = true,
         fireSpread = false,
-		lives = 3,
-        disabledDrops = {Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS, 
-		Material.CHAINMAIL_LEGGINGS, Material.CHAINMAIL_CHESTPLATE, 
-		Material.IRON_HELMET, Material.COOKED_BEEF}
+        lives = 3,
+        disabledDrops = {Material.BOW, Material.IRON_SWORD, Material.LEATHER_BOOTS,
+                Material.CHAINMAIL_LEGGINGS, Material.CHAINMAIL_CHESTPLATE,
+                Material.IRON_HELMET, Material.COOKED_BEEF}
 )
 public class Arsvilla extends BattleMap {
 
@@ -46,8 +50,8 @@ public class Arsvilla extends BattleMap {
         blueSpawns.add(new Location(w, -15, 66, -20, 0, 0));
         blueSpawns.add(new Location(w, -45, 69, -12, 1, 0));
         blueSpawns.add(new Location(w, 5, 66, 46, 2, 0));
-		
-		setKoTHMonument(new Location(w, -4, 88, -12));
+
+        setKoTHMonument(new Location(w, -4, 88, -12));
     }
 
     public void readyFFASpawns() {
@@ -70,7 +74,8 @@ public class Arsvilla extends BattleMap {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 24);
@@ -82,10 +87,10 @@ public class Arsvilla extends BattleMap {
         ItemStack LEATHER_BOOTS = new ItemStack(Material.LEATHER_BOOTS, 1);
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
 
-        p.getInventory().setBoots(LEATHER_BOOTS);
-        p.getInventory().setLeggings(CHAIN_LEGS);
-        p.getInventory().setChestplate(CHAIN_TOP);
-        p.getInventory().setHelmet(IRON_HELMET);
+        pl.getInventory().setBoots(LEATHER_BOOTS);
+        pl.getInventory().setLeggings(CHAIN_LEGS);
+        pl.getInventory().setChestplate(CHAIN_TOP);
+        pl.getInventory().setHelmet(IRON_HELMET);
 
         i.setItem(0, IRON_SWORD);
         i.setItem(1, BOW);

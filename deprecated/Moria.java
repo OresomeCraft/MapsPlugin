@@ -7,8 +7,10 @@ import com.oresomecraft.OresomeBattles.inventories.ItemUtils;
 import com.oresomecraft.OresomeBattles.teams.Team;
 import com.oresomecraft.maps.MapConfig;
 import com.oresomecraft.maps.battles.BattleMap;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -19,6 +21,20 @@ import org.bukkit.inventory.ItemStack;
 @MapConfig
 public class Moria extends BattleMap implements Listener {
 
+    // Region. (Top corner block and bottom corner block
+    // Top left corner
+    public int x1 = 33;
+    public int y1 = 180;
+    public int z1 = 71;
+    // Bottom right corner
+    public int x2 = -250;
+    public int y2 = 23;
+    public int z2 = -80;
+    String name = "moria";
+    String fullName = "Mines of Moria";
+    String[] creators = {"miniwolf35", "ep1cn00bt00b"};
+    Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH, Gamemode.INFECTION};
+
     public Moria() {
         super.initiate(this, name, fullName, creators, modes);
         lockTime("day");
@@ -26,11 +42,6 @@ public class Moria extends BattleMap implements Listener {
                 Material.CARROT_STICK, Material.NAME_TAG, Material.MONSTER_EGG, Material.DIAMOND_PICKAXE, Material.CHAINMAIL_BOOTS,
                 Material.LEATHER_LEGGINGS});
     }
-
-    String name = "moria";
-    String fullName = "Mines of Moria";
-    String[] creators = {"miniwolf35", "ep1cn00bt00b"};
-    Gamemode[] modes = {Gamemode.TDM, Gamemode.KOTH, Gamemode.INFECTION};
 
     public void readyTDMSpawns() {
         redSpawns.add(new Location(w, -188, 72, 34, -177, 0));
@@ -48,7 +59,8 @@ public class Moria extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 4);
         ItemStack BOW = new ItemStack(Material.BOW, 1);
@@ -72,10 +84,10 @@ public class Moria extends BattleMap implements Listener {
 
         ArmourUtils.colourArmourAccordingToTeam(p, new ItemStack[]{LEATHER_PANTS});
 
-        p.getInventory().setHelmet(DIAMOND_HELMET);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
-        p.getInventory().setLeggings(LEATHER_PANTS);
-        p.getInventory().setBoots(CHAIN_BOOTS);
+        pl.getInventory().setHelmet(DIAMOND_HELMET);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setLeggings(LEATHER_PANTS);
+        pl.getInventory().setBoots(CHAIN_BOOTS);
 
         i.setItem(0, STONE_SWORD);
         i.setItem(1, BOW);
@@ -94,17 +106,6 @@ public class Moria extends BattleMap implements Listener {
         }
 
     }
-
-    // Region. (Top corner block and bottom corner block
-    // Top left corner
-    public int x1 = 33;
-    public int y1 = 180;
-    public int z1 = 71;
-
-    // Bottom right corner
-    public int x2 = -250;
-    public int y2 = 23;
-    public int z2 = -80;
 
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {

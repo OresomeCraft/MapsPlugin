@@ -21,7 +21,7 @@ import org.bukkit.potion.PotionEffectType;
 @MapConfig(
         name = "mayhem",
         fullName = "Mayhem",
-        creators = {"ShaunDepro97", "meganlovesmusic", "Kytria"},
+        creators = {"Synxi", "meganlovesmusic", "Kytria"},
         gamemodes = {Gamemode.TDM, Gamemode.LTS}
 )
 @Region(
@@ -40,6 +40,9 @@ import org.bukkit.potion.PotionEffectType;
                 Material.IRON_CHESTPLATE, Material.FISHING_ROD, Material.DIAMOND_PICKAXE, Material.ARROW}
 )
 public class Mayhem extends BattleMap implements Listener {
+
+    int timer;
+    int count = 1;
 
     public Mayhem() {
         super.initiate(this);
@@ -65,7 +68,8 @@ public class Mayhem extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Inventory i = p.getInventory();
+        Player pl = Bukkit.getPlayer(p.getName());
+        Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 2);
@@ -77,9 +81,9 @@ public class Mayhem extends BattleMap implements Listener {
         ItemStack DIAMOND_PICKAXE = new ItemStack(Material.DIAMOND_PICKAXE, 1);
         ItemStack EXP = new ItemStack(Material.EXP_BOTTLE, 6);
 
-        p.getInventory().setBoots(IRON_BOOTS);
-        p.getInventory().setLeggings(IRON_PANTS);
-        p.getInventory().setChestplate(IRON_CHESTPLATE);
+        pl.getInventory().setBoots(IRON_BOOTS);
+        pl.getInventory().setLeggings(IRON_PANTS);
+        pl.getInventory().setChestplate(IRON_CHESTPLATE);
 
         i.setItem(0, DIAMOND_PICKAXE);
         i.setItem(1, BOW);
@@ -88,9 +92,6 @@ public class Mayhem extends BattleMap implements Listener {
         i.setItem(8, EXP);
         i.setItem(28, ARROWS);
     }
-
-    int timer;
-    int count = 1;
 
     private void cyclePowerBlock() {
         final Location powerBlock = new Location(Bukkit.getWorld(getName()), 64, 110, 64);
