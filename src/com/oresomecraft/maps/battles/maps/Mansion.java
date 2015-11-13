@@ -95,7 +95,7 @@ public class Mansion extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);

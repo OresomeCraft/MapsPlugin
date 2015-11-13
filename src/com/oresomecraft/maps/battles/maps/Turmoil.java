@@ -6,6 +6,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import com.oresomecraft.maps.MapsPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -67,7 +68,7 @@ public class Turmoil extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        final Player pl = Bukkit.getPlayer(p.getName());
+        final Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
@@ -91,6 +92,6 @@ public class Turmoil extends BattleMap implements Listener {
                 pl.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600 * 20, 1));
                 pl.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 1));
             }
-        }.runTaskLater(plugin, 10L);
+        }.runTaskLater(MapsPlugin.getInstance(), 10L);
     }
 }

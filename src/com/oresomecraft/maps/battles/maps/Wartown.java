@@ -6,6 +6,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import com.oresomecraft.maps.MapsPlugin;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -88,7 +89,7 @@ public class Wartown extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
@@ -210,7 +211,7 @@ public class Wartown extends BattleMap implements Listener {
     public void arrowParticles() {
 
         Bukkit.getServer().getScheduler().cancelTask(particles);
-        particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+        particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(MapsPlugin.getInstance(), new Runnable() {
 
             public void run() {
                 World world = Bukkit.getWorld(getName());

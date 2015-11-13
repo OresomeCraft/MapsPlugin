@@ -10,6 +10,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import com.oresomecraft.maps.MapsPlugin;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -76,7 +77,7 @@ public class Amplitude extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.POTION, 1, (short) 16373);
@@ -108,7 +109,7 @@ public class Amplitude extends BattleMap implements Listener {
     public void amplitudeTimer() {
         Bukkit.getServer().getScheduler().cancelTask(auraBlast);
 
-        auraBlast = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+        auraBlast = Bukkit.getScheduler().scheduleSyncRepeatingTask(MapsPlugin.getInstance(), new Runnable() {
             public void run() {
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     if (p.isSneaking() && p.getItemInHand().getType() == Material.IRON_SWORD) {

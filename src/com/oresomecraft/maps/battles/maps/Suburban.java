@@ -66,8 +66,8 @@ public class Suburban extends BattleMap implements Listener {
         FFASpawns.add(new Location(w, 437, 58, -482));
     }
 
-    public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+    public void applyInventory(BattlePlayer p) {
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);

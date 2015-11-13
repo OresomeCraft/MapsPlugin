@@ -26,8 +26,7 @@ import org.bukkit.inventory.ItemStack;
 @Attributes(
         allowBuild = false,
         fireSpread = false,
-        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL},
-        allowPhysicalDamage = true
+        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL}
 )
 public class Paintball_Delta extends TeamPaintBallMap implements Listener {
 
@@ -55,7 +54,7 @@ public class Paintball_Delta extends TeamPaintBallMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack SNOW_BALL = new ItemStack(Material.SNOW_BALL, 200);

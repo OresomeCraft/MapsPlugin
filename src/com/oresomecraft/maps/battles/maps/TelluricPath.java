@@ -73,7 +73,7 @@ public class TelluricPath extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack STONE_SWORD = new ItemStack(Material.STONE_SWORD, 1, (short) -16373);

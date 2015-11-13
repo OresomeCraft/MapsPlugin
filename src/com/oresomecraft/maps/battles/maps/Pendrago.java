@@ -4,6 +4,7 @@ import com.oresomecraft.OresomeBattles.BattlePlayer;
 import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.map.annotations.*;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import com.oresomecraft.maps.MapsPlugin;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -137,8 +138,8 @@ public class Pendrago extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
-        p.sendMessage(ChatColor.GOLD + "Interact with one of the signs to change class!");
+        Player pl = (Player) p;
+        pl.sendMessage(ChatColor.GOLD + "Interact with one of the signs to change class!");
     }
 
     @EventHandler
@@ -241,7 +242,7 @@ public class Pendrago extends BattleMap implements Listener {
             player.removePotionEffect(effect.getType());
         }
 
-        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+        Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
             public void run() {
                 switch (group) {
 
@@ -548,7 +549,7 @@ public class Pendrago extends BattleMap implements Listener {
                 event.getClickedBlock().setType(Material.AIR);
                 Bukkit.broadcastMessage(ChatColor.RED + "[PENDRAGO] " + p.getDisplayName() + ChatColor.RED + " SUMMONED THE COMET!");
                 Bukkit.broadcastMessage(ChatColor.RED + "YOU HAVE 30 SECONDS TO TAKE COVER!");
-                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                     public void run() {
                         Bukkit.broadcastMessage(ChatColor.RED + "THE COMET HAS BEEN SUMMONED!");
                         comet();
@@ -564,7 +565,7 @@ public class Pendrago extends BattleMap implements Listener {
     public void rainbow(final PlayerMoveEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(getName())) return;
         if (event.getPlayer().getItemInHand().getType() == Material.NETHER_STAR && event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
-            Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+            Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                 public void run() {
                     if (event.getFrom().distanceSquared(event.getTo()) == 0) return;
                     Location location = event.getPlayer().getLocation();
@@ -584,7 +585,7 @@ public class Pendrago extends BattleMap implements Listener {
             fb.setDropItem(false);
             fb.setVelocity(new Vector(0, -2.7, 0));
         }
-        final BukkitTask effects = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
+        final BukkitTask effects = Bukkit.getScheduler().runTaskTimer(MapsPlugin.getInstance(), new Runnable() {
             public void run() {
                 for (FallingBlock fallingBlock : Bukkit.getWorld(getName()).getEntitiesByClass(FallingBlock.class)) {
                     Location l1 = fallingBlock.getLocation();
@@ -611,7 +612,7 @@ public class Pendrago extends BattleMap implements Listener {
                 }
             }
         }, 2L, 2L);
-        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+        Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
             public void run() {
                 effects.cancel();
                 int strikes = 20;

@@ -95,7 +95,7 @@ public class Hypno extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);
@@ -219,7 +219,7 @@ public class Hypno extends BattleMap implements Listener {
                             pp = BattlePlayer.getBattlePlayer(s);
                             ss = BattlePlayer.getBattlePlayer(p);
                         } catch (Exception ex) {
-                            System.out.println("Couldn't cast player " + pp.getName() + " or " + ss.getName() + " to BattlePlayer!");
+                            System.out.println("Couldn't cast player " + s.getName() + " or " + p.getName() + " to BattlePlayer!");
                             //erps.
                         }
                         if (ss.getTeamType().equals(pp.getTeamType())) return;

@@ -58,7 +58,7 @@ public class Spaceships extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack IRON_HELMET = new ItemStack(Material.IRON_HELMET, 1);

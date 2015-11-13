@@ -8,7 +8,10 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
-import org.bukkit.*;
+import org.bukkit.ChatColor;
+import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
@@ -96,7 +99,7 @@ public class Arctic extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);

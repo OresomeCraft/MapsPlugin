@@ -55,7 +55,7 @@ public class GibsonDesertBattles extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack IRON_AXE = new ItemStack(Material.IRON_AXE, 1);

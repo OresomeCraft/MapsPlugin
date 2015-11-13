@@ -5,6 +5,7 @@ import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.teams.Team;
+import com.oresomecraft.maps.MapsPlugin;
 import com.oresomecraft.maps.arcade.games.TeamPaintBallMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -29,8 +30,7 @@ import org.bukkit.potion.PotionEffectType;
 )
 @Attributes(
         allowBuild = false,
-        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL},
-        allowPhysicalDamage = true
+        disabledDrops = {Material.COOKED_BEEF, Material.SNOW_BALL}
 )
 public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
 
@@ -52,7 +52,7 @@ public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        final Player pl = Bukkit.getPlayer(p.getName());
+        final Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack SNOW_BALL = new ItemStack(Material.SNOW_BALL, 200);
@@ -61,7 +61,7 @@ public class Paintball_Charlie extends TeamPaintBallMap implements Listener {
         i.setItem(0, SNOW_BALL);
         i.setItem(1, STEAK);
 
-        Bukkit.getScheduler().runTask(plugin, new Runnable() {
+        Bukkit.getScheduler().runTask(MapsPlugin.getInstance(), new Runnable() {
             public void run() {
                 pl.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000 * 20, 2));
             }

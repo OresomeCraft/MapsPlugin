@@ -22,8 +22,7 @@ import org.bukkit.inventory.ItemStack;
 )
 @Attributes(
         allowBuild = false,
-        disabledDrops = {Material.COOKED_BEEF},
-        allowPhysicalPlayerDamage = false
+        disabledDrops = {Material.COOKED_BEEF}
 )
 public class TNTRun_Alpha extends TNTRunMap implements Listener {
 
@@ -47,13 +46,13 @@ public class TNTRun_Alpha extends TNTRunMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         i.setItem(0, STEAK);
 
-        p.sendMessage(ChatColor.RED + "RUN!!!");
+        pl.sendMessage(ChatColor.RED + "RUN!!!");
     }
 
 }

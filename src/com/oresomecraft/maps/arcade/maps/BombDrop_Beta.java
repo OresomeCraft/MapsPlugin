@@ -23,9 +23,7 @@ import org.bukkit.inventory.ItemStack;
         gamemodes = {Gamemode.LMS}
 )
 @Attributes(
-        allowBuild = false,
-        timeLock = Map.Time.DAY,
-        allowPhysicalDamage = false
+        allowBuild = false
 )
 public class BombDrop_Beta extends BombDropMap implements Listener {
 
@@ -38,7 +36,7 @@ public class BombDrop_Beta extends BombDropMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
         i.setItem(0, STEAK);

@@ -63,7 +63,7 @@ public class Electricity extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);

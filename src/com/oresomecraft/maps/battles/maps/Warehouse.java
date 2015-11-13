@@ -69,7 +69,7 @@ public class Warehouse extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        final Player pl = Bukkit.getPlayer(p.getName());
+        final Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);

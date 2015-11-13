@@ -6,6 +6,7 @@ import com.oresomecraft.OresomeBattles.map.Map;
 import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
 import com.oresomecraft.maps.MapsPlugin;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -34,7 +35,7 @@ public abstract class TNTRunMap extends Map {
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
         if (!event.getPlayer().getWorld().getName().equals(getName())) return;
-        if (BattlePlayer.getBattlePlayer(event.getPlayer()).isSpectator()) return;
+        if (event.getPlayer().getGameMode() == GameMode.CREATIVE) return;
         final Location loc = event.getPlayer().getLocation();
         if (hasPassedGrace) {
             Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {

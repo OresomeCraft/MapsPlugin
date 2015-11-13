@@ -77,7 +77,7 @@ public class Biomes extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack IRON_SWORD = new ItemStack(Material.IRON_SWORD, 1);

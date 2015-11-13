@@ -53,7 +53,7 @@ public class Frozen extends TiOTMap {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         if (p.getTeamType() == Team.TIOT_INVESTIGATORS) {
             ItemStack INVESTIGATOR_HAT = new ItemStack(Material.LEATHER_HELMET, 1);
             LeatherArmorMeta hatMeta = (LeatherArmorMeta) INVESTIGATOR_HAT.getItemMeta();

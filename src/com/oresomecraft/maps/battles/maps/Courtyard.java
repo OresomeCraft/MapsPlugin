@@ -9,6 +9,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import com.oresomecraft.OresomeBattles.teams.Team;
+import com.oresomecraft.maps.MapsPlugin;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -79,8 +80,8 @@ public class Courtyard extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
-        p.sendMessage(ChatColor.GOLD + "Interact with one of the signs to change class!");
+        Player pl = (Player) p;
+        pl.sendMessage(ChatColor.GOLD + "Interact with one of the signs to change class!");
     }
 
     @EventHandler
@@ -166,7 +167,7 @@ public class Courtyard extends BattleMap implements Listener {
         selecting.add(player.getName());
         player.updateInventory();
 
-        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+        Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
             public void run() {
                 switch (group) {
                     case FIREARMS:

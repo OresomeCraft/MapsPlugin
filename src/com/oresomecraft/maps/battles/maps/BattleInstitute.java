@@ -10,6 +10,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import com.oresomecraft.OresomeBattles.teams.Team;
+import com.oresomecraft.maps.MapsPlugin;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -68,8 +69,8 @@ public class BattleInstitute extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
-        p.sendMessage(ChatColor.GOLD + "Wait until you are called and then punch the block!");
+        Player pl = (Player) p;
+        pl.sendMessage(ChatColor.GOLD + "Wait until you are called and then punch the block!");
     }
 
     @EventHandler
@@ -105,7 +106,7 @@ public class BattleInstitute extends BattleMap implements Listener {
     public void worldLoad(MapLoadEvent event) {
         if (event.getWorld().getName().equalsIgnoreCase(getName())) {
             Bukkit.broadcastMessage(ChatColor.GREEN + "[BattleInstitute] Starting up!");
-            Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+            Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                 public void run() {
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         try {
@@ -131,7 +132,7 @@ public class BattleInstitute extends BattleMap implements Listener {
                 try {
                     if (!red.contains(event.getPlayer().getName()) && !blue.contains(event.getPlayer().getName()) && Bukkit.getWorld(getName()).getPlayers().size() != 0) {
                         if (Bukkit.getWorld(getName()).getPlayers().size() == 0) return;
-                        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                        Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                             public void run() {
                                 if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
                                     if (BattlePlayer.getBattlePlayer(event.getPlayer()).getTeamType() == Team.LTS_RED) {
@@ -191,7 +192,7 @@ public class BattleInstitute extends BattleMap implements Listener {
         Bukkit.broadcastMessage(ChatColor.BLUE + newBlue);
         currentBlue = newBlue;
         currentRed = newRed;
-        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+        Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
             public void run() {
                 if (!blueEnter) join(currentBlue);
                 if (!redEnter) join(currentRed);
@@ -227,7 +228,7 @@ public class BattleInstitute extends BattleMap implements Listener {
                 p.updateInventory();
             }
         }
-        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+        Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
             public void run() {
                 newRound();
             }

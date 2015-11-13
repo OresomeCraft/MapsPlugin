@@ -7,6 +7,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import com.oresomecraft.maps.MapsPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -65,7 +66,7 @@ public class Elements extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        final Player pl = Bukkit.getPlayer(p.getName());
+        final Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack HEALTH = new ItemStack(Material.GOLDEN_APPLE, 2);
@@ -109,7 +110,7 @@ public class Elements extends BattleMap implements Listener {
             public void run() {
                 pl.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 15 * 60 * 20, 1));
             }
-        }.runTaskLater(plugin, 10L);
+        }.runTaskLater(MapsPlugin.getInstance(), 10L);
     }
 
     @EventHandler

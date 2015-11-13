@@ -6,6 +6,7 @@ import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
 import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
+import com.oresomecraft.maps.MapsPlugin;
 import com.oresomecraft.maps.arcade.games.RacewayMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -27,8 +28,7 @@ import java.util.ArrayList;
         gamemodes = {Gamemode.LMS}
 )
 @Attributes(
-        allowBuild = false,
-        allowPhysicalPlayerDamage = false
+        allowBuild = false
 )
 public class Raceway_Alpha extends RacewayMap implements Listener {
 
@@ -44,7 +44,7 @@ public class Raceway_Alpha extends RacewayMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
@@ -55,13 +55,13 @@ public class Raceway_Alpha extends RacewayMap implements Listener {
     @EventHandler
     public void onLoad(MapLoadEvent event) {
         if (event.getWorld().getName().equals(getName())) {
-            Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+            Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                 public void run() {
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         p.teleport(new Location(Bukkit.getWorld(getName()), -18, 65, -7));
                     }
                     Bukkit.broadcastMessage(ChatColor.RED + "Race is starting! Don't leave the start area!");
-                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                    Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                         public void run() {
                             hasPassedGrace = true;
                             Bukkit.broadcastMessage(ChatColor.RED + "GO!");
@@ -97,7 +97,7 @@ public class Raceway_Alpha extends RacewayMap implements Listener {
             if (!checker.contains(p.getName())) {
                 p.sendMessage(ChatColor.RED + "You have 1 second to get back on the road..");
                 checker.add(p.getName());
-                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                     public void run() {
                         if (event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.COAL_BLOCK ||
                                 event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.QUARTZ_BLOCK ||

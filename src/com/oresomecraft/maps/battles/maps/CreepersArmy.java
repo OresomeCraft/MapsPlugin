@@ -8,6 +8,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
 import com.oresomecraft.OresomeBattles.teams.Team;
+import com.oresomecraft.maps.MapsPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -50,7 +51,7 @@ public class CreepersArmy extends BattleMap implements Listener {
         active = true;
         pass = false;
         Bukkit.broadcastMessage(ChatColor.RED + "INVINCIBILITY WEARS OFF IN 30 SECONDS!");
-        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+        Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
             public void run() {
                 if (!active) return;
                 pass = true;
@@ -74,9 +75,9 @@ public class CreepersArmy extends BattleMap implements Listener {
     }
 
     public void applyInventory(BattlePlayer p) {
-        p.sendMessage(ChatColor.GOLD + "Welcome to Creeper's Army!");
-        p.sendMessage(ChatColor.GOLD + "This is a map that specialises in " + ChatColor.BOLD + "OresomeInfected classic-style infection!");
-        p.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "RUN INTO PEOPLE TO INFECT THEM!");
+        ((Player) p).sendMessage(ChatColor.GOLD + "Welcome to Creeper's Army!");
+        ((Player) p).sendMessage(ChatColor.GOLD + "This is a map that specialises in " + ChatColor.BOLD + "OresomeInfected classic-style infection!");
+        ((Player) p).sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "RUN INTO PEOPLE TO INFECT THEM!");
     }
 
     @EventHandler

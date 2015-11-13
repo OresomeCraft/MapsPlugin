@@ -61,7 +61,7 @@
         <dependency>
             <groupId>com.oresomecraft</groupId>
             <artifactId>OresomeBattlesAPI</artifactId>
-            <version>4.0.8</version>
+            <version>4.0.6</version>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>

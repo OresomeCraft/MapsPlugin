@@ -28,9 +28,7 @@ import org.bukkit.inventory.ItemStack;
         y2 = 60,
         z2 = -27
 )
-@Attributes(
-        allowPhysicalPlayerDamage = false
-)
+@Attributes
 public class DynaBlast_Alpha extends DynaBlastMap implements Listener {
 
     public DynaBlast_Alpha() {
@@ -49,7 +47,7 @@ public class DynaBlast_Alpha extends DynaBlastMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack TNT = new ItemStack(Material.TNT, 128);

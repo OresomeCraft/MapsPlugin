@@ -36,7 +36,7 @@ public class Fosscrest extends TiOTMap {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         // No predefined inventory
     }
 

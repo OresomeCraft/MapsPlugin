@@ -31,8 +31,7 @@ import java.util.List;
 )
 @Attributes(
         blockBuildLimit = 66,
-        disabledDrops = {Material.DIAMOND_SPADE, Material.COOKED_BEEF},
-        allowPhysicalPlayerDamage = false
+        disabledDrops = {Material.DIAMOND_SPADE, Material.COOKED_BEEF}
 )
 public class Spleef_Charlie extends ArcadeMap implements Listener {
 
@@ -53,7 +52,7 @@ public class Spleef_Charlie extends ArcadeMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack DIAMOND_SPADE = new ItemStack(Material.DIAMOND_SPADE, 1);

@@ -23,8 +23,7 @@ import org.bukkit.inventory.ItemStack;
 )
 @Attributes(
         blockBuildLimit = 66,
-        disabledDrops = {Material.DIAMOND_SPADE},
-        allowPhysicalPlayerDamage = false
+        disabledDrops = {Material.DIAMOND_SPADE}
 )
 public class Spleef extends ArcadeMap implements Listener {
 
@@ -41,7 +40,7 @@ public class Spleef extends ArcadeMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack DIAMOND_SPADE = new ItemStack(Material.DIAMOND_SPADE, 1);

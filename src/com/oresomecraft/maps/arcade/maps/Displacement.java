@@ -21,8 +21,7 @@ import org.bukkit.inventory.ItemStack;
 )
 @Attributes(
         allowBuild = false,
-        disabledDrops = {Material.DIAMOND_SPADE, Material.COOKED_BEEF, Material.SNOW_BALL},
-        allowPhysicalDamage = true
+        disabledDrops = {Material.DIAMOND_SPADE, Material.COOKED_BEEF, Material.SNOW_BALL}
 )
 public class Displacement extends PaintBallMap implements Listener {
 
@@ -35,7 +34,7 @@ public class Displacement extends PaintBallMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack SNOW_BALL = new ItemStack(Material.SNOW_BALL, 128);

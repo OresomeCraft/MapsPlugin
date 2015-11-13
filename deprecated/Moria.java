@@ -59,7 +59,7 @@ public class Moria extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 4);

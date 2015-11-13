@@ -7,6 +7,7 @@ import com.oresomecraft.OresomeBattles.map.MapLoadEvent;
 import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import com.oresomecraft.maps.MapsPlugin;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -74,9 +75,9 @@ public class BattleReverie extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
-        p.sendMessage(ChatColor.GOLD + "Welcome to The Battle Reverie!");
-        p.sendMessage(ChatColor.GOLD + "This is an arena that specialises in " + ChatColor.BOLD + "quadruple brawling!");
+        Player pl = (Player) p;
+        pl.sendMessage(ChatColor.GOLD + "Welcome to The Battle Reverie!");
+        pl.sendMessage(ChatColor.GOLD + "This is an arena that specialises in " + ChatColor.BOLD + "quadruple brawling!");
     }
 
     @EventHandler
@@ -100,7 +101,7 @@ public class BattleReverie extends BattleMap implements Listener {
         if (event.getWorld().getName().equalsIgnoreCase(getName())) {
             ac = true;
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] Starting up!");
-            Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+            Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
                 public void run() {
                     newRound();
                 }
@@ -131,7 +132,7 @@ public class BattleReverie extends BattleMap implements Listener {
         np4 = "???";
         if (getInGame().size() <= 3) {
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "[BattleReverie] Not enough players! :(");
-            plugin.getServer().getPluginManager().callEvent(new EndBattleEvent(Gamemode.FFA));
+            MapsPlugin.getInstance().getServer().getPluginManager().callEvent(new EndBattleEvent(Gamemode.FFA));
             return;
         }
         if (getInGame().size() > 0)
@@ -152,7 +153,7 @@ public class BattleReverie extends BattleMap implements Listener {
         p2 = np2;
         p3 = np3;
         p4 = np4;
-        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+        Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
             public void run() {
                 if (!ac) return;
                 if (!p1.equals("???")) join(p1);
@@ -194,7 +195,7 @@ public class BattleReverie extends BattleMap implements Listener {
             p.setFoodLevel(20);
             p.updateInventory();
         }
-        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+        Bukkit.getScheduler().runTaskLater(MapsPlugin.getInstance(), new Runnable() {
             public void run() {
                 newRound();
             }

@@ -20,8 +20,7 @@ import org.bukkit.inventory.ItemStack;
         gamemodes = {Gamemode.LMS}
 )
 @Attributes(
-        disabledDrops = {Material.COOKED_BEEF},
-        allowPhysicalPlayerDamage = false
+        disabledDrops = {Material.COOKED_BEEF}
 )
 public class TNTDM_Charlie extends ArcadeMap implements Listener {
 
@@ -37,7 +36,7 @@ public class TNTDM_Charlie extends ArcadeMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack TNT = new ItemStack(Material.TNT, 192);

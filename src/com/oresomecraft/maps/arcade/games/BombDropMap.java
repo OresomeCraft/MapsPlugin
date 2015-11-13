@@ -125,7 +125,7 @@ public abstract class BombDropMap extends Map {
                 for (Entity ee : l) {
                     if (ee instanceof Player) {
                         Player p = (Player) ee;
-                        pl.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 5 * 20, 1));
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 5 * 20, 1));
                     }
                 }
             } else if (et == EntityType.OCELOT) {
@@ -134,7 +134,7 @@ public abstract class BombDropMap extends Map {
                 for (Entity ee : l) {
                     if (ee instanceof Player) {
                         Player p = (Player) ee;
-                        pl.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 1));
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 1));
                     }
                 }
             } else if (et == EntityType.SPIDER) {
@@ -149,8 +149,8 @@ public abstract class BombDropMap extends Map {
                 for (Entity ee : l) {
                     if (ee instanceof Player) {
                         Player p = (Player) ee;
-                        pl.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 5 * 20, 2));
-                        pl.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20 * 20, 2));
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 5 * 20, 2));
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20 * 20, 2));
                     }
                 }
             } else if (et == EntityType.SKELETON) {

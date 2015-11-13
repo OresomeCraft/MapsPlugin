@@ -5,14 +5,11 @@ import com.oresomecraft.OresomeBattles.gamemode.Gamemode;
 import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.maps.arcade.games.TNTRunMap;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 
 @MapConfig(
         name = "viscosity",
@@ -22,8 +19,7 @@ import org.bukkit.inventory.ItemStack;
 )
 @Attributes(
         allowBuild = false,
-        disabledDrops = {Material.COOKED_BEEF},
-        allowPhysicalDamage = true
+        disabledDrops = {Material.COOKED_BEEF}
 )
 public class Viscosity extends TNTRunMap implements Listener {
 
@@ -35,14 +31,13 @@ public class Viscosity extends TNTRunMap implements Listener {
         FFASpawns.add(new Location(w, -29, 74, -28));
     }
 
-    public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
-        Inventory i = pl.getInventory();
+    public void applyInventory(BattlePlayer p) {
+    }
 
-        ItemStack STEAK = new ItemStack(Material.COOKED_BEEF, 3);
-        i.setItem(0, STEAK);
-
-        p.sendMessage(ChatColor.RED + "RUN!!!");
+    @EventHandler
+    public void food(FoodLevelChangeEvent event) {
+        event.setFoodLevel(20);
+        event.setCancelled(true);
     }
 
 }

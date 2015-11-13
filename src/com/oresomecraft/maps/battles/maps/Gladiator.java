@@ -40,7 +40,6 @@ import org.bukkit.util.Vector;
 )
 @Attributes(
         allowBuild = false,
-        timeLock = Map.Time.DAY,
         disabledDrops = {Material.ARROW, Material.FISHING_ROD, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.BOW, Material.IRON_SWORD, Material.IRON_BOOTS, Material.WOOL}
 )
 public class Gladiator extends BattleMap implements Listener {
@@ -117,7 +116,7 @@ public class Gladiator extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);

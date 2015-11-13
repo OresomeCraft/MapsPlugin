@@ -10,6 +10,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import com.oresomecraft.maps.MapsPlugin;
 import org.bukkit.*;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -42,7 +43,6 @@ import java.util.List;
 @Attributes(
         tdmTime = 12,
         allowBuild = false,
-        timeLock = Map.Time.NIGHT,
         disabledDrops = {Material.BOW, Material.ARROW, Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS, Material.STONE_SWORD}
 )
 public class Omoshiro extends BattleMap implements Listener {
@@ -77,7 +77,7 @@ public class Omoshiro extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack LEATHER_HELMET = new ItemStack(Material.LEATHER_HELMET, 1);
@@ -134,7 +134,7 @@ public class Omoshiro extends BattleMap implements Listener {
     @EventHandler
     public void arrowParticles(WorldLoadEvent event) {
         if (event.getWorld().getName().equals(getName())) {
-            particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+            particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(MapsPlugin.getInstance(), new Runnable() {
                 public void run() {
                     World world = Bukkit.getWorld(getName());
                     if (getArena().equals(getName())) {

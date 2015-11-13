@@ -7,6 +7,7 @@ import com.oresomecraft.OresomeBattles.map.annotations.Attributes;
 import com.oresomecraft.OresomeBattles.map.annotations.MapConfig;
 import com.oresomecraft.OresomeBattles.map.annotations.Region;
 import com.oresomecraft.OresomeBattles.map.types.BattleMap;
+import com.oresomecraft.maps.MapsPlugin;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
@@ -110,7 +111,7 @@ public class Perro extends BattleMap implements Listener {
     }
 
     public void applyInventory(final BattlePlayer p) {
-        Player pl = Bukkit.getPlayer(p.getName());
+        Player pl = (Player) p;
         Inventory i = pl.getInventory();
 
         ItemStack HEALTH_POTION = new ItemStack(Material.POTION, 1, (short) 16373);
@@ -257,7 +258,7 @@ public class Perro extends BattleMap implements Listener {
     @EventHandler
     public void arrowParticles(MapLoadEvent event) {
         if (event.getWorld().getName().equals(getName())) {
-            particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+            particles = Bukkit.getScheduler().scheduleSyncRepeatingTask(MapsPlugin.getInstance(), new Runnable() {
                 public void run() {
                     World world = Bukkit.getWorld(getName());
                     if (getArena().equals(getName())) {
