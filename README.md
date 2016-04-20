@@ -21,6 +21,7 @@ Users with push and pull access to this repo are:
 * [pegabeavercorn](https://github.com/pegabeavercorn)
 * [Huskehhh](https://github.com/Huskehhh)
 * [psgs](https://github.com/psgs)
+* [ily](https://github.com/ilavayou)
 * [ScruffyRules](https://github.com/ScruffyRules)
 
 ### Compiling
