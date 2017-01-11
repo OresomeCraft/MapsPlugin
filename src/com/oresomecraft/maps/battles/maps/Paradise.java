@@ -82,6 +82,7 @@ public class Paradise extends BattleMap implements Listener {
         i.setItem(2, HEALTH_POTION);
         i.setItem(3, STEAK);
         i.setItem(11, ARROW);
+        i.setItem(4, STEAK);
     }
 
 }
