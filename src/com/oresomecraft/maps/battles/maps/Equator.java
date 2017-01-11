@@ -84,7 +84,15 @@ public class Equator extends BattleMap implements Listener {
         i.setItem(10, ARROWS);
 
     }
-
+    
+    @EventHandler
+    public void onSwim(PlayerToggleSneakEvent e) {
+	Player p = e.getPlayer();
+	if(p.getLocation().getBlock().getType() == Material.WATER || p.getLocation().getBlock().getType() == Material.STATIONARY_WATER) {
+	    p.setVelocity(p.getLocation().getDirection().multiply(0.45D));
+	}
+    }
+    
     @EventHandler(ignoreCancelled = false)
     public void blockBreak(BlockBreakEvent event) {
         if (event.getBlock().getLocation().getWorld().getName().equals(getName())) {
