@@ -33,6 +33,11 @@ import org.bukkit.inventory.ItemStack;
         disabledDrops = {Material.BOW, Material.ARROW, Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS, Material.IRON_SWORD}
 )
 public class Paradise extends BattleMap implements Listener {
+    
+           public BattleTemplate() {
+        super.initiate(this, name, fullName, creators, modes);
+        setAllowBuild(false);
+    }
 
     public Paradise() {
         super.initiate(this);
